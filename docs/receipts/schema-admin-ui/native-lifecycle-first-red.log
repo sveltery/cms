@@ -1,0 +1,96 @@
+$ vitest run --config vitest.schema-admin-ui-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/client.test.ts (2 tests | 2 failed) 15ms
+   × uses the configured Kit base for actual schema and relation client requests 8ms
+   × reports a plain request failure when an unavailable API returns HTML 6ms
+ ❯ tests/schema-admin-ui/route.test.ts (1 test | 1 failed) 1088ms
+   × reloads the actual collection page when Kit reuses it for a different collection parameter 1087ms
+ ❯ tests/schema-admin-ui/native.test.ts (11 tests | 2 failed) 2507ms
+   × rolls a rejected collection reorder back to the persisted read model and reports its error 1013ms
+   × retains field order and displays a rejected field reorder 1018ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/client.test.ts > uses the configured Kit base for actual schema and relation client requests
+TypeError: Body is unusable: Body has already been read
+ ❯ request src/lib/schema-admin/request.ts:7:33
+      5|     ...(body === undefined ? {} : { headers: { 'Content-Type': 'applic…
+      6|   });
+      7|   const result = await response.json();
+       |                                 ^
+      8|   if (!response.ok || result.success !== true) throw new Error(result.…
+      9|   return result.data as T;
+ ❯ fetchRelations src/lib/schema-admin/client.ts:3:50
+ ❯ tests/schema-admin-ui/client.test.ts:8:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/schema-admin-ui/client.test.ts > reports a plain request failure when an unavailable API returns HTML
+AssertionError: expected [Function] to throw error including 'Schema request failed' but got 'Unexpected token \'<\', "<html>Not ".…'
+
+Expected: "Schema request failed"
+Received: "Unexpected token '<', "<html>Not "... is not valid JSON"
+
+ ❯ tests/schema-admin-ui/client.test.ts:13:33
+     11| it('reports a plain request failure when an unavailable API returns HT…
+     12|   vi.spyOn(globalThis,'fetch').mockResolvedValue(new Response('<html>N…
+     13|   await expect(fetchRelations()).rejects.toThrow('Schema request faile…
+       |                                 ^
+     14| });
+     15|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > rolls a rejected collection reorder back to the persisted read model and reports its error
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ tests/schema-admin-ui/native.test.ts:82:84
+     80|   const target=await list({collections:[collection,{...collection,id:'…
+     81|   target.querySelector<HTMLButtonElement>('button[aria-label="Reorder …
+     82|   await vi.waitFor(()=>expect(target.querySelector('[role="alert"]')?.…
+       |                                                                                    ^
+     83|   expect(target.querySelector('tbody tr a')?.textContent).toBe('Posts'…
+     84|   expect(onReorder).toHaveBeenCalledWith(['pages','posts']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > retains field order and displays a rejected field reorder
+AssertionError: expected 'PostsSave posts  Settings Label (Sing…' to contain 'Field order could not be saved'
+
+Expected: "Field order could not be saved"
+Received: "PostsSave posts  Settings Label (Singular) Label (Plural)  Description URL Pattern  Routable Edit locking GroupIcon Hide from navigation Quick action on the dashboard DraftsRevisionsPreviewSearch SEO Title fieldDefaultTitleBody Date fieldDefault List columns Enable comments Comment moderationAll comments require approvalFirst-time commenters onlyNo moderation (auto-approve all) Close comments after days Auto-approve users  Save  Fields6 system + 2 custom fieldsAdd Field ↕ Titletitlestring  EditDelete↕ Bodybodytext  EditDelete System FieldsID id · Unique identifier (ULID)Slug slug · URL-friendly identifierStatus status · draft, published, or archivedCreated At created_at · When the entry was createdUpdated At updated_at · When the entry was last modifiedPublished At published_at · When the entry was published Relations      "
+
+ ❯ tests/schema-admin-ui/native.test.ts:92:51
+     90|   target.querySelector<HTMLButtonElement>('button[aria-label="Reorder …
+     91|   target.querySelector('[aria-label="Field Body"]')!.dispatchEvent(new…
+     92|   await vi.waitFor(()=>expect(target.textContent).toContain('Field ord…
+       |                                                   ^
+     93|   expect(target.querySelector('[role="group"]')?.getAttribute('aria-la…
+     94| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/schema-admin-ui/route.test.ts > reloads the actual collection page when Kit reuses it for a different collection parameter
+AssertionError: expected 'Posts' to be 'Pages' // Object.is equality
+
+Expected: "Pages"
+Received: "Posts"
+
+ ❯ tests/schema-admin-ui/route.test.ts:15:72
+     13|   await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent)…
+     14|   setCollection('pages');await tick();
+     15|   await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent)…
+       |                                                                        ^
+     16|   expect(getCollection).toHaveBeenCalledWith('pages');
+     17| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  5 failed | 9 passed (14)
+   Start at  05:51:00
+   Duration  4.32s (transform 1.58s, setup 0ms, import 2.08s, tests 3.61s, environment 1.92s)
+
+[ELIFECYCLE] Command failed with exit code 1.

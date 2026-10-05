@@ -1,0 +1,125 @@
+$ vitest run --config vitest.schema-admin-ui-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/client.test.ts (2 tests | 2 failed) 24ms
+   × uses the configured Kit base for actual schema and relation client requests 17ms
+   × reports a plain request failure when an unavailable API returns HTML 6ms
+ ❯ tests/schema-admin-ui/route.test.ts (1 test | 1 failed) 1093ms
+   × reloads the actual collection page when Kit reuses it for a different collection parameter 1092ms
+ ❯ tests/schema-admin-ui/native.test.ts (11 tests | 3 failed) 2511ms
+   × excludes background actions from accessibility queries while its actual deletion dialog is open 115ms
+   × rolls a rejected collection reorder back to the persisted read model and reports its error 1008ms
+   × retains field order and displays a rejected field reorder 1018ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/client.test.ts > uses the configured Kit base for actual schema and relation client requests
+AssertionError: expected [ '/api/schema/collections', …(1) ] to deeply equal [ '/cms/api/schema/collections', …(1) ]
+
+- Expected
++ Received
+
+  [
+-   "/cms/api/schema/collections",
+-   "/cms/api/relations",
++   "/api/schema/collections",
++   "/api/relations",
+  ]
+
+ ❯ tests/schema-admin-ui/client.test.ts:9:49
+      7|   setBase('/cms');const fetcher=vi.spyOn(globalThis,'fetch').mockImple…
+      8|   await adminClient.listCollections();await fetchRelations();
+      9|   expect(fetcher.mock.calls.map(call=>call[0])).toEqual(['/cms/api/sch…
+       |                                                 ^
+     10| });
+     11| it('reports a plain request failure when an unavailable API returns HT…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/schema-admin-ui/client.test.ts > reports a plain request failure when an unavailable API returns HTML
+AssertionError: expected [Function] to throw error including 'Schema request failed' but got 'Unexpected token \'<\', "<html>Not ".…'
+
+Expected: "Schema request failed"
+Received: "Unexpected token '<', "<html>Not "... is not valid JSON"
+
+ ❯ tests/schema-admin-ui/client.test.ts:13:33
+     11| it('reports a plain request failure when an unavailable API returns HT…
+     12|   vi.spyOn(globalThis,'fetch').mockResolvedValue(new Response('<html>N…
+     13|   await expect(fetchRelations()).rejects.toThrow('Schema request faile…
+       |                                 ^
+     14| });
+     15|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > excludes background actions from accessibility queries while its actual deletion dialog is open
+AssertionError: expected [ <button …(2)></button>, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/schema-admin-ui/native.test.ts:76:59
+     74|   const target=await list({onDelete:vi.fn()});
+     75|   target.querySelector<HTMLButtonElement>('button[aria-label="Delete P…
+     76|   expect(queryAllByRole(target,'button',{name:/Delete/})).toHaveLength…
+       |                                                           ^
+     77| });
+     78| it('rolls a rejected collection reorder back to the persisted read mod…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > rolls a rejected collection reorder back to the persisted read model and reports its error
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ tests/schema-admin-ui/native.test.ts:82:84
+     80|   const target=await list({collections:[collection,{...collection,id:'…
+     81|   target.querySelector<HTMLButtonElement>('button[aria-label="Reorder …
+     82|   await vi.waitFor(()=>expect(target.querySelector('[role="alert"]')?.…
+       |                                                                                    ^
+     83|   expect(target.querySelector('tbody tr a')?.textContent).toBe('Posts'…
+     84|   expect(onReorder).toHaveBeenCalledWith(['pages','posts']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > retains field order and displays a rejected field reorder
+AssertionError: expected 'PostsSave posts  Settings Label (Sing…' to contain 'Field order could not be saved'
+
+Expected: "Field order could not be saved"
+Received: "PostsSave posts  Settings Label (Singular) Label (Plural)  Description URL Pattern  Routable Edit locking GroupIcon Hide from navigation Quick action on the dashboard DraftsRevisionsPreviewSearch SEO Title fieldDefaultTitleBody Date fieldDefault List columns Enable comments Comment moderationAll comments require approvalFirst-time commenters onlyNo moderation (auto-approve all) Close comments after days Auto-approve users  Save  Fields6 system + 2 custom fieldsAdd Field ↕ Titletitlestring  EditDelete↕ Bodybodytext  EditDelete System FieldsID id · Unique identifier (ULID)Slug slug · URL-friendly identifierStatus status · draft, published, or archivedCreated At created_at · When the entry was createdUpdated At updated_at · When the entry was last modifiedPublished At published_at · When the entry was published Relations      "
+
+ ❯ tests/schema-admin-ui/native.test.ts:92:51
+     90|   target.querySelector<HTMLButtonElement>('button[aria-label="Reorder …
+     91|   target.querySelector('[aria-label="Field Body"]')!.dispatchEvent(new…
+     92|   await vi.waitFor(()=>expect(target.textContent).toContain('Field ord…
+       |                                                   ^
+     93|   expect(target.querySelector('[role="group"]')?.getAttribute('aria-la…
+     94| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/schema-admin-ui/route.test.ts > reloads the actual collection page when Kit reuses it for a different collection parameter
+AssertionError: expected 'Posts' to be 'Pages' // Object.is equality
+
+Expected: "Pages"
+Received: "Posts"
+
+ ❯ tests/schema-admin-ui/route.test.ts:15:72
+     13|   await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent)…
+     14|   setCollection('pages');await tick();
+     15|   await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent)…
+       |                                                                        ^
+     16|   expect(getCollection).toHaveBeenCalledWith('pages');
+     17| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  6 failed | 8 passed (14)
+   Start at  05:52:13
+   Duration  4.85s (transform 2.24s, setup 0ms, import 3.03s, tests 3.63s, environment 2.13s)
+
+[ELIFECYCLE] Command failed with exit code 1.

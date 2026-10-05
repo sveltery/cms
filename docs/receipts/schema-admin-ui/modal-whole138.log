@@ -1,0 +1,56 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx (0 test)
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx (0 test)
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx (0 test)
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx [ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx ]
+CompileError: tests/helpers/schema-ui/state.svelte.ts:2:8 `$state(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+ 1 |  export function nativeProps(props) {
+ 2 |    return $state({ ...props });
+                                   ^
+ 3 |  }
+ 4 |  
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx [ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx ]
+CompileError: tests/helpers/schema-ui/state.svelte.ts:2:8 `$state(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+ 1 |  export function nativeProps(props) {
+ 2 |    return $state({ ...props });
+                                   ^
+ 3 |  }
+ 4 |  
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx [ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx ]
+CompileError: tests/helpers/schema-ui/state.svelte.ts:2:8 `$state(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+ 1 |  export function nativeProps(props) {
+ 2 |    return $state({ ...props });
+                                   ^
+ 3 |  }
+ 4 |  
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx [ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx ]
+CompileError: tests/helpers/schema-ui/state.svelte.ts:2:8 `$state(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+ 1 |  export function nativeProps(props) {
+ 2 |    return $state({ ...props });
+                                   ^
+ 3 |  }
+ 4 |  
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  05:10:17
+   Duration  18.50s (transform 3.91s, setup 6.23s, import 0ms, tests 0ms, environment 8.35s)
+

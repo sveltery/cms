@@ -1,0 +1,1220 @@
+﻿2026-10-05T05:37:00.6031706Z Current runner version: '2.337.0'
+2026-10-05T05:37:00.6058460Z ##[group]Runner Image Provisioner
+2026-10-05T05:37:00.6059480Z Hosted Compute Agent
+2026-10-05T05:37:00.6060165Z Version: 20260901.588
+2026-10-05T05:37:00.6060850Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-05T05:37:00.6061761Z Build Date: 2026-09-01T19:56:44Z
+2026-10-05T05:37:00.6062548Z Worker ID: {2bcc8860-ad93-4097-a964-52916bb957f4}
+2026-10-05T05:37:00.6063405Z Azure Region: westus
+2026-10-05T05:37:00.6064301Z ##[endgroup]
+2026-10-05T05:37:00.6065860Z ##[group]Operating System
+2026-10-05T05:37:00.6066746Z Ubuntu
+2026-10-05T05:37:00.6067330Z 22.04.5
+2026-10-05T05:37:00.6067940Z LTS
+2026-10-05T05:37:00.6068541Z ##[endgroup]
+2026-10-05T05:37:00.6069126Z ##[group]Runner Image
+2026-10-05T05:37:00.6069824Z Image: ubuntu-22.04
+2026-10-05T05:37:00.6070426Z Version: 20260927.309.1
+2026-10-05T05:37:00.6072074Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20260927.309/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-05T05:37:00.6074334Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20260927.309
+2026-10-05T05:37:00.6075524Z ##[endgroup]
+2026-10-05T05:37:00.6076713Z ##[group]GITHUB_TOKEN Permissions
+2026-10-05T05:37:00.6078737Z Contents: read
+2026-10-05T05:37:00.6079379Z Metadata: read
+2026-10-05T05:37:00.6079950Z ##[endgroup]
+2026-10-05T05:37:00.6082224Z Secret source: Actions
+2026-10-05T05:37:00.6083219Z Cache mode: write
+2026-10-05T05:37:00.6084512Z Prepare workflow directory
+2026-10-05T05:37:00.6484559Z Prepare all required actions
+2026-10-05T05:37:00.6533181Z Getting action download info
+2026-10-05T05:37:01.0457507Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-05T05:37:01.1625778Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-10-05T05:37:01.5770104Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-05T05:37:01.6692492Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-05T05:37:01.9284994Z Complete job name: browser
+2026-10-05T05:37:02.0410194Z ##[group]Run actions/checkout@v4
+2026-10-05T05:37:02.0412110Z with:
+2026-10-05T05:37:02.0413360Z   repository: sveltery/cms
+2026-10-05T05:37:02.0422674Z   token: ***
+2026-10-05T05:37:02.0424094Z   ssh-strict: true
+2026-10-05T05:37:02.0425100Z   ssh-user: git
+2026-10-05T05:37:02.0426144Z   persist-credentials: true
+2026-10-05T05:37:02.0427277Z   clean: true
+2026-10-05T05:37:02.0428291Z   sparse-checkout-cone-mode: true
+2026-10-05T05:37:02.0429541Z   fetch-depth: 1
+2026-10-05T05:37:02.0430510Z   fetch-tags: false
+2026-10-05T05:37:02.0431553Z   show-progress: true
+2026-10-05T05:37:02.0432568Z   lfs: false
+2026-10-05T05:37:02.0433493Z   submodules: false
+2026-10-05T05:37:02.0434924Z   set-safe-directory: true
+2026-10-05T05:37:02.0436043Z   allow-unsafe-pr-checkout: false
+2026-10-05T05:37:02.0437604Z ##[endgroup]
+2026-10-05T05:37:02.1596882Z Syncing repository: sveltery/cms
+2026-10-05T05:37:02.1601126Z ##[group]Getting Git version info
+2026-10-05T05:37:02.1603315Z Working directory is '/home/runner/work/cms/cms'
+2026-10-05T05:37:02.1606895Z [command]/usr/bin/git version
+2026-10-05T05:37:02.1655027Z git version 2.55.0
+2026-10-05T05:37:02.1667912Z ##[endgroup]
+2026-10-05T05:37:02.1686020Z Temporarily overriding HOME='/home/runner/work/_temp/4294b774-fcc4-42f5-82ec-f7d495c1c9b2' before making global git config changes
+2026-10-05T05:37:02.1691098Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T05:37:02.1695303Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T05:37:02.1732311Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-05T05:37:02.1741765Z ##[group]Initializing the repository
+2026-10-05T05:37:02.1744274Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-05T05:37:02.1895922Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-05T05:37:02.1899622Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-05T05:37:02.1903373Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-05T05:37:02.1906146Z hint: call:
+2026-10-05T05:37:02.1907908Z hint:
+2026-10-05T05:37:02.1909764Z hint: 	git config --global init.defaultBranch <name>
+2026-10-05T05:37:02.1912643Z hint:
+2026-10-05T05:37:02.1915487Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-05T05:37:02.1919011Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-05T05:37:02.1921690Z hint:
+2026-10-05T05:37:02.1923499Z hint: 	git branch -m <name>
+2026-10-05T05:37:02.1925204Z hint:
+2026-10-05T05:37:02.1927329Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-05T05:37:02.1929962Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-05T05:37:02.1935916Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-05T05:37:02.1967374Z ##[endgroup]
+2026-10-05T05:37:02.1969921Z ##[group]Disabling automatic garbage collection
+2026-10-05T05:37:02.1973822Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-05T05:37:02.2012758Z ##[endgroup]
+2026-10-05T05:37:02.2014980Z ##[group]Setting up auth
+2026-10-05T05:37:02.2020338Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T05:37:02.2060380Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T05:37:02.2475332Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T05:37:02.2528389Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T05:37:02.2820510Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T05:37:02.2866174Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T05:37:02.3141196Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-05T05:37:02.3189293Z ##[endgroup]
+2026-10-05T05:37:02.3191061Z ##[group]Fetching the repository
+2026-10-05T05:37:02.3200286Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6ee8199cc2da283fdcd82f588493bb25d03ba041:refs/remotes/pull/111/merge
+2026-10-05T05:37:03.3377440Z From https://github.com/sveltery/cms
+2026-10-05T05:37:03.3381041Z  * [new ref]         6ee8199cc2da283fdcd82f588493bb25d03ba041 -> pull/111/merge
+2026-10-05T05:37:03.3389624Z ##[endgroup]
+2026-10-05T05:37:03.3392516Z ##[group]Determining the checkout info
+2026-10-05T05:37:03.3396254Z ##[endgroup]
+2026-10-05T05:37:03.3398152Z [command]/usr/bin/git sparse-checkout disable
+2026-10-05T05:37:03.3454907Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-05T05:37:03.3499737Z ##[group]Checking out the ref
+2026-10-05T05:37:03.3503199Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/111/merge
+2026-10-05T05:37:03.6607695Z Note: switching to 'refs/remotes/pull/111/merge'.
+2026-10-05T05:37:03.6610183Z 
+2026-10-05T05:37:03.6611839Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-05T05:37:03.6615330Z changes and commit them, and you can discard any commits you make in this
+2026-10-05T05:37:03.6619053Z state without impacting any branches by switching back to a branch.
+2026-10-05T05:37:03.6620869Z 
+2026-10-05T05:37:03.6621751Z If you want to create a new branch to retain commits you create, you may
+2026-10-05T05:37:03.6623854Z do so (now or later) by using -c with the switch command. Example:
+2026-10-05T05:37:03.6625385Z 
+2026-10-05T05:37:03.6625824Z   git switch -c <new-branch-name>
+2026-10-05T05:37:03.6626987Z 
+2026-10-05T05:37:03.6627544Z Or undo this operation with:
+2026-10-05T05:37:03.6628354Z 
+2026-10-05T05:37:03.6628713Z   git switch -
+2026-10-05T05:37:03.6629383Z 
+2026-10-05T05:37:03.6630774Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-05T05:37:03.6632085Z 
+2026-10-05T05:37:03.6633342Z HEAD is now at 6ee8199 Merge 7615ecfa0690d543927e27ab35a6c29efc48da29 into 98332aaa81bf857b3e8214a7e572cb086390d703
+2026-10-05T05:37:03.6638147Z ##[endgroup]
+2026-10-05T05:37:03.6689208Z [command]/usr/bin/git log -1 --format=%H
+2026-10-05T05:37:03.6724348Z 6ee8199cc2da283fdcd82f588493bb25d03ba041
+2026-10-05T05:37:03.7069640Z ##[group]Run pnpm/action-setup@v4
+2026-10-05T05:37:03.7070697Z with:
+2026-10-05T05:37:03.7071446Z   version: 12.6.0
+2026-10-05T05:37:03.7072257Z   dest: ~/setup-pnpm
+2026-10-05T05:37:03.7073090Z   run_install: null
+2026-10-05T05:37:03.7074150Z   cache: false
+2026-10-05T05:37:03.7075029Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-05T05:37:03.7076143Z   package_json_file: package.json
+2026-10-05T05:37:03.7077137Z   standalone: false
+2026-10-05T05:37:03.7077971Z ##[endgroup]
+2026-10-05T05:37:03.8746374Z ##[group]Running self-installer...
+2026-10-05T05:37:04.3458077Z (node:2161) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T05:37:04.3464638Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T05:37:04.4876600Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-05T05:37:04.6669484Z Packages: +3
+2026-10-05T05:37:04.6671059Z +++
+2026-10-05T05:37:05.4889852Z Progress: resolved 15, reused 0, downloaded 2, added 2
+2026-10-05T05:37:05.4952928Z Progress: resolved 15, reused 0, downloaded 3, added 3, done
+2026-10-05T05:37:05.5141339Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall$ node install.js
+2026-10-05T05:37:05.8953333Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall: Done
+2026-10-05T05:37:05.8959942Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall$ node install.js
+2026-10-05T05:37:05.9488940Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall: Done
+2026-10-05T05:37:07.4393843Z 
+2026-10-05T05:37:07.4394412Z dependencies:
+2026-10-05T05:37:07.4394948Z + pnpm 12.6.0 (12.9.1 is available)
+2026-10-05T05:37:07.4395261Z 
+2026-10-05T05:37:07.4419623Z Done in 3.3s
+2026-10-05T05:37:07.5165346Z ##[endgroup]
+2026-10-05T05:37:07.5166277Z Installation Completed!
+2026-10-05T05:37:07.5393772Z ##[group]Run actions/setup-node@v4
+2026-10-05T05:37:07.5394137Z with:
+2026-10-05T05:37:07.5394389Z   node-version: 24
+2026-10-05T05:37:07.5394620Z   cache: pnpm
+2026-10-05T05:37:07.5394859Z   always-auth: false
+2026-10-05T05:37:07.5395100Z   check-latest: false
+2026-10-05T05:37:07.5397701Z   token: ***
+2026-10-05T05:37:07.5397923Z env:
+2026-10-05T05:37:07.5398221Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:37:07.5398567Z ##[endgroup]
+2026-10-05T05:37:07.7000808Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-05T05:37:07.7006455Z (node:2192) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T05:37:07.7007965Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T05:37:07.7009909Z ##[group]Environment details
+2026-10-05T05:37:08.1263068Z node: v24.21.0
+2026-10-05T05:37:08.1266064Z npm: 11.19.0
+2026-10-05T05:37:08.1266653Z yarn: 1.22.22
+2026-10-05T05:37:08.1287492Z ##[endgroup]
+2026-10-05T05:37:08.1288034Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-05T05:37:08.1496476Z /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-05T05:37:08.4047020Z Cache hit for: node-cache-Linux-x64-pnpm-e6917670f64f827355f07f294c19137a40dbbf752f792653d0f63c369d3d3049
+2026-10-05T05:37:08.4165951Z (node:2192) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T05:37:09.6894545Z Received 25165824 of 174043987 (14.5%), 24.0 MBs/sec
+2026-10-05T05:37:10.6893104Z Received 130023424 of 174043987 (74.7%), 62.0 MBs/sec
+2026-10-05T05:37:11.6901984Z Received 169849683 of 174043987 (97.6%), 54.0 MBs/sec
+2026-10-05T05:37:11.8835222Z Received 174043987 of 174043987 (100.0%), 52.0 MBs/sec
+2026-10-05T05:37:11.8836140Z Cache Size: ~166 MB (174043987 B)
+2026-10-05T05:37:11.8871989Z [command]/usr/bin/tar -xf /home/runner/work/_temp/44c0c2c8-bea5-49f0-aad2-88b677d59006/cache.tzst -P -C /home/runner/work/cms/cms --use-compress-program unzstd
+2026-10-05T05:37:13.9991509Z Cache restored successfully
+2026-10-05T05:37:14.0419674Z Cache restored from key: node-cache-Linux-x64-pnpm-e6917670f64f827355f07f294c19137a40dbbf752f792653d0f63c369d3d3049
+2026-10-05T05:37:14.0728158Z ##[group]Run pnpm install --frozen-lockfile
+2026-10-05T05:37:14.0728687Z [36;1mpnpm install --frozen-lockfile[0m
+2026-10-05T05:37:14.1192669Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:37:14.1193087Z env:
+2026-10-05T05:37:14.1193491Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:37:14.1194328Z ##[endgroup]
+2026-10-05T05:37:14.1882599Z ? Verifying lockfile against supply-chain policies (534 entries)...
+2026-10-05T05:37:14.4735758Z Packages are hard linked from the content-addressable store to the virtual store.
+2026-10-05T05:37:14.4737527Z   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-05T05:37:14.4738917Z   Virtual store is at:             node_modules/.pnpm
+2026-10-05T05:37:16.7861070Z ✓ Lockfile passes supply-chain policies (534 entries in 2.6s)
+2026-10-05T05:37:16.7862028Z Lockfile is up to date, resolution step is skipped
+2026-10-05T05:37:16.7935990Z Packages: +403
+2026-10-05T05:37:16.7937131Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-05T05:37:16.8405670Z Progress: resolved 403, reused 403, downloaded 0, added 403, done
+2026-10-05T05:37:16.9527429Z . prepare$ svelte-kit sync
+2026-10-05T05:37:18.1732714Z . prepare: Done
+2026-10-05T05:37:18.1744033Z 
+2026-10-05T05:37:18.1744457Z dependencies:
+2026-10-05T05:37:18.1745354Z + @oslojs/crypto 1.0.1
+2026-10-05T05:37:18.1746245Z + @oslojs/encoding 1.1.0
+2026-10-05T05:37:18.1747101Z + @oslojs/webauthn 1.0.0
+2026-10-05T05:37:18.1748288Z + @wordpress/block-serialization-default-parser 5.38.0
+2026-10-05T05:37:18.1749529Z + blurhash 2.0.5
+2026-10-05T05:37:18.1750145Z + cn 0.2.2
+2026-10-05T05:37:18.1750657Z + date-fns 4.1.0
+2026-10-05T05:37:18.1751235Z + image-size 2.0.2
+2026-10-05T05:37:18.1751805Z + jpeg-js 0.4.4
+2026-10-05T05:37:18.1752361Z + jsonc-parser 3.3.1
+2026-10-05T05:37:18.1752917Z + kysely 0.29.2
+2026-10-05T05:37:18.1753428Z + mime 4.1.0
+2026-10-05T05:37:18.1754141Z + parse5 7.3.0
+2026-10-05T05:37:18.1754728Z + smol-toml 1.6.0
+2026-10-05T05:37:18.1755285Z + ulidx 2.4.1
+2026-10-05T05:37:18.1755788Z + upng-js 2.1.0
+2026-10-05T05:37:18.1756287Z + valibot 1.5.0
+2026-10-05T05:37:18.1756804Z + zod 4.5.4
+2026-10-05T05:37:18.1757085Z 
+2026-10-05T05:37:18.1757365Z devDependencies:
+2026-10-05T05:37:18.1757958Z + @babel/core 7.29.7
+2026-10-05T05:37:18.1758728Z + @cloudflare/kumo 2.6.0
+2026-10-05T05:37:18.1759590Z + @cloudflare/workers-types 4.20260507.1
+2026-10-05T05:37:18.1760361Z + @lingui/babel-plugin-lingui-macro 5.9.5
+2026-10-05T05:37:18.1760966Z + @lingui/conf 5.9.5
+2026-10-05T05:37:18.1761401Z + @lingui/core 5.9.5
+2026-10-05T05:37:18.1761875Z + @lingui/react 5.9.5
+2026-10-05T05:37:18.1762384Z + @playwright/test 1.63.0
+2026-10-05T05:37:18.1762902Z + @sveltejs/adapter-auto 7.0.1
+2026-10-05T05:37:18.1763463Z + @sveltejs/adapter-cloudflare 7.2.9
+2026-10-05T05:37:18.1804762Z + @sveltejs/adapter-node 5.5.7
+2026-10-05T05:37:18.1805362Z + @sveltejs/kit 2.70.3
+2026-10-05T05:37:18.1806174Z + @sveltejs/vite-plugin-svelte 7.3.1
+2026-10-05T05:37:18.1807360Z + @tanstack/react-query 5.90.21
+2026-10-05T05:37:18.1808548Z + @tanstack/react-router 1.163.2
+2026-10-05T05:37:18.1809170Z + @testing-library/react 16.3.2
+2026-10-05T05:37:18.1809696Z + @types/jsdom 30.0.0
+2026-10-05T05:37:18.1810244Z + @types/node 24.19.0
+2026-10-05T05:37:18.1810676Z + @types/react 19.3.0
+2026-10-05T05:37:18.1811121Z + @types/react-dom 19.3.0
+2026-10-05T05:37:18.1811949Z + @vitest/browser-playwright 4.1.10
+2026-10-05T05:37:18.1812458Z + devalue 5.9.4
+2026-10-05T05:37:18.1812864Z + jsdom 30.1.1
+2026-10-05T05:37:18.1813299Z + miniflare 4.20260507.1
+2026-10-05T05:37:18.1814042Z + pg 8.18.0
+2026-10-05T05:37:18.1814423Z + react 19.3.0
+2026-10-05T05:37:18.1815385Z + react-dom 19.3.0
+2026-10-05T05:37:18.1815811Z + svelte 5.57.1
+2026-10-05T05:37:18.1816694Z + svelte-check 4.7.6
+2026-10-05T05:37:18.1817587Z + typescript 6.0.3
+2026-10-05T05:37:18.1818094Z + vite 8.3.2
+2026-10-05T05:37:18.1818560Z + vitest 4.1.10
+2026-10-05T05:37:18.1819346Z + vitest-browser-react 2.2.0
+2026-10-05T05:37:18.1820787Z + wrangler 4.99.0
+2026-10-05T05:37:18.1821096Z 
+2026-10-05T05:37:18.1821387Z Done in 4s using pnpm v12.6.0
+2026-10-05T05:37:18.2203955Z ##[group]Run pnpm exec playwright install --with-deps chromium
+2026-10-05T05:37:18.2204604Z [36;1mpnpm exec playwright install --with-deps chromium[0m
+2026-10-05T05:37:18.2279431Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:37:18.2279845Z env:
+2026-10-05T05:37:18.2280260Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:37:18.2280773Z ##[endgroup]
+2026-10-05T05:37:18.9162866Z Installing dependencies...
+2026-10-05T05:37:18.9255064Z Switching to root user to install dependencies...
+2026-10-05T05:37:19.0578562Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-05T05:37:19.0828329Z Get:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
+2026-10-05T05:37:19.0950909Z Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-10-05T05:37:19.0996170Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+2026-10-05T05:37:19.1028039Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+2026-10-05T05:37:19.1052567Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+2026-10-05T05:37:19.1727969Z Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main amd64 Packages [793 kB]
+2026-10-05T05:37:19.1935737Z Get:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main arm64 Packages [551 kB]
+2026-10-05T05:37:19.3775822Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3899 kB]
+2026-10-05T05:37:19.3977241Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [575 kB]
+2026-10-05T05:37:19.4003151Z Get:11 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6701 kB]
+2026-10-05T05:37:19.4366200Z Get:12 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1287 kB]
+2026-10-05T05:37:19.4380295Z Get:13 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1285 kB]
+2026-10-05T05:37:19.4460079Z Get:14 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [325 kB]
+2026-10-05T05:37:19.5767482Z Get:15 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3598 kB]
+2026-10-05T05:37:19.5951853Z Get:16 http://azure.archive.ubuntu.com/ubuntu jammy-security/main Translation-en [504 kB]
+2026-10-05T05:37:19.5981419Z Get:17 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6410 kB]
+2026-10-05T05:37:19.6267838Z Get:18 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1232 kB]
+2026-10-05T05:37:19.6729386Z Get:19 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1052 kB]
+2026-10-05T05:37:19.6782069Z Get:20 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe Translation-en [236 kB]
+2026-10-05T05:37:26.1255386Z Fetched 28.8 MB in 3s (8900 kB/s)
+2026-10-05T05:37:27.5763086Z Reading package lists...
+2026-10-05T05:37:27.6427339Z Reading package lists...
+2026-10-05T05:37:27.9537507Z Building dependency tree...
+2026-10-05T05:37:27.9549133Z Reading state information...
+2026-10-05T05:37:28.1659669Z fonts-liberation is already the newest version (1:1.07.4-11).
+2026-10-05T05:37:28.1660604Z fonts-liberation set to manually installed.
+2026-10-05T05:37:28.1662023Z libatk-bridge2.0-0 is already the newest version (2.38.0-3).
+2026-10-05T05:37:28.1663304Z libatk-bridge2.0-0 set to manually installed.
+2026-10-05T05:37:28.1665219Z libatk1.0-0 is already the newest version (2.36.0-3build1).
+2026-10-05T05:37:28.1666624Z libatk1.0-0 set to manually installed.
+2026-10-05T05:37:28.1668153Z libatspi2.0-0 is already the newest version (2.44.0-3).
+2026-10-05T05:37:28.1669361Z libatspi2.0-0 set to manually installed.
+2026-10-05T05:37:28.1670806Z libfontconfig1 is already the newest version (2.13.1-4.2ubuntu5).
+2026-10-05T05:37:28.1672260Z libfontconfig1 set to manually installed.
+2026-10-05T05:37:28.1673838Z libxcb1 is already the newest version (1.14-3ubuntu3).
+2026-10-05T05:37:28.1675029Z libxcb1 set to manually installed.
+2026-10-05T05:37:28.1676802Z libxcomposite1 is already the newest version (1:0.4.5-1build2).
+2026-10-05T05:37:28.1678246Z libxcomposite1 set to manually installed.
+2026-10-05T05:37:28.1679117Z libxdamage1 is already the newest version (1:1.1.5-2build2).
+2026-10-05T05:37:28.1679996Z libxdamage1 set to manually installed.
+2026-10-05T05:37:28.1680879Z libxext6 is already the newest version (2:1.3.4-1build1).
+2026-10-05T05:37:28.1681658Z libxext6 set to manually installed.
+2026-10-05T05:37:28.1682426Z libxfixes3 is already the newest version (1:6.0.0-1).
+2026-10-05T05:37:28.1683238Z libxfixes3 set to manually installed.
+2026-10-05T05:37:28.1684297Z libxkbcommon0 is already the newest version (1.4.0-1).
+2026-10-05T05:37:28.1685199Z libxkbcommon0 set to manually installed.
+2026-10-05T05:37:28.1686066Z libxrandr2 is already the newest version (2:1.5.2-1build1).
+2026-10-05T05:37:28.1686966Z libxrandr2 set to manually installed.
+2026-10-05T05:37:28.1687946Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.22.04.1).
+2026-10-05T05:37:28.1688927Z libasound2 is already the newest version (1.2.6.1-1ubuntu1.2).
+2026-10-05T05:37:28.1689713Z libasound2 set to manually installed.
+2026-10-05T05:37:28.1690461Z libcairo2 is already the newest version (1.16.0-5ubuntu2.1).
+2026-10-05T05:37:28.1691179Z libcairo2 set to manually installed.
+2026-10-05T05:37:28.1691974Z libcups2 is already the newest version (2.4.1op1-1ubuntu4.21).
+2026-10-05T05:37:28.1692710Z libcups2 set to manually installed.
+2026-10-05T05:37:28.1693468Z libdbus-1-3 is already the newest version (1.12.20-2ubuntu4.1).
+2026-10-05T05:37:28.1694518Z libdbus-1-3 set to manually installed.
+2026-10-05T05:37:28.1695312Z libdrm2 is already the newest version (2.4.113-2~ubuntu0.22.04.1).
+2026-10-05T05:37:28.1696049Z libdrm2 set to manually installed.
+2026-10-05T05:37:28.1696868Z libfreetype6 is already the newest version (2.11.1+dfsg-1ubuntu0.3).
+2026-10-05T05:37:28.1697679Z libfreetype6 set to manually installed.
+2026-10-05T05:37:28.1698506Z libgbm1 is already the newest version (23.2.1-1ubuntu3.1~22.04.4).
+2026-10-05T05:37:28.1699262Z libgbm1 set to manually installed.
+2026-10-05T05:37:28.1700005Z libglib2.0-0 is already the newest version (2.72.4-0ubuntu2.10).
+2026-10-05T05:37:28.1700751Z libglib2.0-0 set to manually installed.
+2026-10-05T05:37:28.1701551Z libnspr4 is already the newest version (2:4.35-0ubuntu0.22.04.1).
+2026-10-05T05:37:28.1702466Z libnss3 is already the newest version (2:3.98-0ubuntu0.22.04.4).
+2026-10-05T05:37:28.1703400Z libpango-1.0-0 is already the newest version (1.50.6+ds-2ubuntu1).
+2026-10-05T05:37:28.1704482Z libpango-1.0-0 set to manually installed.
+2026-10-05T05:37:28.1705381Z libwayland-client0 is already the newest version (1.20.0-1ubuntu0.1).
+2026-10-05T05:37:28.1706266Z libwayland-client0 set to manually installed.
+2026-10-05T05:37:28.1707095Z libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+2026-10-05T05:37:28.1707794Z libx11-6 set to manually installed.
+2026-10-05T05:37:28.1708244Z xvfb is already the newest version (2:21.1.4-2ubuntu1.7~22.04.16).
+2026-10-05T05:37:28.1708720Z The following additional packages will be installed:
+2026-10-05T05:37:28.1709100Z   xfonts-encodings xfonts-utils
+2026-10-05T05:37:28.1709387Z Recommended packages:
+2026-10-05T05:37:28.1709672Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-10-05T05:37:28.1910967Z The following NEW packages will be installed:
+2026-10-05T05:37:28.1911960Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-05T05:37:28.1920180Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-05T05:37:28.1921206Z   xfonts-utils
+2026-10-05T05:37:28.2134286Z 0 upgraded, 9 newly installed, 0 to remove and 20 not upgraded.
+2026-10-05T05:37:28.2135108Z Need to get 18.4 MB of archives.
+2026-10-05T05:37:28.2135683Z After this operation, 56.8 MB of additional disk space will be used.
+2026-10-05T05:37:28.2136328Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-05T05:37:28.3077329Z Get:2 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-05T05:37:28.8315439Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 fonts-freefont-ttf all 20120503-10build1 [2388 kB]
+2026-10-05T05:37:28.9434062Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-05T05:37:29.0155287Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-unifont all 1:14.0.01-1 [3551 kB]
+2026-10-05T05:37:29.1640237Z Get:6 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-05T05:37:29.3874958Z Get:7 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-05T05:37:29.4632575Z Get:8 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-utils amd64 1:7.7+6build2 [94.6 kB]
+2026-10-05T05:37:29.5356201Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 xfonts-cyrillic all 1:1.0.5 [386 kB]
+2026-10-05T05:37:29.6098040Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-scalable all 1:1.0.3-1.2ubuntu1 [306 kB]
+2026-10-05T05:37:29.9687868Z Fetched 18.4 MB in 1s (13.0 MB/s)
+2026-10-05T05:37:30.0191596Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-05T05:37:30.0580759Z (Reading database ... 
+2026-10-05T05:37:30.0581421Z (Reading database ... 5%
+2026-10-05T05:37:30.0581825Z (Reading database ... 10%
+2026-10-05T05:37:30.0582215Z (Reading database ... 15%
+2026-10-05T05:37:30.0582578Z (Reading database ... 20%
+2026-10-05T05:37:30.0582954Z (Reading database ... 25%
+2026-10-05T05:37:30.0583367Z (Reading database ... 30%
+2026-10-05T05:37:30.0584178Z (Reading database ... 35%
+2026-10-05T05:37:30.0584754Z (Reading database ... 40%
+2026-10-05T05:37:30.0585141Z (Reading database ... 45%
+2026-10-05T05:37:30.0586161Z (Reading database ... 50%
+2026-10-05T05:37:30.1527654Z (Reading database ... 55%
+2026-10-05T05:37:30.3580705Z (Reading database ... 60%
+2026-10-05T05:37:30.6101382Z (Reading database ... 65%
+2026-10-05T05:37:30.8739017Z (Reading database ... 70%
+2026-10-05T05:37:31.1179903Z (Reading database ... 75%
+2026-10-05T05:37:32.7591228Z (Reading database ... 80%
+2026-10-05T05:37:32.9997904Z (Reading database ... 85%
+2026-10-05T05:37:33.2541352Z (Reading database ... 90%
+2026-10-05T05:37:33.4676855Z (Reading database ... 95%
+2026-10-05T05:37:33.4677961Z (Reading database ... 100%
+2026-10-05T05:37:33.4678909Z (Reading database ... 260411 files and directories currently installed.)
+2026-10-05T05:37:33.4744381Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-05T05:37:33.4871273Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-05T05:37:33.7406797Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-05T05:37:33.7624609Z Preparing to unpack .../1-fonts-freefont-ttf_20120503-10build1_all.deb ...
+2026-10-05T05:37:33.7630448Z Unpacking fonts-freefont-ttf (20120503-10build1) ...
+2026-10-05T05:37:33.9639498Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-05T05:37:33.9859139Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-05T05:37:33.9866444Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-05T05:37:34.0117816Z Selecting previously unselected package fonts-unifont.
+2026-10-05T05:37:34.0331594Z Preparing to unpack .../3-fonts-unifont_1%3a14.0.01-1_all.deb ...
+2026-10-05T05:37:34.0337704Z Unpacking fonts-unifont (1:14.0.01-1) ...
+2026-10-05T05:37:34.1247671Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-05T05:37:34.1470394Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-05T05:37:34.1605775Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-05T05:37:34.6939392Z Selecting previously unselected package xfonts-encodings.
+2026-10-05T05:37:34.7168028Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-05T05:37:34.7177226Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-05T05:37:34.7541629Z Selecting previously unselected package xfonts-utils.
+2026-10-05T05:37:34.7761159Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build2_amd64.deb ...
+2026-10-05T05:37:34.7771510Z Unpacking xfonts-utils (1:7.7+6build2) ...
+2026-10-05T05:37:34.8176699Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-05T05:37:34.8393760Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5_all.deb ...
+2026-10-05T05:37:34.8401050Z Unpacking xfonts-cyrillic (1:1.0.5) ...
+2026-10-05T05:37:34.8938727Z Selecting previously unselected package xfonts-scalable.
+2026-10-05T05:37:34.9159930Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.2ubuntu1_all.deb ...
+2026-10-05T05:37:34.9170386Z Unpacking xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-05T05:37:34.9754993Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-05T05:37:34.9887496Z Setting up fonts-freefont-ttf (20120503-10build1) ...
+2026-10-05T05:37:34.9904993Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-05T05:37:34.9925392Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-05T05:37:34.9946210Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-05T05:37:35.0034631Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-05T05:37:35.0056239Z Setting up fonts-unifont (1:14.0.01-1) ...
+2026-10-05T05:37:35.0073516Z Setting up xfonts-utils (1:7.7+6build2) ...
+2026-10-05T05:37:35.0116581Z Setting up xfonts-cyrillic (1:1.0.5) ...
+2026-10-05T05:37:35.0454755Z Setting up xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-05T05:37:35.0771637Z Processing triggers for man-db (2.10.2-1) ...
+2026-10-05T05:37:35.0798379Z Not building database; man-db/auto-update is not 'true'.
+2026-10-05T05:37:35.0813274Z Processing triggers for fontconfig (2.13.1-4.2ubuntu5) ...
+2026-10-05T05:37:35.8489972Z 
+2026-10-05T05:37:35.8491205Z Running kernel seems to be up-to-date.
+2026-10-05T05:37:35.8491680Z 
+2026-10-05T05:37:35.8492016Z No services need to be restarted.
+2026-10-05T05:37:35.8492368Z 
+2026-10-05T05:37:35.8492685Z No containers need to be restarted.
+2026-10-05T05:37:35.8493075Z 
+2026-10-05T05:37:35.8493477Z No user sessions are running outdated binaries.
+2026-10-05T05:37:35.8494245Z 
+2026-10-05T05:37:35.8494877Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-05T05:37:37.9469909Z Downloading Chrome for Testing 153.0.8010.12 (playwright chromium v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-linux64.zip
+2026-10-05T05:37:38.4136881Z |                                                                                |   0% of 186.8 MiB
+2026-10-05T05:37:38.5784397Z |■■■■■■■■                                                                        |  10% of 186.8 MiB
+2026-10-05T05:37:38.6724592Z |■■■■■■■■■■■■■■■■                                                                |  20% of 186.8 MiB
+2026-10-05T05:37:38.7776538Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 186.8 MiB
+2026-10-05T05:37:38.8822643Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 186.8 MiB
+2026-10-05T05:37:38.9827185Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 186.8 MiB
+2026-10-05T05:37:39.1017682Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 186.8 MiB
+2026-10-05T05:37:39.2236847Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 186.8 MiB
+2026-10-05T05:37:39.3445246Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 186.8 MiB
+2026-10-05T05:37:39.4570739Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 186.8 MiB
+2026-10-05T05:37:39.5676166Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 186.8 MiB
+2026-10-05T05:37:42.6320393Z Chrome for Testing 153.0.8010.12 (playwright chromium v1243) downloaded to /home/runner/.cache/ms-playwright/chromium-1243
+2026-10-05T05:37:42.6325037Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+2026-10-05T05:37:43.0159862Z |                                                                                |   0% of 2.3 MiB
+2026-10-05T05:37:43.0195667Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+2026-10-05T05:37:43.0235482Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+2026-10-05T05:37:43.0260032Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+2026-10-05T05:37:43.0277513Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+2026-10-05T05:37:43.0294568Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+2026-10-05T05:37:43.0315208Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+2026-10-05T05:37:43.0331171Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+2026-10-05T05:37:43.0380757Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+2026-10-05T05:37:43.0394426Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+2026-10-05T05:37:43.0407798Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+2026-10-05T05:37:43.1040052Z FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+2026-10-05T05:37:43.1044542Z Downloading Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-headless-shell-linux64.zip
+2026-10-05T05:37:43.5598269Z |                                                                                |   0% of 114.3 MiB
+2026-10-05T05:37:43.6923219Z |■■■■■■■■                                                                        |  10% of 114.3 MiB
+2026-10-05T05:37:43.7736738Z |■■■■■■■■■■■■■■■■                                                                |  20% of 114.3 MiB
+2026-10-05T05:37:43.8362893Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.3 MiB
+2026-10-05T05:37:43.9011995Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.3 MiB
+2026-10-05T05:37:43.9794799Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.3 MiB
+2026-10-05T05:37:44.0672971Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.3 MiB
+2026-10-05T05:37:44.1553949Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.3 MiB
+2026-10-05T05:37:44.2105311Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.3 MiB
+2026-10-05T05:37:44.2848061Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.3 MiB
+2026-10-05T05:37:44.3608076Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.3 MiB
+2026-10-05T05:37:46.6142668Z Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1243
+2026-10-05T05:37:46.6455154Z ##[group]Run pnpm test:bulk-taxonomy-source
+2026-10-05T05:37:46.6455644Z [36;1mpnpm test:bulk-taxonomy-source[0m
+2026-10-05T05:37:46.6530439Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:37:46.6530842Z env:
+2026-10-05T05:37:46.6531232Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:37:46.6531769Z   DEBUG: pw:browser
+2026-10-05T05:37:46.6532106Z ##[endgroup]
+2026-10-05T05:37:46.6842010Z $ node scripts/check-bulk-taxonomy-source.mjs && vitest run --config vitest.bulk-taxonomy.config.ts
+2026-10-05T05:37:47.0095573Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","sourceFiles":14,"declarations":14,"expects":25,"elements":29,"productTestsRun":0}
+2026-10-05T05:37:48.0972418Z 
+2026-10-05T05:37:48.0977142Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:37:48.0977692Z 
+2026-10-05T05:37:48.8317544Z 2026-10-05T05:37:48.828Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-KItEnq --remote-debugging-pipe --no-startup-window
+2026-10-05T05:37:48.8364224Z 2026-10-05T05:37:48.836Z pw:browser <launched> pid=3154
+2026-10-05T05:37:48.9059539Z 2026-10-05T05:37:48.905Z pw:browser [pid=3154][err] [1005/053748.904298:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:37:48.9196105Z 2026-10-05T05:37:48.918Z pw:browser [pid=3154][err] Unable to revert mtime: /usr/share/fonts
+2026-10-05T05:37:48.9241124Z 2026-10-05T05:37:48.921Z pw:browser [pid=3154][err] Unable to revert mtime: /usr/share/fonts/truetype
+2026-10-05T05:37:48.9291806Z 2026-10-05T05:37:48.928Z pw:browser [pid=3154][err] [1005/053748.928331:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:37:48.9320889Z 2026-10-05T05:37:48.931Z pw:browser [pid=3154][err] [1005/053748.931627:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:37:48.9462063Z 2026-10-05T05:37:48.945Z pw:browser [pid=3154][err] Unable to revert mtime: /usr/share/fonts/truetype/dejavu
+2026-10-05T05:37:48.9923939Z 2026-10-05T05:37:48.991Z pw:browser [pid=3154][err] Unable to revert mtime: /usr/share/fonts/truetype/lato
+2026-10-05T05:37:49.0189144Z 2026-10-05T05:37:49.018Z pw:browser [pid=3154][err] Unable to revert mtime: /usr/share/fonts/truetype/liberation
+2026-10-05T05:37:49.0281691Z 2026-10-05T05:37:49.027Z pw:browser [pid=3154][err] Unable to revert mtime: /usr/share/fonts/truetype/noto
+2026-10-05T05:37:49.0841923Z 2026-10-05T05:37:49.083Z pw:browser [pid=3154][err] [1005/053749.080968:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:37:49.0847891Z 2026-10-05T05:37:49.083Z pw:browser [pid=3154][err] [1005/053749.081070:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:37:49.0880010Z 2026-10-05T05:37:49.087Z pw:browser [pid=3154][err] [1005/053749.087520:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:37:49.6032455Z [2m5:37:49 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+2026-10-05T05:37:49.8037667Z 2026-10-05T05:37:49.803Z pw:browser [pid=3154][err] [1005/053749.803012:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:49.8131960Z 2026-10-05T05:37:49.812Z pw:browser [pid=3154][err] [1005/053749.811458:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:49.8666405Z 2026-10-05T05:37:49.864Z pw:browser [pid=3154][err] [1005/053749.863609:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:49.8695361Z 2026-10-05T05:37:49.868Z pw:browser [pid=3154][err] [1005/053749.867845:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:51.6313061Z [2m5:37:51 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+2026-10-05T05:37:52.4390188Z [2m5:37:52 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mdependency optimized: [33m@tanstack/react-router[32m[39m
+2026-10-05T05:37:52.4391401Z [33m
+2026-10-05T05:37:52.4392757Z [1m[vitest][22m Vite unexpectedly reloaded a test. This may cause tests to fail, lead to flaky behaviour or duplicated test runs.
+2026-10-05T05:37:52.4395137Z [39m[33mFor a stable experience, please add mentioned dependencies to your config's [1m`optimizeDeps.include`[22m field manually.
+2026-10-05T05:37:52.4396117Z 
+2026-10-05T05:37:52.4396309Z [39m
+2026-10-05T05:37:52.4397532Z [2m5:37:52 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32moptimized dependencies changed. reloading[39m
+2026-10-05T05:37:54.0675061Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/bulk-taxonomy/source/packages/admin/tests/components/BulkTagDialog.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[33m 2974[2mms[22m[39m
+2026-10-05T05:37:54.0676551Z      [33m[2m✓[22m[39m previews the exact title and language before applying the tag [33m 326[2mms[22m[39m
+2026-10-05T05:37:54.0677500Z      [33m[2m✓[22m[39m assigns terms from whichever taxonomy the editor chooses [33m 314[2mms[22m[39m
+2026-10-05T05:37:54.0708441Z 
+2026-10-05T05:37:54.0712757Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-05T05:37:54.0714107Z [2m      Tests [22m [1m[32m14 passed[39m[22m[90m (14)[39m
+2026-10-05T05:37:54.0714993Z [2m   Start at [22m 05:37:48
+2026-10-05T05:37:54.0716457Z [2m   Duration [22m 5.96s[2m (transform 0ms, setup 235ms, import 666ms, tests 2.97s, environment 0ms)[22m
+2026-10-05T05:37:54.0718104Z 
+2026-10-05T05:37:54.0796777Z 2026-10-05T05:37:54.078Z pw:browser [pid=3154][err] [1005/053754.074102:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:37:54.0808773Z 2026-10-05T05:37:54.078Z pw:browser [pid=3154][err] [1005/053754.077239:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:37:54.0911281Z 2026-10-05T05:37:54.090Z pw:browser [pid=3154] <gracefully close start>
+2026-10-05T05:37:54.1159879Z 2026-10-05T05:37:54.115Z pw:browser [pid=3154] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:37:54.1161453Z 2026-10-05T05:37:54.115Z pw:browser [pid=3154] starting temporary directories cleanup
+2026-10-05T05:37:54.1196264Z 2026-10-05T05:37:54.119Z pw:browser [pid=3154] finished temporary directories cleanup
+2026-10-05T05:37:54.1197134Z 2026-10-05T05:37:54.119Z pw:browser [pid=3154] <gracefully close end>
+2026-10-05T05:37:54.1879064Z ##[group]Run timeout --kill-after=30s 180s pnpm test:date-time:browser
+2026-10-05T05:37:54.1879957Z [36;1mtimeout --kill-after=30s 180s pnpm test:date-time:browser[0m
+2026-10-05T05:37:54.1968751Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:37:54.1969066Z env:
+2026-10-05T05:37:54.1969358Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:37:54.1969711Z   DEBUG: pw:browser
+2026-10-05T05:37:54.1969944Z ##[endgroup]
+2026-10-05T05:37:54.2335713Z $ node scripts/check-date-time-source-ports.mjs && vitest run --config vitest.date-time.browser.config.ts
+2026-10-05T05:37:54.5837851Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","immutableAuthorities":27,"declarations":18,"assertionExpressions":43,"productTestsRun":0}
+2026-10-05T05:37:55.6036019Z 
+2026-10-05T05:37:55.6045718Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:37:55.6046375Z 
+2026-10-05T05:37:55.7087097Z [2m5:37:55 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:37:55.7097197Z [2m5:37:55 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:37:56.4414085Z 2026-10-05T05:37:56.437Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-39skA4 --remote-debugging-pipe --no-startup-window
+2026-10-05T05:37:56.4504753Z 2026-10-05T05:37:56.445Z pw:browser <launched> pid=3281
+2026-10-05T05:37:56.5676733Z 2026-10-05T05:37:56.565Z pw:browser [pid=3281][err] [1005/053756.560567:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:37:56.5853291Z 2026-10-05T05:37:56.584Z pw:browser [pid=3281][err] [1005/053756.580410:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:37:56.5973096Z 2026-10-05T05:37:56.584Z pw:browser [pid=3281][err] [1005/053756.581945:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:37:56.6015601Z 2026-10-05T05:37:56.584Z pw:browser [pid=3281][err] [1005/053756.582343:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:37:56.6035551Z 2026-10-05T05:37:56.588Z pw:browser [pid=3281][err] [1005/053756.587046:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:37:56.6066819Z 2026-10-05T05:37:56.597Z pw:browser [pid=3281][err] [1005/053756.595630:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:37:57.1467277Z 2026-10-05T05:37:57.146Z pw:browser [pid=3281][err] [1005/053757.146234:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:57.1564207Z 2026-10-05T05:37:57.154Z pw:browser [pid=3281][err] [1005/053757.153514:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:57.2229334Z 2026-10-05T05:37:57.221Z pw:browser [pid=3281][err] [1005/053757.220711:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:57.2545196Z 2026-10-05T05:37:57.252Z pw:browser [pid=3281][err] [1005/053757.236278:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:58.8315831Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/date-time-widgets/source/packages/admin/tests/components/PublishingDateTimeEditor.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 373[2mms[22m[39m
+2026-10-05T05:37:58.8563397Z 2026-10-05T05:37:58.855Z pw:browser [pid=3281][err] [1005/053758.855755:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:58.8696672Z 2026-10-05T05:37:58.867Z pw:browser [pid=3281][err] [1005/053758.866582:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:59.0012692Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/date-time-widgets/source/packages/admin/tests/lib/publishing-datetime.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-05T05:37:59.0472602Z 2026-10-05T05:37:59.046Z pw:browser [pid=3281][err] [1005/053759.043933:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:59.0592950Z 2026-10-05T05:37:59.057Z pw:browser [pid=3281][err] [1005/053759.057546:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:59.2549601Z  [32m✓[39m [30m[43m chromium [49m[39m tests/date-time-native/disabled-navigation.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 14[2mms[22m[39m
+2026-10-05T05:37:59.2802834Z 2026-10-05T05:37:59.279Z pw:browser [pid=3281][err] [1005/053759.278791:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:59.2891976Z 2026-10-05T05:37:59.288Z pw:browser [pid=3281][err] [1005/053759.288706:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:59.4112634Z  [32m✓[39m [30m[43m chromium [49m[39m tests/date-time-native/widgets.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+2026-10-05T05:37:59.4321750Z 2026-10-05T05:37:59.431Z pw:browser [pid=3281][err] [1005/053759.431608:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:59.4429717Z 2026-10-05T05:37:59.442Z pw:browser [pid=3281][err] [1005/053759.442529:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:59.5006404Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/date-time-widgets/source/packages/admin/tests/lib/datetime-local.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-10-05T05:37:59.5231880Z 2026-10-05T05:37:59.522Z pw:browser [pid=3281][err] [1005/053759.520417:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:59.5366381Z 2026-10-05T05:37:59.535Z pw:browser [pid=3281][err] [1005/053759.533776:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:59.6604130Z  [32m✓[39m [30m[43m chromium [49m[39m tests/date-time-native/calendar-propagation.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-05T05:37:59.6836694Z 2026-10-05T05:37:59.683Z pw:browser [pid=3281][err] [1005/053759.683131:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:59.6942840Z 2026-10-05T05:37:59.692Z pw:browser [pid=3281][err] [1005/053759.692694:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:37:59.8943807Z  [32m✓[39m [30m[43m chromium [49m[39m tests/date-time-native/calendar-click.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-05T05:37:59.9293299Z 2026-10-05T05:37:59.926Z pw:browser [pid=3281][err] [1005/053759.926200:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:37:59.9399039Z 2026-10-05T05:37:59.937Z pw:browser [pid=3281][err] [1005/053759.935899:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:00.1287674Z  [32m✓[39m [30m[43m chromium [49m[39m tests/date-time-native/calendar-keyboard.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+2026-10-05T05:38:00.1318116Z 
+2026-10-05T05:38:00.1322171Z [2m Test Files [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+2026-10-05T05:38:00.1323273Z [2m      Tests [22m [1m[32m30 passed[39m[22m[90m (30)[39m
+2026-10-05T05:38:00.1324587Z [2m   Start at [22m 05:37:55
+2026-10-05T05:38:00.1326376Z [2m   Duration [22m 4.52s[2m (transform 0ms, setup 353ms, import 1.06s, tests 454ms, environment 0ms)[22m
+2026-10-05T05:38:00.1328185Z 
+2026-10-05T05:38:00.1390367Z 2026-10-05T05:38:00.138Z pw:browser [pid=3281][err] [1005/053800.135350:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:38:00.1393894Z 2026-10-05T05:38:00.138Z pw:browser [pid=3281][err] [1005/053800.137078:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:38:00.1527226Z 2026-10-05T05:38:00.152Z pw:browser [pid=3281] <gracefully close start>
+2026-10-05T05:38:00.1800704Z 2026-10-05T05:38:00.179Z pw:browser [pid=3281] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:38:00.1802449Z 2026-10-05T05:38:00.180Z pw:browser [pid=3281] starting temporary directories cleanup
+2026-10-05T05:38:00.1839362Z 2026-10-05T05:38:00.183Z pw:browser [pid=3281] finished temporary directories cleanup
+2026-10-05T05:38:00.1841103Z 2026-10-05T05:38:00.183Z pw:browser [pid=3281] <gracefully close end>
+2026-10-05T05:38:00.2433320Z ##[group]Run timeout --kill-after=30s 180s pnpm test:menu-browser-source
+2026-10-05T05:38:00.2434305Z [36;1mtimeout --kill-after=30s 180s pnpm test:menu-browser-source[0m
+2026-10-05T05:38:00.2508191Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:38:00.2508587Z env:
+2026-10-05T05:38:00.2508988Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:38:00.2509510Z   DEBUG: pw:browser
+2026-10-05T05:38:00.2509859Z ##[endgroup]
+2026-10-05T05:38:00.2817406Z $ node scripts/check-menu-source.mjs && vitest run --config vitest.menu-browser-source.config.ts
+2026-10-05T05:38:00.7246068Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","authorities":51,"wholeTests":12,"testDeclarations":204,"expectExpressions":495,"productTestsRun":0}
+2026-10-05T05:38:01.6407991Z 
+2026-10-05T05:38:01.6412191Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:38:01.6412922Z 
+2026-10-05T05:38:01.7468275Z [2m5:38:01 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:01.7477837Z [2m5:38:01 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:02.3850989Z 2026-10-05T05:38:02.381Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-nfFnbV --remote-debugging-pipe --no-startup-window
+2026-10-05T05:38:02.3934768Z 2026-10-05T05:38:02.389Z pw:browser <launched> pid=3421
+2026-10-05T05:38:02.4514644Z 2026-10-05T05:38:02.450Z pw:browser [pid=3421][err] [1005/053802.448395:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:02.4666566Z 2026-10-05T05:38:02.464Z pw:browser [pid=3421][err] [1005/053802.462239:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:02.4695709Z 2026-10-05T05:38:02.465Z pw:browser [pid=3421][err] [1005/053802.462859:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:02.4717138Z 2026-10-05T05:38:02.468Z pw:browser [pid=3421][err] [1005/053802.468006:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:02.4747798Z 2026-10-05T05:38:02.473Z pw:browser [pid=3421][err] [1005/053802.473241:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:38:02.4780090Z 2026-10-05T05:38:02.477Z pw:browser [pid=3421][err] [1005/053802.476721:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:38:02.8778249Z 2026-10-05T05:38:02.877Z pw:browser [pid=3421][err] [1005/053802.877257:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:02.8846273Z 2026-10-05T05:38:02.884Z pw:browser [pid=3421][err] [1005/053802.883924:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:02.9378557Z 2026-10-05T05:38:02.937Z pw:browser [pid=3421][err] [1005/053802.927012:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:02.9556053Z 2026-10-05T05:38:02.953Z pw:browser [pid=3421][err] [1005/053802.949237:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:04.5292685Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/menu-source/upstream/packages/admin/tests/components/MenuEditor.test.tsx [2m([22m[2m16 tests[22m[2m)[22m[33m 593[2mms[22m[39m
+2026-10-05T05:38:04.5657590Z 2026-10-05T05:38:04.565Z pw:browser [pid=3421][err] [1005/053804.564289:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:04.5738688Z 2026-10-05T05:38:04.573Z pw:browser [pid=3421][err] [1005/053804.572579:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:05.5714249Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/menu-source/upstream/packages/admin/tests/components/MenuList.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 682[2mms[22m[39m
+2026-10-05T05:38:05.5747518Z 
+2026-10-05T05:38:05.5751869Z [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2026-10-05T05:38:05.5752998Z [2m      Tests [22m [1m[32m25 passed[39m[22m[90m (25)[39m
+2026-10-05T05:38:05.5754101Z [2m   Start at [22m 05:38:01
+2026-10-05T05:38:05.5755452Z [2m   Duration [22m 3.93s[2m (transform 0ms, setup 0ms, import 938ms, tests 1.27s, environment 0ms)[22m
+2026-10-05T05:38:05.5757420Z 
+2026-10-05T05:38:05.5829914Z 2026-10-05T05:38:05.582Z pw:browser [pid=3421][err] [1005/053805.578332:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:38:05.5832769Z 2026-10-05T05:38:05.582Z pw:browser [pid=3421][err] [1005/053805.580323:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:38:05.5949556Z 2026-10-05T05:38:05.594Z pw:browser [pid=3421] <gracefully close start>
+2026-10-05T05:38:05.6209831Z 2026-10-05T05:38:05.620Z pw:browser [pid=3421] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:38:05.6211541Z 2026-10-05T05:38:05.621Z pw:browser [pid=3421] starting temporary directories cleanup
+2026-10-05T05:38:05.6242995Z 2026-10-05T05:38:05.624Z pw:browser [pid=3421] finished temporary directories cleanup
+2026-10-05T05:38:05.6245429Z 2026-10-05T05:38:05.624Z pw:browser [pid=3421] <gracefully close end>
+2026-10-05T05:38:05.6845639Z ##[group]Run timeout --kill-after=30s 180s pnpm test:redirect-integration-source-browser
+2026-10-05T05:38:05.6846471Z [36;1mtimeout --kill-after=30s 180s pnpm test:redirect-integration-source-browser[0m
+2026-10-05T05:38:05.6921851Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:38:05.6922232Z env:
+2026-10-05T05:38:05.6922618Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:38:05.6923084Z   DEBUG: pw:browser
+2026-10-05T05:38:05.6923401Z ##[endgroup]
+2026-10-05T05:38:05.7251978Z $ node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-browser.config.ts
+2026-10-05T05:38:06.0631517Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeSourceFiles":7,"wholeAuthorities":29,"declarations":18,"expectExpressions":42,"elementExpressions":9,"typeExpressions":1,"productTestsRun":0}
+2026-10-05T05:38:06.9811169Z 
+2026-10-05T05:38:06.9815636Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:38:06.9816235Z 
+2026-10-05T05:38:07.0848273Z [2m5:38:07 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:07.0857547Z [2m5:38:07 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:07.7131814Z 2026-10-05T05:38:07.709Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-FxofGF --remote-debugging-pipe --no-startup-window
+2026-10-05T05:38:07.7214774Z 2026-10-05T05:38:07.719Z pw:browser <launched> pid=3551
+2026-10-05T05:38:07.7790627Z 2026-10-05T05:38:07.778Z pw:browser [pid=3551][err] [1005/053807.776021:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:07.7871098Z 2026-10-05T05:38:07.786Z pw:browser [pid=3551][err] [1005/053807.786124:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:07.7909656Z 2026-10-05T05:38:07.789Z pw:browser [pid=3551][err] [1005/053807.786710:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:07.7975078Z 2026-10-05T05:38:07.793Z pw:browser [pid=3551][err] [1005/053807.793631:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:07.7980954Z 2026-10-05T05:38:07.795Z pw:browser [pid=3551][err] [1005/053807.795455:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:38:07.7984083Z 2026-10-05T05:38:07.798Z pw:browser [pid=3551][err] [1005/053807.797838:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:38:08.2037235Z 2026-10-05T05:38:08.203Z pw:browser [pid=3551][err] [1005/053808.203192:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:08.2108051Z 2026-10-05T05:38:08.210Z pw:browser [pid=3551][err] [1005/053808.210054:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:08.2689163Z 2026-10-05T05:38:08.268Z pw:browser [pid=3551][err] [1005/053808.256900:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:08.2809571Z 2026-10-05T05:38:08.280Z pw:browser [pid=3551][err] [1005/053808.276171:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:09.5877076Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/redirect-integration-source/upstream/packages/admin/tests/components/Redirects.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 502[2mms[22m[39m
+2026-10-05T05:38:09.5908065Z 
+2026-10-05T05:38:09.5913044Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-05T05:38:09.5914164Z [2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+2026-10-05T05:38:09.5914692Z [2m   Start at [22m 05:38:06
+2026-10-05T05:38:09.5916520Z [2m   Duration [22m 2.60s[2m (transform 0ms, setup 201ms, import 347ms, tests 502ms, environment 0ms)[22m
+2026-10-05T05:38:09.5918347Z 
+2026-10-05T05:38:09.6007723Z 2026-10-05T05:38:09.599Z pw:browser [pid=3551][err] [1005/053809.594396:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:38:09.6019635Z 2026-10-05T05:38:09.599Z pw:browser [pid=3551][err] [1005/053809.596083:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:38:09.6113925Z 2026-10-05T05:38:09.610Z pw:browser [pid=3551] <gracefully close start>
+2026-10-05T05:38:09.6381552Z 2026-10-05T05:38:09.637Z pw:browser [pid=3551] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:38:09.6382891Z 2026-10-05T05:38:09.638Z pw:browser [pid=3551] starting temporary directories cleanup
+2026-10-05T05:38:09.6411680Z 2026-10-05T05:38:09.641Z pw:browser [pid=3551] finished temporary directories cleanup
+2026-10-05T05:38:09.6412414Z 2026-10-05T05:38:09.641Z pw:browser [pid=3551] <gracefully close end>
+2026-10-05T05:38:09.6992192Z ##[group]Run timeout --kill-after=30s 180s pnpm test:sections-widgets-browser
+2026-10-05T05:38:09.6992794Z [36;1mtimeout --kill-after=30s 180s pnpm test:sections-widgets-browser[0m
+2026-10-05T05:38:09.7067651Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:38:09.7067991Z env:
+2026-10-05T05:38:09.7068300Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:38:09.7068683Z   DEBUG: pw:browser
+2026-10-05T05:38:09.7068943Z ##[endgroup]
+2026-10-05T05:38:09.7397756Z $ vitest run --config vitest.sections-widgets-browser.config.ts
+2026-10-05T05:38:10.6442065Z 
+2026-10-05T05:38:10.6446820Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:38:10.6447447Z 
+2026-10-05T05:38:10.7543448Z [2m5:38:10 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:10.7556420Z [2m5:38:10 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:11.7240767Z 2026-10-05T05:38:11.721Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-3DoqwX --remote-debugging-pipe --no-startup-window
+2026-10-05T05:38:11.7322969Z 2026-10-05T05:38:11.732Z pw:browser <launched> pid=3668
+2026-10-05T05:38:11.8105189Z 2026-10-05T05:38:11.808Z pw:browser [pid=3668][err] [1005/053811.805953:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:11.8326946Z 2026-10-05T05:38:11.832Z pw:browser [pid=3668][err] [1005/053811.830896:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:11.8351572Z 2026-10-05T05:38:11.832Z pw:browser [pid=3668][err] [1005/053811.832567:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:11.8377700Z 2026-10-05T05:38:11.837Z pw:browser [pid=3668][err] [1005/053811.836933:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:11.8556493Z 2026-10-05T05:38:11.853Z pw:browser [pid=3668][err] [1005/053811.850160:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:38:11.8635891Z 2026-10-05T05:38:11.861Z pw:browser [pid=3668][err] [1005/053811.859304:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:38:11.9159926Z [2m5:38:11 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+2026-10-05T05:38:12.6932066Z 2026-10-05T05:38:12.691Z pw:browser [pid=3668][err] [1005/053812.691697:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:12.7025781Z 2026-10-05T05:38:12.702Z pw:browser [pid=3668][err] [1005/053812.701647:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:12.7818219Z 2026-10-05T05:38:12.780Z pw:browser [pid=3668][err] [1005/053812.774707:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:12.7872846Z 2026-10-05T05:38:12.787Z pw:browser [pid=3668][err] [1005/053812.786135:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:14.6878759Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/Sections.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 626[2mms[22m[39m
+2026-10-05T05:38:14.7332558Z 2026-10-05T05:38:14.730Z pw:browser [pid=3668][err] [1005/053814.727896:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:14.7426477Z 2026-10-05T05:38:14.742Z pw:browser [pid=3668][err] [1005/053814.741601:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:15.4021055Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/Widgets.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[32m 187[2mms[22m[39m
+2026-10-05T05:38:15.4429027Z 2026-10-05T05:38:15.439Z pw:browser [pid=3668][err] [1005/053815.439490:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:15.4548690Z 2026-10-05T05:38:15.454Z pw:browser [pid=3668][err] [1005/053815.452683:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:15.9464781Z 2026-10-05T05:38:15.945Z pw:browser [pid=3668][err] [1005/053815.944694:INFO:CONSOLE:1222] "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1222)
+2026-10-05T05:38:15.9470381Z [90mstderr[2m | parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionEditor.test.tsx[2m > [22m[2mSectionEditor[2m > [22m[2mkeeps detail inputs within their panel at a narrow width in rtl
+2026-10-05T05:38:15.9472237Z [22m[39mAttempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.
+2026-10-05T05:38:15.9778923Z 2026-10-05T05:38:15.976Z pw:browser [pid=3668][err] [1005/053815.976649:INFO:CONSOLE:1222] "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1222)
+2026-10-05T05:38:15.9783278Z [90mstderr[2m | parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionEditor.test.tsx[2m > [22m[2mSectionEditor[2m > [22m[2mopens the image settings panel when a block requests the sidebar
+2026-10-05T05:38:15.9787285Z [22m[39mAttempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.
+2026-10-05T05:38:15.9945086Z 2026-10-05T05:38:15.993Z pw:browser [pid=3668][err] [1005/053815.993298:INFO:CONSOLE:1222] "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1222)
+2026-10-05T05:38:15.9955270Z [90mstderr[2m | parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionEditor.test.tsx[2m > [22m[2mSectionEditor[2m > [22m[2mshows both clean save actions as Saved
+2026-10-05T05:38:15.9958697Z [22m[39mAttempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.
+2026-10-05T05:38:16.0255714Z 2026-10-05T05:38:16.025Z pw:browser [pid=3668][err] [1005/053816.024959:INFO:CONSOLE:1222] "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1222)
+2026-10-05T05:38:16.0271079Z [90mstderr[2m | parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionEditor.test.tsx[2m > [22m[2mSectionEditor[2m > [22m[2mpasses plugin block definitions to PortableTextEditor
+2026-10-05T05:38:16.0274925Z [22m[39mAttempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.
+2026-10-05T05:38:16.0472187Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionEditor.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 123[2mms[22m[39m
+2026-10-05T05:38:16.0884860Z 2026-10-05T05:38:16.088Z pw:browser [pid=3668][err] [1005/053816.087952:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:16.1029867Z 2026-10-05T05:38:16.102Z pw:browser [pid=3668][err] [1005/053816.102489:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:17.1425453Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionPickerModal.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 736[2mms[22m[39m
+2026-10-05T05:38:17.1427503Z      [33m[2m✓[22m[39m search input filters results [33m 333[2mms[22m[39m
+2026-10-05T05:38:17.1428707Z      [33m[2m✓[22m[39m shows filtered empty state when search has no results [33m 315[2mms[22m[39m
+2026-10-05T05:38:17.1460520Z 
+2026-10-05T05:38:17.1464396Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-05T05:38:17.1465171Z [2m      Tests [22m [1m[32m35 passed[39m[22m[90m (35)[39m
+2026-10-05T05:38:17.1465662Z [2m   Start at [22m 05:38:10
+2026-10-05T05:38:17.1467169Z [2m   Duration [22m 6.50s[2m (transform 0ms, setup 40ms, import 2.01s, tests 1.67s, environment 0ms)[22m
+2026-10-05T05:38:17.1469232Z 
+2026-10-05T05:38:17.1533090Z 2026-10-05T05:38:17.153Z pw:browser [pid=3668][err] [1005/053817.149250:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:38:17.1541434Z 2026-10-05T05:38:17.153Z pw:browser [pid=3668][err] [1005/053817.151029:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:38:17.1730848Z 2026-10-05T05:38:17.172Z pw:browser [pid=3668] <gracefully close start>
+2026-10-05T05:38:17.1971286Z 2026-10-05T05:38:17.196Z pw:browser [pid=3668] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:38:17.1972560Z 2026-10-05T05:38:17.197Z pw:browser [pid=3668] starting temporary directories cleanup
+2026-10-05T05:38:17.2002440Z 2026-10-05T05:38:17.200Z pw:browser [pid=3668] finished temporary directories cleanup
+2026-10-05T05:38:17.2003374Z 2026-10-05T05:38:17.200Z pw:browser [pid=3668] <gracefully close end>
+2026-10-05T05:38:17.2923819Z ##[group]Run timeout --kill-after=30s 180s pnpm test:comments-browser
+2026-10-05T05:38:17.2924503Z [36;1mtimeout --kill-after=30s 180s pnpm test:comments-browser[0m
+2026-10-05T05:38:17.3002000Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:38:17.3002349Z env:
+2026-10-05T05:38:17.3002682Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:38:17.3003111Z   DEBUG: pw:browser
+2026-10-05T05:38:17.3003391Z ##[endgroup]
+2026-10-05T05:38:17.3322553Z $ node scripts/check-comments-source.mjs && vitest run --config vitest.comments-browser.config.ts
+2026-10-05T05:38:17.8481342Z {
+2026-10-05T05:38:17.8482492Z   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+2026-10-05T05:38:17.8500283Z   "authorities": 85,
+2026-10-05T05:38:17.8500742Z   "wholeProducts": 32,
+2026-10-05T05:38:17.8501142Z   "wholeFiles": 8,
+2026-10-05T05:38:17.8501399Z   "declarations": 109,
+2026-10-05T05:38:17.8501637Z   "expects": 245,
+2026-10-05T05:38:17.8502014Z   "elements": 6,
+2026-10-05T05:38:17.8502465Z   "executed": 0,
+2026-10-05T05:38:17.8502838Z   "counts": [
+2026-10-05T05:38:17.8503170Z     {
+2026-10-05T05:38:17.8504371Z       "source": "packages/admin/tests/components/CommentInbox.test.tsx",
+2026-10-05T05:38:17.8505039Z       "declarations": 4,
+2026-10-05T05:38:17.8505444Z       "expects": 4,
+2026-10-05T05:38:17.8505827Z       "elements": 6,
+2026-10-05T05:38:17.8506214Z       "callbackSha256": [
+2026-10-05T05:38:17.8506714Z         "917a47a84ea4959c6af3b8ee020663e1be97c591d67fc3d3d55d6af9c4ed35e8",
+2026-10-05T05:38:17.8507290Z         "e46be065bab3573b31ee29160dcf7036711c97995868a4145e6ad6938110de87",
+2026-10-05T05:38:17.8507839Z         "04ac39278bc866c77b623ab9952f072924dabfa12cfd23ce6b4608ea0017237b",
+2026-10-05T05:38:17.8508390Z         "bc529120b8475391a6324f4414b20c49cce18d6eff001327cf56abded417a77a"
+2026-10-05T05:38:17.8508793Z       ]
+2026-10-05T05:38:17.8508995Z     },
+2026-10-05T05:38:17.8509194Z     {
+2026-10-05T05:38:17.8509562Z       "source": "packages/core/tests/integration/comments/hooks.test.ts",
+2026-10-05T05:38:17.8509983Z       "declarations": 19,
+2026-10-05T05:38:17.8510243Z       "expects": 45,
+2026-10-05T05:38:17.8510483Z       "elements": 0,
+2026-10-05T05:38:17.8510722Z       "callbackSha256": [
+2026-10-05T05:38:17.8511138Z         "9da58b220c2d9b8193badde7b59eb096a0f48086e0781be57fa16e03f0e67900",
+2026-10-05T05:38:17.8511705Z         "35fe25131ee8328e006817c1ad2ca03fcb8506eecba91c64fb12a3a8d6f01deb",
+2026-10-05T05:38:17.8512266Z         "a8ea0c0c452390da7e0f195b39323a44f2d5c1562773b8bda52842dbe88350f9",
+2026-10-05T05:38:17.8512826Z         "0131b0c4570805a6535bfb03b2ea9e34338ee878bcda0f74ccc816c8ce06fbbb",
+2026-10-05T05:38:17.8513387Z         "fc2c37ed1d6efdd3803af14b5efd9ec2029e5e4b55b858757b7d9a7cd9566d4b",
+2026-10-05T05:38:17.8514234Z         "f757aa3f669a689c33a38e550b2954bb5ebffe8a7c81f48133b2c7c4276c98f6",
+2026-10-05T05:38:17.8514791Z         "b9d48b7390291a7ddcd5a5774cedcbd77eb9b5871738dc8193c06a76acddb87e",
+2026-10-05T05:38:17.8515752Z         "a69e70b117a68f9c9da761b15d79463263b95bfd3dbc23af93f88aaafb720795",
+2026-10-05T05:38:17.8516313Z         "ff1093bb106e5a0301f3c68feb60eaeb6bf00507181343349a6885ab708b4e89",
+2026-10-05T05:38:17.8516839Z         "dc96d4a54960330762643da7be3e8f846736f508189eafffafe2dcbaf7c37ac0",
+2026-10-05T05:38:17.8517369Z         "92bdeb0519cdd69cd6c099288746dcb412e1416e26c8bde44f3b8bd4604d3f0e",
+2026-10-05T05:38:17.8517921Z         "b0291f3d3f331a8512eb66f119922a737c27e8be9248912ff560d66c2d00c5fc",
+2026-10-05T05:38:17.8518429Z         "1463ab571f956b7f6e1d830620c6b90172f06829297972d044534e972d515f07",
+2026-10-05T05:38:17.8518931Z         "cc52ff5a5ef6810c2908c36c2e930a0548b30dc609eb39227634cde9418a22a2",
+2026-10-05T05:38:17.8519437Z         "e5219f9b2899d4810adc4002d97704d49ae0a53087199454fc7d5bd52fb2df20",
+2026-10-05T05:38:17.8519958Z         "a80970e65860f6885b6fd512ebd06726b8a7113b3d24da2e278095387243585a",
+2026-10-05T05:38:17.8520472Z         "ab6599da9ccb3cbfc6a411e2f9e83d5773cb4527898498e4523142da69c8a33d",
+2026-10-05T05:38:17.8521251Z         "0547886a915ab9958f7d7ea1b8011d63af7a98083b02c34960ba7d36c161c89b",
+2026-10-05T05:38:17.8521781Z         "26adf43cf714274916462efc6a4a6a16ccb72ed7ca0d94029944c422a04540ea"
+2026-10-05T05:38:17.8522154Z       ]
+2026-10-05T05:38:17.8522344Z     },
+2026-10-05T05:38:17.8522536Z     {
+2026-10-05T05:38:17.8522912Z       "source": "packages/core/tests/integration/comments/notifications.test.ts",
+2026-10-05T05:38:17.8523330Z       "declarations": 16,
+2026-10-05T05:38:17.8523816Z       "expects": 42,
+2026-10-05T05:38:17.8524057Z       "elements": 0,
+2026-10-05T05:38:17.8524284Z       "callbackSha256": [
+2026-10-05T05:38:17.8524681Z         "8b7dedb2c1082d1ba2790f94bf1e826656f9136a049e442db25f95bc670145a6",
+2026-10-05T05:38:17.8525207Z         "a991502b7360b744dc940b41add67c6f768581e3ac3e53fa21f856e648ef19bd",
+2026-10-05T05:38:17.8525724Z         "086c5320e170c86623db990116b7935bbed14059d8502bd310b3c7824ad10bdf",
+2026-10-05T05:38:17.8526242Z         "327d89d822b45a3b605a4f933532a29723eb881d1a3db5c4557aa3cf8da16aaa",
+2026-10-05T05:38:17.8526765Z         "48dab2467ff3973021754e4b808bf2b73ed03893ec829ab3787fa25cc36e50ac",
+2026-10-05T05:38:17.8527282Z         "7e47c0e375de7d7284196eea32dc134b9eaf921c3845ed79c5b682945493a569",
+2026-10-05T05:38:17.8527808Z         "c125b2ee1a364d8d19d5904afe9366f14a436cb97c4d13f76ac328ee65698790",
+2026-10-05T05:38:17.8528336Z         "0c31bb2c7afc948aaf67cb7fc1bb765e533dc585640dae93f4e5fb5d769a7e13",
+2026-10-05T05:38:17.8528861Z         "9a63e69e93b29002e6555885c64a143a7946ef1eb8f5f2623344bff9fcc111bf",
+2026-10-05T05:38:17.8529387Z         "b8dd93a2c14e840155ab4d4537180e63e30914ede7cdc61320ce4fb83c2e4304",
+2026-10-05T05:38:17.8530061Z         "d6f3ae4ffe9f532687b366bb39ca5b853332f906a422b3817c6e66651e64832e",
+2026-10-05T05:38:17.8530631Z         "cc7125186cba9d852fdf2c8c9e1cfd88a2a03d5d29273f64cf8c2a58da135cc7",
+2026-10-05T05:38:17.8531161Z         "bfe9d24ef54eb8196589913b0677eab31ab32e12d8ec6bcd5994f36e109fe4f3",
+2026-10-05T05:38:17.8531690Z         "6beb1371707bdbfa26cc53765cda3b66632212eda21eb8691f45d140c0a8ab39",
+2026-10-05T05:38:17.8532221Z         "9e47dfce5cd6e6234be0ad1041fcbe61866b25118ab6778a44e7cd95f021ae93",
+2026-10-05T05:38:17.8532747Z         "47c203d83cf9c2feff47d4fceb671f5e4ac4859ed80c185df467634d4300f645"
+2026-10-05T05:38:17.8533130Z       ]
+2026-10-05T05:38:17.8533320Z     },
+2026-10-05T05:38:17.8533507Z     {
+2026-10-05T05:38:17.8534139Z       "source": "packages/core/tests/integration/comments/reactions.test.ts",
+2026-10-05T05:38:17.8534549Z       "declarations": 12,
+2026-10-05T05:38:17.8534785Z       "expects": 24,
+2026-10-05T05:38:17.8535002Z       "elements": 0,
+2026-10-05T05:38:17.8535230Z       "callbackSha256": [
+2026-10-05T05:38:17.8535615Z         "be5555fd932cf013282dae83114f92f73e1efc33c23fd507fbee18b2ca4731b2",
+2026-10-05T05:38:17.8536174Z         "1fec9e9f88c6796b86af7d2389edc863a8be911ab73687f580e648389a31dda7",
+2026-10-05T05:38:17.8536746Z         "f5ed3f857a9c033b47ce32530447714740afebafa7ee48cdc28e940f94dd61eb",
+2026-10-05T05:38:17.8537460Z         "a1d6f7def605e1674d422b0d20eddd2aca465755ce3fe761f1cffcf8d63e9ca3",
+2026-10-05T05:38:17.8537983Z         "c453b17849de93167aa835d084d7ff66166dd5c5b2db63854f3edaf2072665da",
+2026-10-05T05:38:17.8538495Z         "41c423528d1386eb73a0130c26c377f54a872bbd0e7d313c92a4fd5ff1dd6008",
+2026-10-05T05:38:17.8539002Z         "14be4a97cc5905a26f3089b085d1bedb7c15bea3caa49fd74d39e05fd12f8dc1",
+2026-10-05T05:38:17.8539511Z         "584d5b016cf0fa606e66b53efb5b2d7de6a21b776e8ac621c465140097c17576",
+2026-10-05T05:38:17.8540018Z         "e92ba7892113d4ed1ce719f37b400bf340265b92e12a53baca771636986d2a87",
+2026-10-05T05:38:17.8540522Z         "b14868353cc3da78e4ae6688c0b406d5ab572dfc813fcc6ad3117926bea24d59",
+2026-10-05T05:38:17.8541029Z         "5032708773a0c9551bb6c99ac767724da25ab5a801035947e3d5200d5c786402",
+2026-10-05T05:38:17.8541542Z         "cb61c72ee8e5b554de2316b43356e92a2e778cf4dd106fcf2badd99693995b8b"
+2026-10-05T05:38:17.8541913Z       ]
+2026-10-05T05:38:17.8542097Z     },
+2026-10-05T05:38:17.8542293Z     {
+2026-10-05T05:38:17.8542808Z       "source": "packages/core/tests/integration/comments/repository.test.ts",
+2026-10-05T05:38:17.8543222Z       "declarations": 32,
+2026-10-05T05:38:17.8543473Z       "expects": 88,
+2026-10-05T05:38:17.8543931Z       "elements": 0,
+2026-10-05T05:38:17.8544164Z       "callbackSha256": [
+2026-10-05T05:38:17.8544547Z         "7f515c8401b5d39cd4d73e0a502f870d701521cf36022990d2c6ad1f51868fb6",
+2026-10-05T05:38:17.8545052Z         "5c839c76b879d95ff94a7f29a649bcd976b62ec27d1d2fa577f5b18426c2bd88",
+2026-10-05T05:38:17.8545560Z         "9ec3e701c50f238246aac08c0d3288fb8d59e0c7a164a77cd4d306e7e1502c05",
+2026-10-05T05:38:17.8546115Z         "af5fd3f72ca9b56bba5cd85309e06408a791980d084e9d8730fa6322f3c999fb",
+2026-10-05T05:38:17.8546652Z         "20640a8c8265df14170626073091ee6b7299ac0618f85364d4de8433b11669a2",
+2026-10-05T05:38:17.8547168Z         "c461a440b78d4ba62371148492b860ea6639fe44bfcf4fd2af2d5d7c6bea7791",
+2026-10-05T05:38:17.8547705Z         "445812ccf1ac99b42b561d7891aa9091ebe4f4dad743af1297d53f874660ca94",
+2026-10-05T05:38:17.8548224Z         "1a43d5e71caf85bdc13cd804dc1999a66cd94f500317877176714e7fba106e7f",
+2026-10-05T05:38:17.8548736Z         "fde9f4363b1fa93aaee0047ad084f2eb0f8c417423a6313e55b177195e74837b",
+2026-10-05T05:38:17.8549257Z         "a2cae246439eafb3d956b498630cc912c52dae9755c9aa7b065f75bece25a75e",
+2026-10-05T05:38:17.8549782Z         "5feb42ea5a619cafb892ac2a53ccd6da4ba21e14904ed1958dd73cdb38099f12",
+2026-10-05T05:38:17.8550301Z         "b2bd108340f8dde3e1a9140e05beef305e24b0febfc69fa68347fd23cf76e7ed",
+2026-10-05T05:38:17.8550830Z         "f6f57e3ad920d34026ebacf0f4ab691c33e494e674b509e21c26cfe269c3ec82",
+2026-10-05T05:38:17.8551338Z         "60d5e656518c020365f2dff61a008fb6bc8add951fbd869f2a49e2b20136bfd6",
+2026-10-05T05:38:17.8551857Z         "e4e75e3faba8fcaae234b305e080a035fb4efd8eb3a59f2b39cc19d998f32701",
+2026-10-05T05:38:17.8552430Z         "04d4ba095f119df931da72eaac2afb673222f366d84c10f54216360db8b07485",
+2026-10-05T05:38:17.8553143Z         "977852c0a1c9b3e7187c2a58aac55c44c395a124452ce9a14089f4fb64ed3649",
+2026-10-05T05:38:17.8553884Z         "90c648031c0d4a0d03d96f75c5cb857150d8c5499abc6b8d18f489384e3a9b82",
+2026-10-05T05:38:17.8554411Z         "450ee62d33c0c16579fa1048ad9594975085fcec5790f036f6e3e70173776000",
+2026-10-05T05:38:17.8554928Z         "19e14cdf9ace273cbb5f6b5969a1eb591ddbe5301914349a133a112c7321e254",
+2026-10-05T05:38:17.8555453Z         "6a1af0604e321f6a6c02c08ab60e2d9f53a5cd40eb096efb8d03d0cd8ba016e5",
+2026-10-05T05:38:17.8555962Z         "971a556d013740a6e4e9972f6988ae931fd3531cf7a7447d5ab6db2509251017",
+2026-10-05T05:38:17.8556459Z         "715059ba9e3d79f3bc9b950c77eb00f717141b35e486e22a3c608de45b7874b3",
+2026-10-05T05:38:17.8556968Z         "4ab2787ffa1c873b04230cbace289498c3c7d3e89496971d937693bed9c601ae",
+2026-10-05T05:38:17.8557480Z         "0bf669f94e348bea9842c1d0d7c5bc2be0e417b56b68c2556ebdb9c75c47d111",
+2026-10-05T05:38:17.8557998Z         "270ac04b6871f9f3a75ad38f0eaee1a50ac8c2b2ac006dcd74e39a7be5f3afda",
+2026-10-05T05:38:17.8558783Z         "1ea68a1d55596bded7255ddbfeb8f105577f5809ff2dc554ce81aac59e6d0a75",
+2026-10-05T05:38:17.8559298Z         "832d65a992b736348c7279d21e5d0117059bde0fc56faf8a50e741be249ba831",
+2026-10-05T05:38:17.8559800Z         "d425f93948065e16a0642e3cb61b10153634aedd0ec073ba9ccc85fef456ceae",
+2026-10-05T05:38:17.8560315Z         "80b3b1b22fd7becd894b8d3535449278dc9a222ac4627d5b19ba7c01098f804f",
+2026-10-05T05:38:17.8560824Z         "5cf54347fa6e3799f72e56bc9edbf1f6b1ac3bec6597b472d521da4521bfdade",
+2026-10-05T05:38:17.8561345Z         "bc6238f2087a6a1f61cab7b80c2c7a1db57b00cf58daa3801d8bf92353111496"
+2026-10-05T05:38:17.8561718Z       ]
+2026-10-05T05:38:17.8561905Z     },
+2026-10-05T05:38:17.8562084Z     {
+2026-10-05T05:38:17.8562407Z       "source": "packages/core/tests/unit/comments/ranking.test.ts",
+2026-10-05T05:38:17.8562773Z       "declarations": 8,
+2026-10-05T05:38:17.8563018Z       "expects": 14,
+2026-10-05T05:38:17.8563231Z       "elements": 0,
+2026-10-05T05:38:17.8563461Z       "callbackSha256": [
+2026-10-05T05:38:17.8564238Z         "3bbe9c689a18bc080c750c203e0e741cef9b2c9949dd9253751273bf39ccb8c7",
+2026-10-05T05:38:17.8564770Z         "5b85122f289bd637ceb7bd4b7323b70bc6a3f5d1c1a7064d84b175669a7b9333",
+2026-10-05T05:38:17.8565285Z         "4c780ac86d604b40565022ed85ad750b3b1915cdbd35b9c8d9361e38ef567e1a",
+2026-10-05T05:38:17.8565800Z         "30009ade89fd200a7e00d7f5fe658a042291b492a885f5998375889102e60961",
+2026-10-05T05:38:17.8566301Z         "6b76c9c17695c7066a080f96703708a9099160da574884c4d38c25ef6f506d5f",
+2026-10-05T05:38:17.8566809Z         "2a8fe02c809a1895cf2ffc2fa5ec6e6949af36a02135c3af6f6611595e0385fb",
+2026-10-05T05:38:17.8567322Z         "5d3a2a8d14760c46def49d1731d1ab8edf97994c6c8e053b7834a7b566af22c7",
+2026-10-05T05:38:17.8567839Z         "72078f3b746adcbb194a0e6f413d7e4370827423a4fccb2d366dda47faa10e4d"
+2026-10-05T05:38:17.8568404Z       ]
+2026-10-05T05:38:17.8568714Z     },
+2026-10-05T05:38:17.8569085Z     {
+2026-10-05T05:38:17.8569637Z       "source": "packages/core/tests/unit/comments/turnstile.test.ts",
+2026-10-05T05:38:17.8570293Z       "declarations": 1,
+2026-10-05T05:38:17.8570981Z       "expects": 3,
+2026-10-05T05:38:17.8571398Z       "elements": 0,
+2026-10-05T05:38:17.8571792Z       "callbackSha256": [
+2026-10-05T05:38:17.8572364Z         "4d972e8fc5abfd1010b9eeb4ae5c3369a16ae6a769edabf57f831cf4c41c76a0"
+2026-10-05T05:38:17.8572908Z       ]
+2026-10-05T05:38:17.8573295Z     },
+2026-10-05T05:38:17.8573883Z     {
+2026-10-05T05:38:17.8574448Z       "source": "packages/core/tests/unit/api/csrf.test.ts",
+2026-10-05T05:38:17.8574937Z       "declarations": 17,
+2026-10-05T05:38:17.8575278Z       "expects": 25,
+2026-10-05T05:38:17.8575717Z       "elements": 0,
+2026-10-05T05:38:17.8576107Z       "callbackSha256": [
+2026-10-05T05:38:17.8576667Z         "17383e7001416411c23116b6913f77c7d022432503f6064e3639304504b78d7c",
+2026-10-05T05:38:17.8577295Z         "a7693d9465e9afb288f8d766fa162628b59f1f74b0236e4123d2638d53172cb9",
+2026-10-05T05:38:17.8578014Z         "d0c9fbb247b10828af5b3775d6c4d2b274b99618aae8017afc4af9d525989857",
+2026-10-05T05:38:17.8578709Z         "7c4b404412dcce14e3d630a8c5d542e0e38b5866dfb42de1b1ef71e2e557013a",
+2026-10-05T05:38:17.8579613Z         "25a5d5f36506200295c916dd7b5f8b28ad420684603724abb9e01ee02a066c46",
+2026-10-05T05:38:17.8580391Z         "d1e645fe8b3b0c80421eb077b60bb59e9d897dfb9e188a19a45e276ca139e291",
+2026-10-05T05:38:17.8581024Z         "a3f50633837fb063e2f982b7500312cf83d65f25ab50f627e0cfe5608167afb2",
+2026-10-05T05:38:17.8581772Z         "026798f7203ecb4ad84f37359e1e3b3438ae7bb2dd7a260af81eb3bdcc6d57a8",
+2026-10-05T05:38:17.8582407Z         "ea3096ee0faca24142c89f27a0ea0e8979742b4e6f79e8cff4a18c47f099f537",
+2026-10-05T05:38:17.8583021Z         "d13e951fd6b65d4aee5eb492cc53b211e8e289f55f1e869bc25ed5b1faab178d",
+2026-10-05T05:38:17.8584069Z         "b256a3879b1bc7f6ac8c7825b946b01bf9b40fabb12f42298a2a30123997447c",
+2026-10-05T05:38:17.8584722Z         "96b6842a048a15570a3156a9d0e3184eb495a8e5919888befe7f779970b25f07",
+2026-10-05T05:38:17.8585708Z         "f691e663df54558107f096131026662eead28298028399cfaf917bd9161ee99a",
+2026-10-05T05:38:17.8586372Z         "039428031cbf3c3a6ac801812b1e241a3fd2b4828c989afa941a7577966bd4de",
+2026-10-05T05:38:17.8587055Z         "111973d312f31dc6c2286dba1be1549c45d36fbbd866cc43ea6937f31af58d6f",
+2026-10-05T05:38:17.8587759Z         "ce67559c173653ac6feb92a372ec1f3cc58bce78a88a8b5e68bc7e9bb78b5538",
+2026-10-05T05:38:17.8588404Z         "62892c7e293a0fd7de52cb5c7c8550576ab9c8fc25050ec88230cc85bef5ff59"
+2026-10-05T05:38:17.8588972Z       ]
+2026-10-05T05:38:17.8589341Z     }
+2026-10-05T05:38:17.8589697Z   ]
+2026-10-05T05:38:17.8590019Z }
+2026-10-05T05:38:18.7780815Z 
+2026-10-05T05:38:18.7785146Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:38:18.7785843Z 
+2026-10-05T05:38:18.8799924Z [2m5:38:18 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:18.8812470Z [2m5:38:18 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:19.5359493Z 2026-10-05T05:38:19.532Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-sumiCH --remote-debugging-pipe --no-startup-window
+2026-10-05T05:38:19.5475243Z 2026-10-05T05:38:19.544Z pw:browser <launched> pid=3806
+2026-10-05T05:38:19.6016235Z 2026-10-05T05:38:19.601Z pw:browser [pid=3806][err] [1005/053819.599557:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:19.6202586Z 2026-10-05T05:38:19.616Z pw:browser [pid=3806][err] [1005/053819.613955:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:19.6226546Z 2026-10-05T05:38:19.616Z pw:browser [pid=3806][err] [1005/053819.614056:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:19.6242679Z 2026-10-05T05:38:19.618Z pw:browser [pid=3806][err] [1005/053819.616916:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:38:19.6249869Z 2026-10-05T05:38:19.618Z pw:browser [pid=3806][err] [1005/053819.618741:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:19.7368209Z 2026-10-05T05:38:19.619Z pw:browser [pid=3806][err] [1005/053819.619491:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:38:20.1217483Z 2026-10-05T05:38:20.121Z pw:browser [pid=3806][err] [1005/053820.121228:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:20.1284913Z 2026-10-05T05:38:20.128Z pw:browser [pid=3806][err] [1005/053820.127853:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:20.1837321Z 2026-10-05T05:38:20.183Z pw:browser [pid=3806][err] [1005/053820.170883:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:20.1976120Z 2026-10-05T05:38:20.197Z pw:browser [pid=3806][err] [1005/053820.193274:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:21.1956211Z  [32m✓[39m [30m[43m chromium [49m[39m tests/comments-source/packages/admin/tests/components/CommentInbox.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 277[2mms[22m[39m
+2026-10-05T05:38:21.1985365Z 
+2026-10-05T05:38:21.1990319Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-05T05:38:21.1991514Z [2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-05T05:38:21.1992898Z [2m   Start at [22m 05:38:18
+2026-10-05T05:38:21.1994163Z [2m   Duration [22m 2.42s[2m (transform 0ms, setup 0ms, import 467ms, tests 277ms, environment 0ms)[22m
+2026-10-05T05:38:21.1995131Z 
+2026-10-05T05:38:21.2088623Z 2026-10-05T05:38:21.206Z pw:browser [pid=3806][err] [1005/053821.201707:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:38:21.2101567Z 2026-10-05T05:38:21.206Z pw:browser [pid=3806][err] [1005/053821.203510:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:38:21.2205839Z 2026-10-05T05:38:21.220Z pw:browser [pid=3806] <gracefully close start>
+2026-10-05T05:38:21.2439167Z 2026-10-05T05:38:21.243Z pw:browser [pid=3806] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:38:21.2440566Z 2026-10-05T05:38:21.243Z pw:browser [pid=3806] starting temporary directories cleanup
+2026-10-05T05:38:21.2475257Z 2026-10-05T05:38:21.247Z pw:browser [pid=3806] finished temporary directories cleanup
+2026-10-05T05:38:21.2476759Z 2026-10-05T05:38:21.247Z pw:browser [pid=3806] <gracefully close end>
+2026-10-05T05:38:21.3095556Z ##[group]Run timeout --kill-after=30s 180s pnpm test:content-picker-browser-source
+2026-10-05T05:38:21.3096513Z [36;1mtimeout --kill-after=30s 180s pnpm test:content-picker-browser-source[0m
+2026-10-05T05:38:21.3175483Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:38:21.3175901Z env:
+2026-10-05T05:38:21.3176299Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:38:21.3176814Z   DEBUG: pw:browser
+2026-10-05T05:38:21.3177162Z ##[endgroup]
+2026-10-05T05:38:21.3511773Z $ node scripts/check-content-picker-source.mjs && vitest run --config vitest.content-picker-browser.config.ts
+2026-10-05T05:38:21.6891960Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","authorities":31,"wholeTests":4,"testDeclarations":22,"expectExpressions":25,"productTestsRun":0}
+2026-10-05T05:38:22.6476426Z 
+2026-10-05T05:38:22.6480325Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:38:22.6480792Z 
+2026-10-05T05:38:22.7571487Z [2m5:38:22 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:22.7583157Z [2m5:38:22 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:23.4102491Z 2026-10-05T05:38:23.405Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-6MOH18 --remote-debugging-pipe --no-startup-window
+2026-10-05T05:38:23.4204741Z 2026-10-05T05:38:23.419Z pw:browser <launched> pid=3934
+2026-10-05T05:38:23.4803901Z 2026-10-05T05:38:23.479Z pw:browser [pid=3934][err] [1005/053823.476985:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:23.4910989Z 2026-10-05T05:38:23.489Z pw:browser [pid=3934][err] [1005/053823.489595:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:23.4932200Z 2026-10-05T05:38:23.490Z pw:browser [pid=3934][err] [1005/053823.489743:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:23.4951527Z 2026-10-05T05:38:23.494Z pw:browser [pid=3934][err] [1005/053823.494456:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:23.5066488Z 2026-10-05T05:38:23.504Z pw:browser [pid=3934][err] [1005/053823.503222:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:38:23.5096021Z 2026-10-05T05:38:23.505Z pw:browser [pid=3934][err] [1005/053823.505205:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:38:23.9047056Z 2026-10-05T05:38:23.904Z pw:browser [pid=3934][err] [1005/053823.904198:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:23.9129738Z 2026-10-05T05:38:23.912Z pw:browser [pid=3934][err] [1005/053823.911652:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:23.9572342Z 2026-10-05T05:38:23.954Z pw:browser [pid=3934][err] [1005/053823.954553:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:23.9778833Z 2026-10-05T05:38:23.976Z pw:browser [pid=3934][err] [1005/053823.961685:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:24.8595060Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/content-picker-source/upstream/packages/admin/tests/components/ContentPickerModal.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+2026-10-05T05:38:24.8626454Z 
+2026-10-05T05:38:24.8630834Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-05T05:38:24.8631540Z [2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+2026-10-05T05:38:24.8632008Z [2m   Start at [22m 05:38:22
+2026-10-05T05:38:24.8634147Z [2m   Duration [22m 2.21s[2m (transform 0ms, setup 178ms, import 372ms, tests 67ms, environment 0ms)[22m
+2026-10-05T05:38:24.8636072Z 
+2026-10-05T05:38:24.8709308Z 2026-10-05T05:38:24.870Z pw:browser [pid=3934][err] [1005/053824.866006:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:38:24.8717903Z 2026-10-05T05:38:24.870Z pw:browser [pid=3934][err] [1005/053824.868232:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:38:24.8806433Z 2026-10-05T05:38:24.880Z pw:browser [pid=3934] <gracefully close start>
+2026-10-05T05:38:24.9025577Z 2026-10-05T05:38:24.902Z pw:browser [pid=3934] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:38:24.9027081Z 2026-10-05T05:38:24.902Z pw:browser [pid=3934] starting temporary directories cleanup
+2026-10-05T05:38:24.9062443Z 2026-10-05T05:38:24.906Z pw:browser [pid=3934] finished temporary directories cleanup
+2026-10-05T05:38:24.9063306Z 2026-10-05T05:38:24.906Z pw:browser [pid=3934] <gracefully close end>
+2026-10-05T05:38:24.9601119Z ##[group]Run timeout --kill-after=30s 180s pnpm test:schema-admin-ui-browser
+2026-10-05T05:38:24.9601807Z [36;1mtimeout --kill-after=30s 180s pnpm test:schema-admin-ui-browser[0m
+2026-10-05T05:38:24.9675227Z shell: /usr/bin/bash -e {0}
+2026-10-05T05:38:24.9675620Z env:
+2026-10-05T05:38:24.9675979Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:38:24.9676447Z   DEBUG: pw:browser
+2026-10-05T05:38:24.9676752Z ##[endgroup]
+2026-10-05T05:38:24.9989798Z $ node scripts/check-schema-admin-ui-source.mjs && vitest run --config vitest.schema-admin-ui-browser.config.ts
+2026-10-05T05:38:25.0351844Z Four whole immutable Source schema UI files are byte-exact; 138 declarations retained.
+2026-10-05T05:38:25.9479919Z 
+2026-10-05T05:38:25.9483975Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T05:38:25.9484490Z 
+2026-10-05T05:38:26.0432273Z [2m5:38:26 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:26.0441930Z [2m5:38:26 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-05T05:38:26.7275595Z 2026-10-05T05:38:26.724Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-xTIfKi --remote-debugging-pipe --no-startup-window
+2026-10-05T05:38:26.7365258Z 2026-10-05T05:38:26.733Z pw:browser <launched> pid=4055
+2026-10-05T05:38:26.8095387Z 2026-10-05T05:38:26.808Z pw:browser [pid=4055][err] [1005/053826.806479:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:26.8195244Z 2026-10-05T05:38:26.818Z pw:browser [pid=4055][err] [1005/053826.816732:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:26.8215482Z 2026-10-05T05:38:26.818Z pw:browser [pid=4055][err] [1005/053826.817926:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T05:38:26.8265101Z 2026-10-05T05:38:26.824Z pw:browser [pid=4055][err] [1005/053826.823968:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T05:38:26.8275552Z 2026-10-05T05:38:26.824Z pw:browser [pid=4055][err] [1005/053826.824406:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T05:38:26.8290606Z 2026-10-05T05:38:26.827Z pw:browser [pid=4055][err] [1005/053826.826940:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T05:38:27.2273083Z 2026-10-05T05:38:27.226Z pw:browser [pid=4055][err] [1005/053827.226827:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:27.2367400Z 2026-10-05T05:38:27.236Z pw:browser [pid=4055][err] [1005/053827.235470:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:27.2822449Z 2026-10-05T05:38:27.280Z pw:browser [pid=4055][err] [1005/053827.278477:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:27.2873170Z 2026-10-05T05:38:27.287Z pw:browser [pid=4055][err] [1005/053827.284736:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:29.0445724Z 2026-10-05T05:38:29.044Z pw:browser [pid=4055][err] [1005/053829.043888:INFO:CONSOLE:1222] "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1222)
+2026-10-05T05:38:29.0471848Z [90mstderr[2m | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx[2m > [22m[2mContentTypeEditor[2m > [22m[2mcalls onDeleteField when delete is confirmed via dialog
+2026-10-05T05:38:29.0477535Z [22m[39mAttempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.
+2026-10-05T05:38:31.2081915Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx [2m([22m[2m54 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[33m 2903[2mms[22m[39m
+2026-10-05T05:38:31.2085288Z      [32m✓[39m shows 'New Content Type' title when isNew[32m 37[2mms[22m[39m
+2026-10-05T05:38:31.2086660Z      [32m✓[39m shows collection label as title when editing[32m 19[2mms[22m[39m
+2026-10-05T05:38:31.2087828Z      [32m✓[39m auto-generates slug from label when isNew[32m 74[2mms[22m[39m
+2026-10-05T05:38:31.2089330Z      [32m✓[39m does not show slug input when editing existing collection[32m 8[2mms[22m[39m
+2026-10-05T05:38:31.2090347Z      [32m✓[39m toggles support checkboxes[32m 139[2mms[22m[39m
+2026-10-05T05:38:31.2091615Z      [32m✓[39m save button is disabled when no changes have been made[32m 7[2mms[22m[39m
+2026-10-05T05:38:31.2092917Z      [32m✓[39m save button is enabled after changing label[32m 17[2mms[22m[39m
+2026-10-05T05:38:31.2094222Z      [32m✓[39m calls onSave with correct input when creating new collection[32m 77[2mms[22m[39m
+2026-10-05T05:38:31.2095553Z      [32m✓[39m calls onSave with correct input when editing existing collection[32m 66[2mms[22m[39m
+2026-10-05T05:38:31.2097160Z      [32m✓[39m creates a collection without a dashboard quick action when switched off[32m 118[2mms[22m[39m
+2026-10-05T05:38:31.2098270Z      [32m✓[39m keeps existing admin settings when turning off the dashboard quick action[32m 99[2mms[22m[39m
+2026-10-05T05:38:31.2099409Z      [32m✓[39m displays custom fields with type and badges[32m 11[2mms[22m[39m
+2026-10-05T05:38:31.2100255Z      [32m✓[39m shows system fields section[32m 8[2mms[22m[39m
+2026-10-05T05:38:31.2101337Z      [32m✓[39m shows an unsupported field's stored type without allowing it to be edited[32m 8[2mms[22m[39m
+2026-10-05T05:38:31.2102523Z      [32m✓[39m opens FieldEditor dialog when Add Field is clicked[32m 56[2mms[22m[39m
+2026-10-05T05:38:31.2103945Z [31m     [31m×[31m calls onDeleteField when delete is confirmed via dialog[39m[32m 213[2mms[22m[39m
+2026-10-05T05:38:31.2104858Z      [32m✓[39m does not call onDeleteField when delete dialog is cancelled[32m 56[2mms[22m[39m
+2026-10-05T05:38:31.2105666Z        [32m✓[39m names the field on the other content type and the links that go with it[32m 66[2mms[22m[39m
+2026-10-05T05:38:31.2106662Z        [32m✓[39m leaves the field being deleted out of the list[32m 50[2mms[22m[39m
+2026-10-05T05:38:31.2107378Z [31m       [31m×[31m deletes the relationship by default[39m[32m 177[2mms[22m[39m
+2026-10-05T05:38:31.2108343Z [31m       [31m×[31m keeps the relationship when the checkbox is cleared[39m[32m 199[2mms[22m[39m
+2026-10-05T05:38:31.2109766Z        [32m✓[39m offers nothing extra for a field that uses no relationship[32m 58[2mms[22m[39m
+2026-10-05T05:38:31.2111164Z      [32m✓[39m shows info banner and disables inputs for code-source collections[32m 7[2mms[22m[39m
+2026-10-05T05:38:31.2112495Z      [32m✓[39m hides edit and delete buttons on fields for code-source collections[32m 5[2mms[22m[39m
+2026-10-05T05:38:31.2114245Z      [32m✓[39m shows empty state when collection has no custom fields[32m 8[2mms[22m[39m
+2026-10-05T05:38:31.2115446Z      [32m✓[39m does not show fields section when creating new collection[32m 3[2mms[22m[39m
+2026-10-05T05:38:31.2116132Z      [32m✓[39m shows 'Saving...' when isSaving is true[32m 11[2mms[22m[39m
+2026-10-05T05:38:31.2117252Z      [32m✓[39m renders a sticky-header save button when editing existing collection[32m 6[2mms[22m[39m
+2026-10-05T05:38:31.2118249Z      [32m✓[39m sticky-header save flips to enabled 'Save' when fields change[32m 15[2mms[22m[39m
+2026-10-05T05:38:31.2119624Z      [32m✓[39m sticky-header save submits the form (calls onSave)[32m 64[2mms[22m[39m
+2026-10-05T05:38:31.2121002Z      [32m✓[39m does not render sticky-header save for code-source collections[32m 5[2mms[22m[39m
+2026-10-05T05:38:31.2122507Z      [32m✓[39m does not render sticky-header save when creating a new collection[32m 2[2mms[22m[39m
+2026-10-05T05:38:31.2124339Z      [32m✓[39m shows URL Pattern input[32m 4[2mms[22m[39m
+2026-10-05T05:38:31.2125383Z      [32m✓[39m populates URL Pattern from collection[32m 6[2mms[22m[39m
+2026-10-05T05:38:31.2126562Z      [32m✓[39m includes urlPattern in onSave when set[32m 62[2mms[22m[39m
+2026-10-05T05:38:31.2127801Z      [32m✓[39m saves whether the collection is routable[32m 100[2mms[22m[39m
+2026-10-05T05:38:31.2129089Z      [32m✓[39m saves whether the collection takes edit locks[32m 100[2mms[22m[39m
+2026-10-05T05:38:31.2130330Z      [32m✓[39m saves a trimmed sidebar group and clears it with null[32m 133[2mms[22m[39m
+2026-10-05T05:38:31.2131561Z      [32m✓[39m saves the icon and navigation visibility[32m 117[2mms[22m[39m
+2026-10-05T05:38:31.2132766Z      [32m✓[39m shows validation error when pattern lacks {slug}[32m 15[2mms[22m[39m
+2026-10-05T05:38:31.2134470Z      [32m✓[39m disables save button when pattern lacks {slug}[32m 14[2mms[22m[39m
+2026-10-05T05:38:31.2135917Z      [32m✓[39m blocks saving a pattern with two placeholders in one path segment[32m 16[2mms[22m[39m
+2026-10-05T05:38:31.2137457Z      [32m✓[39m saves unrelated edits when a stored legacy pattern is unchanged[32m 56[2mms[22m[39m
+2026-10-05T05:38:31.2138813Z      [32m✓[39m enables save button when pattern includes {slug}[32m 15[2mms[22m[39m
+2026-10-05T05:38:31.2140047Z      [32m✓[39m allows empty URL Pattern (field is optional)[32m 69[2mms[22m[39m
+2026-10-05T05:38:31.2141303Z      [32m✓[39m disables URL Pattern input for code-source collections[32m 6[2mms[22m[39m
+2026-10-05T05:38:31.2142432Z      [32m✓[39m shows field count in header[32m 5[2mms[22m[39m
+2026-10-05T05:38:31.2144182Z        [32m✓[39m lists only the relations this content type is an end of[32m 6[2mms[22m[39m
+2026-10-05T05:38:31.2145501Z        [32m✓[39m names the side this content type plays[32m 7[2mms[22m[39m
+2026-10-05T05:38:31.2146787Z        [32m✓[39m says when no field on this content type uses a relation[32m 4[2mms[22m[39m
+2026-10-05T05:38:31.2148229Z        [32m✓[39m creates a relation with this content type as the linking end[32m 159[2mms[22m[39m
+2026-10-05T05:38:31.2149642Z        [32m✓[39m edits a relation from the content type it is an end of[32m 73[2mms[22m[39m
+2026-10-05T05:38:31.2151056Z        [32m✓[39m deletes a relation once the dialog says what goes with it[32m 59[2mms[22m[39m
+2026-10-05T05:38:31.2152587Z        [32m✓[39m keeps the dialog open and shows the server's message when creating fails[32m 189[2mms[22m[39m
+2026-10-05T05:38:31.2568139Z 2026-10-05T05:38:31.256Z pw:browser [pid=4055][err] [1005/053831.255247:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:31.2608438Z 2026-10-05T05:38:31.260Z pw:browser [pid=4055][err] [1005/053831.260208:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:32.7451401Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx [2m([22m[2m58 tests[22m[2m)[22m[33m 1140[2mms[22m[39m
+2026-10-05T05:38:32.8056231Z 2026-10-05T05:38:32.801Z pw:browser [pid=4055][err] [1005/053832.801552:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:32.8164890Z 2026-10-05T05:38:32.816Z pw:browser [pid=4055][err] [1005/053832.815976:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:33.5680959Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx [2m([22m[2m25 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 446[2mms[22m[39m
+2026-10-05T05:38:33.5683211Z        [32m✓[39m displays collections with labels and slugs[32m 14[2mms[22m[39m
+2026-10-05T05:38:33.5684730Z        [32m✓[39m shows 'Code' badge for code-source collections[32m 4[2mms[22m[39m
+2026-10-05T05:38:33.5686444Z        [32m✓[39m shows 'Dashboard' badge for dashboard-source collections[32m 3[2mms[22m[39m
+2026-10-05T05:38:33.5687705Z        [32m✓[39m shows feature badges from supports array[32m 4[2mms[22m[39m
+2026-10-05T05:38:33.5688821Z        [32m✓[39m shows the seo badge from hasSeo, not from supports[32m 3[2mms[22m[39m
+2026-10-05T05:38:33.5689580Z        [32m✓[39m edit link navigates to /content-types/$slug[32m 3[2mms[22m[39m
+2026-10-05T05:38:33.5690374Z        [32m✓[39m 'New Content Type' link is present[32m 2[2mms[22m[39m
+2026-10-05T05:38:33.5691238Z        [32m✓[39m delete button only shown for non-code-source collections[32m 4[2mms[22m[39m
+2026-10-05T05:38:33.5692422Z [31m       [31m×[31m opens confirm dialog and calls onDelete after confirm[39m[32m 166[2mms[22m[39m
+2026-10-05T05:38:33.5693421Z        [32m✓[39m does not call onDelete when confirm dialog is cancelled[32m 55[2mms[22m[39m
+2026-10-05T05:38:33.5694783Z        [32m✓[39m shows warning when orphanedTables has items[32m 5[2mms[22m[39m
+2026-10-05T05:38:33.5695910Z        [32m✓[39m register button calls onRegisterOrphan[32m 60[2mms[22m[39m
+2026-10-05T05:38:33.5697181Z        [32m✓[39m does not show orphan warning when orphanedTables is empty[32m 3[2mms[22m[39m
+2026-10-05T05:38:33.5698413Z        [32m✓[39m shows 'No content types yet' when no collections[32m 2[2mms[22m[39m
+2026-10-05T05:38:33.5699204Z        [32m✓[39m shows loading message when isLoading is true[32m 2[2mms[22m[39m
+2026-10-05T05:38:33.5699948Z        [32m✓[39m pins the icon width and lets the description wrap in the name cell[32m 3[2mms[22m[39m
+2026-10-05T05:38:33.5701890Z        [32m✓[39m renders a labelled drag handle per row when onReorder is provided[32m 4[2mms[22m[39m
+2026-10-05T05:38:33.5703154Z        [32m✓[39m renders no drag handles without onReorder[32m 2[2mms[22m[39m
+2026-10-05T05:38:33.5704542Z        [32m✓[39m renders no drag handles for a single collection (nothing to reorder)[32m 3[2mms[22m[39m
+2026-10-05T05:38:33.5705703Z        [32m✓[39m renders collections in the order given, not alphabetically[32m 3[2mms[22m[39m
+2026-10-05T05:38:33.5706498Z        [32m✓[39m moves an item down to the drop target index[32m 1[2mms[22m[39m
+2026-10-05T05:38:33.5707596Z        [32m✓[39m moves an item up to the drop target index[32m 0[2mms[22m[39m
+2026-10-05T05:38:33.5708673Z        [32m✓[39m returns the same reference when the move is a no-op[32m 0[2mms[22m[39m
+2026-10-05T05:38:33.5710130Z      [32m✓[39m names the relationships and the fields on other content types that go with them[32m 48[2mms[22m[39m
+2026-10-05T05:38:33.5711669Z      [32m✓[39m says nothing about relationships for a content type in none[32m 52[2mms[22m[39m
+2026-10-05T05:38:33.6146817Z 2026-10-05T05:38:33.613Z pw:browser [pid=4055][err] [1005/053833.611149:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:33.6376009Z 2026-10-05T05:38:33.635Z pw:browser [pid=4055][err] [1005/053833.633181:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:33.8670366Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 106[2mms[22m[39m
+2026-10-05T05:38:33.8884294Z 2026-10-05T05:38:33.888Z pw:browser [pid=4055][err] [1005/053833.886870:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T05:38:33.9030139Z 2026-10-05T05:38:33.901Z pw:browser [pid=4055][err] [1005/053833.900656:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T05:38:34.0755708Z  [32m✓[39m [30m[43m chromium [49m[39m tests/schema-admin-ui-browser/modal.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 27[2mms[22m[39m
+2026-10-05T05:38:34.0787859Z 
+2026-10-05T05:38:34.0788841Z [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 4 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2026-10-05T05:38:34.0789269Z 
+2026-10-05T05:38:34.0793380Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx[2m > [22mContentTypeEditor[2m > [22mcalls onDeleteField when delete is confirmed via dialog
+2026-10-05T05:38:34.0797934Z [31m[1mError[22m: strict mode violation: page.getByRole('button', { name: 'Delete' }) resolved to 2 elements:
+2026-10-05T05:38:34.0799538Z     1) <button type="button" aria-label="Delete Title field">Delete</button> aka getByLabel('Delete Title field')
+2026-10-05T05:38:34.0801024Z     2) <button type="button">Delete</button> aka getByRole('button', { name: 'Delete', exact: true })
+2026-10-05T05:38:34.0801972Z [39m
+2026-10-05T05:38:34.0802401Z 
+2026-10-05T05:38:34.0802644Z Failure screenshot:
+2026-10-05T05:38:34.0805126Z   - [2mparity/emdash/schema-admin-ui-source/packages/admin/tests/components/__screenshots__/ContentTypeEditor.test.tsx/ContentTypeEditor-calls-onDeleteField-when-delete-is-confirmed-via-dialog-1.png[22m
+2026-10-05T05:38:34.0806901Z 
+2026-10-05T05:38:34.0807642Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯[22m[39m
+2026-10-05T05:38:34.0808046Z 
+2026-10-05T05:38:34.0810341Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx[2m > [22mContentTypeEditor[2m > [22mdeleting a reference field[2m > [22mdeletes the relationship by default
+2026-10-05T05:38:34.0812971Z [31m[1mError[22m: strict mode violation: page.getByRole('button', { name: 'Delete' }) resolved to 2 elements:
+2026-10-05T05:38:34.0815070Z     1) <button type="button" aria-label="Delete Author field">Delete</button> aka getByLabel('Delete Author field')
+2026-10-05T05:38:34.0816454Z     2) <button type="button">Delete</button> aka getByRole('button', { name: 'Delete', exact: true })
+2026-10-05T05:38:34.0817398Z [39m
+2026-10-05T05:38:34.0817614Z 
+2026-10-05T05:38:34.0817816Z Failure screenshot:
+2026-10-05T05:38:34.0819944Z   - [2mparity/emdash/schema-admin-ui-source/packages/admin/tests/components/__screenshots__/ContentTypeEditor.test.tsx/ContentTypeEditor-deleting-a-reference-field-deletes-the-relationship-by-default-1.png[22m
+2026-10-05T05:38:34.0821554Z 
+2026-10-05T05:38:34.0845169Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯[22m[39m
+2026-10-05T05:38:34.0845652Z 
+2026-10-05T05:38:34.0848144Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx[2m > [22mContentTypeEditor[2m > [22mdeleting a reference field[2m > [22mkeeps the relationship when the checkbox is cleared
+2026-10-05T05:38:34.0850888Z [31m[1mError[22m: strict mode violation: page.getByRole('button', { name: 'Delete' }) resolved to 2 elements:
+2026-10-05T05:38:34.0852377Z     1) <button type="button" aria-label="Delete Author field">Delete</button> aka getByLabel('Delete Author field')
+2026-10-05T05:38:34.0855339Z     2) <button type="button">Delete</button> aka getByRole('button', { name: 'Delete', exact: true })
+2026-10-05T05:38:34.0856288Z [39m
+2026-10-05T05:38:34.0856492Z 
+2026-10-05T05:38:34.0856699Z Failure screenshot:
+2026-10-05T05:38:34.0859086Z   - [2mparity/emdash/schema-admin-ui-source/packages/admin/tests/components/__screenshots__/ContentTypeEditor.test.tsx/ContentTypeEditor-deleting-a-reference-field-keeps-the-relationship-when-the-checkbox-is-cleared-1.png[22m
+2026-10-05T05:38:34.0860843Z 
+2026-10-05T05:38:34.0861354Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯[22m[39m
+2026-10-05T05:38:34.0861739Z 
+2026-10-05T05:38:34.0864305Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx[2m > [22mContentTypeList[2m > [22mdelete[2m > [22mopens confirm dialog and calls onDelete after confirm
+2026-10-05T05:38:34.0867222Z [31m[1mError[22m: strict mode violation: page.getByRole('button', { name: 'Delete' }) resolved to 2 elements:
+2026-10-05T05:38:34.0868592Z     1) <button type="button" aria-label="Delete Posts">Delete</button> aka getByLabel('Delete Posts')
+2026-10-05T05:38:34.0869853Z     2) <button type="button">Delete</button> aka getByRole('button', { name: 'Delete', exact: true })
+2026-10-05T05:38:34.0870764Z [39m
+2026-10-05T05:38:34.0870978Z 
+2026-10-05T05:38:34.0871183Z Failure screenshot:
+2026-10-05T05:38:34.0873351Z   - [2mparity/emdash/schema-admin-ui-source/packages/admin/tests/components/__screenshots__/ContentTypeList.test.tsx/ContentTypeList-delete-opens-confirm-dialog-and-calls-onDelete-after-confirm-1.png[22m
+2026-10-05T05:38:34.0875049Z 
+2026-10-05T05:38:34.0875574Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯[22m[39m
+2026-10-05T05:38:34.0875940Z 
+2026-10-05T05:38:34.0875989Z 
+2026-10-05T05:38:34.0876784Z [2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (5)[39m
+2026-10-05T05:38:34.0878115Z [2m      Tests [22m [1m[31m4 failed[39m[22m[2m | [22m[1m[32m135 passed[39m[22m[90m (139)[39m
+2026-10-05T05:38:34.0879084Z [2m   Start at [22m 05:38:25
+2026-10-05T05:38:34.0880249Z [2m   Duration [22m 8.12s[2m (transform 0ms, setup 0ms, import 1.31s, tests 4.62s, environment 0ms)[22m
+2026-10-05T05:38:34.0880921Z 
+2026-10-05T05:38:34.0901980Z 2026-10-05T05:38:34.089Z pw:browser [pid=4055][err] [1005/053834.086806:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T05:38:34.0905597Z 2026-10-05T05:38:34.090Z pw:browser [pid=4055][err] [1005/053834.089482:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T05:38:34.1062284Z 2026-10-05T05:38:34.105Z pw:browser [pid=4055] <gracefully close start>
+2026-10-05T05:38:34.1284571Z 2026-10-05T05:38:34.128Z pw:browser [pid=4055] <process did exit: exitCode=0, signal=null>
+2026-10-05T05:38:34.1286405Z 2026-10-05T05:38:34.128Z pw:browser [pid=4055] starting temporary directories cleanup
+2026-10-05T05:38:34.1330896Z 2026-10-05T05:38:34.132Z pw:browser [pid=4055] finished temporary directories cleanup
+2026-10-05T05:38:34.1331543Z 2026-10-05T05:38:34.133Z pw:browser [pid=4055] <gracefully close end>
+2026-10-05T05:38:34.1901713Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-05T05:38:34.1939581Z ##[error]Process completed with exit code 1.
+2026-10-05T05:38:34.2040718Z ##[group]Run actions/upload-artifact@v4
+2026-10-05T05:38:34.2041036Z with:
+2026-10-05T05:38:34.2041244Z   name: playwright-report
+2026-10-05T05:38:34.2041518Z   path: playwright-report/
+test-results/
+
+2026-10-05T05:38:34.2041808Z   retention-days: 7
+2026-10-05T05:38:34.2042028Z   if-no-files-found: warn
+2026-10-05T05:38:34.2042272Z   compression-level: 6
+2026-10-05T05:38:34.2042499Z   overwrite: false
+2026-10-05T05:38:34.2042720Z   include-hidden-files: false
+2026-10-05T05:38:34.2043151Z env:
+2026-10-05T05:38:34.2043405Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T05:38:34.2044037Z ##[endgroup]
+2026-10-05T05:38:34.3978793Z (node:4127) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T05:38:34.3980331Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T05:38:34.4032722Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-05T05:38:34.4041641Z The least common ancestor is /home/runner/work/cms/cms. This will be the root directory of the artifact
+2026-10-05T05:38:34.4057015Z ##[warning]No files were found with the provided path: playwright-report/
+test-results/. No artifacts will be uploaded.
+2026-10-05T05:38:34.4276057Z Post job cleanup.
+2026-10-05T05:38:34.5944504Z Pruning is unnecessary.
+2026-10-05T05:38:34.6099494Z Post job cleanup.
+2026-10-05T05:38:34.7120625Z [command]/usr/bin/git version
+2026-10-05T05:38:34.7176438Z git version 2.55.0
+2026-10-05T05:38:34.7261054Z Temporarily overriding HOME='/home/runner/work/_temp/b4371abe-7d4f-4f6a-937f-294eb470ab3e' before making global git config changes
+2026-10-05T05:38:34.7262602Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T05:38:34.7284888Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T05:38:34.7323372Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T05:38:34.7378887Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T05:38:34.7734992Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T05:38:34.7770390Z http.https://github.com/.extraheader
+2026-10-05T05:38:34.7787215Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-05T05:38:34.7835068Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T05:38:34.8150187Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T05:38:34.8204317Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T05:38:34.8735206Z Cleaning up orphan processes
+2026-10-05T05:38:34.9106235Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
