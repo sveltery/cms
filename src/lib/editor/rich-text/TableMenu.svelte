@@ -58,6 +58,14 @@
     for (const button of items()) button.tabIndex = button === item ? 0 : -1;
     item.focus(); item.scrollIntoView?.({ block: 'nearest' });
   }
+  function hoverItem(event: MouseEvent) {
+    const item = event.currentTarget as HTMLButtonElement;
+    // Pinned Kumo Menu.Root highlights on mouse movement. Its navigation owner
+    // admits unavailable actions, requires an open menu and a registered item,
+    // and avoids refocusing the current item. Activation keeps its own guards.
+    if (!menuOpen || !editable || !surface?.contains(item) || document.activeElement === item) return;
+    focusItem(item);
+  }
   function positionMenu() {
     if (!menuOpen || !trigger || !surface) return;
     const anchor = trigger.getBoundingClientRect(), bounds = surface.getBoundingClientRect(), viewport = window.visualViewport;
@@ -179,7 +187,7 @@
                   {@const checked = id === 'header-row' ? controls.headerRow : controls.headerColumn}
                   <button type="button" role={header ? 'menuitemcheckbox' : 'menuitem'} aria-checked={header ? checked : undefined}
                     tabindex="-1" aria-disabled={!controls.can[id]}
-                    onmousemove={event => { if (menuOpen && editable && event.currentTarget !== document.activeElement) focusItem(event.currentTarget); }}
+                    onmousemove={hoverItem}
                     data-emdash-header-checkbox={header && checked !== 'mixed' ? '' : undefined}
                     class:danger={id === 'delete-table'} onclick={event => run(action, event.currentTarget)}>{tableActionLabel(action, controls, translate)}{#if header && checked === 'mixed'}<span class="mixed">{translate(tableMessage('Mixed'))}</span>{/if}</button>
                 {/each}
@@ -188,7 +196,7 @@
           {/if}
         {:else}
           <button type="button" role="menuitem" tabindex="-1"
-            onmousemove={event => { if (menuOpen && editable && event.currentTarget !== document.activeElement) focusItem(event.currentTarget); }}
+            onmousemove={hoverItem}
             onclick={() => void close('picker')}>{translate(tableMessage('Insert table'))}</button>
         {/if}
       </div>
