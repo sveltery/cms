@@ -2525,3 +2525,10 @@ This is a fidelity repair of Native presentation to immutable EmDash1.1.0 `913cb
 
 
 The shared NativeCodeEditorProps refactor keeps the lazy boundary and fulfilled actual EditorView on one translator contract without editing the pinned Source prop declaration. Whole55, Source206 and diagnostics0/0 pass again, with complete separate refactor raw/report/exit retained in the same receipt. Browser/final acceptance remains pending.
+
+
+### Finite actual-module setup transport for first editor mount
+
+RFE104-HOST-PRELOAD01 adds a bounded beforeAll awaiting the genuine editor-react-bridge module only for whole PortableTextEditor/slash families that register the original heavy-provider mocks. The new30s setup clock is separate from every unchanged original callback/readiness clock, including the3s no-op first mount. Actual modules still transform/execute; the test-only Rich Vite server disables automatic pretransform requests for unused mock-only provider graphs and retains all explicit genuine Native warmup files. Original provider factories remain the sole mock owners; no fake editor, DOM, readiness, geometry or suppressed logging exists. [Actual transform/body proof](../../docs/rich-editor-evidence/ci560-initial-whole-editor/preload-original-body-proof.json) verifies whole original Source bodies are exact suffixes and other added whole families receive no barrier.
+
+Root explicitly authorizes this finite framework setup transport after the initial209 raw/report is preserved. It earns zero Source/product causal credit and cannot turn the first mount stop into a product red. Local config loading and immutable148-file guard pass; actual new hosted whole-family outcome and absence/presence of original eager pretransform errors remain pending and will be retained without relabeling. All old job steps, limits, includes, browser security and official1243 requirements remain unchanged.

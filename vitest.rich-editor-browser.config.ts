@@ -28,7 +28,16 @@ export default defineConfig({
     },
     load(id) { if (id === '\0rich-editor-native-default-base') return "export const base = '';"; },
     async transform(code, id) {
-      if (!id.startsWith(source) || !/\.[jt]sx?(?:\?|$)/.test(id) || !code.includes('@lingui/')) return;
+      if (!id.startsWith(source) || !/\.[jt]sx?(?:\?|$)/.test(id)) return;
+      const filename = id.split('?')[0];
+      const original = code;
+      // Vitest still hoists every original Source mock before import. Only
+      // these two families mock the heavy provider graph; the footer and all
+      // other complete families retain their original lazy graph/lifetimes.
+      if (['PortableTextEditor.test.tsx', 'slash-menu.test.tsx'].some(name => filename === resolve(source, 'tests/editor', name))) {
+        code = `import { beforeAll as richEditorBeforeAll } from 'vitest';\nimport { preloadNativeEditorBridge } from ${JSON.stringify(resolve(helper, 'react-bridge.tsx'))};\nrichEditorBeforeAll(() => preloadNativeEditorBridge(), 30_000);\n${code}`;
+      }
+      if (!code.includes('@lingui/')) return code === original ? undefined : { code, map: null };
       const result = await transformAsync(code, {
         filename: id.split('?')[0], babelrc: false, configFile: false,
         parserOpts: { plugins: ['typescript', 'jsx'] },
@@ -42,7 +51,13 @@ export default defineConfig({
   resolve: { alias: { $lib: resolve(root, 'src/lib') }, conditions: ['browser'] },
   // Transform the real Native Svelte graph before the first lazy React mount;
   // original Source readiness clocks and every callback remain unchanged.
-  server: { warmup: { clientFiles: ['tests/helpers/rich-editor/EditorHost.svelte', 'src/lib/editor/rich-text/PortableTextEditor.svelte', 'src/lib/ui/sections-widgets/SectionPickerModal.svelte', 'src/lib/editor/rich-text/CodeEditor.svelte', 'tests/helpers/rich-editor/TableControlsHost.svelte'] } },
+  server: {
+    // Original Source factories own these mock-only provider modules. Avoid
+    // eager requests for their unused graphs; actual imports still transform
+    // and execute normally, and the explicit genuine Native warmup is retained.
+    preTransformRequests: false,
+    warmup: { clientFiles: ['tests/helpers/rich-editor/EditorHost.svelte', 'src/lib/editor/rich-text/PortableTextEditor.svelte', 'src/lib/ui/sections-widgets/SectionPickerModal.svelte', 'src/lib/editor/rich-text/CodeEditor.svelte', 'tests/helpers/rich-editor/TableControlsHost.svelte'] }
+  },
   // The whole Source families retain original provider mocks. Do not scan those
   // mocked module bodies: their unmounted React providers are not prerequisites
   // of the Native editor. Prebundle the actual harness/authoring graph before
