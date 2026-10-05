@@ -5,6 +5,7 @@ import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 import type { Database } from '../../src/lib/server/blocks/upstream/database/types.ts';
+import { MediaUsageRepository } from '../../src/lib/server/blocks/upstream/database/repositories/media-usage.ts';
 import { MediaUsageReconciliationRepository } from '../../src/lib/server/media-usage/upstream/media/usage/reconciliation.ts';
 
 let owner: CmsDatabase;
@@ -15,8 +16,14 @@ beforeEach(async () => {
   const collection = await new SchemaRegistry(owner).createCollection({slug:'post',label:'Posts'});
   collectionId = collection.id;
   await owner.db.updateTable('_cms_media_usage_activation' as never).set({state:'active'} as never).execute();
+  // Main's ordinary schema creator has no Source capture/status integration yet.
+  // Establish this controlled preexisting activated collection through its real
+  // canonical repository, without pretending an UPDATE of zero rows created it.
+  await new MediaUsageRepository(owner.db as unknown as Kysely<Database>).upsertIndexStatus({
+    adapterId:'content-media',scopeType:'collection',scopeKey:'post',status:'stale'
+  });
   await owner.db.updateTable('_cms_media_usage_index_status' as never).set({collection_id:collectionId,
-    capture_state:'active',status:'stale',reconciliation_required:1} as never).execute();
+    capture_state:'active',reconciliation_required:1} as never).where('scope_key' as never,'=','post' as never).execute();
   repository = new MediaUsageReconciliationRepository(owner.db as unknown as Kysely<Database>);
 });
 afterEach(async () => { await owner?.close(); });
