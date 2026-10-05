@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { sql } from 'kysely';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
-import { migrateCms } from '../../src/lib/server/database/migrations.ts';
+import { migrateCms, CMS_MIGRATION_VERSION } from '../../src/lib/server/database/migrations.ts';
 import { runWithContext, getRequestContext, type RequestContext } from '../../src/lib/server/menus/context.ts';
 import { requestCached } from '../../src/lib/server/menus/request-cache.ts';
 import { createQueryScope } from '../../src/lib/server/query-sdk/scope.ts';
@@ -27,8 +27,8 @@ describe('Native query constructor request scope', () => {
     }));
     await runWithContext({editMode: false}, async () => {
       const firstContext = scope(getRequestContext);
-      expect(await read()).toBe(15);
-      expect(await read()).toBe(15);
+      expect(await read()).toBe(CMS_MIGRATION_VERSION);
+      expect(await read()).toBe(CMS_MIGRATION_VERSION);
       expect(actualReads).toBe(1);
       expect(scope(getRequestContext)).toBe(firstContext);
     });

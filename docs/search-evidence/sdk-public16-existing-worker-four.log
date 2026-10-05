@@ -1,0 +1,23 @@
+✔ Node: 103 persisted drafts paginate without duplicates after storage reopens (378.547282ms)
+✔ D1: 103 persisted drafts paginate without duplicates after storage reopens (14019.271356ms)
+✔ workerd: collection metadata service runs on the actual D1 binding without nodejs_compat (1397.977472ms)
+✔ workerd: draft restore uses actual D1 without nodejs_compat, with one concurrent CAS winner (1789.551627ms)
+✔ Node source: five collection output, manifest-build.test.ts:537 (239.143804ms)
+✔ Node supplemental: 0/1/50/51/100 boundaries preserve ordered projection with bounded reads (400.191756ms)
+✔ Node supplemental: each collection retains its 32-field cap, including ignored malformed rows (98.645023ms)
+✔ Node supplemental: authorization precedes SQL; constructor fields remain unparsed; errors propagate (29.354375ms)
+✔ Node supplemental: uncached collection and field changes appear on the next read (27.808047ms)
+✔ D1 source: five collection output, manifest-build.test.ts:537 (5969.571997ms)
+✔ D1 supplemental: 0/1/50/51/100 boundaries preserve ordered projection with bounded reads (15040.89081ms)
+✔ D1 supplemental: each collection retains its 32-field cap, including ignored malformed rows (3502.001008ms)
+✔ D1 supplemental: authorization precedes SQL; constructor fields remain unparsed; errors propagate (1477.304323ms)
+✔ D1 supplemental: uncached collection and field changes appear on the next read (2090.070179ms)
+✔ workerd supplemental: manifest executes on the actual local D1 binding without nodejs_compat (428.538708ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33184.352779
