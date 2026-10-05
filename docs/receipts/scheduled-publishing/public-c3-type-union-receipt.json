@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "artifact": "Actual public c3 union, connected-app author publication and erased Native type correction",
+  "actualParentCommit": "fe23c138296879364428757b9695d7a940a9f5bd",
+  "actualParentTree": "c16c924b7b92f79c31c09bfe9bfb9cf9ba542d5d",
+  "actualPublicMain": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+  "localOriginalMerge": "59bdd3f743130532bda36fcf5482e16cb2b8fbb4",
+  "publicUnion": {
+    "publicChangedFilesPreserved": 154,
+    "ownedChangedFilesPreserved": 119,
+    "sharedBaselinePrefixBytes": 416078,
+    "wholeIncomingCompatibilityPrefixBytes": 454960,
+    "wholeOwnedCompatibilitySuffixBytes": 15105,
+    "actualCombinedCompatibilityBytes": 470065,
+    "allIncomingAndOwnedBytesExactExceptApprovedFullPrefixSuffixCompatibilityComposition": true
+  },
+  "authorPublication": {
+    "schemaVersion": 1,
+    "repository": "sveltery/cms",
+    "branch": "feat/full-scheduling-calendar",
+    "expectedPreviousHead": "7dc68e53fb85c76536ace6c8ec087b12699cfbac",
+    "actualHead": "fe23c138296879364428757b9695d7a940a9f5bd",
+    "actualTree": "c16c924b7b92f79c31c09bfe9bfb9cf9ba542d5d",
+    "commits": [
+      {
+        "localCommit": "4b91572a372370f6fa0bce4ba69cb284fd51ca49",
+        "remoteCommit": "3f8810e4fb885937aa4855126f1170aa3cc03919",
+        "tree": "d1927a9fc67b7151be24a0868d07ea6beb8c5c6a",
+        "parentsRemote": [
+          "7dc68e53fb85c76536ace6c8ec087b12699cfbac"
+        ],
+        "metadataShaDifference": true
+      },
+      {
+        "localCommit": "3a45d076650294ae889154f7cfcac6fb3b1e5151",
+        "remoteCommit": "5ef8f6afc190f4ef5a1c106b1e5dedd086ef7509",
+        "tree": "e21832e00d5dc26198c6b56aefdc20e1ea0a7b98",
+        "parentsRemote": [
+          "3f8810e4fb885937aa4855126f1170aa3cc03919"
+        ],
+        "metadataShaDifference": true
+      },
+      {
+        "localCommit": "59bdd3f743130532bda36fcf5482e16cb2b8fbb4",
+        "remoteCommit": "fe23c138296879364428757b9695d7a940a9f5bd",
+        "tree": "c16c924b7b92f79c31c09bfe9bfb9cf9ba542d5d",
+        "parentsRemote": [
+          "5ef8f6afc190f4ef5a1c106b1e5dedd086ef7509",
+          "c3d135a6f20e4319ee07eebb0f9009b57f2985f9"
+        ],
+        "metadataShaDifference": true
+      }
+    ],
+    "force": false,
+    "compareAndSetLimit": "MCP update_ref has no expected-old field. Verified own105 expected head immediately before one force:false fast-forward update, then verified published result. Metadata SHA differences are explicit; all trees and ordered parent history are exact.",
+    "explicitCatalogRejection": "Initial create_tree was rejected before execution because catalog changed. Schema rediscovered; one fresh prepared call succeeded. No unknown ref write retried."
+  },
+  "rawGitMetadataVerification": "Fetched actual app-created Git commit metadata. Reconstructed complete raw commit objects including actual +0900 header offsets and terminal-newline form, required exact known Git SHA before native hash-object import. All source trees and ordered parent lists are exact. Original native history retained at refs/codex/scheduling/native-before-app-publication-59bdd; local owned branch aligned by expected-old update-ref CAS to identical-tree published commit. No working files reset or remote forced.",
+  "actualChecks": {
+    "node": "24.19.0",
+    "pnpm": "12.6.0",
+    "frozenInstall": "PASS",
+    "frozenLockEntries": 520,
+    "newPublishedDependencies": [
+      "jsonc-parser3.3.1",
+      "smol-toml1.6.0"
+    ],
+    "firstCheckErrors": 4,
+    "firstCheckWarnings": 0,
+    "firstCheckClassification": "Supplemental Native calendar test callbacks have four implicit-any parameter diagnostics; no product diagnostics. This was type checking, not a test callback assertion failure.",
+    "erasedTypeCorrection": {
+      "schemaVersion": 1,
+      "artifact": "Erased supplemental Native calendar test type correction",
+      "parentLocal": "59bdd3f743130532bda36fcf5482e16cb2b8fbb4",
+      "parentPublished": "fe23c138296879364428757b9695d7a940a9f5bd",
+      "parentSourceTree": "c16c924b7b92f79c31c09bfe9bfb9cf9ba542d5d",
+      "path": "tests/scheduling-native/calendar.test.ts",
+      "before": {
+        "bytes": 10644,
+        "sha256": "8bf4e29133b7a44e54b162e2e2de71102affcb624272681a88ee241b8090f2be",
+        "gitBlob": "8d21d1c68397edd75cf961f9441114563c8cb122"
+      },
+      "after": {
+        "bytes": 10863,
+        "sha256": "238a55027dd7b072ee780e4dab337ea9a8521121ba0500a1b7b4740e02854a84",
+        "gitBlob": "bbee282846069c87e2ce257545a201ca6fd897e8"
+      },
+      "runtimeAstSha256": "f517cc6d7854f365052da5bb5a7941d6128468328b2eb202bcca594a14f8eeee",
+      "runtimeAstIdentical": true,
+      "method": "Actual TypeScript6.0.3 transpileModule ESNext/verbatimModuleSyntax then parse emitted JS and compare every forEachChild syntax kind and semantic text; excludes source positions, complete SourceFile raw text, and token formatting. No early runtime product import introduced.",
+      "change": "Two import type declarations and four callback parameter annotations only; eleven supplemental runtime callbacks, data, matcher operands/assertions, dynamic readiness imports and clocks unchanged.",
+      "SourceBodiesChanged": 0,
+      "SourceExecutions": 0,
+      "initialDiagnosticAttempt": "An initial comparison included entire SourceFile raw text and therefore reported a formatting difference. Corrected comparison excludes that raw source container while retaining every emitted semantic child; no product/test assertion was changed to satisfy this proof."
+    },
+    "correctedCheckErrors": 0,
+    "correctedCheckWarnings": 0,
+    "Source86Guard": "PASS",
+    "wholeSourceCallbackReruns": 0
+  },
+  "wholeReceipts": [
+    {
+      "copy": "docs/receipts/scheduled-publishing/public-c3-frozen-install.log",
+      "original": "/tmp/scheduling-calendar-public-c3-frozen-install.log",
+      "bytes": 525,
+      "sha256": "60a617a45c9407b233360b4d6a2c4004ae94369965b2893ef057f0adfac56174",
+      "gitBlob": "ca542c362f0a097e0b7f6e4cc45357248b701e63",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/public-c3-check-first.log",
+      "original": "/tmp/scheduling-calendar-public-c3-check-first.log",
+      "bytes": 1689,
+      "sha256": "bf27f5a02b405014b1e52c8e206544c5ee508d6ffc22af99626f1f44c5e94376",
+      "gitBlob": "a99a7403b9c90cf5ef13100dba23e1dd532fa88e",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/public-c3-check-type-fixed.log",
+      "original": "/tmp/scheduling-calendar-public-c3-check-type-fixed.log",
+      "bytes": 210,
+      "sha256": "bd9f87fb16e363fa28f9b32fd439b77ee8c827e98ed5497292235b83fe356ef2",
+      "gitBlob": "90ea87c257057388ee84930d48c8d4dac5db769e",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/public-c3-source86-guard.log",
+      "original": "/tmp/scheduling-calendar-public-c3-source86-guard.log",
+      "bytes": 111,
+      "sha256": "c04507aec935e79c8097e4f8f7433346f8885f323e710d6cd80880b36fdfaf88",
+      "gitBlob": "2d2718ecef870efb0d4f4bc3ac5283976704e380",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/native-type-erasure-proof.json",
+      "original": "/tmp/scheduling105-native-calendar-type-erasure-proof.json",
+      "bytes": 1679,
+      "sha256": "9fb1954c3d815192e1494fb22bbf2c20529849858b4d89749d75bfc5ce4ca66f",
+      "gitBlob": "5fe044f142bb1162cc8e8edd5c190c3431a06f19",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/app-publication-mapping.json",
+      "original": "/tmp/scheduling105-app-publication-59bdd/actual-mapping.json",
+      "bytes": 1818,
+      "sha256": "c8a881df05ca431a5fdae06a3cafe1dff59bdb8564a99bc8de7953ead5c7d23d",
+      "gitBlob": "625ff86ae926d0585a9e425583a44e2312a756c3",
+      "changedBytes": 0
+    }
+  ],
+  "unchangedBaselineEvidence": "All41 original last-run callbacks remain39 pass/one substantive Source query-plan assertion red/one missing-index DDL readiness stop. No rerun since shared schema index producer is not publicly available. All original80+6 Source authorities,16 families/126 declarations/342 static expectations/31 multiline element sites and original clocks remain whole. Erased supplemental typing changes no Native runtime AST or matcher/data/clock behavior.",
+  "sharedIndexOwner": "/root/full_schema_admin_developer_fresh",
+  "indexDependency": "Root reserved shared schema migration16 for the sole Source16 creator/forward-data owner. Scheduling changes no Registry/index creator/migration and adopts only actual published16 before justified whole41 rerun.",
+  "sourceGateProposal": "After actual public schema prerequisite: test:calendar-source = node scripts/check-scheduled-publishing-source.mjs && vitest run --config vitest.calendar-source.config.ts; append && pnpm test:calendar-source to the entire unchanged actual published test:source-ports chain. Package/gate changes are not applied in this checkpoint.",
+  "finalAcceptance": "NOT COMPLETE. Current full13 normal and9 secured Chromium gates, fresh independent and configured automatic final-head reviews, Root exact approval, author expected-head regular merge and postMain qualification remain required. No prior public prerequisite CI is inherited as current-own-head acceptance.",
+  "fullFeatureDone": false,
+  "remainingFeature": "Real calendar UI and app QueryClient/i18n context; editor scheduling; policy/rejection executor; media usage activation/capture and site write fence; lifecycle/draft/revision/CAS; actual bounded timestamp-preserving Node/Worker publication maintenance and original completed-pass heartbeat; remaining12 full Source families and full16 acceptance."
+}

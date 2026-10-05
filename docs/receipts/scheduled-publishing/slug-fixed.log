@@ -1,0 +1,29 @@
+
+ RUN  v4.1.10 /workspace/cms-full-scheduling-calendar
+
+ ✓ tests/scheduling-native/sweep.test.ts (5 tests) 594ms
+   ✓ publishes a bounded real due backlog at its intended time and drains it on later sweeps  375ms
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts [ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts ]
+Error: Cannot find module '../../after.js' imported from /workspace/cms-full-scheduling-calendar/parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/content.ts
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/content.ts:8:1
+      6| import { sql } from "kysely";
+      7|
+      8| import { after } from "../../after.js";
+       | ^
+      9| import type { ContentFieldFilters } from "../../content-list-query.js";
+     10| import { isSqlite } from "../../database/dialect-helpers.js";
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  5 passed (5)
+   Start at  03:51:55
+   Duration  2.31s (transform 1.05s, setup 84ms, import 1.04s, tests 594ms, environment 0ms)
+
+JSON report written to /tmp/scheduling105-slug-fixed.json

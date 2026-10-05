@@ -1,0 +1,31 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-scheduling-calendar
+Getting Svelte diagnostics...
+
+/workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts:89:32
+Error: Parameter 'item' implicitly has an 'any' type. 
+  expect(result.success).toBe(true);
+  expect(result.data.items.map(item => [item.id, item.status, item.kind, item.at])).toEqual([
+    [live.id, 'published', 'published', '2030-03-01T09:00:00.000Z'],
+
+/workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts:107:40
+Error: Parameter 'item' implicitly has an 'any' type. 
+    expect(result.success).toBe(true);
+    seen.push(...result.data.items.map(item => `${item.collection}:${item.id}:${item.kind}`));
+    cursor = result.data.nextCursor;
+
+/workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts:127:32
+Error: Parameter 'item' implicitly has an 'any' type. 
+  expect(result.success).toBe(true);
+  expect(result.data.items.map(item => [item.id, item.title])).toEqual([[visible.id, 'Headline']]);
+  expect((await sql`SELECT * FROM ec_post`.execute(database.db)).rows).toEqual(snapshot);
+
+/workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts:151:100
+Error: Parameter 'item' implicitly has an 'any' type. 
+  const snapshot = structuredClone(items);
+  expect(filterItems(items, { collections: ['post'], locales: ['fr'], states: ['scheduled'] }).map(item => item.id)).toEqual(['fr']);
+  expect(items).toEqual(snapshot);
+
+====================================
+svelte-check found 4 errors and 0 warnings in 1 file
+[ELIFECYCLE] Command failed with exit code 1.

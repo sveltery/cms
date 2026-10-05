@@ -1,0 +1,131 @@
+? Verifying lockfile against supply-chain policies (534 entries)...
+Update available! 12.6.0 → 12.9.1.
+Changelog: https://pnpm.io/v/12.9.1
+To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -
+✓ Lockfile passes supply-chain policies (534 entries in 6s)
+Lockfile is up to date, resolution step is skipped
+Packages: +14
+++++++++++++++
+Progress: resolved 14, reused 14, downloaded 0, added 14, done
+. prepare$ svelte-kit sync
+. prepare: Done
+
+devDependencies:
++ pg 8.18.0
+
+Done in 8.3s using pnpm v12.6.0
+
+ RUN  v4.1.10 /workspace/cms-full-scheduling-calendar
+
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts (0 test)
+ ❯ tests/scheduling-native/sweep.test.ts (4 tests | 4 failed) 391ms
+   × publishes a bounded real due backlog at its intended time and drains it on later sweeps 207ms
+   × persists the attempted cursor so a failed bounded window does not starve the next due item 72ms
+   × awaits each successful cache callback and keeps a committed publication when that callback rejects 74ms
+   × never calls a publisher for future or soft-deleted scheduled storage 37ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts [ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts ]
+Error: Cannot find module '../../after.js' imported from /workspace/cms-full-scheduling-calendar/parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/content.ts
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/content.ts:8:1
+      6| import { sql } from "kysely";
+      7|
+      8| import { after } from "../../after.js";
+       | ^
+      9| import type { ContentFieldFilters } from "../../content-list-query.js";
+     10| import { isSqlite } from "../../database/dialect-helpers.js";
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/scheduling-native/sweep.test.ts > publishes a bounded real due backlog at its intended time and drains it on later sweeps
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:70
+     50|   const specifier = '../../src/lib/server/scheduling/' + 'scheduled-pu…
+     51|   let module: SweepModule | undefined;
+     52|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     53|   return module!;
+     54| }
+ ❯ tests/scheduling-native/sweep.test.ts:61:37
+
+Caused by: Error: Cannot find module '/src/lib/server/scheduling/scheduled-publish.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/sweep.test.ts
+ ❯ tests/scheduling-native/sweep.test.ts:52:40
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:3
+ ❯ tests/scheduling-native/sweep.test.ts:61:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/scheduling-native/sweep.test.ts > persists the attempted cursor so a failed bounded window does not starve the next due item
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:70
+     50|   const specifier = '../../src/lib/server/scheduling/' + 'scheduled-pu…
+     51|   let module: SweepModule | undefined;
+     52|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     53|   return module!;
+     54| }
+ ❯ tests/scheduling-native/sweep.test.ts:75:37
+
+Caused by: Error: Cannot find module '/src/lib/server/scheduling/scheduled-publish.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/sweep.test.ts
+ ❯ tests/scheduling-native/sweep.test.ts:52:40
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:3
+ ❯ tests/scheduling-native/sweep.test.ts:75:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/scheduling-native/sweep.test.ts > awaits each successful cache callback and keeps a committed publication when that callback rejects
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:70
+     50|   const specifier = '../../src/lib/server/scheduling/' + 'scheduled-pu…
+     51|   let module: SweepModule | undefined;
+     52|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     53|   return module!;
+     54| }
+ ❯ tests/scheduling-native/sweep.test.ts:92:37
+
+Caused by: Error: Cannot find module '/src/lib/server/scheduling/scheduled-publish.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/sweep.test.ts
+ ❯ tests/scheduling-native/sweep.test.ts:52:40
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:3
+ ❯ tests/scheduling-native/sweep.test.ts:92:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/scheduling-native/sweep.test.ts > never calls a publisher for future or soft-deleted scheduled storage
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:70
+     50|   const specifier = '../../src/lib/server/scheduling/' + 'scheduled-pu…
+     51|   let module: SweepModule | undefined;
+     52|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     53|   return module!;
+     54| }
+ ❯ tests/scheduling-native/sweep.test.ts:108:37
+
+Caused by: Error: Cannot find module '/src/lib/server/scheduling/scheduled-publish.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/sweep.test.ts
+ ❯ tests/scheduling-native/sweep.test.ts:52:40
+ ❯ sweepModule tests/scheduling-native/sweep.test.ts:52:3
+ ❯ tests/scheduling-native/sweep.test.ts:108:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed (4)
+   Start at  03:45:49
+   Duration  2.70s (transform 1.03s, setup 66ms, import 1.33s, tests 391ms, environment 0ms)
+
+JSON report written to /tmp/scheduling105-sweep-first.json
