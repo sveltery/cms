@@ -49,7 +49,7 @@ it.each([[false, false], [false, true], [true, false], [true, true]])('preserves
 it.each(['Time', 'Hour', 'Minute', 'Period', 'Timezone', 'Local time'])('uses caller-owned translated Source %s label', message => {
   if (message === 'Local time') {
     const actual = Intl.DateTimeFormat.prototype.resolvedOptions;
-    vi.spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions').mockImplementation(function () {
+    vi.spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions').mockImplementation(function (this: Intl.DateTimeFormat) {
       return { ...actual.call(this), timeZone: '' };
     });
   }
