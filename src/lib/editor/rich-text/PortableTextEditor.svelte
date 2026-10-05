@@ -115,10 +115,7 @@
   $effect(() => {
     if (!editor) return;
     if (editor.isEditable !== (editable && !blocked)) editor.setEditable(editable && !blocked);
-    if (!editable) {
-      tableMenu = false;
-      if (slash.mode === 'table-size') closeSlash();
-    }
+    if (!editable) closeTableControls();
   });
   $effect(() => {
     if (!slash.isOpen || !menu) { movedPointer = false; return; }
@@ -133,6 +130,10 @@
     const state = slash;
     setSlash(previous => ({ ...previous, isOpen: false, mode: 'commands', gutterBlockPos: null, dismissedSlashFrom: state.trigger === 'slash' ? state.range?.from ?? null : previous.dismissedSlashFrom }));
     if (editor && state.trigger === 'slash') exitSuggestion(editor.view);
+  }
+  function closeTableControls() {
+    tableMenu = false;
+    if (slash.mode === 'table-size') closeSlash();
   }
   function openGutter(position: number) {
     if (!editor?.isEditable) return;
