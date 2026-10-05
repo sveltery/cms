@@ -1,3 +1,4 @@
+import { verifyErrorConstructorTransport } from './node-error-constructor-transport.mjs';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import ts from 'typescript';
@@ -40,10 +41,7 @@ for(const row of transformations.runtimeModules) {
       expected=expected.slice(0,start)+actual.moduleSpecifier.getText(native)+expected.slice(end);
     }
     if(constructorClass==='EmDashStorageError'&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
-      const originalText='export class EmDashStorageError extends Error {\n\tconstructor(\n\t\tmessage: string,\n\t\tpublic code: string,\n\t\tpublic override cause?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.name = "EmDashStorageError";\n\t}\n}';
-      const nativeText='export class EmDashStorageError extends Error {\n\tpublic code: string;\n\tpublic override cause?: unknown;\n\tconstructor(\n\t\tmessage: string,\n\t\tcode: string,\n\t\tcause?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.code = code;\n\t\tthis.cause = cause;\n\t\tthis.name = "EmDashStorageError";\n\t}\n}';
-      if(expected!==originalText||actual.getText(native)!==nativeText)throw new Error('Finite storage error constructor transport changed: '+row.runtime);
-      expected=nativeText;
+      expected=verifyErrorConstructorTransport(expected,actual.getText(native),constructorClass);
       constructorTransportCount++;
     } else if(constructorClass&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
       const sourceConstructor=original.members[0];

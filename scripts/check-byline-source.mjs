@@ -1,3 +1,4 @@
+import { verifyErrorConstructorTransport } from './node-error-constructor-transport.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -20,10 +21,7 @@ const nativeErrors=ts.createSourceFile('src/lib/server/bylines/repository-types.
 const errorClass=file=>file.statements.find(node=>ts.isClassDeclaration(node)&&node.name?.text==='EmDashValidationError');
 const originalError=errorClass(originalErrors),nativeError=errorClass(nativeErrors);
 assert.ok(originalError&&nativeError,'Source and Native validation error classes exist');
-const originalErrorText='export class EmDashValidationError extends Error {\n\tconstructor(\n\t\tmessage: string,\n\t\tpublic details?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.name = "EmDashValidationError";\n\t}\n}';
-const nativeErrorText='export class EmDashValidationError extends Error {\n\tdetails?: unknown;\n\tconstructor(\n\t\tmessage: string,\n\t\tdetails?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.details = details;\n\t\tthis.name = "EmDashValidationError";\n\t}\n}';
-assert.equal(originalError.getText(originalErrors),originalErrorText,'Complete immutable Source validation error class');
-assert.equal(nativeError.getText(nativeErrors),nativeErrorText,'Finite validation error constructor transport');
+verifyErrorConstructorTransport(originalError.getText(originalErrors),nativeError.getText(nativeErrors),'EmDashValidationError');
 const counts=[];
 for(const path of ledger.selectedWholeTests){
  const authority=ledger.authorities.find(row=>row.source===path);assert.ok(authority,`Source authority: ${path}`);
