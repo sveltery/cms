@@ -16,6 +16,7 @@ import { CodeMarkExtension } from './CodeMarkExtension';
 import { CodeBlockExtension } from './CodeBlockExtension';
 import { HtmlBlockExtension } from './HtmlBlockNode';
 import { IframeBlockExtension } from './IframeBlockNode';
+import { createEmbedBlockNodeView } from './embed-node-view';
 import { ImageExtension } from './image-node';
 import { GalleryExtension } from './gallery-node';
 import { PluginBlockExtension } from './plugin-node';
@@ -54,7 +55,9 @@ export function createPortableTextEditor(host: Host): Editor {
         link: { shouldAutoLink: url => URL_SCHEME_REGEX.test(url) || WWW_PREFIX_REGEX.test(url), openOnClick: false, enableClickSelection: true, HTMLAttributes: { class: 'text-kumo-link underline' } }, underline: {} }),
       TopBlockDocument, EmDashOrderedList, CodeMarkExtension,
       CodeBlockExtension.configure({ translate: descriptor => (host.props().translate ?? sourceMessage)(descriptor) }),
-      HtmlBlockExtension, IframeBlockExtension, ImageExtension, GalleryExtension, PluginBlockExtension, MarkdownLinkExtension,
+      HtmlBlockExtension.extend({ addNodeView: () => createEmbedBlockNodeView(() => host.props().translate ?? sourceMessage) }),
+      IframeBlockExtension.extend({ addNodeView: () => createEmbedBlockNodeView(() => host.props().translate ?? sourceMessage) }),
+      ImageExtension, GalleryExtension, PluginBlockExtension, MarkdownLinkExtension,
       Subscript, Superscript,
       EmDashTable.configure({ allowTableNodeSelection: true, cellMinWidth: TABLE_CELL_MIN_WIDTH, resizable: false }),
       createTableResize(() => host.onAnnouncement('Column width resized')),

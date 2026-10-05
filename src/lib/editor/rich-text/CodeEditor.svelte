@@ -6,8 +6,10 @@
   import { Compartment, Prec } from '@codemirror/state';
   import { EditorView, drawSelection, keymap, lineNumbers, placeholder } from '@codemirror/view';
   import { LANGUAGES, highlightStyle, theme, editability, type CodeEditorProps } from './code-editor-config.source';
+  import { sourceMessage, type Translate } from './types';
+  import { embedMessage } from './embed-messages.source';
   let { language, value, onChange, onFocusChange, onEscape, editable, autoFocus, ariaLabel,
-    placeholder: placeholderText, describedBy }: CodeEditorProps = $props();
+    placeholder: placeholderText, describedBy, translate = sourceMessage }: CodeEditorProps & { translate?: Translate } = $props();
   const hintId = $props.id();
   let host: HTMLDivElement;
   let view = $state.raw<EditorView | null>(null);
@@ -37,5 +39,5 @@
 
 <div class="emdash-code-editor" dir="ltr">
   <div bind:this={host}></div>
-  <span id={hintId} class="sr-only">Press Escape to leave the code editor.</span>
+  <span id={hintId} class="sr-only">{embedMessage(translate, 'Press Escape to leave the code editor.')}</span>
 </div>

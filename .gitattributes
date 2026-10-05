@@ -144,3 +144,6 @@ docs/receipts/schema-admin-ui/repeater-label-check.log -whitespace
 # Exact initial CI560 literal browser logs; only observed trailing spaces.
 docs/rich-editor-evidence/ci560-initial-whole-editor/editor-original.log whitespace=-trailing-space
 docs/rich-editor-evidence/ci560-initial-whole-editor/secured10-original.log whitespace=-trailing-space
+
+# Literal iframe localization TDD logs; preserve only observed formatting.
+docs/rich-editor-evidence/iframe-l10n-four-callbacks/source.log whitespace=-blank-at-eof
