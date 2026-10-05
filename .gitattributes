@@ -107,3 +107,10 @@ docs/receipts/schema-admin-ui/repeater-label-fixed.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-refactor.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-source138.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-check.log -whitespace
+
+# Preserve the complete original relations diagnostics, including formatter blanks.
+docs/relations-backend-evidence/atomic-copy/relations-copy-response-first-red.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/core/relations-check-core.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/core/relations-native-atomic-first-red.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/core/relations-native-initial.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/handlers/relations-native-service-first-red.log whitespace=-blank-at-eol
