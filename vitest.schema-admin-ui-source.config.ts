@@ -16,7 +16,7 @@ export default defineConfig({
       if (target === resolve(frozen, 'tests/utils/render')) return resolve(root, 'tests/helpers/schema-ui/dom-render.ts');
     }
   }],
-  resolve: { conditions: ['browser'] }, oxc: { jsx: { runtime: 'automatic' } },
+  resolve: { conditions: ['browser'], alias: { '$app/paths': resolve(root,'tests/helpers/schema-ui/kit-paths.ts') } }, oxc: { jsx: { runtime: 'automatic' } },
   test: { environment: 'jsdom', fileParallelism: false, setupFiles: ['tests/helpers/schema-ui/dom-setup.ts'],
     include: ['parity/emdash/schema-admin-ui-source/packages/admin/tests/components/*.test.tsx'] }
 });

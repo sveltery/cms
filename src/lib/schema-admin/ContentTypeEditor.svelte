@@ -17,12 +17,14 @@
   let listColumns = $state(untrack(() => collection?.admin?.listColumns?.join(',') ?? ''));
   let deleting = $state(false), deleteError = $state('');
   let saving = $state(false), saveError = $state('');
+  let reordering = $state(false), reorderError = $state('');
   const pending = $derived(isSaving || saving);
   let fieldOpen = $state(untrack(() => (false))), editingField = $state<any>(untrack(() => (undefined))), deleteTarget = $state<any>(untrack(() => (null))), deleteRelation = $state(untrack(() => (true))), relations = $state<any[]>(untrack(() => ([]))), collections = $state<any[]>(untrack(() => ([]))), relationDialog = $state<any>(untrack(() => (undefined))), relationDelete = $state<any>(untrack(() => (null))), relationError = $state(untrack(() => (''))), dragging = $state(untrack(() => ('')));
   const code = $derived(collection?.source === 'code'), locked = $derived(code || disabled);
   const fields = $derived(collection?.fields ?? []);
   const currentRelations = $derived(relations.filter(value => value.parentCollection === collection?.slug || value.childCollection === collection?.slug));
   const targetRelation = $derived(relations.find(value => value.slug === deleteTarget?.validation?.relation));
+  const modalOpen = $derived(fieldOpen || Boolean(deleteTarget) || relationDialog !== undefined || Boolean(relationDelete));
   const changes = $derived(isNew ? Boolean(label && slug) : Boolean(collection && (
     label !== collection.label || labelSingular !== (collection.labelSingular ?? '') || description !== (collection.description ?? '') || urlPattern !== (collection.urlPattern ?? '') || routable !== (collection.routable ?? true) || editLocking !== (collection.editLocking ?? true) || icon !== (collection.icon ?? '') || group !== (collection.group ?? '') || hidden !== (collection.hidden ?? false) || quickCreate !== (collection.admin?.quickCreate ?? true) || JSON.stringify([...supports].sort()) !== JSON.stringify(collection.supports.filter((value: string) => value !== 'seo').toSorted()) || hasSeo !== collection.hasSeo || commentsEnabled !== collection.commentsEnabled || commentsModeration !== collection.commentsModeration || commentsClosedAfterDays !== collection.commentsClosedAfterDays || commentsAutoApproveUsers !== collection.commentsAutoApproveUsers)));
   const displayChanged = $derived(titleField !== (collection?.titleField ?? '') || dateField !== (collection?.dateField ?? '') || listColumns !== (collection?.admin?.listColumns?.join(',') ?? ''));
@@ -48,7 +50,14 @@
     } catch (cause) { saveError = cause instanceof Error ? cause.message : 'Content type could not be saved'; }
     finally { saving = false; }
   }
-  function reorder(active: string, over: string) { const next = moveCollection(fields.map((value: any) => value.slug),active,over); onReorderFields?.(next); }
+  async function reorder(active: string, over: string) {
+    if (reordering || locked) return;
+    const slugs = fields.map((value: any) => value.slug), next = moveCollection(slugs,active,over); if (next === slugs) return;
+    reordering = true; reorderError = '';
+    try { await onReorderFields?.(next); }
+    catch (cause) { reorderError = cause instanceof Error ? cause.message : 'Field order could not be saved'; }
+    finally { reordering = false; }
+  }
   async function fieldSave(input: any) { await (editingField ? onUpdateField?.(editingField.slug,input) : onAddField?.(input)); fieldOpen = false; editingField = undefined; }
   async function confirmFieldDelete() {
     if (!deleteTarget || deleting || locked) return;
@@ -66,6 +75,7 @@
   }
   const systems = [['ID','id','Unique identifier (ULID)'],['Slug','slug','URL-friendly identifier'],['Status','status','draft, published, or archived'],['Created At','created_at','When the entry was created'],['Updated At','updated_at','When the entry was last modified'],['Published At','published_at','When the entry was published']];
 </script>
+<div inert={modalOpen} aria-hidden={modalOpen ? true : undefined}>
 <header class="sticky"><h1>{isNew ? 'New Content Type' : collection?.label}</h1>{#if !code && !isNew}<button type="submit" form={formId} disabled={disabled || pending || (!changes && !displayChanged) || !patternValid}>{saveLabel}</button>{/if}</header>
 {#if !isNew}<p><code>{collection?.slug}</code></p>{/if}
 {#if code}<p>This collection is defined in code. Some settings cannot be changed here. Edit your live.config.ts file to modify the schema.</p>{/if}
@@ -101,8 +111,10 @@
 </form>
 {#if !isNew}
 <section><h2>Fields</h2><p>6 system + {fields.length} custom fields</p>{#if !locked}<button type="button" onclick={() => { editingField = undefined; fieldOpen = true; }}>Add Field</button>{/if}
+  {#if reorderError}<p role="alert">{reorderError}</p>{/if}
   {#each fields as field (field.id)}<div role="group" aria-label={`Field ${field.label}`} class="field" ondragover={event => event.preventDefault()} ondrop={event => { event.preventDefault(); reorder(dragging,field.slug); dragging = ''; }}>
-    {#if !locked}<button type="button" draggable="true" aria-label={`Reorder ${field.label} field`} ondragstart={() => dragging = field.slug}>↕</button>{/if}
+    {#if !locked}<button type="button" disabled={reordering} draggable="true" aria-label={`Reorder ${field.label} field`} ondragstart={() => dragging = field.slug}
+      onkeydown={event => { const index = fields.findIndex((value: any) => value.slug === field.slug); if (event.key === 'ArrowUp' && index > 0) { event.preventDefault(); void reorder(field.slug,fields[index - 1].slug); } if (event.key === 'ArrowDown' && index < fields.length - 1) { event.preventDefault(); void reorder(field.slug,fields[index + 1].slug); } }}>↕</button>{/if}
     <span>{field.label}</span><code>{field.slug}</code><span>{field.unsupportedType?.type ?? field.type}</span>
     {#if field.unsupportedType}<span>Unsupported</span>{/if}{#if field.required}<span>Required</span>{/if}{#if field.unique}<span>Unique</span>{/if}{#if field.searchable}<span>Searchable</span>{/if}
     {#if !locked}<button type="button" disabled={Boolean(field.unsupportedType)} aria-label={`Edit ${field.label} field`} onclick={() => { editingField = field; fieldOpen = true; }}>Edit</button><button type="button" aria-label={`Delete ${field.label} field`} onclick={() => { deleteError = ''; deleteTarget = field; deleteRelation = true; }}>Delete</button>{/if}
@@ -117,6 +129,7 @@
   </article>{/each}
 </section>
 {/if}
+</div>
 {#if fieldOpen}{#if fieldEditor}{@render fieldEditor({open:fieldOpen,field:editingField,onOpenChange:(value: boolean) => fieldOpen = value,onSave:fieldSave,onCreateRelation,collectionSlug:collection?.slug})}{:else}<FieldEditor open={fieldOpen} field={editingField} onOpenChange={(value: boolean) => fieldOpen = value} onSave={fieldSave} {onCreateRelation} collectionSlug={collection?.slug} {client} />{/if}{/if}
 {#if deleteTarget}<dialog open use:modal={() => { if (!deleting) deleteTarget = null; }} aria-label="Delete Field?"><h2>Delete Field?</h2><p>Delete {deleteTarget.label}?</p>{#if targetRelation}<label><input type="checkbox" disabled={deleting} bind:checked={deleteRelation} />Also delete the relationship this field uses</label><RelationImpact relations={[targetRelation]} excludeField={{collection:collection.slug,slug:deleteTarget.slug}} />{/if}{#if deleteError}<p role="alert">{deleteError}</p>{/if}<button type="button" disabled={deleting} onclick={() => deleteTarget = null}>Cancel</button><button type="button" disabled={deleting || locked} onclick={confirmFieldDelete}>{deleting ? 'Deleting...' : 'Delete'}</button></dialog>{/if}
 {#if relationDialog !== undefined}<dialog open use:modal={() => relationDialog = undefined}><RelationForm {collections} relation={relationDialog} defaultParentCollection={collection?.slug} onCancel={() => relationDialog = undefined} onSubmit={async (input: any) => { if (relationDialog) await onUpdateRelation(relationDialog.id,input); else await onCreateRelation(input); relationDialog = undefined; }} /></dialog>{/if}
