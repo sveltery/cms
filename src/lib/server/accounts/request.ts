@@ -32,3 +32,8 @@ export async function accountsApi(code:string,action:()=>Promise<unknown>){
   return identityFailure(code,'Account request failed',500);
  }
 }
+
+/** Source checks the optional route ID before stored-user lookup. */
+export function requiredUserId(id:string|undefined,code='MISSING_PARAM'):string {
+ if(!id)throw new AccountError(code,'User ID required',400);return id;
+}
