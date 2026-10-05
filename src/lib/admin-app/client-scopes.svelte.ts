@@ -12,7 +12,7 @@ export function createAccountScope(queryClient = createDashboardQueryClient(), s
 export type AccountScope = ReturnType<typeof createAccountScope>;
 const contextKey = Symbol('sveltery-admin-client-scopes');
 function createScopeResolver(root: AccountScope, resolveClientCache?: (identity: object) => QueryClient) {
- const clients = new WeakMap<CurrentUserClient['currentUser'], AccountScope>();
+ const clients = new WeakMap<CurrentUserClient, AccountScope>();
  const caches = new WeakMap<QueryClient, AccountScope>([[root.queryClient, root]]);
  function forCache(queryClient: QueryClient): AccountScope {
   let scope = caches.get(queryClient);
@@ -22,8 +22,8 @@ function createScopeResolver(root: AccountScope, resolveClientCache?: (identity:
  function resolve(client?: CurrentUserClient, supplied?: QueryClient): AccountScope {
   if (supplied) return forCache(supplied);
   if (!client) return root;
-  let scope = clients.get(client.currentUser);
-  if (!scope) { scope = forCache(resolveClientCache?.(client.currentUser) ?? createDashboardQueryClient()); clients.set(client.currentUser, scope); }
+  let scope = clients.get(client);
+  if (!scope) { scope = forCache(resolveClientCache?.(client) ?? createDashboardQueryClient()); clients.set(client, scope); }
   return scope;
  }
  return resolve;

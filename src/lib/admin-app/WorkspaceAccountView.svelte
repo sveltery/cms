@@ -15,6 +15,7 @@
   const user = $derived(currentUser.result.data);
   const isFirstLogin = $derived(user?.isFirstLogin);
   const shellState = untrack(() => scope.shellState);
+  const dismissWelcome = $derived(client.dismissWelcome ? () => client.dismissWelcome!() : undefined);
   $effect(() => {
     const firstLogin = isFirstLogin;
     untrack(() => shellState.observeFirstLogin(firstLogin));
@@ -39,5 +40,5 @@
 {#if user}
   <WelcomeModal open={shellState.welcomeOpen} onClose={() => shellState.closeWelcome()}
     userName={user.name} userRole={user.role} {siteName} {basePath} {queryClient}
-    dismissWelcome={client.dismissWelcome} dismissalOwner={scope.dismissal} />
+    {dismissWelcome} dismissalOwner={scope.dismissal} />
 {/if}
