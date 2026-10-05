@@ -1,0 +1,773 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > taxonomy manifest loading > should load seeded taxonomy definitions ordered by name
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > taxonomy manifest loading > should include custom taxonomy definitions in manifest
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > create > should create a taxonomy term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > create > should create a term with parent
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > create > should create a term with data
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findById > should find term by ID
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findById > should return null for non-existent ID
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findBySlug > should find term by name and slug
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findBySlug > should not find term with wrong name
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findBySlug > should return null for non-existent slug
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findByName > should find all terms for a taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findByName > should filter by parentId
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findByName > should return terms in their manual order, not by label
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findChildren > should find children of a term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > findChildren > should return empty array for term with no children
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > update > should update term label
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > update > should update term slug
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > update > should update parentId
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > update > should clear parentId when set to null
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > update > should update data
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > update > should return null for non-existent term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > delete > should delete a term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > delete > should return false for non-existent term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > delete > should remove content associations when deleted
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > delete > should remove content associations when deleted
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > attachToEntry > should attach a term to content
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > attachToEntry > should attach a term to content
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > attachToEntry > should be idempotent (no duplicate attachments)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > attachToEntry > should be idempotent (no duplicate attachments)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > detachFromEntry > should detach a term from content
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > detachFromEntry > should detach a term from content
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > detachFromEntry > should not throw when detaching non-attached term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > detachFromEntry > should not throw when detaching non-attached term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > getTermsForEntry > should get all terms for an entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > getTermsForEntry > should get all terms for an entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > getTermsForEntry > should filter by taxonomy name
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > getTermsForEntry > should filter by taxonomy name
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > setTermsForEntry > should replace all terms for a taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > setTermsForEntry > should replace all terms for a taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > setTermsForEntry > should not affect other taxonomies
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > setTermsForEntry > should not affect other taxonomies
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > clearEntryTerms > should remove all terms from an entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > clearEntryTerms > should remove all terms from an entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > countEntriesWithTerm > should count entries with a term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > countEntriesWithTerm > should count entries with a term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > countEntriesWithTerm > should return 0 for unused term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts > TaxonomyRepository > content-taxonomy junction > countEntriesWithTerm > should return 0 for unused term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts (35 tests) 4741ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > lists a group in the order its terms were created
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > lists a group in the order it was given
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > orders the public runtime helper by the stored position
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > adds a new term to the end of its group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > orders each parent's children independently of the roots
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > appends a reparented term to the group it lands in
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > rejects a term that is not in the group, without reordering
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > rejects a list naming the same term twice
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > rejects a term that belongs to another taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > gives a translation the position of the term it translates
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > applies an order set from one locale to every other locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > accepts a translation_group in place of a row id
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > keeps every row of a reparented term at one position
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > permutes a partly visible group within the slots it occupies
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > leaves a term out of the list alone rather than burying it
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > refuses to reorder a child whose parent is not translated as a root
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > moves every locale of a term reparented from one of them
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > still reorders the roots a locale keeps after a term leaves them
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > appends a translation created under a parent the source is not in
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > gives a translation created without a parent the parent and position of its term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > moves every locale of a term translated under a parent the source is not in
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > brings every locale to the parent an update names when the addressed row already has it
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > rejects a translation under a child of the term it translates
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > renumbers a group whose stored positions tie
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > keeps an unlisted member in place when renumbering a tied group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > mints positions that preserve the alphabetical order terms had before
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > numbers every group when the column is already there from a failed run
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > gives a group one parent before numbering it
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > numbers a group larger than one batch
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > mints one position per translation group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts > taxonomy term reorder [sqlite] > seeds a translation_group the term never got, so it can be reordered
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts (31 tests) 3234ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > persists the configured default instead of the database column default
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > uses the implicit English locale when i18n is not configured
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > stores term locales with the configured casing
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > rejects a parent when creating a term in a flat taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > rejects a new parent when updating a term in a flat taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > resolves taxonomy reads with the configured locale casing
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > repository resolves only the entry-locale variant when locale is given
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > GET returns only the FR variant for the FR entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > GET returns only the EN variant for the EN entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > GET by slug returns only the FR variant for the FR entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > POST response echoes only the entry-locale variant
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > POST refreshes published translations and taxonomy facets
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > batches cache purges for large translation groups
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > falls back to the configured default-locale term and exposes its actual locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > keeps an assignment unresolved when neither exact nor default locale exists
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > keeps a newly assigned unresolved group visible on every content sibling
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > reports the implicit English default for existing mixed-locale data
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > lists exact variants first and default-locale variants for untranslated groups
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > rejects fallback-resolved term lists without a requested locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > nests a child under a parent translated AFTER the child
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > keeps each locale's child under its own parent in an unfiltered list
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > rejects a translation parented to its own translation group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > rejects a parent that belongs to a different taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > backfills legacy locale-bound parent_id to the translation_group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > leaves a group where only one row has a parent split across locales
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts (25 tests) 2544ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyCreate > rejects a translation whose name differs from its source
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyGet > returns the definition
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyGet > reports NOT_FOUND for an unknown name
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyGet > falls back to the default locale when the requested locale has no definition
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyGet > returns the requested locale's definition
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyGet > drops collection references whose collection is gone
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyUpdate > updates the fields it is given
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyUpdate > leaves omitted fields alone
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyUpdate > clears labelSingular when passed null
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyUpdate > rejects unknown collections without writing
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyUpdate > writes only the addressed locale's definition
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyUpdate > does not fall back when the addressed locale has no definition
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyUpdate > reports NOT_FOUND for an unknown name
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyDelete > removes the definition, its terms, and their assignments
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyDelete > leaves other taxonomies untouched
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyDelete > removes every locale of the definition and of its terms
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyDelete > removes a parent term along with its children
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > handleTaxonomyDelete > reports NOT_FOUND for an unknown name
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > routes > GET returns the definition
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > routes > GET 404s for an unknown taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > routes > PUT updates the definition
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > routes > PUT rejects a body that tries to rename the taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > routes > DELETE removes the definition, its terms, and their assignments
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > routes > lists the definition's translations
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > single-taxonomy CRUD [sqlite] > routes > refuses a writer without taxonomies:manage
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts > taxonomy delete with foreign keys enforced > deletes a term tree and its assignments
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts (26 tests) 2765ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > counts only visible entries on every path (widget, term page, admin)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > aggregates across the taxonomy's declared collections in one map
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > excludes assignments in collections the taxonomy does not declare
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > does not mix counts between taxonomies sharing a collection
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > counts one logical content group once for each assigned term group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > counts only entry rows in the requested locale, keyed by translation_group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > skips missing ec_* tables and returns a partial count
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > does not share request-cached counts across differing collection scopes
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > falls back to an existing definition when the requested locale has none
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts (#581) [sqlite] > returns an empty map when the taxonomy declares no collections
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > aggregates every declared collection when there are more than one statement can carry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > still skips a missing ec_* table when it falls beyond the first batch
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > takes a single statement on a backend that declares no ceiling
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > never sends a statement referencing a declared collection that was never created
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > counts a collection created on this isolate immediately
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > revalidates a stale slug set so another isolate's create is counted within the window
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > stops querying a collection deleted on another isolate within the window
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts > visible term counts past the compound-SELECT ceiling > degrades to a partial count when a registered collection's table is missing (drift backstop)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts (18 tests) 1940ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > previews selected posts, adds without replacing tags, and skips repeat requests
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > matches only canonical published URLs on this origin, including date and locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > does not match an archived post through its former public URL
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > applies to the reviewed ID when its former URL now belongs to another post
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > bounds database round trips for a fifteen-post URL backfill
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > fails before writing if cache metadata cannot be read
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > fails before writing if cache metadata cannot be read
+[bulk-tag] Failed: Error: metadata unavailable
+    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts:231:4
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > reports committed assignments separately from a cache purge failure and permits retry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > reports committed assignments separately from a cache purge failure and permits retry
+[bulk-tag] Failed to invalidate cache: Error: cache unavailable
+    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts:252:10
+    at handleBulkTag (/workspace/cms-full-taxonomy-api-admin/src/lib/server/taxonomies/bulk-tag.ts:307:56)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts:251:17
+    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > deduplicates translated siblings and purges both entry caches
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > does not tag missing or disallowed posts, but continues with valid ones
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > assigns terms from any taxonomy to the collections it applies to
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > flags a URL shared by two collections instead of choosing one
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > refreshes cache without attempting an idempotent write that now fails
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > refreshes cache without attempting an idempotent write that now fails
+[bulk-tag] Failed to invalidate cache: Error: cache unavailable
+    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts:437:11
+    at handleBulkTag (/workspace/cms-full-taxonomy-api-admin/src/lib/server/taxonomies/bulk-tag.ts:307:56)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts:436:18
+    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > reports a failed write without stopping other posts, then retries only that post
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts > bulk tag posts [sqlite] > reports a failed write without stopping other posts, then retries only that post
+[bulk-tag] Failed to tag entry: Error: write failed
+    at Object.run (/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/db/node-sqlite-compat.ts:84:38)
+    at SqliteConnection.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:64:51)
+    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at SingleConnectionProvider.#run (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/single-connection-provider.js:24:22)
+    at SingleConnectionProvider.provideConnection (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/single-connection-provider.js:16:41)
+    at DefaultQueryExecutor.provideConnection (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/default-query-executor.js:20:41)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:39)
+    at NotCommittedOrRolledBackAssertingExecutor.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:1011:31)
+    at Transaction.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:535:43)
+    at /workspace/cms-full-taxonomy-api-admin/src/lib/server/taxonomies/write-plan.ts:23:66 {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts (13 tests) 1505ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > derives a native-script slug for مرحبا بالعالم
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > derives a native-script slug for 你好世界
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > derives a native-script slug for Привет мир
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > derives a native-script slug for שלום עולם
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > derives a native-script slug for สวัสดี โลก
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > derives a native-script slug for Καλημέρα κόσμε
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > derives a native-script slug for మేష రాసి
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > uses a deterministic fallback for emoji-only labels
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > adds a numeric suffix for generated slug collisions
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > recovers when concurrent generated slugs collide
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > keeps generated slug uniqueness scoped to the locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts > taxonomy term slug generation [sqlite] > still rejects a colliding explicit slug
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts (12 tests) 1236ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > returns empty map for empty entry list
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > short-circuits without querying when no assignments exist
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > hydrates terms grouped by taxonomy name in a single query
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > scopes results to the requested collection
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > returns empty arrays for entries with no terms
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > primes the request cache so getEntryTerms doesn't re-query
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > does not leak primed entries across requests
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > getTermsForEntries serves primed entries from cache without re-querying
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts > getAllTermsForEntries > getTermsForEntries returns private copies that can't poison the cache
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts (9 tests) 986ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts > taxonomy structure is shared by every locale [sqlite] > applies a structure change made through one locale to every locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts > taxonomy structure is shared by every locale [sqlite] > joins the existing taxonomy when a locale is added without translationOf
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts > taxonomy structure is shared by every locale [sqlite] > rejects a new translation that sends a different structure
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts > taxonomy structure is shared by every locale [sqlite] > lists the terms of a locale that has no definition of its own
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts > taxonomy structure is shared by every locale [sqlite] > changes only the structure fields a write names
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts > taxonomy structure is shared by every locale [sqlite] > keeps an existing taxonomy's structure when a write names no field
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts > taxonomy structure is shared by every locale [sqlite] > lets a new locale send back the structure a read returns
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts (7 tests) 769ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [sqlite] > attaches taxonomy terms on create by slug
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [sqlite] > returns VALIDATION_ERROR and rolls back the whole write when a slug is unknown
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [sqlite] > rejects taxonomies with a non-array value
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [sqlite] > replaces existing assignments on update (setTermsForEntry semantics)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [sqlite] > clears a taxonomy when passed an empty array
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [sqlite] > leaves untouched taxonomies alone (only rewrites named ones)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [sqlite] > resolves slugs in the entry's locale for i18n sites
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts (7 tests) 732ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts > getTaxonomyDefs — isolate cache > queries once per isolate, serving later requests from cache
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts > getTaxonomyDefs — isolate cache > re-queries after invalidateTaxonomyDefsCache()
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts > getTaxonomyDefs — isolate cache > reflects a newly inserted def only after invalidation (in-memory invalidation semantics)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts > getTaxonomyDefs — isolate cache > serves every locale, and single-definition lookups, from one query
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts > getTaxonomyDefs — isolate cache > bypasses the isolate cache for isolated databases (playground / DO preview)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts (5 tests) 508ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts > visible term counts are only computed on demand > does not aggregate counts during the layout prefetch
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts > visible term counts are only computed on demand > reuses the prefetched term list and aggregates once for a caller that wants counts
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts > visible term counts are only computed on demand > keeps hierarchy, description and locale on the count-free list
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts > visible term counts are only computed on demand > recomputes counts per request with no object-cache backend, and never without
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts > visible term counts are only computed on demand > does not aggregate counts for a getTerm caller that opts out
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts > visible term counts are only computed on demand > aggregates once for a getTerm caller that wants counts
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts > visible term counts are only computed on demand > shares one request-cached count map across getTerm calls
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts (7 tests) 673ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts > getTerm [sqlite] > returns the term with usage count and children
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts > getTerm [sqlite] > returns null for a non-existent term
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts > getTerm [sqlite] > only returns children in the term's locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts > getTerm [sqlite] > resolves the term in four queries (def, term, count, children)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts (4 tests) 440ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts > writes a whole sibling group in one statement
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts > chunks a renumbering that exceeds the parameter budget
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts > orders correctly across a chunk boundary
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts > keeps every position distinct after a chunked reorder
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts > stays within D1's bound-parameter ceiling per statement
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts (5 tests) 567ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts > term list counts are only aggregated on demand > counts by default, so existing callers are unaffected
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts > term list counts are only aggregated on demand > omits the aggregate and the count field when the caller opts out
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts > term list counts are only aggregated on demand > honours ?includeCounts=false on the route
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts > term list counts are only aggregated on demand > still counts on the route when the param is absent
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts (4 tests) 439ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts > entry-term reads are served from the object cache > getEntryTerms serves the second read from KV without touching D1
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts > entry-term reads are served from the object cache > getTermsForEntries round-trips its Map through the cache (no D1 on hit)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts (2 tests) 299ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts > seeks findByName through the composite index rather than scanning the locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts > bounds manual keyset pages while seeking the taxonomy index
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts > seeks findChildren through the parent index
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts (3 tests) 381ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts > getTaxonomyTerms [sqlite] > includes the description for flat (non-hierarchical) taxonomies
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts > getTaxonomyTerms [sqlite] > includes the description for hierarchical taxonomies (control)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts (2 tests) 240ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-counts-plan.test.ts > seeks the terms on a content_taxonomies index rather than probing the pivot per entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-counts-plan.test.ts > seeks content rows by translation group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-counts-plan.test.ts (2 tests) 259ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts > reordering terms invalidates the cached term list > serves the new order after a reorder rather than the cached one
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts > reordering terms invalidates the cached term list > serves a warm term list to a write that never invalidated
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts (2 tests) 267ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts > taxonomy assignments shared by content translations [sqlite] > reflects assignment changes across sibling locales with locale-correct terms
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts (1 test) 175ms
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts > TaxonomyRepository pagination [sqlite] > pages by sort order, label, and id
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts > TaxonomyRepository pagination [sqlite] > caps each page at 100 items
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts (2 tests) 213ms
+
+ Test Files  22 passed (22)
+      Tests  222 passed (222)
+   Start at  17:31:29
+   Duration  37.49s (transform 2.52s, setup 0ms, import 9.86s, tests 24.91s, environment 2ms)
+
+JSON report written to /tmp/taxonomy-public15-core22-report.json

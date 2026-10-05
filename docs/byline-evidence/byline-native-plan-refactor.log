@@ -1,0 +1,23 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ✓ tests/bylines/atomic-workflow.test.ts (15 tests) 8349ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits  1839ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer  584ms
+     ✓ deletes translations while retaining sibling credits, then clears the last group and pointer  892ms
+     ✓ rolls back copied credits if writing the target primary pointer fails  480ms
+     ✓ stages credit replacement inside the owning content batch without a separate commit  636ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits  893ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer  492ms
+     ✓ deletes translations while retaining sibling credits, then clears the last group and pointer  958ms
+     ✓ rolls back copied credits if writing the target primary pointer fails  473ms
+     ✓ stages credit replacement inside the owning content batch without a separate commit  631ms
+ ✓ tests/bylines/canonical-storage.test.ts (3 tests) 948ms
+     ✓ exposes real custom-field routes backed by the actual canonical registry  694ms
+
+ Test Files  2 passed (2)
+      Tests  18 passed (18)
+   Start at  02:04:10
+   Duration  12.97s (transform 1.70s, setup 0ms, import 3.00s, tests 9.30s, environment 0ms)
+
+JSON report written to /tmp/byline-native-plan-refactor.json

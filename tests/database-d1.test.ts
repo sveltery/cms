@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { CompiledQuery, sql } from 'kysely';
 import { Miniflare } from 'miniflare';
 import { build } from 'vite';
+import {viteWorkerModules} from './helpers/vite-worker-modules.ts';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -16,13 +17,8 @@ import { createKyselySessionStore } from '../src/lib/server/auth/store.ts';
 import { hashSessionToken, resolvePrincipal, revokeSession } from '../src/lib/server/auth/session.ts';
 import { storageContract } from './helpers/storage-contract.ts';
 import { sqliteErrorMessage } from '../src/lib/server/database/errors.ts';
+import { localD1 } from './helpers/local-d1-fixture.ts';
 
-async function localD1(path?: string, script = 'export default { fetch() { return new Response("fixture"); } }') {
-  const runtime = new Miniflare({ modules: true, script, compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
-    d1Databases: { DB: 'cms-test-d1' }, d1Persist: path ?? false, cf: false });
-  const binding = await runtime.getD1Database('DB');
-  return { runtime, binding, database: openD1(binding) };
-}
 async function versionOne(database: CmsDatabase) {
   const statements = JSON.parse(await readFile(new URL('./fixtures/cms-v1.json', import.meta.url), 'utf8')) as string[];
   await database.atomicBatch(statements.map(statement => CompiledQuery.raw(statement)));
@@ -258,8 +254,7 @@ test('local workerd: real D1-backed CMS/session core runs without nodejs_compat'
     lib: { entry: new URL('./helpers/d1-worker.ts', import.meta.url).pathname, formats: ['es'], fileName: 'd1-worker' } } });
   assert.ok(!('on' in built));
   const outputs = Array.isArray(built) ? built : [built]; const chunks = outputs.flatMap(output => output.output).filter(output => output.type === 'chunk');
-  assert.equal(chunks.length, 1); assert.doesNotMatch(chunks[0].code, /node:sqlite/);
-  const { runtime, database } = await localD1(undefined, chunks[0].code);
+  const { runtime, database } = await localD1(undefined, viteWorkerModules(chunks,'/cms-d1-fixture','application.js'));
   try {
     const response = await runtime.dispatchFetch('https://cms.example/'); assert.equal(response.status, 200);
     assert.deepEqual((await response.json() as { passed: string[] }).passed, [

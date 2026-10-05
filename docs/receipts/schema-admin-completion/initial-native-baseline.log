@@ -1,0 +1,48 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts (8 tests | 8 failed) 88ms
+     × offers every stored Source field type rather than only string and text 39ms
+     × exposes the pinned support toggles and separate SEO control 7ms
+     × exposes presentation metadata and display fields over the real collection form 4ms
+     × keeps a code-defined collection visibly read only 4ms
+     × renders collection labels and slugs in the administration table 9ms
+     × shows all six original system fields independently of custom fields 4ms
+     × exposes field reorder and deletion controls 6ms
+     × displays an unsupported stored field type without erasing its identity 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > offers every stored Source field type rather than only string and text
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > exposes the pinned support toggles and separate SEO control
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > exposes presentation metadata and display fields over the real collection form
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > keeps a code-defined collection visibly read only
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > renders collection labels and slugs in the administration table
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > shows all six original system fields independently of custom fields
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > exposes field reorder and deletion controls
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > displays an unsupported stored field type without erasing its identity
+TypeError: object is not a function
+ ❯ Object.exports.DOMString node_modules/.pnpm/webidl-conversions@8.0.1/node_modules/webidl-conversions/lib/index.js:250:10
+ ❯ Proxy.setAttribute node_modules/.pnpm/jsdom@30.1.1/node_modules/jsdom/lib/generated/idl/Element.js:206:42
+ ❯ set_attribute node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/dom/elements/attributes.js:194:11
+    192|   element[attribute] = value;
+    193|  } else {
+    194|   element.setAttribute(attribute, value);
+       |           ^
+    195|  }
+    196| }
+ ❯ set_attributes node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/dom/elements/attributes.js:470:5
+ ❯ node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/dom/elements/attributes.js:515:18
+ ❯ update_reaction node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/runtime.js:258:16
+ ❯ update_effect node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/runtime.js:486:18
+ ❯ create_effect node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/effects.js:139:4
+ ❯ managed node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/effects.js:428:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed (8)
+   Start at  12:54:54
+   Duration  1.68s (transform 740ms, setup 0ms, import 911ms, tests 88ms, environment 559ms)
+

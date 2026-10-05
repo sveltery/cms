@@ -48,7 +48,7 @@ for (const target of storageTargets) {
       await migrateCms(h.database);
       const versions = await h.database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute();
       assert.deepEqual(versions.slice(0,8).map(row => row.version), requiredVersions);
-      assert.deepEqual(versions.map(row => row.version), [1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
+      assert.deepEqual(versions.map(row => row.version), [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]);
       let options = new OptionsRepository(canonicalSourceDatabase(h.database));
       await options.set('site:title', 'A "quoted" site');
       await options.set('site:theme', { colors: ['blue', 'green'], padding: 'a  b' });

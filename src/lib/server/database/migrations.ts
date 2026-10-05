@@ -7,6 +7,9 @@ import { pendingTrashIndexStatements } from './trash-index.ts';
 import { schemaMigration } from './schema-migrations.ts';
 import { optionsMigration } from './options-migrations.ts';
 import { taxonomyMigration } from './taxonomy-migrations.ts';
+import { blockStorageMigration } from '../blocks/storage-provider.ts';
+import { collectionStandardIndexesMigration } from './collection-index-migration.ts';
+import { collectionIndexPrerequisiteChanged } from './collection-indexes.ts';
 import { metadataFidelityMigration } from './metadata-fidelity-migrations.ts';
 import { mediaAttributionMigration, directedRelationsMigration, menusMigration,
   sectionsWidgetsStorageMigration, commentsMigration, redirectsMigration } from './canonical-features/providers.ts';
@@ -49,7 +52,7 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
     async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}},
   lifecycleMigration, optionsMigration, taxonomyMigration, metadataFidelityMigration,
   mediaAttributionMigration, directedRelationsMigration, menusMigration,
-  sectionsWidgetsStorageMigration, commentsMigration, redirectsMigration
+  sectionsWidgetsStorageMigration, commentsMigration, redirectsMigration, blockStorageMigration, collectionStandardIndexesMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>
@@ -238,6 +241,7 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
     const descriptors = await provider.expectedObjects(database,version);
     for (const object of descriptors) {
       owned.add(object.name.toLowerCase());
+      if (!names.includes(object.name.toLowerCase())) names.push(object.name.toLowerCase());
       expected.set(object.name,{...object,providerVersion:provider.version});
     }
   }
@@ -248,7 +252,7 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
 }
 
 function prerequisiteRace(message: string | null | undefined) {
-  return !!message && (message.includes(prerequisiteChanged) || message.includes(bylineIndexPrerequisiteChanged) || message.includes(legacyReferencePrerequisiteChanged) || /no such (?:table|column): (?:_cms_migrations|version)(?:$|\b)/.test(message));
+  return !!message && (message.includes(prerequisiteChanged) || message.includes(bylineIndexPrerequisiteChanged) || message.includes(collectionIndexPrerequisiteChanged) || message.includes(legacyReferencePrerequisiteChanged) || /no such (?:table|column): (?:_cms_migrations|version)(?:$|\b)/.test(message));
 }
 
 async function installIndexes(database: CmsDatabase, state: ValidatedMigrationState) {

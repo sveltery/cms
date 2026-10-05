@@ -1,0 +1,176 @@
+{
+  "artifact": "Schema admin corrected transport whole Native baseline",
+  "testFirstHead": "16916aeca0d4ac980b9cb81d2a77e30e293aa566",
+  "initialInfraEvidenceHead": "d53607258ca6a77432ef54b223989e5c1f9a1236",
+  "fixtureHead": "63eaeeac23c2c9fda2d05ce08d0d58fc6d83a8ca",
+  "productBase": "b5ed8e06c9c3034e99645ef85022e027130fec51",
+  "productChangedSinceInitial": false,
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec vitest run --config vitest.schema-admin-completion-native.config.ts",
+  "executions": 1,
+  "exitCode": 1,
+  "wholeEightAndDefaultClocksUnchanged": true,
+  "native": {
+    "declared": 8,
+    "registered": 8,
+    "completedAssertionValueFailures": 8,
+    "preExpectationFailures": 0,
+    "infrastructureFailures": 0,
+    "importCollectionFailures": 0,
+    "passingCallbackControls": 0,
+    "reachedAssertions": 11,
+    "successfulEarlierAssertions": 3,
+    "failedAssertions": 8,
+    "callbacks": [
+      {
+        "title": "offers every stored Source field type rather than only string and text",
+        "result": "completed assertion value failure",
+        "assertionLine": 31,
+        "received": [
+          "string",
+          "text"
+        ],
+        "expected": "contains url",
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 3
+      },
+      {
+        "title": "exposes the pinned support toggles and separate SEO control",
+        "result": "completed assertion value failure",
+        "assertionLine": 39,
+        "received": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "expected": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 0
+      },
+      {
+        "title": "exposes presentation metadata and display fields over the real collection form",
+        "result": "completed assertion value failure",
+        "assertionLine": 44,
+        "received": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "expected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 0
+      },
+      {
+        "title": "keeps a code-defined collection visibly read only",
+        "result": "completed assertion value failure",
+        "assertionLine": 49,
+        "received": false,
+        "expected": true,
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 0
+      },
+      {
+        "title": "renders collection labels and slugs in the administration table",
+        "result": "completed assertion value failure",
+        "assertionLine": 57,
+        "received": [],
+        "expected": [
+          "posts",
+          "pages"
+        ],
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 0
+      },
+      {
+        "title": "shows all six original system fields independently of custom fields",
+        "result": "completed assertion value failure",
+        "assertionLine": 63,
+        "received": [],
+        "expected": [
+          "id",
+          "slug",
+          "status",
+          "created_at",
+          "updated_at",
+          "published_at"
+        ],
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 0
+      },
+      {
+        "title": "exposes field reorder and deletion controls",
+        "result": "completed assertion value failure",
+        "assertionLine": 71,
+        "received": [
+          false,
+          false
+        ],
+        "expected": [
+          true,
+          true
+        ],
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 0
+      },
+      {
+        "title": "displays an unsupported stored field type without erasing its identity",
+        "result": "completed assertion value failure",
+        "assertionLine": 78,
+        "received": "Schema collections Posts posts \u00b7 Schema version 1 Collection metadata    Collection label   Set singular label Singular label   Set description Description Blog posts Supports Keep existing supportsSet supports Current supports: drafts, revisions.  Save metadata   Fields Layout layout \u00b7 string Edit layout label   Field slug  Label  Save label   Edit layout options   Label update Keep labelSet label Metadata label  Sort order update Keep sort orderSet sort order Sort order  Default metadata update Keep default metadataSet default metadata Metadata default value  Setting an empty default saves an empty string. Changing this default leaves existing content unchanged. Validation update Keep validationReplace validationClear validation Validation minimum length  Validation maximum length  Replacement pattern metadata Omit patternSave pattern Validation pattern   Replace saves the displayed bounds and the selected pattern source. An unchanged source preserves its original line endings; new text uses the browser's submitted line endings. Omit pattern removes its key; Save pattern preserves an empty string. Clear removes validation. Existing content remains readable. The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors. Save field options   Add field   Field slug  Field label  Field type StringText  Required  Unique  Set default value Default value  Minimum length  Maximum length  Pattern metadata Omit patternSave pattern Validation pattern  Save pattern stores the exact source, including an empty string. The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors. Add field   ",
+        "expected": "contains future_blocks",
+        "nativeSourceFile": "tests/schema-admin-completion/native/forms.test.ts",
+        "earlierSuccessfulAssertions": 0,
+        "receivedProvenance": "Exact Received DOM text printed by the original raw baseline; no summary substituted as actual value."
+      }
+    ]
+  },
+  "initialHistory": {
+    "evidence": "docs/receipts/schema-admin-completion/initial-baseline.json",
+    "literalRaw": {
+      "path": "/workspace/cms-full-schema-admin/docs/receipts/schema-admin-completion/initial-native-baseline.log",
+      "bytes": 3651,
+      "sha256": "ca0d3c35dc77a62455015059306cb5e86f1298ec2782e5b8fb8aac2c54f5d090",
+      "gitBlob": "71f716a69fbfd5bf03e06539d6f26d703e07822e"
+    },
+    "preExpectationFixtureFailures": 8,
+    "completedAssertionReds": 0,
+    "passingCallbackControls": 0,
+    "neverRepeated": true,
+    "SACREV06ObservedFailure": false
+  },
+  "source": {
+    "callbacksExecuted": 0,
+    "completedAssertionReds": 0,
+    "causalCredit": 0,
+    "wholeFamiliesRetained": 11,
+    "wholeUI138": "Unexecuted; genuine presentation/mount/default-clock integration remains pending."
+  },
+  "transport": "Root-qualified fixture uses actual installed pinned Kit field helpers and nonenumerable form APIs. It makes no request or backend result; product components stay exact.",
+  "rawReceipt": {
+    "path": "docs/receipts/schema-admin-completion/corrected-native-baseline.log",
+    "bytes": 9530,
+    "sha256": "06ea0b0dacbfdc51ba80b3b88721f947e2eaaefa0b791c24d9cf168f42534a10",
+    "unchanged": true
+  },
+  "acceptance": "None; Native8 value-red evidence is not whole Source execution or full schema completion."
+}

@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (7 tests | 1 failed) 1318ms
+   × retains field deletion confirmation when the real asynchronous mutation rejects 1017ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > retains field deletion confirmation when the real asynchronous mutation rejects
+AssertionError: expected undefined to be 'Field is still used by a relationship' // Object.is equality
+
+- Expected:
+"Field is still used by a relationship"
+
++ Received:
+undefined
+
+ ❯ tests/schema-admin-ui/native.test.ts:59:91
+     57|   target.querySelector<HTMLButtonElement>('button[aria-label="Delete T…
+     58|   [...target.querySelectorAll<HTMLButtonElement>('dialog button')].fin…
+     59|   await vi.waitFor(()=>expect(target.querySelector('dialog [role="aler…
+       |                                                                                           ^
+     60|   expect(onDeleteField).toHaveBeenCalledWith('title',undefined);
+     61| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  05:27:41
+   Duration  4.40s (transform 1.82s, setup 0ms, import 2.16s, tests 1.32s, environment 767ms)
+

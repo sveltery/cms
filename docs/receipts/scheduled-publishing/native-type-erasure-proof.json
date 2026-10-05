@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "artifact": "Erased supplemental Native calendar test type correction",
+  "parentLocal": "59bdd3f743130532bda36fcf5482e16cb2b8fbb4",
+  "parentPublished": "fe23c138296879364428757b9695d7a940a9f5bd",
+  "parentSourceTree": "c16c924b7b92f79c31c09bfe9bfb9cf9ba542d5d",
+  "path": "tests/scheduling-native/calendar.test.ts",
+  "before": {
+    "bytes": 10644,
+    "sha256": "8bf4e29133b7a44e54b162e2e2de71102affcb624272681a88ee241b8090f2be",
+    "gitBlob": "8d21d1c68397edd75cf961f9441114563c8cb122"
+  },
+  "after": {
+    "bytes": 10863,
+    "sha256": "238a55027dd7b072ee780e4dab337ea9a8521121ba0500a1b7b4740e02854a84",
+    "gitBlob": "bbee282846069c87e2ce257545a201ca6fd897e8"
+  },
+  "runtimeAstSha256": "f517cc6d7854f365052da5bb5a7941d6128468328b2eb202bcca594a14f8eeee",
+  "runtimeAstIdentical": true,
+  "method": "Actual TypeScript6.0.3 transpileModule ESNext/verbatimModuleSyntax then parse emitted JS and compare every forEachChild syntax kind and semantic text; excludes source positions, complete SourceFile raw text, and token formatting. No early runtime product import introduced.",
+  "change": "Two import type declarations and four callback parameter annotations only; eleven supplemental runtime callbacks, data, matcher operands/assertions, dynamic readiness imports and clocks unchanged.",
+  "SourceBodiesChanged": 0,
+  "SourceExecutions": 0,
+  "initialDiagnosticAttempt": "An initial comparison included entire SourceFile raw text and therefore reported a formatting difference. Corrected comparison excludes that raw source container while retaining every emitted semantic child; no product/test assertion was changed to satisfy this proof."
+}

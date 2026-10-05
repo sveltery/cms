@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 1,
+  "artifact": "Actual first whole41 result with unchanged whole original scheduled query-plan3",
+  "commit": "4b91572a372370f6fa0bce4ba69cb284fd51ca49",
+  "tree": "d1927a9fc67b7151be24a0868d07ea6beb8c5c6a",
+  "ownDraft": "https://github.com/sveltery/cms/pull/105",
+  "qualification": "/tmp/root-scheduling105-queryplan3-exact7-original-source-context-qualification.json",
+  "qualificationSha256": "c75eba4eeff875d6414e18979c439f6520fddcd318d95fc4e52a69b27c7b3467",
+  "invocations": 1,
+  "actual": {
+    "files": 5,
+    "registered": 41,
+    "passed": 39,
+    "failed": 2,
+    "SourceRegistered": 30,
+    "SourcePassed": 28,
+    "SourceFailed": 2,
+    "NativeRegistered": 11,
+    "NativePassed": 11,
+    "queryPlanRegistered": 3,
+    "queryPlanPassed": 1,
+    "queryPlanSubstantiveReachedAssertionReds": 1,
+    "queryPlanPreExpectDDLStops": 1,
+    "skipped": 0,
+    "todo": 0,
+    "timeouts": 0,
+    "precollectionStops": 0,
+    "guardWhole86": "PASS",
+    "configuredPG": 0,
+    "executedPG": 0,
+    "pgCredit": 0
+  },
+  "wholeReceipts": [
+    {
+      "copy": "docs/receipts/scheduled-publishing/queryplan-first.log",
+      "original": "/tmp/scheduling-calendar-queryplan-first-whole41.log",
+      "bytes": 2856,
+      "sha256": "7fe56a7d3ee5001dbdbd974c7c00ecb213a360042ad1c8349f26dcba07d60afb",
+      "gitBlob": "b5a61a536f7e6f8745ebe00d57e43fa4fd1995d0",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/queryplan-first.json",
+      "original": "/tmp/scheduling-calendar-queryplan-first-whole41.json",
+      "bytes": 15225,
+      "sha256": "04b7134d0ca33e25bd2b87718136cb8d83189c12d7143ca93dbeb927a2a698b6",
+      "gitBlob": "7f13040f50fc8c6f1905452abd01b08b382107ac",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/queryplan-first-source-guard.log",
+      "original": "/tmp/scheduling-calendar-queryplan-source86-guard.log",
+      "bytes": 111,
+      "sha256": "c04507aec935e79c8097e4f8f7433346f8885f323e710d6cd80880b36fdfaf88",
+      "gitBlob": "2d2718ecef870efb0d4f4bc3ac5283976704e380",
+      "changedBytes": 0
+    }
+  ],
+  "callbacks": [
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "storage control: first publication scheduling and removal preserve the real row",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "storage control: scheduling changes keeps an already published entry live",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "storage control: due selection excludes later and trashed rows",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar lists both events for published content with scheduled changes",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar walks ties in collection and event order without skipping an event",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar uses persisted hidden and titleField metadata without changing content",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar returns the original invalid-cursor envelope",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar placement uses site timezone and the time entries loaded",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar filters intersect collection, locale and state without changing the input",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar client bounds a repeating page stream to ten pages and de-duplicates event keys",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar client sends bounds and cursor through the ordinary calendar API",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "monthGridDays covers whole weeks from the locale's first day of the week",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "dayKeyInZone and fetchRange places an instant on the site zone's calendar day",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "dayKeyInZone and fetchRange fetches every grid day in the most extreme UTC offsets",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "dayKeyInZone and fetchRange fetches every grid day in the local mean time of historical zones",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay shades the admin locale's weekend",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay shows the browser's time, with its weekday when the date differs",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay formats entry dates on the Gregorian calendar the grid uses",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay treats zones with the same name as the same, and falls back to UTC",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "calendarState derives each state, waiting out the grace period before Overdue",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch keeps a known view and a month from 1000 to 9999",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch splits, de-duplicates, and bounds list params, keeping only known states",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch drops unknown views and invalid months",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch keeps an entry key only in its collection, id, and kind form",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "formatShortDuration uses the largest whole unit",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "formatTimeUntil counts down to a future time and never reads as past",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "filterItems combines filters and treats an empty filter as all",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "fetchCalendarRange stops after ten pages and drops entries that repeat across pages",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "fetchCalendarRange reports a complete walk when the last page has no cursor",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+      "name": "seeks due content through the scheduled index instead of scanning live rows",
+      "status": "failed",
+      "failureMessages": [
+        "AssertionError: expected 'SEARCH ec_post USING INDEX idx_ec_pos\u2026' to match /SEARCH ec_post USING (?:COVERING )?IN\u2026/\n    at /workspace/cms-full-scheduling-calendar/parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts:60:30\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-scheduling-calendar/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "family": "packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+      "name": "still returns due content oldest-first, skipping soft-deleted rows",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+      "name": "migrates a pre-074 table off the deleted_at-leading plan",
+      "status": "failed",
+      "failureMessages": [
+        "Error: no such index: idx_ec_post_del_sched\n    at NodeSqliteCompatDatabase.exec (/workspace/cms-full-scheduling-calendar/src/lib/server/database/node-sqlite-compat.ts:78:18)\n    at /workspace/cms-full-scheduling-calendar/parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts:82:9\n    at file:///workspace/cms-full-scheduling-calendar/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-scheduling-calendar/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-scheduling-calendar/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///workspace/cms-full-scheduling-calendar/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)\n    at file:///workspace/cms-full-scheduling-calendar/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///workspace/cms-full-scheduling-calendar/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)"
+      ]
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) places published entries, schedules, and scheduled updates",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) walks every event exactly once across pages",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) uses the collection's title field, then title, then slug",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) leaves out hidden collections",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) rejects malformed cursors",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar lets contributors and above read the calendar",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar reads bounds with an offset as instants",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar rejects a reversed range and a range over 62 days",
+      "status": "passed",
+      "failureMessages": []
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar rejects a malformed cursor",
+      "status": "passed",
+      "failureMessages": []
+    }
+  ],
+  "queryPlanCausalClassification": [
+    {
+      "callback": "seeks due content through the scheduled index instead of scanning live rows",
+      "classification": "Genuine reached unchanged Source query-plan toMatch AssertionError red",
+      "actualPlan": "SEARCH ec_post USING INDEX idx_ec_post_deleted_status (deleted_at=?)",
+      "originalExpectedRegex": "SEARCH ec_post USING (?:COVERING )?INDEX idx_ec_post_del_sched \\(deleted_at=\\? AND scheduled_at",
+      "reachedExpectInvocationsFromWholeBodyAndTrace": 3,
+      "reachedPassingExpectInvocations": 2,
+      "reachedFailingExpectInvocations": 1,
+      "unreachedLaterStaticExpectSites": 2
+    },
+    {
+      "callback": "still returns due content oldest-first, skipping soft-deleted rows",
+      "classification": "Existing due-selection SQL behavior control passes unchanged",
+      "actualDueIds": [
+        "due-early",
+        "due-late"
+      ],
+      "reachedExpectInvocationsFromWholeBodyAndTrace": 1
+    },
+    {
+      "callback": "migrates a pre-074 table off the deleted_at-leading plan",
+      "classification": "Actual SQLite missing-index DDL readiness stop before Source expectations and migration074.up",
+      "actualError": "no such index: idx_ec_post_del_sched",
+      "actualStatement": "DROP INDEX idx_ec_post_del_sched",
+      "reachedExpectInvocationsFromWholeBodyAndTrace": 0,
+      "sourceMigration074Reached": false,
+      "unreachedCallbackStaticExpectSites": 5
+    }
+  ],
+  "staticDynamicLimits": "Whole selected Source30 declarations/85 static expect sites are distinct from dynamic matcher calls. The complete query-plan3 bodies and actual failure traces establish four reached matcher invocations in this family (three passing, one substantive failing); no matcher instrumentation was added. The helper has one static expectation site and may be invoked repeatedly in the original migration callback, which did not reach it in this run. Source16 census126/342/31 and all86 pinned originals remain intact. Other selected-family dynamic counts remain uninstrumented/null.",
+  "causalLimits": "The scheduled index absence now causes one genuine original Source plan assertion red, plus a separate pre-expect DDL stop. Existing calendar Source27+Native11 controls remain passing. Initial Source missing-import stops had zero registration/assertion credit and are still not treated as substantive Source TDD reds. No Source defect is inferred from this Native production index gap.",
+  "physicalContext": "Actual Source-created public Native NodeSqliteCompat/Kysely connection with real Native migrateCms, registered owner and transaction executeQuery atomicBatch. Original2000 live rows, noANALYZE stats-blind context, raw SQL/index names/regex/EXPLAIN/sqlite_master results/default clocks/deadlines and whole original074 migration body unchanged. No product mutation in this test-host commit.",
+  "sharedProducerOwner": "/root/full_schema_admin_developer_fresh",
+  "sharedProducerDecision": "Schema owner solely owns the full16 collection-index creator and forward-data migration including scheduled composite index and original080 group/taxonomy backfill. Scheduling will not append a competing provider or edit the creator. Consumers adopt only an actual public merged implementation; no provider number reserved here.",
+  "historicalEvidenceRetained": "All original test-first, first-core34pass/4context-stop, context-corrected whole38green receipts and all prior feature/compatibility prefixes/ledger properties remain complete and unchanged.",
+  "retainedOtherFamilies": 12,
+  "retainedOtherSemanticDeclarations": 96,
+  "retainedOtherExecuted": 0,
+  "fullFeatureDone": false,
+  "pending": "Actual public shared scheduled index producer before failing Source3 can progress. Full calendar UI/app query/i18n; editor schedule/unschedule; runtime policy/rejection/media activation/capture/site fence; draft/revision/CAS; actual Node/Worker cron/maintenance/heartbeat; remaining12 whole Source families/full16 acceptance; final public union13+9/fresh/configuredreview/Root exact approval/author expected-head regular merge/postMain."
+}

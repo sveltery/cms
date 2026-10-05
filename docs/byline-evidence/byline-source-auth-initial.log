@@ -1,0 +1,32 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts (64 tests) 916ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (23 tests) 572ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts (43 tests) 498ms
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts (0 test)
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts (18 tests) 356ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/field-defs-cache.test.ts (6 tests) 291ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/integration/database/byline-fields-races.test.ts (5 tests) 73ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts ]
+Error: Cannot find package '@emdash-cms/auth' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts:24:1
+     22|  */
+     23|
+     24| import { Role } from "@emdash-cms/auth";
+       | ^
+     25| import type { APIContext } from "astro";
+     26| import type { Kysely } from "kysely";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  159 passed (159)
+   Start at  01:37:59
+   Duration  6.29s (transform 749ms, setup 0ms, import 2.25s, tests 2.71s, environment 1ms)
+
+JSON report written to /tmp/byline-source-auth-initial.json

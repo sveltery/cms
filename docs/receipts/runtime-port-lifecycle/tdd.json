@@ -1,0 +1,65 @@
+{
+  "kind": "ordinary Native runtime listener complete TDD receipt",
+  "runs": {
+    "baseline": {
+      "head": "7267570e7218499afdadd42de7f47fa5d503d12a",
+      "path": "docs/receipts/runtime-port-lifecycle/baseline.log",
+      "bytes": 2024,
+      "sha256": "4d49fcd4611a7b4e224f7987cee755c2a628ebfe1c885c1787417237d12b5dfe",
+      "nativeCallbacks": 3,
+      "pass": 1,
+      "reachedAssertionFailures": 2,
+      "infraFailures": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "sourceCallbacks": 0
+    },
+    "fix": {
+      "head": "19f93e6751fa9d0920a96b4289a02b6e7a50d692",
+      "path": "docs/receipts/runtime-port-lifecycle/fix.log",
+      "bytes": 411,
+      "sha256": "6ea55cd105c1af6846a09de3caaa992862d2a203e360b965c5a0e130cf0d3ebf",
+      "nativeCallbacks": 3,
+      "pass": 3,
+      "reachedAssertionFailures": 0,
+      "infraFailures": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "sourceCallbacks": 0
+    },
+    "refactor": {
+      "head": "b780b0d33c72e92e8c3cdcda4398e5335c7d2c52",
+      "path": "docs/receipts/runtime-port-lifecycle/refactor.log",
+      "bytes": 410,
+      "sha256": "a0853752dbdd0cfe4c01cf62e7b6c7471e7474cc95a129232c229b6bef920f06",
+      "nativeCallbacks": 3,
+      "pass": 3,
+      "reachedAssertionFailures": 0,
+      "infraFailures": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "sourceCallbacks": 0
+    }
+  },
+  "strictTypeChecks": "three new ordinary Native files pass",
+  "fixedListener": {
+    "path": "tests/helpers/runtime-listener.mjs",
+    "bytes": 710,
+    "sha256": "31b6d7f8e7191229211eb8c107e2a6d68237a2a532d4d4e5a03d37d2f582c055"
+  },
+  "refactor": "outside callbacks, shares identical stdout/stderr diagnostic handler; whole three callback declarations byte-identical",
+  "currentHead": "a04b250bd8719854c0d54efcde0a38e3b313f6f0",
+  "wholeNormal13": "pending",
+  "wholeBrowser9": "pending",
+  "nativeSourceParityCredit": 0,
+  "limits": [
+    "Initial released-port gap removed; genuine process restarts retain original fixed trusted origin with no retry.",
+    "External occupation on fixed-port restart remains unhandled; historical collision ownership unassigned.",
+    "No product, source, original callback/assertion, credential/request, hosting package helper or deadline changes."
+  ],
+  "incomingPublicMain": "ab43accd4de235b07a22dd0ac24289605902d959",
+  "currentHeadContainsOrdinaryPublicMainMerge": true
+}

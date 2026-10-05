@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { mkdtemp, rm } from 'node:fs/promises';
-import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { stringify, parse } from 'devalue';
@@ -10,10 +9,7 @@ import { schemaAdminStorage } from './schema-admin-storage.ts';
 
 export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node') {
   const directory = await mkdtemp(join(tmpdir(), 'cms-passkey-runtime-'));
-  const socket = createServer(); socket.listen(0, '127.0.0.1'); await once(socket, 'listening');
-  const address = socket.address(); assert.ok(address && typeof address === 'object');
-  const port = address.port; await new Promise<void>(resolve => socket.close(() => resolve()));
-  const origin = `http://localhost:${port}`;
+  let origin = 'http://localhost:0';
   let child: ReturnType<typeof spawn>;
   let exited: Promise<unknown[]>;
   let output = '';
@@ -35,7 +31,10 @@ export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node') {
       assert.equal(child.exitCode, null, output); assert.ok(Date.now() < deadline, output);
       await new Promise(resolve => setTimeout(resolve, 25));
     }
-    ids = JSON.parse(output.split('CMS_PASSKEY_READY ')[1].split('\n')[0]).ids;
+    const ready = JSON.parse(output.split('CMS_PASSKEY_READY ')[1].split('\n')[0]);
+    if (origin === 'http://localhost:0') origin = ready.origin;
+    else assert.equal(ready.origin, origin, 'process restart keeps the trusted origin');
+    ids = ready.ids;
   }
   async function stop() {
     if (!child || child.exitCode !== null) return;

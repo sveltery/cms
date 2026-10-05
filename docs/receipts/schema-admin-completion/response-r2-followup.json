@@ -1,0 +1,225 @@
+{
+  "artifact": "Qualified actual production response R2 full follow-up evidence",
+  "fixHead": "cbbb896b438c1a92cd0d662b6495457982ff50cb",
+  "fixTree": "2c7e64cac051e6a8193384ae6d5a80ecaa5b676c",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "runtime": "Own frozen518 install; Node24.19.0/pnpm12.6.0/Vitest4.1.10/Valibot1.5.0/real Native Kysely SQLite and actual production response validators",
+  "commands": [
+    {
+      "label": "source34-guard",
+      "command": [
+        "node",
+        "scripts/check-schema-admin-completion-source.mjs"
+      ],
+      "startedAt": "2026-10-04T16:04:31.352237+00:00",
+      "endedAt": "2026-10-04T16:04:31.414168+00:00",
+      "exitCode": 0,
+      "raw": "/tmp/schema-admin-response-runtime-r2-qualified-followup/source34-guard.log",
+      "bytes": 139,
+      "sha256": "cc357961c6ae021b6a01748a2db74f3dda9793d8b928b2361e12be85f350a9a1"
+    },
+    {
+      "label": "source22-guard",
+      "command": [
+        "node",
+        "scripts/check-schema-admin-completion-source22.mjs"
+      ],
+      "startedAt": "2026-10-04T16:04:31.414404+00:00",
+      "endedAt": "2026-10-04T16:04:31.459481+00:00",
+      "exitCode": 0,
+      "raw": "/tmp/schema-admin-response-runtime-r2-qualified-followup/source22-guard.log",
+      "bytes": 100,
+      "sha256": "de26796058610827f184b55b98972b69630d26954520112cb59b1508964bdce3"
+    },
+    {
+      "label": "native1-authority-guard",
+      "command": [
+        "node",
+        "scripts/check-schema-admin-response-regression.mjs"
+      ],
+      "startedAt": "2026-10-04T16:04:31.459654+00:00",
+      "endedAt": "2026-10-04T16:04:31.500960+00:00",
+      "exitCode": 0,
+      "raw": "/tmp/schema-admin-response-runtime-r2-qualified-followup/native1-authority-guard.log",
+      "bytes": 102,
+      "sha256": "de74b4996a83fd362238239b62e15e489bf0c92970074c1dc4426e9efda69eae"
+    },
+    {
+      "label": "source22",
+      "command": [
+        "node",
+        "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.schema-admin-completion-source22.config.ts"
+      ],
+      "startedAt": "2026-10-04T16:04:31.501150+00:00",
+      "endedAt": "2026-10-04T16:04:33.032709+00:00",
+      "exitCode": 0,
+      "raw": "/tmp/schema-admin-response-runtime-r2-qualified-followup/source22.log",
+      "bytes": 219,
+      "sha256": "570d3e2d92d8ba723e047a679d60c0029e6627aa22b46f08fbaeace44f4a0099"
+    },
+    {
+      "label": "native8",
+      "command": [
+        "node",
+        "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.schema-admin-completion-native.config.ts"
+      ],
+      "startedAt": "2026-10-04T16:04:33.032882+00:00",
+      "endedAt": "2026-10-04T16:04:35.222052+00:00",
+      "exitCode": 1,
+      "raw": "/tmp/schema-admin-response-runtime-r2-qualified-followup/native8.log",
+      "bytes": 9529,
+      "sha256": "c1da678e2fb56d166068312ef24b2dc4b037d87a3ee3dbdc748753f28dc4686e"
+    },
+    {
+      "label": "native1-production",
+      "command": [
+        "node",
+        "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.schema-admin-response-regression.config.ts"
+      ],
+      "startedAt": "2026-10-04T16:04:35.222289+00:00",
+      "endedAt": "2026-10-04T16:04:35.786731+00:00",
+      "exitCode": 0,
+      "raw": "/tmp/schema-admin-response-runtime-r2-qualified-followup/native1-production.log",
+      "bytes": 213,
+      "sha256": "b5a5a129dc7203a3d58ae26aeb46122ae47b2304a2491ea08b13ded03a83617c"
+    }
+  ],
+  "runsPerCommand": 1,
+  "source22": {
+    "wholeFamilies": 3,
+    "registeredCallbacks": 22,
+    "passedCallbacks": 22,
+    "directSourceExpectsReachedAndPassed": 38,
+    "completedValueFailures": 0,
+    "preExpectationFailures": 0,
+    "infrastructureFailures": 0,
+    "newProductResponseCallbacksPassed": 4,
+    "historicalInitialCallbackControls": 18,
+    "historicalInitialPreExpectationFailures": 4,
+    "historicalInitialCausalReds": 0,
+    "SourceBodiesDataClocksChanged": 0,
+    "causalRepairCredit": 0
+  },
+  "native1ActualProduction": {
+    "registeredCallbacks": 1,
+    "passedCallbacks": 1,
+    "directExpectsReachedAndPassed": 4,
+    "invalidValuesRejected": 9,
+    "completedValueFailures": 0,
+    "preExpectationFailures": 0,
+    "infrastructureFailures": 0,
+    "initialCandidateValueReds": 1,
+    "originalSourceCallbackCredit": 0,
+    "transport": "Same original Native callback/body resolves uniformly to actual production module; immutable R1 snapshot is historical and unexecuted during this follow-up."
+  },
+  "native8UnchangedProductForms": {
+    "registeredCallbacks": 8,
+    "completedAssertionValueFailures": 8,
+    "wholeCallbackControls": 0,
+    "directExpectsReached": 11,
+    "partialAssertionsPassed": 3,
+    "preExpectationFailures": 0,
+    "infrastructureFailures": 0,
+    "uiRuntimeImplementationChanged": 0,
+    "featureDone": false
+  },
+  "compiler": {
+    "firstObservedCheckExitCode": 1,
+    "firstObservedDiagnostics": 9,
+    "firstObservedDiagnosticFiles": 5,
+    "firstObservedCategories": [
+      "retained R1 relative constant type imports2",
+      "installed privateKit JSDoc module declaration1",
+      "original Source22 logical/type imports6"
+    ],
+    "firstRawLogPersisted": false,
+    "firstObservationSource": "Tool check output; no fabricated/reconstructed literal raw log",
+    "correction": "Seven pure test module reexports to actual constants/API/registry boundaries plus one narrow ambient declaration file for actual Node SQLite and Kit public/JSDoc signatures. No originalSource/native callback, expectations, runtime resolver, provider, tsconfig exclusion or gate changes.",
+    "followUp": {
+      "command": [
+        "node",
+        "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+        "check"
+      ],
+      "exitCode": 0,
+      "bytes": 203,
+      "sha256": "6f9aa83ad4e020467008c235415dd8ebe75177fc471ceef542acc77f47c44ff8",
+      "whenUTC": "2026-10-04T16:09:01.172497+00:00",
+      "reason": "Meaningful narrow test type/module host corrections after actual nine test-host resolution diagnostics; original suites not repeated."
+    },
+    "followUpWarnings": 0,
+    "followUpErrors": 0
+  },
+  "artifacts": [
+    {
+      "path": "docs/receipts/schema-admin-completion/response-r2-source34-guard.log",
+      "bytes": 139,
+      "sha256": "cc357961c6ae021b6a01748a2db74f3dda9793d8b928b2361e12be85f350a9a1",
+      "gitBlob": "63a069f59c9e71bb6aa1df4a3118f8c183c240cb",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/response-r2-source22-guard.log",
+      "bytes": 100,
+      "sha256": "de26796058610827f184b55b98972b69630d26954520112cb59b1508964bdce3",
+      "gitBlob": "90834a28854ee0fa57a41d762fc1f381ebceaabc",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/response-r2-native1-authority-guard.log",
+      "bytes": 102,
+      "sha256": "de74b4996a83fd362238239b62e15e489bf0c92970074c1dc4426e9efda69eae",
+      "gitBlob": "f292346ee43fd5dd29c9214ddd051ae0357c1dbe",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/response-r2-source22.log",
+      "bytes": 219,
+      "sha256": "570d3e2d92d8ba723e047a679d60c0029e6627aa22b46f08fbaeace44f4a0099",
+      "gitBlob": "e4599d1ee553a5289509ad6e9a598531a3bd73f1",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/response-r2-native8.log",
+      "bytes": 9529,
+      "sha256": "c1da678e2fb56d166068312ef24b2dc4b037d87a3ee3dbdc748753f28dc4686e",
+      "gitBlob": "e5a20c68d80701578019ea842a98f19b554a4bc0",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/response-r2-native1-production.log",
+      "bytes": 213,
+      "sha256": "b5a5a129dc7203a3d58ae26aeb46122ae47b2304a2491ea08b13ded03a83617c",
+      "gitBlob": "0c158492554950c26f6c4004dfdecf805e21c56f",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/response-r2-type-host-check.log",
+      "bytes": 203,
+      "sha256": "6f9aa83ad4e020467008c235415dd8ebe75177fc471ceef542acc77f47c44ff8",
+      "gitBlob": "74abb4e1f770b609a7d43c056bfd938aa47149cb",
+      "rawUnmodified": true
+    }
+  ],
+  "limits": [
+    "Pure API-schema response and original SQLite title/date families only; no CRUD wire serializer, forced updatedAt, HTTP/auth probe, Browser/D1 or complete schema administration acceptance.",
+    "Field/block/orphan other fullSource contracts remain unexecuted; supplementary nine-case validation coverage is recorded separately.",
+    "UI138/routes3/registry68(original concurrency2)/E2E11 remain retained and unexecuted; Native8 still fails actual forms.",
+    "Original initialNative8/correctedNative8/Source22/Native1 candidate raw history remains intact and was not repeated. All current follow-up suites ran once under specifically approved R2 scope."
+  ]
+}

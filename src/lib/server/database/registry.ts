@@ -1,9 +1,11 @@
 import { sql, type CompiledQuery } from 'kysely';
+import { resetRegisteredCollectionsCache } from '../schema/collection-slugs-state.ts';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
 import { collectionInput, collectionMetadataInput, fieldInput, fieldLabelInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
 import { trashIndexStatement } from './trash-index.ts';
+import { collectionStandardIndexPlan, collectionIndexPrerequisiteChanged } from './collection-indexes.ts';
 import { bylineIndexPrerequisiteChanged, collectionPrimaryBylinePlan } from './canonical-features/byline-index-plan.ts';
 import { FIELD_TYPE_TO_COLUMN, FIELD_TYPES, REPEATER_SUB_FIELD_TYPES, isIndexableFieldType, isStoragelessField, type CollectionSource } from '../schema/types.ts';
 import { fieldEditInput } from './field-edit-validation.ts';
@@ -180,10 +182,11 @@ export class SchemaRegistry {
       throw new CmsError('COLLECTION_TABLE_ORPHANED');
     }
     const primaryByline = await collectionPrimaryBylinePlan(this.database,value.slug);
+    const standardIndexes = await collectionStandardIndexPlan(this.database,value.slug);
     const token = ulid();
     const now = new Date().toISOString();
     const statements: CompiledQuery[] = [
-      primaryByline.guard,
+      primaryByline.guard, standardIndexes.guard,
       sql`INSERT INTO _cms_guards(token, pass)
         SELECT ${token}, CASE WHEN (SELECT COUNT(*) FROM _cms_collections) < ${MAX_COLLECTIONS} THEN 1 ELSE 0 END`.compile(db),
       db.insertInto('_cms_collections').values({
@@ -210,6 +213,7 @@ export class SchemaRegistry {
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
       trashIndexStatement(this.database, value.slug),
       ...(primaryByline.index ? [primaryByline.index] : []),
+      ...standardIndexes.indexes,
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ];
     try { await this.batch(statements, 'LIMIT_EXCEEDED'); }
@@ -223,6 +227,7 @@ export class SchemaRegistry {
       if (duplicateSlug || duplicateAtCapacity) throw new CmsError('COLLECTION_EXISTS');
       throw cause;
     }
+    resetRegisteredCollectionsCache();
     return (await this.getCollection(value.slug))!;
   }
 
@@ -318,11 +323,12 @@ export class SchemaRegistry {
       sql`DROP TABLE ${sql.ref(tableName(slug))}`.compile(db),db.deleteFrom('_cms_fields').where('collection_id','=',target.id).compile(),
       db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ],'COLLECTION_NOT_EMPTY');
+    resetRegisteredCollectionsCache();
   }
   private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY') {
     try { return await this.database.atomicBatch(statements); }
     catch (cause) {
-      if (sqliteErrorMessage(cause)?.includes(bylineIndexPrerequisiteChanged)) throw new CmsError('MIGRATION_REQUIRED');
+      if ([bylineIndexPrerequisiteChanged,collectionIndexPrerequisiteChanged].some(reason=>sqliteErrorMessage(cause)?.includes(reason))) throw new CmsError('MIGRATION_REQUIRED');
       // Only the deliberate SQL guard's CHECK failure becomes a domain conflict.
       if (cause instanceof Error && /CHECK constraint failed: pass = 1/.test(cause.message)) throw new CmsError(guardCode);
       throw cause;
@@ -334,7 +340,8 @@ export { fieldMax };
 // Preserve the local metadata CAS guarantee for same-millisecond/backward clocks.
 // Reorder uses one timestamp for exactly the records the pinned operation touches.
 function nextMetadataTimestamp(collections: Pick<Collection, 'updatedAt'>[]): string {
-  return new Date(Math.max(Date.now(), ...collections.map(collection => Date.parse(collection.updatedAt) + 1))).toISOString();
+  return new Date(Math.max(Date.now(), ...collections.map(collection => Date.parse(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(collection.updatedAt)
+    ? collection.updatedAt.replace(' ', 'T') + 'Z' : collection.updatedAt) + 1))).toISOString();
 }
 
 const collectionMetadataColumns = {icon:'icon',hasSeo:'has_seo',titleField:'title_field',dateField:'date_field',urlPattern:'url_pattern',routable:'routable',hidden:'hidden',sortOrder:'sort_order',group:'nav_group',commentsEnabled:'comments_enabled',commentsModeration:'comments_moderation',commentsClosedAfterDays:'comments_closed_after_days',commentsAutoApproveUsers:'comments_auto_approve_users',editLocking:'edit_locking'};

@@ -12,7 +12,7 @@ import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInp
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 export type Permission = 'schema:read' | 'schema:manage' | 'content:read' | 'content:read_drafts'
   | 'content:create' | 'content:edit_own' | 'content:edit_any' | 'content:delete_own' | 'content:delete_any'
-  | 'content:publish_own' | 'content:publish_any' | 'menus:read' | 'menus:manage' | 'redirects:read' | 'redirects:manage' | 'sections:read' | 'sections:manage' | 'widgets:read' | 'widgets:manage' | 'comments:read' | 'comments:moderate' | 'comments:delete' | 'comments:settings';
+  | 'content:publish_own' | 'content:publish_any' | 'taxonomies:read' | 'taxonomies:manage' | 'menus:read' | 'menus:manage' | 'redirects:read' | 'redirects:manage' | 'sections:read' | 'sections:manage' | 'widgets:read' | 'widgets:manage' | 'comments:read' | 'comments:moderate' | 'comments:delete' | 'comments:settings' | 'bylines:read' | 'bylines:manage';
 export interface ServerPrincipal { readonly id: string; readonly permissions: readonly Permission[] }
 const listInput = v.strictObject({
   type: identifier, locale: v.optional(localeInput, 'en'),
@@ -66,6 +66,11 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       if (!definition) throw new CmsError('NOT_FOUND');
       return definition;
     },
+    async listSchemaBlockTypes() {
+      requirePermission('schema:read');
+      const { createBlockTypeRegistry } = await import('../blocks/registry.ts');
+      return createBlockTypeRegistry(database).listBlockTypes();
+    },
     async createCollection(input: unknown) { requirePermission('schema:manage'); return registry.createCollection(input); },
     async updateCollection(input: unknown) {
       requirePermission('schema:manage');
@@ -86,6 +91,25 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       requirePermission('schema:manage');
       const { collection, field, ...metadata } = parse(updateFieldInput, input);
       return registry.updateField(collection, field, metadata);
+    },
+    async reorderSchemaCollections(input: unknown) {
+      requirePermission('schema:manage');
+      return registry.reorderCollections(parse(v.array(identifier), input));
+    },
+    async reorderSchemaFields(input: unknown) {
+      requirePermission('schema:manage');
+      const value = parse(v.strictObject({ collection: identifier, fields: v.array(identifier) }), input);
+      return registry.reorderFields(value.collection, value.fields);
+    },
+    async deleteSchemaField(input: unknown) {
+      requirePermission('schema:manage');
+      const value = parse(v.strictObject({ collection: identifier, field: identifier }), input);
+      return registry.deleteField(value.collection, value.field);
+    },
+    async deleteSchemaCollection(input: unknown) {
+      requirePermission('schema:manage');
+      const value = parse(v.strictObject({ collection: identifier, force: v.optional(v.boolean(), false) }), input);
+      return registry.deleteCollection(value.collection, { force: value.force });
     },
     async createDraft(input: unknown) {
       const actor = requirePermission('content:create');

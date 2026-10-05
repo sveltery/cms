@@ -1,0 +1,26 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "packages/core/src/database/migrations/083_block_types.ts",
+  "objects": [
+    {
+      "name": "_cms_block_types",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_block_types\" (\"id\" text primary key, \"slug\" text not null unique, \"label\" text not null, \"description\" text, \"icon\" text, \"category\" text, \"current_version\" integer default 1 not null, \"source\" text default 'user' not null, \"created_at\" text default (datetime('now')) not null, \"updated_at\" text default (datetime('now')) not null)"
+    },
+    {
+      "name": "_cms_block_type_versions",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_block_type_versions\" (\"id\" text primary key, \"block_type_id\" text not null, \"version\" integer not null, \"fields\" text not null, \"fingerprint\" text not null, \"created_at\" text default (datetime('now')) not null, \"updated_at\" text default (datetime('now')) not null, constraint \"block_type_versions_type_fk\" foreign key (\"block_type_id\") references \"_cms_block_types\" (\"id\") on delete cascade)"
+    },
+    {
+      "name": "idx_block_type_versions_type_version",
+      "type": "index",
+      "sql": "CREATE UNIQUE INDEX \"idx_block_type_versions_type_version\" ON \"_cms_block_type_versions\" (\"block_type_id\", \"version\")"
+    },
+    {
+      "name": "idx_block_type_versions_type",
+      "type": "index",
+      "sql": "CREATE INDEX \"idx_block_type_versions_type\" ON \"_cms_block_type_versions\" (\"block_type_id\")"
+    }
+  ]
+}
