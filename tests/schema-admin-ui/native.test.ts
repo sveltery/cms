@@ -59,3 +59,13 @@ it('retains field deletion confirmation when the real asynchronous mutation reje
   await vi.waitFor(()=>expect(target.querySelector('dialog [role="alert"]')?.textContent).toBe('Field is still used by a relationship'));
   expect(onDeleteField).toHaveBeenCalledWith('title',undefined);
 });
+it('reports a rejected collection save while retaining unsaved settings for retry', async () => {
+  const target=document.createElement('section');document.body.append(target);
+  const onSave=vi.fn(async()=>{throw new Error('Collection schema changed; reload and retry');});
+  mounted.push(mount(Editor,{target,props:{collection:{...collection,fields:[]},onSave,client}}));await tick();
+  const input=[...target.querySelectorAll<HTMLLabelElement>('label')].find(label=>label.textContent?.startsWith('Label (Plural)'))!.querySelector('input')!;
+  input.value='Updated posts';input.dispatchEvent(new Event('input',{bubbles:true}));await tick();
+  target.querySelector<HTMLFormElement>('form')!.requestSubmit();
+  await vi.waitFor(()=>expect(target.textContent).toContain('Collection schema changed; reload and retry'));
+  expect(input.value).toBe('Updated posts');
+});
