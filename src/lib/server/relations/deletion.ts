@@ -30,13 +30,14 @@ export async function prepareRelationDeletion(database: CmsDatabase, id: string,
     const target = await registry.getField(field.collectionSlug, field.fieldSlug);
     const collection = await registry.getCollection(field.collectionSlug);
     if (!target || !collection) continue;
+    const table = tableName(field.collectionSlug);
     const index = 'idx_cf_' + target.id.toLowerCase();
     statements.push(sql`DROP INDEX IF EXISTS ${sql.ref(index)}`.compile(db), sql`DROP INDEX IF EXISTS ${sql.ref(index + '_loc')}`.compile(db));
     // Published legacy conversion binds the field while retaining its TEXT
     // column. Follow the pinned registry's actual catalogue check so both
     // converted and newly storage-less fields are removed correctly.
-    if (await columnExists(db, tableName(field.collectionSlug), target.slug)) {
-      statements.push(sql`ALTER TABLE ${sql.ref(tableName(field.collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db));
+    if (await columnExists(db, table, target.slug)) {
+      statements.push(sql`ALTER TABLE ${sql.ref(table)} DROP COLUMN ${sql.ref(target.slug)}`.compile(db));
     }
     statements.push(db.deleteFrom('_cms_fields').where('id', '=', target.id).compile(),
       db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`,
