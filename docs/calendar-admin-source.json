@@ -489,8 +489,27 @@
         "pass": 15
       },
       "finalControlledNodeSSR": {
-        "registered": 16,
-        "pass": 16
+        "registered": 26,
+        "pass": 26
+      },
+      "firstStaticReview074": {
+        "execution": 0,
+        "finding": "Source getMutationError suppresses every falsy error; inherited Native unconditional fallback incomplete"
+      },
+      "sourceFalsyErrorSuccessor": {
+        "newCallbacks": 10,
+        "registered": 26,
+        "valueRed": 6,
+        "baselinePass": 20,
+        "values": [
+          "null",
+          "undefined",
+          "false",
+          "0",
+          "empty-string",
+          "NaN"
+        ],
+        "afterExactGuardPass": 26
       }
     },
     "browser": {
@@ -523,6 +542,16 @@
     "protectedExecution": 0,
     "originalSourceExecution": 0,
     "publicPushOrPR": false,
-    "merge": false
+    "merge": false,
+    "mutationErrorContract": {
+      "source": "packages/admin/src/components/DialogError.tsx:getMutationError",
+      "guards": [
+        "if (!error) return null",
+        "if (error instanceof Error) return error.message",
+        "truthy non-Error uses exact Source Vw8l6h descriptor"
+      ],
+      "nativeAdaptation": "defer inline descriptor resolution until reactive render; notices resolve at action time",
+      "noticeDescription": "string|null; title retained for null description"
+    }
   }
 }
