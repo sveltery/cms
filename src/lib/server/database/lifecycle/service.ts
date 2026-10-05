@@ -22,8 +22,7 @@ import {storagelessDataKeys,storagelessDataKeyError,changedStoragelessDataKeys} 
 import {publicationStatementExecutor} from '../../redirects/publication-atomic.ts';
 import * as v from 'valibot';
 import {BylineRepository,type ContentBylineInput} from '../../bylines/repository.ts';
-import {bylineDatabase} from '../../bylines/storage.ts';
-import {hydrateBylines,hydrateBylinesMany} from '../../bylines/content-hydration.ts';
+import {hydrateCanonicalBylines,hydrateCanonicalBylinesMany} from '../../bylines/canonical-hydration.ts';
 import {resolveBylineFilter} from '../../bylines/content-list.ts';
 import {invalidateCollectionCache} from '../../menus/object-cache.ts';
 import {contentBylineInput} from '../content-validation.ts';
@@ -66,7 +65,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   const revisions=new RevisionRepository(database.db as any);
   const datetimes=new ContentDatetimeNormalizer(database.db as any);
   const bylines=new BylineRepository(database);
-  async function hydratedBylines(item:ContentItem) {await hydrateBylines(bylineDatabase(database),item.type,item);return item;}
+  async function hydratedBylines(item:ContentItem) {await hydrateCanonicalBylines(database,item.type,item);return item;}
   function completeBylines(collection:string,input:ContentBylineInput[]|undefined) {if(input!==undefined)invalidateCollectionCache(collection);}
   function authenticated() {if(!identity)throw new CmsError('UNAUTHENTICATED');return identity;}
   function requirePermission(permission:string) {const actor=authenticated();if(!actor.permissions.has(permission))throw new CmsError('FORBIDDEN');return actor;}
@@ -289,7 +288,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     async duplicateContent(input:unknown):Promise<ContentItem> {
       const actor=requirePermission('content:create');mutationPermission('content:edit_own','content:edit_any');
-      const value=key(input);const original=(await stored(value,true,true)).item;owner(original,actor,'content:edit_any');
+      const value=key(input);const sourceReceipt=await stored(value,true,true);const original=sourceReceipt.item;owner(original,actor,'content:edit_any');
       const data={...original.data};
       if(typeof data.title==='string')data.title=`${data.title} (Copy)`;
       else if(typeof data.name==='string')data.name=`${data.name} (Copy)`;
@@ -297,8 +296,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const slug=source?await content.generateUniqueSlug(value.type,source,original.locale??undefined):null;
       const existingBylines=await bylines.getContentBylines(value.type,original.id);
       const referenceCopy=original.translationGroup?await (await import('../../relations/content-copy.ts')).prepareContentReferenceCopy(database,value.type,original.translationGroup):undefined;
-      const definitionSnapshot=await definition(value.type);
-      const copiedSeo=definitionSnapshot.hasSeo?await new SeoRepository(database.db as any).get(value.type,original.id):undefined;
+      const copiedSeo=sourceReceipt.hasSeo?await new SeoRepository(database.db as any).get(value.type,original.id):undefined;
       let referencePlan:ContentReferencePlan|undefined;
       const attribution=creationMetadata===undefined?undefined:{authorId:creationMetadata.authorId||original.authorId||null};
       const item=await drafts.create({type:value.type,locale:original.locale??'en',slug,data},actor.id,
@@ -386,7 +384,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         ...(value.orderBy?{orderBy:{field:value.orderBy,direction:value.order??'desc'}}:{}),
         sortableExtras:[collection?.titleField,collection?.dateField].filter((field):field is string=>Boolean(field)),
         where:{...(filterLocale===undefined?{}:{locale:filterLocale}),...(value.status===undefined?{}:{status:value.status}),...(bylineFilter?{bylineFilter}:{})}});
-      await hydrateBylinesMany(bylineDatabase(database),type,result.items);return {...result,items:await hydrateContentSeoMany(database,type,result.items,collection?.hasSeo??false)};
+      await hydrateCanonicalBylinesMany(database,type,result.items);return {...result,items:await hydrateContentSeoMany(database,type,result.items,collection?.hasSeo??false)};
     },
     async updateContent(input:unknown,options:{drafts?:boolean;validateData?:boolean;attribution?:ContentUpdateAttribution}={}):Promise<ContentReceipt> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);
@@ -586,8 +584,13 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           ];
           const core=queries.map(query=>query.compile(database.db));
           const restoredGuard=sql`INSERT INTO _cms_guards(token,pass) SELECT ${restoredToken},CASE WHEN changes()=1 AND EXISTS(SELECT 1 FROM ${sql.ref(tableName(revision.collection))} WHERE id=${item.id} AND deleted_at IS NULL AND version=${item.version+1} ${actor.permissions.has('content:edit_any')?sql``:sql`AND author_id=${actor.id}`})THEN 1 ELSE 0 END`.compile(database.db);
-          const results=await database.atomicBatch([...before,...core,restoredGuard,...(references?.after??[]),...(references?.cleanup??[]),sql`DELETE FROM _cms_guards WHERE token IN(${schemaToken},${entryToken},${restoredToken})`.compile(database.db)]);
-          return results.slice(before.length,before.length+core.length);
+          try {
+            const results=await database.atomicBatch([...before,...core,restoredGuard,...(references?.after??[]),...(references?.cleanup??[]),sql`DELETE FROM _cms_guards WHERE token IN(${schemaToken},${entryToken},${restoredToken})`.compile(database.db)]);
+            return results.slice(before.length,before.length+core.length);
+          } catch(cause) {
+            if(cause instanceof Error&&/CHECK constraint failed: pass = 1/.test(cause.message))throw new ContentMutationConflictError();
+            throw cause;
+          }
         });
         if(references){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(references,revision.collection);}
         prune(revision.collection,revision.entryId,result.revisionId);return hydrate(result.item,collection.hasSeo);
