@@ -44,7 +44,12 @@ export async function handleContentPublish(db: Kysely<any>, collection: string, 
     if (error instanceof ScheduledNotDueError) return {success: false, error: {code: 'NOT_DUE', message: error.message}};
     if (error instanceof ContentMutationConflictError || error instanceof CmsError && error.code === 'CONFLICT')
       return {success: false, error: {code: 'CONFLICT', message: error.message}};
-    if (error instanceof EmDashValidationError) return {success: false, error: {code: 'VALIDATION_ERROR', message: error.message}};
+    if (error instanceof EmDashValidationError) {
+      const details: unknown = error.details;
+      const isSlugConflict = typeof details === 'object' && details !== null &&
+        'code' in details && details.code === 'SLUG_CONFLICT';
+      return {success: false, error: {code: isSlugConflict ? 'SLUG_CONFLICT' : 'VALIDATION_ERROR', message: error.message}};
+    }
     console.error('Content publish error:', error);
     return {success: false, error: {code: 'CONTENT_PUBLISH_ERROR', message: 'Failed to publish content'}};
   }
