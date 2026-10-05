@@ -213,7 +213,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         data={...data};for(const field of inheritFields){if(Object.hasOwn(source.data,field))data[field]=source.data[field];else delete data[field];}
         translation={id:source.id,translationGroup:source.translationGroup??source.id,version:source.version,updatedAt:source.updatedAt,inheritFields};
       }
-      const slug=value.slug===undefined?await content.generateUniqueSlug(type,typeof data.title==='string'?data.title:'',locale):value.slug;
+      const slugSource=typeof data.title==='string'&&data.title.length>0?data.title:typeof data.name==='string'&&data.name.length>0?data.name:null;
+      const slug=value.slug===undefined?(slugSource?await content.generateUniqueSlug(type,slugSource,locale):null):value.slug;
       const selections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,locale));
       const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined;
       const item=await drafts.create({type,locale,data,slug},actor.id,hasSideWrites?async entry=>{
@@ -242,6 +243,36 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           return {...plan,after:[...plan.after,...statements]};
         }:undefined);
       invalidateCollectionCache(value.type);return hydratedBylines(await stored({type:value.type,id:item.id,locale:item.locale}));
+    },
+    async permanentDeleteContent(input:unknown):Promise<void> {
+      requirePermission('content:delete_permanent');const raw=object(input);const value=key(raw);const collection=await definition(value.type);
+      const table=sql.ref(tableName(value.type));
+      const row=(await sql<Record<string,unknown>>`SELECT * FROM ${table} WHERE id=${value.id} AND deleted_at IS NOT NULL
+        ${raw.locale===undefined?sql``:sql`AND locale=${value.locale}`}`.execute(database.db)).rows[0];
+      if(!row)throw new CmsError('NOT_FOUND');const item=content.mapRow(value.type,row);precondition(value.expected,item);
+      const schemaToken=ulid();const entryToken=ulid();const deletionToken=ulid();
+      const statements:CompiledQuery[]=[
+        sql`INSERT INTO _cms_guards(token,pass) SELECT ${schemaToken},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections
+          WHERE id=${collection.id} AND version=${collection.version})THEN 1 ELSE 0 END`.compile(database.db),
+        sql`INSERT INTO _cms_guards(token,pass) SELECT ${entryToken},CASE WHEN EXISTS(SELECT 1 FROM ${table}
+          WHERE id=${item.id} AND locale=${item.locale} AND deleted_at=${row.deleted_at} AND version=${item.version}
+          AND updated_at=${item.updatedAt})THEN 1 ELSE 0 END`.compile(database.db),
+        sql`DELETE FROM ${table} WHERE id=${item.id} AND locale=${item.locale} AND deleted_at=${row.deleted_at}
+          AND version=${item.version} AND updated_at=${item.updatedAt} RETURNING id`.compile(database.db),
+        sql`INSERT INTO _cms_guards(token,pass) SELECT ${deletionToken},CASE WHEN changes()=1 THEN 1 ELSE 0 END`.compile(database.db),
+        sql`DELETE FROM _cms_comments WHERE collection=${value.type} AND content_id=${item.id}`.compile(database.db),
+        sql`DELETE FROM _cms_revisions WHERE collection=${value.type} AND entry_id=${item.id}`.compile(database.db),
+        sql`DELETE FROM _cms_revision_prune_queue WHERE collection=${value.type} AND entry_id=${item.id}`.compile(database.db),
+        ...await bylines.planContentBylineDeletion(value.type,item.id),
+        ...(item.translationGroup?[sql`DELETE FROM _cms_content_taxonomies WHERE collection=${value.type} AND entry_id=${item.translationGroup}
+          AND NOT EXISTS(SELECT 1 FROM ${table} WHERE translation_group=${item.translationGroup})`.compile(database.db)]:[]),
+        sql`DELETE FROM _cms_guards WHERE token IN(${schemaToken},${entryToken},${deletionToken})`.compile(database.db)
+      ];
+      try{await database.atomicBatch(statements);}
+      catch(cause){if(cause instanceof Error&&/CHECK constraint failed: pass = 1/.test(cause.message))throw new CmsError('CONFLICT');throw cause;}
+      invalidateCollectionCache(value.type);
+      const {invalidateCommentObjectCache,invalidateTaxonomyObjectCache}=await import('../../menus/object-cache.ts');
+      invalidateCommentObjectCache();invalidateTaxonomyObjectCache();
     },
     async getContent(input:unknown,options:{inferLocale?:boolean;resolveIdentifier?:boolean}={}):Promise<ContentItem> {
       requirePermission('content:read');requirePermission('content:read_drafts');

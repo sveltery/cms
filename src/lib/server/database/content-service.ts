@@ -92,6 +92,8 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  }
  return{
   async createContent(input:unknown){permission('content:create');return entry(await lifecycle().createContent(input));},
+  duplicateContent:(input:unknown)=>lifecycle().duplicateContent(input),
+  permanentDeleteContent:(input:unknown)=>lifecycle().permanentDeleteContent(input),
   async getContent(input:unknown){read();const value=parse(getDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrate(active);},
   async updateContent(input:unknown){
    mutation('content:edit_own','content:edit_any');
