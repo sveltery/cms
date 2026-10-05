@@ -80,9 +80,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   }
   async function definition(type:string) {const value=await registry.getCollectionWithFields(type);if(!value)throw new CmsError('NOT_FOUND');return value;}
   async function stored(value:ContentKey,inferLocale=false,resolveIdentifier=false) {
-    await definition(value.type);
+    const collection=await definition(value.type);
     const item=resolveIdentifier?await content.findByIdOrSlug(value.type,value.id,inferLocale?undefined:value.locale):await content.findById(value.type,value.id);
-    if(!item||(!resolveIdentifier&&!inferLocale&&item.locale!==(value.locale??'en')))throw new CmsError('NOT_FOUND');return item;
+    if(!item||(!resolveIdentifier&&!inferLocale&&item.locale!==(value.locale??'en')))throw new CmsError('NOT_FOUND');return {item,hasSeo:collection.hasSeo};
   }
   function owner(item:ContentItem,actor:NonNullable<typeof identity>,any:string) {
     if(!actor.permissions.has(any)&&item.authorId!==actor.id)throw new CmsError('FORBIDDEN');
@@ -111,8 +111,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     }
     return normalized;
   }
-  async function hydrate(item:ContentItem):Promise<ContentItem> {
-    item=await hydrateContentSeo(database,item.type,item);
+  async function hydrate(item:ContentItem,hasSeo:boolean):Promise<ContentItem> {
+    item=await hydrateContentSeo(database,item.type,item,hasSeo);
     if(!item.draftRevisionId)return item;
     const revision=await revisions.findById(item.draftRevisionId);
     if(!revision)return item;
@@ -219,26 +219,28 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       }:undefined);
       await completeContentTaxonomies(selections);
       await completeContentSeo(type,seoWrites);
-      return hydrate(await stored({type,id:item.id,locale}));
+      const persisted=await stored({type,id:item.id,locale});
+      return hydrate(persisted.item,persisted.hasSeo);
     },
     async getContent(input:unknown,options:{inferLocale?:boolean;resolveIdentifier?:boolean}={}):Promise<ContentItem> {
       requirePermission('content:read');requirePermission('content:read_drafts');
       // Only the trusted constructor host opts into omitted-locale inference;
       // all callers share the same actual definition/read/not-found owner.
       const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
-      return hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true));
+      const persisted=await stored(key(input),inferLocale,options.resolveIdentifier===true);
+      return hydrate(persisted.item,persisted.hasSeo);
     },
     async listContent(input:unknown) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
-      const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');await definition(type);
+      const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');const collection=await definition(type);
       if(value.status!==undefined&&typeof value.status!=='string')throw new CmsError('VALIDATION_ERROR');
       if(value.limit!==undefined&&(!Number.isSafeInteger(value.limit)||value.limit<1))throw new CmsError('VALIDATION_ERROR');
       const result=await content.findMany(type,{limit:value.limit,cursor:value.cursor,where:{locale,...(value.status===undefined?{}:{status:value.status})}});
-      return {...result,items:await hydrateContentSeoMany(database,type,result.items)};
+      return {...result,items:await hydrateContentSeoMany(database,type,result.items,collection.hasSeo)};
     },
     async updateContent(input:unknown):Promise<ContentReceipt> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);
-      let existing=await stored(value);owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
+      let existing=(await stored(value)).item;owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
       publicationDatePermission(value);
       const collection=await definition(value.type);checkSeoCollection(value.type,value.seo,collection.hasSeo);const fields=new Set(collection.fields.map(field=>field.slug));
       let data=value.data===undefined?undefined:normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
@@ -295,27 +297,27 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           }:undefined);}
           catch(cause){
             await revisions.deleteIfUnreferenced(value.type,value.id,revision.id);
-            if(prepared&&cause instanceof CmsError&&cause.code==='CONFLICT'&&value.expected===undefined&&attempt<31){existing=await stored(value);continue;}
+            if(prepared&&cause instanceof CmsError&&cause.code==='CONFLICT'&&value.expected===undefined&&attempt<31){existing=(await stored(value)).item;continue;}
             throw cause;
           }
           if(!staged){
             await revisions.deleteIfUnreferenced(value.type,value.id,revision.id);
-            if(value.expected!==undefined||attempt===31)throw new CmsError('CONFLICT');existing=await stored(value);continue;
+            if(value.expected!==undefined||attempt===31)throw new CmsError('CONFLICT');existing=(await stored(value)).item;continue;
           }
           if(prepared){await revisions.queuePruning(value.type,value.id,prepared.id);await completeContentTaxonomies(taxonomySelections);await completeContentSeo(value.type,metadata?.seoWrites??false);}
           if(value.skipRevision&&existing.draftRevisionId)await revisions.deleteIfUnreferenced(value.type,value.id,existing.draftRevisionId);
           else prune(value.type,value.id,revision.id);
-          let item=await stored(value);
+          const persisted=await stored(value);let item=persisted.item;
           if(liveMetaTouched&&!prepared)item=await atomicUpdate(value,item,{...value,slug:undefined},undefined,'content:edit_any');
-          return {item:await hydrate(item),liveContentChanged:liveMetaTouched||taxonomySelections.length>0};
+          return {item:await hydrate(item,persisted.hasSeo),liveContentChanged:liveMetaTouched||taxonomySelections.length>0};
         }
         throw new CmsError('CONFLICT');
       }
       const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections);
-      return {item:await hydrate(item),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length)};
+      return {item:await hydrate(item,collection.hasSeo),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length)};
     },
     async publish(input:unknown):Promise<ContentItem> {
-      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
       publicationDatePermission(value);
       let redirectCreated=false;
@@ -323,10 +325,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,
         {version:item.version,updatedAt:item.updatedAt},undefined,executePublication));
       if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
-      return hydrateContentSeo(database,value.type,published);
+      return hydrateContentSeo(database,value.type,published,collection.hasSeo);
     },
     async unpublish(input:unknown):Promise<ContentItem> {
-      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
       const unpublished=await translate(()=>content.unpublish(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
       // Source cleanup consumes the actual queued boundary, including work
@@ -342,12 +344,12 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         // scheduling failure must leave its result intact and queue retryable.
         console.error(`[revisions] Failed to schedule pruning for ${value.type}/${value.id}:`,error);
       }
-      return hydrateContentSeo(database,value.type,unpublished);
+      return hydrateContentSeo(database,value.type,unpublished,persisted.hasSeo);
     },
     async discardDraft(input:unknown):Promise<ContentItem> {
-      const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);const item=await stored(value);
+      const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
       owner(item,actor,'content:edit_any');precondition(value.expected,item);
-      return hydrateContentSeo(database,value.type,await translate(()=>content.discardDraft(value.type,value.id,{version:item.version,updatedAt:item.updatedAt})));
+      return hydrateContentSeo(database,value.type,await translate(()=>content.discardDraft(value.type,value.id,{version:item.version,updatedAt:item.updatedAt})),persisted.hasSeo);
     },
     async listRevisions(input:unknown):Promise<Revision[]> {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=key(input);await stored(value);
@@ -357,15 +359,15 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=object(input);
       const revision=await revisions.findById(parse(entryId,value.revisionId));if(!revision)throw new CmsError('NOT_FOUND');
       if(value.type!==undefined&&value.type!==revision.collection||value.id!==undefined&&value.id!==revision.entryId)throw new CmsError('NOT_FOUND');
-      const contentKey={type:revision.collection,id:revision.entryId,locale:parse(localeInput,value.locale??'en')};const item=await stored(contentKey);
+      const contentKey={type:revision.collection,id:revision.entryId,locale:parse(localeInput,value.locale??'en')};const item=(await stored(contentKey)).item;
       owner(item,actor,'content:edit_any');precondition(value.expected,item);const collection=await definition(revision.collection);
       const restored={...revision.data};delete restored._referencesBaseline;
       return translate(async()=>{
         if(collection.supports.includes('revisions')){
           const revisionId=await content.restoreDraftRevision(revision.collection,revision.entryId,restored,actor.id,{version:item.version,updatedAt:item.updatedAt});
-          if(!revisionId)throw new CmsError('NOT_FOUND');prune(revision.collection,revision.entryId,revisionId);return hydrate(await stored(contentKey));
+          if(!revisionId)throw new CmsError('NOT_FOUND');prune(revision.collection,revision.entryId,revisionId);const persisted=await stored(contentKey);return hydrate(persisted.item,persisted.hasSeo);
         }
-        const result=await content.restoreRevision(revision.collection,revision.entryId,restored,actor.id,{version:item.version,updatedAt:item.updatedAt});prune(revision.collection,revision.entryId,result.revisionId);return hydrate(result.item);
+        const result=await content.restoreRevision(revision.collection,revision.entryId,restored,actor.id,{version:item.version,updatedAt:item.updatedAt});prune(revision.collection,revision.entryId,result.revisionId);return hydrate(result.item,collection.hasSeo);
       });
     },
     /** Public repository read: literal published status, live columns, no draft hydration. */
