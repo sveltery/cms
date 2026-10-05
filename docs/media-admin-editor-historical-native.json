@@ -74,7 +74,16 @@
       "bytes": 1642,
       "sha256": "7ea5ae677fba084d109233a75e738c702f21f355f2f23f054c7a897e6ef42131",
       "gitBlob": "7e7fb9955afc0f6d3022a0b73df595c203626e2c"
+    },
+    {
+      "originalPath": "tests/media-panel-host/native-row-preservation.browser.tsx",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-panel-host/native-row-preservation.browser.tsx",
+      "bytes": 2058,
+      "sha256": "e1d1187844b8452fd30161675afcfb228e1785ff3167c16ecc8f3544c4021a96",
+      "gitBlob": "6e0efc4419a5ac4e1a7ca591b4fc26586e80ad43",
+      "reason": "Never-landed Native controls require obsolete Alt text/Save changes labels and omit the real QueryClient provider. Root read both original bodies and approved byte-exact archival; current native controls are separate, use actual pinned labels and genuine supplied QueryClient."
     }
   ],
-  "additionalDecision": "Root explicit full-read approval: archive three additional never-landed Native candidates and unused obsolete authenticated-browser helper, preserving Source/Main tests and protected passkey signature."
+  "additionalDecision": "Root explicit full-read approval: archive three additional never-landed Native candidates and unused obsolete authenticated-browser helper, preserving Source/Main tests and protected passkey signature.",
+  "rowControlDecision": "Root explicit full-read approval 2026-10-05; two original Native bodies and all prior history/raw results preserved, zero parity or current acceptance credit."
 }

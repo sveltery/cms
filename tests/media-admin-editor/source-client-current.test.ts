@@ -23,7 +23,8 @@ it('connects the complete Source media client to canonical read, folder and meta
    const headers=new Headers(init.headers);headers.set('Origin','http://localhost');
    const request=new Request(url,{...init,headers});
    const folder=/^\/_emdash\/api\/media\/folders\/([^/]+)$/.exec(url.pathname);
-   const media=/^\/_emdash\/api\/media\/([^/]+)$/.exec(url.pathname);
+   // Match Kit's static folders route before its dynamic media-id sibling.
+   const media=url.pathname==='/_emdash/api/media/folders'?null:/^\/_emdash\/api\/media\/([^/]+)$/.exec(url.pathname);
    const path=folder?'_emdash/api/media/folders/[id]':media?'_emdash/api/media/[id]':url.pathname.slice(1);
    const load=modules[`../../src/routes/${path}/+server.ts`];
    if(!load)throw new Error(`Actual media route absent: ${path}`);

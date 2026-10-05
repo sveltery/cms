@@ -1,0 +1,50 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-media-admin-editor
+
+stderr | tests/media-admin-editor/usage-read-current.test.ts > reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary
+[media-usage] detail read failed: InvalidCursorError: Invalid pagination cursor: not-a-cursor
+    at decodeCursor (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/types.ts:288:9)
+    at MediaUsageRepository.findCurrentEntryUsagePageByMediaId (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:1486:35)
+    at handleMediaUsageDetails (/workspace/cms-complete-media-admin-editor/src/lib/server/general-media/upstream/api/handlers/media-usage-read.ts:87:33)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-complete-media-admin-editor/tests/media-admin-editor/usage-read-current.test.ts:15:16
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+ ❯ tests/media-admin-editor/usage-read-current.test.ts (1 test | 1 failed) 62ms
+   × reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary 61ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/media-admin-editor/usage-read-current.test.ts > reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary
+AssertionError: expected { success: false, error: { …(2) } } to deeply equal ObjectContaining{…}
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "error": ObjectContaining {
+-     "code": "INVALID_CURSOR",
++ {
++   "error": {
++     "code": "MEDIA_USAGE_READ_ERROR",
++     "message": "Failed to read media usage",
+    },
+    "success": false,
+  }
+
+ ❯ tests/media-admin-editor/usage-read-current.test.ts:16:18
+     14|   const media=await new MediaRepository(database).create({filename:'us…
+     15|   const result=await handleMediaUsageDetails(generalMediaDatabase(data…
+     16|   expect(result).toEqual(expect.objectContaining({success:false,error:…
+       |                  ^
+     17|  } finally {await database.close();}
+     18| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 2 passed (3)
+   Start at  23:34:27
+   Duration  1.44s (transform 537ms, setup 0ms, import 928ms, tests 292ms, environment 0ms)
+
