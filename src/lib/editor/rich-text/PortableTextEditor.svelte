@@ -11,6 +11,7 @@
   import TableSizePicker from './TableSizePicker.svelte';
   import TableSelectionAnnouncer from './TableSelectionAnnouncer.svelte';
   import TableMenu from './TableMenu.svelte';
+  import { tableMessage } from './table-menu';
   import { createPortableTextEditor } from './create-editor';
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
   import { insertTable } from './insert-table';
@@ -27,7 +28,8 @@
   let sectionOpen = $state(false), sectionError = $state(''), providerMessage = $state('');
   let SectionPicker = $state<typeof import('../../ui/sections-widgets/SectionPickerModal.svelte').default>();
   let unsupported = $state<string[]>([]), tableError = $state(false), pasteReason = $state<TablePasteRejection | undefined>();
-  let announcement = $state('');
+  let announcement = $state(''), announcementId = $state(0);
+  function announceTable(message: string) { announcementId += 1; announcement = message; }
   let pendingInsert: number | null = null, movedPointer = false;
   let slash = $state<SlashMenuState>({ isOpen: false, mode: 'commands', items: [], selectedIndex: 0, clientRect: null, range: null, trigger: 'slash', gutterBlockPos: null, dismissedSlashFrom: null });
   const t = $derived(props.translate ?? sourceMessage);
@@ -87,7 +89,7 @@
     if (unsupported.length) return;
     try { portableTextToProsemirror(props.value ?? [], pluginTypes); } catch (cause) { error(cause); return; }
     const current = createPortableTextEditor({ element, props: () => props, filterCommands, getSlashState: () => slash, setSlashState: setSlash,
-      onTransaction: () => { revision += 1; }, onError: error, onPasteRejected: reason => { pasteReason = reason; }, onAnnouncement: message => { announcement = message; } });
+      onTransaction: () => { revision += 1; }, onError: error, onPasteRejected: reason => { pasteReason = reason; }, onAnnouncement: announceTable });
     editor = current; props.onEditorReady?.(current); props.onGutterReady?.(openGutter);
     const gutterKeys = (event: KeyboardEvent) => {
       if (!slash.isOpen || slash.trigger !== 'gutter') return;
@@ -177,7 +179,7 @@
     if (!editor?.isEditable) return;
     if (!insertTable(editor, rows, columns, header, slash.trigger === 'slash' ? slash.range ?? undefined : undefined, slash.trigger === 'gutter' ? slash.gutterBlockPos ?? undefined : undefined)) return;
     if (slash.trigger === 'slash') exitSuggestion(editor.view);
-    setSlash(previous => ({ ...previous, isOpen: false, mode: 'commands', gutterBlockPos: null, dismissedSlashFrom: null })); announcement = 'Table inserted';
+    setSlash(previous => ({ ...previous, isOpen: false, mode: 'commands', gutterBlockPos: null, dismissedSlashFrom: null })); announceTable(t(tableMessage('Table inserted')));
   }
   function tableCancel() { closeSlash(); editor?.view.focus(); }
   function active(mark: string) { void revision; return editor?.isActive(mark) ?? false; }
@@ -204,7 +206,7 @@
           <button type="button" aria-label="Code Block" aria-pressed={active('codeBlock')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleCodeBlock().run()}>[ ]</button>
           <button type="button" aria-label="Insert Link" disabled={!editable} onmousedown={event => event.preventDefault()} onclick={link}>↗</button>
           {#each [['Left', 'left'], ['Center', 'center'], ['Right', 'right']] as [label, align]}<button type="button" aria-label={`Align ${label}`} disabled={!editable || alignmentUnavailable} onmousedown={event => event.preventDefault()} onclick={() => editor && setSelectionTextAlignment(editor, align as TextAlignment)}>{label}</button>{/each}
-          <TableMenu {editor} {editable} translate={t} onRun={message => { announcement = message; }} />
+          <TableMenu {editor} {editable} translate={t} onRun={announceTable} />
           <button type="button" aria-label="Undo" disabled={!editable || !canUndo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().undo().run()}>↶</button>
           <button type="button" aria-label="Redo" disabled={!editable || !canRedo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().redo().run()}>↷</button>
         </div>
@@ -212,7 +214,7 @@
         {#if linkOpen}<div class="link-form"><label>Link URL<input value={href} oninput={event => { href = event.currentTarget.value; }} onkeydown={event => { if (event.key === 'Enter') { event.preventDefault(); applyLink(); } else if (event.key === 'Escape') { event.preventDefault(); linkOpen = false; editor?.view.focus(); } }} placeholder="https://" /></label><button type="button" onclick={applyLink}>Apply</button><button type="button" onclick={() => { linkOpen = false; editor?.view.focus(); }}>Cancel</button></div>{/if}
       {/if}
       <div bind:this={element} class:spotlight-mode={props.focusMode === 'spotlight'} aria-labelledby={props['aria-labelledby']}></div>
-      {#if editor}<TableSelectionAnnouncer {editor} onChange={message => { announcement = message; }} translate={t} />{/if}
+      {#if editor}<TableSelectionAnnouncer {editor} onChange={announceTable} translate={t} />{/if}
       {#if editor && !props.minimal}<EditorFooter {editor} translate={t} />{/if}
       {#if editor && editable && !props.onGutterReady}<button type="button" class="gutter-insert" aria-label="Insert block" onclick={() => { const selection = editor!.state.selection.$from; const at = selection.depth ? selection.after(1) : selection.pos; openGutter(at); }}>+</button>{/if}
     </div>
@@ -220,7 +222,7 @@
     {#if pasteReason}<div role="alert"><p>{pasteMessage}</p><button type="button" aria-label="Dismiss table paste error" onclick={() => { pasteReason = undefined; }}>×</button></div>{/if}
     {#if sectionError}<div role="alert"><p>Could not insert section</p><p>{sectionError}</p><button type="button" aria-label="Dismiss section error" onclick={() => { sectionError = ''; }}>×</button></div>{/if}
     {#if providerMessage}<p role="status">{providerMessage}</p>{/if}
-    <div role="status" aria-live="polite" aria-atomic="true" class="sr-only">{announcement}</div>
+    <div role="status" aria-live="polite" aria-atomic="true" class="sr-only">{#key announcementId}<span>{announcement}</span>{/key}</div>
   {/if}
 </div>
 {#if slash.isOpen}

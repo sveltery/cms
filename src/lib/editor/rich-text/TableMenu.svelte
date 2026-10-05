@@ -1,7 +1,7 @@
 <script lang="ts">
   // Actual Svelte presentation of pinned TableMenu close intents/bookmarks.
   // TableActions, TableExtensions and insertTable remain their existing owners.
-  import { flushSync, onMount, tick } from 'svelte';
+  import { flushSync, onMount } from 'svelte';
   import type { Editor } from '@tiptap/core';
   import { NodeSelection, type SelectionBookmark } from '@tiptap/pm/state';
   import { getTableControlState, runTableAction } from './TableActions';
@@ -16,8 +16,10 @@
   } = $props();
   let revision = $state(0), menuOpen = $state(false), pickerOpen = $state(false);
   let trigger = $state<HTMLButtonElement>(null!), surface = $state<HTMLDivElement>(null!);
+  const triggerId = $props.id();
   let bookmark: SelectionBookmark | null = null, closingFocus: Element | null = null, shortcutReturn = false;
-  let pickerFrame = 0;
+  let pickerFrame = 0, running = false, typeahead = '', typeaheadTimer: ReturnType<typeof setTimeout>;
+  let menuLeft = $state(0), menuTop = $state(0);
   const editable = $derived.by(() => { void revision; return editableProp ?? editor.isEditable; });
   const inTable = $derived.by(() => { void revision; return selectionIsContainedInTableCells(editor.state) ||
     (editor.state.selection instanceof NodeSelection && editor.state.selection.node.type.spec.tableRole === 'table'); });
@@ -49,18 +51,42 @@
     else if (intent === 'focus') restore(false);
     else if (intent === 'restore') restore();
   }
-  async function open() {
+  function items() { return surface ? [...surface.querySelectorAll<HTMLButtonElement>('button[role^="menuitem"]')] : []; }
+  function focusItem(item?: HTMLButtonElement) {
+    if (!item) return;
+    for (const button of items()) button.tabIndex = button === item ? 0 : -1;
+    item.focus(); item.scrollIntoView?.({ block: 'nearest' });
+  }
+  function positionMenu() {
+    if (!menuOpen || !trigger || !surface) return;
+    const anchor = trigger.getBoundingClientRect(), bounds = surface.getBoundingClientRect(), viewport = window.visualViewport;
+    const left = viewport?.offsetLeft ?? 0, top = viewport?.offsetTop ?? 0;
+    const right = left + (viewport?.width ?? window.innerWidth), bottom = top + (viewport?.height ?? window.innerHeight);
+    const start = getComputedStyle(trigger).direction === 'rtl' ? anchor.right - bounds.width : anchor.left;
+    menuLeft = Math.max(left + 8, Math.min(start, right - bounds.width - 8));
+    menuTop = Math.max(top + 8, Math.min(anchor.bottom, bottom - bounds.height - 8));
+  }
+  function open(last = false) {
     if (!editable) return;
     bookmark = editor.state.selection.getBookmark(); shortcutReturn = false; menuOpen = true;
-    await tick(); surface?.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus();
+    typeahead = ''; clearTimeout(typeaheadTimer);
+    flushSync(); if (!menuOpen || !surface) return;
+    positionMenu(); const buttons = items(); focusItem(last ? buttons.at(-1) : buttons[0]);
   }
-  function run(action: TableMenuAction) {
-    if (!editable || !editor.isEditable || !controls) return;
+  function run(action: TableMenuAction, target: HTMLButtonElement) {
+    if (!editable || !editor.isEditable || !controls?.can[action[0]]) return;
     const before = editor.state.doc, state = controls;
-    if (runTableAction(editor, action[0])) {
+    const keepOpen = (action[0] === 'header-row' && state.headerRow !== 'mixed') ||
+      (action[0] === 'header-column' && state.headerColumn !== 'mixed');
+    running = true;
+    const changed = runTableAction(editor, action[0]);
+    if (changed) {
       const label = tableActionResult(action, state, !before.eq(editor.state.doc), translate);
-      if (label) onRun?.(label); void close('focus');
+      if (label) onRun?.(label);
+      if (keepOpen) { flushSync(); focusItem(target); }
+      else close('focus');
     }
+    running = false;
   }
   function insert(rows: number, columns: number, header: boolean) {
     if (!editable || !editor.isEditable) return;
@@ -68,15 +94,31 @@
   }
   function menuKeyboard(event: KeyboardEvent) {
     if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); void close('restore'); return; }
-    const items = [...surface.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')];
-    const index = items.indexOf(document.activeElement as HTMLButtonElement);
+    const buttons = items(), index = buttons.indexOf(document.activeElement as HTMLButtonElement);
     let next: number;
-    if (event.key === 'ArrowDown') next = (index + 1) % items.length;
-    else if (event.key === 'ArrowUp') next = (index - 1 + items.length) % items.length;
+    if (event.key === 'ArrowDown') next = (index + 1) % buttons.length;
+    else if (event.key === 'ArrowUp') next = (index - 1 + buttons.length) % buttons.length;
     else if (event.key === 'Home') next = 0;
-    else if (event.key === 'End') next = items.length - 1;
-    else return;
-    event.preventDefault(); event.stopPropagation(); items[next]?.focus();
+    else if (event.key === 'End') next = buttons.length - 1;
+    else if (event.key.length === 1 && !event.altKey && !event.ctrlKey && !event.metaKey && event.key !== ' ') {
+      typeahead += event.key.toLocaleLowerCase(); clearTimeout(typeaheadTimer);
+      typeaheadTimer = setTimeout(() => { typeahead = ''; }, 500);
+      const labels = buttons.map(button => button.textContent?.trim().toLocaleLowerCase() ?? '');
+      const repeated = typeahead.length > 1 && [...typeahead].every(char => char === typeahead[0]) &&
+        !labels.some(label => label.startsWith(typeahead));
+      if (repeated) typeahead = typeahead[0];
+      const start = typeahead.length > 1 ? index : index + 1;
+      next = -1;
+      for (let offset = 0; offset < buttons.length; offset++) {
+        const candidate = (Math.max(0, start) + offset) % buttons.length;
+        if (labels[candidate].startsWith(typeahead)) { next = candidate; break; }
+      }
+    } else return;
+    event.preventDefault(); event.stopPropagation(); focusItem(buttons[next]);
+  }
+  function triggerKeyboard(event: KeyboardEvent) {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+    event.preventDefault(); event.stopPropagation(); void open(event.key === 'ArrowUp');
   }
   onMount(() => {
     const shortcut = (event: KeyboardEvent) => {
@@ -88,24 +130,27 @@
       }
     };
     const outside = (event: Event) => {
-      if ((!menuOpen && !pickerOpen) || surface?.contains(event.target as Node) || trigger?.contains(event.target as Node)) return;
+      if (running || (!menuOpen && !pickerOpen) || surface?.contains(event.target as Node) || trigger?.contains(event.target as Node)) return;
       void close(null);
     };
     window.addEventListener('keydown', shortcut, true);
     document.addEventListener('pointerdown', outside, true); document.addEventListener('focusin', outside);
+    window.addEventListener('resize', positionMenu); window.addEventListener('scroll', positionMenu, true);
     return () => { window.removeEventListener('keydown', shortcut, true); document.removeEventListener('pointerdown', outside, true);
-      document.removeEventListener('focusin', outside); cancelAnimationFrame(pickerFrame); };
+      document.removeEventListener('focusin', outside); cancelAnimationFrame(pickerFrame); clearTimeout(typeaheadTimer);
+      window.removeEventListener('resize', positionMenu); window.removeEventListener('scroll', positionMenu, true); };
   });
 </script>
 
 {#if editable}
   <div class="table-control">
-    <button bind:this={trigger} type="button" aria-label={title} title={title} aria-haspopup="menu" aria-expanded={menuOpen}
+    <button bind:this={trigger} id={triggerId} type="button" aria-label={title} title={title} aria-haspopup="menu" aria-expanded={menuOpen}
       aria-keyshortcuts={more ? undefined : 'Alt+F10'} data-emdash-table-trigger={more ? undefined : ''}
       onmousedown={more ? undefined : event => event.preventDefault()} onblur={() => { shortcutReturn = false; }}
+      onkeydown={triggerKeyboard}
       onclick={() => { if (menuOpen) void close(null); else void open(); }}>{more ? '⋯' : '▦'}</button>
     {#if menuOpen}
-      <div bind:this={surface} role="menu" aria-label={translate(tableMessage('Table actions'))} tabindex="-1" class="table-menu" onkeydown={menuKeyboard}>
+      <div bind:this={surface} role="menu" aria-label={translate(tableMessage('Table actions'))} aria-labelledby={triggerId} tabindex="-1" class="table-menu" style:left={`${menuLeft}px`} style:top={`${menuTop}px`} onkeydown={menuKeyboard}>
         {#if more || inTable}
           {#if controls}
             <p class="selection-label">{selectedTableLabel(editor, controls, translate)}</p>
@@ -118,14 +163,15 @@
                   {@const header = id === 'header-row' || id === 'header-column'}
                   {@const checked = id === 'header-row' ? controls.headerRow : controls.headerColumn}
                   <button type="button" role={header ? 'menuitemcheckbox' : 'menuitem'} aria-checked={header ? checked : undefined}
+                    tabindex="-1" aria-disabled={!controls.can[id]}
                     data-emdash-header-checkbox={header && checked !== 'mixed' ? '' : undefined}
-                    class:danger={id === 'delete-table'} disabled={!controls.can[id]} onclick={() => run(action)}>{tableActionLabel(action, controls, translate)}{#if header && checked === 'mixed'}<span class="mixed">{translate(tableMessage('Mixed'))}</span>{/if}</button>
+                    class:danger={id === 'delete-table'} onclick={event => run(action, event.currentTarget)}>{tableActionLabel(action, controls, translate)}{#if header && checked === 'mixed'}<span class="mixed">{translate(tableMessage('Mixed'))}</span>{/if}</button>
                 {/each}
               </div>
             {/each}
           {/if}
         {:else}
-          <button type="button" role="menuitem" onclick={() => void close('picker')}>{translate(tableMessage('Insert table'))}</button>
+          <button type="button" role="menuitem" tabindex="-1" onclick={() => void close('picker')}>{translate(tableMessage('Insert table'))}</button>
         {/if}
       </div>
     {/if}
@@ -137,11 +183,13 @@
 
 <style>
   .table-control { position: relative; display: inline-flex; }
-  .table-menu, .table-popover { position: absolute; inset-block-start: 100%; inset-inline-start: 0; z-index: 30; border: 1px solid #d0d7e2; border-radius: .375rem; background: white; }
+  .table-menu, .table-popover { z-index: 101; border: 1px solid var(--color-kumo-line, #d0d7e2); border-radius: .375rem; background: var(--color-kumo-base, white); }
+  .table-menu { position: fixed; }
+  .table-popover { position: absolute; inset-block-start: 100%; inset-inline-start: 0; }
   .table-menu { min-width: 12rem; max-width: calc(100vw - 1rem); max-height: min(28rem, 50dvh); overflow-y: auto; padding: .25rem; font-size: .875rem; }
   .table-menu button { display: flex; align-items: center; width: 100%; gap: .5rem; text-align: start; padding: .35rem .5rem; border: 0; background: none; }
   .table-menu button:focus-visible { outline: 2px solid #2563eb; outline-offset: -2px; }
-  .table-menu button:disabled { opacity: .5; }
+  .table-menu button[aria-disabled="true"] { opacity: .5; }
   .group-label, .selection-label { margin: .2rem .5rem; font-size: .75rem; color: #526174; }
   .mixed { margin-inline-start: auto; font-size: .75rem; color: #526174; }
   .danger { color: #b42318; }
