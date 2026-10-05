@@ -707,5 +707,70 @@
     "freshAndConfiguredReview": "pending",
     "successorHeadNotInferredValidated": true,
     "publicPublication": "held pending exact diagnostic bundle authorization; no author merge or fullfeature credit"
+  },
+  "legacyCascadeReviewClosure": {
+    "reviewFinding": "RELREV01",
+    "testFirstHead": "7e630c7c",
+    "runtimeFixHead": "265567cf",
+    "refactorHead": "89f219c3bbf3e6ac82450b606bab34769f53a19e",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "scope": "owned relation cascade checks actual catalogue and drops retained legacy columns within unchanged existing atomicBatch; no shared Registry/auth/contracts/DDL1-15 alteration",
+    "firstRed": {
+      "registered": 6,
+      "passingControls": 3,
+      "reachedNativeValueReds": 3,
+      "preExpectationStops": 0,
+      "infrastructureStops": 0,
+      "failedRequirement": "persisted converted legacy TEXT column must be absent after actual relation cascade",
+      "slugReuseInitiallyUnreached": true,
+      "sourceCausalRedCredit": 0
+    },
+    "firstGreen": {
+      "registered": 6,
+      "passing": 6,
+      "actualSlugReusePassed": true,
+      "nodeRawScopedD1RollbackPassed": true
+    },
+    "refactor": {
+      "purpose": "resolve collection storage table once and reuse for real catalogue query and compiled DROP COLUMN",
+      "nativePassing": 19,
+      "wholeSourcePassingGroups": [
+        51,
+        33,
+        43
+      ],
+      "uniqueOriginalSourceCallbacks": 94,
+      "checkErrors": 0,
+      "checkWarnings": 0
+    },
+    "publicMutationSinceHold": false,
+    "old22DiagnosticBundleUnchanged": true,
+    "freshClosure": "pending exactcurrent successor review",
+    "currentPublicNormal13Secured9": "pending authorized publication and currenthead CI",
+    "fullContentLifecycle": "incomplete pending published sole Tax/content owner, originalthreefamilies0callbacks",
+    "originalPgWorkerdCredit": false,
+    "rawEvidence": {
+      "firstRed": {
+        "bytes": 6966,
+        "sha256": "5e87cccfecb57cd9f9ff2e91827418522855961b0dafb143c8e2958460225d3b"
+      },
+      "firstGreen": {
+        "bytes": 4645,
+        "sha256": "9af31b4f4e6d9d643e355eee1eb78751c0f8a6a6b2d9ed5f62e5ad1dc6cf75ae"
+      },
+      "refactorNative": {
+        "bytes": 10126,
+        "sha256": "956420db8f1a9786ed4960bf12672207c98097006ad270aabbd34892e6b8cb21"
+      },
+      "refactorSource": {
+        "bytes": 1033,
+        "sha256": "8a72fb715ee2665d5927597cc18d76e979d150a0b3dcf4c13ce0b835fbbb5c34"
+      },
+      "check": {
+        "bytes": 212,
+        "sha256": "a02e34957651134339b6f82bcb84d9478e78626cda3486d4378e32e7e822624f"
+      }
+    },
+    "rawEvidenceKeptLocallyForProjectManager": true
   }
 }
