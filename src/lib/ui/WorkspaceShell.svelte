@@ -53,6 +53,7 @@
     <a class="brand desktop-brand" href={homeHref}>Sveltery <span>CMS</span></a>
     <nav aria-label="Workspace">
       <a href={homeHref} aria-current={homeActive ? 'page' : undefined}>Content</a>
+      {#if navigationData.permissions.includes('content:read_drafts')}<a href={`${prefix}calendar`} aria-current={isItemActive(destinationPath(`${prefix}calendar`), path) ? 'page' : undefined}>Calendar</a>{/if}
       {#if entries.length}
         <h2>Collections</h2>
         {#each entries as entry}

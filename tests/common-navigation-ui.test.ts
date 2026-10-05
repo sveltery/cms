@@ -92,7 +92,22 @@ test('Redirects selection follows the current real route without requiring an ac
   assert.match(await links({ currentPath: '/redirects' }), /href="\/redirects"[^>]*aria-current="page"/);
 });
 test('missing feature routes remain absent even for an administrator', async () => {
-  assert.doesNotMatch(await links(), /href="\/(settings|media|blocks|users|plugins|bylines|calendar)"/);
+  assert.doesNotMatch(await links(), /href="\/(settings|media|blocks|users|plugins|bylines)"/);
+});
+test('installed Calendar is discoverable at the pinned contributor draft-read floor', async () => {
+  const html = await links({ navigation: { ...navigation, permissions: ['content:read', 'content:read_drafts'] } });
+  assert.match(html, /href="\/calendar"[^>]*>[^<]*Calendar/);
+});
+test('installed Calendar resolves the application base and remains selected on its real route', async () => {
+  const html = await links({ homeHref: '/cms/', currentPath: '/cms/calendar' });
+  assert.match(html, /href="\/cms\/calendar"[^>]*aria-current="page"/);
+  assert.doesNotMatch(html, /href="\/calendar"/);
+});
+test('installed Calendar is absent below the pinned contributor display floor', async () => {
+  for (const presentation of [
+    { authenticated: true, permissions: ['content:read'], collections: {} },
+    { authenticated: false, permissions: [], collections: {} },
+  ]) assert.doesNotMatch(await links({ navigation: presentation }), /href="\/calendar"/);
 });
 test('schema administration and visible collections remain reachable alongside common navigation', async () => {
   const html = await links();

@@ -465,6 +465,18 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections,references);
       return {item:await hydrate(item,collection.hasSeo),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length||references?.after.length)};
     },
+    /**
+     * Read-only key preparation for pinned Source schedule route52/74,104/127
+     * and publish route44/81/92. EmDash913cb1bb; MIT notices/emdash-MIT.txt.
+     * The existing writer repeats owner and CAS checks against this stored key.
+     */
+    async resolvePublicationKey(input:unknown):Promise<ContentKey&{locale:string}> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');
+      const value=key(input);value.locale=resolveConfiguredLocale(value.locale);
+      const item=await stored(value,object(input).locale===undefined,true);
+      owner(item,actor,'content:publish_any');
+      return {type:value.type,id:item.id,locale:parse(localeInput,item.locale)};
+    },
     async publish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
@@ -491,6 +503,22 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const actor=mutationPermission('content:publish_own','content:publish_any');const raw=object(input);const value=key(raw);
       const item=(await stored(value,raw.locale===undefined,true)).item;owner(item,actor,'content:publish_any');precondition(value.expected,item);
       return hydratedBylines(await translate(()=>content.unschedule(value.type,item.id,{version:item.version,updatedAt:item.updatedAt})));
+    },
+    /** Calendar administration delegates to the existing published repository. */
+    async schedule(input:unknown):Promise<ContentItem> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      // Pinned handleContentSchedule checks the existing routable slug before
+      // delegating to the repository, including rescheduling a cleared draft.
+      const collection=await definition(value.type);
+      if(collection.routable&&!item.slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
+      const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLength(128)),value.scheduledAt);
+      return translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt}));
+    },
+    async unschedule(input:unknown):Promise<ContentItem> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      return translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
     },
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
