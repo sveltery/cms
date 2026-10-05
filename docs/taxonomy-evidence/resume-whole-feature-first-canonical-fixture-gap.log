@@ -1,0 +1,52 @@
+$ pnpm test:taxonomy-source && pnpm test:taxonomy-native
+$ node scripts/check-taxonomy-source.mjs && node scripts/check-taxonomy-fixture-source.mjs && node scripts/check-taxonomy-reference-source.mjs && vitest run --config vitest.taxonomy-core-source.config.mts && vitest run --config vitest.taxonomy-match-source.config.ts
+{"wholeSourceFiles":99,"wholeFamilies":27,"declarations":310,"expectExpressions":815,"productTestsRun":0}
+Whole immutable taxonomy Source fixture runner closure: 99 files; no execution or provider parity credit
+{"wholeReferenceFiles":214,"additionalWholeFiles":61,"wholeCoreFamilies":22,"sourceCallbacksExecuted":0,"productTestsRun":0}
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+
+ Test Files  22 passed (22)
+      Tests  222 passed (222)
+   Start at  00:50:03
+   Duration  94.51s (transform 7.62s, setup 0ms, import 29.85s, tests 56.80s, environment 2ms)
+
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  00:51:39
+   Duration  808ms (transform 111ms, setup 0ms, import 180ms, tests 41ms, environment 0ms)
+
+$ vitest run --config vitest.taxonomy-native.config.ts && vitest run --config vitest.taxonomy-native-content-source.config.mts && vitest run --config vitest.taxonomy-runtime-regressions.config.mts && vitest run --config vitest.taxonomy-d1.config.ts && node --test tests/taxonomy-native/content-atomic.test.ts
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ❯ tests/taxonomy-native/source-locale-reference.test.mjs (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/taxonomy-native/source-locale-reference.test.mjs [ tests/taxonomy-native/source-locale-reference.test.mjs ]
+Error: Cannot find module '../../database/repositories/types.js' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts:5:1
+      3|
+      4| import { isPostgres } from "../../database/dialect-helpers.js";
+      5| import {
+       | ^
+      6|  decodeCursor,
+      7|  encodeCursor,
+ ❯ parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:31:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  10 passed (10)
+   Start at  00:51:41
+   Duration  9.48s (transform 4.62s, setup 0ms, import 2.76s, tests 1.75s, environment 0ms)
+
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

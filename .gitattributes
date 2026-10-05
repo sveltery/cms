@@ -1,5 +1,16 @@
 # Preserve the byte-exact original Node assertion-failure evidence.
 docs/d1-direct-fixture-evidence/native4-baseline.log -whitespace
+
+# Preserve exact original taxonomy runner EOF formatting only.
+docs/taxonomy-evidence/native10-baseline.log whitespace=-blank-at-eof
+docs/taxonomy-evidence/source-matcher15-baseline.log whitespace=-blank-at-eof
+docs/taxonomy-evidence/d1-native8-baseline.log whitespace=-blank-at-eof
+
+# Preserve literal trailing SQL whitespace in exactly three whole Source migrations.
+parity/emdash/taxonomies/source/packages/core/src/database/migrations/013_scheduled_publishing.ts whitespace=-blank-at-eol
+parity/emdash/taxonomies/source/packages/core/src/database/migrations/015_indexes.ts whitespace=-blank-at-eol
+parity/emdash/taxonomies/source/packages/core/src/database/migrations/019_i18n.ts whitespace=-blank-at-eol
+docs/taxonomy-evidence/source-support3-baseline.log whitespace=-blank-at-eof
 docs/receipts/runtime-port-lifecycle/baseline.log -whitespace
 docs/doctor-evidence/native12-baseline.log whitespace=-blank-at-eol
 docs/doctor-evidence/native13-baseline.log whitespace=-blank-at-eol
@@ -8,16 +19,12 @@ notices/jsonc-parser-3.3.1-MIT.txt whitespace=cr-at-eol
 docs/doctor-evidence/source-first-runtime.log whitespace=-blank-at-eof
 docs/doctor-evidence/source-refactor.log whitespace=-blank-at-eof
 
-# Preserve complete original search assertion-failure evidence.
-docs/search-evidence/whole70-baseline.log -whitespace
-docs/search-evidence/native6-baseline.log -whitespace
-docs/search-evidence/review8-baseline.log -whitespace
-docs/search-evidence/unknown-delete-baseline.log -whitespace
-docs/search-evidence/creator-initial-infra.log -whitespace
-docs/search-evidence/creator-second-infra.log -whitespace
-docs/search-evidence/creator-public41-baseline.log -whitespace
-docs/search-evidence/creator-pnpm-sync-failure.log -whitespace
-docs/search-evidence/creator-direct-sync.log -whitespace
-docs/search-evidence/public-c3-frozen-install.log -whitespace
-docs/search-evidence/sdk-constructor-native8-recovery.log whitespace=-blank-at-eof
-docs/search-evidence/sdk-constructor-render3-recovery.log whitespace=-blank-at-eof
+# Preserve exactly these whole taxonomy review-evidence raw formats.
+docs/taxonomy-evidence/ci478-normal-first-failure.log whitespace=-blank-at-eol
+docs/taxonomy-evidence/resume-first-reference-typecheck-gap.log whitespace=-blank-at-eol
+
+# Exact complete taxonomy integration raw evidence formats only.
+docs/taxonomy-evidence/ci482-normal-first-integration-failure.log whitespace=-blank-at-eol
+docs/taxonomy-evidence/integration-first-native-fixture-type-gap.log whitespace=-blank-at-eol
+docs/taxonomy-evidence/local38ad-normal-first-integration-failure.log whitespace=-blank-at-eol
+docs/taxonomy-evidence/worker-integration-current-baseline.log whitespace=-blank-at-eol

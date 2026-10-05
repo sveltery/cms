@@ -1,11 +1,12 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-// Whole runtime body from EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/database/repositories/taxonomy.ts; imports only adapted.
+// Source algorithms from EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/database/repositories/taxonomy.ts; imports and finite atomic write hosting adapted.
 import { sql, type Kysely, type Selectable } from "kysely";
 import { ulid } from "ulidx";
 
 import { invalidateTaxonomyObjectCache } from "../menus/object-cache.ts";
 import { slugify } from "./slugify.ts";
-import { withTransaction } from "../menus/transaction.ts";
+import { executeTaxonomyWritePlan } from "./write-plan.ts";
+import type { RawBuilder } from "kysely";
 import type { Database, TaxonomyTable } from "../canonical-storage/types.ts";
 import { validateIdentifier } from "../menus/validate.ts";
 
@@ -149,8 +150,15 @@ export interface TaxonomyAssignmentResolution {
  * is locale-agnostic for the same reason (it stores the parent's
  * translation_group). Writes must preserve both invariants.
  */
+// Every row contributes three bindings; finite D1 plans keep each statement
+// at or below the existing 96-binding adapter limit, in one actual batch.
+function chunks<T>(values:readonly T[],size:number):T[][] {
+ const result:T[][]=[];for(let offset=0;offset<values.length;offset+=size)result.push(values.slice(offset,offset+size));return result;
+}
+
 export class TaxonomyRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+	constructor(db: Kysely<Database>) { this.db = db; }
 
 	/**
 	 * Create a new taxonomy term. When `translationOf` is set the new row joins
@@ -188,8 +196,8 @@ export class TaxonomyRepository {
 		}
 		sortOrder ??= await this.nextSortOrder(input.name, parentId);
 
-		await withTransaction(this.db, async (trx) => {
-			await trx
+		await executeTaxonomyWritePlan(this.db, (trx) => [
+			trx
 				.insertInto("taxonomies")
 				.values({
 					id,
@@ -204,16 +212,12 @@ export class TaxonomyRepository {
 					// supply an explicit locale from request context.
 					...(input.locale !== undefined ? { locale: input.locale } : {}),
 					translation_group: translationGroup,
-				})
-				.execute();
-			if (movesGroup) {
-				await trx
+				}),
+			...(movesGroup ? [trx
 					.updateTable("taxonomies")
 					.set({ parent_id: parentId, sort_order: sortOrder })
-					.where("translation_group", "=", translationGroup)
-					.execute();
-			}
-		});
+					.where("translation_group", "=", translationGroup)] : []),
+		]);
 
 		invalidateTaxonomyObjectCache();
 
@@ -455,18 +459,11 @@ export class TaxonomyRepository {
 		const hasRowUpdates = Object.keys(updates).length > 0;
 		const hasGroupUpdates = Object.keys(group).length > 0;
 		if (hasRowUpdates || hasGroupUpdates) {
-			await withTransaction(this.db, async (trx) => {
-				if (hasRowUpdates) {
-					await trx.updateTable("taxonomies").set(updates).where("id", "=", id).execute();
-				}
-				if (hasGroupUpdates) {
-					await trx
-						.updateTable("taxonomies")
-						.set(group)
-						.where("translation_group", "=", existing.translationGroup ?? existing.id)
-						.execute();
-				}
-			});
+			await executeTaxonomyWritePlan(this.db, (trx) => [
+				...(hasRowUpdates ? [trx.updateTable("taxonomies").set(updates).where("id", "=", id)] : []),
+				...(hasGroupUpdates ? [trx.updateTable("taxonomies").set(group)
+					.where("translation_group", "=", existing.translationGroup ?? existing.id)] : []),
+			]);
 			invalidateTaxonomyObjectCache();
 		}
 
@@ -520,11 +517,13 @@ export class TaxonomyRepository {
 	 * Write one position per translation_group, GROUPS_PER_UPDATE at a time so
 	 * each statement stays inside D1's parameter ceiling.
 	 *
-	 * D1 has no transactions — `withTransaction` runs its callback bare there —
-	 * so a chunk is the unit that can't tear. A reorder spanning several chunks
-	 * can, and leaves ties, which the next reorder renumbers away.
+	 * The pinned Source executes chunks separately. Native hosting compiles the
+	 * complete finite list and commits it in one actual atomic batch, including
+	 * on D1; a failed later chunk rolls back earlier chunks.
 	 */
 	private async applyPositions(positions: readonly (readonly [string, number])[]): Promise<void> {
+		await executeTaxonomyWritePlan(this.db, (db) => {
+		const statements: RawBuilder<unknown>[] = [];
 		for (let index = 0; index < positions.length; index += GROUPS_PER_UPDATE) {
 			const chunk = positions.slice(index, index + GROUPS_PER_UPDATE);
 			// The CAST types the bound position. Postgres resolves a CASE whose THEN
@@ -535,14 +534,16 @@ export class TaxonomyRepository {
 				sql` `,
 			);
 			const keys = sql.join(chunk.map(([group]) => sql`${group}`));
-			await sql`
+			statements.push(sql`
 				UPDATE taxonomies
 				SET sort_order = CASE translation_group ${arms} END
 				WHERE translation_group IN (${keys})
-			`.execute(this.db);
+			`);
 		}
-	}
 
+		return statements;
+		});
+	}
 	/**
 	 * Position for a term joining a sibling group: one past the last member, or
 	 * 0 when the group is empty.
@@ -588,27 +589,18 @@ export class TaxonomyRepository {
 	async delete(id: string): Promise<boolean> {
 		const term = await this.findById(id);
 		if (!term) return false;
-
-		// When deleting the last translation of a group the pivot rows that
-		// reference that translation_group become orphaned — purge them.
+		let cleanup = false;
 		if (term.translationGroup) {
-			const siblings = await this.db
-				.selectFrom("taxonomies")
-				.select("id")
-				.where("translation_group", "=", term.translationGroup)
-				.where("id", "!=", id)
-				.execute();
-			if (siblings.length === 0) {
-				await this.db
-					.deleteFrom("content_taxonomies")
-					.where("taxonomy_id", "=", term.translationGroup)
-					.execute();
-			}
+			const siblings = await this.db.selectFrom("taxonomies").select("id")
+				.where("translation_group", "=", term.translationGroup).where("id", "!=", id).execute();
+			cleanup = siblings.length === 0;
 		}
-
-		const result = await this.db.deleteFrom("taxonomies").where("id", "=", id).executeTakeFirst();
+		const results = await executeTaxonomyWritePlan(this.db, (db) => [
+			...(cleanup ? [db.deleteFrom("content_taxonomies").where("taxonomy_id", "=", term.translationGroup!)] : []),
+			db.deleteFrom("taxonomies").where("id", "=", id),
+		]);
 		invalidateTaxonomyObjectCache();
-		return (result.numDeletedRows ?? 0n) > 0n;
+		return (results.at(-1)?.numAffectedRows ?? 0n) > 0n;
 	}
 
 	// --- Content-Taxonomy Junction (both ids store translation_groups) ---
@@ -633,18 +625,11 @@ export class TaxonomyRepository {
 		const entryGroup = await this.resolveEntryTranslationGroup(collection, entryId);
 		if (!entryGroup) return 0;
 
-		const result = await this.db
+		const results = await executeTaxonomyWritePlan(this.db, (db) => chunks(uniqueGroups,32).map(groups=>db
 			.insertInto("content_taxonomies")
-			.values(
-				uniqueGroups.map((taxonomy_id) => ({
-					collection,
-					entry_id: entryGroup,
-					taxonomy_id,
-				})),
-			)
-			.onConflict((oc) => oc.doNothing())
-			.executeTakeFirst();
-		const inserted = Number(result.numInsertedOrUpdatedRows ?? 0n);
+			.values(groups.map(taxonomy_id=>({collection,entry_id:entryGroup,taxonomy_id})))
+			.onConflict(oc=>oc.doNothing())));
+		const inserted = results.reduce((total,result)=>total+Number(result.numAffectedRows??0n),0);
 		if (inserted > 0) invalidateTaxonomyObjectCache();
 		return inserted;
 	}
@@ -656,12 +641,12 @@ export class TaxonomyRepository {
 		]);
 		if (!entryGroup || !taxonomyGroup) return;
 
-		await this.db
+		await executeTaxonomyWritePlan(this.db, (db) => [db
 			.deleteFrom("content_taxonomies")
 			.where("collection", "=", collection)
 			.where("entry_id", "=", entryGroup)
 			.where("taxonomy_id", "=", taxonomyGroup)
-			.execute();
+		]);
 		invalidateTaxonomyObjectCache();
 	}
 
@@ -676,13 +661,12 @@ export class TaxonomyRepository {
 		const entryGroup = await this.resolveEntryTranslationGroup(collection, entryId);
 		if (!entryGroup) return 0;
 
-		const result = await this.db
+		const results = await executeTaxonomyWritePlan(this.db, (db) => chunks(uniqueGroups,94).map(groups=>db
 			.deleteFrom("content_taxonomies")
 			.where("collection", "=", collection)
 			.where("entry_id", "=", entryGroup)
-			.where("taxonomy_id", "in", uniqueGroups)
-			.executeTakeFirst();
-		const removed = Number(result.numDeletedRows ?? 0n);
+			.where("taxonomy_id", "in", groups)));
+		const removed = results.reduce((total,result)=>total+Number(result.numAffectedRows??0n),0);
 		if (removed > 0) invalidateTaxonomyObjectCache();
 		return removed;
 	}
@@ -794,28 +778,16 @@ export class TaxonomyRepository {
 		const currentGroups = new Set(current.map((r) => r.group));
 
 		const toRemove = [...currentGroups].filter((g) => !newGroups.has(g));
-		if (toRemove.length > 0) {
-			await this.db
-				.deleteFrom("content_taxonomies")
-				.where("collection", "=", collection)
-				.where("entry_id", "=", entryGroup)
-				.where("taxonomy_id", "in", toRemove)
-				.execute();
-		}
-
 		const toAdd = [...newGroups].filter((g) => !currentGroups.has(g));
-		if (toAdd.length > 0) {
-			await this.db
-				.insertInto("content_taxonomies")
-				.values(
-					toAdd.map((taxonomy_id) => ({
-						collection,
-						entry_id: entryGroup,
-						taxonomy_id,
-					})),
-				)
-				.onConflict((oc) => oc.doNothing())
-				.execute();
+		if (toRemove.length > 0 || toAdd.length > 0) {
+			await executeTaxonomyWritePlan(this.db, (db) => [
+				...chunks(toRemove,94).map(groups=>db.deleteFrom("content_taxonomies")
+					.where("collection", "=", collection).where("entry_id", "=", entryGroup)
+					.where("taxonomy_id", "in", groups)),
+				...chunks(toAdd,32).map(groups=>db.insertInto("content_taxonomies")
+					.values(groups.map(taxonomy_id=>({collection,entry_id:entryGroup,taxonomy_id})))
+					.onConflict(oc=>oc.doNothing())),
+			]);
 		}
 
 		if (toRemove.length > 0 || toAdd.length > 0) invalidateTaxonomyObjectCache();
@@ -833,12 +805,12 @@ export class TaxonomyRepository {
 	 * row has been deleted.
 	 */
 	async clearEntryGroupTerms(collection: string, entryGroup: string): Promise<number> {
-		const result = await this.db
+		const [result] = await executeTaxonomyWritePlan(this.db, (db) => [db
 			.deleteFrom("content_taxonomies")
 			.where("collection", "=", collection)
 			.where("entry_id", "=", entryGroup)
-			.executeTakeFirst();
-		const removed = Number(result.numDeletedRows ?? 0);
+		]);
+		const removed = Number(result.numAffectedRows ?? 0);
 		if (removed > 0) invalidateTaxonomyObjectCache();
 		return removed;
 	}
