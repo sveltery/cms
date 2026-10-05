@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { useCalendarMessages } from './message-context.svelte.ts';
+  const t = useCalendarMessages();
   // EmDash1.1.0 CalendarEntry row/chip behavior, pin913cb1bb; MIT.
   import { base } from '$app/paths';
   import { getContext,onDestroy } from 'svelte';
@@ -24,15 +26,15 @@
   aria-describedby={tooltipOpen?tooltipId:undefined} onpointerenter={hoverTooltip} onpointermove={event=>{if(chip)hover.move(event.pointerType,event.movementX,event.movementY);}} onpointerleave={leaveTooltip} onfocus={event=>{if(chip&&event.currentTarget.matches(':focus-visible'))hover.focus();}} onblur={hideTooltip} onkeydown={event=>{if(event.key==='Escape'&&tooltipOpen){event.preventDefault();event.stopPropagation();hideTooltip();}}}
   onclick={event => {hideTooltip();if (onSelect && isPlainClick(event)) { event.preventDefault(); onSelect(item, event.currentTarget); } }}>
   <span class="time">{display.formatTime(item.time)}</span><span dir="auto" class="title">{item.title}</span>
-  <span class="state">{stateLabels[item.state]}</span>
-  {#if item.state === 'overdue'}<span class="note">{chip ? `${formatShortDuration(now-item.time, display.locale)} late` : `Overdue · ${formatTimeAgo(now-item.time, display.locale)}`}</span>
-  {:else if item.state === 'update'}<span class="note" aria-hidden="true">Update</span>{/if}
+  <span class="state">{chip&&item.state==='published'?t("{state}, {time}:",{state:t(stateLabels[item.state]),time:display.formatTime(item.time)}):t(stateLabels[item.state])}</span>
+  {#if item.state === 'overdue'}<span class="note">{chip ? t("{lateness} late",{lateness:formatShortDuration(now-item.time,display.locale)}) : t("Overdue · {lateness}",{lateness:formatTimeAgo(now-item.time,display.locale)})}</span>
+  {:else if item.state === 'update'}<span class="note" aria-hidden="true">{t("Update")}</span>{/if}
   {#if !chip}<span class="collection">{display.collection(item.collection).label}</span>{/if}
   {#if display.showLocale}<span class="locale">{new Intl.DisplayNames([display.locale], {type:'language'}).of(item.locale)}</span>{/if}
   {#if display.viewerZoneDiffers && !chip}<span class="viewer">{display.formatViewerTime(item.time)}</span>{/if}
 </a>
 {#if tooltipOpen}<div bind:this={tooltip} id={tooltipId} role="tooltip" popover="manual" class="entry-tooltip" class:below style:left={`${left}px`} style:top={`${top}px`} onpointerleave={leaveTooltip}>
-  <strong dir="auto">{item.title}</strong><span>{stateLabels[item.state]} · {display.formatDateTime(item.time)}</span>{#if display.viewerZoneDiffers}<span>Your time: {display.formatViewerTime(item.time)}</span>{/if}<span>{display.collection(item.collection).label}{#if display.showLocale} · {new Intl.DisplayNames([display.locale],{type:'language'}).of(item.locale)}{/if}</span>
+  <strong dir="auto">{item.title}</strong><span>{t("{state} · {when}",{state:t(stateLabels[item.state]),when:display.formatDateTime(item.time)})}</span>{#if display.viewerZoneDiffers}<span>{t("Your time: {viewerTime}",{viewerTime:display.formatViewerTime(item.time)})}</span>{/if}<span>{display.collection(item.collection).label}{#if display.showLocale} · {new Intl.DisplayNames([display.locale],{type:'language'}).of(item.locale)}{/if}</span>
 </div>{/if}
 <style>
   a { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; padding:.45rem .5rem; border-radius:.35rem; text-decoration:none; font-size:.875rem; }

@@ -1,22 +1,25 @@
 <script lang="ts">
+  import { useCalendarMessages } from './message-context.svelte.ts';
+  const t = useCalendarMessages();
   // PublishingScheduleDialog context/submission behavior, EmDash1.1.0
   // pin913cb1bb; MIT notices/emdash-MIT.txt. Native browser dialog transport.
   import { untrack } from 'svelte';
+  import { calendarMutationError, type CalendarInlineError } from './mutation-error.ts';
   import Fields from '../ui/PublishingDateTimeFields.svelte';
   import { publishingInstantToLocalFields,publishingFieldsMatchInstant,serializeFuturePublishingDateTime } from '../ui/publishing-datetime.ts';
   let { open,entryKey,scheduledAt=null,isLive=false,isPending=false,locale='en',onOpenChange,onSchedule }: {
     open:boolean;entryKey:string;scheduledAt?:string|null;isLive?:boolean;isPending?:boolean;locale?:string;
     onOpenChange:(open:boolean)=>void;onSchedule:(at:string)=>void|Promise<void>;
   }=$props();
-  let date=$state<Date>(),time=$state(''),validationError=$state<string>(),mutationError=$state<string>(),submitting=$state(false),dialog=$state<HTMLDialogElement>();
+  let date=$state<Date>(),time=$state(''),validationError=$state<string>(),mutationError=$state<CalendarInlineError|null>(),submitting=$state(false),dialog=$state<HTMLDialogElement>();
   let generation=0,activeSubmission:{entryKey:string;generation:number}|null=null,returnFocus:HTMLElement|null=null;
   const pending=$derived(isPending||submitting),isEditing=$derived(Boolean(scheduledAt));
   // Parent entry objects can refresh without changing the schedule context.
   // Only changed primitive entry/date values reset an in-progress form.
   const resetContext=$derived(JSON.stringify([entryKey,scheduledAt]));
-  const title=$derived(isEditing?'Change schedule':isLive?'Schedule changes':'Schedule publication');
-  const description=$derived(isLive?'Choose when these changes replace the live version.':isEditing?'Choose a new publication time for this draft.':'Choose when this draft becomes public.');
-  const submitLabel=$derived(isEditing?'Save schedule':isLive?'Schedule changes':'Schedule');
+  const title=$derived(isEditing?t("Change schedule"):isLive?t("Schedule changes"):t("Schedule publication"));
+  const description=$derived(isLive?t("Choose when these changes replace the live version."):isEditing?t("Choose a new publication time for this draft."):t("Choose when this draft becomes public."));
+  const submitLabel=$derived(isEditing?t("Save schedule"):isLive?t("Schedule changes"):t("Schedule"));
   function clearError(){validationError=undefined;mutationError=undefined;}
   function reset(){const fields=publishingInstantToLocalFields(scheduledAt);date=fields.date;time=fields.time;clearError();}
   $effect(()=>{resetContext;generation++;activeSubmission=null;submitting=false;untrack(reset);});
@@ -29,17 +32,17 @@
     if(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))return;
     clearError();const submission={entryKey,generation:++generation};activeSubmission=submission;submitting=true;
     try{await onSchedule(result.value);if(entryKey===submission.entryKey&&generation===submission.generation){reset();onOpenChange(false);}}
-    catch(error){if(entryKey===submission.entryKey&&generation===submission.generation)mutationError=error instanceof Error?error.message:'Request failed';}
+    catch(error){if(entryKey===submission.entryKey&&generation===submission.generation)mutationError=calendarMutationError(error);}
     finally{if(activeSubmission===submission)activeSubmission=null;if(entryKey===submission.entryKey&&generation===submission.generation)submitting=false;}
   }
 </script>
 <dialog bind:this={dialog} closedby="any" aria-labelledby="calendar-schedule-title" aria-describedby="calendar-schedule-description" oncancel={event=>{event.preventDefault();changeOpen(false);}}>
-  <div class="heading"><h2 id="calendar-schedule-title">{title}</h2><button type="button" aria-label="Close" onclick={()=>changeOpen(false)}>×</button></div>
+  <div class="heading"><h2 id="calendar-schedule-title">{title}</h2><button type="button" aria-label={t("Close")} onclick={()=>changeOpen(false)}>×</button></div>
   <p id="calendar-schedule-description">{description}</p>
   <form novalidate onsubmit={event=>{event.preventDefault();event.stopPropagation();void submit();}}>
-    <Fields {date} {time} {locale} disabled={pending} restrictToFuture dateAriaLabel="Schedule date" onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
-    {#if validationError||mutationError}<p role="alert">{validationError??mutationError}</p>{/if}
-    <footer><button type="button" onclick={()=>changeOpen(false)}>Cancel</button><button type="submit" disabled={pending||(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))}>{pending?'Saving…':submitLabel}</button></footer>
+    <Fields {date} {time} {locale} disabled={pending} restrictToFuture dateAriaLabel={t("Schedule date")} onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
+    {#if validationError||mutationError}<p role="alert">{validationError??(typeof mutationError==='string'?mutationError:mutationError?t(mutationError.message):undefined)}</p>{/if}
+    <footer><button type="button" onclick={()=>changeOpen(false)}>{t("Cancel")}</button><button type="submit" disabled={pending||(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))}>{submitLabel}</button></footer>
   </form>
 </dialog>
 <style>

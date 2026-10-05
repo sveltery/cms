@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { useCalendarMessages } from './message-context.svelte.ts';
+  const t = useCalendarMessages();
   // EmDash1.1.0 CalendarDayList ordering/now boundary, pin913cb1bb; MIT.
   import Entry from './CalendarEntry.svelte';
   import type { DayListProps } from './ui-types.ts';
   let { items, display, now, label, nowAt, selectedKey, onSelect }: DayListProps = $props();
 </script>
-{#snippet line()}<li class="now">Now · {display.formatTime(now)}</li>{/snippet}
+{#snippet line()}<li class="now">{t("Now · {time}",{time:display.formatTime(now)})}</li>{/snippet}
 <ul aria-label={label}>
   {#each items as item, index (item.key)}
     {#if index === nowAt}{@render line()}{/if}
