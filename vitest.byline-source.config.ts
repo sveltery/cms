@@ -13,6 +13,10 @@ export default defineConfig({
     const target = path.resolve(path.dirname(importer), id).replaceAll(path.sep, '/');
     const key = path.relative(source, target).replaceAll(path.sep, '/');
     const imports: Record<string, string> = {
+      'src/astro/routes/api/admin/byline-fields/index.js': path.join(helpers, 'reference-field-routes.ts'),
+      'src/astro/routes/api/admin/byline-fields/[slug].js': path.join(helpers, 'reference-field-routes.ts'),
+      'src/astro/routes/api/admin/byline-fields/[slug]/usage.js': path.join(helpers, 'reference-field-usage.ts'),
+      'src/astro/routes/api/admin/byline-fields/reorder.js': path.join(helpers, 'reference-field-reorder.ts'),
       'src/database/repositories/types.js': path.join(native, 'repository-types.ts'),
       'src/database/repositories/byline.js': path.join(native, 'repository.ts'),
       'src/schema/byline-registry.js': path.join(native, 'schema.ts'),
@@ -36,6 +40,9 @@ export default defineConfig({
     'parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts',
     'parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts',
     'parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts',
-    'parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts'
+    'parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts',
+    'parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/field-defs-cache.test.ts',
+    'parity/emdash/byline-source/upstream/packages/core/tests/integration/database/byline-fields-races.test.ts',
+    'parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts'
   ] }
 });

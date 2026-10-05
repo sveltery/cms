@@ -1,0 +1,85 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ tests/bylines/atomic-workflow.test.ts (6 tests | 5 failed) 1646ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits 84ms
+     × rolls back a failing replacement of ordered credits including the primary pointer 45ms
+     × persists translated profiles, canonical custom fields and strict locale credits 1113ms
+     × rolls back a failing replacement of ordered credits including the primary pointer 120ms
+     × persists translated profiles, canonical custom fields and strict locale credits 134ms
+     × rolls back a failing replacement of ordered credits including the primary pointer 147ms
+ ✓ tests/bylines/canonical-storage.test.ts (2 tests) 103ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > Node > rolls back a failing replacement of ordered credits including the primary pointer
+AssertionError: expected [ { …(2) } ] to deeply equal [ { …(2) } ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "byline_id": "01M44VASVX9STH78H6JXDZ0PNC",
++     "byline_id": "01M44VASVY9Y4X2FVK6TK2CW9R",
+      "sort_order": 0,
+    },
+  ]
+
+ ❯ tests/bylines/atomic-workflow.test.ts:63:17
+     61|    await expect(repo.setContentBylines('post','entry',[{bylineId:first…
+     62|    const rows=(await sql<{byline_id:string;sort_order:number}>`SELECT …
+     63|    expect(rows).toEqual([{byline_id:old.translationGroup,sort_order:0}…
+       |                 ^
+     64|    const pointer=(await sql<{primary_byline_id:string}>`SELECT primary…
+     65|    expect(pointer).toBe(old.translationGroup);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > raw D1 > persists translated profiles, canonical custom fields and strict locale credits
+ FAIL  tests/bylines/atomic-workflow.test.ts > serialized D1 dialect > persists translated profiles, canonical custom fields and strict locale credits
+AssertionError: canonical byline writes must be available: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/bylines/atomic-workflow.test.ts:40:64
+     38|     const fr=await repo.create({slug:'writer',displayName:'Auteur',loc…
+     39|    } catch(error){failure=error;}
+     40|    expect(failure,'canonical byline writes must be available').toBeNul…
+       |                                                                ^
+     41|    expect((await repo.findById(translated!))?.customFields).toEqual({j…
+     42|    const registry=new SchemaRegistry(f.database);await registry.create…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > raw D1 > rolls back a failing replacement of ordered credits including the primary pointer
+ FAIL  tests/bylines/atomic-workflow.test.ts > serialized D1 dialect > rolls back a failing replacement of ordered credits including the primary pointer
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:64:51
+     62|   async releaseConnection() {}
+     63|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     64|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     65|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     66|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:776:3
+ ❯ tests/bylines/atomic-workflow.test.ts:56:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  5 failed | 3 passed (8)
+   Start at  01:37:24
+   Duration  3.56s (transform 621ms, setup 0ms, import 1.35s, tests 1.75s, environment 0ms)
+
+JSON report written to /tmp/byline-native-atomic-initial.json

@@ -1,4 +1,5 @@
 /** Genuine separate Source fixture: never called by native startup. */
+import { describe } from 'vitest';
 import { Kysely, SqliteDialect, sql } from 'kysely';
 import { ulid } from 'ulidx';
 import { openNodeSqliteDatabase } from '../../../src/lib/server/database/node-sqlite-compat.ts';
@@ -53,3 +54,10 @@ export async function setupTestDatabaseWithCollections() {
   return db;
 }
 export async function teardownTestDatabase(db:Kysely<Database>|undefined) { if(db)await db.destroy(); }
+
+export interface DialectTestContext {db:Kysely<Database>;dialect:'sqlite'}
+export async function setupForDialect(dialect:'sqlite'):Promise<DialectTestContext> { return {db:await setupTestDatabase(),dialect}; }
+export async function teardownForDialect(context:DialectTestContext|undefined) {await teardownTestDatabase(context?.db);}
+
+/** Exact Source SQLite expansion; absent PostgreSQL is unconfigured/zero credit. */
+export function describeEachDialect(name:string,run:(dialect:'sqlite')=>void) {describe(name+' [genuine Source Node SQLite fixture]',()=>run('sqlite'));}
