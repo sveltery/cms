@@ -58,6 +58,14 @@ for(const target of ['Node SQLite','raw workerd D1'] as const){
    assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
   }}finally{await f.close();}
  });
+ test(`${target}: update returns exactly the original stored-profile mutation projection`,async()=>{
+  const f=await fixture();try{
+   const response=await update(f.context(f.author.id,{name:'Changed'}));assert.equal(response.status,200);
+   const item=(await response.json()).data.item;
+   assert.deepEqual(Object.keys(item).sort(),['id','email','name','avatarUrl','role','emailVerified','disabled','createdAt','updatedAt'].sort());
+   assert.equal(item.name,'Changed');assert.equal(item.id,f.author.id);
+  }finally{await f.close();}
+ });
  test(`${target}: shared request validation exposes the original structured issue details`,async()=>{
   const f=await fixture();try{
    const query=f.context();query.url.searchParams.set('limit','0');
