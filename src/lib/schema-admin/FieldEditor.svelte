@@ -18,6 +18,8 @@
     ['reference','Reference','Link to another content item'],['json','JSON','Arbitrary JSON data'],
     ['slug','Slug','URL-friendly identifier'],['url','URL','Web address'],['repeater','Repeater','Repeating group of fields'],['blocks','Blocks','Ordered content blocks']
   ];
+  // Pinned FieldEditor UI menu; importing $lib/server metadata into the browser is forbidden.
+  const repeaterTypes = ['string','text','number','integer','boolean','datetime','select','url','image'].map(value => types.find(type => type[0] === value)!);
   const searchableTypes = new Set(['string','text','portableText','slug','url']);
   const indexedTypes = new Set(['string','url','number','integer','boolean','datetime','select','slug']);
   let step = $state(untrack(() => (field ? 'config' : 'type'))), selectedType = $state(untrack(() => (field?.type ?? '')));
@@ -61,7 +63,7 @@
   }
   function chooseRelation(value: string) { relation = value; relationSide = sides(candidates.find(rel => rel.slug === value) ?? {boundFields:[]})[0] ?? 'parent'; nameRelation(candidates.find(rel => rel.slug === value), relationSide); }
   async function save() {
-    if (!selectedType || !label || !slug) return;
+    if (!selectedType || !label || !slug || (selectedType === 'repeater' && !subFields.length)) return;
     if (selectedType === 'reference' && !relation && !targetCollection) { error = 'A referenced collection is required'; return; }
     const validation: Record<string, unknown> = {};
     if (['string','text','slug'].includes(selectedType)) { if (minLength) validation.minLength = parseInt(minLength,10); if (maxLength) validation.maxLength = parseInt(maxLength,10); if (pattern) validation.pattern = pattern; }
@@ -115,18 +117,18 @@
           {#if searchableTypes.has(selectedType)}<label><input type="checkbox" bind:checked={searchable} />Searchable</label>{/if}
           {#if indexedTypes.has(selectedType)}<label><input type="checkbox" bind:checked={indexed} />Indexed</label>{/if}
           {#if ['string','text','slug','number','integer'].includes(selectedType)}<h3>Validation</h3>{/if}
-          {#if ['string','text','slug'].includes(selectedType)}<label>Min Length<input bind:value={minLength} type="number" /></label><label>Max Length<input bind:value={maxLength} type="number" /></label>{/if}
+          {#if ['string','text','slug'].includes(selectedType)}<label>Min Length<input value={minLength} oninput={event => minLength = event.currentTarget.value} type="number" /></label><label>Max Length<input value={maxLength} oninput={event => maxLength = event.currentTarget.value} type="number" /></label>{/if}
           {#if ['string','slug'].includes(selectedType)}<label>Pattern (Regex)<input bind:value={pattern} /></label>{/if}
-          {#if ['number','integer'].includes(selectedType)}<label>Min Value<input bind:value={min} type="number" /></label><label>Max Value<input bind:value={max} type="number" /></label>{/if}
+          {#if ['number','integer'].includes(selectedType)}<label>Min Value<input value={min} oninput={event => min = event.currentTarget.value} type="number" /></label><label>Max Value<input value={max} oninput={event => max = event.currentTarget.value} type="number" /></label>{/if}
           {#if ['select','multiSelect'].includes(selectedType)}<label>Options (one per line)<textarea bind:value={options} placeholder="Option 1"></textarea></label>{/if}
           {#if selectedType === 'reference' && !selectedRelation}<label><input type="checkbox" bind:checked={multiple} />Allow multiple</label>{/if}
           {#if ['file','image'].includes(selectedType)}<h3>Allowed types</h3><label>MIME types<textarea value={allowedMimeTypes.join('\n')} oninput={event => allowedMimeTypes = event.currentTarget.value.split('\n').map(value => value.trim()).filter(Boolean)}></textarea></label>{#each allowedMimeTypes as mime}<span>{mime}</span>{/each}{/if}
           {#if selectedType === 'image'}<label><input role="switch" type="checkbox" bind:checked={darkVariant} />Dark mode variant</label>{/if}
           {#if selectedType === 'repeater'}
-            {#each subFields as subField,index}<fieldset><label>Sub-field label<input bind:value={subField.label} /></label><label>Sub-field slug<input bind:value={subField.slug} /></label><label>Sub-field type<select bind:value={subField.type}>{#each types.filter(type => !['repeater','blocks','reference'].includes(type[0])) as type}<option value={type[0]}>{type[1]}</option>{/each}</select></label><label><input type="checkbox" bind:checked={subField.required} />Required</label><button type="button" onclick={() => subFields = subFields.filter((_,i) => i !== index)}>Remove sub-field</button></fieldset>{/each}
+            {#each subFields as subField,index}<fieldset><label>Sub-field label<input bind:value={subField.label} /></label><label>Sub-field slug<input bind:value={subField.slug} /></label><label>Sub-field type<select bind:value={subField.type}>{#each repeaterTypes as type}<option value={type[0]}>{type[1]}</option>{/each}</select></label><label><input type="checkbox" bind:checked={subField.required} />Required</label><button type="button" onclick={() => subFields = subFields.filter((_,i) => i !== index)}>Remove sub-field</button></fieldset>{/each}
             <button type="button" onclick={() => subFields = [...subFields,{slug:'',label:'',type:'string',required:false}]}>Add sub-field</button>
           {/if}
-          {#if ['repeater','blocks'].includes(selectedType)}<label>Minimum {selectedType === 'blocks' ? 'blocks' : 'items'}<input bind:value={minItems} type="number" /></label><label>Maximum {selectedType === 'blocks' ? 'blocks' : 'items'}<input bind:value={maxItems} type="number" /></label>{/if}
+          {#if ['repeater','blocks'].includes(selectedType)}<label>Minimum {selectedType === 'blocks' ? 'blocks' : 'items'}<input value={minItems} oninput={event => minItems = event.currentTarget.value} type="number" /></label><label>Maximum {selectedType === 'blocks' ? 'blocks' : 'items'}<input value={maxItems} oninput={event => maxItems = event.currentTarget.value} type="number" /></label>{/if}
           {#if selectedType === 'blocks'}
             {#each blockTypes as block}<fieldset><label><input type="checkbox" checked={allowedTypes.includes(block.slug)} onchange={event => allowedTypes = event.currentTarget.checked ? [...allowedTypes,block.slug] : allowedTypes.filter(value => value !== block.slug)} />{block.label}</label>{#each block.versions as version}<p>{version.active ? `Active v${version.version}` : `v${version.version}`}</p><span>{version.fingerprint.split(':').at(-1).slice(0,8)}</span>{/each}</fieldset>{/each}
           {/if}
@@ -136,7 +138,7 @@
     {#if error}<p role="alert">{error}</p>{/if}
     <footer><button type="button" disabled={isSaving} onclick={() => onOpenChange(false)}>Cancel</button>
       {#if relation === 'create:relation' && selectedType === 'reference'}<button type="button" onclick={() => step = 'relation'}>Next</button>
-      {:else if step === 'config'}<button type="button" disabled={isSaving || !label || !slug || (selectedType === 'reference' && !relationsAvailable)} onclick={save}>{isSaving ? 'Saving...' : field ? 'Update Field' : 'Add Field'}</button>{/if}
+      {:else if step === 'config'}<button type="button" disabled={isSaving || !label || !slug || (selectedType === 'repeater' && !subFields.length) || (selectedType === 'reference' && !relationsAvailable)} onclick={save}>{isSaving ? 'Saving...' : field ? 'Update Field' : 'Add Field'}</button>{/if}
     </footer>
   {/if}
 </dialog>

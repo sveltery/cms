@@ -5,11 +5,26 @@
   import { adminClient, type CollectionWithFields } from '$lib/schema-admin/runtime-client';
   let { data } = $props();
   let collection=$state<CollectionWithFields | null>(null), pending=$state(false), error=$state('');
-  async function refresh() { collection=await adminClient.getCollection(page.params.collection ?? ''); }
-  async function mutate(run:()=>Promise<unknown>) { if(pending)throw new Error('Wait for the current schema operation to finish'); pending=true;error='';try{await run();await refresh();}catch(cause){error=cause instanceof Error?cause.message:'Schema could not be saved';throw cause;}finally{pending=false;} }
+  let currentPage:()=>boolean=()=>false;
+  async function refresh(slug:string,isCurrent:()=>boolean) {
+    if(!isCurrent())return;
+    const value=await adminClient.getCollection(slug);
+    if(isCurrent())collection=value;
+  }
+  async function mutate(run:()=>Promise<unknown>) {
+    if(pending)throw new Error('Wait for the current schema operation to finish');
+    const slug=page.params.collection ?? '',isCurrent=currentPage;
+    pending=true;error='';
+    try { await run();await refresh(slug,isCurrent); }
+    catch(cause) {
+      if(isCurrent())error=cause instanceof Error?cause.message:'Schema could not be saved';
+      throw cause;
+    }
+    finally { pending=false; }
+  }
   $effect(()=>{
-    const slug=page.params.collection ?? '';let active=true;collection=null;error='';
-    void adminClient.getCollection(slug).then(value=>{if(active)collection=value;}).catch(cause=>{if(active)error=cause instanceof Error?cause.message:'Schema unavailable';});
+    const slug=page.params.collection ?? '';let active=true;currentPage=()=>active;collection=null;error='';
+    void refresh(slug,currentPage).catch(cause=>{if(active)error=cause instanceof Error?cause.message:'Schema unavailable';});
     return()=>{active=false;};
   });
 </script>
