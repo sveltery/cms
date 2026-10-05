@@ -194,5 +194,158 @@
       "bytes": 210,
       "sha256": "b137b15c6e50d474904eb3e2cffbafe25a390926aefd0d91bd8870027a059da4"
     }
-  ]
+  ],
+  "closureReceipts": [
+    {
+      "path": "docs/receipts/schema-admin-ui/ci517-browser.log",
+      "bytes": 123538,
+      "sha256": "2a7c56d2d0ea7f7133fbef6d94faef9c65c5246351dc2f993e209d09b62e8d4e"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/ci519-browser.log",
+      "bytes": 146422,
+      "sha256": "e8956cdafd334371a3b1b9dd0fc98caf9014e0e9a163152adda0192e07ead0c7"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/ci519-validate.log",
+      "bytes": 796748,
+      "sha256": "0201ba1a1f7b6d137e9dc8c28418157ede915c7bbebac556ed209aff1534a9ea"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/current-full13.log",
+      "bytes": 516508,
+      "sha256": "90981a73a77a11dbbf488be3c76bb3ca83082bcb6d8fdeea7c127f63f216ed35"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/browser-config-local-stop.log",
+      "bytes": 15147,
+      "sha256": "f2362dc2f9f2fea65a6a2848fc8354ff62002d335a2fc3f737f9b13ff3184e1c"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/native-lifecycle-first-red.log",
+      "bytes": 5942,
+      "sha256": "479a824670152c1933a28d298965a000e7b12cda001a4e2fc36c283e58405300"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/native-lifecycle-corrected-red.log",
+      "bytes": 7027,
+      "sha256": "de8bd263140585e38c33ab4b5d62bc6bfd659961c008d587c2124b4535a67667"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/source-modal-faithful-red.log",
+      "bytes": 7372,
+      "sha256": "eef1281983349979550d995868fd34447812375dc40fdbff8a8fd1cbad04b85a"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/native-lifecycle-fixed.log",
+      "bytes": 290,
+      "sha256": "c9f721a8ae4239ce02cfb515b5280db601c1a482080a8aa367c58c425e0e5608"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/source-modal-fixed.log",
+      "bytes": 430,
+      "sha256": "4681ee9793525a36c30200e1d46252f1647ad7d0a4cab767b17ff299546827b4"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/reference-readiness-first-red.log",
+      "bytes": 1818,
+      "sha256": "a52bd2e067aba8272a2e59988b462b540a1fbc9f9df4fa548b628e29234b6c05"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/reference-readiness-fixed.log",
+      "bytes": 290,
+      "sha256": "468eb4f7a32de636c6f83c55041c9c56d592fc6d6589e14ada4ba18b04cacf17"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/deletion-readiness-first-red.log",
+      "bytes": 2630,
+      "sha256": "cc06dc90ecf213f3170021fb97de21ffa6d4662d2477db3fe8d094c21495c53a"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/deletion-readiness-fixed.log",
+      "bytes": 290,
+      "sha256": "adeabdcc5846357f1b67c0211048d91e6769db6b3e79081b39b3d7f99b0caec2"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/final-readiness-whole138.log",
+      "bytes": 430,
+      "sha256": "05f3d0fe0e6047bdcd5c961770d2cf3f36623fffb8732c3859c034ca29debbce"
+    },
+    {
+      "path": "docs/receipts/schema-admin-ui/final-readiness-check.log",
+      "bytes": 210,
+      "sha256": "b137b15c6e50d474904eb3e2cffbafe25a390926aefd0d91bd8870027a059da4"
+    }
+  ],
+  "nativeClosure": {
+    "total": 19,
+    "actualNativeDOMControls": 15,
+    "actualClientTransportControls": 2,
+    "controlledHandlerDelegationControls": 2,
+    "canonicalStorageControls": 3,
+    "sourceCallbackCreditAddedBySupplementals": 0,
+    "authHttpSessionSignatureRaceCredit": 0
+  },
+  "latestBrowserHistory": {
+    "run": 519,
+    "head": "7615ecfa0690d543927e27ab35a6c29efc48da29",
+    "originalSourcePassingControls": 134,
+    "originalSourceActionabilityStops": 4,
+    "genuineAssertionFailures": 0,
+    "nativeModalFocusEscapePositiveControls": 1,
+    "registered": 139,
+    "fullBrowserPass": false,
+    "oldSecuredStagesPassing": 7,
+    "oldDefaultAndNodeBrowserStages": "skipped after schema actionability stops"
+  },
+  "hostCorrection": {
+    "initialNativeLifecycle14": {
+      "pass": 9,
+      "fail": 5,
+      "genuineValueReds": 4,
+      "reusedResponseFixtureStop": 1,
+      "weakExactRoleControl": "passed, zero modal background causal credit"
+    },
+    "correctedNativeLifecycle14": {
+      "pass": 8,
+      "genuineValueReds": 6,
+      "fixtureStops": 0
+    },
+    "faithfulSourceDom138": {
+      "pass": 134,
+      "actionabilityStops": 4,
+      "genuineAssertionFailures": 0
+    },
+    "fixedSourceDom138": {
+      "pass": 138,
+      "fail": 0
+    }
+  },
+  "safetyGuard": {
+    "rootFiniteQualification": "pending",
+    "nativeDestructiveHttp": "503 after existing trusted permission/origin gates; no destructive Registry call",
+    "runtimeCollectionAndFieldDelete": "disabled until public coupled reference cleanup is qualified",
+    "underlyingPriorRegistry": "unchanged",
+    "referenceCreation": "disabled on actual runtime route while relation producer unavailable",
+    "fullSchemaParity": false
+  },
+  "normalHistory": {
+    "local13": {
+      "exit": 0,
+      "finished": 13,
+      "servicePass": 1498,
+      "productionPass": 280,
+      "nodeHostingPass": 16,
+      "cloudflareSourcePass": 23,
+      "workerPass": 8,
+      "stationaryHeadAcceptance": false,
+      "reason": "finite browser config successor moved after completed earlier stages; historical complete outcome retained"
+    },
+    "hosted519": {
+      "status": "cancelled at existing 15-minute ceiling during production tests",
+      "assertionFailureObserved": false,
+      "whole13Credit": 0
+    },
+    "currentSuccessor13": "pending"
+  }
 }
