@@ -41,6 +41,19 @@ describe('Editor-local operations inside a real enclosing draft form', () => {
     expect(submitted).not.toHaveBeenCalled();
   });
 
+  it('keeps section search Enter local while retaining real debounced search and explicit draft submission', async () => {
+    const { host, gutter, submitted, save } = await render();
+    gutter(0); await tick(); await command(host, 'Section'); await picker(host);
+    const search = host.querySelector<HTMLInputElement>('input[aria-label="Search sections..."]')!;
+    expect(search.form).toBe(save.form); api.fetchSections.mockClear();
+    search.value = 'Reusable'; search.dispatchEvent(new Event('input', { bubbles: true })); await tick();
+    const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true });
+    search.dispatchEvent(event); await tick(); expect(event.defaultPrevented).toBe(true);
+    await vi.waitFor(() => expect(api.fetchSections).toHaveBeenCalledWith({ search: 'Reusable' }));
+    expect(host.querySelector('dialog')).toBeTruthy(); expect(submitted).not.toHaveBeenCalled();
+    save.click(); expect(submitted).toHaveBeenCalledTimes(1);
+  });
+
   it('applies a selected-text link with Enter while cancelling the draft implicit-submit default', async () => {
     const { host, editor, submitted } = await render(); editor.commands.setTextSelection({ from: 1, to: 6 });
     host.querySelector<HTMLButtonElement>('button[aria-label="Insert Link"]')!.click(); await tick();
