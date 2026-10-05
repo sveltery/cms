@@ -321,7 +321,7 @@ function serializeValue(value: unknown): unknown {
 	return value;
 }
 
-function writableContentData(data: Record<string, unknown>): Record<string, unknown> {
+export function writableContentData(data: Record<string, unknown>): Record<string, unknown> {
 	const writable: Record<string, unknown> = {};
 	for (const [key, value] of Object.entries(data)) {
 		if (SYSTEM_COLUMNS.has(key)) continue;
