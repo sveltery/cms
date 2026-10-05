@@ -156,3 +156,10 @@ The first live-locale fix reads the same owning locale before the existing trans
 
 
 The meaningful refactor shares one Html/Iframe node-view factory for the same actual authoring provider. Each node still owns its own node/getPos/state. Whole57 passes again and diagnostics report0 errors/0 warnings; complete separate refactor raw/report/exit remain in the same receipt. The immutable Source witness, initial genuine red, mount-only ARIA contract and original whole Source bodies remain unchanged. Current hosted browser/final-head gates and independent/configured review are still pending.
+
+
+### Actual Picker110 Main union with live-locale history
+
+The ordinary union adopts actual published Main `fa86186aa2bd83b7678f59c26026b7fc6c9d57cf` after owned live-locale test/fix/refactor head `25de96c507462a3d91ffd97fb1601f8f1e689bb4`. Incoming Picker cache repair, all five supplemental controls and full picker documentation remain exact. The sole compatibility conflict retains the entire incoming Main prefix and both complete unchanged owned additions in their original order. All Rich product/Source148, package/lock/bootstrap/workflow and actual-browser configuration stay exact. [Complete union checks and resolution](rich-editor-evidence/picker-main-live-locale-union/receipt.json) record Native57PASS, original Source206PASS/148guard, diagnostics0errors0warnings/process0.
+
+This union adds zero Source or browser causal credit. Original CI560209 raw remains unchanged; the finite preload first hosted outcome and current whole13/secured10/editor acceptance remain pending. Own HTML115 and Table117 need current public unions, actual whole-family checks, independent/configured review, Root exact approval and author regular merge before adoption. Full media/reference/repeater/plugin/public renderer and global interface locale remain unfinished.
