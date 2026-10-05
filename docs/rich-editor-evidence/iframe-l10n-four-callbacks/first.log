@@ -1,0 +1,249 @@
+$ vitest run --config vitest.rich-editor-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/rich104-iframe-l10n-first-report.json
+
+ RUN  v4.1.10 /workspace/cms-full-rich-fields-editor
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > retains a valid intermediate URL as authored text while focused
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > writes nothing immediately or at249ms, then saves at the original250ms while retaining the focused draft
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > writes nothing immediately or at249ms, then saves at the original250ms while retaining the focused draft
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > restarts the250ms clock for the actual final draft rather than saving a valid intermediate
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > keeps a pending draft while read-only, then flushes it on a real tab change once editing resumes
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > flushes on blur and canonicalizes valid text when the document still has real control focus
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > drops obsolete pending text after a real external attribute update
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > preserves invalid authored text and the saved embed after delayed rejection and blur
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > cannot write a delayed pending draft after the owning node is deleted
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+ ✓ tests/rich-editor-native/configured-table-iframe.test.ts (12 tests) 1010ms
+     ✓ retains a valid intermediate URL as authored text while focused  303ms
+ ✓ tests/rich-editor-native/deferred-form-controls.test.ts (9 tests) 1043ms
+     ✓ keeps section search Enter local while retaining real debounced search and explicit draft submission  387ms
+stderr | tests/rich-editor-native/embed-tabs.test.ts > activates iframe tabs on actual focus and mounts the corresponding real panel
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+ ✓ tests/rich-editor-native/embed-tabs.test.ts (2 tests) 490ms
+   ✓ activates iframe tabs on actual focus and mounts the corresponding real panel  382ms
+ ✓ tests/rich-editor-native/fields.test.ts (9 tests) 393ms
+     ✓ emits real numeric values and preserves the Source empty-number coercion to zero  349ms
+ ✓ tests/rich-editor-native/table-readonly-transition.test.ts (1 test) 195ms
+ ✓ tests/rich-editor-native/code-editor-boundary.test.ts (1 test) 389ms
+   ✓ shows the Source reload fallback for real CodeMirror mount errors and mounts normally after recovery  388ms
+ ✓ tests/rich-editor-native/authoring-controls.test.ts (7 tests) 407ms
+ ✓ tests/rich-editor-native/converters.test.ts (8 tests) 141ms
+stderr | tests/rich-editor-native/iframe-localization.test.ts > translates actual delayed invalid-input feedback while preserving the saved embed
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+ ❯ tests/rich-editor-native/iframe-localization.test.ts (4 tests | 4 failed) 1415ms
+   × uses the pinned Spanish catalog Code and Preview labels through the actual editor node view 148ms
+   × passes Source catalog descriptors into CodeMirror labels, placeholder and the Escape description 181ms
+   × translates actual delayed invalid-input feedback while preserving the saved embed 1055ms
+   × interpolates the actual saved iframe host through the Source consent descriptor 30ms
+ ✓ tests/rich-editor-native/source-insertion-witness.test.ts (1 test) 255ms
+ ✓ tests/rich-editor-native/section-import-failure.test.ts (1 test) 247ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/rich-editor-native/iframe-localization.test.ts > uses the pinned Spanish catalog Code and Preview labels through the actual editor node view
+AssertionError: expected [ 'Code', 'Preview' ] to deeply equal [ 'Código', 'Avance' ]
+
+- Expected
++ Received
+
+  [
+-   "Código",
+-   "Avance",
++   "Code",
++   "Preview",
+  ]
+
+ ❯ tests/rich-editor-native/iframe-localization.test.ts:30:82
+     28|   // These translations are the literal es-ES/messages.po entries at t…
+     29|   const { host } = await frame(catalog({ EWPtMO: 'Código', rdUucN: 'Av…
+     30|   expect([...host.querySelectorAll('[role="tab"]')].map(tab => tab.tex…
+       |                                                                                  ^
+     31|   host.querySelector<HTMLButtonElement>('[role="tab"]')!.click(); awai…
+     32|   await code(host);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/rich-editor-native/iframe-localization.test.ts > passes Source catalog descriptors into CodeMirror labels, placeholder and the Escape description
+AssertionError: expected 'Embed code' to be 'Código incrustado' // Object.is equality
+
+Expected: "Código incrustado"
+Received: "Embed code"
+
+ ❯ tests/rich-editor-native/iframe-localization.test.ts:41:54
+     39|   const { host } = await frame(catalog({ xIxm0t: 'Código incrustado', …
+     40|   const view = await code(host);
+     41|   expect(view.contentDOM.getAttribute('aria-label')).toBe('Código incr…
+       |                                                      ^
+     42|   expect(host.querySelector('.cm-placeholder')!.textContent).toBe('Peg…
+     43|   const descriptions = view.contentDOM.getAttribute('aria-describedby'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/rich-editor-native/iframe-localization.test.ts > translates actual delayed invalid-input feedback while preserving the saved embed
+AssertionError: expected 'Only https links can be embedded.' to be 'Sólo se pueden incrustar enlaces http…' // Object.is equality
+
+Expected: "Sólo se pueden incrustar enlaces https."
+Received: "Only https links can be embedded."
+
+ ❯ tests/rich-editor-native/iframe-localization.test.ts:52:84
+     50|   const view = await code(host); onChange.mockClear();
+     51|   view.dispatch({ changes: { from: 0, to: view.state.doc.length, inser…
+     52|   await vi.waitFor(() => expect(host.querySelector('[role="alert"]')?.…
+       |                                                                                    ^
+     53|   expect(editor.state.doc.firstChild!.attrs.src).toBe('https://example…
+     54|   expect(onChange).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/rich-editor-native/iframe-localization.test.ts > interpolates the actual saved iframe host through the Source consent descriptor
+AssertionError: expected 'This block embeds a page from example…' to be 'Este bloque incrusta una página de ex…' // Object.is equality
+
+Expected: "Este bloque incrusta una página de example.com."
+Received: "This block embeds a page from example.com."
+
+ ❯ tests/rich-editor-native/iframe-localization.test.ts:59:65
+     57| it('interpolates the actual saved iframe host through the Source conse…
+     58|   const { host } = await frame(catalog({ nMPsXp: 'Este bloque incrusta…
+     59|   expect(host.querySelector('.preview-consent p')!.textContent).toBe('…
+       |                                                                 ^
+     60|   expect(host.querySelector('.preview-consent button')!.textContent).t…
+     61|   expect(host.querySelector('iframe')).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 10 passed (11)
+      Tests  4 failed | 51 passed (55)
+   Start at  19:34:21
+   Duration  17.92s (transform 1.41s, setup 0ms, import 4.30s, tests 5.98s, environment 6.24s)
+
+JSON report written to /tmp/rich104-iframe-l10n-first-report.json
+[ELIFECYCLE] Command failed with exit code 1.

@@ -2,10 +2,11 @@ import { flushSync, mount, unmount } from 'svelte';
 import type { NodeViewRenderer } from '@tiptap/core';
 import EmbedBlockEditor from './EmbedBlockEditor.svelte';
 import { nodeViewState } from './node-view-state.svelte';
-import { sourceMessage } from './types';
+import { sourceMessage, type Translate } from './types';
 import { stopEvent } from './top-block';
 
-export const embedBlockNodeView: NodeViewRenderer = ({ node, editor, getPos }) => {
+export function createEmbedBlockNodeView(getTranslate: () => Translate): NodeViewRenderer {
+return ({ node, editor, getPos }) => {
   let current = node;
   const dom = document.createElement('div'); dom.dataset.type = node.type.name;
   dom.className = node.type.name === 'iframeBlock' ? 'iframe-block' : 'html-block';
@@ -17,7 +18,7 @@ export const embedBlockNodeView: NodeViewRenderer = ({ node, editor, getPos }) =
   }
   const state = nodeViewState(node, editor, attributes => {
     atEditablePosition(position => editor.view.dispatch(editor.state.tr.setNodeMarkup(position, undefined, { ...current.attrs, ...attributes })));
-  }, sourceMessage, () => {
+  }, descriptor => getTranslate()(descriptor), () => {
     atEditablePosition(position => {
       editor.view.focus();
       editor.chain().setNodeSelection(position).deleteSelection().run();
@@ -34,3 +35,5 @@ export const embedBlockNodeView: NodeViewRenderer = ({ node, editor, getPos }) =
     destroy() { editor.off('update', editableChanged); editor.off('transaction', editableChanged); void unmount(instance); }
   };
 };
+}
+export const embedBlockNodeView = createEmbedBlockNodeView(() => sourceMessage);
