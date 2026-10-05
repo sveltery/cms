@@ -6,7 +6,7 @@ export type CalendarPanelAction='publish'|'unschedule';
 export interface CalendarActionContext {
   client:CalendarClient;rev?:string;current:()=>boolean;
   pending:(value:boolean)=>void;error:(value:string|undefined)=>void;
-  refresh:()=>void;success:()=>void;failure:(description:string)=>void;close:()=>void;
+  refresh:()=>void;success:()=>void;failure:(description:string|null)=>void;genericError?:()=>string;close:()=>void;
 }
 export async function runCalendarPanelAction(action:CalendarPanelAction,item:CalendarItem,context:CalendarActionContext):Promise<void>{
   context.pending(true);
