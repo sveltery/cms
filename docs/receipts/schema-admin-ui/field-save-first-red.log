@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (5 tests | 1 failed) 1382ms
+   × retains a field dialog and reports the actual asynchronous save failure 1021ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > retains a field dialog and reports the actual asynchronous save failure
+AssertionError: expected undefined to be 'Field metadata needs a migration' // Object.is equality
+
+- Expected:
+"Field metadata needs a migration"
+
++ Received:
+undefined
+
+ ❯ tests/schema-admin-ui/native.test.ts:40:84
+     38|   mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange…
+     39|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+     40|   await vi.waitFor(()=>expect(target.querySelector('[role="alert"]')?.…
+       |                                                                                    ^
+     41|   expect(target.querySelector('dialog')).not.toBeNull();
+     42| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  05:16:14
+   Duration  6.19s (transform 2.43s, setup 0ms, import 2.99s, tests 1.38s, environment 1.38s)
+

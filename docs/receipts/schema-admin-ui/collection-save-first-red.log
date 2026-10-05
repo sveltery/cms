@@ -1,0 +1,30 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (8 tests | 1 failed) 1342ms
+   × reports a rejected collection save while retaining unsaved settings for retry 1016ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > reports a rejected collection save while retaining unsaved settings for retry
+AssertionError: expected 'PostsSave posts  Settings Label (Sing…' to contain 'Collection schema changed; reload and…'
+
+Expected: "Collection schema changed; reload and retry"
+Received: "PostsSave posts  Settings Label (Singular) Label (Plural)  Description URL Pattern  Routable Edit locking GroupIcon Hide from navigation Quick action on the dashboard DraftsRevisionsPreviewSearch SEO Title fieldDefault Date fieldDefault List columns Enable comments Comment moderationAll comments require approvalFirst-time commenters onlyNo moderation (auto-approve all) Close comments after days Auto-approve users Save  Fields6 system + 0 custom fieldsAdd Field No custom fields yetAdd fields to define the structure of your content System FieldsID id · Unique identifier (ULID)Slug slug · URL-friendly identifierStatus status · draft, published, or archivedCreated At created_at · When the entry was createdUpdated At updated_at · When the entry was last modifiedPublished At published_at · When the entry was published Relations      "
+
+ ❯ tests/schema-admin-ui/native.test.ts:69:51
+     67|   input.value='Updated posts';input.dispatchEvent(new Event('input',{b…
+     68|   target.querySelector<HTMLFormElement>('form')!.requestSubmit();
+     69|   await vi.waitFor(()=>expect(target.textContent).toContain('Collectio…
+       |                                                   ^
+     70|   expect(input.value).toBe('Updated posts');
+     71| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  05:29:08
+   Duration  3.16s (transform 827ms, setup 0ms, import 977ms, tests 1.34s, environment 669ms)
+
