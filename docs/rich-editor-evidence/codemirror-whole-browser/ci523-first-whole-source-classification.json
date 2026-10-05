@@ -1,0 +1,126 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actualPublicHead": "fc5ad31b8940a103be1ba8845e1f2f5f0d77dda5",
+  "run": 37269545500,
+  "job": 111634928868,
+  "sandbox": "Official Chromium1243, chromiumSandbox:true, original clocks unchanged",
+  "wholeSuitePassed": false,
+  "registered": 149,
+  "reportedPassed": 139,
+  "failed": 10,
+  "wholeTableFamily": "Failed pre-collection actual unresolved Source React icons/utils modules; 0 callbacks, 0 Native assertion/causal credit. Next framework-only bridge maps unchanged originals into actual Native actions/extensions/picker/announcer.",
+  "families": [
+    {
+      "name": "form-keyboard.test.ts",
+      "registered": 1,
+      "passed": 0,
+      "failed": 1,
+      "failures": [
+        {
+          "title": "keeps real browser search Enter local while the enclosing draft still submits explicitly",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected null to be truthy"
+        }
+      ]
+    },
+    {
+      "name": "PortableTextEditor.footer.test.tsx",
+      "registered": 2,
+      "passed": 2,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "name": "PortableTextEditor.test.tsx",
+      "registered": 91,
+      "passed": 91,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "name": "iframe-block-editor.test.tsx",
+      "registered": 11,
+      "passed": 2,
+      "failed": 9,
+      "failures": [
+        {
+          "title": "Iframe block editor inserts a block from /iframe with its Code tab focused",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected <div contenteditable=\"true\" \u2026(5)>\u2026(2)</div> to be null // Object.is equality"
+        },
+        {
+          "title": "Iframe block editor turns a pasted YouTube link into the player and shows it in Preview",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected <div contenteditable=\"true\" \u2026(5)>\u2026(2)</div> to be null // Object.is equality"
+        },
+        {
+          "title": "Iframe block editor saves a link that waited while the editor was read-only",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected <div contenteditable=\"true\" \u2026(5)>\u2026(2)</div> to be null // Object.is equality"
+        },
+        {
+          "title": "Iframe block editor keeps showing a link that waits for the editor when the code editor loses focus",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected <div contenteditable=\"true\" \u2026(5)>\u2026(2)</div> to be null // Object.is equality"
+        },
+        {
+          "title": "Iframe block editor shows why input is rejected and keeps the saved embed",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected null not to be null"
+        },
+        {
+          "title": "Iframe block editor replaces a link with the saved embed code when the code editor loses focus",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected <div contenteditable=\"true\" \u2026(5)>\u2026(2)</div> to be null // Object.is equality"
+        },
+        {
+          "title": "Iframe block preview previews only https sources, without same-origin access to the admin",
+          "classification": "locator readiness stop; matcher value unreached",
+          "firstActualError": "Error: Cannot find element with locator: page.getByText('This block embeds a page from localhost:63315.')"
+        },
+        {
+          "title": "Iframe block preview clears the embed when the code is deleted",
+          "classification": "null control click prerequisite stop; later assertions unreached",
+          "firstActualError": "TypeError: Cannot read properties of null (reading 'click')"
+        },
+        {
+          "title": "Iframe block with a plugin's iframe block keeps the plugin's block and slash command",
+          "classification": "actual assertion value red; later callback assertions remain unreached",
+          "firstActualError": "AssertionError: expected null to be truthy"
+        }
+      ]
+    },
+    {
+      "name": "slash-menu.test.tsx",
+      "registered": 44,
+      "passed": 44,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "name": "table-controls.test.tsx",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "failures": []
+    }
+  ],
+  "raw": [
+    {
+      "path": "/tmp/rich104-ci523-first-whole-browser-original-report.json",
+      "bytes": 50411,
+      "sha256": "3863b1887d75c4923398f91c2d2fdf16956195a6ecfae043f1d8869b0deae802"
+    },
+    {
+      "path": "/tmp/rich104-ci523-editor111634928868-first-whole-original.log",
+      "bytes": 106477,
+      "sha256": "895e6e866dd377d9ad1700e6453cb9f7c9cf76f123afc45f90410d8ad2d6d79f"
+    }
+  ],
+  "iframeActualAssertionValueReds": 7,
+  "iframeLocatorAndClickPrerequisiteStops": 2,
+  "nativeEnterActualReadinessRed": 1,
+  "nativeEnterKeyboardAndSubmitAssertionsReached": false,
+  "oldSource137ReportedPassed": true,
+  "fullFeatureCompleted": false
+}
