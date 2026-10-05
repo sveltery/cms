@@ -5,8 +5,12 @@ import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { lifecycleService } from '../../src/lib/server/database/lifecycle/service.ts';
 import { principal } from '../helpers/lifecycle-fixture.ts';
 import { readCalendarContent } from '../../src/lib/server/calendar/content-read.ts';
+import { withRevision,precondition } from '../../src/lib/server/content/schema.ts';
+import { contentEntry } from '../../src/lib/server/lifecycle/schema.ts';
+import { setI18nConfig } from '../../src/lib/server/menus/i18n-config.ts';
 const closers:Array<()=>Promise<void>>=[];
 afterEach(async()=>{for(const close of closers.splice(0))await close();});
+afterEach(()=>setI18nConfig(null));
 async function fixture(target:'Node'|'D1') {
   const storage=await schemaAdminStorage(target);closers.push(storage.close);
   await migrateCms(storage.database);const registry=new SchemaRegistry(storage.database);
@@ -75,5 +79,52 @@ for(const target of ['Node','D1'] as const)describe(`${target} actual calendar l
     const {service}=await fixture(target);
     const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
     await expect(readCalendarContent(service,'posts',item.id,'en')).resolves.toMatchObject({id:item.id,locale:'fr'});
+  });
+  // Supplemental Native data controls for a private canonical-key proposal.
+  // Existing Node/rawD1 fixture only: no protected HTTP or Source callback credit.
+  it('binds a French ID with omitted mutation locale to its stored revision key',async()=>{
+    const {service}=await fixture(target);
+    const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
+    const revision=withRevision(contentEntry(item))._rev;
+    const resolve=service.resolvePublicationKey;
+    expect(typeof resolve).toBe('function');
+    const key=await resolve({type:'posts',id:item.id});
+    expect(key).toEqual({type:'posts',id:item.id,locale:'fr'});
+    expect(await service.getContent({type:'posts',id:item.id,locale:'fr'})).toEqual(item);
+    const expected=precondition({collection:key.type,id:key.id,locale:key.locale,_rev:revision});
+    const scheduled=await service.schedule({...key,expected,scheduledAt:'2030-10-20T09:00:00.000Z'});
+    expect(scheduled.locale).toBe('fr');expect(scheduled.status).toBe('scheduled');
+    expect(scheduled.scheduledAt).toBe('2030-10-20T09:00:00.000Z');
+  });
+  it('removes a French schedule using its explicit-locale slug and canonical revision key',async()=>{
+    const {service}=await fixture(target);
+    const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
+    const scheduled=await service.schedule({type:'posts',id:item.id,locale:'fr',scheduledAt:'2030-10-20T09:00:00.000Z'});
+    const revision=withRevision(contentEntry(scheduled))._rev;
+    const resolve=service.resolvePublicationKey;
+    expect(typeof resolve).toBe('function');
+    const key=await resolve({type:'posts',id:'lancement',locale:'fr'});
+    expect(key).toEqual({type:'posts',id:item.id,locale:'fr'});
+    expect(await service.getContent({type:'posts',id:item.id,locale:'fr'})).toEqual(scheduled);
+    const expected=precondition({collection:key.type,id:key.id,locale:key.locale,_rev:revision});
+    const removed=await service.unschedule({...key,expected});
+    expect(removed.locale).toBe('fr');expect(removed.status).toBe('draft');
+    expect(removed.scheduledAt).toBeNull();expect(removed.data.title).toBe('Lancement');
+  });
+  it('publishes with configured locale casing after read-only canonical key resolution',async()=>{
+    const {service}=await fixture(target);
+    setI18nConfig({defaultLocale:'en',locales:['en','fr-CA']});
+    const item=await service.createContent({type:'posts',locale:'fr-ca',slug:'lancement',data:{title:'Lancement'}});
+    expect(item.locale).toBe('fr-CA');
+    const revision=withRevision(contentEntry(item))._rev;
+    const resolve=service.resolvePublicationKey;
+    expect(typeof resolve).toBe('function');
+    const key=await resolve({type:'posts',id:'lancement',locale:'FR-ca'});
+    expect(key).toEqual({type:'posts',id:item.id,locale:'fr-CA'});
+    expect(await service.getContent({type:'posts',id:item.id,locale:'fr-CA'})).toEqual(item);
+    const expected=precondition({collection:key.type,id:key.id,locale:key.locale,_rev:revision});
+    const live=await service.publish({...key,expected});
+    expect(live.locale).toBe('fr-CA');expect(live.status).toBe('published');
+    expect(live.scheduledAt).toBeNull();expect(live.data.title).toBe('Lancement');
   });
 });
