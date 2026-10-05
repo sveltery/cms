@@ -1,0 +1,30 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (6 tests | 1 failed) 538ms
+   × keeps the collection read model unchanged when repeater configuration is edited and cancelled 27ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > keeps the collection read model unchanged when repeater configuration is edited and cancelled
+AssertionError: expected 'Unsaved label' to be 'Original label' // Object.is equality
+
+Expected: "Original label"
+Received: "Unsaved label"
+
+ ❯ tests/schema-admin-ui/native.test.ts:51:52
+     49|   input.value='Unsaved label';input.dispatchEvent(new Event('input',{b…
+     50|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+     51|   expect(definition.validation.subFields[0].label).toBe('Original labe…
+       |                                                    ^
+     52| });
+     53|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  05:21:41
+   Duration  5.30s (transform 2.66s, setup 0ms, import 3.20s, tests 538ms, environment 1.29s)
+
