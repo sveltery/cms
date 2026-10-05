@@ -37039,5 +37039,20 @@
       "R1 was applied locally under Root authorization after newtestfirst solely to expose actual Native failure; shared review remainsHOLD, no merge/public consumer acceptance.",
       "No runtime design fix, D1 dynamic-loop proof, auth/HTTP/concurrency/credential/proxy change; full Native8/UI138/CRUD remains open."
     ]
+  },
+  "atomicSource080RuntimeTdd": {
+    "testFirst": "5d7c5977",
+    "correctedBoundaryBaseline": "2b70529f",
+    "receipt": "docs/receipts/schema-admin-completion/atomic-adapters-tdd.json",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "baselineValueReds": 5,
+    "firstFixedNativeCallbacks": 5,
+    "originalSourceCallbackCredit": 0,
+    "NodeContract": "server-owned CmsDatabase.atomicBatch-only synchronous mutation-dependent SQL loop; immutable-node shallow wrappers preserved; serialized metadata refused",
+    "D1Contract": "exact existing owned triggers only; unknown global operators refused; repeated actual at-provider-position content/catalogue guards; conservative static projection only",
+    "SourceBodiesChanged": 0,
+    "fullD1Parity": false,
+    "fullSchemaDone": false,
+    "reviewAndRootMergeApproval": "pending"
   }
 }

@@ -8,6 +8,9 @@ import { identifier, parse, tableName } from './validation.ts';
 import { migrationObjects, type CmsMigrationProvider } from './migration-provider.ts';
 import { collectionStandardIndexStatements, collectionIndexPrerequisiteChanged } from './collection-indexes.ts';
 import { normalizeFeatureStorageSql } from './canonical-features/sql-recognition.ts';
+import { atomicQueryLoop } from './atomic-query-loop.ts';
+import { optionsMigration } from './options-migrations.ts';
+import { mediaAttributionMigration,commentsMigration,redirectsMigration } from './canonical-features/providers.ts';
 
 function snapshotGuard(database: CmsDatabase, query: ReturnType<typeof contentSnapshotQuery>, snapshot: string) {
   return sql`SELECT json_extract('[]', CASE WHEN (${query})=${snapshot}
@@ -48,29 +51,84 @@ function duplicatesQuery(table: string, groups: Record<string,string>) {
       )) AS duplicates`;
 }
 
+function actualDuplicatesQuery(table:string) {
+  return sql<DuplicateContentRow>`WITH duplicate_groups AS (
+    SELECT translation_group,lower(locale) AS locale_key FROM ${sql.ref(table)}
+    WHERE deleted_at IS NULL AND translation_group IS NOT NULL
+    GROUP BY translation_group,lower(locale) HAVING COUNT(*)>1
+    ORDER BY translation_group,lower(locale) LIMIT 50
+  ) SELECT content.id,content.translation_group,lower(content.locale) AS locale_key
+    FROM ${sql.ref(table)} AS content INNER JOIN duplicate_groups AS duplicate
+      ON duplicate.translation_group=content.translation_group AND duplicate.locale_key=lower(content.locale)
+    WHERE content.deleted_at IS NULL
+    ORDER BY content.translation_group,lower(content.locale),
+      CASE WHEN content.id=content.translation_group THEN 0 ELSE 1 END,content.created_at,content.id`;
+}
+
+/** Actual Source080 body planning for each fresh, already-executed SQL read. */
+function splitQueries(database:CmsDatabase, slug:string, duplicates:readonly DuplicateContentRow[]) {
+  const statements:CompiledQuery[]=[],table=tableName(slug);
+  let previousGroupLocale:string|null=null;
+  for (const row of duplicates) {
+    const groupLocale=`${row.translation_group}\0${row.locale_key}`;
+    if (groupLocale!==previousGroupLocale) {previousGroupLocale=groupLocale;continue;}
+    statements.push(sql`INSERT INTO _cms_content_taxonomies(collection,entry_id,taxonomy_id)
+      SELECT collection,${row.id},taxonomy_id FROM _cms_content_taxonomies
+      WHERE collection=${slug} AND entry_id=${row.translation_group}
+      ON CONFLICT(collection,entry_id,taxonomy_id) DO NOTHING`.compile(database.db),
+      sql`UPDATE ${sql.ref(table)} SET translation_group=${row.id}
+        WHERE id=${row.id} AND deleted_at IS NULL AND translation_group=${row.translation_group}
+          AND lower(locale)=${row.locale_key}`.compile(database.db));
+  }
+  return statements;
+}
+
 async function planDuplicateLocales(database: CmsDatabase, slug: string) {
   const table = tableName(slug), groups:Record<string,string> = Object.create(null);
   const statements:CompiledQuery[] = [];
+  const sourceQuery=actualDuplicatesQuery(table);
+  if (database.atomicQueryLoops) {
+    const snapshot=(await contentSnapshotQuery(table).execute(database.db)).rows[0].snapshot;
+    // Always re-read after earlier pending provider writes, even if preparation
+    // saw no duplicates. Admitted content/pivot/operator effects stay real.
+    return {guard:snapshotGuard(database,contentSnapshotQuery(table),snapshot),statements:[
+      atomicQueryLoop(sourceQuery.compile(database.db),rows=>splitQueries(database,slug,rows as DuplicateContentRow[]))
+    ]};
+  }
+  // Fixed D1 batches cannot perform mutation-dependent JS loops. This is an
+  // explicit incomplete capability boundary, not Source/D1 equivalence.
+  const triggersQuery=sql<{snapshot:string}>`SELECT json_group_array(json_object('name',name,'tbl_name',tbl_name,'sql',sql)) AS snapshot
+    FROM (SELECT name,tbl_name,sql FROM sqlite_master WHERE type='trigger' ORDER BY name)`;
+  const triggerSnapshot=(await triggersQuery.execute(database.db)).rows[0].snapshot;
+  const owned=[...await optionsMigration.expectedTriggers(database),
+    ...await mediaAttributionMigration.expectedTriggers(database),...await commentsMigration.expectedTriggers(database),
+    ...await redirectsMigration.expectedTriggers(database)];
+  const operators=JSON.parse(triggerSnapshot) as {name:string;sql:string}[];
+  // Unknown triggers can influence content indirectly from any table. Existing
+  // exact owned triggers are preserved; no operator is dropped or rewritten.
+  if(operators.some(actual=>!owned.some(expected=>actual.name===expected.name&&
+    normalizeFeatureStorageSql(actual.sql)===normalizeFeatureStorageSql(expected.sql)))) {
+    throw new CmsError('MIGRATION_REQUIRED','This adapter cannot repair locales in a database with operator triggers');
+  }
+  const triggerGuard=snapshotGuard(database,triggersQuery,triggerSnapshot);
   let originalSnapshot:string|undefined;
   while (true) {
     const receipt = (await duplicatesQuery(table,groups).execute(database.db)).rows[0];
     if (originalSnapshot === undefined) originalSnapshot=receipt.snapshot;
     else if (originalSnapshot !== receipt.snapshot) throw new CmsError('MIGRATION_REQUIRED');
     const duplicates = JSON.parse(receipt.duplicates) as DuplicateContentRow[];
-    if (!duplicates.length) return {guard:snapshotGuard(database,contentSnapshotQuery(table),originalSnapshot),statements};
-    let previousGroupLocale:string|null = null;
+    if (!duplicates.length) {
+      const contentGuard=snapshotGuard(database,contentSnapshotQuery(table),originalSnapshot);
+      // Hoisted guards protect preflight. These repeated real guards protect
+      // this provider's actual position after all earlier batch writes.
+      return {guard:contentGuard,additionalGuards:[triggerGuard],
+        statements:[triggerGuard,contentGuard,...statements]};
+    }
+    statements.push(...splitQueries(database,slug,duplicates));
+    let previousGroupLocale:string|null=null;
     for (const row of duplicates) {
-      const groupLocale = `${row.translation_group}\0${row.locale_key}`;
-      if (groupLocale !== previousGroupLocale) { previousGroupLocale=groupLocale;continue; }
-      // Keep Source080 copy-before-update and three-column/default semantics.
-      // Later copies read earlier copied canonical links inside the same batch.
-      statements.push(sql`INSERT INTO _cms_content_taxonomies(collection,entry_id,taxonomy_id)
-        SELECT collection,${row.id},taxonomy_id FROM _cms_content_taxonomies
-        WHERE collection=${slug} AND entry_id=${row.translation_group}
-        ON CONFLICT(collection,entry_id,taxonomy_id) DO NOTHING`.compile(database.db),
-        sql`UPDATE ${sql.ref(table)} SET translation_group=${row.id}
-          WHERE id=${row.id} AND deleted_at IS NULL AND translation_group=${row.translation_group}
-            AND lower(locale)=${row.locale_key}`.compile(database.db));
+      const groupLocale=`${row.translation_group}\0${row.locale_key}`;
+      if (groupLocale!==previousGroupLocale) {previousGroupLocale=groupLocale;continue;}
       groups[row.id]=row.id;
     }
   }
@@ -116,7 +174,7 @@ async function prepare(database:CmsDatabase) {
         normalizeFeatureStorageSql(object.sql??'')!==normalizeFeatureStorageSql(expected.sql)) throw new CmsError('MIGRATION_REQUIRED');
     }
     const duplicates=await planDuplicateLocales(database,slug);
-    guards.push(duplicates.guard);
+    guards.push(duplicates.guard,...(duplicates.additionalGuards??[]));
     statements.push(...duplicates.statements,...standard);
     // Source055/074 always create replacement indexes before legacy drops.
     statements.push(...migrationObjects(legacy).filter(object=>actual.some(found=>found.name===object.name))
