@@ -139,7 +139,7 @@ describe('Actual Native table toolbar menu contract', () => {
     const key = (value: string) => menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: value, bubbles: true, cancelable: true }));
     key('q'); key('d'); await tick(); expect(document.activeElement?.textContent?.trim()).toBe('Delete row');
     key('d'); await tick(); expect(document.activeElement?.textContent?.trim()).toBe('Delete column');
-    key('d'); await tick(); expect(document.activeElement?.textContent?.trim()).toBe('Delete table');
+    key('d'); await tick(); expect(document.activeElement?.textContent?.trim()).toBe('Decrease column width');
   });
 
   it('cancels Space activation while continuing an in-progress typeahead word', async () => {
