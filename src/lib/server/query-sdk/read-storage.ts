@@ -8,6 +8,12 @@ const canonicalTables = Object.freeze({
   seo: '_cms_seo', fields: '_cms_fields', collections: '_cms_collections',
   revisions: '_cms_revisions', relations: '_cms_relations'
 } as const);
+const sourceTables = Object.freeze({
+  terms: 'taxonomies', assignments: 'content_taxonomies',
+  bylines: '_emdash_bylines', credits: '_emdash_content_bylines', media: 'media',
+  seo: '_emdash_seo', fields: '_emdash_fields', collections: '_emdash_collections',
+  revisions: 'revisions', relations: '_emdash_relations'
+} as const);
 const sourceReadHosts = new WeakSet<object>();
 
 /** Bind only a genuine, already-created immutable Source physical fixture. */
@@ -19,7 +25,6 @@ export function isSourceQueryReadHost(database: object): boolean {
   return sourceReadHosts.has(database);
 }
 
-// Exact former canonical behavior, extracted before Source-host namespace repair.
-export function queryReadStorage(_database: object) {
-  return canonicalTables;
+export function queryReadStorage(database: object) {
+  return isSourceQueryReadHost(database) ? sourceTables : canonicalTables;
 }
