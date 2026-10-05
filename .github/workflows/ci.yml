@@ -113,3 +113,30 @@ jobs:
           name: rich-editor-source-browser-evidence
           path: rich-editor-browser-report.json
           retention-days: 7
+  rich-html-source:
+    needs: browser
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Verify all immutable rich editor Source authorities
+        run: node scripts/check-rich-editor-source.mjs
+      - name: Run complete original HTML editor and preview Source callbacks
+        run: timeout --kill-after=30s 600s node node_modules/vitest/vitest.mjs run --config vitest.rich-html-browser.config.ts --reporter=default --reporter=json --outputFile=rich-html-browser-report.json
+        env:
+          DEBUG: pw:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rich-html-source-browser-evidence
+          path: rich-html-browser-report.json
+          retention-days: 7
