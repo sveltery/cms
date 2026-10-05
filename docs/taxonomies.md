@@ -218,3 +218,12 @@ settings are retained. Final current-head normal13/secured9, fresh independent
 and configured reviews, Root approval and author merge remain pending. Full
 taxonomy UI, published QueryCore/Search hydration, App/Seed composition,
 PostgreSQL and deployed Worker support remain unfinished.
+
+
+## Full-gate integration repairs
+
+The first final normal run at38ad registered1492 callbacks and failed15: eight obsolete Native unavailable-write expectations, four genuine Worker import/bundle failures, and three old role-projection expectations. [The full integration receipt](taxonomy-evidence/integration-closure-receipt.json) preserves complete CI/local failures and their classifications; this run earns no whole normal success credit.
+
+The sole collection-slug holder/reset now lives in a dependency-free module consumed by the same Registry/cache owners. Promise sharing, rejection eviction, isolated-database bypass, the60-second window and after-success reset hooks stay intact. Content taxonomy work loads the same real repository/cache only when needed, and every caller awaits actual invalidation before mutation resolution. Existing no-nodejscompat scalar Worker fixtures load all actual Vite ESModules without inlining, flag or security changes; all four whole families pass31/31. This does not establish full taxonomy support without the existing Nodecompat runtime.
+
+Supplemental Native D1 capability checks now verify persisted atomic success plus controlled whole-plan rollback; all16 pass and the direct-write guards remain. Existing role families pass4/4 with pinned taxonomy read/manage thresholds and current ADMIN projection25. Original taxonomy Core222/matcher15, supplemental reference2 and Native10/7/5/8/compound8 pass after integration fixes. Subsequent common actual-repository construction refactoring requires new final current-head normal13/secured9, independent and configured review, and Root approval before author merge. Full product integration limits above remain unfinished.

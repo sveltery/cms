@@ -1,0 +1,13 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-taxonomy-api-admin
+Getting Svelte diagnostics...
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/local-d1-fixture.ts:5:69
+Error: Cannot find name 'FixtureWorkerModule'. 
+
+export async function localD1(path?: string, script:string|readonly FixtureWorkerModule[] = 'export default { fetch() { return new Response("fixture"); } }') {
+  const { runtime, binding } = await asyncD1StorageFor('cms-test-d1', path, script);
+
+====================================
+svelte-check found 1 error and 0 warnings in 1 file
+[ELIFECYCLE] Command failed with exit code 1.

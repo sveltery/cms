@@ -1974,3 +1974,12 @@ and assertions; historical CI478 failed typecheck and receives no whole normal
 credit. Final current-head normal13/secured9, fresh/configured review and Root
 approval remain required before author expected-head regular merge. Full UI,
 public QueryCore, App/Seed, PostgreSQL and deployed Worker remain incomplete.
+
+
+### Taxonomy final-gate cache/Worker integration repairs — PR102
+
+The immutable913cb1 Source remains unchanged. [The paired feature record](../../docs/taxonomies.md) and [full integration receipt](../../docs/taxonomy-evidence/integration-closure-receipt.json) retain CI482/local actual1492 results:1477passed/15failed. Eight old Native readiness rejection expectations are superseded by actual atomic capability plus real trigger rollback requirements; direct-write safety assertions stay intact. Three old Native role projections now include original Source taxonomy thresholds. Neither expectation maintenance earns original Source callback credit.
+
+Four genuine Worker failures came from eager taxonomy imports into the bounded scalar graph and an obsolete single-bundle fixture assumption. The same collection-slug globalSymbol holder/reset is split without duplicating cache state. Real taxonomy repository and object-cache invalidation load only for actual taxonomy work; all lifecycle/reference callers await actual invalidation. Real Vite ESModule transport preserves every chunk and original Worker flags, security, SQL, data and clocks, checking every chunk for node:sqlite. Whole four Worker families pass31; no-nodejscompat scalar execution does not imply complete taxonomy Worker support. This Native module/fixture transport substitution is proposed for finite PR102 backend acceptance; final specific acceptance is unrecorded.
+
+SourceCore222/matcher15, supplemental reference2, NativeAPI10/Source-on-Native7/regressions5/D1eight/compound8, Nativeboundary16 and existingRole4 pass before finalcommonconstructor refactor; checker0/0. Complete final-head normal13/secured9 and fresh independent/configured reviews, Root exact approval and author expected-head regular merge remain pending. Full taxonomy UI, actualQueryCore/App/Seed and full provider/deployed integration remain incomplete.
