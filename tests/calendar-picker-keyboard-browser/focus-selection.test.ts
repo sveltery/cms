@@ -1,7 +1,7 @@
 // Supplemental actual Native browser focus/selection/event controls.
 // No copied Source callbacks or URL/auth/storage/protected transport credit.
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { userEvent } from 'vitest/browser';
+import { page, userEvent } from 'vitest/browser';
 import { flushSync, mount, unmount } from 'svelte';
 import Harness from '../helpers/calendar-admin/PickerKeyboardHarness.svelte';
 let component: ReturnType<typeof mount> | undefined;
@@ -59,5 +59,15 @@ describe('Native compact Calendar keyboard focus and selection', () => {
       expect(allowed).toBe(false); expect(event.defaultPrevented).toBe(true); expect(escaped).not.toHaveBeenCalled();
       await expect.poll(focused).toBe('2030-10-16'); expect(selected()).toBe('2030-10-15');
     } finally { document.removeEventListener('keydown', escaped); }
+  });
+  it('retains the last-focused day through toolbar navigation away and back without stealing toolbar focus', async () => {
+    render(); button('2030-10-15').focus(); await userEvent.keyboard('{ArrowRight}');
+    await expect.poll(focused).toBe('2030-10-16');
+    await page.getByRole('button', { name: 'Next fixture month' }).click();
+    await expect.poll(() => target!.querySelector('[data-calendar-day][tabindex="0"]')?.getAttribute('data-calendar-day')).toBe('2030-11-01');
+    const previous = page.getByRole('button', { name: 'Previous fixture month' }); await previous.click();
+    await expect.poll(() => target!.querySelector('[data-calendar-day][tabindex="0"]')?.getAttribute('data-calendar-day')).toBe('2030-10-16');
+    expect(document.activeElement).toBe(previous.element()); expect(selected()).toBe('2030-10-15');
+    await userEvent.keyboard('{Tab}'); await userEvent.keyboard('{Tab}'); await expect.poll(focused).toBe('2030-10-16');
   });
 });

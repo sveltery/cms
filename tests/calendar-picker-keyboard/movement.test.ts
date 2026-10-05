@@ -3,7 +3,7 @@
 // statically cross-checked against the frozen external react-day-picker9.14.0.
 // These are not copied Source callbacks and establish no browser/auth/storage credit.
 import { describe, expect, it } from 'vitest';
-import { moveCalendarFocus, type CalendarPickerDirection } from '../../src/lib/calendar/picker-keyboard.ts';
+import { calendarFocusTarget, moveCalendarFocus, type CalendarPickerDirection } from '../../src/lib/calendar/picker-keyboard.ts';
 
 type Movement = readonly [string, string, string, boolean, string, CalendarPickerDirection, string];
 const movements: readonly Movement[] = [
@@ -50,5 +50,10 @@ describe('Native compact Calendar date movement', () => {
   });
   it.each(['Enter', ' ', 'Tab', 'Escape', 'a'])('leaves %s to native button/default handling', key => {
     expect(moveCalendarFocus('2030-10-15', { key }, 'en')).toBeUndefined();
+  });
+  it('restores an available last-focused day after leaving and returning to its month', () => {
+    expect(calendarFocusTarget('2030-10', '2030-10-17', '2030-10-16', '2030-10-15')).toBe('2030-10-17');
+    expect(calendarFocusTarget('2030-11', undefined, '2030-10-16', '2030-11-01')).toBe('2030-11-01');
+    expect(calendarFocusTarget('2030-10', undefined, '2030-10-16', '2030-10-15')).toBe('2030-10-16');
   });
 });
