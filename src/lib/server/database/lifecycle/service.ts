@@ -231,8 +231,13 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       return hydrateReferences(item,false);
     },
     async compareContent(input:unknown) {
-      requirePermission('content:read');requirePermission('content:read_drafts');const value=key(input);const item=await stored(value,false,true);
-      const result=await (await import('../../relations/content-read.ts')).compareContentReferences(database,value.type,item.id);
+      requirePermission('content:read');requirePermission('content:read_drafts');
+      const value=key(input);
+      // A shared slug can identify multiple locales. Retain the resolved row's
+      // identity when the unchanged Source comparison performs its second read.
+      const item=await stored(value,false,true);
+      const {compareContentReferences}=await import('../../relations/content-read.ts');
+      const result=await compareContentReferences(database,value.type,item.id);
       if(!result.success){if(result.error.code==='NOT_FOUND')throw new CmsError('NOT_FOUND',result.error.message);throw new Error(result.error.message);}
       return result.data;
     },
