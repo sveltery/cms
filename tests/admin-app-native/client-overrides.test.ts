@@ -69,3 +69,13 @@ it('concurrent explicit picker clients under one root fetch independently', asyn
  await vi.waitFor(() => expect([...target.querySelectorAll('.single strong')].map(element => element.textContent)).toEqual(['Alice content', 'Bob content']));
  expect([...target.querySelectorAll('option')].map(element => element.textContent)).toEqual(['Alice collection', 'Bob collection']);
 });
+it('separate actual roots do not reuse an explicit picker client warm cache', async () => {
+ const api = picker('Alice');
+ api.fetchContentList.mockResolvedValueOnce({ items: [{ id: 'first-root', type: 'posts', data: { aliceTitle: 'First root content' }, locale: 'en', translationGroup: null, slug: 'first-root', liveRevisionId: null, draftRevisionId: null }] });
+ api.fetchContentList.mockResolvedValueOnce({ items: [{ id: 'second-root', type: 'posts', data: { aliceTitle: 'Second root content' }, locale: 'en', translationGroup: null, slug: 'second-root', liveRevisionId: null, draftRevisionId: null }] });
+ const first = await render({ pickers: [api] });
+ await vi.waitFor(() => expect(first.querySelector('.single strong')?.textContent).toBe('First root content'));
+ const second = await render({ pickers: [api] });
+ await vi.waitFor(() => expect(second.querySelector('.single strong')?.textContent).toBe('Second root content'));
+ expect([api.fetchCollections.mock.calls.length, api.fetchManifest.mock.calls.length, api.fetchContentList.mock.calls.length]).toEqual([2, 2, 2]);
+});
