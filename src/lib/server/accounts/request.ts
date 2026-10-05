@@ -25,11 +25,15 @@ export async function requestAccounts(event:RequestEvent,mutation=false){
 export async function accountBody(event:RequestEvent){
  return parseBody(event.request,userUpdateBody);
 }
+const fallbackMessages:Record<string,string>={
+ USER_LIST_ERROR:'Failed to list users',USER_DETAIL_ERROR:'Failed to get user details',
+ USER_UPDATE_ERROR:'Failed to update user',USER_DISABLE_ERROR:'Failed to disable user',USER_ENABLE_ERROR:'Failed to enable user'
+};
 export async function accountsApi(code:string,action:()=>Promise<unknown>){
  try{const result=await action();return result instanceof Response?result:identitySuccess(result);}
  catch(cause){if(cause instanceof AccountError)return identityFailure(cause.code,cause.message,cause.status);
   if(cause instanceof SessionOriginError)return identityFailure(cause.code,cause.message,403);
-  return identityFailure(code,'Account request failed',500);
+  return identityFailure(code,fallbackMessages[code]??'Account request failed',500);
  }
 }
 
