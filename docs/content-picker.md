@@ -191,3 +191,31 @@ supplemental tests and paired documentation; all pinned Source and previous
 native tests remain unchanged. This integration grants zero new execution or
 parity credit. Current complete normal13/secured9 and fresh reviews will
 qualify the stationary successor before CP-03 acceptance or author merge.
+
+### PR110 schema-administration main integration
+
+Regular merge `4773c7343a065afedf6aac11b68e2837d95eab1d` has parents
+`e414d6bbb3ba541b183b9618f7bf74126b7d4614` and actual public Main
+`f2b2e560f6ea54f53e941db76fac732601772ce9`. It retains the complete schema
+administration implementation and its secured browser gate. The entire
+incoming compatibility record remains an exact byte prefix, followed by the
+unchanged CP-03 history. All main package, lock, bootstrap, CI, dependency,
+security and provider records are exact. Only the two existing picker-owned
+implementation/test paths and their paired documentation differ from main.
+
+At the previous `e414d6b` head, CI551 normal job `111910188554` stopped at the
+unchanged fifteen-minute deadline after ten completed stages. Root's one
+failed-job retry, normal job `111918625392`, stopped after eleven completed
+stages during the Cloudflare build; all reached Node aggregates passed with
+zero failures or cancellations. Neither cancellation establishes the complete
+normal gate, and the earlier nine-family browser pass does not qualify the
+new schema-main successor. No third retry of that previous head is requested.
+
+This ordinary union changes no picker product behavior, Source authority,
+assertion, fixture or clock. The complete current normal13, secured10,
+fresh exact-head independent review, configured review or recorded quota
+exception, specific Root CP-03 acceptance and author-owned expected-head
+regular merge remain required. The nineteen original Source core callbacks,
+three existing native backend controls, twenty-nine supplemental native UI
+controls and three original browser callbacks retain their separate scopes.
+This checkpoint grants zero new execution or Source causal credit.
