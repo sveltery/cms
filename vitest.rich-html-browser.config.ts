@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config';
-import richEditor from './vitest.rich-editor-browser.config';
+import richEditor from './vitest.rich-editor-browser.config.ts';
 
 export default defineConfig({
   ...richEditor,

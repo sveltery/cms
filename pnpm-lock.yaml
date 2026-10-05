@@ -181,6 +181,9 @@ importers:
       '@wordpress/block-serialization-default-parser':
         specifier: 5.38.0
         version: 5.38.0
+      dompurify:
+        specifier: 3.3.2
+        version: 3.3.2
       cn:
         specifier: 0.2.2
         version: 0.2.2
@@ -421,6 +424,12 @@ importers:
         version: 4.99.0(@cloudflare/workers-types@4.20260507.1)
 
 packages:
+
+  '@types/trusted-types@2.0.7':
+    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
+
+  dompurify@3.3.2:
+    resolution: {integrity: sha512-6obghkliLdmKa56xdbLOpUZ43pAR6xFy1uOrxBaIDjT+yaRuuybLjGS9eVBoSR/UPU5fq3OXClEHLJNGvbxKpQ==}
 
   smol-toml@1.6.0:
     resolution: {integrity: sha512-4zemZi0HvTnYwLfrpk/CF9LOd9Lt87kAt50GnqhMpyF9U3poDAP2+iukq2bZsO/ufegbYehBkqINbsWxj4l4cw==}
@@ -4024,6 +4033,13 @@ packages:
     resolution: {integrity: sha512-i/n8VsZydrugj3Iuzll8+x/00GH2vnYsk1eomD8QiRrSAeW6ItbCQDtfXCeJHd0iwiNagqjQkvpvREEPtW3IoQ==}
 
 snapshots:
+
+  '@types/trusted-types@2.0.7':
+    optional: true
+
+  dompurify@3.3.2:
+    optionalDependencies:
+      '@types/trusted-types': 2.0.7
 
   smol-toml@1.6.0: {}
 
