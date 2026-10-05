@@ -2,7 +2,8 @@
   import { onMount, type Snippet } from 'svelte';
   import { page } from '$app/state';
   import type { QueryClient } from '@tanstack/query-core';
-  import WorkspaceAccount, { type CurrentUserClient } from '../admin-app/WorkspaceAccount.svelte';
+  import WorkspaceAccount from '../admin-app/WorkspaceAccount.svelte';
+  import type { CurrentUserClient } from '../admin-app/current-user.svelte';
   import { getWorkspaceNavigation } from '$lib/workspace.remote';
   import { collectionNavigation, installedManagementNavigation, isItemActive, parseFolderState, type WorkspaceNavigation } from './nav/navigation';
   import { formatAdminVersion } from './nav/admin-version';

@@ -5,21 +5,15 @@
   import type { QueryClient } from '@tanstack/query-core';
   import { createDashboardClient } from '../dashboard/client';
   import WelcomeModal from '../dashboard/WelcomeModal.svelte';
-  import type { CurrentUser } from '../dashboard/types';
-  import { observeDashboardQuery, resolveDashboardQueryClient, retainDashboardQueryClient } from '../dashboard/query.svelte';
-  export interface CurrentUserClient {
-    currentUser(): Promise<CurrentUser | null>;
-    dismissWelcome?(): Promise<void>;
-  }
+  import { observeCurrentUser, type CurrentUserClient } from './current-user.svelte';
+  import { resolveDashboardQueryClient, retainDashboardQueryClient } from '../dashboard/query.svelte';
   let { basePath = '', queryClient: supplied, currentUserClient: suppliedClient, siteName = 'Sveltery CMS', toolbarLabels = { editMode: 'Edit', hideToolbar: 'Hide toolbar' } }: {
     basePath?: string; queryClient?: QueryClient; currentUserClient?: CurrentUserClient;
     siteName?: string; toolbarLabels?: { editMode: string; hideToolbar: string };
   } = $props();
   const queryClient = untrack(() => resolveDashboardQueryClient(supplied));
   const client = $derived(suppliedClient ?? createDashboardClient(basePath));
-  const currentUser = observeDashboardQuery<CurrentUser | null>(queryClient, () => ({
-    queryKey: ['currentUser'], queryFn: () => client.currentUser(), staleTime: 5 * 60 * 1000, retry: false
-  }));
+  const currentUser = observeCurrentUser(queryClient, () => client);
   const user = $derived(currentUser.result.data);
   const isFirstLogin = $derived(user?.isFirstLogin);
   let welcomeModalOpen = $state(false);

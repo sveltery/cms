@@ -60,3 +60,28 @@ it('separate application providers do not share current-user data', async () => 
  await vi.waitFor(() => expect(second.queryClient.getQueryData(['currentUser'])).toEqual({ ...user, id: 'second-fixture', name: 'Bob', isFirstLogin: false }));
  expect(first.queryClient).not.toBe(second.queryClient);
 });
+
+async function renderWithRootDefaults(state: any) {
+ const target = document.createElement('div'); document.body.append(target);
+ let queryClient!: ReturnType<typeof createDashboardQueryClient>;
+ const instance = flushSync(() => mount(NativeAppHost, { target, props: { state, onQueryClient: (client: ReturnType<typeof createDashboardQueryClient>) => { queryClient = client; } } }));
+ instances.push(instance); await settled();
+ await vi.waitFor(() => { if (!target.querySelector('main')) throw new Error('Actual WorkspaceShell mount not ready'); });
+ return { target, queryClient };
+}
+it('the real root layout shares a default current-user cache across mounted consumers', async () => {
+ const currentUser = vi.fn(async () => ({ ...user, isFirstLogin: false }));
+ const state = lifecycleState({ currentUserClient: { currentUser }, showSecond: false });
+ const { queryClient } = await renderWithRootDefaults(state);
+ await vi.waitFor(() => expect(queryClient.getQueryData(['currentUser'])).toEqual({ ...user, isFirstLogin: false }));
+ state.showSecond = true; await settled();
+ await vi.waitFor(() => expect(queryClient.getQueryCache().find({ queryKey: ['currentUser'] })!.getObserversCount()).toBe(2));
+ expect(currentUser).toHaveBeenCalledTimes(1);
+});
+it('two actual root layouts create isolated default current-user caches', async () => {
+ const first = await renderWithRootDefaults({ currentUserClient: { currentUser: vi.fn(async () => ({ ...user, isFirstLogin: false })) } });
+ const second = await renderWithRootDefaults({ currentUserClient: { currentUser: vi.fn(async () => ({ ...user, id: 'root-second', name: 'Bob', isFirstLogin: false })) } });
+ await vi.waitFor(() => expect(first.queryClient.getQueryData(['currentUser'])).toEqual({ ...user, isFirstLogin: false }));
+ await vi.waitFor(() => expect(second.queryClient.getQueryData(['currentUser'])).toEqual({ ...user, id: 'root-second', name: 'Bob', isFirstLogin: false }));
+ expect(first.queryClient).not.toBe(second.queryClient);
+});

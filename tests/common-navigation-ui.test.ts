@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { compile } from 'svelte/compiler';
 import { render } from 'svelte/server';
 import type { Component } from 'svelte';
+import { compileWorkspaceAccountSsr } from './helpers/admin-app/compile-account-ssr.ts';
 
 // Original native whole-shell SSR regressions, directed by the complete pinned
 // Sidebar manageItems and role floors. Explicit display props exercise no auth
@@ -21,6 +22,7 @@ before(async () => {
   directory = await mkdtemp(fileURLToPath(new URL('.common-navigation-display-', import.meta.url)));
   const source = await readFile(new URL('../src/lib/ui/WorkspaceShell.svelte', import.meta.url), 'utf8');
   const compiled = compile(source, { filename: 'WorkspaceShell.svelte', generate: 'server', experimental: { async: true } }).js.code;
+  await compileWorkspaceAccountSsr(directory);
   await mkdir(`${directory}/card`);
   for (const name of ['Card', 'CardHeader', 'CardTitle', 'CardDescription', 'CardAction', 'CardContent', 'CardFooter']) {
     const card = await readFile(new URL(`../src/lib/ui/vendor/sveltery/card/${name}.svelte`, import.meta.url), 'utf8');
@@ -33,6 +35,7 @@ before(async () => {
   await writeFile(`${directory}/display-remote.js`, "export function getWorkspaceNavigation() { throw new Error('Display fixture never calls a remote transport'); }");
   await writeFile(`${directory}/WorkspaceShell.js`, compiled
     .replace('$app/state', './display-state.js')
+    .replace('../admin-app/WorkspaceAccount.svelte', './WorkspaceAccount.js')
     .replace('$lib/workspace.remote', './display-remote.js')
     .replace('./nav/navigation', new URL('../src/lib/ui/nav/navigation.ts', import.meta.url).href)
     .replace('./nav/admin-version', new URL('../src/lib/ui/nav/admin-version.ts', import.meta.url).href)

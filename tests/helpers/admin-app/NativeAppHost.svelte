@@ -1,11 +1,16 @@
 <script lang="ts">
-  import DashboardQueryProvider from '../../../src/lib/dashboard/DashboardQueryProvider.svelte';
+  import RootLayout from '../../../src/routes/+layout.svelte';
+  import QueryClientProbe from './QueryClientProbe.svelte';
   import WorkspaceShell from '../../../src/lib/ui/WorkspaceShell.svelte';
   import type { QueryClient } from '@tanstack/query-core';
-  let { state, queryClient }: { state: any; queryClient?: QueryClient } = $props();
+  let { state, queryClient, onQueryClient }: { state: any; queryClient?: QueryClient; onQueryClient?: (client: QueryClient) => void } = $props();
 </script>
-<DashboardQueryProvider {queryClient}>
-  <WorkspaceShell {...state} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">
+<RootLayout>
+  <QueryClientProbe {onQueryClient} />
+  <WorkspaceShell {queryClient} {...state} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">
     <div>Native fixture page</div>
   </WorkspaceShell>
-</DashboardQueryProvider>
+  {#if state.showSecond}
+   <WorkspaceShell {queryClient} {...state} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">Second current-user consumer</WorkspaceShell>
+  {/if}
+</RootLayout>
