@@ -1,0 +1,208 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows Configure Field title for string type
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows min/max length validation for string type
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (select field) > shows options textarea for select type
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (multiSelect field) > shows options textarea for multi-select type
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > skips type selection and shows config directly
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows hint about slug immutability
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates validation values
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows type indicator with field type info
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > shows the collection its options named, so it can be confirmed
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > keeps a bound field's collection immutable
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx (58 tests | 10 failed) 9826ms
+       × shows Configure Field title for string type 1029ms
+       × shows min/max length validation for string type 1044ms
+       × shows options textarea for select type 18ms
+       × shows options textarea for multi-select type 11ms
+       × skips type selection and shows config directly 1025ms
+       × shows hint about slug immutability 1024ms
+       × pre-populates validation values 1018ms
+       × shows type indicator with field type info 1014ms
+       × shows the collection its options named, so it can be confirmed 1054ms
+       × keeps a bound field's collection immutable 1022ms
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx [ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx ]
+CompileError: /workspace/cms-complete-schema-admin-ui/src/lib/schema-admin/ContentTypeEditor.svelte:85:3 Unexpected block closing tag
+https://svelte.dev/e/block_unexpected_close
+ 83 |      {#if !relation.boundFields.some((value: any) => value.collectionSlug === collection.slug)}<p>No field on this content type uses it yet</p>{/if}
+ 84 |      {#if onUpdateRelation && !locked}<button type="button" onclick={() => relationDialog = relation}>Edit {relation.slug}</button>{/if}{#if onDeleteRelation && !locked}<button type="button" onclick={() => relationDelete = relation}>Delete {relation.slug}</button>{/if}
+ 85 |    {/each}
+          ^
+ 86 |  </section>
+ 87 |  {/if}
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows Configure Field title for string type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows min/max length validation for string type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > skips type selection and shows config directly
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows hint about slug immutability
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates validation values
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows type indicator with field type info
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > shows the collection its options named, so it can be confirmed
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > keeps a bound field's collection immutable
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/helpers/schema-ui/dom-setup.ts:6:74
+      4| function assertions(value: Element | Locator | null, negate = false): …
+      5|   const node = () => value instanceof Locator ? value.query() : value;
+      6|   const check = (read: () => boolean) => vi.waitFor(() => expect(read(…
+       |                                                                          ^
+      7|   return {
+      8|     get not() { return assertions(value, !negate); },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (select field) > shows options textarea for select type
+TypeError: screen.getByPlaceholder is not a function
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:253:32
+    251|    await expect.element(screen.getByText("Options (one per line)")).to…
+    252|    // Textarea should have the placeholder
+    253|    await expect.element(screen.getByPlaceholder("Option 1")).toBeInThe…
+       |                                ^
+    254|   });
+    255|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (multiSelect field) > shows options textarea for multi-select type
+TypeError: screen.getByPlaceholder is not a function
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:272:32
+    270|    );
+    271|    await expect.element(screen.getByText("Options (one per line)")).to…
+    272|    await expect.element(screen.getByPlaceholder("Option 1")).toBeInThe…
+       |                                ^
+    273|   });
+    274|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  10 failed | 74 passed (84)
+   Start at  04:54:36
+   Duration  16.23s (transform 1.41s, setup 1.66s, import 804ms, tests 10.53s, environment 2.50s)
+

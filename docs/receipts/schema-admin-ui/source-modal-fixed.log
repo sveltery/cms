@@ -1,0 +1,11 @@
+$ node scripts/check-schema-admin-ui-source.mjs && vitest run --config vitest.schema-admin-ui-source.config.ts
+Four whole immutable Source schema UI files are byte-exact; 138 declarations retained.
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+
+ Test Files  4 passed (4)
+      Tests  138 passed (138)
+   Start at  05:54:19
+   Duration  8.67s (transform 1.21s, setup 1.61s, import 710ms, tests 3.45s, environment 2.33s)
+

@@ -1,0 +1,606 @@
+{
+  "artifact": "First whole138 Native DOM capability run classification",
+  "run": "schema-ui-first-native-dom-values.log",
+  "registered": 138,
+  "passed": 20,
+  "failed": 118,
+  "wholeBrowserCredit": 0,
+  "classified": 118,
+  "totals": {
+    "assertion-value": 70,
+    "pre-expectation-or-host-stop": 48
+  },
+  "callbacks": [
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > auto-generates slug from label when isNew",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > toggles support checkboxes",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > save button is disabled when no changes have been made",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > displays custom fields with type and badges",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows system fields section",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows an unsupported field's stored type without allowing it to be edited",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows info banner and disables inputs for code-source collections",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows empty state when collection has no custom fields",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows URL Pattern input",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > populates URL Pattern from collection",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > disables URL Pattern input for code-source collections",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows field count in header",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > lists only the relations this content type is an end of",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > names the side this content type plays",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > says when no field on this content type uses a relation",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > displays collections with labels and slugs",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows 'Code' badge for code-source collections",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows 'Dashboard' badge for dashboard-source collections",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows feature badges from supports array",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > navigation > edit link navigates to /content-types/$slug",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > delete > delete button only shown for non-code-source collections",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > orphaned tables > shows warning when orphanedTables has items",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > empty state > shows 'No content types yet' when no collections",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > reordering > renders a labelled drag handle per row when onReorder is provided",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > type selection step > shows type selection grid when creating new field",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > type selection step > shows all 14 field types as buttons",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows Configure Field title for string type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows label and slug inputs",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows searchable checkbox for string type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows min/max length validation for string type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows pattern input for string type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows required and unique checkboxes",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (number field) > shows min/max value for number type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (text field) > shows min/max length but no pattern for text type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (text field) > shows searchable checkbox for text type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (select field) > shows options textarea for select type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (multiSelect field) > shows options textarea for multi-select type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > skips type selection and shows config directly",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > disables slug input in edit mode",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows hint about slug immutability",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows Update Field button instead of Add Field",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates validation values",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates slug value",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates required checkbox",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows type indicator with field type info",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > saving state > shows Saving... when isSaving is true",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > saving state > disables cancel button when saving",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > saving state > disables update button when saving",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > button state > disables save button when label is empty",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > button state > enables save button when label and slug are filled",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > indexed flag > clears the flag when the field type cannot be indexed",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > indexed flag > keeps the flag for a field type that can be indexed",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > indexed flag > hides and clears the flag for a storage-less reference field",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > shows the collection its options named, so it can be confirmed",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > keeps a bound field's collection immutable",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > sends the collection on save so the server can bind the field",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > offers a relationship this collection can still bind to",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > offers quick create and the relation editor when no relationship is bindable",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > leaves out a relationship whose ends are already picked from",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > derives the side and sends it with the relationship",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > derives the child side when this collection is the linked end",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > offers the side as a choice on a self-referential relationship",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > sends no target collection when a relationship is chosen",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > still creates a relationship when none is chosen",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (file field) > shows AllowedTypesEditor for file type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (file field) > shows AllowedTypesEditor for image type",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (file field) > pre-populates allowedMimeTypes from existing field validation",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > dark mode variant option (image field) > removes only the option when switched off and keeps other widget options",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected false to be true // Object.is equality"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > save button is enabled after changing label",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onSave with correct input when creating new collection",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onSave with correct input when editing existing collection",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > creates a collection without a dashboard quick action when switched off",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > keeps existing admin settings when turning off the dashboard quick action",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > opens FieldEditor dialog when Add Field is clicked",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onDeleteField when delete is confirmed via dialog",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > does not call onDeleteField when delete dialog is cancelled",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > names the field on the other content type and the links that go with it",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > leaves the field being deleted out of the list",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > deletes the relationship by default",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > keeps the relationship when the checkbox is cleared",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > offers nothing extra for a field that uses no relationship",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows 'Saving...' when isSaving is true",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > renders a sticky-header save button when editing existing collection",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "TypeError: screen.getByRole(...).first is not a function"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > sticky-header save flips to enabled 'Save' when fields change",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "TypeError: screen.getByRole(...).first is not a function"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > sticky-header save submits the form (calls onSave)",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > does not render sticky-header save for code-source collections",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "TypeError: screen.getByRole(...).first is not a function"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > does not render sticky-header save when creating a new collection",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "TypeError: screen.getByRole(...).first is not a function"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > includes urlPattern in onSave when set",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves whether the collection is routable",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves whether the collection takes edit locks",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves a trimmed sidebar group and clears it with null",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves the icon and navigation visibility",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows validation error when pattern lacks {slug}",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > disables save button when pattern lacks {slug}",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > blocks saving a pattern with two placeholders in one path segment",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves unrelated edits when a stored legacy pattern is unchanged",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > enables save button when pattern includes {slug}",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > allows empty URL Pattern (field is optional)",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > creates a relation with this content type as the linking end",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > edits a relation from the content type it is an end of",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > deletes a relation once the dialog says what goes with it",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > keeps the dialog open and shows the server's message when creating fails",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows the seo badge from hasSeo, not from supports",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected [] to have a length of 1 but got +0"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > delete > opens confirm dialog and calls onDelete after confirm",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > delete > does not call onDelete when confirm dialog is cancelled",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > orphaned tables > register button calls onRegisterOrphan",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > icon aspect ratio > pins the icon width and lets the description wrap in the name cell",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > reordering > renders collections in the order given, not alphabetically",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected [] to deeply equal [ 'posts', 'pages' ]"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList relationship warning > names the relationships and the fields on other content types that go with them",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList relationship warning > says nothing about relationships for a content type in none",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx > FieldEditor blocks configuration > creates an ordered blocks field from the read-only version inventory",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > does not auto-generate slug when editing label in edit mode",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > dark mode variant option (image field) > saves the option when switched on",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > asks for the relationship before the field itself",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > names the field after the side it picks",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > says what each side of the relationship will show",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > creates the relationship it needs and comes back with it picked",
+      "classification": "pre-expectation-or-host-stop",
+      "failure": "Error: Control absent from actual native DOM"
+    },
+    {
+      "callback": " parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > scrollable config dialog > bounds the config content so save actions remain reachable with many repeater sub-fields",
+      "classification": "assertion-value",
+      "failure": "AssertionError: expected null not to be null"
+    }
+  ],
+  "unclassified": []
+}
