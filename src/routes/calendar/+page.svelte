@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount,untrack } from 'svelte';
   import {observeCalendarMetadata} from '$lib/calendar/metadata-owner.ts';
   import { page } from '$app/state';
   import { browser } from '$app/environment';
@@ -15,7 +15,7 @@
   let { data }:{data:PageData}=$props();
   // Each actual page owns its query client. SSR/request instances never share it.
   const queryClient=createCalendarQueryClient();
-  let manifest=$state(data.manifest),user=$state(data.user);
+  let manifest=$state(untrack(()=>data.manifest)),user=$state(untrack(()=>data.user));
   onMount(()=>{if(!data.available)return;const owner=observeCalendarMetadata(queryClient,client,{manifest,user},value=>{manifest=value.manifest;user=value.user;});return()=>owner.destroy();});
   // Original admin bootstrap owns browser locale before any client request.
   // Existing i18n is reused; no locale is changed on an SSR request.
