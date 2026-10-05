@@ -15,26 +15,34 @@ export interface ContentReferencePlan {
  readonly cleanup:readonly CompiledQuery[];
  readonly touchedCollections:readonly string[];
 }
-interface CompiledSelection {plan:ContentReferencePlan;relation:Relation;additions:Edge[];limitedSide:'parent'|'child';limit:number|null;token:string}
+interface CompiledSelection {plan:ContentReferencePlan;relation:Relation;additions:Edge[];removals:string[];moves:{id:string;sortOrder:number}[];limitedSide:'parent'|'child';limit:number|null;token:string}
 type Edge={id:string;relation_id:string;parent_group:string;child_group:string;sort_order:number;created_at:string};
 interface PreparedSelection {relation:Relation;selection:ResolvedReferenceTargets;existing:Edge[];positions:Map<string,number>}
-async function prepare(database:CmsDatabase,selection:ResolvedReferenceTargets,entryGroup:string|null):Promise<PreparedSelection>{
+type PlannedChanges=Map<string,Map<string,Edge|null>>;
+function overlay(rows:Edge[],changes:Map<string,Edge|null>|undefined,matches:(edge:Edge)=>boolean):Edge[]{
+ const merged=new Map(rows.map(edge=>[edge.id,edge]));
+ for(const [id,edge] of changes??[]){merged.delete(id);if(edge&&matches(edge))merged.set(id,edge);}
+ return [...merged.values()];
+}
+async function prepare(database:CmsDatabase,selection:ResolvedReferenceTargets,entryGroup:string|null,changes?:PlannedChanges):Promise<PreparedSelection>{
  const repo=new RelationRepository(database);
  const db=database.db as unknown as Kysely<Database>;
  const relation=await repo.findById(selection.relation)??await repo.findBySlug(selection.relation);
  if(!relation)throw new Error('Reference relation no longer exists');
  const side=selection.side==='parent'?'parent_group':'child_group';
- const existing=entryGroup===null?[]:await db.selectFrom('_cms_content_references').selectAll()
+ const stored=entryGroup===null?[]:await db.selectFrom('_cms_content_references').selectAll()
   .where('relation_id','=',relation.id).where(side,'=',entryGroup).execute() as Edge[];
+ const existing=overlay(stored,changes?.get(relation.id),edge=>edge[side]===entryGroup);
  const positions=new Map<string,number>();
  if(selection.side==='child'){
   const current=new Set(existing.map(edge=>edge.parent_group));
   const added=[...new Set(selection.groups)].filter(group=>!current.has(group));
   for(let start=0;start<added.length;start+=16){
-   const rows=await db.selectFrom('_cms_content_references')
-    .select(eb=>['parent_group',eb.fn.max('sort_order').as('max')])
-    .where('relation_id','=',relation.id).where('parent_group','in',added.slice(start,start+16)).groupBy('parent_group').execute();
-   for(const row of rows)positions.set(row.parent_group,row.max===null?0:Number(row.max)+1);
+   const parents=new Set(added.slice(start,start+16));
+   const stored=await db.selectFrom('_cms_content_references').selectAll()
+    .where('relation_id','=',relation.id).where('parent_group','in',[...parents]).execute() as Edge[];
+   const rows=overlay(stored,changes?.get(relation.id),edge=>parents.has(edge.parent_group));
+   for(const row of rows)positions.set(row.parent_group,Math.max(positions.get(row.parent_group)??0,row.sort_order+1));
   }
  }
  return{relation,selection,existing,positions};
@@ -62,7 +70,7 @@ function compile(database:CmsDatabase,prepared:PreparedSelection,entryGroup:stri
    ...removePlan(db,removals),...positionPlan(db,moves)],
   cleanup:[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)],
   touchedCollections:[...new Set([relation.parentCollection,relation.childCollection])]};
- return{plan,relation,additions,limitedSide:parent?'child':'parent',limit:parent?relation.maxParentsPerChild:relation.maxChildrenPerParent,token};
+ return{plan,relation,additions,removals,moves,limitedSide:parent?'child':'parent',limit:parent?relation.maxParentsPerChild:relation.maxChildrenPerParent,token};
 }
 function combine(plans:readonly ContentReferencePlan[]):ContentReferencePlan{
  return{before:plans.flatMap(plan=>plan.before),after:plans.flatMap(plan=>plan.after),cleanup:plans.flatMap(plan=>plan.cleanup),
@@ -71,7 +79,17 @@ function combine(plans:readonly ContentReferencePlan[]):ContentReferencePlan{
 /** Executes only genuine reads. The sole content writer commits every returned statement. */
 export async function prepareContentReferenceWrites(database:CmsDatabase,selections:readonly ReferenceSelectionWrite[]):Promise<ContentReferencePlan>{
  const plans:ContentReferencePlan[]=[];
- for(const selection of selections)plans.push((await prepareContentReferenceSelection(database,selection)).plan);
+ const changes:PlannedChanges=new Map();
+ for(const selection of selections){
+  const prepared=await prepare(database,selection,selection.entryGroup,changes);
+  const compiled=compile(database,prepared,selection.entryGroup);
+  plans.push(compiled.plan);
+  const changed=changes.get(compiled.relation.id)??new Map<string,Edge|null>();
+  for(const id of compiled.removals)changed.set(id,null);
+  for(const move of compiled.moves){const edge=prepared.existing.find(edge=>edge.id===move.id);if(edge)changed.set(move.id,{...edge,sort_order:move.sortOrder});}
+  for(const edge of compiled.additions)changed.set(edge.id,edge);
+  changes.set(compiled.relation.id,changed);
+ }
  return combine(plans);
 }
 /** Resolve definitions and child-side append positions before the new row is written;
