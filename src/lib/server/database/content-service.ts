@@ -96,6 +96,8 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  return{
   async createContent(input:unknown){permission('content:create');return entry(await lifecycle().createContent(input));},
   async getContent(input:unknown){read();const value=parse(getDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrateReferences(await hydrate(active));},
+  async getPublishedContent(input:unknown){permission('content:read');return entry(await lifecycle().getPublishedContent(parse(getDraftInput,input)));},
+  async compareContent(input:unknown){read();return lifecycle().compareContent(parse(getDraftInput,input));},
   async updateContent(input:unknown){
    mutation('content:edit_own','content:edit_any');
    // Preserve required caller CAS and JSON/slug bounds. Omitted data remains
