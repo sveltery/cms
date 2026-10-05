@@ -271,7 +271,141 @@
   ],
   "sourceCatalogCount": 31,
   "sourceCatalogBytes": 16642703,
-  "testsRegistered": false,
-  "testsExecuted": false,
-  "scopeQualification": "pending"
+  "testsRegistered": true,
+  "testsExecuted": true,
+  "scopeQualification": {
+    "decision": "Exact retained candidate and whole pure in-memory Request family qualified for development adoption; not acceptance, publication or merge approval",
+    "sha256": "839f976c7694b408e632746d9da5e4b0629bad9adc004a513a5b5956902b7295"
+  },
+  "initialPreparation": {
+    "testsRegistered": false,
+    "testsExecuted": false,
+    "scopeQualification": "pending",
+    "candidate": "2b24752bbe9ebcb39b8d759759a30d59e4ab96ef"
+  },
+  "wholeFamilyExecution": {
+    "selector": "vitest.calendar-locales-source.config.ts",
+    "runtime": "Node 24.19.0 / Vitest 4.1.10, existing frozen dependency host",
+    "bridge": "Only the whole-family importer original locales index resolves to actual Native src/lib/ui/locales/index.ts; original Source bodies/requests/assertions unchanged",
+    "receipts": {
+      "pnpmHoistStop": {
+        "command": [
+          "/tmp/sec1-pnpm12-bin/pnpm",
+          "exec",
+          "vitest",
+          "run",
+          "--config",
+          "vitest.calendar-locales-source.config.ts",
+          "--reporter=default",
+          "--reporter=json",
+          "--outputFile=/tmp/calendar-qualified-locales-initial-results.json"
+        ],
+        "cwd": "/workspace/cms-calendar-qualified-locale-whole-tests",
+        "head": "7e44fbe6625710b8972414b43408905ff05db524",
+        "exitCode": 1,
+        "elapsedSeconds": 5.447,
+        "log": "/tmp/calendar-qualified-locales-initial.log",
+        "bytes": 549,
+        "sha256": "48e211a8a050249f0461dad4e15af37032f6f19936981f12c341e14175b92d67",
+        "registeredCallbacks": 0,
+        "reachedAssertions": 0,
+        "causalTDDCredit": 0
+      },
+      "generatedConfigStop": {
+        "command": [
+          "/workspace/cms-complete-calendar-admin-ui/node_modules/.bin/vitest",
+          "run",
+          "--config",
+          "vitest.calendar-locales-source.config.ts",
+          "--reporter=default",
+          "--reporter=json",
+          "--outputFile=/tmp/calendar-qualified-locales-family-results.json"
+        ],
+        "cwd": "/workspace/cms-calendar-qualified-locale-whole-tests",
+        "head": "7e44fbe6625710b8972414b43408905ff05db524",
+        "nodeVersion": "v24.19.0",
+        "exitCode": 1,
+        "elapsedSeconds": 0.535,
+        "log": "/tmp/calendar-qualified-locales-family.log",
+        "bytes": 1808,
+        "sha256": "a7125174866b0f8d5b550e5adfda8e9f7ebca25820cb66d6b5fb65ee6e9effaa",
+        "registeredCallbacks": 0,
+        "reachedAssertions": 0,
+        "causalTDDCredit": 0
+      },
+      "hostSync": {
+        "command": [
+          "/workspace/cms-complete-calendar-admin-ui/node_modules/.bin/svelte-kit",
+          "sync"
+        ],
+        "cwd": "/workspace/cms-calendar-qualified-locale-whole-tests",
+        "head": "7e44fbe6625710b8972414b43408905ff05db524",
+        "exitCode": 0,
+        "elapsedSeconds": 1.346,
+        "log": "/tmp/calendar-qualified-locales-kit-sync.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "wholeFamilyGreen": {
+        "command": [
+          "/workspace/cms-complete-calendar-admin-ui/node_modules/.bin/vitest",
+          "run",
+          "--config",
+          "vitest.calendar-locales-source.config.ts",
+          "--reporter=default",
+          "--reporter=json",
+          "--outputFile=/tmp/calendar-qualified-locales-green-results.json"
+        ],
+        "cwd": "/workspace/cms-calendar-qualified-locale-whole-tests",
+        "head": "7e44fbe6625710b8972414b43408905ff05db524",
+        "nodeVersion": "v24.19.0",
+        "exitCode": 0,
+        "elapsedSeconds": 2.8,
+        "log": "/tmp/calendar-qualified-locales-green.log",
+        "bytes": 424,
+        "sha256": "05951605077938fbf870bec55a55e579d2fecbb620325f494dfe1972d0cda183",
+        "registeredCallbacks": 56,
+        "passedCallbacks": 56,
+        "failedCallbacks": 0,
+        "skippedCallbacks": 0,
+        "supportedCatalogCallbacks": 29,
+        "genuineValueReds": 0,
+        "causalTDDCredit": 0,
+        "sourceAssertionsChanged": false,
+        "staticDeclarations": 28,
+        "staticMatcherRoots": 32,
+        "derivedExpandedMatcherOccurrences": 116,
+        "dynamicMatcherInstrumentation": false
+      },
+      "sourceGuard": {
+        "command": [
+          "node",
+          "scripts/check-calendar-locales-source.mjs"
+        ],
+        "cwd": "/workspace/cms-calendar-qualified-locale-whole-tests",
+        "head": "7e44fbe6625710b8972414b43408905ff05db524",
+        "exitCode": 0,
+        "elapsedSeconds": 0.074,
+        "log": "/tmp/calendar-qualified-locales-source-guard.log",
+        "bytes": 110,
+        "sha256": "a9a201225161077466a5da072df9803be707f7f5fd9805e83aa704030b5761f4"
+      }
+    },
+    "rawResult": {
+      "path": "/tmp/calendar-qualified-locales-green-results.json",
+      "bytes": 14927,
+      "sha256": "6ac2eb93431d72ad8be09b9ce2aeda5ab278e94ae675fe00d0bf5a4c85235f3d"
+    },
+    "sourceTestExecution": true,
+    "nativeSupplementalCallbacks": 0,
+    "protectedHTTPExecution": 0,
+    "reactProviderExecution": 0,
+    "emailGraphExecution": 0,
+    "browserExecution": 0,
+    "acceptance": "Not recorded",
+    "publication": "Pending owning PR112 integration",
+    "implementationChanges": 0,
+    "dependencyOrLockChanges": 0,
+    "gateChanges": 0
+  }
 }
