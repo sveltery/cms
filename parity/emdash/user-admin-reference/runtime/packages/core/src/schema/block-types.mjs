@@ -1,0 +1,15 @@
+export const BLOCK_FIELD_TYPES = [
+    "string",
+    "text",
+    "url",
+    "number",
+    "integer",
+    "boolean",
+    "datetime",
+    "select",
+    "multiSelect",
+    "portableText",
+    "image",
+    "file",
+    "repeater",
+];

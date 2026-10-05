@@ -30,6 +30,7 @@ for (const family of inventory.nativeFamilies) {
     assert.equal(before.length, family.bytes);
     assert.equal(digest(before), family.sha256);
     assert.equal(digest(bytes), correction.afterSha256);
+    assert.equal(bytes.toString(),before.toString().replace('() => f.repository.update(existing.id,', '() => f.repository.update(existing!.id,'), 'exact authorized one-character erased transport');
     const emit = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
     assert.equal(emit(bytes.toString()), emit(before.toString()), 'Root-authorized type-only correction has identical whole runtime');
   } else {
@@ -110,6 +111,7 @@ assert.equal(graph.seed.UserRepositoryImportChain, null);
 const scripts = JSON.parse(read('package.json')).scripts;
 assert.equal(scripts['test:user-repository-roles'], 'node scripts/check-user-repository-source.mjs && vitest run --config vitest.users.config.ts');
 assert.ok(scripts['test:source-ports'].startsWith(inventory.sharedPublicSourceChainBefore), 'entire historical public Source chain preserved');
-assert.ok(scripts['test:source-ports'].endsWith(' && pnpm test:user-repository-roles'), 'whole user family follows complete current public Source chain');
+assert.ok(scripts['test:source-ports'].includes(' && pnpm test:user-repository-roles && pnpm test:user-admin'), 'adjacent whole user gates follow the qualified historical chain; later whole feature leaves may append');
 assert.equal(scripts['test:source-ports'].split('pnpm test:user-repository-roles').length, 2, 'whole user gate occurs once');
+assert.equal(scripts['test:source-ports'].split('pnpm test:user-admin').length, 2, 'whole user administration gate occurs once');
 console.log('User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.');
