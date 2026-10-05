@@ -1,0 +1,105 @@
+$ vitest run --config vitest.schema-admin-ui-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/repeater-label.test.ts (3 tests | 2 failed) 499ms
+   × saves a newly added repeater sub-field from its label without requiring a manual slug 413ms
+   × derives the repeater slug again when an existing label changes, including after a manual slug edit 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/repeater-label.test.ts > saves a newly added repeater sub-field from its label without requiring a manual slug
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+@@ -1,13 +1,20 @@
+  [
+-   ObjectContaining {
++   {
++     "indexed": false,
++     "label": "Items",
++     "required": false,
++     "searchable": undefined,
++     "slug": "items",
++     "type": "repeater",
++     "unique": false,
+      "validation": {
+        "subFields": [
+          {
+            "label": "  Profile photo!  ",
+            "required": undefined,
+-           "slug": "profile_photo",
++           "slug": "",
+            "type": "string",
+          },
+        ],
+      },
+    },
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/repeater-label.test.ts:52:18
+     50|   await type(input(target, 'Sub-field label'), '  Profile photo!  ');
+     51|   button(target, 'Update Field').click();
+     52|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({
+       |                  ^
+     53|     validation: { subFields: [{ slug: 'profile_photo', label: '  Profi…
+     54|   }));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/schema-admin-ui/repeater-label.test.ts > derives the repeater slug again when an existing label changes, including after a manual slug edit
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+@@ -1,13 +1,20 @@
+  [
+-   ObjectContaining {
++   {
++     "indexed": false,
++     "label": "Items",
++     "required": false,
++     "searchable": undefined,
++     "slug": "items",
++     "type": "repeater",
++     "unique": false,
+      "validation": {
+        "subFields": [
+          {
+            "label": " Next -- caption 2! ",
+            "required": undefined,
+-           "slug": "next_caption_2",
++           "slug": "manual_slug",
+            "type": "string",
+          },
+        ],
+      },
+    },
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/repeater-label.test.ts:64:18
+     62|   await type(input(target, 'Sub-field label'), ' Next -- caption 2! ');
+     63|   button(target, 'Update Field').click();
+     64|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({
+       |                  ^
+     65|     validation: { subFields: [{ slug: 'next_caption_2', label: ' Next …
+     66|   }));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 31 passed (33)
+   Start at  18:13:55
+   Duration  11.89s (transform 12.60s, setup 0ms, import 16.14s, tests 3.32s, environment 11.60s)
+
+[ELIFECYCLE] Command failed with exit code 1.
