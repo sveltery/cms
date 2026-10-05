@@ -3,7 +3,7 @@ import { ulid } from 'ulidx';
 import type { CmsDatabase } from '../database/contract.ts';
 import type { Database } from '../database/lifecycle/upstream/database/types.ts';
 import { SchemaRegistry } from '../database/registry.ts';
-import { isStoragelessField } from '../schema/types.ts';
+import { columnExists } from '../database/lifecycle/upstream/database/dialect-helpers.ts';
 import { tableName } from '../database/validation.ts';
 import { RelationRepository } from './repository.ts';
 import { invalidateCollectionCache } from '../menus/object-cache.ts';
@@ -32,7 +32,10 @@ export async function prepareRelationDeletion(database: CmsDatabase, id: string,
     if (!target || !collection) continue;
     const index = 'idx_cf_' + target.id.toLowerCase();
     statements.push(sql`DROP INDEX IF EXISTS ${sql.ref(index)}`.compile(db), sql`DROP INDEX IF EXISTS ${sql.ref(index + '_loc')}`.compile(db));
-    if (!isStoragelessField({type:target.type,validation:target.validation ?? undefined})) {
+    // Published legacy conversion binds the field while retaining its TEXT
+    // column. Follow the pinned registry's actual catalogue check so both
+    // converted and newly storage-less fields are removed correctly.
+    if (await columnExists(db, tableName(field.collectionSlug), target.slug)) {
       statements.push(sql`ALTER TABLE ${sql.ref(tableName(field.collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db));
     }
     statements.push(db.deleteFrom('_cms_fields').where('id', '=', target.id).compile(),
