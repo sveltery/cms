@@ -58,4 +58,7 @@ describe('Native compact Calendar date movement', () => {
     expect(calendarFocusTarget('2030-11', undefined, '2030-10-16', '2030-11-01')).toBe('2030-11-01');
     expect(calendarFocusTarget('2030-10', undefined, '2030-10-16', '2030-10-15')).toBe('2030-10-16');
   });
+  it('uses Source remembered focus before internal active focus is applied during rendering', () => {
+    expect(calendarFocusTarget('2030-10', '2030-10-17', '2030-10-16', '2030-10-15')).toBe('2030-10-16');
+  });
 });
