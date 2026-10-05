@@ -157,3 +157,24 @@ proposed branch is `fix/content-picker-standalone-client`; specific Root
 acceptance, current full normal/secured hosted checks, independent/configured
 review and author-owned regular merge remain pending. The private TDD receipts
 retain exact raw hashes and are not published by this change.
+
+### PR110 initial validation checkpoint
+
+The proposed repair is [PR #110](https://github.com/sveltery/cms/pull/110),
+initial head `bf49f10da26fa74e534b4529792bb04098b681ee`, tree
+`518a370162745e6b4312180a5c84b429b9d4e15d`. Hosted CI run `37266025995`
+passes secured browser job `111622929008`; normal job `111622929121` is
+cancelled at its unchanged fifteen-minute deadline after ten completed stages,
+while the Node hosting stage is running. It earns zero complete normal-gate
+credit. Configured review completes against this head with no inline findings.
+The independent initial-head review clears this bounded cache repair.
+
+The retained local bootstrap log has all thirteen paired start/finish markers,
+all six Node aggregates passing with zero failures/cancellations, and all
+thirty-five Vitest aggregates passing. Its SHA256 is
+`e507880642e803ace5b60e25b50081cf2906e8e0ff7e42d4a648a71ac9ecf89e`.
+The original wrapper session is unavailable and its terminal exit was not
+retained, so the log establishes completed commands rather than a retained
+wrapper exit. These are historical initial-head observations; actual current
+Main integration, current full checks, fresh review, CP-03 acceptance and
+author-owned regular merge remain pending.
