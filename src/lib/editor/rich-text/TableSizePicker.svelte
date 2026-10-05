@@ -8,12 +8,12 @@
   const sizes = Array.from({ length: 10 }, (_, index) => index + 1);
   const preview = $derived(hovered ?? [rows, columns]);
   const id = $props.id();
-  onMount(() => { coarse = matchMedia('(any-pointer: coarse)').matches; void tick().then(() => focus()); });
-  function focus() {
+  onMount(() => { coarse = matchMedia('(any-pointer: coarse)').matches; void tick().then(focusActiveControl); });
+  function focusActiveControl() {
     if (coarse) rowsControl?.focus();
     else grid?.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
   }
-  async function move(row: number, column: number) { hovered = null; rows = Math.max(1, Math.min(10, row)); columns = Math.max(1, Math.min(10, column)); await tick(); focus(); }
+  async function move(row: number, column: number) { hovered = null; rows = Math.max(1, Math.min(10, row)); columns = Math.max(1, Math.min(10, column)); await tick(); focusActiveControl(); }
   function keyboard(event: KeyboardEvent) {
     const rtl = getComputedStyle(grid).direction === 'rtl';
     if (event.key === 'Enter' || event.key === ' ') onInsert(rows, columns, header);
