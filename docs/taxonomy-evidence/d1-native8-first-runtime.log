@@ -1,0 +1,14 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ✓ tests/taxonomy-d1/atomic-writes.test.mjs (8 tests) 2231ms
+   ✓ D1: one concept has locale-specific labels and one actual group  335ms
+   ✓ D1: a definition creation failure leaves neither its locale nor its structure group  351ms
+   ✓ D1: a later reorder chunk failure rolls back all earlier chunks  423ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  17:21:59
+   Duration  3.45s (transform 808ms, setup 0ms, import 1.10s, tests 2.23s, environment 0ms)
+
+JSON report written to /tmp/taxonomy-d1eight-first-runtime-report.json

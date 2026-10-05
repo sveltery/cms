@@ -4,6 +4,7 @@ import { Miniflare } from 'miniflare';
 import { parse, stringify } from 'devalue';
 import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import type { FixtureWorkerModule } from './vite-worker-modules.ts';
 import type { D1Binding, D1Statement } from '../../src/lib/server/database/d1.ts';
 
 const root = '/cms-d1-fixture';
@@ -91,12 +92,12 @@ export default {
 };
 `;
 
-async function newRuntime(d1Databases: Record<string, string>, directory?: string, script?: string) {
+async function newRuntime(d1Databases: Record<string, string>, directory?: string, script?: string|readonly FixtureWorkerModule[]) {
   const scripts = script === undefined
     ? [{ type: 'ESModule' as const, path: `${root}/worker.js`, contents: worker }]
     : [{ type: 'ESModule' as const, path: `${root}/worker.js`, contents: customWorker },
       { type: 'ESModule' as const, path: `${root}/transport.js`, contents: worker },
-      { type: 'ESModule' as const, path: `${root}/application.js`, contents: script }];
+      ...(typeof script==='string'?[{ type: 'ESModule' as const, path: `${root}/application.js`, contents: script }]:script)];
   const runtime = new Miniflare({ modulesRoot: root,
     modules: [...scripts, ...await modules],
     compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0, cf: false,
@@ -183,7 +184,7 @@ export async function asyncD1Storage(directory?: string) {
 }
 
 /** Dedicated real runtime with an existing fixture's exact identifier and script. */
-export async function asyncD1StorageFor(databaseName: string, directory?: string, script?: string) {
+export async function asyncD1StorageFor(databaseName: string, directory?: string, script?: string|readonly FixtureWorkerModule[]) {
   const runtime = await newRuntime({ DB: databaseName }, directory, script);
   return { runtime, binding: bindingFor(runtime, 'DB') };
 }
