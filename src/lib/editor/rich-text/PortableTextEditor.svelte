@@ -13,7 +13,8 @@
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
   import { insertTable } from './insert-table';
   import { getTableControlState, runTableAction, type TableActionId } from './TableActions';
-  import { selectionTouchesTable } from './TableExtensions';
+  import { selectionTouchesTable, selectionIsContainedInTableCells } from './TableExtensions';
+  import { setSelectionTextAlignment, type TextAlignment } from './table-safety';
   import type { TablePasteRejection } from './TableCellSafety';
   import { setSelectedTextLink } from './editor-values';
   import { sourceMessage, type PortableTextEditorProps, type AuthoringBlock } from './types';
@@ -33,6 +34,7 @@
   const pluginTypes = $derived(new Set((props.pluginBlocks ?? []).map(block => block.type)));
   const blocked = $derived(unsupported.length > 0 || tableError);
   const inTable = $derived.by(() => { void revision; return editor ? selectionTouchesTable(editor.state) : false; });
+  const alignmentUnavailable = $derived.by(() => { void revision; return editor ? selectionTouchesTable(editor.state) && !selectionIsContainedInTableCells(editor.state) : false; });
   const controls = $derived.by(() => { void revision; return editor ? getTableControlState(editor) : null; });
   const canUndo = $derived.by(() => { void revision; return editor?.can().undo() ?? false; });
   const canRedo = $derived.by(() => { void revision; return editor?.can().redo() ?? false; });
@@ -200,7 +202,7 @@
           <button type="button" aria-label="Quote" aria-pressed={active('blockquote')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleBlockquote().run()}>“</button>
           <button type="button" aria-label="Code Block" aria-pressed={active('codeBlock')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleCodeBlock().run()}>[ ]</button>
           <button type="button" aria-label="Insert Link" disabled={!editable} onmousedown={event => event.preventDefault()} onclick={link}>↗</button>
-          {#each [['Left', 'left'], ['Center', 'center'], ['Right', 'right']] as [label, align]}<button type="button" aria-label={`Align ${label}`} disabled={!editable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().setTextAlign(align).run()}>{label}</button>{/each}
+          {#each [['Left', 'left'], ['Center', 'center'], ['Right', 'right']] as [label, align]}<button type="button" aria-label={`Align ${label}`} disabled={!editable || alignmentUnavailable} onmousedown={event => event.preventDefault()} onclick={() => editor && setSelectionTextAlignment(editor, align as TextAlignment)}>{label}</button>{/each}
           <button type="button" aria-label="Table" data-emdash-table-trigger aria-expanded={tableMenu} disabled={!editable} onmousedown={event => event.preventDefault()} onclick={() => { tableMenu = !tableMenu; }}>▦</button>
           <button type="button" aria-label="Undo" disabled={!editable || !canUndo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().undo().run()}>↶</button>
           <button type="button" aria-label="Redo" disabled={!editable || !canRedo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().redo().run()}>↷</button>

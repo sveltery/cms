@@ -21,7 +21,7 @@
 <section class="embed-card" contenteditable="false" aria-label={iframe ? 'Iframe' : 'HTML'}>
   <div role="tablist" aria-label={iframe ? 'Iframe block' : 'HTML block'}>
     {#each tabs as value}<button type="button" role="tab" aria-selected={tab === value} onclick={() => { tab = value; }}>{value === 'preview' ? 'Preview' : value.toUpperCase()}</button>{/each}
-    <button type="button" aria-label="Delete block" disabled={!viewState.editable} onclick={() => viewState.editor.commands.deleteSelection()}>Delete</button>
+    <button type="button" aria-label="Delete block" disabled={!viewState.editable} onclick={() => viewState.deleteBlock?.()}>Delete</button>
   </div>
   {#if tab === 'preview'}
     {#if !iframe}
