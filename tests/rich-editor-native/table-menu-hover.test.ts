@@ -38,7 +38,7 @@ describe('Source menu pointer focus in the actual Native editor', () => {
     expect(document.activeElement).toBe(target); expect(target.tabIndex).toBe(0);
     expect(action(host, 'Select row').tabIndex).toBe(-1);
     target.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true })); await tick();
-    expect(document.activeElement).toBe(action(host, 'Select column'));
+    expect(document.activeElement).toBe(action(host, 'Add column before'));
   });
 
   it('focuses an unavailable hovered action while its actual click remains a no-op', async () => {
