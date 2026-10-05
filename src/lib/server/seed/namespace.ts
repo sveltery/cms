@@ -3,6 +3,8 @@ import { OperationNodeTransformer, type AliasNode, type Kysely, type KyselyPlugi
   type TableNode, type RawNode, type RootOperationNode, type OperationNode,
   type IdentifierNode, type ReferenceNode, type ValueNode, type Compilable, type RawBuilder, type QueryResult } from 'kysely';
 import type { CmsDatabase } from '../database/contract.ts';
+import { registerRelationDatabase } from '../relations/storage.ts';
+import { registerBlockDatabaseHost } from '../blocks/upstream/host.ts';
 import { RawBindingD1Adapter } from '../database/d1.ts';
 import { registerLifecycleDatabase } from '../database/lifecycle/upstream/host.ts';
 import type { Database } from './upstream/database/types.ts';
@@ -432,9 +434,17 @@ export function seedSourceDatabase(database: CmsDatabase): Kysely<Database> {
     } }) as Kysely<Database>;
     views.set(proxy, { owner: database, logical, atomicLogical });
     registerLifecycleDatabase({ ...database, db: proxy as unknown as CmsDatabase['db'] });
+    registerRelationDatabase(database, proxy);
+    registerBlockDatabaseHost({ ...database, db: proxy as unknown as CmsDatabase['db'] });
     return proxy;
   }
   return view(base, database.db);
+}
+/** Resolve the real trusted owner for native schema and fixed domain plans. */
+export function seedDatabaseOwner(db: object): CmsDatabase {
+  const context = views.get(db);
+  if (!context) throw new Error('Seed operations require their actual registered CMS database owner');
+  return context.owner;
 }
 const executeMethods = new Set(['execute','executeQuery','executeTakeFirst','executeTakeFirstOrThrow','stream','explain']);
 /** Builders used to prepare a batch cannot execute queries or callbacks themselves. */

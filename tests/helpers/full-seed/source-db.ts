@@ -4,6 +4,7 @@ import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
 import { seedSourceDatabase } from '../../../src/lib/server/seed/namespace.ts';
 import type { Database } from '../../../src/lib/server/seed/upstream/database/types.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
+import { describe } from 'vitest';
 
 const owners = new WeakMap<object, CmsDatabase>();
 export function sourceSeedOwner(db: object): CmsDatabase {
@@ -22,4 +23,15 @@ export async function setupTestDatabase(): Promise<Kysely<Database>> {
 }
 export async function teardownTestDatabase(db: Kysely<Database>): Promise<void> {
   await sourceSeedOwner(db).close();
+}
+export interface DialectTestContext { db: Kysely<Database>; dialect: 'sqlite' }
+/** PostgreSQL is unavailable; retain Source's ordinary SQLite registration. */
+export function describeEachDialect(name: string, fn: (dialect: 'sqlite') => void): void {
+  describe(`${name} [sqlite]`, () => fn('sqlite'));
+}
+export async function setupForDialect(dialect: 'sqlite'): Promise<DialectTestContext> {
+  return { db: await setupTestDatabase(), dialect };
+}
+export async function teardownForDialect(ctx: DialectTestContext | undefined): Promise<void> {
+  if (ctx) await teardownTestDatabase(ctx.db);
 }
