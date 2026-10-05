@@ -891,5 +891,144 @@
       "bytes": 2062,
       "sha256": "a497fbc263fbe79cbe5b656c95e1dc66de3d9bf0cc29a879a89201b7b98f3507"
     }
-  ]
+  ],
+  "relLif03Development": {
+    "feature": "REL-LIF03 / REL3-CACHE01",
+    "runtimeBasis": "4ec35c79ec94ea53f9aeceb6556906d7287b5ca7",
+    "runtimeTree": "d58085a687628fc30418cb0e5c67f05ca38f3c64",
+    "actualPublicMainAdopted": "90fa2410625e5b497f1547093e4a832c1440690f",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "completeSourceContentFunctions": [
+      "isRecord",
+      "hydrateReferences",
+      "handleContentCompare"
+    ],
+    "SourceDistinctCompletedCallbacks": 94,
+    "wholeOriginalContentFamiliesCallbacks": 0,
+    "SourceCausalRedCredit": 0,
+    "NativeFocusedRequirements": 15,
+    "NativeTotal": 55,
+    "noPublicUpload": true,
+    "rawSummaries": [
+      {
+        "label": "native10 first complete-binding reds",
+        "bytes": 13176,
+        "sha256": "d7095dff19f1507d5f4646b9764a5f510db2f2b399e467027f8df5dee83825d4",
+        "exit": 1,
+        "passed": 0,
+        "failed": 10
+      },
+      {
+        "label": "native10 read fix",
+        "bytes": 1268,
+        "sha256": "63ab74d741f2bd016cdb227d50b89d819ad1d459d34f10c31d8143fafa379487",
+        "exit": 0,
+        "passed": 10,
+        "failed": 0
+      },
+      {
+        "label": "native cache fixture-method stop and first L1 red",
+        "bytes": 4702,
+        "sha256": "c61109a4c43a051fcdda14f95bdd6e40e9e57eebf1d2a9e92478a4118b364d73",
+        "exit": 1,
+        "passed": null,
+        "failed": null
+      },
+      {
+        "label": "native cache actual value reds",
+        "bytes": 4581,
+        "sha256": "a9089f87ff98c01066a9a64c23e55148e910fc218215886d2c9c56874dacc31c",
+        "exit": 1,
+        "passed": 11,
+        "failed": 3
+      },
+      {
+        "label": "native cache fix",
+        "bytes": 1709,
+        "sha256": "45c7ac2d89fe79fe29cf19ed90cd313c5f83ff351f352fc05484348bbea1910f",
+        "exit": 0,
+        "passed": 14,
+        "failed": 0
+      },
+      {
+        "label": "ordinary read availability red",
+        "bytes": 1090,
+        "sha256": "587839eeeccd55174fde4ec3bfe635e25599b915d717ad496f53daed0b3f8497",
+        "exit": 1,
+        "passed": 0,
+        "failed": 1
+      },
+      {
+        "label": "ordinary read fix",
+        "bytes": 247,
+        "sha256": "04bd868f5f374377c78088d6b12a0d36a58f9792b9327f4e848686350e5aa41c",
+        "exit": 0,
+        "passed": 1,
+        "failed": 0
+      },
+      {
+        "label": "current refactored Native55",
+        "bytes": 14587,
+        "sha256": "b9a8969299644a74f08f6bbdbb68c430ddcc28214eb054ee683c2fa0406d3135",
+        "exit": 0,
+        "passed": 55,
+        "failed": 0
+      },
+      {
+        "label": "Source51",
+        "bytes": 232,
+        "sha256": "a1b7393ac5fee8ff3fb3323c2db839837a008b96085df606a5fa0fbd04048c7b",
+        "exit": 0,
+        "passed": 51,
+        "failed": 0
+      },
+      {
+        "label": "Source33 duplicate canonical-host family",
+        "bytes": 232,
+        "sha256": "5986f3d6d5509ab06e7da0983daae42a0e515ba7939ae5668a9449c3048a4587",
+        "exit": 0,
+        "passed": 33,
+        "failed": 0
+      },
+      {
+        "label": "Source43",
+        "bytes": 232,
+        "sha256": "e25df94d5cc282d6db4f18df920d3cc6651a0aa170cdb44fbac44ad8f6ed4c45",
+        "exit": 0,
+        "passed": 43,
+        "failed": 0
+      },
+      {
+        "label": "whole original content3 missing producer",
+        "bytes": 3216,
+        "sha256": "5ee15fe709548a5a5c924f2f5d42ab6b69d5322fdd20ed8bfde58333af991d67",
+        "exit": 1,
+        "passed": 0,
+        "failed": null
+      },
+      {
+        "label": "current typecheck",
+        "bytes": 155,
+        "sha256": "dfd0d3148bacd1cce443d37dabed5a2d770fcf3d990e719d8e4dee960de7adc1",
+        "exit": 0,
+        "passed": null,
+        "failed": 0
+      },
+      {
+        "label": "Source body guard",
+        "bytes": 165,
+        "sha256": "ef491db504e93960ad5b9f85bf48a743ff9ebb1fa7e4fb014c956aa82ba6f42a",
+        "exit": 0,
+        "passed": null,
+        "failed": 0
+      }
+    ],
+    "limits": [
+      "The three complete original content Source families remain unregistered; no partial facade, copied callback or changed Source expectations.",
+      "Reference field metadata without targetCollection is skipped by the unchanged pinned hydrator. Only supplemental test fixtures were completed to the original full descriptor; Source behavior remains exact.",
+      "Existing generic lifecycle host cache invalidator remains no-op outside this selecting-reference contract. No complete QuerySDK/Runtime/HTTP/PG/deployed Worker credit.",
+      "The old exact22 diagnostics remain held; no branch graph containing them was uploaded.",
+      "Final whole13, secured9, configured and fresh review are pending at their actual final head."
+    ]
+  }
 }
