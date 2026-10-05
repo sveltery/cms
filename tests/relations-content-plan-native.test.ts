@@ -51,3 +51,21 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const satisfies readonly S
     } finally { await host.close(); }
   });
 }
+
+for (const mode of ['Node','raw D1','scoped D1'] as const satisfies readonly StorageMode[]) {
+ test(`${mode} one content plan preserves sequential append order across inverse selections`,async()=>{
+  const host=await historicalFeatureStorage(mode,0);
+  try{
+   await migrateCms(host.database);
+   const repository=new RelationRepository(host.database);
+   const relation=await repository.create({slug:'same_parent_append',parentCollection:'post',childCollection:'page',parentLabel:'Posts',childLabel:'Pages'});
+   const {prepareContentReferenceWrites}=await import('../src/lib/server/relations/content-plan.ts');
+   const plan=await prepareContentReferenceWrites(host.database,[
+    {relation:relation.id,side:'child',entryGroup:'first-page',groups:['same-post']},
+    {relation:relation.id,side:'child',entryGroup:'second-page',groups:['same-post']}
+   ]);
+   await host.database.atomicBatch([...plan.before,...plan.after,...plan.cleanup]);
+   assert.deepEqual((await repository.getChildren(relation.id,'same-post')).map(edge=>[edge.childGroup,edge.sortOrder]),[['first-page',0],['second-page',1]]);
+  }finally{await host.close();}
+ });
+}
