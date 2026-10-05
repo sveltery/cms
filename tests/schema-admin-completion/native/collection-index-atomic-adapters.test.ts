@@ -10,7 +10,7 @@ import { SchemaRegistry } from '../../../src/lib/server/database/registry.ts';
 import { collectionStandardIndexesMigration } from '../../../src/lib/server/database/collection-index-migration.ts';
 
 async function historical(database:CmsDatabase,version=15) {
-  await sql`CREATE TABLE _cms_migrations(version INTEGER PRIMARY KEY CHECK(version>0))`.execute(database.db);
+  await sql`CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version > 0))`.execute(database.db);
   for(const provider of CMS_MIGRATIONS.filter(provider=>provider.version<=version)) {
     await database.atomicBatch([...await provider.statements(database),
       sql`INSERT INTO _cms_migrations(version) VALUES(${sql.lit(provider.version)})`.compile(database.db)]);
