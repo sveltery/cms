@@ -39,7 +39,7 @@ export function accountsRepository(database:CmsDatabase){
    .select('u.id').orderBy('p.created_at','desc').limit(limit+1);
   if(options.search){const term=`%${options.search}%`;query=query.where(eb=>eb.or([eb('p.email','like',term),eb('p.name','like',term)]));}
   if(options.role!==undefined)query=query.where('u.role','=',options.role);
-  if(options.cursor){const cursor=await profile(options.cursor);if(cursor)query=query.where('p.created_at','<',cursor.createdAt.toISOString());}
+  if(options.cursor){const cursor=await db.selectFrom('_cms_auth_profiles').select('created_at').where('user_id','=',options.cursor).executeTakeFirst();if(cursor)query=query.where('p.created_at','<',cursor.created_at);}
   const rows=await query.execute();
   const details=await Promise.all(rows.slice(0,limit).map(row=>detail(row.id)));
   const items=details.filter((user):user is AdminUserDetail=>user!==null).map(({credentials,...user})=>user);
