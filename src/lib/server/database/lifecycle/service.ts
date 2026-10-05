@@ -18,6 +18,7 @@ import { keepKnownFields, staleStoredKeys } from './upstream/content/known-field
 import { ContentDatetimeNormalizer } from './upstream/database/content-datetime.ts';
 import { LifecycleSlugConflictError } from './errors.ts';
 import {prepareContentSlugRedirect,executeContentSlugBatch,completeContentSlugRedirect} from '../../redirects/content-atomic.ts';
+import {storagelessDataKeys,storagelessDataKeyError,changedStoragelessDataKeys} from '../content-data.ts';
 import {publicationStatementExecutor} from '../../redirects/publication-atomic.ts';
 import * as v from 'valibot';
 import {BylineRepository,type ContentBylineInput} from '../../bylines/repository.ts';
@@ -29,10 +30,11 @@ import {contentBylineInput} from '../content-validation.ts';
 import {canonicalSourceDatabase} from '../../canonical-storage/namespace.ts';
 import {getI18nConfig,resolveConfiguredLocale} from '../../menus/i18n-config.ts';
 import {resolveTaxonomySlugMap,contentTaxonomyStatements,newContentTaxonomyStatements,completeContentTaxonomies,type ResolvedTaxonomySelection} from '../../taxonomies/content-write.ts';
-import {hasSeoFields,seoUpsertStatements,completeContentSeo} from '../../seo/content-write.ts';
+import {hasSeoFields,seoUpsertStatements,completeContentSeo,seoCopyStatements,seoDeleteStatements} from '../../seo/content-write.ts';
 import {contentSeoInput} from '../../seo/content-input.ts';
 import {hydrateContentSeo,hydrateContentSeoMany} from '../../seo/content-read.ts';
 import type {ContentSeoInput} from '../../../seo/types.ts';
+import {SeoRepository} from '../../seo/repository.ts';
 import type {Database as SeoDatabase} from '../../seo/types.ts';
 
 // Runtime draft-stage, hydration and retention algorithms adapted from
@@ -48,12 +50,12 @@ export interface ContentUpdate extends ContentMutation {
 }
 export interface ContentReceipt {item:ContentItem;liveContentChanged:boolean}
 /** Trusted importer/API attribution metadata; never read from mutation input. */
-export interface ContentCreationAttribution {readonly authorId?:string|null;readonly status?:'draft'|'published'}
+export interface ContentCreationAttribution {readonly authorId?:string|null;readonly status?:'draft'|'published';readonly validateData?:boolean}
 
 /** Compose only with trusted authentication; input never supplies identity. */
 export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal|null, dependencies:LifecycleDependencies={},creationAttribution?:ContentCreationAttribution) {
   registerLifecycleDatabase(database,dependencies);
-  const creationMetadata=creationAttribution===undefined?undefined:{authorId:creationAttribution.authorId||null,status:creationAttribution.status??'draft'};
+  const creationMetadata=creationAttribution===undefined?undefined:{authorId:creationAttribution.authorId||null,status:creationAttribution.status??'draft',validateData:creationAttribution.validateData};
   const identity=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)
     ? {id:principal.id,permissions:new Set<string>(principal.permissions)} : null;
   const registry=new SchemaRegistry(database);
@@ -235,6 +237,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       if(value.status!==undefined&&value.status!=='draft'&&!(creationMetadata?.status==='published'&&value.status==='published'))throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
       const collection=await definition(type);
       checkSeoCollection(type,value.seo,collection.hasSeo);
+      const storageKeys=await storagelessDataKeys(canonicalSourceDatabase(database),type,value.data);
+      if(storageKeys.length)throw new CmsError('VALIDATION_ERROR',storagelessDataKeyError(storageKeys).error.message);
       let data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       let translation: {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:string[]}|undefined;
       if(value.translationOf!==undefined){
@@ -252,7 +256,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       }
       const selections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,locale));
       const needsReferences=value.references!==undefined||collection.fields.some(field=>field.type==='reference'&&field.validation?.relation&&field.required);
-      const references=needsReferences?await (await import('../../relations/content-input.ts')).prepareContentReferencesCreate(database,type,value.references):undefined;
+      const references=needsReferences?await (await import('../../relations/content-input.ts')).prepareContentReferencesCreate(database,type,value.references,value.translationOf):undefined;
       let referencePlan:ContentReferencePlan|undefined;
       const seoWrites=hasSeoFields(value.seo);
       const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined||references!==undefined||seoWrites;
@@ -284,14 +288,21 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const source=typeof data.title==='string'?data.title:typeof data.name==='string'?data.name:null;
       const slug=source?await content.generateUniqueSlug(value.type,source,original.locale??undefined):null;
       const existingBylines=await bylines.getContentBylines(value.type,original.id);
+      const referenceCopy=original.translationGroup?await (await import('../../relations/content-copy.ts')).prepareContentReferenceCopy(database,value.type,original.translationGroup):undefined;
+      const definitionSnapshot=await definition(value.type);
+      const copiedSeo=definitionSnapshot.hasSeo?await new SeoRepository(database.db as any).get(value.type,original.id):undefined;
+      let referencePlan:ContentReferencePlan|undefined;
       const attribution=creationMetadata===undefined?undefined:{authorId:creationMetadata.authorId||original.authorId||null};
       const item=await drafts.create({type:value.type,locale:original.locale??'en',slug,data},actor.id,
-        existingBylines.length?async entry=>{
+        existingBylines.length||referenceCopy||copiedSeo?async entry=>{
           const plan=newContentTaxonomyStatements(database,value.type,entry,[]);
           const statements=await bylines.planContentBylineReplacement(value.type,entry.id,
             existingBylines.map(credit=>({bylineId:credit.byline.id,roleLabel:credit.roleLabel})));
-          return {...plan,after:[...plan.after,...statements]};
+          referencePlan=referenceCopy?.(entry.translationGroup);
+          const seo=copiedSeo?seoCopyStatements(database.db as any,value.type,entry.id,copiedSeo):[];
+          return {before:[...plan.before,...(referencePlan?.before??[])],after:[...plan.after,...statements,...seo,...(referencePlan?.after??[])],cleanup:[...plan.cleanup,...(referencePlan?.cleanup??[])]};
         }:undefined,undefined,attribution);
+      if(referencePlan){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(referencePlan);}
       invalidateCollectionCache(value.type);const persisted=await stored({type:value.type,id:item.id,locale:item.locale});return hydrateReferences(await hydrate(persisted.item,persisted.hasSeo),true);
     },
     async permanentDeleteContent(input:unknown):Promise<void> {
@@ -300,6 +311,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const row=(await sql<Record<string,unknown>>`SELECT * FROM ${table} WHERE id=${value.id} AND deleted_at IS NOT NULL
         ${raw.locale===undefined?sql``:sql`AND locale=${value.locale}`}`.execute(database.db)).rows[0];
       if(!row)throw new CmsError('NOT_FOUND');const item=content.mapRow(value.type,row);precondition(value.expected,item);
+      const referenceCollections=item.translationGroup?(await sql<{parent_collection:string;child_collection:string}>`SELECT relation.parent_collection,relation.child_collection FROM _cms_relations AS relation INNER JOIN _cms_content_references AS edge ON relation.id=edge.relation_id WHERE edge.parent_group=${item.translationGroup} OR edge.child_group=${item.translationGroup}`.execute(database.db)).rows:[];
       const schemaToken=ulid();const entryToken=ulid();const deletionToken=ulid();
       const statements:CompiledQuery[]=[
         sql`INSERT INTO _cms_guards(token,pass) SELECT ${schemaToken},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections
@@ -307,6 +319,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         sql`INSERT INTO _cms_guards(token,pass) SELECT ${entryToken},CASE WHEN EXISTS(SELECT 1 FROM ${table}
           WHERE id=${item.id} AND locale=${item.locale} AND deleted_at=${row.deleted_at} AND version=${item.version}
           AND updated_at=${item.updatedAt})THEN 1 ELSE 0 END`.compile(database.db),
+        ...(item.translationGroup?[sql`DELETE FROM _cms_content_references WHERE (parent_group=${item.translationGroup} OR child_group=${item.translationGroup}) AND NOT EXISTS(SELECT 1 FROM ${table} WHERE translation_group=${item.translationGroup} AND id<>${item.id})`.compile(database.db)]:[]),
         sql`DELETE FROM ${table} WHERE id=${item.id} AND locale=${item.locale} AND deleted_at=${row.deleted_at}
           AND version=${item.version} AND updated_at=${item.updatedAt} RETURNING id`.compile(database.db),
         sql`INSERT INTO _cms_guards(token,pass) SELECT ${deletionToken},CASE WHEN changes()=1 THEN 1 ELSE 0 END`.compile(database.db),
@@ -314,6 +327,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         sql`DELETE FROM _cms_revisions WHERE collection=${value.type} AND entry_id=${item.id}`.compile(database.db),
         sql`DELETE FROM _cms_revision_prune_queue WHERE collection=${value.type} AND entry_id=${item.id}`.compile(database.db),
         ...await bylines.planContentBylineDeletion(value.type,item.id),
+        ...seoDeleteStatements(database.db as any,value.type,item.id),
         ...(item.translationGroup?[sql`DELETE FROM _cms_content_taxonomies WHERE collection=${value.type} AND entry_id=${item.translationGroup}
           AND NOT EXISTS(SELECT 1 FROM ${table} WHERE translation_group=${item.translationGroup})`.compile(database.db)]:[]),
         sql`DELETE FROM _cms_guards WHERE token IN(${schemaToken},${entryToken},${deletionToken})`.compile(database.db)
@@ -323,14 +337,17 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       invalidateCollectionCache(value.type);
       const {invalidateCommentObjectCache,invalidateTaxonomyObjectCache}=await import('../../menus/object-cache.ts');
       invalidateCommentObjectCache();invalidateTaxonomyObjectCache();
+      for(const collection of new Set(referenceCollections.flatMap(row=>[row.parent_collection,row.child_collection])))invalidateCollectionCache(collection);
     },
-    async getContent(input:unknown,options:{inferLocale?:boolean;resolveIdentifier?:boolean}={}):Promise<ContentItem> {
+    async getContent(input:unknown,options:{inferLocale?:boolean;resolveIdentifier?:boolean;draftData?:boolean;references?:boolean;referenceDrafts?:boolean}={}):Promise<ContentItem> {
       requirePermission('content:read');requirePermission('content:read_drafts');
       // Only the trusted constructor host opts into omitted-locale inference;
       // all callers share the same actual definition/read/not-found owner.
       const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
       const persisted=await stored(key(input),inferLocale,options.resolveIdentifier===true);
-      return hydrateReferences(await hydrate(persisted.item,persisted.hasSeo),true);
+      const item=options.draftData===false?await hydratedBylines(await hydrateContentSeo(database,persisted.item.type,persisted.item,persisted.hasSeo)):await hydrate(persisted.item,persisted.hasSeo);
+      if(options.references===false)return item;
+      return (await import('../../relations/content-read.ts')).hydrateContentReferences(database,item,options.referenceDrafts!==false);
     },
     async getPublishedContent(input:unknown):Promise<ContentItem> {
       requirePermission('content:read');const persisted=await stored(key(input));const item=persisted.item;
@@ -362,18 +379,21 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         where:{...(filterLocale===undefined?{}:{locale:filterLocale}),...(value.status===undefined?{}:{status:value.status}),...(bylineFilter?{bylineFilter}:{})}});
       await hydrateBylinesMany(bylineDatabase(database),type,result.items);return {...result,items:await hydrateContentSeoMany(database,type,result.items,collection?.hasSeo??false)};
     },
-    async updateContent(input:unknown):Promise<ContentReceipt> {
+    async updateContent(input:unknown,options:{drafts?:boolean;validateData?:boolean}={}):Promise<ContentReceipt> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);
       let existing=(await stored(value)).item;owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
       publicationDatePermission(value);
       const collection=await definition(value.type);checkSeoCollection(value.type,value.seo,collection.hasSeo);const fields=new Set(collection.fields.map(field=>field.slug));
       let data=value.data===undefined?undefined:normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       if(data){
+        const storageKeys=await storagelessDataKeys(canonicalSourceDatabase(database),value.type,data);
+        const changed=changedStoragelessDataKeys(new Set(storageKeys),data,existing.data);
+        if(changed.length)throw new CmsError('VALIDATION_ERROR',storagelessDataKeyError(changed).error.message);
         const base=existing.draftRevisionId?(await revisions.findById(existing.draftRevisionId))?.data??existing.data:existing.data;
         const stale=staleStoredKeys(data,base,fields);if(stale.length){data={...data};for(const field of stale)delete data[field];}
-        await checked(value.type,data,true);
+        if(options.validateData!==false)await checked(value.type,data,true);
       }
-      const usesDraftRevisions=(data!==undefined||value.references!==undefined)&&collection.supports.includes('revisions');
+      const usesDraftRevisions=options.drafts!==false&&(data!==undefined||value.references!==undefined)&&collection.supports.includes('revisions');
       const referenceDraft=usesDraftRevisions&&value.references!==undefined?await (await import('../../relations/content-input.ts')).prepareContentReferenceDraft(database,value.type,value.id,value.references):undefined;
       const references=usesDraftRevisions||value.references===undefined?undefined:await (await import('../../relations/content-input.ts')).prepareContentReferencesUpdate(database,value.type,value.id,value.references);
       const taxonomySelections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,value.locale));
@@ -454,8 +474,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const publicationReferences=needsReferences?await (await import('../../relations/content-input.ts')).prepareContentReferencePublication(database,value.type,item,
         item.draftRevisionId?(await revisions.findById(item.draftRevisionId))?.data:undefined):undefined;
       const executePublication=publicationStatementExecutor(database,{id:collection.id,slug:value.type,version:collection.version,urlPattern:collection.urlPattern??null},candidate=>{redirectCreated=candidate;},publicationReferences);
-      const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,
-        {version:item.version,updatedAt:item.updatedAt},undefined,executePublication));
+      const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,value.requireScheduledDue??false,value.expectedScheduledAt,collection.supports.includes('revisions'),collection.routable,
+        {version:item.version,updatedAt:item.updatedAt},value.currentTime,executePublication));
       if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
       if(publicationReferences){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(publicationReferences,value.type);}
       return hydratedBylines(await hydrateContentSeo(database,value.type,published,collection.hasSeo));
@@ -500,7 +520,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       requirePermission('content:read');requirePermission('content:read_drafts');const value=key(input);await stored(value);
       return revisions.findVisibleByEntry(value.type,value.id,{limit:value.limit});
     },
-    async restoreRevision(input:unknown):Promise<ContentItem> {
+    async restoreRevision(input:unknown,options:{drafts?:boolean;auditAuthorId?:string}={}):Promise<ContentItem> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=object(input);
       const revision=await revisions.findById(parse(entryId,value.revisionId));if(!revision)throw new CmsError('NOT_FOUND');
       if(value.type!==undefined&&value.type!==revision.collection||value.id!==undefined&&value.id!==revision.entryId)throw new CmsError('NOT_FOUND');
@@ -508,11 +528,27 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       owner(item,actor,'content:edit_any');precondition(value.expected,item);const collection=await definition(revision.collection);
       const restored={...revision.data};delete restored._referencesBaseline;
       return translate(async()=>{
-        if(collection.supports.includes('revisions')){
+        if(options.drafts!==false&&collection.supports.includes('revisions')){
           const revisionId=await content.restoreDraftRevision(revision.collection,revision.entryId,restored,actor.id,{version:item.version,updatedAt:item.updatedAt});
           if(!revisionId)throw new CmsError('NOT_FOUND');prune(revision.collection,revision.entryId,revisionId);const persisted=await stored(contentKey);return hydrate(persisted.item,persisted.hasSeo);
         }
-        const result=await content.restoreRevision(revision.collection,revision.entryId,restored,actor.id,{version:item.version,updatedAt:item.updatedAt});prune(revision.collection,revision.entryId,result.revisionId);return hydrate(result.item,collection.hasSeo);
+        const {readStagedReferences}=await import('../../relations/staged-content.ts');
+        const staged=readStagedReferences(restored);
+        const references=staged&&item.translationGroup?await (await import('../../relations/content-input.ts')).prepareContentReferenceRestore(database,revision.collection,item.translationGroup,restored):undefined;
+        const result=await content.restoreRevision(revision.collection,revision.entryId,restored,options.auditAuthorId??actor.id,{version:item.version,updatedAt:item.updatedAt},async queries=>{
+          const schemaToken=ulid();const entryToken=ulid();const restoredToken=ulid();
+          const before:CompiledQuery[]=[
+            sql`INSERT INTO _cms_guards(token,pass) SELECT ${schemaToken},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version})THEN 1 ELSE 0 END`.compile(database.db),
+            sql`INSERT INTO _cms_guards(token,pass) SELECT ${entryToken},CASE WHEN EXISTS(SELECT 1 FROM ${sql.ref(tableName(revision.collection))} WHERE id=${item.id} AND deleted_at IS NULL AND version=${item.version} AND updated_at=${item.updatedAt} ${actor.permissions.has('content:edit_any')?sql``:sql`AND author_id=${actor.id}`})THEN 1 ELSE 0 END`.compile(database.db),
+            ...(references?.before??[])
+          ];
+          const core=queries.map(query=>query.compile(database.db));
+          const restoredGuard=sql`INSERT INTO _cms_guards(token,pass) SELECT ${restoredToken},CASE WHEN changes()=1 AND EXISTS(SELECT 1 FROM ${sql.ref(tableName(revision.collection))} WHERE id=${item.id} AND deleted_at IS NULL AND version=${item.version+1} ${actor.permissions.has('content:edit_any')?sql``:sql`AND author_id=${actor.id}`})THEN 1 ELSE 0 END`.compile(database.db);
+          const results=await database.atomicBatch([...before,...core,restoredGuard,...(references?.after??[]),...(references?.cleanup??[]),sql`DELETE FROM _cms_guards WHERE token IN(${schemaToken},${entryToken},${restoredToken})`.compile(database.db)]);
+          return results.slice(before.length,before.length+core.length);
+        });
+        if(references){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(references,revision.collection);}
+        prune(revision.collection,revision.entryId,result.revisionId);return hydrate(result.item,collection.hasSeo);
       });
     },
     /** Public repository read: literal published status, live columns, no draft hydration. */

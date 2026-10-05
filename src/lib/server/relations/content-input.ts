@@ -14,12 +14,13 @@ function requireSuccess<T>(result:{success:true;data:T}|{success:false;error:{co
  if(!result.success)throw new CmsError(result.error.code as ConstructorParameters<typeof CmsError>[0],result.error.message);
  return result.data;
 }
-export async function prepareContentReferencesCreate(database:CmsDatabase,collection:string,references:References){
+export async function prepareContentReferencesCreate(database:CmsDatabase,collection:string,references:References,translationOf?:string){
  registerRelationDatabase(database);
  const db=database.db as any;
- requireSuccess(await validateRequiredReferencesPresent(db,collection,references,undefined));
+ requireSuccess(await validateRequiredReferencesPresent(db,collection,references,translationOf));
+ const entryGroup=translationOf?(await new (await import('../database/lifecycle/upstream/database/repositories/content.ts')).ContentRepository(db).findById(collection,translationOf))?.translationGroup??null:null;
  const selections:ResolvedReferenceTargets[]=[];
- for(const [field,ids] of Object.entries(references??{}))selections.push(requireSuccess(await resolveReferenceSelectionTargets(db,collection,field,ids,null)));
+ for(const [field,ids] of Object.entries(references??{}))selections.push(requireSuccess(await resolveReferenceSelectionTargets(db,collection,field,ids,entryGroup)));
  return prepareContentReferenceCreates(database,selections);
 }
 export async function prepareContentReferencesUpdate(database:CmsDatabase,collection:string,id:string,references:References):Promise<ContentReferencePlan>{
@@ -86,4 +87,17 @@ export async function prepareContentReferencePublication(database:CmsDatabase,co
   WHERE id=(SELECT live_revision_id FROM ${sql.ref(`ec_${collection}`)} WHERE id=${entry.id})
   AND collection=${collection} AND entry_id=${entry.id}`.compile(database.db);
  return{...plan,after:[...plan.after,record]};
+}
+
+/** Source direct restoration replaces the named selections wholesale. Unlike
+ * publication it leaves the previous live revision's historical data intact. */
+export async function prepareContentReferenceRestore(database:CmsDatabase,collection:string,entryGroup:string,revisionData:Record<string,unknown>):Promise<ContentReferencePlan>{
+ registerRelationDatabase(database);
+ const {readStagedReferences,validateStagedReferences}=await import('./staged-content.ts');
+ const {referenceFieldConstraints}=await import('./validate-references.ts');
+ const staged=readStagedReferences(revisionData)??{};const db=database.db as any;
+ requireSuccess(await validateStagedReferences(db,collection,staged,entryGroup));
+ const constraints=await referenceFieldConstraints(db,collection);const selections:ReferenceSelectionWrite[]=[];
+ for(const [slug,groups] of Object.entries(staged)){const field=constraints.get(slug);if(field)selections.push({relation:field.relation,side:field.relationSide,entryGroup,groups});}
+ return prepareContentReferenceWrites(database,selections);
 }

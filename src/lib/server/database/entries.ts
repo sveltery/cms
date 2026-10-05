@@ -1,3 +1,4 @@
+import {isStoragelessField} from '../schema/types.ts';
 import { validateContentData } from '../schema/validate-content.ts';
 import { serializeValue, deserializeValue } from './field-value.ts';
 import { sql, type CompiledQuery } from 'kysely';
@@ -36,6 +37,7 @@ function validateData(fields: Field[], data: Record<string, unknown>, partial: b
     }
   }
   if (!partial) for (const field of fields) {
+    if(isStoragelessField({...field,validation:field.validation??undefined}))continue;
     if (field.required && !Object.hasOwn(data, field.slug) && field.defaultValue === undefined) throw new CmsError('VALIDATION_ERROR');
   }
 }
@@ -54,7 +56,7 @@ function cursorDecode(input: unknown, type: string, locale: string): { createdAt
 
 /** Internal storage API. Request callers must use cmsService for authorization. */
 interface DraftTranslationSource {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:readonly string[]}
-interface DraftCreationMetadata {createdAt?:string;publishedAt?:string|null;authorId?:string|null;status?:'draft'|'published'}
+interface DraftCreationMetadata {createdAt?:string;publishedAt?:string|null;authorId?:string|null;status?:'draft'|'published';validateData?:boolean}
 export class DraftRepository {
   private readonly registry: SchemaRegistry;
   private readonly database: CmsDatabase;
@@ -69,9 +71,11 @@ export class DraftRepository {
     const value = parse(createDraftInput, input);
     if (!authorId || authorId.length > 128) throw new CmsError('VALIDATION_ERROR');
     const definition = await this.definition(value.type);
+    if(dates?.validateData!==false){
     const checked = await validateContentData(this.database,value.type,value.data);
     if(!checked.ok) throw new CmsError(checked.error.code==='COLLECTION_NOT_FOUND'?'NOT_FOUND':checked.error.code,checked.error.message,checked.error.details);
     validateData(definition.fields, value.data, false);
+    }
     const id = ulid();
     const now = new Date().toISOString();
     const columns = ['id', 'slug', 'status', 'author_id', 'created_at', 'updated_at', 'version', 'locale', 'translation_group', ...Object.keys(value.data)];

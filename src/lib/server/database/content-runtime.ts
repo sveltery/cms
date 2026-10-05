@@ -5,7 +5,7 @@ import type {ServerPrincipal} from './service.ts';
 import type {LifecycleDependencies} from './lifecycle/upstream/host.ts';
 import {nativeContentApi} from './content-api.ts';
 export function nativeContentRuntime(database:CmsDatabase,principal:ServerPrincipal|null,dependencies:LifecycleDependencies={}){
- const api=nativeContentApi(database,principal,dependencies);
+ const api=nativeContentApi(database,principal,dependencies,undefined,{runtime:true});
  return{
   handleContentCreate:api.create,handleContentGet:api.get,handleContentUpdate:api.update,
   handleContentPublish:api.publish,handleContentDuplicate:api.duplicate,

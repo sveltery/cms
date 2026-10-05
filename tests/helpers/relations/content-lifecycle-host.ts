@@ -24,11 +24,26 @@ class SourceFieldDefault extends OperationNodeTransformer {
  }
 }
 const fieldDefault=new SourceFieldDefault();
+function hostDerivedTransaction(db:Kysely<any>,actual:ReturnType<typeof requireRelationDatabase>):Kysely<any>{
+ const hosted=new Proxy(db,{get(target,key){
+  if(key==='transaction')return()=>{
+   const builder=target.transaction();
+   return new Proxy(builder,{get(transactionBuilder,method){
+    if(method==='execute')return(callback:(trx:Kysely<any>)=>unknown)=>transactionBuilder.execute(async trx=>{
+     const bound={...actual,db:trx};registerRelationDatabase(bound,trx);registerLifecycleDatabase(bound,{after:()=>{}});registerBylineDatabaseHandle(bound,trx);return callback(trx);
+    });
+    const value=Reflect.get(transactionBuilder,method);return typeof value==='function'?value.bind(transactionBuilder):value;
+   }});
+  };
+  const value=Reflect.get(target,key);return typeof value==='function'?value.bind(target):value;
+ }});
+ registerRelationDatabase(actual,hosted);registerLifecycleDatabase({...actual,db:hosted},{after:()=>{}});registerBylineDatabaseHandle(actual,hosted);return hosted;
+}
 export async function setupForDialect(dialect:'sqlite'|'postgres'){
  const ctx=await setupNative(dialect);const actual=requireRelationDatabase(ctx.db);
  const mapped=canonicalSourceDatabase({...actual,db:ctx.db}).withPlugin({transformQuery:({node})=>fieldDefault.transformNode(node),transformResult:async({result})=>result});
  registerRelationDatabase(actual,mapped);registerLifecycleDatabase({...actual,db:mapped},{after:()=>{}});registerBylineDatabaseHandle(actual,mapped as any);
- return{...ctx,db:mapped as typeof ctx.db};
+ return{...ctx,db:hostDerivedTransaction(mapped,actual) as typeof ctx.db};
 }
 // Exact original Source helper body; association below only records its genuine
 // derived proxy with the same canonical owner, without changing its behavior.
@@ -36,7 +51,7 @@ export function asInlineTransaction(db:Kysely<any>){const proxy=sourceAsInlineTr
 function api(db:Kysely<any>){return nativeContentApi(requireRelationDatabase(db),fixturePrincipal,{after:()=>{}});}
 export function createTestRuntime(db:Kysely<any>){return nativeContentRuntime(requireRelationDatabase(db),fixturePrincipal,{after:()=>{}});}
 export function handleContentCreate(db:Kysely<any>,collection:string,body:any){return api(db).create(collection,body);}
-export function handleContentGet(db:Kysely<any>,collection:string,id:string,locale?:string,_options?:any){return api(db).get(collection,id,locale);}
+export function handleContentGet(db:Kysely<any>,collection:string,id:string,locale?:string,options?:any){return api(db).get(collection,id,locale,options);}
 export function handleContentUpdate(db:Kysely<any>,collection:string,id:string,body:any){return api(db).update(collection,id,body);}
 export function handleContentPublish(db:Kysely<any>,collection:string,id:string,body?:any){return api(db).publish(collection,id,body);}
 export function handleContentDuplicate(db:Kysely<any>,collection:string,id:string,authorId?:string){return api(db).duplicate(collection,id,authorId);}
