@@ -19,6 +19,7 @@ describe('Native Calendar entry and day details',()=>{
     host();const item=items[0]!;component=flushSync(()=>mount(Entry,{target:target!,props:{item,display,now,chip:true}}));
     target!.querySelector('a')!.focus();
     await expect.poll(()=>Boolean(target!.querySelector('[role="tooltip"]'))).toBe(true);
+    await expect.element(page.getByRole('tooltip')).toBeVisible();
     const text=target!.querySelector('[role="tooltip"]')!.textContent!;
     expect(text).toContain(item.title);expect(text).toContain('Scheduled');expect(text).toContain(display.formatDateTime(item.time));expect(text).toContain(`Your time: ${display.formatViewerTime(item.time)}`);expect(text).toContain('Posts');
   });
