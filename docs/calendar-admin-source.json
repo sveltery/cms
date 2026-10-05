@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "wholeAuthorityLedger": "docs/scheduled-publishing-source.json",
+  "wholeAuthorityCount": 86,
+  "selectedWholeFamilies": [
+    {
+      "source": "packages/admin/tests/lib/calendar.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts",
+      "bytes": 10208,
+      "sha256": "b57b16a5871ba8bb70f6813903719e9800ec455c4cbbf300d4d7c86e04e83907",
+      "gitBlob": "9f1fc7847f2205a86d33eb14718aaec3f4a083f4",
+      "declarations": 18,
+      "structuralCensus": {
+        "path": "packages/admin/tests/lib/calendar.test.ts",
+        "declarations": 18,
+        "direct": 56,
+        "element": 0,
+        "poll": 0,
+        "multilineElement": 0,
+        "multilinePoll": 0,
+        "staticMatcherRoots": 56
+      }
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "bytes": 7697,
+      "sha256": "3cdbf13220bf180b2ffc07aaf60ebdaef0e891d34c14dd9cddb1fb4a90ded317",
+      "gitBlob": "0bbb61fc89ff79a41a7ad8e423c84474547088da",
+      "declarations": 6,
+      "structuralCensus": {
+        "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+        "declarations": 6,
+        "direct": 7,
+        "element": 14,
+        "poll": 1,
+        "multilineElement": 5,
+        "multilinePoll": 1,
+        "staticMatcherRoots": 22
+      }
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+      "bytes": 5281,
+      "sha256": "def3cc72e203f348b0651ef01241ecabe722f2adbb620a459ee11998c548e8a3",
+      "gitBlob": "27587b6c11f7dd78e052e6cb340e65626d21f1d5",
+      "declarations": 3,
+      "structuralCensus": {
+        "path": "packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+        "declarations": 3,
+        "direct": 4,
+        "element": 6,
+        "poll": 2,
+        "multilineElement": 0,
+        "multilinePoll": 1,
+        "staticMatcherRoots": 12
+      }
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+      "bytes": 2346,
+      "sha256": "6c4c56fec18221b3cbcc3e956182e6b0a9bdc4d9fff2df7345d5e0cd99cb5ba2",
+      "gitBlob": "2aded3cd7e7c991f9f8bfa1348fe794e8df593a0",
+      "declarations": 2,
+      "structuralCensus": {
+        "path": "packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+        "declarations": 2,
+        "direct": 6,
+        "element": 1,
+        "poll": 0,
+        "multilineElement": 1,
+        "multilinePoll": 0,
+        "staticMatcherRoots": 7
+      }
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "bytes": 8925,
+      "sha256": "7dadf8c51640eaee581b6bfd12985dc3b5b62d8773eaa6f7c804c664c4c41865",
+      "gitBlob": "f17dbd30fb072319c3e05f34275fcdad05b7479b",
+      "declarations": 10,
+      "structuralCensus": {
+        "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+        "declarations": 10,
+        "direct": 13,
+        "element": 8,
+        "poll": 2,
+        "multilineElement": 3,
+        "multilinePoll": 1,
+        "staticMatcherRoots": 23
+      }
+    },
+    {
+      "source": "packages/admin/tests/routes/calendar.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/routes/calendar.test.tsx",
+      "bytes": 10708,
+      "sha256": "b7d6f600b795040cdd3056872cbce7d118cbaed9f5f021024bce0d1921c79d5c",
+      "gitBlob": "d7a4925e5d18834a82a0452912decdc062b509ed",
+      "declarations": 10,
+      "structuralCensus": {
+        "path": "packages/admin/tests/routes/calendar.test.tsx",
+        "declarations": 10,
+        "direct": 7,
+        "element": 16,
+        "poll": 2,
+        "multilineElement": 5,
+        "multilinePoll": 1,
+        "staticMatcherRoots": 25
+      }
+    }
+  ],
+  "selectedTotals": {
+    "families": 6,
+    "declarations": 49,
+    "staticMatcherRoots": 145
+  },
+  "actualHistory": {
+    "initialPure18": {
+      "pass": 18,
+      "causalCredit": 0
+    },
+    "nativeInitialComponent4": {
+      "registered": 4,
+      "readinessAssertionRed": 4
+    },
+    "nativeInitialActions8": {
+      "registered": 8,
+      "readinessAssertionRed": 8,
+      "laterValueAssertions": "unreached"
+    },
+    "firstSecuredCi520": {
+      "originalRegistered": 18,
+      "pass": 18,
+      "uiRegistered": 0,
+      "uiCredit": 0,
+      "stop": "Native Svelte bridge rune placement before UI collection"
+    },
+    "securedCi522": {
+      "head": "fa2af193fe5035e3cad62c3029ef2366680b0798",
+      "run": 37269355688,
+      "job": 111632846614,
+      "registered": 49,
+      "pass": 48,
+      "originalValueAssertionRed": 1,
+      "error": "CalendarMonth busy-week height 244.0625 versus 240",
+      "unhandledErrors": "three production ResizeObserver loop events in passing narrow Page cases"
+    },
+    "securedCi524": {
+      "head": "21d016f2476474cd0d8bf43dd9b9b32f2bf1ecd5",
+      "run": 37269962217,
+      "job": 111634665151,
+      "registered": 49,
+      "pass": 49,
+      "fail": 0,
+      "unhandledErrors": 0,
+      "browser": "official Chromium1243; chromiumSandbox true; no --no-sandbox",
+      "causalLimit": "Only one original week-height value red is observed. Other already-green callbacks are behavior evidence without assertion-caused TDD credit."
+    },
+    "nativeScheduleReadiness": {
+      "firstRun": "original18 + Native13 = 30 pass, 1 registered readiness assertion red",
+      "afterImplementation": "all31 pass; no browser-dialog behavior credit from the Node readiness assertion"
+    },
+    "nativeScheduleBrowser3": {
+      "registered": 3,
+      "pass": 3,
+      "head": "e2b4a41eb0cb281cf74aad0b81738e744dcd2474",
+      "scope": "Controlled pure UI; zero Source, Native URL, canonical storage, HTTP, session or live authorization credit."
+    },
+    "finalHeadAcceptance": "pending full current normal13/secured9/Source49/Native24, original locale producer/publication/adoption, fresh independent/configured review and explicit Root approval",
+    "securedCi525": {
+      "head": "e2b4a41eb0cb281cf74aad0b81738e744dcd2474",
+      "run": 37270544670,
+      "job": 111636408325,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 3,
+      "nativeUiPass": 3,
+      "fail": 0,
+      "unhandledErrors": 0,
+      "scope": "Complete entry panel; original Source whole49 plus three supplemental controlled Native schedule-dialog browser callbacks."
+    },
+    "securedCi526": {
+      "run": 37271342902,
+      "head": "ad122da283a95d6bac3bf3ce0f8b7db335eee4ca",
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 5,
+      "nativeUiPass": 3,
+      "genuineValueAssertionRed": 1,
+      "preExpectationStop": "same-entry dialog lookup after product closure; later field value expectations unreached",
+      "normalStop": "new Native display fixtures omitted required showLocale property; erased types corrected before later run"
+    },
+    "securedCi527": {
+      "run": 37271820166,
+      "head": "c8e413280c33f1a56f510948e855af83eeab77a5",
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 8,
+      "nativeUiPass": 3,
+      "genuineValueAssertionRed": 3,
+      "preExpectationStops": [
+        "same-entry dialog lookup",
+        "Native Locator.press unsupported; corrected to actual click and userEvent.keyboard before next value observation"
+      ]
+    },
+    "securedCi531": {
+      "run": 37272420390,
+      "head": "c1342178f4898a19fc4bd0d7445cc1a6f50e603c",
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 11,
+      "nativeUiPass": 3,
+      "genuineValueAssertionRed": 8,
+      "preExpectationStops": 0,
+      "valueReds": [
+        "filter opening focus",
+        "busy-day popup focus",
+        "month toolbar roving tabstop",
+        "wide panel Escape",
+        "compact panel actual backdrop",
+        "actual panel modality transition",
+        "same-entry schedule remains open",
+        "schedule actual backdrop"
+      ]
+    },
+    "securedCi532": {
+      "run": 37273001626,
+      "head": "7e128ae98e25414da3d51e1131beef562aa58896",
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 11,
+      "nativeUiPass": 10,
+      "genuineValueAssertionRed": 1,
+      "remainingError": "same-entry refresh keeps schedule dialog open, but entered minute30 resets to00",
+      "existingSecuredBrowser9": "all pass",
+      "normalGate": "1494 passed, one existing Native missing-feature inventory assertion still requires Calendar absent; feature-installation inventory update proposed, not yet qualified/applied"
+    },
+    "currentFix": {
+      "head": "e89bf84b63599909d41995798543c415b9855059",
+      "nativeNodeAndSourcePureRegistered": 31,
+      "pass": 31,
+      "svelteErrors": 0,
+      "svelteWarnings": 0,
+      "production": "Schedule form resets only on derived primitive entry/scheduled-at context; official secured browser rerun pending"
+    },
+    "securedCi534": {
+      "head": "e89bf84b63599909d41995798543c415b9855059",
+      "run": 37274506918,
+      "job": 111648471219,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 11,
+      "nativeUiPass": 11,
+      "fail": 0,
+      "unhandledErrors": 0
+    },
+    "securedCi536": {
+      "head": "0ad1a278fced55f9acd7ead74401c94e4f5479bc",
+      "run": 37274921763,
+      "job": 111649731303,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 14,
+      "nativeUiPass": 11,
+      "genuineValueAssertionRed": 3,
+      "valueReds": [
+        "non-current range fetch calls2 versus1 at next minute",
+        "terminal-error range fetch calls2 versus1 at next minute",
+        "missing toolbar loading indicator"
+      ]
+    },
+    "securedCi537": {
+      "head": "48ba673829904687009df34d65d5b8411d60bc7a",
+      "run": 37275325144,
+      "job": 111650964753,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 18,
+      "nativeUiPass": 11,
+      "genuineValueAssertionRed": 3,
+      "nativeReadinessAssertionRed": 4,
+      "laterOwnerBehaviorValues": "unreached after factory availability assertion"
+    },
+    "securedCi539": {
+      "head": "384b0eec32de29003ad5495c30e07f7759f64fd2",
+      "run": 37275689650,
+      "job": 111652089886,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 22,
+      "nativeUiPass": 18,
+      "genuineValueAssertionRed": 4,
+      "valueReds": [
+        "chip tooltip missing after actual focus",
+        "agenda has0 named day regions versus2",
+        "agenda current-day heading lacksToday",
+        "compact selected-day heading lacksToday"
+      ],
+      "newObserverAndOwner7": "all pass; Source default retry1/fresh60s and actual mounted-client focus/reconnect are Native controlled evidence"
+    },
+    "securedCi540": {
+      "head": "0a0b3e25bef084355aa7c373990a844dfe57853a",
+      "run": 37275959651,
+      "job": 111652913643,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 24,
+      "nativeUiPass": 18,
+      "genuineValueAssertionRed": 6,
+      "additionalValueReds": [
+        "duplicate MST site/viewer short label",
+        "accessible full site/viewer zone description missing"
+      ]
+    },
+    "securedCi542": {
+      "head": "87878916d87f789f420f7b86f1bda771ac11e152",
+      "run": 37276308626,
+      "job": 111653980842,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 24,
+      "nativeUiPass": 22,
+      "genuineValueAssertionRed": 2,
+      "remainingError": "two toolbar zone semantics assertions"
+    },
+    "securedCi544": {
+      "head": "368b141c4967bb7e013cbdd298e1a04d422fe6b1",
+      "run": 37276784530,
+      "job": 111655442550,
+      "sourceRegistered": 49,
+      "sourcePass": 49,
+      "nativeUiRegistered": 24,
+      "nativeUiPass": 24,
+      "fail": 0,
+      "unhandledErrors": 0,
+      "existingSecuredBrowser9": "all pass",
+      "normal13": "run in progress at evidence seal; no complete normal pass claimed"
+    },
+    "nativeInstalledNavigationInventory": {
+      "head": "4ccc6d7d585f52a3c290440cb69a27edb9574014",
+      "reason": "Calendar is now genuinely installed under already-qualified draft-read discovery; old Native missing-feature lists explicitly included absentCalendar",
+      "changes": "remove onlycalendar from two Native missing-route regexes; preserve other destinations, existing production paths/fixtures/callbacks/HTTP calls and all immutable Source49 callbacks",
+      "supplementalDisplayControls": 3,
+      "nativeDisplaySuitePass": 15,
+      "sourceAndAuthHttpCredit": 0
+    },
+    "currentTooltipRefactor": {
+      "head": "009b8400c0f804fef895cb17d80d35218dd6033d",
+      "production": "Native actual top-layer popup with measured viewport placement, keyboard focus/Escape and600ms mouse opening; CSS hover bridge, no added close delay",
+      "finalSecuredRun": 37278006294,
+      "status": "in progress; previous544 all49/Native24 green is historical, not current-head acceptance"
+    }
+  },
+  "frameworkAdaptations": {
+    "product": "Svelte/SvelteKit actual production components, route, trusted native APIs and supplied page QueryClient",
+    "originalTestHost": "Whole Source React renderer/provider/data/mocks/clocks/assertions; test-only bridge mounts production Svelte",
+    "sourceStyles": "Original compiled dist/styles.css unavailable; Source import resolves empty. Actual production CSS supplies layout. No Source CSS-body credit.",
+    "nativeTransportCredit": "Original controlled router/client fixtures earn zero actual Native URL, canonical storage, authorization, session or HTTP credit.",
+    "storage": "Existing lifecycle and sole published ContentRepository; Node4/rawD1four service controls are supplemental Native credit.",
+    "preview": "Whole frontend fallback helper; no signed preview producer is fabricated. Missing actual producer falls back to the public URL as Source.",
+    "queryOwner": "Actual page-owned QueryClient now applies whole Source App defaults(retry1/stale60000) and mounts/unmounts existing core focus/reconnect listeners through Svelte lifecycle; no additional or global cache owner.",
+    "tooltip": "Native measured top-layer popup and CSS hover bridge replace the Kumo/Floating UI tooltip primitive. Full item/state/date/viewer/collection content and real focus visibility are Native evidence; no original primitive/CSS-body or exact safe-polygon algorithm credit."
+  },
+  "unimplementedOutsideSelection": [
+    "full original scheduler28",
+    "original lifecycle8 and loader4 families",
+    "policy rejection6 and media17/cron2 families",
+    "full plugin/media/transfer-fence publication pipeline",
+    "actual complete-maintenance heartbeat",
+    "original PostgreSQL database branch",
+    "deployed Node/Worker hosting acceptance"
+  ],
+  "publication": {
+    "pullRequest": "https://github.com/sveltery/cms/pull/112",
+    "nativeGateCommit": "c8f4eb7f675d69c1bd145b9e0d1aa447e00d6447",
+    "nativePreservedRef": "refs/codex/calendar112/native-c8",
+    "appUnsignedGateCounterpart": "d1e20bc50c2bf904204bf2ed49b604b7a97b209e",
+    "regularUnionCommit": "323aa801bbd24ffa47385aed0daa99d77cdf72d5",
+    "sameGateTree": "45b4f20ebea1dcd920b7ad2a679c0e57a2a30265",
+    "decision": "finite development scope qualified; final behavior acceptance/merge approval pending"
+  },
+  "unimplementedWithinSelection": [
+    "Source descriptor localization, locale endonyms and RTL behavior: concrete fresh locale producer packet prepared locally, qualified execution/publication/adoption pending Root",
+    "final current-head normal/secured/full browser and review acceptance"
+  ]
+}
