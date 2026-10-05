@@ -356,6 +356,28 @@
       "assertionMatchers": 6,
       "suiteDeclarations": 1,
       "hookDeclarations": 1
+    },
+    {
+      "path": "packages/admin/tests/editor/iframe-block-editor.test.tsx",
+      "bytes": 9734,
+      "sha256": "65c1f7d090cb9e47d10e231205492e64c846422d7c8a3f6813363f990a5a6c5e",
+      "gitBlob": "d959b31ea305e4099504feac4a0ec5a4633228c5",
+      "testDeclarations": 11,
+      "expectInvocations": 31,
+      "assertionMatchers": 31,
+      "suiteDeclarations": 5,
+      "hookDeclarations": 0
+    },
+    {
+      "path": "packages/admin/tests/editor/table-controls.test.tsx",
+      "bytes": 26756,
+      "sha256": "edc7d404029b8b6d4b7a5517b235a5be4e9bf8652cfd1143f505c36400400525",
+      "gitBlob": "02a05bb3b34bb1d4641caaa43cf779a8ad52aa3f",
+      "testDeclarations": 35,
+      "expectInvocations": 140,
+      "assertionMatchers": 140,
+      "suiteDeclarations": 1,
+      "hookDeclarations": 1
     }
   ],
   "authorities": [
@@ -6407,29 +6429,221 @@
       "hookDeclarations": 0,
       "runtime": "unexecuted",
       "causalSourceCredit": 0
+    },
+    {
+      "path": "packages/admin/tests/editor/iframe-block-editor.test.tsx",
+      "copy": "parity/emdash/rich-editor-source/packages/admin/tests/editor/iframe-block-editor.test.tsx",
+      "bytes": 9734,
+      "sha256": "65c1f7d090cb9e47d10e231205492e64c846422d7c8a3f6813363f990a5a6c5e",
+      "gitBlob": "d959b31ea305e4099504feac4a0ec5a4633228c5",
+      "imports": [
+        {
+          "id": "@tiptap/react",
+          "typeOnly": true,
+          "resolved": null
+        },
+        {
+          "id": "vitest",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "vitest/browser",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "../../src/components/PortableTextEditor",
+          "typeOnly": false,
+          "resolved": "packages/admin/src/components/PortableTextEditor.tsx"
+        },
+        {
+          "id": "../utils/render",
+          "typeOnly": false,
+          "resolved": "packages/admin/tests/utils/render.tsx"
+        },
+        {
+          "id": "../../src/styles.css",
+          "typeOnly": false,
+          "resolved": "packages/admin/src/styles.css"
+        }
+      ],
+      "testDeclarations": 11,
+      "expectInvocations": 31,
+      "assertionMatchers": 31,
+      "suiteDeclarations": 5,
+      "hookDeclarations": 0,
+      "runtime": "unexecuted",
+      "causalSourceCredit": 0
+    },
+    {
+      "path": "packages/admin/tests/editor/table-controls.test.tsx",
+      "copy": "parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx",
+      "bytes": 26756,
+      "sha256": "edc7d404029b8b6d4b7a5517b235a5be4e9bf8652cfd1143f505c36400400525",
+      "gitBlob": "02a05bb3b34bb1d4641caaa43cf779a8ad52aa3f",
+      "imports": [
+        {
+          "id": "@tiptap/core",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@tiptap/pm/state",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@tiptap/pm/tables",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@tiptap/starter-kit",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "vitest",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "vitest/browser",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "../../src/components/editor/TableActions",
+          "typeOnly": false,
+          "resolved": "packages/admin/src/components/editor/TableActions.ts"
+        },
+        {
+          "id": "../../src/components/editor/TableControls",
+          "typeOnly": false,
+          "resolved": "packages/admin/src/components/editor/TableControls.tsx"
+        },
+        {
+          "id": "../../src/components/editor/TableExtensions",
+          "typeOnly": false,
+          "resolved": "packages/admin/src/components/editor/TableExtensions.ts"
+        },
+        {
+          "id": "../utils/render.tsx",
+          "typeOnly": false,
+          "resolved": "packages/admin/tests/utils/render.tsx"
+        }
+      ],
+      "testDeclarations": 35,
+      "expectInvocations": 140,
+      "assertionMatchers": 140,
+      "suiteDeclarations": 1,
+      "hookDeclarations": 1,
+      "runtime": "unexecuted",
+      "causalSourceCredit": 0
+    },
+    {
+      "path": "packages/admin/src/components/editor/CodeEditor.tsx",
+      "copy": "parity/emdash/rich-editor-source/packages/admin/src/components/editor/CodeEditor.tsx",
+      "bytes": 5495,
+      "sha256": "d052f7c8d3e82cb46c95cefa76afdbc3a35d5774f0a9d6848903ab74ca8f8cf1",
+      "gitBlob": "de9ef296be2adf0120644320bb11e1fb1db7d715",
+      "imports": [
+        {
+          "id": "@codemirror/autocomplete",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@codemirror/commands",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@codemirror/lang-css",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@codemirror/lang-html",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@codemirror/lang-javascript",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@codemirror/language",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@codemirror/state",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@codemirror/view",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@lezer/highlight",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "@lingui/react/macro",
+          "typeOnly": false,
+          "resolved": null
+        },
+        {
+          "id": "react",
+          "typeOnly": false,
+          "resolved": null
+        }
+      ],
+      "testDeclarations": 0,
+      "expectInvocations": 0,
+      "assertionMatchers": 0,
+      "suiteDeclarations": 0,
+      "hookDeclarations": 0,
+      "runtime": "unexecuted",
+      "causalSourceCredit": 0
     }
   ],
   "staticCensus": {
-    "wholeFamilies": 32,
-    "testCallbackDeclarations": 348,
-    "assertionMatcherInvocations": 1155,
-    "suiteDeclarations": 62,
-    "hookDeclarations": 7,
+    "wholeFamilies": 34,
+    "testCallbackDeclarations": 394,
+    "assertionMatcherInvocations": 1326,
+    "suiteDeclarations": 68,
+    "hookDeclarations": 8,
     "runtimeExpandedCallbacks": "unknown until actual registration; it.each and runtime loops remain whole"
   },
   "relativeValueImportClosure": {
-    "files": 145,
+    "files": 148,
     "importsScope": "Static read-only inventory. Rooted it/test callback declarations exclude suites/hooks and preserve skips; static expectation receivers include multiline expect.element. Runtime callbacks/loops are not expanded here. Closure covers static relative value edges and Source admin/core package wildcard aliases; ImportTypeNode/type-only/dynamic path data and external package closure are not claimed. No execution or Source parity credit.",
     "externalImports": [
       "@axe-core/playwright",
       "@cloudflare/kumo",
       "@cloudflare/kumo/primitives/popover",
       "@cloudflare/kumo/primitives/scroll-area",
+      "@codemirror/autocomplete",
+      "@codemirror/commands",
+      "@codemirror/lang-css",
+      "@codemirror/lang-html",
+      "@codemirror/lang-javascript",
+      "@codemirror/language",
+      "@codemirror/state",
+      "@codemirror/view",
       "@dnd-kit/core",
       "@dnd-kit/sortable",
       "@dnd-kit/utilities",
       "@emdash-cms/blocks",
       "@floating-ui/react",
+      "@lezer/highlight",
       "@lingui/core",
       "@lingui/core/macro",
       "@lingui/react",
@@ -6580,6 +6794,18 @@
       "runtime": "unexecuted",
       "causalSourceCredit": 0,
       "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+    },
+    {
+      "path": "packages/admin/tests/editor/iframe-block-editor.test.tsx",
+      "runtime": "unexecuted",
+      "causalSourceCredit": 0,
+      "reason": "Added whole original family during actual configured table/iframe fidelity closure. Real CodeMirror/iframe preview and full table picker/announcer browser transport remain incomplete. No original selector, expectation, data, clock or callback changed; Native regressions are supplemental and add zero original Source execution credit."
+    },
+    {
+      "path": "packages/admin/tests/editor/table-controls.test.tsx",
+      "runtime": "unexecuted",
+      "causalSourceCredit": 0,
+      "reason": "Added whole original family during actual configured table/iframe fidelity closure. Real CodeMirror/iframe preview and full table picker/announcer browser transport remain incomplete. No original selector, expectation, data, clock or callback changed; Native regressions are supplemental and add zero original Source execution credit."
     }
   ],
   "frameworkSubstitutions": [
@@ -6763,6 +6989,21 @@
       "actualPublishedTaxMain": "d76016cb022269aa4a9127f139728e6213f7c785",
       "finalCurrentChecksReviewApproval": "pending",
       "fullFeatureCompleted": false
+    },
+    "tableIframeClosure": {
+      "configuredComments": [
+        4180773631,
+        4180830585
+      ],
+      "wholeNativeCallbacks": 47,
+      "nativeFirstGenuineValueFailures": 8,
+      "fixAndRefactorWholeNativePassed": 47,
+      "originalSourceTestFamiliesAdded": 2,
+      "sourceBodiesModified": 0,
+      "newOriginalSourceExecutionCredit": 0,
+      "fullRendererCompleted": false,
+      "fullFeatureCompleted": false,
+      "finalGatesReviewApproval": "pending"
     }
   }
 }

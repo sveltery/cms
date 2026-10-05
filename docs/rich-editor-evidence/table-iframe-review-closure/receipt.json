@@ -1,0 +1,347 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "configuredComments": [
+    4180773631,
+    4180830585
+  ],
+  "testFirstHead": "1ee26cd934096f9069df862e9ebe3c65b8d558ba",
+  "firstFixHead": "eb519d34bd14ede7e25248b98794d41dcdaa7915",
+  "refactorHead": "9b0e1ef874166d55f3110d301e38cbd48e04d471",
+  "wholeNativeFirst": {
+    "registered": 47,
+    "passed": 39,
+    "failed": 8,
+    "unhandled": 0,
+    "genuineValueFailures": [
+      "three actual unavailable table menu controls remain enabled",
+      "typed valid intermediate URL canonicalized immediately",
+      "iframe writes immediately before original250ms delay",
+      "two drafts write immediately instead of coalescing",
+      "draft already saved before editor becomes read-only",
+      "invalid iframe rejection shown before original250ms"
+    ]
+  },
+  "wholeNativeFix": {
+    "registered": 47,
+    "passed": 47,
+    "failed": 0,
+    "unhandled": 0
+  },
+  "wholeNativeRefactor": {
+    "registered": 47,
+    "passed": 47,
+    "failed": 0,
+    "unhandled": 0
+  },
+  "oldNative35": "Every old callback/body/dataset/expectation/clock remains unchanged.",
+  "supplementalRuntime": "Actual mounted Native editor/node views, real table CellSelection/capability state, real owning getPos and editor editability, actual enclosing form. Only supplemental timers are faked; original Source clocks remain unchanged. Existing jsdom scroll presentation hook establishes no browser geometry credit.",
+  "sourceFamiliesAdded": {
+    "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "method": "Whole immutable Source bodies, rooted TypeScript AST callback/suite/hook and expectation receiver census. No runtime expansion or execution credit.",
+    "rows": [
+      {
+        "path": "packages/admin/tests/editor/iframe-block-editor.test.tsx",
+        "copy": "parity/emdash/rich-editor-source/packages/admin/tests/editor/iframe-block-editor.test.tsx",
+        "bytes": 9734,
+        "sha256": "65c1f7d090cb9e47d10e231205492e64c846422d7c8a3f6813363f990a5a6c5e",
+        "gitBlob": "d959b31ea305e4099504feac4a0ec5a4633228c5",
+        "imports": [
+          {
+            "id": "@tiptap/react",
+            "typeOnly": true,
+            "resolved": null
+          },
+          {
+            "id": "vitest",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "vitest/browser",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "../../src/components/PortableTextEditor",
+            "typeOnly": false,
+            "resolved": "packages/admin/src/components/PortableTextEditor.tsx"
+          },
+          {
+            "id": "../utils/render",
+            "typeOnly": false,
+            "resolved": "packages/admin/tests/utils/render.tsx"
+          },
+          {
+            "id": "../../src/styles.css",
+            "typeOnly": false,
+            "resolved": "packages/admin/src/styles.css"
+          }
+        ],
+        "testDeclarations": 11,
+        "expectInvocations": 31,
+        "assertionMatchers": 31,
+        "suiteDeclarations": 5,
+        "hookDeclarations": 0,
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0
+      },
+      {
+        "path": "packages/admin/tests/editor/table-controls.test.tsx",
+        "copy": "parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx",
+        "bytes": 26756,
+        "sha256": "edc7d404029b8b6d4b7a5517b235a5be4e9bf8652cfd1143f505c36400400525",
+        "gitBlob": "02a05bb3b34bb1d4641caaa43cf779a8ad52aa3f",
+        "imports": [
+          {
+            "id": "@tiptap/core",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@tiptap/pm/state",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@tiptap/pm/tables",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@tiptap/starter-kit",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "vitest",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "vitest/browser",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "../../src/components/editor/TableActions",
+            "typeOnly": false,
+            "resolved": "packages/admin/src/components/editor/TableActions.ts"
+          },
+          {
+            "id": "../../src/components/editor/TableControls",
+            "typeOnly": false,
+            "resolved": "packages/admin/src/components/editor/TableControls.tsx"
+          },
+          {
+            "id": "../../src/components/editor/TableExtensions",
+            "typeOnly": false,
+            "resolved": "packages/admin/src/components/editor/TableExtensions.ts"
+          },
+          {
+            "id": "../utils/render.tsx",
+            "typeOnly": false,
+            "resolved": "packages/admin/tests/utils/render.tsx"
+          }
+        ],
+        "testDeclarations": 35,
+        "expectInvocations": 140,
+        "assertionMatchers": 140,
+        "suiteDeclarations": 1,
+        "hookDeclarations": 1,
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0
+      },
+      {
+        "path": "packages/admin/src/components/editor/CodeEditor.tsx",
+        "copy": "parity/emdash/rich-editor-source/packages/admin/src/components/editor/CodeEditor.tsx",
+        "bytes": 5495,
+        "sha256": "d052f7c8d3e82cb46c95cefa76afdbc3a35d5774f0a9d6848903ab74ca8f8cf1",
+        "gitBlob": "de9ef296be2adf0120644320bb11e1fb1db7d715",
+        "imports": [
+          {
+            "id": "@codemirror/autocomplete",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@codemirror/commands",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@codemirror/lang-css",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@codemirror/lang-html",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@codemirror/lang-javascript",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@codemirror/language",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@codemirror/state",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@codemirror/view",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@lezer/highlight",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "@lingui/react/macro",
+            "typeOnly": false,
+            "resolved": null
+          },
+          {
+            "id": "react",
+            "typeOnly": false,
+            "resolved": null
+          }
+        ],
+        "testDeclarations": 0,
+        "expectInvocations": 0,
+        "assertionMatchers": 0,
+        "suiteDeclarations": 0,
+        "hookDeclarations": 0,
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0
+      }
+    ]
+  },
+  "originalSourceExecutionCreditAdded": 0,
+  "fullCodeMirrorIframePreviewTablePresentation": "Still incomplete; both original full families remain unexecuted, with bodies/data/selectors/clocks unchanged.",
+  "refactor": "Named iframeDraft owner holds pending/typed/known/valid/timer state, external synchronization, original250ms flush, guarded writes, tab/blur and Source cleanup.",
+  "raw": [
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/native47-first-red.log.json",
+      "originalBytes": 8591,
+      "originalSha256": "5f585fe12cb048a563609747c4873265ecaf93be2db82afb692880514d7da13c",
+      "storedBytes": 9606,
+      "storedSha256": "6212fdded9bc92792832f544d993124ad72b78c0bc30e6ae7af1e1364039cc76"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/native47-first-red.report.json",
+      "originalBytes": 24784,
+      "originalSha256": "9d3996e2099f96fc1a7c89f8dc3b9b5493b7eac9cbb339a1d389f76889b59236",
+      "storedBytes": 24784,
+      "storedSha256": "9d3996e2099f96fc1a7c89f8dc3b9b5493b7eac9cbb339a1d389f76889b59236"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/native47-first-fix.log.json",
+      "originalBytes": 1534,
+      "originalSha256": "860c544d8db90e82c7db785a58a9b9af751fb86d80331b5e73d3ad70b31bdbf5",
+      "storedBytes": 1705,
+      "storedSha256": "6e07243d790f8680d3dc670d45f4abc82f12a0f1dca943f4eb442094cf876a6c"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/native47-first-fix.report.json",
+      "originalBytes": 19997,
+      "originalSha256": "ad83a93cf03d6c5f9f68ad121a60b851e64a36e4e4253d53f9817fd141d0fdc5",
+      "storedBytes": 19997,
+      "storedSha256": "ad83a93cf03d6c5f9f68ad121a60b851e64a36e4e4253d53f9817fd141d0fdc5"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/native47-refactor.log.json",
+      "originalBytes": 2098,
+      "originalSha256": "0237fd43c09bc6c5f64f7d87be722a11d356274dd5fe340f67056fea4490952a",
+      "storedBytes": 2283,
+      "storedSha256": "62c62109c55ad494b0ae7b7150e9585b423c3c5fd5c6563ae5faff37e4faefb9"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/native47-refactor.report.json",
+      "originalBytes": 19981,
+      "originalSha256": "ccff58f7b68d20b218eff909e6600e4560d827a95cc17375a99c907e3c8df017",
+      "storedBytes": 19981,
+      "storedSha256": "ccff58f7b68d20b218eff909e6600e4560d827a95cc17375a99c907e3c8df017"
+    }
+  ],
+  "finalChecksConfiguredIndependentReviewRootApproval": "pending",
+  "fullFeatureCompleted": false,
+  "laterPrerequisiteAndDiagnostics": [
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/current-check.log.json",
+      "originalBytes": 2310,
+      "originalSha256": "e9646fef172e8830115a40a32cb6b16f385a09c68e5e8202a4359a86f5e55c8e",
+      "storedBytes": 2458,
+      "storedSha256": "58990a90c71410577741792bc4e6aa7937fe21faf96cce0ecf543a1ee5594eec"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/corrected-check.log.json",
+      "originalBytes": 1778,
+      "originalSha256": "14a3d87a130082e6bed61451341ae34a7ace30ae3f666dd8fda8f1145d2ea147",
+      "storedBytes": 1919,
+      "storedSha256": "9f1624551d18b6dce560aec9d1b459832db01788d72a0ce1f8445a2650b50a70"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/owner-check.log.json",
+      "originalBytes": 209,
+      "originalSha256": "1a9036a92c43a9ae37b653e6a082bef1dde2ef18b3cf7fc080799dc787472e95",
+      "storedBytes": 328,
+      "storedSha256": "7491f3a72985e74627e3c2a5fcecf4e847eb356629db6d579aaf6806b7afab3e"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/source206.log.json",
+      "originalBytes": 3056,
+      "originalSha256": "b49a15079d054379a8c4334b756879f1c2a7949b3b9f455a78616dd091499a4c",
+      "storedBytes": 3276,
+      "storedSha256": "bc1489e259d13de051ba7bd413b2f5541ac544647b45c01ffa8b2abd52c3858d"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/source206-report.json",
+      "originalBytes": 71622,
+      "originalSha256": "1adfa8738426fee7259c2f80cb80e4e4ed3a4f8422b6be30a0fd06a1e07fa698",
+      "storedBytes": 71622,
+      "storedSha256": "1adfa8738426fee7259c2f80cb80e4e4ed3a4f8422b6be30a0fd06a1e07fa698"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/whole-iframe-table-browser-first-stop.log.json",
+      "originalBytes": 15120,
+      "originalSha256": "541f8df34e39622df3913b750da0b6f2889e9e1356901562bb731732a133113e",
+      "storedBytes": 16518,
+      "storedSha256": "a95a2d167489d9f03d2efaef4a68ec3261c70fef35a166ef69599e4460b8e7ba"
+    },
+    {
+      "path": "docs/rich-editor-evidence/table-iframe-review-closure/whole-iframe-table-browser-first-stop-report.json",
+      "originalBytes": 1892,
+      "originalSha256": "be8583a1b84bf7b3ad26077725941e029e5d93cc130b472453fa1a00e400247e",
+      "storedBytes": 1892,
+      "storedSha256": "be8583a1b84bf7b3ad26077725941e029e5d93cc130b472453fa1a00e400247e"
+    }
+  ],
+  "diagnostics": {
+    "first": {
+      "errors": 1,
+      "warnings": 3
+    },
+    "correctedHelper": {
+      "errors": 0,
+      "warnings": 3
+    },
+    "liveOwnerGetter": {
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "source206Current": {
+    "registered": 206,
+    "passed": 206,
+    "failed": 0
+  },
+  "fullRendererScope": "Authorized existing FULL104 scope; real Native CodeMirror/iframe preview/focus and full table transport now required. Initial whole browser attempt stopped at absent official1243; zero callback/value-red credit."
+}
