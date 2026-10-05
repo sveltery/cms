@@ -1,0 +1,103 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ tests/bylines/atomic-workflow.test.ts (12 tests | 5 failed) 2512ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits 58ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 27ms
+     ✓ deletes translations while retaining sibling credits, then clears the last group and pointer 30ms
+     × rolls back copied credits if writing the target primary pointer fails 31ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits  994ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 179ms
+     × deletes translations while retaining sibling credits, then clears the last group and pointer 237ms
+     × rolls back copied credits if writing the target primary pointer fails 135ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits 276ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 186ms
+     × deletes translations while retaining sibling credits, then clears the last group and pointer 182ms
+     × rolls back copied credits if writing the target primary pointer fails 176ms
+ ✓ tests/bylines/canonical-storage.test.ts (3 tests) 227ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > Node > rolls back copied credits if writing the target primary pointer fails
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "id": "01M44W60S65M31SJ0JEXQDXAGD",
++   },
++ ]
+
+ ❯ tests/bylines/atomic-workflow.test.ts:97:115
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > raw D1 > deletes translations while retaining sibling credits, then clears the last group and pointer
+ FAIL  tests/bylines/atomic-workflow.test.ts > serialized D1 dialect > deletes translations while retaining sibling credits, then clears the last group and pointer
+AssertionError: canonical byline deletion must be available: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/bylines/atomic-workflow.test.ts:79:66
+     77|    await repo.setContentBylines('post','entry',[{bylineId:en.id}]);
+     78|    let failure:unknown=null;try{await repo.delete(en.id);}catch(error)…
+     79|    expect(failure,'canonical byline deletion must be available').toBeN…
+       |                                                                  ^
+     80|    expect((await repo.getContentBylines('post','entry',{locale:'fr'}))…
+     81|    expect((await repo.findById(fr.id))?.customFields).toEqual({website…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > raw D1 > rolls back copied credits if writing the target primary pointer fails
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "id": "01M44W629EQ1KAGE0HZDCGP8E0",
++   },
++ ]
+
+ ❯ tests/bylines/atomic-workflow.test.ts:97:115
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > serialized D1 dialect > rolls back copied credits if writing the target primary pointer fails
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "id": "01M44W631Z6NAW6E8NWHTPA9W8",
++   },
++ ]
+
+ ❯ tests/bylines/atomic-workflow.test.ts:97:115
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  5 failed | 10 passed (15)
+   Start at  01:52:16
+   Duration  4.13s (transform 600ms, setup 0ms, import 1.10s, tests 2.74s, environment 0ms)
+
+JSON report written to /tmp/byline-native-delete-copy-initial-r2.json

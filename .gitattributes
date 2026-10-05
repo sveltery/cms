@@ -28,6 +28,15 @@ docs/taxonomy-evidence/ci482-normal-first-integration-failure.log whitespace=-bl
 docs/taxonomy-evidence/integration-first-native-fixture-type-gap.log whitespace=-blank-at-eol
 docs/taxonomy-evidence/local38ad-normal-first-integration-failure.log whitespace=-blank-at-eol
 docs/taxonomy-evidence/worker-integration-current-baseline.log whitespace=-blank-at-eol
+# Exact pinned byline Source/evidence bytes retain inherited trailing spaces.
+parity/emdash/byline-source/upstream/packages/core/src/database/migrations/013_scheduled_publishing.ts whitespace=-blank-at-eol
+parity/emdash/byline-source/upstream/packages/core/src/database/migrations/015_indexes.ts whitespace=-blank-at-eol
+parity/emdash/byline-source/upstream/packages/core/src/database/migrations/019_i18n.ts whitespace=-blank-at-eol
+docs/byline-evidence/byline-check-api-first.log whitespace=-blank-at-eol
+docs/byline-evidence/byline-permission-projection-initial.log whitespace=-blank-at-eol
+/docs/byline-evidence/cache-owner-fix-green.log -whitespace
+/docs/byline-evidence/cache-owner-refactor-green.log -whitespace
+/docs/byline-evidence/cache-owner-source216.log -whitespace
 
 # Preserve exact inherited Schema16 diagnostic bytes; only observed literal whitespace forms.
 docs/receipts/schema-admin-completion/collection-index-forward3-initial.log whitespace=-blank-at-eof
