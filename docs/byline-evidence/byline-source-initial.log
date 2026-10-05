@@ -1,0 +1,65 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts (0 test)
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts (0 test)
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (0 test)
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts:4:1
+      2| import { describe, it, expect, beforeEach, afterEach, vi } from "vites…
+      3|
+      4| import { BylineRepository } from "../../../src/database/repositories/b…
+       | ^
+      5| import { ContentRepository } from "../../../src/database/repositories/…
+      6| import { UserRepository } from "../../../src/database/repositories/use…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts ]
+Error: Cannot find module '/tests/helpers/bylines/reference-db.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts:6:1
+      4| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+      5|
+      6| import { runMigrations } from "../../../src/database/migrations/runner…
+       | ^
+      7| import type { Database as EmDashDatabase } from "../../../src/database…
+      8| import { BylineSchemaError, BylineSchemaRegistry } from "../../../src/…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/handlers.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts:4:1
+      2| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+      3|
+      4| import {
+       | ^
+      5|  handleBylineCreate,
+      6|  handleBylineTranslations,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/field-defs-cache.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts:4:1
+      2| import { describe, it, expect, beforeEach, afterEach } from "vitest";
+      3|
+      4| import {
+       | ^
+      5|  getBylineFieldDefs,
+      6|  resetBylineFieldDefsCacheForTests,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  01:21:00
+   Duration  1.25s (transform 240ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+JSON report written to /tmp/byline-source-initial.json
