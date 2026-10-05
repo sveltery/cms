@@ -28,3 +28,9 @@ docs/taxonomy-evidence/ci482-normal-first-integration-failure.log whitespace=-bl
 docs/taxonomy-evidence/integration-first-native-fixture-type-gap.log whitespace=-blank-at-eol
 docs/taxonomy-evidence/local38ad-normal-first-integration-failure.log whitespace=-blank-at-eol
 docs/taxonomy-evidence/worker-integration-current-baseline.log whitespace=-blank-at-eol
+
+# Preserve exact SEO diagnostic bytes, including final Vitest blank lines.
+docs/seo-storage-evidence/native-read-producer-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/reference-repository-hreflang-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/reference-sitemap-producer-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/sitemap-source-producer-first-infra.log whitespace=-blank-at-eof
