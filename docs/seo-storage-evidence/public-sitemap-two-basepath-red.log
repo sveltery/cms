@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/seo-storage-native/public-sitemap.test.ts (2 tests | 2 failed) 1834ms
+   × Node: actual public sitemap uses final canonical storage and trusted runtime base path 135ms
+   × raw D1: actual public sitemap uses final canonical storage and trusted runtime base path 1697ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/public-sitemap.test.ts > Node: actual public sitemap uses final canonical storage and trusted runtime base path
+ FAIL  tests/seo-storage-native/public-sitemap.test.ts > raw D1: actual public sitemap uses final canonical storage and trusted runtime base path
+AssertionError: The expression evaluated to a falsy value:
+
+  ok(xml.includes("<loc>https://example.com/docs/posts/visible</loc>"))
+
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/seo-storage-native/public-sitemap.test.ts:24:10
+     22|   assert.equal(response.headers.get('content-type'),'application/xml; …
+     23|   const xml=await response.text();
+     24|   assert.ok(xml.includes('<loc>https://example.com/docs/posts/visible<…
+       |          ^
+     25|   assert.ok(!xml.includes('/posts/hidden'));
+     26|  }finally{await waitForDeferredTasks();await fixture.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  2 failed | 25 passed (27)
+   Start at  04:20:49
+   Duration  27.29s (transform 684ms, setup 0ms, import 2.41s, tests 24.19s, environment 1ms)
+
