@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 jobs:
-  validate:
+  validate-services:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -18,7 +18,53 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      - run: sh scripts/bootstrap.sh
+      - name: Verify complete CI orchestration contracts
+        run: node --test tests/ci/normal-validation.test.mjs
+      - run: sh scripts/ci-validation-phase.sh services
+  validate-source:
+    needs: validate-services
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: sh scripts/ci-validation-phase.sh source
+  validate-hosting:
+    needs: validate-source
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: sh scripts/ci-validation-phase.sh hosting
+  validate:
+    needs: [validate-services, validate-source, validate-hosting]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Require every normal validation phase to succeed
+        run: node scripts/ci-validation-result.mjs "$SERVICES_RESULT" "$SOURCE_RESULT" "$HOSTING_RESULT"
+        env:
+          SERVICES_RESULT: ${{ needs.validate-services.result }}
+          SOURCE_RESULT: ${{ needs.validate-source.result }}
+          HOSTING_RESULT: ${{ needs.validate-hosting.result }}
   browser:
     # Run sandboxed Chromium on this image without changing host security policy.
     runs-on: ubuntu-22.04
