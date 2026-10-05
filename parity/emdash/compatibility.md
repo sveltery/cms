@@ -2677,3 +2677,11 @@ merge and post-main verification remain pending. No full Media feature or
 product completion is claimed.
 
 [Paired Media feature scope and evidence](../../docs/general-media-backend.md).
+
+### MEDIA-DETAIL-COMPLETE native widget port (proposed PR121)
+
+Source: EmDash1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; six whole detail/navigation/focal/usage/cropper/contained-size families, 130 expanded callbacks retained exactly. [Paired feature and ledger](../../docs/media-detail-complete.md) records the genuine first secured baseline at actual public parent `c73698dc`: Panel86=11pass75fail, Cropper12pass, four import stops32unregistered. Nine direct value/call reds precede the native tab/payload/deletion/playback repair; other pre-expect, locator and deadline diagnostics grant zero causal credit. New widget prerequisites grant zero Source value-red credit. All original files, data, clocks, supplied mocks and raw history remain unchanged.
+
+Framework substitution: native Svelte components and actual HTML dialogs/CSS replace React/Kumo rendering. Actual supplied TanStack QueryClient owns native observers; no global media/usage cache or database/provider/principal/capture writer is installed. Finite Source JSX, child mock, imperative-ref and router transports preserve original objects/callbacks and actual browser geometry/focus/IO. Parent-owned facade consumes the existing canonical editor-manifest endpoint and existing media clients. Geometry, Source CSS, actual protected transport, provider execution and non-English catalogs remain unqualified. Source cropper's prior12 callbacks remain unchanged and initially green.
+
+Decision: implementation checkpoint only; full whole Source/native/checker/normal/secured results, independent/configured review, Root exact-head approval and author regular expected-head merge remain pending. No full media or CMS completion is claimed.
