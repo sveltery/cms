@@ -1,0 +1,46 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (3 tests | 2 failed) 1240ms
+   × keeps the deletion confirmation and displays the actual mutation failure 1043ms
+   × disables collection deletion when the trusted page capability denies schema mutations 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > keeps the deletion confirmation and displays the actual mutation failure
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ tests/schema-admin-ui/native.test.ts:19:76
+     17|   target.querySelector<HTMLButtonElement>('button[aria-label="Delete P…
+     18|   [...target.querySelectorAll<HTMLButtonElement>('dialog button')].fin…
+     19|   await vi.waitFor(()=>expect(target.querySelector('dialog')?.textCont…
+       |                                                                            ^
+     20|   expect(onDelete).toHaveBeenCalledTimes(1);
+     21| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > disables collection deletion when the trusted page capability denies schema mutations
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/schema-admin-ui/native.test.ts:23:139
+     21| });
+     22| it('disables collection deletion when the trusted page capability deni…
+     23|   const target=await list({disabled:true});expect(target.querySelector…
+       |                                                                                                                                           ^
+     24| });
+     25|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  05:05:05
+   Duration  7.81s (transform 3.38s, setup 0ms, import 3.89s, tests 1.24s, environment 2.07s)
+

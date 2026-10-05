@@ -1,0 +1,389 @@
+$ vitest run --config vitest.schema-admin-ui-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (23 tests | 9 failed) 631ms
+   × offers exactly the pinned Source repeater sub-field menu supported by the schema contract 9ms
+   × keeps repeater saving disabled until the group has a sub-field, as the pinned Source requires 2ms
+   × preserves an explicitly entered zero validation bound for number through the actual field callback 5ms
+   × preserves an explicitly entered zero validation bound for integer through the actual field callback 3ms
+   × preserves an explicitly entered zero validation bound for string through the actual field callback 3ms
+   × preserves an explicitly entered zero validation bound for text through the actual field callback 3ms
+   × preserves an explicitly entered zero validation bound for slug through the actual field callback 3ms
+   × preserves an explicitly entered zero validation bound for repeater through the actual field callback 4ms
+   × preserves an explicitly entered zero validation bound for blocks through the actual field callback 3ms
+ ❯ tests/schema-admin-ui/route.test.ts (3 tests | 1 failed) 1370ms
+   × keeps the current collection view when an obsolete post-save read finishes after Kit parameter reuse 1170ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > offers exactly the pinned Source repeater sub-field menu supported by the schema contract
+AssertionError: expected [ [ 'string', 'Short Text' ], …(13) ] to deeply equal [ [ 'string', 'Short Text' ], …(8) ]
+
+- Expected
++ Received
+
+@@ -26,13 +26,33 @@
+    [
+      "select",
+      "Select",
+    ],
+    [
+-     "url",
+-     "URL",
++     "multiSelect",
++     "Multi Select",
++   ],
++   [
++     "portableText",
++     "Rich Text",
+    ],
+    [
+      "image",
+      "Image",
++   ],
++   [
++     "file",
++     "File",
++   ],
++   [
++     "json",
++     "JSON",
++   ],
++   [
++     "slug",
++     "Slug",
++   ],
++   [
++     "url",
++     "URL",
+    ],
+  ]
+
+ ❯ tests/schema-admin-ui/native.test.ts:120:78
+    118|   const select=[...target.querySelectorAll<HTMLLabelElement>('label')]…
+    119|   // Immutable FieldEditor.tsx:1231–1241, not the Native type-list imp…
+    120|   expect([...select.options].map(option=>[option.value,option.textCont…
+       |                                                                              ^
+    121|     ['string','Short Text'],['text','Long Text'],['number','Number'],[…
+    122|     ['boolean','Boolean'],['datetime','Date & Time'],['select','Select…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > keeps repeater saving disabled until the group has a sub-field, as the pinned Source requires
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/schema-admin-ui/native.test.ts:129:25
+    127|   mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange…
+    128|   const save=[...target.querySelectorAll<HTMLButtonElement>('button')]…
+    129|   expect(save.disabled).toBe(true);
+       |                         ^
+    130|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    131|   expect(save.disabled).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > preserves an explicitly entered zero validation bound for number through the actual field callback
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "validation": ObjectContaining {
+-       "max": 0,
+-       "min": 0,
+-     },
++   {
++     "indexed": false,
++     "label": "Amount",
++     "required": false,
++     "searchable": undefined,
++     "slug": "amount",
++     "type": "number",
++     "unique": false,
++     "validation": null,
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/native.test.ts:150:18
+    148|   }
+    149|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    150|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validat…
+       |                  ^
+    151| });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > preserves an explicitly entered zero validation bound for integer through the actual field callback
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "validation": ObjectContaining {
+-       "max": 0,
+-       "min": 0,
+-     },
++   {
++     "indexed": false,
++     "label": "Amount",
++     "required": false,
++     "searchable": undefined,
++     "slug": "amount",
++     "type": "integer",
++     "unique": false,
++     "validation": null,
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/native.test.ts:150:18
+    148|   }
+    149|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    150|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validat…
+       |                  ^
+    151| });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > preserves an explicitly entered zero validation bound for string through the actual field callback
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "validation": ObjectContaining {
+-       "maxLength": 0,
+-       "minLength": 0,
+-     },
++   {
++     "indexed": false,
++     "label": "Amount",
++     "required": false,
++     "searchable": false,
++     "slug": "amount",
++     "type": "string",
++     "unique": false,
++     "validation": null,
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/native.test.ts:150:18
+    148|   }
+    149|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    150|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validat…
+       |                  ^
+    151| });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > preserves an explicitly entered zero validation bound for text through the actual field callback
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "validation": ObjectContaining {
+-       "maxLength": 0,
+-       "minLength": 0,
+-     },
++   {
++     "indexed": false,
++     "label": "Amount",
++     "required": false,
++     "searchable": false,
++     "slug": "amount",
++     "type": "text",
++     "unique": false,
++     "validation": null,
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/native.test.ts:150:18
+    148|   }
+    149|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    150|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validat…
+       |                  ^
+    151| });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > preserves an explicitly entered zero validation bound for slug through the actual field callback
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "validation": ObjectContaining {
+-       "maxLength": 0,
+-       "minLength": 0,
+-     },
++   {
++     "indexed": false,
++     "label": "Amount",
++     "required": false,
++     "searchable": false,
++     "slug": "amount",
++     "type": "slug",
++     "unique": false,
++     "validation": null,
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/native.test.ts:150:18
+    148|   }
+    149|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    150|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validat…
+       |                  ^
+    151| });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > preserves an explicitly entered zero validation bound for repeater through the actual field callback
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "validation": ObjectContaining {
++   {
++     "indexed": false,
++     "label": "Amount",
++     "required": false,
++     "searchable": undefined,
++     "slug": "amount",
++     "type": "repeater",
++     "unique": false,
++     "validation": {
+        "maxItems": 1,
+-       "minItems": 0,
++       "subFields": [
++         {
++           "label": "Title",
++           "required": undefined,
++           "slug": "title",
++           "type": "string",
++         },
++       ],
+      },
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/native.test.ts:150:18
+    148|   }
+    149|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    150|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validat…
+       |                  ^
+    151| });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > preserves an explicitly entered zero validation bound for blocks through the actual field callback
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "validation": ObjectContaining {
++   {
++     "indexed": false,
++     "label": "Amount",
++     "required": false,
++     "searchable": undefined,
++     "slug": "amount",
++     "type": "blocks",
++     "unique": false,
++     "validation": {
++       "allowedTypes": [],
+        "maxItems": 1,
+-       "minItems": 0,
+      },
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/schema-admin-ui/native.test.ts:150:18
+    148|   }
+    149|   [...target.querySelectorAll<HTMLButtonElement>('button')].find(butto…
+    150|   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validat…
+       |                  ^
+    151| });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  tests/schema-admin-ui/route.test.ts > keeps the current collection view when an obsolete post-save read finishes after Kit parameter reuse
+AssertionError: expected 'Posts' to be 'Pages' // Object.is equality
+
+Expected: "Pages"
+Received: "Posts"
+
+ ❯ tests/schema-admin-ui/route.test.ts:41:72
+     39|   await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent)…
+     40|   release(posts);await Promise.resolve();await tick();await Promise.re…
+     41|   await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent)…
+       |                                                                        ^
+     42| });
+     43|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  10 failed | 20 passed (30)
+   Start at  07:01:47
+   Duration  3.32s (transform 2.13s, setup 0ms, import 2.85s, tests 2.02s, environment 2.39s)
+
+[ELIFECYCLE] Command failed with exit code 1.

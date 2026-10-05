@@ -1,0 +1,156 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+4:55:50 AM [vite-plugin-svelte] src/lib/schema-admin/ContentTypeEditor.svelte:72:36 `<div>` with a dragover or drop handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows system fields section
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onDeleteField when delete is confirmed via dialog
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows info banner and disables inputs for code-source collections
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows empty state when collection has no custom fields
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows 'Saving...' when isSaving is true
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > blocks saving a pattern with two placeholders in one path segment
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx (54 tests | 6 failed) 5282ms
+     × shows system fields section 1013ms
+     × calls onDeleteField when delete is confirmed via dialog 33ms
+     × shows info banner and disables inputs for code-source collections 1010ms
+     × shows empty state when collection has no custom fields 1009ms
+     × shows 'Saving...' when isSaving is true 11ms
+     × blocks saving a pattern with two placeholders in one path segment 1011ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows system fields section
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows info banner and disables inputs for code-source collections
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows empty state when collection has no custom fields
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > blocks saving a pattern with two placeholders in one path segment
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/helpers/schema-ui/dom-setup.ts:6:74
+      4| function assertions(value: Element | Locator | null, negate = false): …
+      5|   const node = () => value instanceof Locator ? value.query() : value;
+      6|   const check = (read: () => boolean) => vi.waitFor(() => expect(read(…
+       |                                                                          ^
+      7|   return {
+      8|     get not() { return assertions(value, !negate); },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onDeleteField when delete is confirmed via dialog
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'title', undefined ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+    "title",
+-   undefined,
+  ]
+
+
+Number of calls: 1
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:373:25
+    371|   screen.getByRole("button", { name: "Delete" }).element().click();
+    372|
+    373|   expect(onDeleteField).toHaveBeenCalledWith("title", undefined);
+       |                         ^
+    374|  });
+    375|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows 'Saving...' when isSaving is true
+AssertionError: expected 'Saved' to be 'Saving...' // Object.is equality
+
+Expected: "Saving..."
+Received: "Saved"
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:571:60
+    569|   );
+    570|
+    571|   expect(screen.getByRole("status").element().textContent).toBe("Savin…
+       |                                                            ^
+    572|   for (const button of screen.getByRole("button", { name: "Saving...",…
+    573|    await expect.element(button).toBeDisabled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  6 failed | 132 passed (138)
+   Start at  04:55:46
+   Duration  12.02s (transform 1.05s, setup 1.45s, import 639ms, tests 7.16s, environment 2.19s)
+
