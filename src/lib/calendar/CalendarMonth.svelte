@@ -44,7 +44,12 @@
   function dayLabel(day:string){const label=pickerLabels.labelDayButton(localDay(day),{today:day===today,selected:day===selected},pickerDates.options,pickerDates);const count=days.get(day)?.length??0;return count?t("{dayLabel}, {entries}",{dayLabel:label,entries:t("{0, plural, one {# entry} other {# entries}}",{"0":count})}):label;}
   function keydown(event:KeyboardEvent,day:string){const next=moveCalendarFocus(day,event,display.locale,direction);if(next===undefined)return;event.preventDefault();event.stopPropagation();focusDay=next;if(!next.startsWith(month))onMonthChange(next.slice(0,7));}
   function pick(event:MouseEvent,day:string){event.preventDefault();event.stopPropagation();picked=day;focusDay=day;}
-  function blurDay(){lastFocusedDay=focusDay;focusDay=undefined;}
+  function blurDay(day:string){
+    lastFocusedDay=focusDay;
+    // A deferred caller can blur the old button after keys request another day.
+    // Retain that requested target for the existing scoped month-focus effect.
+    if(focusDay===day)focusDay=undefined;
+  }
   function roomiestEntries(items:readonly CalendarItem[]){return items.toSorted((a,b)=>Number(a.state==='published')-Number(b.state==='published')).slice(0,4);}
 </script>
 {#snippet notice()}<div class="notice"><p>{cutOff?t("No loaded entries match these filters"):t("No entries match these filters")}</p><button type="button" onclick={onClearFilters}>{t("Clear filters")}</button></div>{/snippet}
@@ -65,7 +70,7 @@
 <tbody>{#each weeks as week(week[0])}<tr>{#each week as day(day)}{@const reserved=unfilteredDays?.get(day)}
   <td class:outside={!day.startsWith(month)} class:weekend={display.isWeekend(day)} aria-current={day===today?'date':undefined}>
   {#if compact}
-    {#if day.startsWith(month)}<button type="button" data-calendar-day={day} aria-label={dayLabel(day)} aria-pressed={selected===day} tabindex={focusTarget===day?0:-1} onclick={event=>pick(event,day)} onfocus={()=>{focusDay=day;}} onblur={blurDay} onkeydown={event=>keydown(event,day)}>{display.dayNumber(day)}<span aria-hidden="true" class="dots">{#each (days.get(day)??[]).slice(0,3) as item}<i class={item.state}></i>{/each}{#if (days.get(day)?.length??0)>3}+{/if}</span></button>{/if}
+    {#if day.startsWith(month)}<button type="button" data-calendar-day={day} aria-label={dayLabel(day)} aria-pressed={selected===day} tabindex={focusTarget===day?0:-1} onclick={event=>pick(event,day)} onfocus={()=>{focusDay=day;}} onblur={()=>blurDay(day)} onkeydown={event=>keydown(event,day)}>{display.dayNumber(day)}<span aria-hidden="true" class="dots">{#each (days.get(day)??[]).slice(0,3) as item}<i class={item.state}></i>{/each}{#if (days.get(day)?.length??0)>3}+{/if}</span></button>{/if}
   {:else}<div class="cell"><div class="date">{day.endsWith('-01')?display.monthDayShort(day):display.dayNumber(day)}</div>
     <div class="entries">
       {#if reserved&&(reserved.length>4||(days.get(day)?.length??0)<reserved.length)}<div class="reservation" aria-hidden="true" inert>{@render cellEntries(day,roomiestEntries(reserved))}</div>{/if}
