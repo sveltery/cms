@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import {observeCalendarMetadata} from '$lib/calendar/metadata-owner.ts';
   import { page } from '$app/state';
   import { browser } from '$app/environment';
   import { i18n } from '@lingui/core';
@@ -13,6 +15,8 @@
   let { data }:{data:PageData}=$props();
   // Each actual page owns its query client. SSR/request instances never share it.
   const queryClient=createCalendarQueryClient();
+  let manifest=$state(data.manifest),user=$state(data.user);
+  onMount(()=>{if(!data.available)return;const owner=observeCalendarMetadata(queryClient,client,{manifest,user},value=>{manifest=value.manifest;user=value.user;});return()=>owner.destroy();});
   // Original admin bootstrap owns browser locale before any client request.
   // Existing i18n is reused; no locale is changed on an SSR request.
   if(browser&&!i18n.locale)i18n.loadAndActivate({locale:'en',messages:{}});
@@ -24,6 +28,6 @@
 </script>
 <svelte:head><title>Calendar · Sveltery CMS</title></svelte:head>
 <WorkspaceShell homeHref={`${base}/`}>
-  {#if data.available}<Calendar manifest={data.manifest} user={data.user} locale={i18n.locale||'en'} {client} {queryClient} {search} {updateSearch} back={()=>history.back()}/>
+  {#if data.available}<Calendar manifest={manifest} user={user} locale={i18n.locale||'en'} {client} {queryClient} {search} {updateSearch} back={()=>history.back()}/>
   {:else}<h1>Calendar</h1><p role="status">{data.error}</p>{/if}
 </WorkspaceShell>

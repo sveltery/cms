@@ -1,6 +1,8 @@
 <script lang="ts">
   // EmDash1.1.0 CalendarEntryPanel behavior, pin913cb1bb; MIT.
   import { untrack } from 'svelte';
+  import {runCalendarPanelAction,runCalendarReschedule} from './panel-actions.ts';
+  import {calendarEditedState} from './presentation.ts';
   import ScheduleDialog from './CalendarScheduleDialog.svelte';
   import { contentUrl } from './url.ts';
   import { base } from '$app/paths';
@@ -56,22 +58,15 @@
     void queryClient?.invalidateQueries({queryKey:['dashboard-stats']});
   }
   async function mutate(action:'publish'|'unschedule') {
-    if(!item||pending)return;const selected=item;pending=true;error=undefined;
-    try{
-      if(action==='publish')await client.publishContent(selected.collection,selected.id,{locale:selected.locale,_rev:entry?._rev});
-      else await client.unscheduleContent(selected.collection,selected.id,{locale:selected.locale});
-      refresh(selected);
-      onNotice?.(action==='publish'?{title:'Published',description:`${selected.title} is now live.`}:{title:'Schedule removed',description:selected.status==='published'?`The scheduled changes to ${selected.title} stay as a draft.`:`${selected.title} is a draft again.`});
-      if(item?.key===selected.key)onClose();
-    }catch(cause){const description=cause instanceof Error?cause.message:'Request failed';if(item?.key===selected.key)error=description;onNotice?.({title:action==='publish'?'Could not publish':'Could not remove the schedule',description,type:'error'});}
-    finally{if(item?.key===selected.key)pending=false;}
+    if(!item||pending)return;const selected=item;
+    await runCalendarPanelAction(action,selected,{client,rev:entry?._rev,current:()=>item?.key===selected.key,pending:value=>pending=value,error:value=>error=value,refresh:()=>refresh(selected),
+      success:()=>onNotice?.(action==='publish'?{title:'Published',description:`${selected.title} is now live.`}:{title:'Schedule removed',description:selected.status==='published'?`The scheduled changes to ${selected.title} stay as a draft.`:`${selected.title} is a draft again.`}),
+      failure:description=>onNotice?.({title:action==='publish'?'Could not publish':'Could not remove the schedule',description,type:'error'}),close:onClose});
   }
   async function reschedule(at:string){
     if(!item)return;const selected=item;
-    await client.scheduleContent(selected.collection,selected.id,at,{locale:selected.locale});
-    refresh(selected);
-    onNotice?.({title:'Rescheduled',description:`${selected.title} now goes live ${display.formatDateTime(Date.parse(at))}.`});
-    if(item?.key===selected.key)onRescheduled(selected,at);
+    await runCalendarReschedule(selected,at,{client,pending:()=>{},current:()=>item?.key===selected.key,refresh:()=>refresh(selected),
+      success:()=>onNotice?.({title:'Rescheduled',description:`${selected.title} now goes live ${display.formatDateTime(Date.parse(at))}.`}),rescheduled:()=>onRescheduled(selected,at)});
   }
   async function openPreview(){
     if(!item||previewing)return;const selected=item;previewing=true;

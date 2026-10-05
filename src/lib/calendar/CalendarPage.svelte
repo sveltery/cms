@@ -2,6 +2,7 @@
   // EmDash1.1.0 Calendar page behavior, pin913cb1bb; MIT notices/emdash-MIT.txt.
   // Framework host supplies one real QueryClient and URL/history operations.
   import { onMount,untrack } from 'svelte';
+  import {calendarInitialLoading,calendarTabTarget} from './presentation.ts';
   import { QueryObserver,type QueryClient } from '@tanstack/react-query';
   import { calendarQueryOptions,CALENDAR_MAX_ENTRIES,type CalendarRange } from './api.ts';
   import { ApiResponseError } from '../sections-widgets/client.ts';
@@ -18,7 +19,7 @@
     updateSearch:(patch:Partial<CalendarSearch>,push?:boolean)=>void;back:()=>void;
   }=$props();
   let now=$state(untrack(()=>Date.now())),compact=$state(false),container=$state<HTMLDivElement>();
-  let data=$state<CalendarRange>(),updatedAt=$state(0),fetching=$state(false),error=$state<unknown>();
+  let data=$state<CalendarRange>(),updatedAt=$state(0),fetching=$state(false),initialPending=$state(true),error=$state<unknown>();
   let refetch=()=>{};
   let notice=$state<CalendarNotice>();
   const collections=$derived(Object.entries(manifest?.collections??{}).filter(([,c])=>!c.hidden).map(([slug,c])=>({slug,label:c.label,icon:c.icon})));
@@ -35,7 +36,7 @@
     if(!manifest)return;
     const observer=new QueryObserver(queryClient,{...calendarQueryOptions(range.from,range.to),staleTime:0,refetchInterval:query=>untrack(()=>rangeHasNow)&&query.state.status!=='error'?60000:false});
     calendarObserver=observer;
-    const apply=(result:ReturnType<typeof observer.getCurrentResult>)=>{data=result.data;updatedAt=result.dataUpdatedAt;fetching=result.isFetching;error=result.error;};
+    const apply=(result:ReturnType<typeof observer.getCurrentResult>)=>{data=result.data;updatedAt=result.dataUpdatedAt;fetching=result.isFetching;initialPending=result.isPending;error=result.error;};
     const unsubscribe=observer.subscribe(apply);apply(observer.getCurrentResult());refetch=()=>{void observer.refetch();};
     return()=>{unsubscribe();observer.destroy();};
   });
@@ -75,7 +76,7 @@
 <header><div><h1>Calendar</h1><p>Published and scheduled entries across collections, in the site's time zone.</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
 {#if notice}<div role={notice.type==='error'?'alert':'status'} class="notice"><strong>{notice.title}</strong><p>{notice.description}</p><button type="button" aria-label="Dismiss notification" onclick={()=>notice=undefined}>×</button></div>{/if}
 <div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>Month</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>Agenda</button></div>
-<Toolbar title={display.monthTitle(month)} {display} {zoneTime} loading={fetching} onPrevious={()=>goToMonth(shiftMonth(month,-1))} onNext={()=>goToMonth(shiftMonth(month,1))} onToday={()=>goToMonth(undefined)} onPreviewPrevious={()=>prefetch(shiftMonth(month,-1))} onPreviewNext={()=>prefetch(shiftMonth(month,1))}/>
+<Toolbar title={display.monthTitle(month)} {display} {zoneTime} loading={calendarInitialLoading(initialPending,fetching)} onPrevious={()=>goToMonth(shiftMonth(month,-1))} onNext={()=>goToMonth(shiftMonth(month,1))} onToday={()=>goToMonth(undefined)} onPreviewPrevious={()=>prefetch(shiftMonth(month,-1))} onPreviewNext={()=>prefetch(shiftMonth(month,1))}/>
 {#if error}<div role="alert"><h3>Could not load the calendar</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>Retry</button></div>{/if}
 {#if data?.truncated}<div role="status"><h3>This range has more than {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)} entries</h3><p>The calendar shows the first {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)}{loadedThrough?`, which end on ${display.monthDay(loadedThrough)}`:''}.</p></div>{/if}
 {#if !(error&&!data)}{#if view==='month'}<Month {month} {gridDays} {days} {unfilteredDays} {today} {now} {display} loading={!data} {loadedThrough} {compact} {selectedKey} onSelect={openEntry} onMonthChange={goToMonth} onClearFilters={filtered?clearFilters:undefined}/>
