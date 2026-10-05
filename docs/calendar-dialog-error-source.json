@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "artifact": "Private Calendar DialogError rendered-value preparation",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "base": "89340738750c688842f5716352f8d47f0189f03c",
+  "authorities": [
+    {
+      "source": "packages/admin/src/components/DialogError.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/DialogError.tsx",
+      "gitBlob": "a5c0f711b47269d11216c01176001d72cdd10f6c",
+      "bytes": 879,
+      "sha256": "6a61cbfc182205e93d369b78039c61c1e5c9089650834baba52d8f0589062701"
+    },
+    {
+      "source": "packages/admin/src/components/PublishingDateTimeEditor.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/PublishingDateTimeEditor.tsx",
+      "gitBlob": "62984d8d570a4c6a62cb27614d5749366c367233",
+      "bytes": 19826,
+      "sha256": "e5c2edb222afe610791ba6aaeb0cc3da92c188e4a046e6c0ec45be0f8406c974"
+    },
+    {
+      "source": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "gitBlob": "27eec6c0f4ab8babb76d8f6c01f2bd3fe549bb96",
+      "bytes": 16907,
+      "sha256": "c0785bc4c588e7834d14969725c57ea91b17fa005104e4849930560d058bef94"
+    }
+  ],
+  "wholeAuthorityLedger": "scheduled-publishing-source.json",
+  "sourceAuthoritiesChanged": 0,
+  "regularCommits": {
+    "unchangedExtraction": "ff70434d4f652506ec055d5a52fe2ead43962fec",
+    "testFirst": "5d750d6795e27a92cc295a6f9d01a437e1347f8e",
+    "fixtureTypingOnly": "1cecfd7e4b965d4e1cdcb2a9b6cacebe9f8dabbe",
+    "implementation": "b522a2216431f9e76d0533a0faba0a57579275f3",
+    "refactor": "e652610770f32975d7f8c0603980e073a44b20ad"
+  },
+  "host": {
+    "node": "24.19.0",
+    "pnpm": "12.6.0",
+    "svelte": "5.57.1",
+    "sveltePlugin": "7.3.1",
+    "vitest": "4.1.10",
+    "parse5": "7.3.0",
+    "renderer": "actual svelte/server via frozen Svelte Vite plugin",
+    "environment": "node",
+    "domShim": false,
+    "browserLaunches": 0,
+    "dependencies": "existing frozen public893 node_modules; no install or graph change"
+  },
+  "tests": {
+    "origin": "new supplemental Native rendered-value tests",
+    "registered": 13,
+    "firstReachedValueRed": 7,
+    "baselinePassed": 6,
+    "afterFixPassed": 13,
+    "afterRefactorPassed": 13,
+    "originalAssertionsChanged": 0,
+    "originalSourceCallbackExecutions": 0
+  },
+  "privateReceiptMetadata": [
+    {
+      "privateFilename": "calendar-dialog-error-private-first-red.log",
+      "bytes": 1868,
+      "sha256": "aedcb456a0eb232525bdb4f89c2497d0070c563c11146ec9dd6002bf752f95fc",
+      "status": "pre-collection startup stop",
+      "counts": {
+        "registered": 0,
+        "valueRed": 0
+      }
+    },
+    {
+      "privateFilename": "calendar-dialog-error-private-sync.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "Kit sync success",
+      "counts": {}
+    },
+    {
+      "privateFilename": "calendar-dialog-error-private-corrected-first-red.log",
+      "bytes": 7902,
+      "sha256": "e924d260663005284bb81184ec7b943f4afb2b00de1fd41a59c7063f46d0d993",
+      "status": "output-value red",
+      "counts": {
+        "registered": 13,
+        "passed": 6,
+        "failed": 7
+      }
+    },
+    {
+      "privateFilename": "calendar-dialog-error-private-typed-first-red.log",
+      "bytes": 7902,
+      "sha256": "218e12aa29e48ed9b29cc2b70a9df8d40b38b5f079b4c392d704775952b9f0c7",
+      "status": "same output-value red after fixture typing",
+      "counts": {
+        "registered": 13,
+        "passed": 6,
+        "failed": 7
+      }
+    },
+    {
+      "privateFilename": "calendar-dialog-error-private-after-fix.log",
+      "bytes": 394,
+      "sha256": "293743443792cae39425677f833fbfab1638099728c058f6b0147831aa40dac2",
+      "status": "green with one obsolete parent-selector warning",
+      "counts": {
+        "registered": 13,
+        "passed": 13,
+        "failed": 0
+      }
+    },
+    {
+      "privateFilename": "calendar-dialog-error-private-after-refactor.log",
+      "bytes": 230,
+      "sha256": "50bbda6edb93d6187dafd0fa181ee0defc08e3affe32bd74aa4ed0ab63ca73f3",
+      "status": "green without selector warning",
+      "counts": {
+        "registered": 13,
+        "passed": 13,
+        "failed": 0
+      }
+    },
+    {
+      "privateFilename": "calendar-dialog-error-private-check.log",
+      "bytes": 154,
+      "sha256": "c25f3c39005b735bbdc4191b9aa522b1bfa2b429185062966c0012eb544af5d7",
+      "status": "Svelte check clean",
+      "counts": {
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    {
+      "privateFilename": "calendar-dialog-error-private-source-guard.log",
+      "bytes": 189,
+      "sha256": "f55e5f3fd56b2a6193d02bdb1a5ccbad218cf2d97d74ec605ee0da385a59036f",
+      "status": "whole Source provenance guard pass",
+      "counts": {
+        "wholeAuthorities": 86,
+        "families": 16,
+        "declarations": 126,
+        "staticRoots": 360,
+        "assertionExecutionCredit": 0
+      }
+    }
+  ],
+  "changes": {
+    "production": [
+      "src/lib/calendar/CalendarDialogError.svelte",
+      "src/lib/calendar/CalendarScheduleDialog.svelte"
+    ],
+    "scope": [
+      "falsy message suppression",
+      "literal newline split including empty lines",
+      "escaped message text",
+      "existing alert role",
+      "actual CalendarScheduleDialog integration"
+    ],
+    "callerOwns": [
+      "message extraction",
+      "translation"
+    ],
+    "sharedFieldsChanged": false
+  },
+  "limits": [
+    "no original Source callback/browser/DOM geometry/HTTP/auth/storage/whole scheduler/CSS body parity credit",
+    "no held graph imports or public adoption",
+    "separate descriptor CalendarInlineError reconciliation remains a finite Root integration decision",
+    "full integrated gates, secured browser, independent/configured review, manager approval and author merge pending"
+  ],
+  "publication": {
+    "pushed": false,
+    "pullRequestCreated": false,
+    "merged": false,
+    "rootQualification": false,
+    "acceptance": false
+  }
+}
