@@ -17,6 +17,7 @@ import { sql, type Kysely } from "kysely";
 import { jsonExtractExpr } from "../../database/lifecycle/upstream/database/dialect-helpers.ts";
 import type { Database } from "../../database/lifecycle/upstream/database/types.ts";
 import { getDb } from "../loader.ts";
+import { queryReadStorage } from "../read-storage.ts";
 import { cachedQuery, CacheNamespace } from "../../menus/object-cache.ts";
 import { requestCached } from "../../menus/request-cache.ts";
 import { isMissingTableError } from "../../schema/db-errors.ts";
@@ -58,9 +59,9 @@ async function loadBindings(
 			relation_id: string | null;
 		}>`
 			SELECT f.slug AS slug, f.validation AS validation, r.id AS relation_id
-			FROM ${sql.ref("_cms_fields")} AS f
-			INNER JOIN ${sql.ref("_cms_collections")} AS c ON c.id = f.collection_id
-			LEFT JOIN ${sql.ref("_cms_relations")} AS r ON r.slug = ${sql.raw(relationSlug)}
+			FROM ${sql.ref(queryReadStorage(db).fields)} AS f
+			INNER JOIN ${sql.ref(queryReadStorage(db).collections)} AS c ON c.id = f.collection_id
+			LEFT JOIN ${sql.ref(queryReadStorage(db).relations)} AS r ON r.slug = ${sql.raw(relationSlug)}
 			WHERE c.slug = ${collection} AND f.type = 'reference'
 		`.execute(db);
 		rows = result.rows;
