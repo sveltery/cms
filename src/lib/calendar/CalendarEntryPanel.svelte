@@ -11,6 +11,7 @@
   import { QueryObserver, type QueryClient } from '@tanstack/react-query';
   import { formatTimeAgo,formatTimeUntil,type CalendarDisplay,type CalendarItem } from './calendar.ts';
   import { stateLabels } from './entry.ts';
+  import { getLocaleLabel } from '../ui/locales/config.ts';
   import { type CalendarInlineError } from './mutation-error.ts';
   import type { CalendarClient,CalendarContent,CalendarManifest,CalendarUser,CalendarNotice } from './ui-types.ts';
   let { item,display,now,compact, i18n,urlPatterns={},user,onClose,onRescheduled,onNotice,returnFocus,client,queryClient }: {
@@ -83,7 +84,7 @@
 <dialog bind:this={dialog} closedby={compact?'any':'closerequest'} aria-label={item?.title} data-open={item?'':undefined} class:compact oncancel={event=>{event.preventDefault();onClose();}}>
 {#if item}<div class="top"><span>{display.collection(item.collection).label}</span><button type="button" aria-label={t("Close")} onclick={onClose}>×</button></div>
 <h2 dir="auto">{item.title}</h2><dl><dt>{t("State")}</dt><dd>{t(stateLabels[item.state])}</dd><dt>{item.kind==='scheduled'?item.state==='overdue'?t("Was due"):t("Goes live"):t("Published")}</dt><dd>{display.formatDateTime(item.time)}{#if display.viewerZoneDiffers}<small>{t("Your time: {viewerTime}",{viewerTime:display.formatViewerTime(item.time)})}</small>{/if}</dd>
-{#if display.showLocale}<dt>{t("Locale")}</dt><dd>{new Intl.DisplayNames([display.locale],{type:'language'}).of(item.locale)} <small>{item.locale.toUpperCase()}</small>{#if others.length}<span class="translations">{t("Translations:")} {#each others as translation(translation.id)}<span title={new Intl.DisplayNames([display.locale],{type:'language'}).of(translation.locale)}>{translation.locale.toUpperCase()}</span>{/each}</span>{/if}</dd>{/if}
+{#if display.showLocale}<dt>{t("Locale")}</dt><dd>{getLocaleLabel(item.locale)} <small>{item.locale.toUpperCase()}</small>{#if others.length}<span class="translations">{t("Translations:")} {#each others as translation(translation.id)}<span title={getLocaleLabel(translation.locale)}>{translation.locale.toUpperCase()}</span>{/each}</span>{/if}</dd>{/if}
 {#if bylines}<dt>{t("Bylines")}</dt><dd>{bylines}</dd>{/if}<dt>{t("Last edited")}</dt><dd>{#if calendarEditedState(detailsPending,Boolean(entry))==='pending'}<span class="details-loading" aria-hidden="true"></span>{:else}{edited}{/if}</dd></dl>
 {#if item.kind==='scheduled'}<h3>{t("Publishing")}</h3>
   {#if item.state==='overdue'}<p class="overdue">{t("This entry was due {lateness} but hasn't published. Scheduled publishing may not be running.",{lateness:formatTimeAgo(now-item.time,display.locale)})}</p>

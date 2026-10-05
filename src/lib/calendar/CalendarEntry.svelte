@@ -7,6 +7,7 @@
   import {createCalendarHoverTiming,type CalendarTooltipGroup} from './presentation.ts';
   import { formatTimeAgo, formatShortDuration } from './calendar.ts';
   import { isPlainClick, stateLabels } from './entry.ts';
+  import LocaleChip from './CalendarLocaleChip.svelte';
   import type { EntryProps } from './ui-types.ts';
   let { item, display, now, selected, onSelect, chip = false }: EntryProps = $props();
   const href = $derived(`${base}/content/${encodeURIComponent(item.collection)}/${encodeURIComponent(item.id)}?locale=${encodeURIComponent(item.locale)}`);
@@ -30,11 +31,11 @@
   {#if item.state === 'overdue'}<span class="note">{chip ? t("{lateness} late",{lateness:formatShortDuration(now-item.time,display.locale)}) : t("Overdue · {lateness}",{lateness:formatTimeAgo(now-item.time,display.locale)})}</span>
   {:else if item.state === 'update'}<span class="note" aria-hidden="true">{t("Update")}</span>{/if}
   {#if !chip}<span class="collection">{display.collection(item.collection).label}</span>{/if}
-  {#if display.showLocale}<span class="locale">{new Intl.DisplayNames([display.locale], {type:'language'}).of(item.locale)}</span>{/if}
+  {#if display.showLocale}<span class="locale"><LocaleChip locale={item.locale}/></span>{/if}
   {#if display.viewerZoneDiffers && !chip}<span class="viewer">{display.formatViewerTime(item.time)}</span>{/if}
 </a>
 {#if tooltipOpen}<div bind:this={tooltip} id={tooltipId} role="tooltip" popover="manual" class="entry-tooltip" class:below style:left={`${left}px`} style:top={`${top}px`} onpointerleave={leaveTooltip}>
-  <strong dir="auto">{item.title}</strong><span>{t("{state} · {when}",{state:t(stateLabels[item.state]),when:display.formatDateTime(item.time)})}</span>{#if display.viewerZoneDiffers}<span>{t("Your time: {viewerTime}",{viewerTime:display.formatViewerTime(item.time)})}</span>{/if}<span>{display.collection(item.collection).label}{#if display.showLocale} · {new Intl.DisplayNames([display.locale],{type:'language'}).of(item.locale)}{/if}</span>
+  <strong dir="auto">{item.title}</strong><span>{t("{state} · {when}",{state:t(stateLabels[item.state]),when:display.formatDateTime(item.time)})}</span>{#if display.viewerZoneDiffers}<span>{t("Your time: {viewerTime}",{viewerTime:display.formatViewerTime(item.time)})}</span>{/if}<span>{display.collection(item.collection).label}{#if display.showLocale} · <LocaleChip locale={item.locale}/>{/if}</span>
 </div>{/if}
 <style>
   a { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; padding:.45rem .5rem; border-radius:.35rem; text-decoration:none; font-size:.875rem; }

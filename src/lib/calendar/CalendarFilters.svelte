@@ -6,6 +6,7 @@
   import {calendarMenuOpenTarget,createCalendarTypeahead} from './presentation.ts';
   import { CALENDAR_STATES, type CalendarDisplay, type CalendarFilterValues } from './calendar.ts';
   import { stateLabels } from './entry.ts';
+  import { getLocaleLabel } from '../ui/locales/config.ts';
   let { display, collections, locales, value, onChange, triggerRef }: {
     display:CalendarDisplay; collections:{slug:string;label:string}[]; locales:readonly string[];
     value:CalendarFilterValues; onChange:(value:Partial<CalendarFilterValues>)=>void;
@@ -15,7 +16,7 @@
   let openKey='',open=$state(false), trigger=$state<HTMLButtonElement>(), menu=$state<HTMLDivElement>(),container=$state<HTMLDivElement>();
   const count=$derived(value.collections.length+value.locales.length+value.states.length);
   const groups=$derived([{key:'collections' as const,label:t("Collection"),options:collections.map(c=>({value:c.slug,label:c.label}))},
-    ...(locales.length>1?[{key:'locales' as const,label:t("Locale"),options:locales.map(locale=>({value:locale,label:new Intl.DisplayNames([display.locale],{type:'language'}).of(locale)??locale}))}]:[]),
+    ...(locales.length>1?[{key:'locales' as const,label:t("Locale"),options:locales.map(locale=>({value:locale,label:getLocaleLabel(locale)}))}]:[]),
     {key:'states' as const,label:t("State"),options:CALENDAR_STATES.map(state=>({value:state,label:t(stateLabels[state])}))}]);
   $effect(()=>{if(triggerRef)triggerRef.current=trigger??null;});
   $effect(()=>{if(open)void tick().then(()=>{if(open){const options=[...menu?.querySelectorAll<HTMLButtonElement>('[role="menuitemcheckbox"],[role="menuitem"]')??[]];options[calendarMenuOpenTarget(openKey,options.length)]?.focus();}});});
