@@ -13,6 +13,8 @@ import { resolveCmsRedirects } from '../redirects/middleware.ts';
 export interface RuntimePresentation {
   /** Trusted injected provider; no default bucket or filesystem creation. */
   storage?: Storage;
+  /** Trusted Node-only opt-in; construction stays outside the Worker graph. */
+  mediaStorage?: { kind: 'local'; directory: string };
   publicOrigin: string;
   basePath?: string;
   rpName?: string;
@@ -102,11 +104,23 @@ export function createCmsRuntime(
       throw new Error('CMS base path must be an absolute path without a trailing slash');
     }
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
+    if (config.mediaStorage && config.kind !== 'sqlite') {
+      throw new Error('SVELTERY_MEDIA_DIRECTORY requires the Node SQLite runtime');
+    }
+    let storage = config.storage;
+    if (!storage && config.mediaStorage) {
+      const { createRuntimeLocalStorage } = await import('./node.ts');
+      storage = createRuntimeLocalStorage({
+        directory: config.mediaStorage.directory,
+        baseUrl: publicOrigin + basePath + '/api/media/file'
+      });
+      assertOpen();
+    }
     const database = await databaseFor(config);
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     configurations.set(event, config);
-    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive, storage: config.storage };
+    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive, storage };
   });
 
   return {

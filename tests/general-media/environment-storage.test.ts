@@ -25,7 +25,7 @@ describe('Original trusted Node environment media storage',()=>{
       expect(current.locals.cms?.mutationsEnabled).toBe(false);
       expect(current.locals.cms?.principal).toBeNull();
       const backend=createGeneralMediaBackend(current.locals.cms!.database,storage!);
-      const result=await backend.upload({filename:'ordinary.txt',base64:btoa('owned environment media bytes'),contentType:'text/plain'});
+      const result=await backend.upload({filename:'ordinary.pdf',base64:btoa('owned environment media bytes'),contentType:'application/pdf'});
       expect(result.success).toBe(true);
       if(!result.success)throw new Error(result.error.message);
       const key=result.data.item.storageKey;
