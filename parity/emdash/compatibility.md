@@ -2097,3 +2097,7 @@ checks, fresh independent/configured review, final BYL-01 through BYL-04
 acceptance, exact-head Root approval, author expected-head regular merge and
 post-Main verification are pending. Earlier focused reports are historical
 receipts, not self-referential qualification of a future successor head.
+
+### Byline PR108: published taxonomy union checkpoint
+
+The ordinary union now includes actual public Taxonomy Main `d76016cb022269aa4a9127f139728e6213f7c785`. Corrected regular successor `b6e031022d7a4cf9d3a2bcbc6ae1cae58a78d4dd` preserves every published command/dependency/lock/bootstrap/CI byte and all521 immutable Source authorities. Complete focused Source216 and Native18 pass on this corrected tree; the old initial local merge with unresolved markers remains historical and is corrected without rewriting history. Existing role projections retain Taxonomy and Byline rights with native administrator count27; the earlier admin25 count above describes its historical pre-Taxonomy checkpoint. BYL-01 through BYL-04 remain proposed, and full content lifecycle/UI/SDK/plugin/user/hosting scope and final-head whole gates/review/approval remain open. No new parity credit follows from this union or documentation update.
