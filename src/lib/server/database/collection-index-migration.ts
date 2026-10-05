@@ -104,19 +104,19 @@ async function planDuplicateLocales(database: CmsDatabase, slug: string) {
   }
   // Fixed D1 batches cannot perform mutation-dependent JS loops. This is an
   // explicit incomplete capability boundary, not Source/D1 equivalence.
-  const triggersQuery=sql<{snapshot:string}>`SELECT json_group_array(json_object('name',name,'tbl_name',tbl_name,'sql',sql)) AS snapshot
-    FROM (SELECT name,tbl_name,sql FROM sqlite_master WHERE type='trigger' ORDER BY name)`;
-  const triggerSnapshot=(await triggersQuery.execute(database.db)).rows[0].snapshot;
   const owned=[...await optionsMigration.expectedTriggers(database),
     ...await mediaAttributionMigration.expectedTriggers(database),...await commentsMigration.expectedTriggers(database),
     ...await redirectsMigration.expectedTriggers(database)];
-  const operators=JSON.parse(triggerSnapshot) as {name:string;sql:string}[];
-  // Unknown triggers can influence content indirectly from any table. Existing
-  // exact owned triggers are preserved; no operator is dropped or rewritten.
-  if(operators.some(actual=>!owned.some(expected=>actual.name===expected.name&&
-    normalizeFeatureStorageSql(actual.sql)===normalizeFeatureStorageSql(expected.sql)))) {
-    throw new CmsError('MIGRATION_REQUIRED','This adapter cannot repair locales in a database with operator triggers');
-  }
+  const knownNames=owned.map(object=>object.name);
+  const currentTriggers=(await sql<{name:string;sql:string}>`SELECT name,sql FROM sqlite_master WHERE type='trigger'`.execute(database.db)).rows;
+  if(currentTriggers.some(actual=>knownNames.includes(actual.name)&&!owned.some(expected=>actual.name===expected.name&&
+    normalizeFeatureStorageSql(actual.sql)===normalizeFeatureStorageSql(expected.sql)))) throw new CmsError('MIGRATION_REQUIRED');
+  // Owned preceding providers may install their exact frozen triggers in this
+  // batch. Preserve and guard every external operator, including indirect ones.
+  const triggersQuery=sql<{snapshot:string}>`SELECT json_group_array(json_object('name',name,'tbl_name',tbl_name,'sql',sql)) AS snapshot
+    FROM (SELECT name,tbl_name,sql FROM sqlite_master WHERE type='trigger'
+      AND name NOT IN (${sql.join(knownNames)}) ORDER BY name)`;
+  const triggerSnapshot=(await triggersQuery.execute(database.db)).rows[0].snapshot;
   const triggerGuard=snapshotGuard(database,triggersQuery,triggerSnapshot);
   let originalSnapshot:string|undefined;
   while (true) {
@@ -131,8 +131,18 @@ async function planDuplicateLocales(database: CmsDatabase, slug: string) {
       return {guard:contentGuard,additionalGuards:[triggerGuard],
         statements:[triggerGuard,contentGuard,...statements]};
     }
-    statements.push(...splitQueries(database,slug,duplicates));
-    for (const row of rowsToSplit(duplicates)) groups[row.id]=row.id;
+    const planned=splitQueries(database,slug,duplicates);
+    let position=0;
+    const originalRows=JSON.parse(originalSnapshot) as {id:string;translation_group:string|null}[];
+    const guardedSnapshot=()=>JSON.stringify(originalRows.map(row=>({...row,
+      translation_group:groups[row.id]??row.translation_group})));
+    for (const row of rowsToSplit(duplicates)) {
+      // Every real write is followed by a real Source-relevant row check.
+      // Static preparation cannot adopt mutation-dependent operator effects.
+      statements.push(planned[position++],snapshotGuard(database,contentSnapshotQuery(table),guardedSnapshot()));
+      groups[row.id]=row.id;
+      statements.push(planned[position++],snapshotGuard(database,contentSnapshotQuery(table),guardedSnapshot()));
+    }
   }
 }
 

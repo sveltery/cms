@@ -66,15 +66,18 @@ it('Node rereads real mutations from the preceding published provider15 marker w
   }finally{await database.close();}
 });
 
-it('raw D1 refuses an indirectly attached operator while retaining all owned triggers and storage',async()=>{
+it('raw D1 refuses mutation-dependent indirect operators while retaining all triggers and storage',async()=>{
   const fixture=await localD1();const database=fixture.database;
   try {
     await historical(database);
     await sql`CREATE TABLE operator_queue(id TEXT)`.execute(database.db);
     await sql`CREATE TRIGGER indirect_operator AFTER INSERT ON operator_queue
       BEGIN UPDATE ec_posts SET translation_group='b' WHERE id='c'; END`.execute(database.db);
+    await sql`CREATE TRIGGER enqueue_from_pivot AFTER INSERT ON _cms_content_taxonomies WHEN NEW.entry_id='b'
+      BEGIN INSERT INTO operator_queue(id) VALUES('run'); END`.execute(database.db);
     const before=await snapshot(database);
-    await expect(collectionStandardIndexesMigration.prepare!(database)).rejects.toMatchObject({code:'MIGRATION_REQUIRED'});
+    const plan=await collectionStandardIndexesMigration.prepare!(database);
+    await expect(database.atomicBatch([...plan.guards,...plan.statements])).rejects.toThrow('sveltery-cms-collection-index-prerequisite-changed');
     expect(await snapshot(database)).toEqual(before);
     expect(before.catalogue.filter(row=>String(row.name).startsWith('_cms_options_revision_'))).toHaveLength(2);
   }finally{await database.close();await fixture.runtime.dispose();}
