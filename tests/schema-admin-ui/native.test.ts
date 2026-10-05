@@ -33,3 +33,10 @@ it('saves chosen title/date fields and list columns through the actual editor ca
   target.querySelector<HTMLFormElement>('form')!.requestSubmit();
   expect(onSave).toHaveBeenCalledWith(expect.objectContaining({titleField:'title',dateField:'event',admin:{quickCreate:false,listColumns:['title','event']}}));
 });
+it('retains a field dialog and reports the actual asynchronous save failure', async () => {
+  const target=document.createElement('section');document.body.append(target);const onSave=vi.fn(async()=>{throw new Error('Field metadata needs a migration');});
+  mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange:()=>{},onSave,field:{slug:'title',label:'Title',type:'string'},client}}));await tick();
+  [...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Update Field')!.click();
+  await vi.waitFor(()=>expect(target.querySelector('[role="alert"]')?.textContent).toBe('Field metadata needs a migration'));
+  expect(target.querySelector('dialog')).not.toBeNull();
+});
