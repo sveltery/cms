@@ -66,6 +66,19 @@ for(const target of ['Node SQLite','raw workerd D1'] as const){
    assert.equal(item.name,'Changed');assert.equal(item.id,f.author.id);
   }finally{await f.close();}
  });
+ test(`${target}: malformed stored profile returns the original endpoint fallback messages`,async()=>{
+  const f=await fixture();try{
+   await f.database.db.updateTable('_cms_auth_profiles').set({data:'{bad'}).where('user_id','=',f.author.id).execute();
+   for(const [response,code,message] of [
+    [await list(f.context()),'USER_LIST_ERROR','Failed to list users'],
+    [await detail(f.context(f.author.id)),'USER_DETAIL_ERROR','Failed to get user details'],
+    [await update(f.context(f.author.id,{name:'Wrong'})),'USER_UPDATE_ERROR','Failed to update user'],
+    [await disable(f.context(f.author.id,{})),'USER_DISABLE_ERROR','Failed to disable user'],
+    [await enable(f.context(f.author.id,{})),'USER_ENABLE_ERROR','Failed to enable user']
+   ] as const){assert.equal(response.status,500);assert.deepEqual((await response.json()).error,{code,message});}
+   assert.equal((await f.database.db.selectFrom('_cms_auth_profiles').select('data').where('user_id','=',f.author.id).executeTakeFirstOrThrow()).data,'{bad');
+  }finally{await f.close();}
+ });
  test(`${target}: shared request validation exposes the original structured issue details`,async()=>{
   const f=await fixture();try{
    const query=f.context();query.url.searchParams.set('limit','0');
