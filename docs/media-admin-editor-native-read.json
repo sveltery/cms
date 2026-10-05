@@ -1,0 +1,82 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "sourcePath": "parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts",
+  "sourceSha256": "e8e07d72a497968585e05b17c8c51bf4ed1887811e68cf34a698b718f45a1758",
+  "nativePath": "tests/media-admin-editor/usage-read-canonical-current.test.ts",
+  "nativeSha256": "fd151f3fcdd4b0045c8a51c52b786631956d91bcadfcaee0b38dd894a4dd9a60",
+  "sourceCallbackCredit": 0,
+  "originalSourceAltered": false,
+  "provenance": "Whole behavioral family, all DTO/data/query-count/clock/mocks preserved apart from declared canonical fixture changes; separate Current Native acceptance. Root explicitly allowed meaningful nonempty canonical grouped usage acceptance.",
+  "changes": [
+    {
+      "from": "import { Role, type RoleLevel } from \"@emdash-cms/auth\";",
+      "to": "import { Role, type RoleLevel } from \"../../src/lib/server/auth/roles.ts\";"
+    },
+    {
+      "from": "import { Kysely, SqliteDialect } from \"kysely\";",
+      "to": "import { Kysely, SqliteDialect, runMigrations } from \"../helpers/media-admin-editor-runtime-db.ts\";"
+    },
+    {
+      "from": "from \"#node-sqlite\"",
+      "to": "from \"../../src/lib/server/database/node-sqlite-compat.ts\""
+    },
+    {
+      "from": "from \"../../../src/api/handlers/media-usage.js\"",
+      "to": "from \"../../src/lib/server/general-media/upstream/api/handlers/media-usage-read.ts\""
+    },
+    {
+      "from": "from \"../../../src/api/schemas/index.js\"",
+      "to": "from \"../../src/lib/server/general-media/upstream/api/schemas/media-usage.ts\""
+    },
+    {
+      "from": "from \"../../../src/astro/integration/routes.js\"",
+      "to": "from \"../helpers/media-admin-editor-runtime-routes.ts\""
+    },
+    {
+      "from": "from \"../../../src/astro/routes/api/media/[id]/usage.js\"",
+      "to": "from \"../helpers/media-admin-editor-runtime-usage-route.ts\""
+    },
+    {
+      "from": "import { runMigrations } from \"../../../src/database/migrations/runner.js\";\n",
+      "to": ""
+    },
+    {
+      "from": "from \"../../../src/database/repositories/media-usage.js\"",
+      "to": "from \"../../src/lib/server/general-media/upstream/database/repositories/media-usage.ts\""
+    },
+    {
+      "from": "from \"../../../src/database/repositories/media.js\"",
+      "to": "from \"../../src/lib/server/general-media/upstream/database/repositories/media.ts\""
+    },
+    {
+      "from": "from \"../../../src/database/types.js\"",
+      "to": "from \"../../src/lib/server/general-media/upstream/database/types.ts\""
+    },
+    {
+      "from": "from \"../../../src/media/usage/content-refresh.js\"",
+      "to": "from \"../../src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts\""
+    },
+    {
+      "from": "from \"../../../src/media/usage/content-snapshots.js\"",
+      "to": "from \"../../src/lib/server/blocks/upstream/media/usage/types.ts\""
+    },
+    {
+      "from": "from \"../../../src/media/usage/source-key.js\"",
+      "to": "from \"../../src/lib/server/general-media/upstream/media/usage/source-key.ts\""
+    },
+    {
+      "from": "{ id: \"collection-pages\", slug: \"pages\", label: \"Pages\", has_seo: 0 }",
+      "to": "{ id: \"collection-pages\", slug: \"pages\", label: \"Pages\", has_seo: 0, supports: \"[]\" }"
+    },
+    {
+      "from": "{ id: \"collection-posts\", slug: \"posts\", label: \"Posts\", has_seo: 0 }",
+      "to": "{ id: \"collection-posts\", slug: \"posts\", label: \"Posts\", has_seo: 0, supports: \"[]\" }"
+    },
+    {
+      "from": "expect(queries[0]).not.toContain(\"_emdash_media_usage\");",
+      "to": "expect(queries[0]).not.toContain(\"_cms_media_usage\");"
+    }
+  ],
+  "fixture": "Existing Root-qualified actual Kysely/NodeSqliteCompatDatabase fixed TableNode mapping and canonical migrateCms/registerBlockDatabaseHost. Native supports JSON empty array is an explicit Native fixture field; it is never injected into unchanged Original Source. Actual executed SQL is logged, no observed namespace/query count/results rewriting.",
+  "status": "TEST FIRST; actual first run pending. Canonical malformed cursor repair remains separate sole backend owner, not modified here."
+}
