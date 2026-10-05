@@ -2,6 +2,7 @@ import { OperationNodeTransformer, type Kysely, type KyselyPlugin, type TableNod
 import type { CmsDatabase } from '../database/contract.ts';
 import type { Database } from './upstream/database/types.ts';
 import { registerBlockDatabaseHost } from '../blocks/upstream/host.ts';
+import { withCanonicalFeatureNamespaces } from '../database/canonical-features/namespaces.ts';
 const logicalTables:Readonly<Record<string,string>> = {
   media:'_cms_media', media_folders:'_cms_media_folders',
   _emdash_media_upload_attempts:'_cms_media_upload_attempts',
@@ -22,7 +23,7 @@ const handles=new WeakMap<object,Kysely<Database>>();
 export function generalMediaDatabase(database:CmsDatabase):Kysely<Database> {
   let db=handles.get(database.db);
   if(!db){
-    db=database.db.withPlugin(namespace) as unknown as Kysely<Database>;handles.set(database.db,db);
+    db=withCanonicalFeatureNamespaces(database.db).withPlugin(namespace) as unknown as Kysely<Database>;handles.set(database.db,db);
     registerBlockDatabaseHost({...database,db:db as unknown as CmsDatabase['db']});
   }
   return db;
