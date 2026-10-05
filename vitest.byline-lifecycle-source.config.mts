@@ -11,7 +11,7 @@ const imports:Record<string,string>={
  'src/database/repositories/byline.ts':'src/lib/server/bylines/repository.ts',
  'src/database/repositories/content.ts':'src/lib/server/database/lifecycle/upstream/database/repositories/content.ts',
  'src/database/repositories/revision.ts':'src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts',
- 'src/database/repositories/user.ts':'parity/emdash/byline-source/upstream/packages/core/src/database/repositories/user.ts'
+ 'src/database/repositories/user.ts':'tests/helpers/byline-lifecycle/source-user.ts'
 };
 export default defineConfig({plugins:[{name:'whole-immutable-byline-lifecycle-native-host',enforce:'pre',resolveId(id,importer){
  if(!importer?.startsWith(frozen)||!id.startsWith('.'))return;

@@ -48,6 +48,7 @@ export async function setupTestDatabaseWithCollections(){
  return db;
 }
 export function describeEachDialect(name,callback){describe(`${name} [native-sqlite]`,()=>callback('sqlite'));}
+export async function setupForDialect(dialect){return{db:await setupTestDatabase(),dialect};}
 export async function setupForDialectWithCollections(dialect){return{db:await setupTestDatabaseWithCollections(),dialect};}
 export async function teardownForDialect(context){await teardownTestDatabase(context?.db);}
 export function handleContentCreate(db,collection,body){return service(db).create(collection,body);}
