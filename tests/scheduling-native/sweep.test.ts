@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import type { Kysely } from 'kysely';
+import { sql, type Kysely } from 'kysely';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
@@ -133,4 +133,61 @@ it('reports the pinned staged-slug conflict without publishing or losing the pen
   expect(await repo.findById('post', live.id)).toEqual(stored);
   expect((await new RevisionRepository(database.db as any).findById(revision.id))?.data)
     .toEqual({title: 'Pending', _slug: 'taken'});
+});
+
+// Controlled exceptions from the existing trusted publication dependency.
+// These are error-envelope checks, not concurrent publication/race probes.
+async function controlledPublicationFailure(errorFactory: (database: CmsDatabase, id: string) => Promise<unknown>) {
+  const {database, repo} = await fixture();
+  const item = await scheduled(repo, 'live', '2030-03-02T09:00:00.000Z');
+  const stored = await repo.findById('post', item.id);
+  const error = await errorFactory(database, item.id);
+  const publication = vi.spyOn(ContentRepository.prototype, 'publish').mockRejectedValueOnce(error);
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  const specifier = '../../src/lib/server/scheduling/' + 'publisher.ts';
+  const publisher = await import(specifier);
+  const result = await publisher.handleContentPublish(database.db, 'post', item.id, {
+    requireScheduledDue: true, expectedScheduledAt: '2030-03-02T09:00:00.000Z', currentTime: now
+  });
+  expect(publication).toHaveBeenCalledOnce();
+  expect(await repo.findById('post', item.id)).toEqual(stored);
+  return result;
+}
+
+it('maps a genuine SQLite slug uniqueness exception to the pinned publication conflict envelope', async () => {
+  const result = await controlledPublicationFailure(async (database, id) => {
+    const repo = new ContentRepository(database.db as any);
+    await repo.create({type: 'post', slug: 'taken', data: {title: 'Other'}});
+    let failure: unknown;
+    try { await sql`UPDATE ec_post SET slug = 'taken' WHERE id = ${id}`.execute(database.db); }
+    catch (error) { failure = error; }
+    expect(failure).toBeInstanceOf(Error);
+    expect((failure as Error).message).toMatch(/unique constraint failed.*slug/i);
+    return failure;
+  });
+  expect(result).toEqual({success: false, error: {code: 'SLUG_CONFLICT',
+    message: "The staged slug is already used by another entry in collection 'post'"}});
+});
+
+it('maps a controlled PostgreSQL duplicate-key slug fingerprint without claiming PostgreSQL storage execution', async () => {
+  const result = await controlledPublicationFailure(async () =>
+    new Error('Duplicate key value violates unique constraint "ec_post_slug_locale_key"'));
+  expect(result).toEqual({success: false, error: {code: 'SLUG_CONFLICT',
+    message: "The staged slug is already used by another entry in collection 'post'"}});
+});
+
+it('keeps an unrelated uniqueness exception as the generic publication error', async () => {
+  const result = await controlledPublicationFailure(async () =>
+    new Error('UNIQUE constraint failed: ec_post.id'));
+  expect(result).toEqual({success: false, error: {code: 'CONTENT_PUBLISH_ERROR', message: 'Failed to publish content'}});
+});
+
+it('keeps a slug exception without a uniqueness fingerprint as the generic publication error', async () => {
+  const result = await controlledPublicationFailure(async () => new Error('slug storage unavailable'));
+  expect(result).toEqual({success: false, error: {code: 'CONTENT_PUBLISH_ERROR', message: 'Failed to publish content'}});
+});
+
+it('does not treat a non-Error message property as a database slug exception', async () => {
+  const result = await controlledPublicationFailure(async () => ({message: 'UNIQUE constraint failed: ec_post.slug'}));
+  expect(result).toEqual({success: false, error: {code: 'CONTENT_PUBLISH_ERROR', message: 'Failed to publish content'}});
 });
