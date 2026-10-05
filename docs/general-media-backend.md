@@ -10,7 +10,7 @@ admin media library yet.
 
 The behavior authority is EmDash 1.1.0
 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The
-[186 whole Source authorities](../parity/emdash/general-media-source/authority.json),
+[187 whole Source authorities](../parity/emdash/general-media-source/authority.json),
 [whole test expression inventory](../parity/emdash/general-media-source/test-inventory.json),
 [finite runtime import substitutions](../parity/emdash/general-media-source/runtime-transformations.json)
 and [test-first receipts](general-media-tdd.json) preserve attribution and
@@ -56,10 +56,14 @@ The first active 24 whole Source files produced 23 module stops and three
 passing parser-security callbacks. Later route and pure-family additions also
 first stopped at missing modules; they earn zero Source value-red or causal
 TDD credit. Complete bodies, `.each` datasets, assertions, mocks and clocks are
-unchanged. Current selection is 35 whole files with 291 passing callbacks,
+unchanged. Current selection is 36 whole files with 321 passing callbacks,
 plus the whole original R2 supplied-mock test with one passing callback.
 Only the configured Source SQLite expansion runs; PostgreSQL is unconfigured.
-The genuine six-migration Source physical fixture is not the full Source runner
+The original S3 supplied-SDK mock family contributes 30 of those callbacks. The
+complete pinned optional AWS declaration and S3 module are ported separately,
+outside the default runtime graph; no actual SDK dependency/version or external
+credential/signature/bucket/hosting evidence is claimed. The
+genuine six-migration Source physical fixture is not the full Source runner
 or canonical application startup.
 
 Supplemental native workflows first expose unavailable canonical backend,
@@ -98,10 +102,21 @@ sole published settings object-cache namespace. Source settings single-flight
 and concrete request settings keys/readers are absent, so full settings cache
 fidelity is not claimed. No additional cache/read facade is created.
 
-The unchanged old native runtime subscriber permission-array assertion now
-fails because the Source-required `media:read` permission was added. The exact
-one-literal expected-array update is pending coordinator review; its actual
-failure is retained. All Source expectations remain exact. Required full
-thirteen-stage and secured nine-browser gates, current independent/configured
-review, exact coordinator approval, author regular merge and post-main checks
-remain pending. No complete media roadmap checkbox or upstream parity is claimed.
+The whole original thirteen-stage bootstrap at `bfc3d443` passed frozen install
+and type checks, then failed service tests: 1,495 callbacks, 1,492 passed and
+three failed, with zero cancellation/skip/todo. All failures are old native role
+expectations that omit newly Source-required media permissions; ten later phases
+were unreached. Five finite Native expectation sites across session-composition
+and runtime-d1 (Author, Contributor, Admin count and two Subscriber arrays) have
+a sealed unapplied proposal pending coordinator review. Reached reds and latent
+unreached sites remain distinct; every Source expectation stays exact.
+
+The same historical head completed all nine secured hosted browser launches in
+[CI 530](https://github.com/sveltery/cms/actions/runs/37272293963), and fresh
+independent review found no additional issue after the namespace fix. These
+receipts do not qualify newer S3 changes. Current full gates, fresh independent
+and configured review, exact coordinator approval, author regular merge and
+post-main checks remain pending. Draft [PR #113](https://github.com/sveltery/cms/pull/113)
+is open. App attachment was requested once; the request wait did not complete
+and was stopped without retry, so attachment status is unverified. No complete
+media roadmap checkbox or upstream parity is claimed.

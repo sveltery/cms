@@ -206,6 +206,26 @@
       "privatePath": "/tmp/general-media-source-s3-first-module-stop.log",
       "bytes": 1209,
       "sha256": "3f6fd419c03023e52914d0896fcb86ff0b200de69590f455eeca42b3fb7e44a9"
+    },
+    {
+      "privatePath": "/tmp/general-media-source-s3-first-implementation.log",
+      "bytes": 237,
+      "sha256": "75ec53b3fc5138dc106b87a256c8fad14315f48219062682f1268e0a6f8afe82"
+    },
+    {
+      "privatePath": "/tmp/general-media-check-s3-first.log",
+      "bytes": 216,
+      "sha256": "834cdc203986df67b0e7bd3abc36ee349dc3f316e5e840067a8126accb31fb73"
+    },
+    {
+      "privatePath": "/tmp/general-media-full13-first-integration.log",
+      "bytes": 173599,
+      "sha256": "b391417272309d06ff80985688b6fc04ffb484c3af3ccdd109ed407df9de5c1e"
+    },
+    {
+      "privatePath": "/tmp/general-media-old-runtime-projection-baseline.log",
+      "bytes": 2187,
+      "sha256": "29e96d9d752f894c82cf7e91d6a6ca98278360de73fd76687696622805ff1f18"
     }
   ],
   "implementationCheckpoint": {
@@ -307,5 +327,41 @@
     "wholeSourceCallbacksPassed": 291,
     "genuineSourceValueReds": 0,
     "scope": "Whole Original BYO AWS mock family unchanged. Actual pinned aws-sdk.d.ts type producer discovered and retained; no invented dependency or runtime SDK/credential/signature/bucket acceptance."
+  },
+  "s3Checkpoint": {
+    "wholeSourceFiles": 36,
+    "wholeSourceCallbacksPassed": 321,
+    "genuineSourceValueReds": 0,
+    "s3SuppliedMockCallbacksPassed": 30,
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "scope": "Complete exact pinned S3 module and complete pinned optional AWS declarations. Whole Original supplied SDK mocks unchanged; no invented dependency, real SDK installation, actual credential/signature/bucket/hosting credit. Optional module stays outside default runtime graph."
+  },
+  "full13FirstIntegration": {
+    "head": "bfc3d443b59dbd6e3598e620b8072c25b064584b",
+    "tree": "dbbc07295b755ccba59e48c4f00d381cb95e3063",
+    "completedPhases": [
+      "frozen dependency install",
+      "type and Svelte checks"
+    ],
+    "failedPhase": "service tests",
+    "serviceTests": 1495,
+    "servicePassed": 1492,
+    "serviceFailed": 3,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "seconds": 460.24295934,
+    "unreachedPhases": 10,
+    "scope": "Existing native Role projection assertions reject new Source media rights. Three reached callbacks fail; later Contributor expected array and Admin count in first callback are unreached. No test weakening or Source expected result change applied."
+  },
+  "historicalBrowser": {
+    "head": "bfc3d443b59dbd6e3598e620b8072c25b064584b",
+    "workflowRun": 37272293963,
+    "url": "https://github.com/sveltery/cms/actions/runs/37272293963",
+    "job": "browser",
+    "conclusion": "success",
+    "securedLaunches": 9,
+    "scope": "Existing whole hosted secured browser job completed. This historical head does not qualify later S3 changes or normal13."
   }
 }
