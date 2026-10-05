@@ -9,5 +9,5 @@ export default defineConfig({
   { find: '$lib/workspace.remote', replacement: resolve(root, 'tests/helpers/admin-app/navigation.ts') },
   { find: '$lib', replacement: resolve(root, 'src/lib') }
  ] },
- test: { environment: 'jsdom', fileParallelism: false, include: ['tests/admin-app-native/*.test.ts'] }
+ test: { server: { deps: { inline: ['svelte'] } }, environment: 'jsdom', fileParallelism: false, include: ['tests/admin-app-native/*.test.ts'] }
 });

@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { flushSync, mount, tick, unmount } from 'svelte';
+import { flushSync, mount, settled, tick, unmount } from 'svelte';
 import NativeAppHost from '../helpers/admin-app/NativeAppHost.svelte';
 import { createDashboardQueryClient } from '../../src/lib/dashboard/query.svelte';
 import { lifecycleState } from '../helpers/dashboard-welcome/lifecycle-state.svelte';
@@ -9,7 +9,7 @@ const user = { id: 'ordinary-user-fixture', email: 'alice@example.test', name: '
 async function render(state: any, queryClient = createDashboardQueryClient()) {
  const target = document.createElement('div'); document.body.append(target);
  const instance = flushSync(() => mount(NativeAppHost, { target, props: { state, queryClient } }));
- instances.push(instance); await tick(); return { target, instance, queryClient };
+ instances.push(instance); await settled(); await vi.waitFor(() => { if (!target.querySelector("main")) throw new Error("Actual WorkspaceShell mount not ready"); }); return { target, instance, queryClient };
 }
 it('the application shell loads one shared current-user query with Source key and freshness', async () => {
  const currentUser = vi.fn(async () => ({ ...user, isFirstLogin: false }));

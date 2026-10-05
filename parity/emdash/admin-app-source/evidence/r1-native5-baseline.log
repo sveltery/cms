@@ -1,0 +1,130 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+stderr | tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:19:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > first-login opens the actual welcome modal and dismissal updates the shared user
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:19:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > editor toolbar flags and labels follow shared user role changes
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:19:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > closing a failed welcome dismissal stays closed until first-login changes again
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:19:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:19:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:19:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+ ❯ tests/admin-app-native/shell.test.ts (5 tests | 5 failed) 5082ms
+   × the application shell loads one shared current-user query with Source key and freshness 1038ms
+   × first-login opens the actual welcome modal and dismissal updates the shared user 1016ms
+   × editor toolbar flags and labels follow shared user role changes 1008ms
+   × closing a failed welcome dismissal stays closed until first-login changes again 1007ms
+   × separate application providers do not share current-user data 1012ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ tests/admin-app-native/shell.test.ts:18:45
+     16|  const queryClient = createDashboardQueryClient();
+     17|  await render({ currentUserClient: { currentUser } }, queryClient);
+     18|  await vi.waitFor(() => expect(currentUser).toHaveBeenCalledTimes(1));
+       |                                             ^
+     19|  const query = queryClient.getQueryCache().find({ queryKey: ['currentU…
+     20|  expect([query.state.data, query.options.staleTime, query.options.retr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > first-login opens the actual welcome modal and dismissal updates the shared user
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ tests/admin-app-native/shell.test.ts:28:84
+     26|  queryClient.setQueryData(['currentUser'], user);
+     27|  const { target } = await render({ currentUserClient: { currentUser: v…
+     28|  await vi.waitFor(() => expect(target.querySelector('[role=dialog]')?.…
+       |                                                                                    ^
+     29|  target.querySelector<HTMLButtonElement>('button.primary')!.click();
+     30|  await vi.waitFor(() => expect(dismissWelcome).toHaveBeenCalledTimes(1…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > editor toolbar flags and labels follow shared user role changes
+AssertionError: expected null to be '1' // Object.is equality
+
+- Expected:
+"1"
+
++ Received:
+null
+
+ ❯ tests/admin-app-native/shell.test.ts:38:71
+     36|  localStorage.setItem('emdash-toolbar-dismissed', '1');
+     37|  await render({ currentUserClient: { currentUser: vi.fn(async () => us…
+     38|  await vi.waitFor(() => expect(localStorage.getItem('emdash-editor')).…
+       |                                                                       ^
+     39|  expect([JSON.parse(localStorage.getItem('emdash-toolbar-labels')!), l…
+     40|  queryClient.setQueryData(['currentUser'], { ...user, role: 20, isFirs…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > closing a failed welcome dismissal stays closed until first-login changes again
+AssertionError: expected null not to be null
+ ❯ tests/admin-app-native/shell.test.ts:47:75
+     45|  const state = lifecycleState({ currentUserClient: { currentUser: vi.f…
+     46|  const { target } = await render(state, queryClient);
+     47|  await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).…
+       |                                                                           ^
+     48|  target.querySelector<HTMLButtonElement>('button.primary')!.click();
+     49|  await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+AssertionError: expected undefined to deeply equal { id: 'ordinary-user-fixture', …(5) }
+
+- Expected:
+{
+  "avatarUrl": null,
+  "email": "alice@example.test",
+  "id": "ordinary-user-fixture",
+  "isFirstLogin": false,
+  "name": "Alice Editor",
+  "role": 30,
+}
+
++ Received:
+undefined
+
+ ❯ tests/admin-app-native/shell.test.ts:59:81
+     57|  const first = await render({ currentUserClient: { currentUser: vi.fn(…
+     58|  const second = await render({ currentUserClient: { currentUser: vi.fn…
+     59|  await vi.waitFor(() => expect(first.queryClient.getQueryData(['curren…
+       |                                                                                 ^
+     60|  await vi.waitFor(() => expect(second.queryClient.getQueryData(['curre…
+     61|  expect(first.queryClient).not.toBe(second.queryClient);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  00:43:21
+   Duration  6.43s (transform 572ms, setup 0ms, import 717ms, tests 5.08s, environment 512ms)
+
+JSON report written to /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/evidence/r1-native5-baseline.json

@@ -11,7 +11,7 @@ export default defineConfig({
    if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
    const target = resolve(dirname(importer), id).replace(/\.(tsx?|js)$/, '');
    if (target === resolve(frozen, 'src/components/Shell')) return helper('source-shell.tsx');
-   if (target === resolve(frozen, 'tests/utils/render')) return resolve(root, 'tests/helpers/dashboard-welcome/dom-render.tsx');
+   if (target === resolve(frozen, 'tests/utils/render')) return helper('dom-render.tsx');
    if (target === resolve(frozen, 'src/lib/api/current-user')) return resolve(root, 'tests/helpers/dashboard-welcome/source-current-user.ts');
    if (target === resolve(frozen, 'src/lib/plugin-context')) return resolve(root, 'src/lib/admin-app/plugin-pages.ts');
   }
@@ -21,6 +21,6 @@ export default defineConfig({
   { find: '$lib/workspace.remote', replacement: helper('navigation.ts') },
   { find: '$lib', replacement: resolve(root, 'src/lib') }
  ] }, oxc: { jsx: { runtime: 'automatic' } },
- test: { environment: 'jsdom', fileParallelism: false, setupFiles: ['tests/helpers/admin-app/setup.ts'],
+ test: { server: { deps: { inline: ['svelte'] } }, environment: 'jsdom', fileParallelism: false, setupFiles: ['tests/helpers/admin-app/setup.ts'],
   include: ['parity/emdash/admin-app-source/upstream/packages/admin/tests/**/*.test.*'] }
 });
