@@ -4,11 +4,15 @@
   let rows = $state(1), columns = $state(1), header = $state(true);
   let hovered = $state<readonly [number, number] | null>(null), coarse = $state(false);
   let grid = $state<HTMLDivElement>(null!);
+  let rowsControl = $state<HTMLSelectElement>(null!);
   const sizes = Array.from({ length: 10 }, (_, index) => index + 1);
   const preview = $derived(hovered ?? [rows, columns]);
   const id = $props.id();
   onMount(() => { coarse = matchMedia('(any-pointer: coarse)').matches; void tick().then(() => focus()); });
-  function focus() { grid?.querySelector<HTMLElement>('[tabindex="0"]')?.focus(); }
+  function focus() {
+    if (coarse) rowsControl?.focus();
+    else grid?.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
+  }
   async function move(row: number, column: number) { hovered = null; rows = Math.max(1, Math.min(10, row)); columns = Math.max(1, Math.min(10, column)); await tick(); focus(); }
   function keyboard(event: KeyboardEvent) {
     const rtl = getComputedStyle(grid).direction === 'rtl';
@@ -35,10 +39,10 @@
       {/each}</div>{/each}
     </div>
   {:else}
-    <label for={`${id}-rows`}>Rows</label><select id={`${id}-rows`} bind:value={rows}>{#each sizes as size}<option value={size}>{size}</option>{/each}</select>
+    <label for={`${id}-rows`}>Rows</label><select bind:this={rowsControl} id={`${id}-rows`} bind:value={rows}>{#each sizes as size}<option value={size}>{size}</option>{/each}</select>
     <label for={`${id}-columns`}>Columns</label><select id={`${id}-columns`} bind:value={columns}>{#each sizes as size}<option value={size}>{size}</option>{/each}</select>
   {/if}
-  <label><input type="checkbox" bind:checked={header} /> Header row</label>
+  <label><input type="checkbox" role="switch" bind:checked={header} /> Header row</label>
   {#if coarse}<button type="button" onclick={() => onInsert(rows, columns, header)}>Insert table</button>{/if}
 </div>
 
