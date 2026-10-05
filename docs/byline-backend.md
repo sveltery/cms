@@ -1,0 +1,7 @@
+# Byline backend
+
+The target is the complete profile, translated identity, custom-field and content-credit behavior of EmDash 1.1.0 at `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Profiles and credits use the canonical `_cms_bylines`, `_cms_content_bylines` and custom-field tables already supplied by migrations 1–15. No second byline migration or database is added to startup.
+
+The first test commit preserves fourteen whole Source families. Four ordinary repository/schema/query/handler families form the first executable scope; cache coordination, protected route, plugin hook and race families await explicit finite runtime coordination. The whole empty-table hydration family depends on the actual published public query SDK. Missing imports earn no causal Source assertion-red credit. Two Original requirements independently exercise the ordinary canonical installation and require the real byline producer and custom-field registry.
+
+Source reference fixtures and canonical native product integration are recorded separately. Source namespace/log assertions require genuine reference tables; native startup must retain canonical tables. UI, MCP, complete plugin/Seed integration, PostgreSQL and deployed hosting remain unfinished. Final-head normal and secured checks, independent/configured review and project-manager approval precede the author-owned regular merge.
