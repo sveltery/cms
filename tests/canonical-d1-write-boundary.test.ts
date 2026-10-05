@@ -44,10 +44,10 @@ for (const target of ['raw D1','scoped D1'] as const) {
         } else {
           // Historical readiness expectations are superseded only for genuine
           // installed atomic capabilities. Direct-write guards above stay exact.
-          await sql`INSERT INTO _cms_taxonomy_def_groups(id,name,hierarchical,collections)
-            VALUES ('old_group','category',1,'[]')`.execute(h.database.db);
-          await sql`INSERT INTO _cms_taxonomy_defs(id,name,label,label_singular,translation_group,hierarchical,collections)
-            VALUES ('def_category','category','Category','Category','old_group',1,'[]')`.execute(h.database.db);
+          const group=(await sql<{id:string}>`SELECT id FROM _cms_taxonomy_def_groups WHERE name='category'`.execute(h.database.db)).rows[0];
+          assert.ok(group);
+          await sql`UPDATE _cms_taxonomy_def_groups SET hierarchical=1,collections='[]' WHERE name='category'`.execute(h.database.db);
+          await sql`UPDATE _cms_taxonomy_defs SET hierarchical=1,collections='[]' WHERE name='category'`.execute(h.database.db);
           const failures={
             'whole Source delete': sql`CREATE TRIGGER taxonomy_atomic_failure BEFORE DELETE ON _cms_taxonomies
               WHEN OLD.id='term_a' BEGIN SELECT RAISE(ABORT,'actual taxonomy atomic failure'); END`,
@@ -74,10 +74,10 @@ for (const target of ['raw D1','scoped D1'] as const) {
           } else if(action==='whole Source pivot replacement') {
             assert.deepEqual((await sql<{taxonomy_id:string}>`SELECT taxonomy_id FROM _cms_content_taxonomies`.execute(h.database.db)).rows,[{taxonomy_id:'term_b'}]);
           } else {
-            assert.deepEqual((await sql`SELECT id,hierarchical,collections FROM _cms_taxonomy_def_groups`.execute(h.database.db)).rows,
-              [{id:'old_group',hierarchical:0,collections:'["post"]'}]);
-            assert.deepEqual((await sql`SELECT translation_group,hierarchical,collections FROM _cms_taxonomy_defs`.execute(h.database.db)).rows,
-              [{translation_group:'old_group',hierarchical:0,collections:'["post"]'}]);
+            assert.deepEqual((await sql`SELECT id,hierarchical,collections FROM _cms_taxonomy_def_groups WHERE name='category'`.execute(h.database.db)).rows,
+              [{id:group.id,hierarchical:0,collections:'["post"]'}]);
+            assert.deepEqual((await sql`SELECT translation_group,hierarchical,collections FROM _cms_taxonomy_defs WHERE name='category'`.execute(h.database.db)).rows,
+              [{translation_group:group.id,hierarchical:0,collections:'["post"]'}]);
           }
         }
       } finally { await h.close(); }
