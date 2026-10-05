@@ -3,7 +3,8 @@
   // dismissal contracts. Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
   import { onMount, untrack } from 'svelte';
   import type { QueryClient } from '@tanstack/query-core';
-  import { observeDashboardMutation, resolveDashboardQueryClient, retainDashboardQueryClient } from './query.svelte';
+  import { resolveDashboardQueryClient, retainDashboardQueryClient } from './query.svelte';
+  import { resolveWelcomeDismissal } from './welcome-dismissal.svelte';
   import { createDashboardClient } from './client';
   let { open, onClose, userName, userRole, siteName = 'Sveltery CMS', basePath = '', dismissWelcome: suppliedDismissWelcome, onDismissed, queryClient: suppliedQueryClient }: {
     open: boolean; onClose: () => void; userName?: string | null; userRole: number;
@@ -11,21 +12,14 @@
   } = $props();
   const dismissWelcome = $derived(suppliedDismissWelcome ?? createDashboardClient(basePath).dismissWelcome);
   const queryClient = untrack(() => resolveDashboardQueryClient(suppliedQueryClient));
-  const dismissal = observeDashboardMutation<void, void>(queryClient, () => ({
-    mutationFn: () => dismissWelcome(),
-    onSuccess: () => {
-      queryClient.setQueryData(['currentUser'], (old: unknown) => old && typeof old === 'object' ? { ...old, isFirstLogin: false } : old);
-      onDismissed?.(); onClose();
-    },
-    onError: () => { onClose(); }
-  }));
+  const dismissal = untrack(() => resolveWelcomeDismissal(queryClient));
   const pending = $derived(dismissal.result.isPending);
   onMount(() => retainDashboardQueryClient(queryClient));
   let dialog = $state<HTMLDivElement>();
   const firstName = $derived(userName?.split(' ')?.[0]?.trim() ?? '');
   const role = $derived(userRole >= 50 ? 'Administrator' : userRole >= 40 ? 'Editor' : userRole >= 30 ? 'Author' : userRole >= 20 ? 'Contributor' : 'Subscriber');
   const scope = $derived(userRole >= 50 ? 'You have full access to manage this site, including users, settings, and all content.' : userRole >= 40 ? 'You can manage content, media, menus, and taxonomies.' : userRole >= 30 ? 'You can create and edit your own content.' : 'You can view and contribute to the site.');
-  function dismiss() { void dismissal.mutate(undefined).catch(() => {}); }
+  function dismiss() { void dismissal.mutate({ dismissWelcome: () => dismissWelcome(), onDismissed, onClose }).catch(() => {}); }
   function keydown(event: KeyboardEvent) {
     if (event.key === 'Escape') { event.preventDefault(); void dismiss(); }
     if (event.key !== 'Tab') return;

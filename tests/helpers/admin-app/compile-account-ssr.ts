@@ -14,6 +14,8 @@ export async function compileWorkspaceAccountSsr(directory: string): Promise<voi
  const queryUrl = new URL('../../../src/lib/dashboard/query.svelte.ts', import.meta.url);
  const query = ts.transpileModule(await readFile(queryUrl, 'utf8'), { compilerOptions: { target: ts.ScriptTarget.ESNext, module: ts.ModuleKind.ESNext } }).outputText;
  await writeFile(`${directory}/dashboard-query.js`, compileModule(query, { filename: 'query.svelte.js', generate: 'server' }).js.code);
+ const welcomeDismissal = ts.transpileModule(await readFile(new URL('../../../src/lib/dashboard/welcome-dismissal.svelte.ts', import.meta.url), 'utf8'), { compilerOptions: { target: ts.ScriptTarget.ESNext, module: ts.ModuleKind.ESNext } }).outputText.replace('./query.svelte', './dashboard-query.js');
+ await writeFile(`${directory}/welcome-dismissal.js`, compileModule(welcomeDismissal, { filename: 'welcome-dismissal.svelte.js', generate: 'server' }).js.code);
  const currentUser = ts.transpileModule(await readFile(new URL('../../../src/lib/admin-app/current-user.svelte.ts', import.meta.url), 'utf8'), { compilerOptions: { target: ts.ScriptTarget.ESNext, module: ts.ModuleKind.ESNext } }).outputText.replace('../dashboard/query.svelte', './dashboard-query.js');
  await writeFile(`${directory}/current-user.js`, compileModule(currentUser, { filename: 'current-user.svelte.js', generate: 'server' }).js.code);
  for (const [source, filename] of [
@@ -28,6 +30,6 @@ export async function compileWorkspaceAccountSsr(directory: string): Promise<voi
    .replace('../dashboard/WelcomeModal.svelte', './WelcomeModal.js')
    .replace('../dashboard/query.svelte', './dashboard-query.js')
    .replace("'./query.svelte'", "'./dashboard-query.js'");
-  await writeFile(`${directory}/${filename}`, compiled);
+  await writeFile(`${directory}/${filename}`, compiled.replace('./welcome-dismissal.svelte', './welcome-dismissal.js'));
  }
 }

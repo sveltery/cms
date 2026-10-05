@@ -9,3 +9,7 @@ docs/doctor-evidence/source-first-runtime.log whitespace=-blank-at-eof
 docs/doctor-evidence/source-refactor.log whitespace=-blank-at-eof
 # Preserve the complete pnpm output from the whole app Source12 gate.
 parity/emdash/admin-app-source/evidence/r6-source12-current.log whitespace=-blank-at-eof
+# Preserve complete reviewed diagnostics, only for their observed categories.
+parity/emdash/admin-app-source/evidence/r2-check-native-query-type-error.log whitespace=-blank-at-eol
+parity/emdash/admin-app-source/evidence/r4-current-build.log whitespace=-blank-at-eol,-blank-at-eof
+parity/emdash/admin-app-source/evidence/r5-native10-navigation-baseline.log whitespace=-blank-at-eol
