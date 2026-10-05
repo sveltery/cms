@@ -65,47 +65,19 @@ async function executeSelection(database: CmsDatabase, relation: Relation, addit
 }
 
 /** Canonical fixed batches retain Source ordering/limits and native C-07. */
-export async function atomicSetChildren(database: CmsDatabase, repo: RelationRepository, key: string, parent: string, groups: string[]): Promise<string[]> {
-  const relation = await relationFor(repo, key); if (!relation) return [];
-  const db = dbFor(database);
-  const existing = await db.selectFrom('_cms_content_references').selectAll().where('relation_id', '=', relation.id).where('parent_group', '=', parent).execute();
-  const seen = new Set(existing.map(row => row.child_group));
-  const unique = [...new Set(groups)];
-  const positions = new Map(unique.map((group, index) => [group, index]));
-  const now = new Date().toISOString();
-  const additions = unique.flatMap((group, index) => seen.has(group) ? [] : [{id: ulid(), relation_id: relation.id, parent_group: parent, child_group: group, sort_order: index, created_at: now}]);
-  const removals = existing.filter(row => !positions.has(row.child_group)).map(row => row.id);
-  const moves = existing.flatMap(row => {
-    const order = positions.get(row.child_group);
-    return order === undefined || order === row.sort_order ? [] : [{id: row.id, sortOrder: order}];
-  });
-  const token = `relations:${ulid()}`;
-  return executeSelection(database, relation, additions, 'child', relation.maxParentsPerChild, token, [relationGuard(db, relation, token),
-    ...addPlan(db, additions, 'child', relation.maxParentsPerChild, token), ...removePlan(db, removals), ...positionPlan(db, moves),
-    sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)]);
+async function executePreparedSelection(database:CmsDatabase,repo:RelationRepository,key:string,entryGroup:string,groups:string[],side:'parent'|'child'):Promise<string[]>{
+  const relation=await relationFor(repo,key);if(!relation)return[];
+  const {prepareContentReferenceSelection}=await import('./content-plan.ts');
+  const prepared=await prepareContentReferenceSelection(database,{relation:relation.id,side,entryGroup,groups});
+  return executeSelection(database,prepared.relation,prepared.additions,prepared.limitedSide,prepared.limit,prepared.token,
+    [...prepared.plan.before,...prepared.plan.after,...prepared.plan.cleanup]);
 }
-
-export async function atomicSetParents(database: CmsDatabase, repo: RelationRepository, key: string, child: string, groups: string[]): Promise<string[]> {
-  const relation = await relationFor(repo, key); if (!relation) return [];
-  const db = dbFor(database);
-  const existing = await db.selectFrom('_cms_content_references').selectAll().where('relation_id', '=', relation.id).where('child_group', '=', child).execute();
-  const seen = new Set(existing.map(row => row.parent_group));
-  const unique = [...new Set(groups)];
-  const selected = new Set(unique);
-  const newParents = unique.filter(group => !seen.has(group));
-  const positions = new Map<string, number>();
-  for (const batch of chunks(newParents, INSERT_BATCH)) {
-    const maxima = await db.selectFrom('_cms_content_references').select(eb => ['parent_group', eb.fn.max('sort_order').as('max')])
-      .where('relation_id', '=', relation.id).where('parent_group', 'in', batch).groupBy('parent_group').execute();
-    for (const row of maxima) positions.set(row.parent_group, row.max === null ? 0 : Number(row.max) + 1);
-  }
-  const now = new Date().toISOString();
-  const additions = newParents.map(parent => ({id: ulid(), relation_id: relation.id, parent_group: parent, child_group: child, sort_order: positions.get(parent) ?? 0, created_at: now}));
-  const token = `relations:${ulid()}`;
-  return executeSelection(database, relation, additions, 'parent', relation.maxChildrenPerParent, token, [relationGuard(db, relation, token),
-    ...addPlan(db, additions, 'parent', relation.maxChildrenPerParent, token),
-    ...removePlan(db, existing.filter(row => !selected.has(row.parent_group)).map(row => row.id)),
-    sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)]);
+/** Standalone operations use the same ordered preparation as content composition. */
+export async function atomicSetChildren(database:CmsDatabase,repo:RelationRepository,key:string,parent:string,groups:string[]):Promise<string[]>{
+  return executePreparedSelection(database,repo,key,parent,groups,'parent');
+}
+export async function atomicSetParents(database:CmsDatabase,repo:RelationRepository,key:string,child:string,groups:string[]):Promise<string[]>{
+  return executePreparedSelection(database,repo,key,child,groups,'child');
 }
 
 export async function atomicDeleteRelation(database: CmsDatabase, repo: RelationRepository, id: string): Promise<boolean> {

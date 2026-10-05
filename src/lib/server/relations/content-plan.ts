@@ -15,6 +15,7 @@ export interface ContentReferencePlan {
  readonly cleanup:readonly CompiledQuery[];
  readonly touchedCollections:readonly string[];
 }
+interface CompiledSelection {plan:ContentReferencePlan;relation:Relation;additions:Edge[];limitedSide:'parent'|'child';limit:number|null;token:string}
 type Edge={id:string;relation_id:string;parent_group:string;child_group:string;sort_order:number;created_at:string};
 interface PreparedSelection {relation:Relation;selection:ResolvedReferenceTargets;existing:Edge[];positions:Map<string,number>}
 async function prepare(database:CmsDatabase,selection:ResolvedReferenceTargets,entryGroup:string|null):Promise<PreparedSelection>{
@@ -38,7 +39,7 @@ async function prepare(database:CmsDatabase,selection:ResolvedReferenceTargets,e
  }
  return{relation,selection,existing,positions};
 }
-function compile(database:CmsDatabase,prepared:PreparedSelection,entryGroup:string):ContentReferencePlan{
+function compile(database:CmsDatabase,prepared:PreparedSelection,entryGroup:string):CompiledSelection{
  const {relation,selection,existing,positions}=prepared;
  const db=database.db as unknown as Kysely<Database>;
  const groups=[...new Set(selection.groups)];
@@ -56,11 +57,12 @@ function compile(database:CmsDatabase,prepared:PreparedSelection,entryGroup:stri
   const target=order.get(edge.child_group);return target===undefined||target===edge.sort_order?[]:[{id:edge.id,sortOrder:target}];
  }):[];
  const token=`content-reference:${ulid()}`;
- return{before:[relationGuard(db,relation,token)],
+ const plan:ContentReferencePlan={before:[relationGuard(db,relation,token)],
   after:[...addPlan(db,additions,parent?'child':'parent',parent?relation.maxParentsPerChild:relation.maxChildrenPerParent,token),
    ...removePlan(db,removals),...positionPlan(db,moves)],
   cleanup:[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)],
   touchedCollections:[...new Set([relation.parentCollection,relation.childCollection])]};
+ return{plan,relation,additions,limitedSide:parent?'child':'parent',limit:parent?relation.maxParentsPerChild:relation.maxChildrenPerParent,token};
 }
 function combine(plans:readonly ContentReferencePlan[]):ContentReferencePlan{
  return{before:plans.flatMap(plan=>plan.before),after:plans.flatMap(plan=>plan.after),cleanup:plans.flatMap(plan=>plan.cleanup),
@@ -69,7 +71,7 @@ function combine(plans:readonly ContentReferencePlan[]):ContentReferencePlan{
 /** Executes only genuine reads. The sole content writer commits every returned statement. */
 export async function prepareContentReferenceWrites(database:CmsDatabase,selections:readonly ReferenceSelectionWrite[]):Promise<ContentReferencePlan>{
  const plans:ContentReferencePlan[]=[];
- for(const selection of selections)plans.push(compile(database,await prepare(database,selection,selection.entryGroup),selection.entryGroup));
+ for(const selection of selections)plans.push((await prepareContentReferenceSelection(database,selection)).plan);
  return combine(plans);
 }
 /** Resolve definitions and child-side append positions before the new row is written;
@@ -77,5 +79,10 @@ export async function prepareContentReferenceWrites(database:CmsDatabase,selecti
 export async function prepareContentReferenceCreates(database:CmsDatabase,selections:readonly ResolvedReferenceTargets[]):Promise<(entryGroup:string)=>ContentReferencePlan>{
  const prepared:PreparedSelection[]=[];
  for(const selection of selections)prepared.push(await prepare(database,selection,null));
- return entryGroup=>combine(prepared.map(selection=>compile(database,selection,entryGroup)));
+ return entryGroup=>combine(prepared.map(selection=>compile(database,selection,entryGroup).plan));
+}
+
+/** Shared preparation for the existing standalone selector and the content batch. */
+export async function prepareContentReferenceSelection(database:CmsDatabase,selection:ReferenceSelectionWrite):Promise<CompiledSelection>{
+ return compile(database,await prepare(database,selection,selection.entryGroup),selection.entryGroup);
 }
