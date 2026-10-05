@@ -1,4 +1,4 @@
-import {expect,it} from 'vitest';
+import {expect,it,vi} from 'vitest';
 import {sql,type Kysely} from 'kysely';
 import {schemaAdminStorage} from '../helpers/schema-admin-storage.ts';
 import {registerBlockDatabaseHost} from '../../src/lib/server/blocks/upstream/host.ts';
@@ -81,4 +81,12 @@ it('D1: deletes only the matching source generation and clears real content sour
   expect(await f.repo.findSource(f.source.sourceKey)).toBeNull();
   expect(await f.db.selectFrom('_cms_media_usage').select('id').execute()).toEqual([]);
  }finally{await f.storage.close();}
+},30000);
+it('D1: delegates genuinely active capture to its existing guarded projection batch',async()=>{
+ const f=await fixture();try{
+  const batch=vi.spyOn(f.repo,'replaceNewSourcesBatch');
+  expect(await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],null)).toEqual({replaced:true,unchanged:false,source:null});
+  expect(batch).toHaveBeenCalledTimes(1);
+  expect((await f.repo.findSource(f.source.sourceKey))?.currentGeneration).toBeTruthy();
+ }finally{vi.restoreAllMocks();await f.storage.close();}
 },30000);
