@@ -6,6 +6,7 @@ const source = path.join(root, 'parity/emdash/general-media-source/upstream/pack
 const native = path.join(root, 'src/lib/server/general-media/upstream');
 export default defineConfig({
   plugins: [{ name: 'whole-original-media-native-host', enforce: 'pre', resolveId(id, importer) {
+    if(id==='#node-sqlite')return path.join(root,'src/lib/server/database/node-sqlite-compat.ts');
     if(id==='@emdash-cms/auth')return path.join(root,'src/lib/server/auth/roles.ts');
     if (!importer?.startsWith(source) || !id.startsWith('.')) return;
     const relative = path.relative(source, path.resolve(path.dirname(importer), id)).replaceAll(path.sep, '/');
