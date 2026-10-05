@@ -1,0 +1,363 @@
+{
+  "artifact": "Actual whole16 Source structural-callee correction verification",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "method": "Readonly TypeScript parsing of exact immutable Source; old literal getText and corrected structural callee compared against fresh independent per-family reference counts. No Source/product import or execution.",
+  "historicalTotal": 342,
+  "currentTotal": 360,
+  "omittedElement": 14,
+  "omittedPoll": 4,
+  "affectedFamilies": 5,
+  "rows": [
+    {
+      "path": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "historicalLiteralParser": {
+        "direct": 8,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 8
+      },
+      "currentStructuralParser": {
+        "direct": 8,
+        "element": 0,
+        "poll": 0,
+        "total": 8
+      }
+    },
+    {
+      "path": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "historicalLiteralParser": {
+        "direct": 10,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 10
+      },
+      "currentStructuralParser": {
+        "direct": 10,
+        "element": 0,
+        "poll": 0,
+        "total": 10
+      }
+    },
+    {
+      "path": "packages/admin/tests/lib/calendar.test.ts",
+      "historicalLiteralParser": {
+        "direct": 56,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 56
+      },
+      "currentStructuralParser": {
+        "direct": 56,
+        "element": 0,
+        "poll": 0,
+        "total": 56
+      }
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "historicalLiteralParser": {
+        "direct": 7,
+        "inlineElement": 9,
+        "inlinePoll": 0,
+        "total": 16
+      },
+      "currentStructuralParser": {
+        "direct": 7,
+        "element": 14,
+        "poll": 1,
+        "total": 22
+      }
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+      "historicalLiteralParser": {
+        "direct": 4,
+        "inlineElement": 6,
+        "inlinePoll": 1,
+        "total": 11
+      },
+      "currentStructuralParser": {
+        "direct": 4,
+        "element": 6,
+        "poll": 2,
+        "total": 12
+      }
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+      "historicalLiteralParser": {
+        "direct": 6,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 6
+      },
+      "currentStructuralParser": {
+        "direct": 6,
+        "element": 1,
+        "poll": 0,
+        "total": 7
+      }
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "historicalLiteralParser": {
+        "direct": 13,
+        "inlineElement": 5,
+        "inlinePoll": 1,
+        "total": 19
+      },
+      "currentStructuralParser": {
+        "direct": 13,
+        "element": 8,
+        "poll": 2,
+        "total": 23
+      }
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "historicalLiteralParser": {
+        "direct": 7,
+        "inlineElement": 11,
+        "inlinePoll": 1,
+        "total": 19
+      },
+      "currentStructuralParser": {
+        "direct": 7,
+        "element": 16,
+        "poll": 2,
+        "total": 25
+      }
+    },
+    {
+      "path": "packages/core/tests/integration/content/lifecycle-schedule.test.ts",
+      "historicalLiteralParser": {
+        "direct": 30,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 30
+      },
+      "currentStructuralParser": {
+        "direct": 30,
+        "element": 0,
+        "poll": 0,
+        "total": 30
+      }
+    },
+    {
+      "path": "packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+      "historicalLiteralParser": {
+        "direct": 11,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 11
+      },
+      "currentStructuralParser": {
+        "direct": 11,
+        "element": 0,
+        "poll": 0,
+        "total": 11
+      }
+    },
+    {
+      "path": "packages/core/tests/unit/scheduled-publish.test.ts",
+      "historicalLiteralParser": {
+        "direct": 74,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 74
+      },
+      "currentStructuralParser": {
+        "direct": 74,
+        "element": 0,
+        "poll": 0,
+        "total": 74
+      }
+    },
+    {
+      "path": "packages/core/tests/unit/loader-scheduled-publishing.test.ts",
+      "historicalLiteralParser": {
+        "direct": 17,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 17
+      },
+      "currentStructuralParser": {
+        "direct": 17,
+        "element": 0,
+        "poll": 0,
+        "total": 17
+      }
+    },
+    {
+      "path": "packages/core/tests/unit/api/scheduled-policy-rejection-d1.test.ts",
+      "historicalLiteralParser": {
+        "direct": 9,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 9
+      },
+      "currentStructuralParser": {
+        "direct": 9,
+        "element": 0,
+        "poll": 0,
+        "total": 9
+      }
+    },
+    {
+      "path": "packages/core/tests/unit/astro/scheduled-policy-rejections-route.test.ts",
+      "historicalLiteralParser": {
+        "direct": 6,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 6
+      },
+      "currentStructuralParser": {
+        "direct": 6,
+        "element": 0,
+        "poll": 0,
+        "total": 6
+      }
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/media-usage-scheduled-driver.test.ts",
+      "historicalLiteralParser": {
+        "direct": 45,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 45
+      },
+      "currentStructuralParser": {
+        "direct": 45,
+        "element": 0,
+        "poll": 0,
+        "total": 45
+      }
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
+      "historicalLiteralParser": {
+        "direct": 5,
+        "inlineElement": 0,
+        "inlinePoll": 0,
+        "total": 5
+      },
+      "currentStructuralParser": {
+        "direct": 5,
+        "element": 0,
+        "poll": 0,
+        "total": 5
+      }
+    }
+  ],
+  "omitted": [
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "line": 80,
+      "kind": "poll",
+      "actualCallee": "expect\n\t\t\t.poll"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "line": 88,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "line": 153,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "line": 192,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "line": 253,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "line": 256,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+      "line": 141,
+      "kind": "poll",
+      "actualCallee": "expect\n\t\t\t.poll"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+      "line": 33,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "line": 129,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "line": 227,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "line": 239,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "line": 283,
+      "kind": "poll",
+      "actualCallee": "expect\n\t\t\t.poll"
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "line": 215,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "line": 222,
+      "kind": "poll",
+      "actualCallee": "expect\n\t\t\t.poll"
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "line": 242,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "line": 287,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "line": 301,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "line": 304,
+      "kind": "element",
+      "actualCallee": "expect\n\t\t\t.element"
+    }
+  ],
+  "sourceProductRuntimeCredit": 0
+}

@@ -1,0 +1,20 @@
+
+ RUN  v4.1.10 /workspace/cms-full-scheduling-calendar
+
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts (3 tests) 958ms
+   ✓ seeks due content through the scheduled index instead of scanning live rows  390ms
+   ✓ still returns due content oldest-first, skipping soft-deleted rows  303ms
+ ✓ tests/scheduling-native/calendar.test.ts (11 tests) 2088ms
+   ✓ calendar placement uses site timezone and the time entries loaded  422ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts (5 tests) 1331ms
+     ✓ places published entries, schedules, and scheduled updates  524ms
+     ✓ walks every event exactly once across pages  334ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/calendar-route.test.ts (4 tests) 742ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts (18 tests) 313ms
+
+ Test Files  5 passed (5)
+      Tests  41 passed (41)
+   Start at  03:49:10
+   Duration  17.92s (transform 3.57s, setup 489ms, import 8.70s, tests 5.43s, environment 0ms)
+
+JSON report written to /tmp/scheduling105-public16-calendar41.json

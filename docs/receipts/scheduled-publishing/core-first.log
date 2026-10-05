@@ -1,0 +1,113 @@
+
+ RUN  v4.1.10 /workspace/cms-full-scheduling-calendar
+
+ ❯ tests/scheduling-native/calendar.test.ts (11 tests | 2 failed) 257ms
+   ✓ storage control: first publication scheduling and removal preserve the real row 39ms
+   ✓ storage control: scheduling changes keeps an already published entry live 21ms
+   ✓ storage control: due selection excludes later and trashed rows 21ms
+   ✓ calendar lists both events for published content with scheduled changes 32ms
+   ✓ calendar walks ties in collection and event order without skipping an event 21ms
+   ✓ calendar uses persisted hidden and titleField metadata without changing content 24ms
+   ✓ calendar returns the original invalid-cursor envelope 18ms
+   ✓ calendar placement uses site timezone and the time entries loaded 55ms
+   ✓ calendar filters intersect collection, locale and state without changing the input 1ms
+   × calendar client bounds a repeating page stream to ten pages and de-duplicates event keys 21ms
+   × calendar client sends bounds and cursor through the ordinary calendar API 1ms
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts (18 tests | 2 failed) 55ms
+     ✓ covers whole weeks from the locale's first day of the week 2ms
+     ✓ places an instant on the site zone's calendar day 1ms
+     ✓ fetches every grid day in the most extreme UTC offsets 1ms
+     ✓ fetches every grid day in the local mean time of historical zones 1ms
+     ✓ shades the admin locale's weekend 5ms
+     ✓ shows the browser's time, with its weekday when the date differs 2ms
+     ✓ formats entry dates on the Gregorian calendar the grid uses 3ms
+     ✓ treats zones with the same name as the same, and falls back to UTC 3ms
+     ✓ derives each state, waiting out the grace period before Overdue 0ms
+     ✓ keeps a known view and a month from 1000 to 9999 1ms
+     ✓ splits, de-duplicates, and bounds list params, keeping only known states 0ms
+     ✓ drops unknown views and invalid months 0ms
+     ✓ keeps an entry key only in its collection, id, and kind form 0ms
+     ✓ uses the largest whole unit 4ms
+     ✓ counts down to a future time and never reads as past 0ms
+     ✓ combines filters and treats an empty filter as all 0ms
+     × stops after ten pages and drops entries that repeat across pages 28ms
+     × reports a complete walk when the last page has no cursor 1ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts (5 tests) 160ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/calendar-route.test.ts (4 tests) 144ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar client bounds a repeating page stream to ten pages and de-duplicates event keys
+Error: Lingui: Attempted to call a translation function without setting a locale.
+Make sure to call `i18n.activate(locale)` before using Lingui functions.
+This issue may also occur due to a race condition in your initialization logic.
+ ❯ I18n._ node_modules/.pnpm/@lingui+core@5.9.5_@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3_/node_modules/@lingui/core/dist/index.mjs:373:13
+ ❯ fetchCalendarPage src/lib/calendar/api.ts:72:55
+     70|  if (params.cursor) search.set("cursor", params.cursor);
+     71|  const response = await apiFetch(`${API_BASE}/calendar?${search.toStri…
+     72|  return parseApiResponse<CalendarPage>(response, i18n._({ id: "s2+GNH"…
+       |                                                       ^
+     73| }
+     74|
+ ❯ fetchCalendarRange src/lib/calendar/api.ts:93:18
+ ❯ tests/scheduling-native/calendar.test.ts:164:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar client sends bounds and cursor through the ordinary calendar API
+Error: Lingui: Attempted to call a translation function without setting a locale.
+Make sure to call `i18n.activate(locale)` before using Lingui functions.
+This issue may also occur due to a race condition in your initialization logic.
+ ❯ I18n._ node_modules/.pnpm/@lingui+core@5.9.5_@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3_/node_modules/@lingui/core/dist/index.mjs:373:13
+ ❯ fetchCalendarPage src/lib/calendar/api.ts:72:55
+     70|  if (params.cursor) search.set("cursor", params.cursor);
+     71|  const response = await apiFetch(`${API_BASE}/calendar?${search.toStri…
+     72|  return parseApiResponse<CalendarPage>(response, i18n._({ id: "s2+GNH"…
+       |                                                       ^
+     73| }
+     74|
+ ❯ tests/scheduling-native/calendar.test.ts:177:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts > fetchCalendarRange > stops after ten pages and drops entries that repeat across pages
+Error: Lingui: Attempted to call a translation function without setting a locale.
+Make sure to call `i18n.activate(locale)` before using Lingui functions.
+This issue may also occur due to a race condition in your initialization logic.
+ ❯ I18n._ node_modules/.pnpm/@lingui+core@5.9.5_@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3_/node_modules/@lingui/core/dist/index.mjs:373:13
+ ❯ fetchCalendarPage src/lib/calendar/api.ts:72:55
+     70|  if (params.cursor) search.set("cursor", params.cursor);
+     71|  const response = await apiFetch(`${API_BASE}/calendar?${search.toStri…
+     72|  return parseApiResponse<CalendarPage>(response, i18n._({ id: "s2+GNH"…
+       |                                                       ^
+     73| }
+     74|
+ ❯ fetchCalendarRange src/lib/calendar/api.ts:93:18
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts:282:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts > fetchCalendarRange > reports a complete walk when the last page has no cursor
+Error: Lingui: Attempted to call a translation function without setting a locale.
+Make sure to call `i18n.activate(locale)` before using Lingui functions.
+This issue may also occur due to a race condition in your initialization logic.
+ ❯ I18n._ node_modules/.pnpm/@lingui+core@5.9.5_@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3_/node_modules/@lingui/core/dist/index.mjs:373:13
+ ❯ fetchCalendarPage src/lib/calendar/api.ts:72:55
+     70|  if (params.cursor) search.set("cursor", params.cursor);
+     71|  const response = await apiFetch(`${API_BASE}/calendar?${search.toStri…
+     72|  return parseApiResponse<CalendarPage>(response, i18n._({ id: "s2+GNH"…
+       |                                                       ^
+     73| }
+     74|
+ ❯ fetchCalendarRange src/lib/calendar/api.ts:93:18
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts:299:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  4 failed | 34 passed (38)
+   Start at  15:41:01
+   Duration  2.19s (transform 457ms, setup 0ms, import 1.14s, tests 616ms, environment 0ms)
+
+JSON report written to /tmp/scheduling-calendar-cef28-whole38-core.json
