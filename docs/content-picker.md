@@ -178,3 +178,16 @@ retained, so the log establishes completed commands rather than a retained
 wrapper exit. These are historical initial-head observations; actual current
 Main integration, current full checks, fresh review, CP-03 acceptance and
 author-owned regular merge remain pending.
+
+### PR110 actual scheduling-main integration
+
+Regular merge `86ac7146eabd1e3f017dc1e49ecd8604443b50d9` has parents
+`3220ada14c63b029cad171530e6a3662a902f50e` and actual public Main
+`98332aaa81bf857b3e8214a7e572cb086390d703`. It preserves every incoming
+calendar/scheduled-publication path and compatibility record. The entire
+published package/dependency/lock/bootstrap/CI/security graph is byte-identical
+to that main tree. The repair still owns only its cache implementation, five
+supplemental tests and paired documentation; all pinned Source and previous
+native tests remain unchanged. This integration grants zero new execution or
+parity credit. Current complete normal13/secured9 and fresh reviews will
+qualify the stationary successor before CP-03 acceptance or author merge.
