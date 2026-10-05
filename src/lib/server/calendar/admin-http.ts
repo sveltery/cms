@@ -14,6 +14,7 @@ import { parse } from '../database/validation.ts';
 import { canonicalSourceDatabase } from '../canonical-storage/namespace.ts';
 import { OptionsRepository } from '../options/repository.ts';
 import { getI18nConfig } from '../menus/i18n-config.ts';
+import { readCalendarContent } from './content-read.ts';
 import * as v from 'valibot';
 type Event=Pick<RequestEvent,'request'|'url'|'params'|'locals'>;
 function failure(cause:unknown):Response {
@@ -51,7 +52,7 @@ export async function calendarContentGet(event:Event):Promise<Response>{
     const locale=event.url.searchParams.get('locale')??undefined;
     const service=lifecycleService(cms.database,cms.principal);
     const translations=event.url.searchParams.get('view')==='translations';
-    const item=await service.getContent({type:event.params.collection,id:event.params.id,...(locale?{locale}:{})},{inferLocale:translations});
+    const item=await readCalendarContent(service,event.params.collection,event.params.id,locale,translations);
     if(translations){
       const {ContentRepository}=await import('../database/lifecycle/upstream/database/repositories/content.ts');
       const siblings=item.translationGroup?await new ContentRepository(cms.database.db as any).findTranslations(item.type,item.translationGroup):[];
