@@ -1,6 +1,7 @@
 // Native adapter for exact Calendar descriptors. EmDash pin913cb1bb; MIT.
 import { i18n } from '@lingui/core';
-import type { CalendarMessage } from './message-descriptors.ts';
+import { CALENDAR_MESSAGE_DESCRIPTORS, type CalendarMessage } from './message-descriptors.ts';
+import { CALENDAR_MESSAGE_FALLBACKS } from './message-fallbacks.ts';
 
 export type CalendarValues = Record<string, unknown>;
 export type CalendarTranslate = (message: CalendarMessage, values?: CalendarValues) => string;
@@ -38,8 +39,16 @@ const englishTemplates: Partial<Record<CalendarMessage, (values: CalendarValues)
   'Your time: {viewerTime}': v => `Your time: ${v.viewerTime}`,
 };
 
-export const translateCalendarMessage: CalendarTranslate = (message, values = {}) => englishTemplates[message]?.(values) ?? message;
+export const translateCalendarMessage: CalendarTranslate = (message, values = {}) => {
+  if (!i18n.locale) return englishTemplates[message]?.(values) ?? message;
+  const descriptor = CALENDAR_MESSAGE_DESCRIPTORS[message];
+  // Frozen core's runtime accepts compiled fallback arrays, while the public
+  // MessageDescriptor type narrows message to string. Isolate that Native type
+  // bridge here: loaded public translations still take precedence by exact ID.
+  const fallback = CALENDAR_MESSAGE_FALLBACKS[message] as unknown as string;
+  return i18n._({ id: descriptor.id, message: fallback, values });
+};
 
-export function createCalendarMessageAdapter(_onChange: () => void) {
-  return { translate: translateCalendarMessage, get locale() { return i18n.locale; }, subscribe() { return () => {}; } };
+export function createCalendarMessageAdapter(onChange: () => void) {
+  return { translate: translateCalendarMessage, get locale() { return i18n.locale; }, subscribe() { return i18n.on('change', onChange); } };
 }

@@ -1,9 +1,12 @@
 // Supplemental Native singleton/catalog-owner assertions, not a Source test port.
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { createRequire } from 'node:module';
 import { i18n } from '@lingui/core';
 import { createCalendarMessageAdapter } from '../../src/lib/calendar/messages.ts';
 
-afterEach(()=>{i18n.loadAndActivate({locale:'en',messages:{}});vi.restoreAllMocks();});
+const require=createRequire(import.meta.url),coreRequire=createRequire(require.resolve('@lingui/core/package.json'));
+const {compileMessage}=coreRequire('@lingui/message-utils/compileMessage');
+afterEach(()=>{i18n.setMessagesCompiler(compileMessage);i18n.loadAndActivate({locale:'en',messages:{}});vi.restoreAllMocks();});
 describe('Calendar-owned controlled message adapter',()=>{
   it('prefers the existing loaded Source descriptor ID',()=>{
     i18n.loadAndActivate({locale:'en',messages:{AjVXBS:['Agenda owner calendar']}});

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { provideCalendarMessages } from './message-context.svelte.ts';
+  const messages = provideCalendarMessages(), t = messages.translate;
   // EmDash1.1.0 Calendar page behavior, pin913cb1bb; MIT notices/emdash-MIT.txt.
   // Framework host supplies one real QueryClient and URL/history operations.
   import { onMount,untrack } from 'svelte';
@@ -23,9 +25,10 @@
   let notice=$state<CalendarNotice>();
   const collections=$derived(Object.entries(manifest?.collections??{}).filter(([,c])=>!c.hidden).map(([slug,c])=>({slug,label:c.label,icon:c.icon})));
   const collectionOrder=$derived(collections.map(c=>c.slug)),locales=$derived(manifest?.i18n?.locales??[]);
-  const display=$derived(createCalendarDisplay({locale,timeZone:manifest?.timezone,collections,showLocale:locales.length>1}));
+  const activeLocale=$derived(messages.locale||locale);
+  const display=$derived(createCalendarDisplay({locale:activeLocale,timeZone:manifest?.timezone,collections,showLocale:locales.length>1}));
   const today=$derived(dayKeyInZone(now,display.timeZone)),month=$derived(search.month??today.slice(0,7)),view=$derived(search.view??(compact?'agenda':'month'));
-  const weekStartsOn=$derived(getDayPickerLocale(locale).options?.weekStartsOn??0);
+  const weekStartsOn=$derived(getDayPickerLocale(activeLocale).options?.weekStartsOn??0);
   const gridDays=$derived(monthGridDays(month,weekStartsOn)),range=$derived(fetchRange(gridDays));
   const filters=$derived<CalendarFilterValues>({collections:readList(search.collections).filter(slug=>collectionOrder.includes(slug)),locales:readList(search.locales).filter(value=>locales.includes(value)),states:readList(search.states).filter(isCalendarState)});
   const filtered=$derived(filters.collections.length+filters.locales.length+filters.states.length>0);
@@ -68,16 +71,18 @@
   const filterTrigger={current:null as HTMLButtonElement|null};
   function clearFilters(){setFilters({collections:[],locales:[],states:[]});filterTrigger.current?.focus();}
   function prefetch(target:string){if(!isMonthKey(target))return;const next=fetchRange(monthGridDays(target,weekStartsOn));void queryClient.prefetchQuery({...calendarQueryOptions(next.from,next.to),staleTime:60000});}
-  const errorMessage=$derived(error instanceof ApiResponseError?error.code==='FORBIDDEN'?"You don't have permission to view the calendar.":error.message:'Check your connection and try again.');
+  const errorMessage=$derived(error instanceof ApiResponseError?error.code==='FORBIDDEN'?t("You don't have permission to view the calendar."):error.message:t("Check your connection and try again."));
+  const maxEntries=$derived(new Intl.NumberFormat(activeLocale).format(CALENDAR_MAX_ENTRIES));
+  const cutOffDay=$derived(loadedThrough?display.monthDay(loadedThrough):undefined);
   const zoneTime=$derived(dayKeyToUTC(`${month}-15`)+12*3600000);
 </script>
 <div bind:this={container} class="calendar">
-<header><div><h1>Calendar</h1><p>Published and scheduled entries across collections, in the site's time zone.</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
+<header><div><h1>{t("Calendar")}</h1><p>{t("Published and scheduled entries across collections, in the site's time zone.")}</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
 {#if notice}<div role={notice.type==='error'?'alert':'status'} class="notice"><strong>{notice.title}</strong><p>{notice.description}</p><button type="button" aria-label="Dismiss notification" onclick={()=>notice=undefined}>×</button></div>{/if}
-<div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>Month</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>Agenda</button></div>
+<div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>{t("Month")}</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>{t("Agenda")}</button></div>
 <Toolbar title={display.monthTitle(month)} {display} {zoneTime} loading={fetching} onPrevious={()=>goToMonth(shiftMonth(month,-1))} onNext={()=>goToMonth(shiftMonth(month,1))} onToday={()=>goToMonth(undefined)} onPreviewPrevious={()=>prefetch(shiftMonth(month,-1))} onPreviewNext={()=>prefetch(shiftMonth(month,1))}/>
-{#if error}<div role="alert"><h3>Could not load the calendar</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>Retry</button></div>{/if}
-{#if data?.truncated}<div role="status"><h3>This range has more than {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)} entries</h3><p>The calendar shows the first {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)}{loadedThrough?`, which end on ${display.monthDay(loadedThrough)}`:''}.</p></div>{/if}
+{#if error}<div role="alert"><h3>{t("Could not load the calendar")}</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>{t("Retry")}</button></div>{/if}
+{#if data?.truncated}<div role="status"><h3>{t("This range has more than {maxEntries} entries",{maxEntries})}</h3><p>{cutOffDay?t("The calendar shows the first {maxEntries}, which end on {cutOffDay}.",{maxEntries,cutOffDay}):t("The calendar shows the first {maxEntries}.",{maxEntries})}</p></div>{/if}
 {#if !(error&&!data)}{#if view==='month'}<Month {month} {gridDays} {days} {unfilteredDays} {today} {now} {display} loading={!data} {loadedThrough} {compact} {selectedKey} onSelect={openEntry} onMonthChange={goToMonth} onClearFilters={filtered?clearFilters:undefined}/>
 {:else}{#key month}<Agenda {month} {days} {today} {now} {display} loading={!data} {loadedThrough} {selectedKey} onSelect={openEntry} onClearFilters={filtered?clearFilters:undefined}/>{/key}{/if}{/if}
 <Panel item={selected} {display} {now} {compact} i18n={manifest?.i18n} urlPatterns={Object.fromEntries(Object.entries(manifest?.collections??{}).map(([slug,collection])=>[slug,collection.urlPattern]))} {user} {returnFocus} {client} {queryClient} onNotice={value=>notice=value} onClose={closeEntry} onRescheduled={(item,at)=>{const target=dayKeyInZone(Date.parse(at),display.timeZone).slice(0,7);if(target!==month)goToMonth(target);}}/>
