@@ -42,6 +42,11 @@ is supplied.
 
 ## Repository boundary
 
+The following import-only/write-unavailable description records the original
+canonical-installation prerequisite. PR102 supersedes it for the two taxonomy
+runtime bodies with the finite atomic adaptation recorded below; the original
+Source authorities and historical evidence remain unchanged.
+
 The complete options, conditional-storage, taxonomy, taxonomy-definition and
 admin slugify Source bodies are retained, with only import/namespace adaptation
 and attribution. The namespace adapter maps logical Source table identifiers
@@ -49,6 +54,21 @@ to native `_cms_` names, preserving bound values and single-quoted literals in
 the finite Source raw templates used here. It is not a general SQL translator.
 Source taxonomy imports use the existing strict native transaction helper,
 rather than Source's unsupported-transaction callback fallback.
+
+PR102 now implements actual finite atomic taxonomy writes and definition/group
+structure writes. The unchanged original38 authorities remain hash-checked.
+Options, conditional storage and slugify retain their three whole import-only
+Source body checks. Taxonomy repository and definitions instead use the
+[complete finite adaptation inventory](taxonomy-canonical-repository-adaptations.json):
+32 ordered exact Source/native edits reconstruct both entire Native bodies,
+including their real imports. No unrecorded runtime text is ignored. This is a
+provenance check with zero executed callback or behavioral parity credit.
+
+In particular, original Source D1 reorder can retain completed earlier chunks
+if a later chunk fails. Native hosting deliberately compiles all finite chunks
+into its existing actual atomic batch and rolls the complete plan back. This
+framework/atomicity substitution remains proposed for PR102; specific final
+acceptance and current-head independent/configured reviews are still required.
 
 The D1 capability boundary recognizes the real raw/scoped D1 adapter.
 It permits taxonomy SELECTs and structured single-query options mutations, and

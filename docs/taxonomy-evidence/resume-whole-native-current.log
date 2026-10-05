@@ -1,0 +1,53 @@
+$ vitest run --config vitest.taxonomy-native.config.ts && vitest run --config vitest.taxonomy-native-content-source.config.mts && vitest run --config vitest.taxonomy-runtime-regressions.config.mts && vitest run --config vitest.taxonomy-d1.config.ts && node --test tests/taxonomy-native/content-atomic.test.ts
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  00:52:35
+   Duration  3.14s (transform 1.71s, setup 0ms, import 1.98s, tests 936ms, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  00:52:39
+   Duration  4.70s (transform 2.54s, setup 0ms, import 3.41s, tests 995ms, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  00:52:45
+   Duration  3.69s (transform 1.99s, setup 0ms, import 2.76s, tests 569ms, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  00:52:49
+   Duration  7.49s (transform 948ms, setup 0ms, import 1.36s, tests 5.87s, environment 0ms)
+
+✔ Node: taxonomy assignments and genuine draft revision stage commit together (217.845919ms)
+✔ Node: assignment insertion failure rolls back the actual content INSERT (93.780113ms)
+✔ Node: assignment insertion failure rolls back revision INSERT, stage and old pivots (90.844198ms)
+✔ Node: zero-row revision stage cannot commit a revision or new assignments (121.761226ms)
+✔ D1: taxonomy assignments and genuine draft revision stage commit together (2560.538644ms)
+✔ D1: assignment insertion failure rolls back the actual content INSERT (564.874755ms)
+✔ D1: assignment insertion failure rolls back revision INSERT, stage and old pivots (603.811645ms)
+✔ D1: zero-row revision stage cannot commit a revision or new assignments (659.50808ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6707.641113

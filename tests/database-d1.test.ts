@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { CompiledQuery, sql } from 'kysely';
 import { Miniflare } from 'miniflare';
 import { build } from 'vite';
+import {viteWorkerModules} from './helpers/vite-worker-modules.ts';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -253,8 +254,7 @@ test('local workerd: real D1-backed CMS/session core runs without nodejs_compat'
     lib: { entry: new URL('./helpers/d1-worker.ts', import.meta.url).pathname, formats: ['es'], fileName: 'd1-worker' } } });
   assert.ok(!('on' in built));
   const outputs = Array.isArray(built) ? built : [built]; const chunks = outputs.flatMap(output => output.output).filter(output => output.type === 'chunk');
-  assert.equal(chunks.length, 1); assert.doesNotMatch(chunks[0].code, /node:sqlite/);
-  const { runtime, database } = await localD1(undefined, chunks[0].code);
+  const { runtime, database } = await localD1(undefined, viteWorkerModules(chunks,'/cms-d1-fixture','application.js'));
   try {
     const response = await runtime.dispatchFetch('https://cms.example/'); assert.equal(response.status, 200);
     assert.deepEqual((await response.json() as { passed: string[] }).passed, [

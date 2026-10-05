@@ -1,0 +1,118 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts (7 tests | 6 failed) 202ms
+     × attaches taxonomy terms on create by slug 54ms
+     × returns VALIDATION_ERROR and rolls back the whole write when a slug is unknown 30ms
+     ✓ rejects taxonomies with a non-array value 27ms
+     × replaces existing assignments on update (setTermsForEntry semantics) 21ms
+     × clears a taxonomy when passed an empty array 25ms
+     × leaves untouched taxonomies alone (only rewrites named ones) 22ms
+     × resolves slugs in the entry's locale for i18n sites 21ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [native-sqlite] > attaches taxonomy terms on create by slug
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:69:26
+     67|    taxonomies: { category: ["porady"], tag: ["ai", "seo"] },
+     68|   });
+     69|   expect(result.success).toBe(true);
+       |                          ^
+     70|
+     71|   const taxRepo = new TaxonomyRepository(ctx.db);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [native-sqlite] > returns VALIDATION_ERROR and rolls back the whole write when a slug is unknown
+AssertionError: expected 'Lifecycle capability \'taxonomies\' i…' to contain 'does-not-exist'
+
+Expected: "does-not-exist"
+Received: "Lifecycle capability 'taxonomies' is not implemented"
+
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:89:33
+     87|   expect(result.success).toBe(false);
+     88|   expect(result.error?.code).toBe("VALIDATION_ERROR");
+     89|   expect(result.error?.message).toContain("does-not-exist");
+       |                                 ^
+     90|
+     91|   // The transaction must have rolled back. No orphan content row and …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [native-sqlite] > replaces existing assignments on update (setTermsForEntry semantics)
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:121:27
+    119|    taxonomies: { tag: ["ai", "seo"] },
+    120|   });
+    121|   expect(created.success).toBe(true);
+       |                           ^
+    122|   const entryId = created.data!.item.id;
+    123|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [native-sqlite] > clears a taxonomy when passed an empty array
+TypeError: Cannot read properties of undefined (reading 'item')
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:144:33
+    142|    taxonomies: { tag: ["ai"] },
+    143|   });
+    144|   const entryId = created.data!.item.id;
+       |                                 ^
+    145|
+    146|   const updated = await handleContentUpdate(ctx.db, "post", entryId, {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [native-sqlite] > leaves untouched taxonomies alone (only rewrites named ones)
+TypeError: Cannot read properties of undefined (reading 'item')
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:163:33
+    161|    taxonomies: { category: ["porady"], tag: ["ai"] },
+    162|   });
+    163|   const entryId = created.data!.item.id;
+       |                                 ^
+    164|
+    165|   // Update only `tag`; `category` must survive.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts > Content taxonomies field - create/update [native-sqlite] > resolves slugs in the entry's locale for i18n sites
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:204:28
+    202|    taxonomies: { tag: ["news"] },
+    203|   });
+    204|   expect(enResult.success).toBe(true);
+       |                            ^
+    205|
+    206|   // FR entry references the FR slug. The EN slug must NOT resolve her…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 1 passed (7)
+   Start at  17:04:45
+   Duration  1.22s (transform 597ms, setup 0ms, import 876ms, tests 202ms, environment 0ms)
+
+JSON report written to /tmp/taxonomy-9996aa63-native-whole-source7-initial-baseline-report.json

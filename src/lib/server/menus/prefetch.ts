@@ -1,4 +1,5 @@
 import { getDb } from './loader.ts';
+import { getTaxonomyDefs, getTaxonomyTerms } from '../taxonomies/index.ts';
 import { getMenu } from './index.ts';
 import { resolveLocale } from './i18n-resolve.ts';
 import { cachedQuery, CacheNamespace } from './object-cache.ts';
@@ -19,4 +20,11 @@ export async function prefetchMenus(): Promise<void> {
   }));
   await Promise.all(names.map(name => getMenu(name)));
 }
-export const prefetchLayoutData = prefetchMenus;
+// Whole pinned Source taxonomy prefetch: warm actual per-name lists without counts.
+async function prefetchTaxonomyTerms(): Promise<void> {
+ const defs=await getTaxonomyDefs();
+ await Promise.allSettled(defs.map(def=>getTaxonomyTerms(def.name,{includeCounts:false})));
+}
+export async function prefetchLayoutData():Promise<void> {
+ await Promise.allSettled([prefetchMenus(),prefetchTaxonomyTerms()]);
+}

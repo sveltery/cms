@@ -25,7 +25,11 @@
     "build:cloudflare": "WRANGLER_LOG_PATH=.wrangler/logs SVELTERY_ADAPTER=cloudflare vite build && node scripts/build-revision-maintenance.mjs cloudflare && XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler deploy --dry-run --outdir build/cloudflare/worker",
     "start:cloudflare": "XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler dev --local",
     "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts",
+<<<<<<< HEAD
     "test:source-ports": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:byline-source && pnpm test:byline-native",
+=======
+    "test:source-ports": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy",
+>>>>>>> origin/main
     "test:ui-source": "vitest run --config vitest.ui-source.config.ts",
     "test:bulk-taxonomy-native": "vitest run --config vitest.bulk-taxonomy-native.config.ts",
     "test:bulk-taxonomy-source": "node scripts/check-bulk-taxonomy-source.mjs && vitest run --config vitest.bulk-taxonomy.config.ts",
@@ -54,8 +58,14 @@
     "test:block-registry-source": "node scripts/check-block-registry-source.mjs && vitest run --config vitest.block-registry-source.config.ts",
     "doctor": "node scripts/doctor.mjs",
     "test:doctor-source": "node scripts/check-doctor-source.mjs && vitest run --config vitest.doctor-source.config.ts",
+<<<<<<< HEAD
     "test:byline-source": "node scripts/check-byline-source.mjs && vitest run --config vitest.byline-source.config.ts",
     "test:byline-native": "vitest run --config vitest.byline-native.config.ts"
+=======
+    "test:taxonomy-source": "node scripts/check-taxonomy-source.mjs && node scripts/check-taxonomy-fixture-source.mjs && node scripts/check-taxonomy-reference-source.mjs && vitest run --config vitest.taxonomy-core-source.config.mts && vitest run --config vitest.taxonomy-match-source.config.ts && vitest run --config vitest.taxonomy-locale-reference.config.mts",
+    "test:taxonomy-native": "vitest run --config vitest.taxonomy-native.config.ts && vitest run --config vitest.taxonomy-native-content-source.config.mts && vitest run --config vitest.taxonomy-runtime-regressions.config.mts && vitest run --config vitest.taxonomy-d1.config.ts && node --test tests/taxonomy-native/content-atomic.test.ts",
+    "test:taxonomy": "pnpm test:taxonomy-source && pnpm test:taxonomy-native"
+>>>>>>> origin/main
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
@@ -110,6 +120,7 @@
     "vitest-browser-react": "2.2.0",
     "@testing-library/react": "16.3.2",
     "@cloudflare/kumo": "2.6.0",
-    "@lingui/react": "5.9.5"
+    "@lingui/react": "5.9.5",
+    "pg": "8.18.0"
   }
 }

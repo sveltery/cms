@@ -1,0 +1,473 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "basisNativeHead": "46b226face0a904d8869ad8fc639acdf1a91917f",
+  "meaning": "Finite Native atomic write/API/import adaptations; not import-only Source copies and not executed test or behavioral parity proof. Every Source and Native byte is checked by full reconstruction.",
+  "changes": [
+    "Existing canonical namespaces and genuine native imports",
+    "Equivalent explicit constructor property for Node24 erasable TypeScript hosting",
+    "One finite chunk helper retains the existing96-binding D1 limit",
+    "Create/update/reorder/delete and assignment mutations compile entire actual atomic write plans; actual affected-row results replace interactive transaction results",
+    "Definition/group structure saving uses one real atomic plan and reads the actual persisted group after commit",
+    "Reorder atomicity is an intentional Native substitution: Source D1 can commit earlier chunks before a later failure; Native actual atomicBatch rolls the complete finite plan back"
+  ],
+  "runtimeAdaptations": [
+    {
+      "sourcePath": "packages/core/src/database/repositories/taxonomy.ts",
+      "sourceBytes": 33195,
+      "sourceSha256": "e5f1619a9aa1262a5ec752dacbc5006c555d4c8a4db53c15a8fc222636d529d5",
+      "nativePath": "src/lib/server/taxonomies/repository.ts",
+      "edits": [
+        {
+          "sourceStartLine": 4,
+          "sourceLines": [
+            "import { invalidateTaxonomyObjectCache } from \"../../object-cache/index.js\";\n",
+            "import { slugify } from \"../../utils/slugify.js\";\n",
+            "import { withTransaction } from \"../transaction.js\";\n",
+            "import type { Database, TaxonomyTable } from \"../types.js\";\n",
+            "import { validateIdentifier } from \"../validate.js\";\n"
+          ],
+          "nativeLines": [
+            "import { invalidateTaxonomyObjectCache } from \"../menus/object-cache.ts\";\n",
+            "import { slugify } from \"./slugify.ts\";\n",
+            "import { executeTaxonomyWritePlan } from \"./write-plan.ts\";\n",
+            "import type { RawBuilder } from \"kysely\";\n",
+            "import type { Database, TaxonomyTable } from \"../canonical-storage/types.ts\";\n",
+            "import { validateIdentifier } from \"../menus/validate.ts\";\n"
+          ]
+        },
+        {
+          "sourceStartLine": 150,
+          "sourceLines": [],
+          "nativeLines": [
+            "// Every row contributes three bindings; finite D1 plans keep each statement\n",
+            "// at or below the existing 96-binding adapter limit, in one actual batch.\n",
+            "function chunks<T>(values:readonly T[],size:number):T[][] {\n",
+            " const result:T[][]=[];for(let offset=0;offset<values.length;offset+=size)result.push(values.slice(offset,offset+size));return result;\n",
+            "}\n",
+            "\n"
+          ]
+        },
+        {
+          "sourceStartLine": 151,
+          "sourceLines": [
+            "\tconstructor(private db: Kysely<Database>) {}\n"
+          ],
+          "nativeLines": [
+            "\tprivate db: Kysely<Database>;\n",
+            "\tconstructor(db: Kysely<Database>) { this.db = db; }\n"
+          ]
+        },
+        {
+          "sourceStartLine": 189,
+          "sourceLines": [
+            "\t\tawait withTransaction(this.db, async (trx) => {\n",
+            "\t\t\tawait trx\n"
+          ],
+          "nativeLines": [
+            "\t\tawait executeTaxonomyWritePlan(this.db, (trx) => [\n",
+            "\t\t\ttrx\n"
+          ]
+        },
+        {
+          "sourceStartLine": 205,
+          "sourceLines": [
+            "\t\t\t\t})\n",
+            "\t\t\t\t.execute();\n",
+            "\t\t\tif (movesGroup) {\n",
+            "\t\t\t\tawait trx\n"
+          ],
+          "nativeLines": [
+            "\t\t\t\t}),\n",
+            "\t\t\t...(movesGroup ? [trx\n"
+          ]
+        },
+        {
+          "sourceStartLine": 211,
+          "sourceLines": [
+            "\t\t\t\t\t.where(\"translation_group\", \"=\", translationGroup)\n",
+            "\t\t\t\t\t.execute();\n",
+            "\t\t\t}\n",
+            "\t\t});\n"
+          ],
+          "nativeLines": [
+            "\t\t\t\t\t.where(\"translation_group\", \"=\", translationGroup)] : []),\n",
+            "\t\t]);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 456,
+          "sourceLines": [
+            "\t\t\tawait withTransaction(this.db, async (trx) => {\n",
+            "\t\t\t\tif (hasRowUpdates) {\n",
+            "\t\t\t\t\tawait trx.updateTable(\"taxonomies\").set(updates).where(\"id\", \"=\", id).execute();\n",
+            "\t\t\t\t}\n",
+            "\t\t\t\tif (hasGroupUpdates) {\n",
+            "\t\t\t\t\tawait trx\n",
+            "\t\t\t\t\t\t.updateTable(\"taxonomies\")\n",
+            "\t\t\t\t\t\t.set(group)\n",
+            "\t\t\t\t\t\t.where(\"translation_group\", \"=\", existing.translationGroup ?? existing.id)\n",
+            "\t\t\t\t\t\t.execute();\n",
+            "\t\t\t\t}\n",
+            "\t\t\t});\n"
+          ],
+          "nativeLines": [
+            "\t\t\tawait executeTaxonomyWritePlan(this.db, (trx) => [\n",
+            "\t\t\t\t...(hasRowUpdates ? [trx.updateTable(\"taxonomies\").set(updates).where(\"id\", \"=\", id)] : []),\n",
+            "\t\t\t\t...(hasGroupUpdates ? [trx.updateTable(\"taxonomies\").set(group)\n",
+            "\t\t\t\t\t.where(\"translation_group\", \"=\", existing.translationGroup ?? existing.id)] : []),\n",
+            "\t\t\t]);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 521,
+          "sourceLines": [
+            "\t * D1 has no transactions — `withTransaction` runs its callback bare there —\n",
+            "\t * so a chunk is the unit that can't tear. A reorder spanning several chunks\n",
+            "\t * can, and leaves ties, which the next reorder renumbers away.\n"
+          ],
+          "nativeLines": [
+            "\t * The pinned Source executes chunks separately. Native hosting compiles the\n",
+            "\t * complete finite list and commits it in one actual atomic batch, including\n",
+            "\t * on D1; a failed later chunk rolls back earlier chunks.\n"
+          ]
+        },
+        {
+          "sourceStartLine": 526,
+          "sourceLines": [],
+          "nativeLines": [
+            "\t\tawait executeTaxonomyWritePlan(this.db, (db) => {\n",
+            "\t\tconst statements: RawBuilder<unknown>[] = [];\n"
+          ]
+        },
+        {
+          "sourceStartLine": 536,
+          "sourceLines": [
+            "\t\t\tawait sql`\n"
+          ],
+          "nativeLines": [
+            "\t\t\tstatements.push(sql`\n"
+          ]
+        },
+        {
+          "sourceStartLine": 540,
+          "sourceLines": [
+            "\t\t\t`.execute(this.db);\n"
+          ],
+          "nativeLines": [
+            "\t\t\t`);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 542,
+          "sourceLines": [],
+          "nativeLines": [
+            "\n",
+            "\t\treturn statements;\n",
+            "\t\t});\n"
+          ]
+        },
+        {
+          "sourceStartLine": 543,
+          "sourceLines": [
+            "\n"
+          ],
+          "nativeLines": []
+        },
+        {
+          "sourceStartLine": 589,
+          "sourceLines": [
+            "\n",
+            "\t\t// When deleting the last translation of a group the pivot rows that\n",
+            "\t\t// reference that translation_group become orphaned — purge them.\n"
+          ],
+          "nativeLines": [
+            "\t\tlet cleanup = false;\n"
+          ]
+        },
+        {
+          "sourceStartLine": 593,
+          "sourceLines": [
+            "\t\t\tconst siblings = await this.db\n",
+            "\t\t\t\t.selectFrom(\"taxonomies\")\n",
+            "\t\t\t\t.select(\"id\")\n",
+            "\t\t\t\t.where(\"translation_group\", \"=\", term.translationGroup)\n",
+            "\t\t\t\t.where(\"id\", \"!=\", id)\n",
+            "\t\t\t\t.execute();\n",
+            "\t\t\tif (siblings.length === 0) {\n",
+            "\t\t\t\tawait this.db\n",
+            "\t\t\t\t\t.deleteFrom(\"content_taxonomies\")\n",
+            "\t\t\t\t\t.where(\"taxonomy_id\", \"=\", term.translationGroup)\n",
+            "\t\t\t\t\t.execute();\n",
+            "\t\t\t}\n"
+          ],
+          "nativeLines": [
+            "\t\t\tconst siblings = await this.db.selectFrom(\"taxonomies\").select(\"id\")\n",
+            "\t\t\t\t.where(\"translation_group\", \"=\", term.translationGroup).where(\"id\", \"!=\", id).execute();\n",
+            "\t\t\tcleanup = siblings.length === 0;\n"
+          ]
+        },
+        {
+          "sourceStartLine": 606,
+          "sourceLines": [
+            "\n",
+            "\t\tconst result = await this.db.deleteFrom(\"taxonomies\").where(\"id\", \"=\", id).executeTakeFirst();\n"
+          ],
+          "nativeLines": [
+            "\t\tconst results = await executeTaxonomyWritePlan(this.db, (db) => [\n",
+            "\t\t\t...(cleanup ? [db.deleteFrom(\"content_taxonomies\").where(\"taxonomy_id\", \"=\", term.translationGroup!)] : []),\n",
+            "\t\t\tdb.deleteFrom(\"taxonomies\").where(\"id\", \"=\", id),\n",
+            "\t\t]);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 609,
+          "sourceLines": [
+            "\t\treturn (result.numDeletedRows ?? 0n) > 0n;\n"
+          ],
+          "nativeLines": [
+            "\t\treturn (results.at(-1)?.numAffectedRows ?? 0n) > 0n;\n"
+          ]
+        },
+        {
+          "sourceStartLine": 634,
+          "sourceLines": [
+            "\t\tconst result = await this.db\n"
+          ],
+          "nativeLines": [
+            "\t\tconst results = await executeTaxonomyWritePlan(this.db, (db) => chunks(uniqueGroups,32).map(groups=>db\n"
+          ]
+        },
+        {
+          "sourceStartLine": 636,
+          "sourceLines": [
+            "\t\t\t.values(\n",
+            "\t\t\t\tuniqueGroups.map((taxonomy_id) => ({\n",
+            "\t\t\t\t\tcollection,\n",
+            "\t\t\t\t\tentry_id: entryGroup,\n",
+            "\t\t\t\t\ttaxonomy_id,\n",
+            "\t\t\t\t})),\n",
+            "\t\t\t)\n",
+            "\t\t\t.onConflict((oc) => oc.doNothing())\n",
+            "\t\t\t.executeTakeFirst();\n",
+            "\t\tconst inserted = Number(result.numInsertedOrUpdatedRows ?? 0n);\n"
+          ],
+          "nativeLines": [
+            "\t\t\t.values(groups.map(taxonomy_id=>({collection,entry_id:entryGroup,taxonomy_id})))\n",
+            "\t\t\t.onConflict(oc=>oc.doNothing())));\n",
+            "\t\tconst inserted = results.reduce((total,result)=>total+Number(result.numAffectedRows??0n),0);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 657,
+          "sourceLines": [
+            "\t\tawait this.db\n"
+          ],
+          "nativeLines": [
+            "\t\tawait executeTaxonomyWritePlan(this.db, (db) => [db\n"
+          ]
+        },
+        {
+          "sourceStartLine": 662,
+          "sourceLines": [
+            "\t\t\t.execute();\n"
+          ],
+          "nativeLines": [
+            "\t\t]);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 677,
+          "sourceLines": [
+            "\t\tconst result = await this.db\n"
+          ],
+          "nativeLines": [
+            "\t\tconst results = await executeTaxonomyWritePlan(this.db, (db) => chunks(uniqueGroups,94).map(groups=>db\n"
+          ]
+        },
+        {
+          "sourceStartLine": 681,
+          "sourceLines": [
+            "\t\t\t.where(\"taxonomy_id\", \"in\", uniqueGroups)\n",
+            "\t\t\t.executeTakeFirst();\n",
+            "\t\tconst removed = Number(result.numDeletedRows ?? 0n);\n"
+          ],
+          "nativeLines": [
+            "\t\t\t.where(\"taxonomy_id\", \"in\", groups)));\n",
+            "\t\tconst removed = results.reduce((total,result)=>total+Number(result.numAffectedRows??0n),0);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 795,
+          "sourceLines": [
+            "\t\tif (toRemove.length > 0) {\n",
+            "\t\t\tawait this.db\n",
+            "\t\t\t\t.deleteFrom(\"content_taxonomies\")\n",
+            "\t\t\t\t.where(\"collection\", \"=\", collection)\n",
+            "\t\t\t\t.where(\"entry_id\", \"=\", entryGroup)\n",
+            "\t\t\t\t.where(\"taxonomy_id\", \"in\", toRemove)\n",
+            "\t\t\t\t.execute();\n",
+            "\t\t}\n",
+            "\n"
+          ],
+          "nativeLines": []
+        },
+        {
+          "sourceStartLine": 805,
+          "sourceLines": [
+            "\t\tif (toAdd.length > 0) {\n",
+            "\t\t\tawait this.db\n",
+            "\t\t\t\t.insertInto(\"content_taxonomies\")\n",
+            "\t\t\t\t.values(\n",
+            "\t\t\t\t\ttoAdd.map((taxonomy_id) => ({\n",
+            "\t\t\t\t\t\tcollection,\n",
+            "\t\t\t\t\t\tentry_id: entryGroup,\n",
+            "\t\t\t\t\t\ttaxonomy_id,\n",
+            "\t\t\t\t\t})),\n",
+            "\t\t\t\t)\n",
+            "\t\t\t\t.onConflict((oc) => oc.doNothing())\n",
+            "\t\t\t\t.execute();\n"
+          ],
+          "nativeLines": [
+            "\t\tif (toRemove.length > 0 || toAdd.length > 0) {\n",
+            "\t\t\tawait executeTaxonomyWritePlan(this.db, (db) => [\n",
+            "\t\t\t\t...chunks(toRemove,94).map(groups=>db.deleteFrom(\"content_taxonomies\")\n",
+            "\t\t\t\t\t.where(\"collection\", \"=\", collection).where(\"entry_id\", \"=\", entryGroup)\n",
+            "\t\t\t\t\t.where(\"taxonomy_id\", \"in\", groups)),\n",
+            "\t\t\t\t...chunks(toAdd,32).map(groups=>db.insertInto(\"content_taxonomies\")\n",
+            "\t\t\t\t\t.values(groups.map(taxonomy_id=>({collection,entry_id:entryGroup,taxonomy_id})))\n",
+            "\t\t\t\t\t.onConflict(oc=>oc.doNothing())),\n",
+            "\t\t\t]);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 834,
+          "sourceLines": [
+            "\t\tconst result = await this.db\n"
+          ],
+          "nativeLines": [
+            "\t\tconst [result] = await executeTaxonomyWritePlan(this.db, (db) => [db\n"
+          ]
+        },
+        {
+          "sourceStartLine": 838,
+          "sourceLines": [
+            "\t\t\t.executeTakeFirst();\n",
+            "\t\tconst removed = Number(result.numDeletedRows ?? 0);\n"
+          ],
+          "nativeLines": [
+            "\t\t]);\n",
+            "\t\tconst removed = Number(result.numAffectedRows ?? 0);\n"
+          ]
+        },
+        {
+          "sourceStartLine": 924,
+          "sourceLines": [
+            "\t\tconst { chunks, SQL_BATCH_SIZE } = await import(\"../../utils/chunks.js\");\n"
+          ],
+          "nativeLines": [
+            "\t\tconst { chunks, SQL_BATCH_SIZE } = await import(\"../menus/chunks.ts\");\n"
+          ]
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/core/src/database/repositories/taxonomy-def.ts",
+      "sourceBytes": 4004,
+      "sourceSha256": "406a02132a4d17a6a6fa15c7a7bf1ab72bbd851d9835f32d1abfbc3cab12e764",
+      "nativePath": "src/lib/server/taxonomies/definitions.ts",
+      "edits": [
+        {
+          "sourceStartLine": 1,
+          "sourceLines": [
+            "import { sql, type Kysely } from \"kysely\";\n"
+          ],
+          "nativeLines": [
+            "// Native adaptation: finite actual atomic structure plans and persisted group reads.\n",
+            "import { sql, type Kysely, type Compilable } from \"kysely\";\n"
+          ]
+        },
+        {
+          "sourceStartLine": 3,
+          "sourceLines": [
+            "import type { Database } from \"../types.js\";\n"
+          ],
+          "nativeLines": [
+            "import {executeTaxonomyWritePlan} from \"./write-plan.ts\";\n",
+            "import type { Database } from \"../canonical-storage/types.ts\";\n"
+          ]
+        },
+        {
+          "sourceStartLine": 76,
+          "sourceLines": [
+            "\tconst changes: { hierarchical?: number; collections?: string } = {};\n",
+            "\tif (overwrite.hierarchical !== undefined) changes.hierarchical = overwrite.hierarchical ? 1 : 0;\n",
+            "\tif (overwrite.collections !== undefined) {\n",
+            "\t\tchanges.collections = JSON.stringify([...new Set(overwrite.collections)]);\n",
+            "\t}\n",
+            "\tconst saved = await db\n",
+            "\t\t.insertInto(\"_emdash_taxonomy_def_groups\")\n",
+            "\t\t.values({\n",
+            "\t\t\tid: groupId,\n",
+            "\t\t\tname,\n",
+            "\t\t\thierarchical: structure.hierarchical ? 1 : 0,\n",
+            "\t\t\tcollections: JSON.stringify([...new Set(structure.collections)]),\n",
+            "\t\t})\n",
+            "\t\t.onConflict((oc) =>\n",
+            "\t\t\tObject.keys(changes).length > 0\n",
+            "\t\t\t\t? oc.column(\"name\").doUpdateSet(changes)\n",
+            "\t\t\t\t: oc.column(\"name\").doNothing(),\n",
+            "\t\t)\n",
+            "\t\t.returning([\"id\", \"hierarchical\", \"collections\"])\n",
+            "\t\t.executeTakeFirst();\n",
+            "\tconst group =\n",
+            "\t\tsaved ??\n",
+            "\t\t(await db\n",
+            "\t\t\t.selectFrom(\"_emdash_taxonomy_def_groups\")\n",
+            "\t\t\t.select([\"id\", \"hierarchical\", \"collections\"])\n",
+            "\t\t\t.where(\"name\", \"=\", name)\n",
+            "\t\t\t.executeTakeFirstOrThrow());\n",
+            "\tawait db\n",
+            "\t\t.updateTable(\"_emdash_taxonomy_defs\")\n",
+            "\t\t.set({\n",
+            "\t\t\thierarchical: group.hierarchical,\n",
+            "\t\t\tcollections: group.collections,\n",
+            "\t\t\ttranslation_group: group.id,\n",
+            "\t\t})\n",
+            "\t\t.where(\"name\", \"=\", name)\n",
+            "\t\t.execute();\n"
+          ],
+          "nativeLines": [
+            "\tawait executeTaxonomyWritePlan(db,transaction=>taxonomyStructurePlan(transaction,name,groupId,structure,overwrite));\n",
+            "\t// Return an actual persisted group; the whole fixed mutation plan has\n",
+            "\t// committed or rolled back before this read, on both canonical adapters.\n",
+            "\tconst group=await db.selectFrom(\"_emdash_taxonomy_def_groups\").select(\"id\").where(\"name\",\"=\",name).executeTakeFirstOrThrow();\n"
+          ]
+        },
+        {
+          "sourceStartLine": 127,
+          "sourceLines": [],
+          "nativeLines": [
+            "\n",
+            "/** Fixed atomic equivalent of saveTaxonomyStructure, used with definition writes. */\n",
+            "export function taxonomyStructurePlan(db: Kysely<Database>, name: string, groupId: string,\n",
+            "  structure: TaxonomyStructure, overwrite: Partial<TaxonomyStructure> = structure): readonly Compilable[] {\n",
+            "  const changes: { hierarchical?: number; collections?: string } = {};\n",
+            "  if (overwrite.hierarchical !== undefined) changes.hierarchical = overwrite.hierarchical ? 1 : 0;\n",
+            "  if (overwrite.collections !== undefined) changes.collections = JSON.stringify([...new Set(overwrite.collections)]);\n",
+            "  return [\n",
+            "    db.insertInto('_emdash_taxonomy_def_groups').values({id: groupId, name,\n",
+            "      hierarchical: structure.hierarchical ? 1 : 0, collections: JSON.stringify([...new Set(structure.collections)])})\n",
+            "      .onConflict(oc => Object.keys(changes).length ? oc.column('name').doUpdateSet(changes) : oc.column('name').doNothing()),\n",
+            "    db.updateTable('_emdash_taxonomy_defs').set({\n",
+            "      hierarchical: db.selectFrom('_emdash_taxonomy_def_groups').select('hierarchical').where('name', '=', name),\n",
+            "      collections: db.selectFrom('_emdash_taxonomy_def_groups').select('collections').where('name', '=', name),\n",
+            "      translation_group: db.selectFrom('_emdash_taxonomy_def_groups').select('id').where('name', '=', name)\n",
+            "    }).where('name', '=', name)\n",
+            "  ];\n",
+            "}\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

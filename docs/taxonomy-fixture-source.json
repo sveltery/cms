@@ -1,0 +1,750 @@
+{
+  "schemaVersion": 1,
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "scope": "Whole immutable original migration runner eager/dynamic closure for a dedicated Source-only Node fixture. Not Native canonical provider proof.",
+  "sourceLicense": "notices/emdash-MIT.txt",
+  "files": [
+    {
+      "path": "packages/core/src/database/datetime-storage.ts",
+      "bytes": 13994,
+      "sha256": "435c5fbc47b3bfea91d51801ac2cb51c12db5023721140be1fab1d05cd51ef0f",
+      "gitBlob": "6b93dd305703c95dbb7c18e0e7aeca5d701cd3c6",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "bytes": 18242,
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "gitBlob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migration-lock.ts",
+      "bytes": 5123,
+      "sha256": "ef5bda7b8b433a6fb7d0c8f9232d3d1398442eee884085c486d3545b8cbe9976",
+      "gitBlob": "160cce48c64a6c815ec780bef8fc2646be5b5ec9",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/001_initial.ts",
+      "bytes": 5374,
+      "sha256": "3c91298a957d40f5b576dfd5012e3ce66480db95516add28d45a5669e651fee9",
+      "gitBlob": "aba2d82b24a34a721814e90c00dc0e34cd009911",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/002_media_status.ts",
+      "bytes": 880,
+      "sha256": "b856cea671c3c9889edd3de2b4003027481bb8a0417a69165f609be3c1089159",
+      "gitBlob": "0bb5c112e4aa02b6bd2343254c637d91e04c92c0",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/003_schema_registry.ts",
+      "bytes": 3098,
+      "sha256": "ad355793aefcdb02e2d69f8f932d5452a8b89b66d3b180840d7aff278f481863",
+      "gitBlob": "8772c9615e69720581e4d50a0a28f34147943dc9",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/004_plugins.ts",
+      "bytes": 2575,
+      "sha256": "a2829bdbc2cb400aa924f85639e444b63f13d8904d3ed9a543562af82c0f2a13",
+      "gitBlob": "5f4bb9f0ec354268f9c7d68e5b8685fb56a8bbb8",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/005_menus.ts",
+      "bytes": 2298,
+      "sha256": "d8243b376a0deccd756a6d2bc1afedf2ca5206897cb4b22d2290d986d887c177",
+      "gitBlob": "8381107d097edde03283e44af438d21d0924e3c5",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/006_taxonomy_defs.ts",
+      "bytes": 1653,
+      "sha256": "3dfc384200f6d1f71684a580c691b5908107a02dc45779a37c5f89a628d75fb8",
+      "gitBlob": "5dd2eb436dde912a4d0cbdabfdab5c300fd5e26a",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/007_widgets.ts",
+      "bytes": 1664,
+      "sha256": "84c916b3759b7e11fde06ca2c694eda81e3fd9a9b970df371d493c2c645551b2",
+      "gitBlob": "e82acfb7ab9823cd31e1ea7b3b963839b5773fac",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/008_auth.ts",
+      "bytes": 7437,
+      "sha256": "7698709e8bdc5a3de32b84be22368982829bc94aef6ce258fa2e6197a7ca82ba",
+      "gitBlob": "70bc0f799c59ce72fac69aad24d2fc9cdd9ce1c0",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/009_user_disabled.ts",
+      "bytes": 1010,
+      "sha256": "df12eb1b324686e8e3dd750ce1d0881dd276b9944ae74c97d12fd9ea6c61018b",
+      "gitBlob": "827db35e316bcf4af35ba7c36ea4d9436db837e1",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/011_sections.ts",
+      "bytes": 2530,
+      "sha256": "092e543760b4063704ba8bd15a934e2c9342201633a010a6d3de9c7cffab3575",
+      "gitBlob": "bc00ebb8a77b42279966801dfd2f8a6436d53605",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/012_search.ts",
+      "bytes": 981,
+      "sha256": "d8e8626fbf25ddd1208d45dab1ca31a350b05cbd79f2b41c24d8a4aea13cad18",
+      "gitBlob": "e543798005e0c44d7386f040937a6b41185df71e",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/013_scheduled_publishing.ts",
+      "bytes": 1505,
+      "sha256": "706ad2ed59dca8ed24de443ba3e2703bbe3a2d8cfa8ab44641a317a31a2e71f8",
+      "gitBlob": "28484ea55bf3606d46731d7d88399e5711f118d5",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/014_draft_revisions.ts",
+      "bytes": 2403,
+      "sha256": "261cadd6d01e293043e97cd038be94f132b9baf127b6cf2d50045a36fb8737a5",
+      "gitBlob": "eedccd10cee4f27215a1e52f4d7efeb93008e655",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/015_indexes.ts",
+      "bytes": 3400,
+      "sha256": "ef39bef9497e644cc7214af4ba6f492a007d53a52b12bf83383044a6afb2ac76",
+      "gitBlob": "b6fe3f7c51c6c542ffa65a3ddc5edca8556c139b",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/016_api_tokens.ts",
+      "bytes": 4384,
+      "sha256": "866150f8601a0887f116b94a8e9459432fc7eff7860f228b239e1f18d2ae9205",
+      "gitBlob": "f61a4ba8e517279e7860d15ca6d64573b83759d7",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/017_authorization_codes.ts",
+      "bytes": 2449,
+      "sha256": "d9a0f9f94a5a0d201738ec036cadea6581f5130404e9ed0d1342faf63b66610b",
+      "gitBlob": "3ff253bc132b83d92b24b8f8f0f0a78cd1a39001",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/018_seo.ts",
+      "bytes": 2041,
+      "sha256": "58e45277a633fa1d92740c26a69f3ab5f939dcd643a20cba315420902132e5ba",
+      "gitBlob": "7fa68090d85e6171a765a2d024bc8f8ed656f4f6",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/019_i18n.ts",
+      "bytes": 21779,
+      "sha256": "62133443d7e51e2ede2e78fee98f1f06052eeaa496f31e19dfac2aaf28c9adee",
+      "gitBlob": "45babc91b32945e72acf48ca72d9058f286f3185",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/020_collection_url_pattern.ts",
+      "bytes": 666,
+      "sha256": "023ac7ea042ab530491155745cd2edc743ff9f28263d35492d62e93fb85e8875",
+      "gitBlob": "107704f00782715f0d1a1705da9be46659818098",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/021_remove_section_categories.ts",
+      "bytes": 1516,
+      "sha256": "1e23f132e7221f2ba79a0b99f0acac23ad1ed33f40e9c9fb846d80339b140850",
+      "gitBlob": "fea51184264d19fe2531d05fd5de8062307204c9",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/022_marketplace_plugin_state.ts",
+      "bytes": 1235,
+      "sha256": "57a40175bbe3f68cd16118b5df95f98b0377eb5bc23f75c4d62aa1dedc69f363",
+      "gitBlob": "5fb70ba47f9d56726c35e71cc18fdb137000f15f",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/023_plugin_metadata.ts",
+      "bytes": 776,
+      "sha256": "972d7faf2417d833fc5b23398b8fea16760cac7a54d92fad87181481027a99e1",
+      "gitBlob": "8c840efb3e940a97cec1861d3c68efa134fe5ddf",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/024_media_placeholders.ts",
+      "bytes": 711,
+      "sha256": "ade643eced9dc608c2fab67136819eda2d97884b1f470285ee73ca96099913b4",
+      "gitBlob": "df7705d487daafe16fab43a94d2adb2768c50933",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/025_oauth_clients.ts",
+      "bytes": 1229,
+      "sha256": "60e4b44a7072ebd7d9e9e70130aff28300f5962141706e99a92284ac36635c9c",
+      "gitBlob": "f9a0bd6dfac5b4380bc2346b48044dff052e9d4e",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/026_cron_tasks.ts",
+      "bytes": 1872,
+      "sha256": "6e867622e8e05b921482053ff4d532123c4492ee26deb50553e0f0c12d3e9876",
+      "gitBlob": "67f705793bafb8b5121486a7baf0e487ebf6ab5a",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/027_comments.ts",
+      "bytes": 2833,
+      "sha256": "ba8dea6c3f64f1ea6c96ea8dc7e58a974fa4e1064de2756ec451e2fa1f9f3438",
+      "gitBlob": "c575f4ac679e7ab0dbf1dc02a9ae03dfc3afba69",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/028_drop_author_url.ts",
+      "bytes": 345,
+      "sha256": "c18a8fe5e31ff1f9f42050d95f4de67994d659baba9a05fd98b8f388c26f42d1",
+      "gitBlob": "76f98ea7bb7281b784fca3f71330efff5eaf7dbc",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/029_redirects.ts",
+      "bytes": 2337,
+      "sha256": "a39c37ab362268ee5643fd5063dea4c2c90359d08a342709389d70e18edf1a9a",
+      "gitBlob": "72e7e30685314fe35a214352580243c6a94ace06",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/030_widen_scheduled_index.ts",
+      "bytes": 1377,
+      "sha256": "4cd564ec247a0179cb8cd064adc91906dfc5e167ee1295032a03d174938f4bc7",
+      "gitBlob": "b8ee274442ffe0979bbe7cc50fe5bacb1f754b79",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/031_bylines.ts",
+      "bytes": 3118,
+      "sha256": "48b9e8875b47ace4dbbdb75cb0be236793e31d324b0cc80b968da71b06d41de3",
+      "gitBlob": "18f1bb0fbf4360fea9279dcd97dbb76b6d751d2f",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/032_rate_limits.ts",
+      "bytes": 1681,
+      "sha256": "fefb79d09cba0c6baa2df241301c69197c151363b97897832f454b07b5d23a55",
+      "gitBlob": "0d74368aeb26a4e7821706ae5fa1c44d539ca8a7",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/033_optimize_content_indexes.ts",
+      "bytes": 3969,
+      "sha256": "c84d484f14a2c0fa41e125ab2d5ecfac94ea496a1fab867bbba7a2e9fa1bde3e",
+      "gitBlob": "442e7f8f3a9bba0af3e094818f3813353df24bf2",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/034_published_at_index.ts",
+      "bytes": 820,
+      "sha256": "36b901b9ce7e0ac26bfec01413cc4a35c4a86079c4a168258c98504bf9b24e8e",
+      "gitBlob": "41117afb3b780655bbcbd7bf1e0e46bd112a21af",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/035_bounded_404_log.ts",
+      "bytes": 3774,
+      "sha256": "9cbea9ce220651951730965debe0bb3fdcca72d36d26034bbafefd57745b5ab3",
+      "gitBlob": "70aaf80f26eec77cc0c3e3d058c5075e87538b17",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/036_i18n_menus_and_taxonomies.ts",
+      "bytes": 26352,
+      "sha256": "8fcdbdd60db69e67237cb5e2cd09d28e066a6b7d030467554806e958b108e761",
+      "gitBlob": "af434c0d6c84005facf35e4ed2a343304024e96c",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/037_credential_algorithm.ts",
+      "bytes": 572,
+      "sha256": "a4d749608420f5250a4462886d0fa6edde91d4d732565fbe829a905756620a1b",
+      "gitBlob": "4185f250f702efe32887aa69bfa3898e898d95d5",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/038_registry_plugin_state.ts",
+      "bytes": 4109,
+      "sha256": "2abdf7c1a74fa17aac613f3a4048ecbbf49e31793c592b8ba43ccdd3231db238",
+      "gitBlob": "f15ecfd8372c6c83cea166a7232054bf549a82c2",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/039_fix_fts5_triggers.ts",
+      "bytes": 9560,
+      "sha256": "9b3285608859cbd089b0d9fc99dcbd45da58ba1b750a9447b0f2836869aff015",
+      "gitBlob": "a2fb9a043fc7c40a0f92b2002b052ea47d02741d",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/040_byline_i18n.ts",
+      "bytes": 20297,
+      "sha256": "61c08479f877f914e77a0f8a3bd86dae76a5b1c814a19cac25ab7d15a5dde275",
+      "gitBlob": "bafdbf56db00118c686c018e3eb7f4f24773bb21",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/041_content_locale_list_index.ts",
+      "bytes": 1910,
+      "sha256": "0475b18033d2e117106402983c65c18fcb0a90b8520b123e68851b0f6b57776d",
+      "gitBlob": "98c7f40734a00b125b6edb29a9ec64b6440144e3",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/042_byline_fields.ts",
+      "bytes": 6794,
+      "sha256": "8b1c1447608a62e0e4d4862d5f60abe8fc7312a8eff15afe3161d8efa8403025",
+      "gitBlob": "42158a03aeccf066f94cdc2aba517f65b9a15b6f",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/043_content_references.ts",
+      "bytes": 4548,
+      "sha256": "53bd16531be0cb5557b24862980fdfe2530b96b80342b99b9a50c1205541ef16",
+      "gitBlob": "914b086878b7088e0da7dd11b704df375a9b6d8c",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/044_comment_reactions.ts",
+      "bytes": 1965,
+      "sha256": "14eaf6309fee8995ac8c2d6c3b52d4d9aa0fe290ef6da2808e62f3099aeb7c21",
+      "gitBlob": "897e83208f8f89047f6cfed07b9c3f944355dca4",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/045_taxonomy_parent_group.ts",
+      "bytes": 2930,
+      "sha256": "885ea6bf51624684af939bd35b9919bcca03d623f39e1e2c61368ac7fc7486f2",
+      "gitBlob": "2abf0bc539cc410f880cd8f83142bd86f307c71d",
+      "alreadyFrozen": true
+    },
+    {
+      "path": "packages/core/src/database/migrations/046_media_usage_index.ts",
+      "bytes": 4189,
+      "sha256": "3e4dd41dda9d42e6f5c9ca5b432280198bf01c0632927b3fc41a0ee442c4b324",
+      "gitBlob": "dce7d6542448b2baf2ea7f05fccc9400f9d4a0d9",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/047_restore_taxonomy_parent_index.ts",
+      "bytes": 1166,
+      "sha256": "13ab119e02f725475626bc2934d6ae37e0ccb3836d6b35557e1bfcabf24bfece",
+      "gitBlob": "28361f562b6cf1b61ecf8d90151400f57872d024",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/048_restore_content_taxonomies_term_index.ts",
+      "bytes": 1380,
+      "sha256": "1ebefbb8d7abdc61c45498033adb5f1d6ce3eab1b363dcdf402d357d2a0d7d35",
+      "gitBlob": "b495b710dc3f9069942c572fd95f199fc683635b",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/049_taxonomies_name_locale_index.ts",
+      "bytes": 1702,
+      "sha256": "4e2f26209025314e305af7e19a54d563f3272aecd9a6abdd9539665ca2666573",
+      "gitBlob": "5d230d8e372de64da2fb36b55fafb2f10be0cd0e",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/050_media_usage_index_status.ts",
+      "bytes": 4787,
+      "sha256": "6010f6aadd827763b54d7b7feccc840798af570ae838e6575890f97a6db30eb6",
+      "gitBlob": "3a1272e6962a1c72440abe4c9c0d5a828591f9ae",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/051_content_taxonomies_denorm.ts",
+      "bytes": 4906,
+      "sha256": "c76addfa804fa9c7e52baf61532359043820e401ede814ef37c8a1dfe19d346e",
+      "gitBlob": "305d5126eda4166714320bc1ad8e6221002389eb",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/052_media_usage_read_index.ts",
+      "bytes": 855,
+      "sha256": "ab7d09bb9fa3f8eb3d491797452840ca307dd5168e42ef432ae456ffd8230e0c",
+      "gitBlob": "bc7c0e3e630715197212a46f7a52f67c20003308",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/053_plugin_mcp_tools.ts",
+      "bytes": 893,
+      "sha256": "3147231ffa8f073fca0d2fdf98377976358009250b00712704d4593626c950b4",
+      "gitBlob": "68115b1ced34ea4a3266d304433204c7e81f0532",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/054_media_upload_attempts.ts",
+      "bytes": 1339,
+      "sha256": "32be099488912f0c0f27948705e5ffb277b5105075a4d1ac3c6dc372c1249007",
+      "gitBlob": "8e75a90a31f60aad69a8a5e2c504f90b265d3456",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/055_content_translation_group_locale_index.ts",
+      "bytes": 2949,
+      "sha256": "eba3c76bbcef82655d6ed613457a14d8ed0452a29cf2a81c0e06f45b001f133f",
+      "gitBlob": "2c08648a37fca1afabadba5e3cd2cf09cf4d77c5",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/056_taxonomy_term_sort_order.ts",
+      "bytes": 7367,
+      "sha256": "242953ab33016b23755974d91ba3bb920c33e9fcbed442b3065f3e4ebb29f265",
+      "gitBlob": "7ac52f2bfca7ec9dee77e8315a86e8353f7392b3",
+      "alreadyFrozen": true
+    },
+    {
+      "path": "packages/core/src/database/migrations/057_collection_hidden.ts",
+      "bytes": 890,
+      "sha256": "d6c280ddc2f22b3d22439259787b83bc26b45d16e3f4ef2a8ba4296cd25e7b66",
+      "gitBlob": "dfeade4978475792d3b36c49d32b6046d2c4cd90",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/058_collection_sort_order.ts",
+      "bytes": 747,
+      "sha256": "5e5a38ebe9a879cc6a33e2a04487a00a6c15f2415ae40289df74e6627dc6a31a",
+      "gitBlob": "574f8a51fcfec061818e7df9f2ef1f907d28f74a",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/059_revision_prune_queue.ts",
+      "bytes": 1169,
+      "sha256": "1f45cea03fd7d4442c268df4428f24f23aca208231de463549f27a8d69789a57",
+      "gitBlob": "65522645c6fc88fbda9b7ad7a72de86225d319aa",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/060_collection_admin_config.ts",
+      "bytes": 623,
+      "sha256": "73592c0a504a429d96bfcba10cfedb9e8fb80fdc1c694b4a4a71498e3d73080a",
+      "gitBlob": "22d51b26b44a8d25cac2aacf4151a09b344f7280",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/061_media_usage_cleanup.ts",
+      "bytes": 3177,
+      "sha256": "d128d8cfe029185300c84122819df75bbad30b348a2994b7553a8639109f01e4",
+      "gitBlob": "1f4b586c7720fdf4743900d107d827bcb485c9db",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/062_media_usage_cleanup_fence.ts",
+      "bytes": 9108,
+      "sha256": "e2e765cbf87df76068ea25c9652df303430d9e1c5e116104405fd321cfea2c3b",
+      "gitBlob": "396ec45118487b3b86a001fd8e9a7f4e8c9c9898",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/063_media_usage_incremental_work.ts",
+      "bytes": 13697,
+      "sha256": "37198a44a318dcc115874b3673078dea565a3e3db928006c17d99676cb852dd1",
+      "gitBlob": "3086207e4824212cf587990cd88bc24b8ee0f9ec",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/064_fts_plain_text.ts",
+      "bytes": 8589,
+      "sha256": "e00d9d5738d56686341214b2605a858f831416955cd9f109ebc9fc27617d30df",
+      "gitBlob": "0d72ce7b82393aa449bf78c4306bedb920d59a1d",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/065_media_usage_collection_deletion.ts",
+      "bytes": 3239,
+      "sha256": "c6646a9a6ec2923e12116e56f545e5d533ddd0084a4bf35cb379d6cefb74f7c8",
+      "gitBlob": "d02a3965531f8713eedc9206217ff5bae60f2c17",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/066_media_usage_reconciliation.ts",
+      "bytes": 4362,
+      "sha256": "f37da78af62f4bfb62a0d7d19ac2fb80106a17d82ef2a565671ddb3c9af1c22b",
+      "gitBlob": "c97e409a355087a75dccc5d927af2d31f6be5e9d",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/067_indexed_content_fields.ts",
+      "bytes": 1209,
+      "sha256": "034aed03dd22bb5bfa1948753dad52f12e9a5a1ec1563b2bfc5ef28f19042d23",
+      "gitBlob": "7e1b17ed0247305c9a05547a707116701d88e868",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/068_content_taxonomy_entry_groups.ts",
+      "bytes": 2018,
+      "sha256": "212287b9f56232e25b531020c54a847952d5710ee208e4895482e34d5a6a838d",
+      "gitBlob": "f1c4579ae89d66a99b4827c715913c4ef31bf4ca",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/069_collection_title_date_fields.ts",
+      "bytes": 1469,
+      "sha256": "23d4ba9315c8973d5572c01053e783c7e4ef34d1a081fe42109cc0b7c34ae9a1",
+      "gitBlob": "4639e771f3b619eec8455107530ab87d1740ea73",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/070_collection_routable.ts",
+      "bytes": 599,
+      "sha256": "d8d9c5b8839bdd01f303d7ba5d9cb6ae360bf58e53a4158bc734b8e05a2e76e3",
+      "gitBlob": "17bdfe263233990f3c697c6c6f24f7f58f94206a",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/071_restore_content_bylines_table.ts",
+      "bytes": 1399,
+      "sha256": "edc7e61355692995724c424ced8caef99010224378e9454491c6fe417ef1eb47",
+      "gitBlob": "200982122f2fb1aa9551049536ee64a9ba6ab0d6",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/072_media_folders.ts",
+      "bytes": 1948,
+      "sha256": "2452ed2096aa697ee9a56b018d027f9aaab8f8a647450c7d5eaeffae2bda07bf",
+      "gitBlob": "db0003387a4fe977799ca38b361eaca84c561bfc",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/073_media_focal_point.ts",
+      "bytes": 1629,
+      "sha256": "e157b0418c92f4203083840e619742e7d0dc51cbe7bc5e8af1a03ee40684e71e",
+      "gitBlob": "ed11df9cdc8b3f5fb16daa3448c18349243d3c2d",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/074_content_deleted_scheduled_index.ts",
+      "bytes": 2142,
+      "sha256": "ccf1d0d8a184af09d1ea72ece6726f64d784c24f16f06581fcdf403013200133",
+      "gitBlob": "2b2d91c783880ebf1ebe9b185d6a735e3d28fc8f",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/075_entry_edit_locks.ts",
+      "bytes": 1670,
+      "sha256": "e112d08096878e44518b80624f1be03150f87269aa5a11b9f2deb5d7ce17ce2b",
+      "gitBlob": "8ae70b00ff062f070bf17d0b7b6ac17ca51e31dd",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/076_collection_nav_group.ts",
+      "bytes": 794,
+      "sha256": "3f588136fc0fa154930cb571842df04a46fc60683f4454d342df7cb5462f05ea",
+      "gitBlob": "53d02c5bf887744a1aeea933ac6e2a6174f61059",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/077_plugin_storage_revisions.ts",
+      "bytes": 2765,
+      "sha256": "24573d23a151e9a99ee4e3c5a5fb1a18360f6f6d56ee0f3e8b62dae8528cf092",
+      "gitBlob": "0607219e6267e6d17cdf4a88169dec756cfc356f",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/078_menu_item_translation_groups.ts",
+      "bytes": 410,
+      "sha256": "fc4cb3ad8472ddff2d5dab669dab71a99fac8675850c4c4dc91e51e37ec62517",
+      "gitBlob": "8f808587f6fb5995af564560a84b3d062452cc6e",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/079_datetime_normalization.ts",
+      "bytes": 564,
+      "sha256": "e1a3eeecd9a2860a14b8ee54f7cbcd04a4f5e38a6bd92cb3b8aca1e3791ba9bf",
+      "gitBlob": "deb3c0da7de19bca7ec0d7e66fa31c10df293dd8",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/080_content_translation_locale_unique.ts",
+      "bytes": 3158,
+      "sha256": "bbf6e84df79ce09400af3ed44efd22ee3d8021388eb6a41827f21fe14ebc14bb",
+      "gitBlob": "9bb5a1f6ce0f43edf2224c557dde83aeef31d033",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/081_redirect_write_guards.ts",
+      "bytes": 9061,
+      "sha256": "b7ac364d5103850586f96b9e477f69919f9d57001a5adad2f7a0aa9d7cbed169",
+      "gitBlob": "1b1104168f4fe564ad477e7fd4e318e82bcfbace",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/082_taxonomy_translation_locale_unique.ts",
+      "bytes": 1571,
+      "sha256": "be1a684b5c2e484127c11704cb90d7bf0fc6bef095c95c413e553a0cffa5b6b9",
+      "gitBlob": "f25bd8c7506967805a351d3a8466f9b6d61cb551",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/083_block_types.ts",
+      "bytes": 2252,
+      "sha256": "6429246b2209c7da892ede761de84f6c7c765a5855c237d113414891b933bd37",
+      "gitBlob": "5e685cc2fcc1b82ac0de8a13c737198bd562d885",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/084_site_transfer.ts",
+      "bytes": 9447,
+      "sha256": "f25514f705b030d10c7dfe3f14affed8f3d166dc04cc34268bad289bb3b9a5b8",
+      "gitBlob": "ec109b37e3a6aeaabdfa8e2adcdf792778a778ad",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/085_taxonomy_def_groups.ts",
+      "bytes": 5530,
+      "sha256": "670f3dd867e3589abdf8d1107d6117e720b5e4b59e0ce1ffd3726627d14c5243",
+      "gitBlob": "1333b9c38210b98d064a763cbfac6587ab6cfce2",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/086_relations_structural.ts",
+      "bytes": 7455,
+      "sha256": "1531a8adf50bb35d19bccb5b42698066a6a22407ad2ea6285a3e3db3d54ca81b",
+      "gitBlob": "ebf8969921c6b23b03159fcf9d49b6062ad7010a",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/087_reference_field_relations.ts",
+      "bytes": 15817,
+      "sha256": "adfcbee9d768dc364ad1e700c32fe8122abc393218f9f1a32f2f802c1cdf9d49",
+      "gitBlob": "100316c2942f99d68e9c7dbef3f196e14bab9cdb",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+      "bytes": 1220,
+      "sha256": "f992b5fc5da55c1118d77fd29274d5349111f17d48fafa41bd4db9d3525e58fe",
+      "gitBlob": "da3036406f934bda4f7ac4f333b56a28a5f91331",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/089_auto_seed_completion.ts",
+      "bytes": 389,
+      "sha256": "da526951d591c944309d5c6e31882cca6c3e33e30bdf5813aeb85a610ef0d7b8",
+      "gitBlob": "b902b187f8f0fbf3e2231b134ba0d2ccac21d4fe",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/090_redirect_enable_loop_guard.ts",
+      "bytes": 2432,
+      "sha256": "d316604a6c4ea1126e4ce44d1b3510673d35efe8c7656c455b132764123b614f",
+      "gitBlob": "e2aa2ddb7bfc482b4ac1f421576102f11fd1062a",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/091_redirect_artifacts.ts",
+      "bytes": 4895,
+      "sha256": "b46da981a94f7abdb314ede88d21d0a55e2d15a9b72f29a23d4d68b6e6c930eb",
+      "gitBlob": "8952a759a6b7d2c25d81c9476d8615194500fbc4",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/runner.ts",
+      "bytes": 22736,
+      "sha256": "93fede33fd1223b501f7745f4ecc64034fd570951993f0c9b95d8ef44b8a0498",
+      "gitBlob": "252ce5d8fb5b683ba8c71d09cd27e51593ff0eac",
+      "alreadyFrozen": true
+    },
+    {
+      "path": "packages/core/src/database/pg-migration-lock.ts",
+      "bytes": 3115,
+      "sha256": "db06bd5eca4feae571184c50951c0369f6ea8a2f63abf52cc526f097602ae646",
+      "gitBlob": "cf8fd580c4549e50e1d6ef0a0cb8515579bb6bc3",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "bytes": 5766,
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "gitBlob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/datetime-normalization.ts",
+      "bytes": 9170,
+      "sha256": "96317452072327aa029ed4e01a4b7e7efc9aaf4ffed6bd401d7e3a73de01b31e",
+      "gitBlob": "eb31fb99e2d1e41c6001c5aec3ae49d82e39c345",
+      "alreadyFrozen": false
+    },
+    {
+      "path": "packages/core/src/i18n/config.ts",
+      "bytes": 3209,
+      "sha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7",
+      "gitBlob": "fe714e5ad514485fe1737585c663e470d50519df",
+      "alreadyFrozen": true
+    },
+    {
+      "path": "packages/core/src/utils/db-errors.ts",
+      "bytes": 2539,
+      "sha256": "2637fdc8b0b8d5f6c1d0816a788e5f6efb29748bd0096816f179ca185e3585e0",
+      "gitBlob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5",
+      "alreadyFrozen": false
+    }
+  ],
+  "sourceOnlyMigrationCount": 90,
+  "originalTaxonomy99Changed": false,
+  "taxonomySource27ExecutionCredit": 0,
+  "initialBaseline": "not run; Root fixture/dependency qualification pending",
+  "helperAndOriginalRegistryContentReferenceClosure": "Root authorized preparation direction; further finite whole graph and actual dependencies required before full22 execution",
+  "nativeCanonical14DualInstallation": "blocked:16 physical global index names collide on different tables; original26 declaration evidence retained in independent audit",
+  "originalHelperBody": "parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts retained unchanged; not yet configured to execute all Source reference-support classes"
+,
+  "actualSupportInitialBaseline": {
+    "command": [
+      "node",
+      "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      "vitest.taxonomy-source-fixture.config.ts"
+    ],
+    "cwd": "/workspace/cms-full-taxonomy-api-admin",
+    "head": "d5a73717ae88a1c81b079a31a9f9ba093f18482b",
+    "exitCode": 0,
+    "wallSeconds": 1.5077722339774482,
+    "logPath": "/tmp/taxonomy-d5a73717-source-support3-initial-baseline.log",
+    "logBytes": 223,
+    "logSha256": "63b757712bf32b4a5048c3362fe5b2ff52d3d3658154947640967de074b5a118",
+    "scope": "ONEthree ordinary Source support controls only, not Source taxonomy callbacks/nativecanonical success/PG/D1/Worker acceptance",
+    "SourceTaxonomy27Executed": 0,
+    "SourceTaxonomyAssertionCredit": 0,
+    "Native10D1eightRepeated": false,
+    "collected": 3,
+    "executed": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "fixtureErrors": 0,
+    "timeouts": 0,
+    "runnerDurationSeconds": 1.13,
+    "testDurationMs": 321,
+    "sourceMigrationCountGenuine": 90,
+    "sourceIndexAndMetadataCatalogueControl": "passed actual SourceSqlite metadata/introspection/indexes",
+    "nativeGenuineCollisionRefusalControl": "passed actualMIGRATION_REQUIRED; original catalogue retained; no Native marker writes",
+    "actualAtomicSourceMutationResultAndRollbackControl": "passed 1n actualrowaffected and whole latererror rollback",
+    "SourceTaxonomyCallbacksExecuted": 0,
+    "SourceTaxonomyValueAssertionCredit": 0,
+    "NativeSuccessfulMigrationProviderCredit": 0,
+    "NativeRegistryPgD1WorkerCredit": 0,
+    "productEditsAtRun": 0,
+    "committedLogPath": "docs/taxonomy-evidence/source-support3-baseline.log"
+  }
+}

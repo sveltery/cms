@@ -16,7 +16,7 @@ const cases = ['structured insert','structured update','structured delete','whol
   'whole Source reorder','whole Source pivot replacement','whole Source structure save'] as const;
 for (const target of ['raw D1','scoped D1'] as const) {
   for (const action of cases) {
-    test(`${target}: ${action} requires atomic adaptation before any taxonomy write`, {timeout:30_000}, async () => {
+    test(`${target}: ${action} uses only its actual atomic capability`, {timeout:30_000}, async () => {
       const h = await canonicalStorage(target);
       try {
         await migrateCms(h.database);
@@ -37,9 +37,49 @@ for (const target of ['raw D1','scoped D1'] as const) {
           'whole Source pivot replacement': () => repository.setTermsForEntry('post','entry','category',['term_b']),
           'whole Source structure save': () => saveTaxonomyStructure(db,'category','new_group',{hierarchical:false,collections:['post']})
         };
-        const before = await databaseSnapshot(h.database);
-        await assert.rejects(writes[action],/D1 taxonomy writes require atomic adaptation/);
-        assert.deepEqual(await databaseSnapshot(h.database),before);
+        if(action.startsWith('structured ')) {
+          const before=await databaseSnapshot(h.database);
+          await assert.rejects(writes[action],/D1 taxonomy writes require atomic adaptation/);
+          assert.deepEqual(await databaseSnapshot(h.database),before);
+        } else {
+          // Historical readiness expectations are superseded only for genuine
+          // installed atomic capabilities. Direct-write guards above stay exact.
+          const group=(await sql<{id:string}>`SELECT id FROM _cms_taxonomy_def_groups WHERE name='category'`.execute(h.database.db)).rows[0];
+          assert.ok(group);
+          await sql`UPDATE _cms_taxonomy_def_groups SET hierarchical=1,collections='[]' WHERE name='category'`.execute(h.database.db);
+          await sql`UPDATE _cms_taxonomy_defs SET hierarchical=1,collections='[]' WHERE name='category'`.execute(h.database.db);
+          const failures={
+            'whole Source delete': sql`CREATE TRIGGER taxonomy_atomic_failure BEFORE DELETE ON _cms_taxonomies
+              WHEN OLD.id='term_a' BEGIN SELECT RAISE(ABORT,'actual taxonomy atomic failure'); END`,
+            'whole Source reorder': sql`CREATE TRIGGER taxonomy_atomic_failure BEFORE UPDATE OF sort_order ON _cms_taxonomies
+              WHEN NEW.id='term_a' BEGIN SELECT RAISE(ABORT,'actual taxonomy atomic failure'); END`,
+            'whole Source pivot replacement': sql`CREATE TRIGGER taxonomy_atomic_failure BEFORE INSERT ON _cms_content_taxonomies
+              WHEN NEW.taxonomy_id='term_b' BEGIN SELECT RAISE(ABORT,'actual taxonomy atomic failure'); END`,
+            'whole Source structure save': sql`CREATE TRIGGER taxonomy_atomic_failure BEFORE UPDATE ON _cms_taxonomy_defs
+              WHEN NEW.name='category' BEGIN SELECT RAISE(ABORT,'actual taxonomy atomic failure'); END`
+          };
+          await failures[action as keyof typeof failures].execute(h.database.db);
+          const before=await databaseSnapshot(h.database);
+          await assert.rejects(writes[action],/actual taxonomy atomic failure/);
+          assert.deepEqual(await databaseSnapshot(h.database),before);
+          await sql`DROP TRIGGER taxonomy_atomic_failure`.execute(h.database.db);
+          await writes[action]();
+          if(action==='whole Source delete') {
+            assert.equal(await repository.findById('term_a'),null);
+            assert.ok(await repository.findById('term_b'));
+            assert.deepEqual((await sql`SELECT * FROM _cms_content_taxonomies`.execute(h.database.db)).rows,[]);
+          } else if(action==='whole Source reorder') {
+            assert.equal((await repository.findById('term_b'))!.sortOrder,0);
+            assert.equal((await repository.findById('term_a'))!.sortOrder,1);
+          } else if(action==='whole Source pivot replacement') {
+            assert.deepEqual((await sql<{taxonomy_id:string}>`SELECT taxonomy_id FROM _cms_content_taxonomies`.execute(h.database.db)).rows,[{taxonomy_id:'term_b'}]);
+          } else {
+            assert.deepEqual((await sql`SELECT id,hierarchical,collections FROM _cms_taxonomy_def_groups WHERE name='category'`.execute(h.database.db)).rows,
+              [{id:group.id,hierarchical:0,collections:'["post"]'}]);
+            assert.deepEqual((await sql`SELECT translation_group,hierarchical,collections FROM _cms_taxonomy_defs WHERE name='category'`.execute(h.database.db)).rows,
+              [{translation_group:group.id,hierarchical:0,collections:'["post"]'}]);
+          }
+        }
       } finally { await h.close(); }
     });
   }

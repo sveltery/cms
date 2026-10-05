@@ -1,0 +1,175 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ❯ tests/taxonomy-native/persisted-api.test.mjs (10 tests | 9 failed) 232ms
+   × definitions: create persists its real group, structure and collection scope 34ms
+   × definitions: translated labels share structure, and omitted locale falls back 21ms
+   × terms: label-only creation preserves Unicode slugs and resolves collisions in storage 22ms
+   × terms: nested edit rejects a cycle without changing the actual group 18ms
+   × terms: a translation shares parent and position while keeping its own label and slug 17ms
+   × terms: reorder applies to whole translation groups and keeps omitted siblings 18ms
+   × counts: real published rows count once per group; draft and trashed rows stay excluded 20ms
+   × cleanup: deleting a complete definition removes its real terms and group assignments 21ms
+   × assignment read: an untranslated concept remains unresolved instead of inventing a local term 21ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > definitions: create persists its real group, structure and collection scope
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:53:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > definitions: translated labels share structure, and omitted locale falls back
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:61:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > terms: label-only creation preserves Unicode slugs and resolves collisions in storage
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:72:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > terms: nested edit rejects a cycle without changing the actual group
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:81:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > terms: a translation shares parent and position while keeping its own label and slug
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:92:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > terms: reorder applies to whole translation groups and keeps omitted siblings
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:102:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > counts: real published rows count once per group; draft and trashed rows stay excluded
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:112:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > cleanup: deleting a complete definition removes its real terms and group assignments
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:126:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  tests/taxonomy-native/persisted-api.test.mjs > assignment read: an untranslated concept remains unresolved instead of inventing a local term
+AssertionError: Got unwanted rejection: ordinary taxonomy handlers must be available on the real product module
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/persisted-api.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-native/persisted-api.test.mjs:33:3
+     31| async function handlers() {
+     32|   let result;
+     33|   await assert.doesNotReject(async () => {
+       |   ^
+     34|     result = await import('../../src/lib/server/taxonomies/handlers.ts…
+     35|   }, 'ordinary taxonomy handlers must be available on the real product…
+ ❯ tests/taxonomy-native/persisted-api.test.mjs:138:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 1 passed (10)
+   Start at  12:22:14
+   Duration  957ms (transform 376ms, setup 0ms, import 611ms, tests 232ms, environment 0ms)
+
