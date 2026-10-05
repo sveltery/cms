@@ -5,6 +5,7 @@
   import { base } from '$app/paths';
   import { getContext,onDestroy } from 'svelte';
   import {createCalendarHoverTiming,type CalendarTooltipGroup} from './presentation.ts';
+  import {createCalendarTooltipTransit} from './tooltip-transit.ts';
   import { formatTimeAgo, formatShortDuration } from './calendar.ts';
   import { isPlainClick, stateLabels } from './entry.ts';
   import LocaleChip from './CalendarLocaleChip.svelte';
@@ -13,14 +14,26 @@
   const href = $derived(`${base}/content/${encodeURIComponent(item.collection)}/${encodeURIComponent(item.id)}?locale=${encodeURIComponent(item.locale)}`);
   const tooltipId=$props.id();
   let anchor=$state<HTMLAnchorElement>(),tooltip=$state<HTMLDivElement>(),tooltipOpen=$state(false),left=$state(0),top=$state(0),below=$state(false);
+  let transit:ReturnType<typeof createCalendarTooltipTransit>|undefined,removeTransitListener:(()=>void)|undefined;
+  function stopTransit(){transit?.destroy();transit=undefined;removeTransitListener?.();removeTransitListener=undefined;}
   function hideTooltip(){hover.close();}
-  function closeTooltip(){tooltipOpen=false;}
+  function closeTooltip(){stopTransit();tooltipOpen=false;}
   function showTooltip(){if(!chip||!anchor)return false;const rect=anchor.getBoundingClientRect();left=Math.max(8,Math.min(rect.left,window.innerWidth-272));top=Math.max(8,rect.top-10);tooltipOpen=true;return true;}
   const hover=createCalendarHoverTiming(showTooltip,closeTooltip,getContext<CalendarTooltipGroup|undefined>('calendar-tooltip-group'));
-  function hoverTooltip(event:PointerEvent){if(chip)hover.enter(event.pointerType);}
-  function leaveTooltip(event:PointerEvent){hover.cancel();if(event.relatedTarget instanceof Node&&(anchor?.contains(event.relatedTarget)||tooltip?.contains(event.relatedTarget)))return;hideTooltip();}
+  function hoverTooltip(event:PointerEvent){stopTransit();if(chip)hover.enter(event.pointerType);}
+  function transitEvent(event:PointerEvent,leaving=false){const target=event.composedPath()[0]??event.target;return{type:leaving?'mouseleave' as const:'mousemove' as const,clientX:event.clientX,clientY:event.clientY,insideTrigger:target instanceof Node&&Boolean(anchor?.contains(target)),insidePopup:target instanceof Node&&Boolean(tooltip?.contains(target)),relatedInsidePopup:event.relatedTarget instanceof Node&&Boolean(tooltip?.contains(event.relatedTarget))};}
+  function leaveTooltip(event:PointerEvent){
+    hover.cancel();
+    if(!tooltipOpen||!anchor||!tooltip||event.pointerType!=='mouse'){hideTooltip();return;}
+    if(!transit){
+      transit=createCalendarTooltipTransit({x:event.clientX,y:event.clientY,side:below?'bottom':'top',rects:()=>({trigger:anchor!.getBoundingClientRect(),popup:tooltip!.getBoundingClientRect()}),onClose:hideTooltip});
+      const moved=(next:PointerEvent)=>{if(next.pointerType==='mouse')transit?.move(transitEvent(next));};
+      document.addEventListener('pointermove',moved);removeTransitListener=()=>document.removeEventListener('pointermove',moved);
+    }
+    transit.move(transitEvent(event,true));
+  }
   $effect(()=>{if(tooltipOpen&&tooltip&&anchor){if(!tooltip.matches(':popover-open'))tooltip.showPopover();const trigger=anchor.getBoundingClientRect(),popup=tooltip.getBoundingClientRect(),above=trigger.top-10-popup.height;left=Math.max(8,Math.min(trigger.left+(trigger.width-popup.width)/2,window.innerWidth-popup.width-8));below=above<8;top=below?Math.max(8,Math.min(trigger.bottom+10,window.innerHeight-popup.height-8)):above;}});
-  onDestroy(()=>hover.destroy());
+  onDestroy(()=>{stopTransit();hover.destroy();});
 </script>
 <a bind:this={anchor} {href} class:chip class:published={item.state === 'published'} class:overdue={item.state === 'overdue'}
   aria-haspopup={onSelect ? 'dialog' : undefined} aria-current={selected ? 'true' : undefined}

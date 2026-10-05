@@ -13,13 +13,13 @@ beforeEach(()=>vi.useFakeTimers({toFake:['setTimeout','clearTimeout','performanc
 afterEach(()=>vi.useRealTimers());
 describe('Source safePolygon hover transit',()=>{
   for(const side of ['top','bottom','left','right'] as const){
-    it(`keeps ${side} gap bridge transit open without a timer`,()=>{const f=setup(side);f.owner.move(move(...f.bridge));vi.advanceTimersByTime(100);expect(f.close).not.toHaveBeenCalled();});
-    it(`permits ${side} diagonal transit for the Source40ms intent window`,()=>{const f=setup(side);f.owner.move(move(...f.diagonal));vi.advanceTimersByTime(39);expect(f.close).not.toHaveBeenCalled();vi.advanceTimersByTime(1);expect(f.close).toHaveBeenCalledTimes(1);});
+    it(`keeps ${side} gap bridge transit open without a timer`,()=>{const f=setup(side);f.owner.move(move(f.bridge[0],f.bridge[1]));vi.advanceTimersByTime(100);expect(f.close).not.toHaveBeenCalled();});
+    it(`permits ${side} diagonal transit for the Source40ms intent window`,()=>{const f=setup(side);f.owner.move(move(f.diagonal[0],f.diagonal[1]));vi.advanceTimersByTime(39);expect(f.close).not.toHaveBeenCalled();vi.advanceTimersByTime(1);expect(f.close).toHaveBeenCalledTimes(1);});
   }
   it('closes immediately outside the source polygon',()=>{const f=setup();f.owner.move(move(20,96));expect(f.close).toHaveBeenCalledTimes(1);});
-  it('keeps actual popup targets open and cancels a pending intent timer',()=>{const f=setup();f.owner.move(move(...f.diagonal));f.owner.move(move(90,80,{insidePopup:true}));vi.advanceTimersByTime(100);expect(f.close).not.toHaveBeenCalled();});
+  it('keeps actual popup targets open and cancels a pending intent timer',()=>{const f=setup();f.owner.move(move(f.diagonal[0],f.diagonal[1]));f.owner.move(move(90,80,{insidePopup:true}));vi.advanceTimersByTime(100);expect(f.close).not.toHaveBeenCalled();});
   it('keeps an actual popup related target open on mouse leave',()=>{const f=setup();f.owner.move(move(120,99,{type:'mouseleave',relatedInsidePopup:true}));vi.advanceTimersByTime(100);expect(f.close).not.toHaveBeenCalled();});
   it('closes when the cursor leaves from the opposite trigger edge',()=>{const f=setup();const close=vi.fn();const owner=createCalendarTooltipTransit({x:120,y:120,side:'top',rects:()=>({trigger,popup:f.popup}),onClose:close});owner.move(move(120,120,{type:'mouseleave'}));expect(close).toHaveBeenCalledTimes(1);});
-  it('closes after entering then leaving the popup outside the bridge',()=>{const f=setup();f.owner.move(move(90,80,{insidePopup:true}));f.owner.move(move(...f.diagonal));expect(f.close).toHaveBeenCalledTimes(1);});
-  it('disposes its pending40ms timer when the tooltip owner is destroyed',()=>{const f=setup();f.owner.move(move(...f.diagonal));f.owner.destroy();vi.advanceTimersByTime(100);expect(f.close).not.toHaveBeenCalled();});
+  it('closes after entering then leaving the popup outside the bridge',()=>{const f=setup();f.owner.move(move(90,80,{insidePopup:true}));f.owner.move(move(f.diagonal[0],f.diagonal[1]));expect(f.close).toHaveBeenCalledTimes(1);});
+  it('disposes its pending40ms timer when the tooltip owner is destroyed',()=>{const f=setup();f.owner.move(move(f.diagonal[0],f.diagonal[1]));f.owner.destroy();vi.advanceTimersByTime(100);expect(f.close).not.toHaveBeenCalled();});
 });
