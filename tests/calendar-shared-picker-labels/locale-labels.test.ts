@@ -5,13 +5,31 @@ import { render } from 'svelte/server';
 import { getDayPickerLocale as sourceLocale } from '../../parity/emdash/calendar-shared-picker-labels/source/packages/admin/src/locales/day-picker.ts';
 import { getDayPickerLocale as nativeLocale } from '../../src/lib/ui/date-time-locales.ts';
 import Fields from '../../src/lib/ui/PublishingDateTimeFields.svelte';
-import { DateLib } from 'react-day-picker';
+import { DateLib, labelNav, labelPrevious } from 'react-day-picker';
+import { getPublishingDatePickerLabels } from '../../src/lib/ui/date-time-picker-labels.ts';
 
 const locales = ['en', 'ar', 'eu', 'bn', 'ca', 'zh-CN', 'zh-TW', 'cs', 'da', 'nl', 'en-GB', 'fa', 'fr', 'ka', 'de', 'hi', 'hu', 'id', 'ja', 'nb', 'pl', 'pt-BR', 'sr-Latn', 'es-419', 'es-ES', 'sv', 'th', 'tr', 'uk'];
 const day = new Date(2026, 9, 5, 12);
 const props = { date: day, time: '09:05', dateAriaLabel: 'Publication date' };
 const escape = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); });
+
+it.each([undefined, ''])('retains Source default for absent/falsy locale navigation label %s', value => {
+  const locale = { ...sourceLocale('en'), labels: { labelNav: value } };
+  expect(getPublishingDatePickerLabels(locale).labelNav()).toBe(labelNav());
+});
+it('keeps Source locale string labels as constant callbacks', () => {
+  const locale = { ...sourceLocale('en'), labels: { labelNav: 'LOCALIZED NAVIGATION' } };
+  expect(getPublishingDatePickerLabels(locale).labelNav()).toBe('LOCALIZED NAVIGATION');
+});
+it('preserves the exact Source locale function label', () => {
+  const locale = sourceLocale('fr');
+  expect(getPublishingDatePickerLabels(locale).labelDayButton).toBe(locale.labels!.labelDayButton);
+});
+it.each([undefined, ''])('retains Source previous-month default for absent/falsy locale label %s', value => {
+  const locale = { ...sourceLocale('en'), labels: { labelPrevious: value } };
+  expect(getPublishingDatePickerLabels(locale).labelPrevious()).toBe(labelPrevious());
+});
 
 it.each(locales)('retains the complete Source locale label object for %s', locale => {
   expect((nativeLocale(locale) as ReturnType<typeof sourceLocale>).labels).toEqual(sourceLocale(locale).labels);
