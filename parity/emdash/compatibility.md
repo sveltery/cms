@@ -2136,6 +2136,111 @@ and framework substitutions remain proposed pending current-head full normal13,
 secured9, independent/configured review and specific Root approval before the
 author's expected-head regular merge. Full UI, QueryCore, App/Seed, PostgreSQL
 and deployed Worker integration remain incomplete.
+### Byline backend: canonical storage and native administrative transport (proposed PR108)
+
+This preparation snapshot covers [PR108](https://github.com/sveltery/cms/pull/108)
+against actual public Main `c3d135a6f20e4319ee07eebb0f9009b57f2985f9`,
+with immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+The [backend scope](../../docs/byline-backend.md) and
+[authority/evidence inventory](../../docs/byline-backend-ports.json) distinguish
+whole Source callbacks, supplemental Original native requirements and held scope.
+The fourteen whole original files contain234 declarations and598 static expect
+expressions; AST corrects the preliminary route-registration regex estimate from
+six to five callbacks. Static inventory and copied dependency closure establish
+no runtime credit. Nine families execute216 callbacks without modifying their
+bodies, clocks, fixtures, data or expectations. Genuine Source reference SQLite
+and canonical native storage are separate databases. PostgreSQL is unconfigured.
+
+**BYL-01 — storage/API framework substitution.** The pinned authorities are
+`packages/core/src/database/repositories/byline.ts`, `schema/byline-registry.ts`,
+`bylines/{index,credits,field-defs-cache}.ts`, `api/handlers/bylines.ts`,
+`api/handlers/byline-fields.ts`, and the seven complete Astro byline/byline-fields
+route modules. Source uses `_emdash_*` byline tables, `media`, `options`, Astro
+Role contexts and injected `/_emdash/api/admin/*` URLs. Native code uses the
+existing canonical provider9 tables and provider14 content pointer indices.
+Only seven finite Kysely TableNodes map to the physical tables; raw SQL text,
+literals, catalogues, logs, results and returned datasets are never rewritten.
+The sole field-definition cache keeps its original version/odd-bookend/deadline
+behavior under `sveltery:byline-field-defs`, sharing existing menus ALS,
+request/object caches, i18n and deferred task owners. SvelteKit exposes
+`/api/bylines` and `/api/byline-fields`; static reorder wins by native routing.
+The five original Astro registration callbacks remain unconfigured and receive
+zero registration parity credit. No second tables, database or migration are
+installed. This necessary framework substitution is proposed; a specific final
+BYL-01 acceptance decision is not recorded at this snapshot.
+
+**BYL-02 — mandatory actual-owner atomic writes.** Source's profile/custom-field
+transaction helper and content-credit methods use callback transactions or rely
+on their outer caller for atomicity. The canonical adapter contract requires
+compiled atomic batches and forbids non-atomic callback fallbacks. Native
+profile/custom-field writes, field deletion/reorder, credit replacement/copy and
+last-sibling cleanup use the actual registered owner's atomic batch. The last
+sibling conditions execute in SQL after deleting that sibling within the same
+batch. Read-only compiled replacement/copy/deletion plans let the sole content
+lifecycle owner append credits to its own atomic batch and invalidate only after
+success; this PR does not install another content lifecycle. Original canonical
+requirements observe physical rows and pointers after real SQL aborts on Node,
+raw Miniflare D1 and the serialized D1 connection adapter. Initial unsupported-D1
+values, partial replacement/copy rollback values and actual missing-plan values
+are genuine native reds; import/fixture errors receive zero causal credit.
+Original Source domain controls remain unchanged and pass on genuine separate
+Source SQLite. These native guarantees are intentional architecture differences,
+not a reproduced Source bug fix or Source-D1 parity claim. D1 Sessions/bookmarks
+and deployed D1 remain unconfigured. Specific final BYL-02 acceptance is pending.
+
+**BYL-03 — actual permission/origin composition and unavailable hooks.** Immutable
+`packages/auth/src/{types,rbac}.ts` assigns bylines:read to Subscriber and
+bylines:manage to Editor. Both literals already existed in the native permission
+threshold owner; this PR only appends them to the existing service-principal
+projection and Permission union, preserving all old permissions/order. Whole
+existing permission-array/admin-count controls retain their bodies and receive
+Source-backed expected-array maintenance (admin25). Unchanged original
+controlled Role/APIContext route fixtures map through this actual owner. They
+do not execute Source auth middleware, real HTTP session resolution, credentials,
+signatures or CSRF, and receive zero such credit. Native routes consume the
+existing trusted composition, mutation opt-in and session origin guard; native
+unconfigured/disabled storage returns503 whereas Source route initialization
+returns500. Source response schemas, coercion (including original boolean query
+coercion), validations and reachable error statuses remain unchanged. Real
+configured byline hook callbacks may be supplied at the domain seam; an absent
+native full plugin pipeline is omitted, rather than replaced by a fake pipeline.
+Complete pipeline isolation/capability/MCP and the original hooks2/userlink5
+families remain unconfigured. The finite permission integration was authorized
+by Root during development; final exact-head BYL-03 acceptance is still pending.
+
+**BYL-04 — honest test hosting and incomplete scope.** The Source fixture registers
+its real Source owner explicitly and runs nine complete pinned migration bodies
+001/002/003/008/009/024/031/040/042 plus ordinary post/page collection metadata.
+It supplies no Source migration runner/locking, schema producer, general users
+facade or canonical installation credit. The unchanged whole protected route
+families use direct controlled Role contexts; Source cache6/race5 retain original
+clocks/gates and SQLite rows/version bookends, with PG0. Missing dependency
+imports and Native fixture mistakes remain retained and classified separately.
+The canonical installation still proves no `_emdash_*` tables. Full SDK reverse
+query/empty-table hydration2, Astro registration5, userlink5/hooks2, content
+permanent-delete4, UI, MCP, Seed, general users, PostgreSQL and deployed hosting
+remain unfinished. The current exported reverse helper explicitly rejects while
+its public SDK dependency is unavailable; it does not synthesize empty results.
+
+At this immutable preparation point, complete final-head normal13/secured9
+checks, fresh independent/configured review, final BYL-01 through BYL-04
+acceptance, exact-head Root approval, author expected-head regular merge and
+post-Main verification are pending. Earlier focused reports are historical
+receipts, not self-referential qualification of a future successor head.
+
+### Byline PR108: published taxonomy union checkpoint
+
+The ordinary union now includes actual public Taxonomy Main `d76016cb022269aa4a9127f139728e6213f7c785`. Corrected regular successor `b6e031022d7a4cf9d3a2bcbc6ae1cae58a78d4dd` preserves every published command/dependency/lock/bootstrap/CI byte and all521 immutable Source authorities. Complete focused Source216 and Native18 pass on this corrected tree; the old initial local merge with unresolved markers remains historical and is corrected without rewriting history. Existing role projections retain Taxonomy and Byline rights with native administrator count27; the earlier admin25 count above describes its historical pre-Taxonomy checkpoint. BYL-01 through BYL-04 remain proposed, and full content lifecycle/UI/SDK/plugin/user/hosting scope and final-head whole gates/review/approval remain open. No new parity credit follows from this union or documentation update.
+
+### Byline PR108: configured cache isolation repair
+
+Review `4180251385` identifies a Native multi-database hosting requirement: configured Node paths and real D1 bindings may share the same even registry version without sharing definitions. The immutable Source `bylines/field-defs-cache.ts` uses its singleton holder plus isolated/dirty bypass; that complete original body and whole tests remain byte-identical. The Native adaptation partitions the existing global holder map and request version/defs keys by the sole existing registered Byline database owner. Unknown read-only derived views honestly bypass both cache tiers; they never receive an invented owner. Original even/dirty/isolation/reclaim behavior and clocks remain. Two real Node/D1 value reds at `6ec71e50` precede fix `6bb2fa83`, then meaningful single owner-lookup refactoring with three additional controls; Native23 and unchanged selected Source216 pass. Source copied callback credit added0; same-owner raw/logical views still share one holder. This necessary Native multi-database cache adaptation is proposed within BYL-01; exact final acceptance remains pending. [Evidence](../../docs/byline-evidence/cache-owner-closure.json) separates actual value reds and supplemental controls.
+
+CI500 current f2 reported1491 service passes plus one Native Subscriber-array mismatch from the already authorized Byline projection. Only existing `bylines:read` was added to that old expectation; the unchanged D1 runtime/session callback now passes without any new protected probe. Historical whole failed raw is retained locally, with0 whole13 credit. Current successor complete hosted13/secured9 and fresh reviews/Root approval/author regular merge remain open; full Byline lifecycle/UI/SDK/users/hooks/hosting still remain unfinished.
+
+### Byline PR108: published Schema16 union checkpoint
+
+Regular union `4d136d94c3be011503d427452551df22c8615282` adopts actual public Schema Main `f6d10ddfe66c81b4a6203f6cccdcf9d70d8c953b`. Its sole provider16, all frozen1–15, complete Source22/Native response1/index13 terminal commands, every prior script/dependency/lock/bootstrap/CI byte and complete Schema compatibility records are retained. Only the package command conflict is resolved by preserving the complete new public chain and appending the exact original BylineSource/Native tail. Whole selected Source216 passes at this actual combined tree. This ordinary integration adds no migration, Source parity credit or new scope; current-head whole hosted normal13/secured9 and fresh closure/configured review precede exact Root approval and author regular merge. BYL-01 through BYL-04 and full unfinished feature scope remain open until their actual decisions/integrations.
 
 ## Proposed complete rich content editor test-first port
 
@@ -2240,5 +2345,7 @@ Fresh same-feature review found RFEFORMFINAL01: Native `showModal()` retains the
 RFEFORMFINAL01 browser acceptance now has a separate supplemental Native callback in the existing secured authoring job, preserving all three original137 Source callback families and clocks. Actual Playwright Enter first submits an unprotected form as a positive control, then exercises the production editor's native dialog/search and real enclosing draft Save. No synthetic submit, dialog/geometry polyfill or new provider is supplied. At the initial295 seal execution was pending. The Source portal/Native dialog transport remains disclosed; this callback addresses only real keyboard/form locality.
 
 RFEFORMFINAL01 actual CI498 at295 passes whole secured9 and authoring4files/138 callbacks (original Source91/44/2 plus Native1) with official sandboxed Chromium1243. Normal111603415461 is cancelled at the unchanged15-minute deadline during Taxonomy Native D1 work; successful earlier phases do not establish whole13 or unexecuted downstream-stage credit. Complete original logs remain preserved; no actual assertion value red is claimed for that infrastructure stop. Actual public Schema16 Main f6d is adopted by ordinary merge22575b75, retaining its complete Source36 gate before wholeRich206/Native35 and all scripts/deps/lock/bootstrap/browser config/workflow. Literal observed whitespace attributes cover exactly32 inherited Schema raw log paths without any byte rewrite. Current combined gates/configured/fresh closure and Root exact-head approval remain pending; this is not fullEditor acceptance.
+
+RFE publication transport: actual authenticated App counterparts retain two ordinary nodes and exact native trees: native225→public538bc12 (parents public295 and actualf6), native580→publicdfdfc905 (parent actual538). Actual Git metadata is unsigned/verifiedfalse, recorded without a signed-commit claim. Native history remains local and unchanged; no-force branch advancement preserves server protections and adds zero parity credit. The next ordinary union adopts actual public Byline Main90fa with521 whole Source authorities, full Source216/Native23 gates and the published sole cache/lifecycle fixes. Entire incoming compatibility/attribute histories and owned Rich suffix remain intact; all old commands/deps/lock/bootstrap/workflow/editor138/clocks/raw bytes and provider16 are retained. CI509 belongs to prior publicdfdf; new combined whole gates/configured/fresh closure/Root exact merge approval remain pending.
 
 Regular merge `d21f14d352ea9c177efe2e0cf66980552dc16b02` adopts actual published Taxonomy Main `d76016cb022269aa4a9127f139728e6213f7c785` as second parent after owned `ab9ad84d1149eec38e915b61fb500234f1f51a2a`. The finite three-conflict resolution retains all incoming/owned commands, deps/importers,617 package records/632 snapshots, exact4556-byte first manager document and its15/15 records, complete incoming compatibility prefix and complete owned Rich suffix. The combined Source chain retains every old command, the actual full Taxonomy gate and both whole rich206/Native35 gates. No private producer branch is adopted; all incoming Source authorities/provider/security/clock/runtime files remain unchanged. Actual frozen union install, final current normal13/secured9/Source137 checks, fresh/configured closure and Root exact-head approval remain required before the author regular merge. Full Editor/media/reference/plugin/blocks/repeater6/protected4E2E/localization/accessibility remains incomplete.

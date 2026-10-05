@@ -1,0 +1,79 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testFirst": "6ec71e50",
+  "fix": "6bb2fa83",
+  "refactor": "e6601edf47082efd8b2d27ed474953c89570c6f4",
+  "classification": {
+    "firstRed": {
+      "oldPassed": 18,
+      "newValueFailed": 2,
+      "infrastructureFailed": 0,
+      "exit": 1
+    },
+    "fixGreen": {
+      "passed": 20,
+      "failed": 0,
+      "exit": 0
+    },
+    "refactorGreen": {
+      "passed": 23,
+      "failed": 0,
+      "exit": 0
+    },
+    "source": {
+      "selectedWholeFamilies": 9,
+      "passed": 216,
+      "failed": 0,
+      "exit": 0,
+      "bodiesClocksMocksFixturesDataExpectations": "unchanged",
+      "cacheWhole": 6,
+      "originalBoundedRaceWhole": 5,
+      "authorities": 521,
+      "originalCallbackCreditAdded": 0
+    },
+    "runtimeD1": {
+      "oldWholeCallbackPassed": 1,
+      "failed": 0,
+      "expectationMaintenance": "only appended existing Source-backed bylines:read to Subscriber array",
+      "newProtectedProbeCredit": 0
+    }
+  },
+  "identity": "existing storage.ts registered actual CmsDatabase owner WeakMap; no new database/cache/write owner",
+  "unknownReadViews": "bypass both tiers",
+  "sourceRuntimeAdaptation": "multi-database Native partition only; original global Source cache body retained immutable",
+  "wholeGate": "successor current hosted13/secured9 pending",
+  "raws": [
+    {
+      "path": "docs/byline-evidence/cache-owner-first-red.log",
+      "bytes": 2830,
+      "sha256": "d1457a52816f0e428699d78bcc1e4358cbc0d62cff3994c556a658ad43bcc2ef"
+    },
+    {
+      "path": "docs/byline-evidence/cache-owner-fix-green.log",
+      "bytes": 278,
+      "sha256": "dcda11d9f15dd2eb4f66214e0b41d01d25feb50018b898ffa9b988a1aeff9cd9"
+    },
+    {
+      "path": "docs/byline-evidence/cache-owner-refactor-green.log",
+      "bytes": 278,
+      "sha256": "0772e6f0c22063e850c6977f331d1c568dec8e94c838ce81aa92d90d87537b59"
+    },
+    {
+      "path": "docs/byline-evidence/cache-owner-source216.log",
+      "bytes": 20734,
+      "sha256": "2386e69f453dcd15af21151d698ce1fb07f689d5d666d42a4720641af50c1df1"
+    },
+    {
+      "path": "docs/byline-evidence/runtime-d1-rights-green.log",
+      "bytes": 246,
+      "sha256": "b8f15bd0172a2a4505d79c4a4875d4f24d9c4431242eb640656755a3bf2f8d03"
+    }
+  ],
+  "sourceFocusedAt": "e6601edf meaningful final refactor",
+  "checker": {
+    "errors": 0,
+    "warnings": 0,
+    "exit": 0,
+    "raw": "/tmp/byline108-cache-owner-check.log"
+  }
+}

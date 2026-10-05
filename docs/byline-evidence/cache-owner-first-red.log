@@ -1,0 +1,68 @@
+$ vitest run --config vitest.byline-native.config.ts -- --reporter=json --outputFile=/tmp/byline108-cache-owner-first-red.json
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ tests/bylines/database-cache-isolation.test.ts (2 tests | 2 failed) 1034ms
+     × keeps different SQLite definitions and IDs distinct at the same even version 97ms
+     × keeps different real D1 bindings distinct within the same request at the same even version 935ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bylines/database-cache-isolation.test.ts > Byline field cache belongs to the actual configured database > keeps different SQLite definitions and IDs distinct at the same even version
+AssertionError: expected [ [ …(2) ] ] to deeply equal [ [ …(2) ] ]
+
+- Expected
++ Received
+
+  [
+    [
+-     "01M452BQSTE4TFDGWR0F9HNG6M",
+-     "second_job",
++     "01M452BQSQYEYETFDHBM0CRYPM",
++     "first_job",
+    ],
+  ]
+
+ ❯ tests/bylines/database-cache-isolation.test.ts:27:105
+     25|    expect(await secondRegistry.getVersion()).toBe(2);
+     26|    expect((await getBylineFieldDefs(registerBylineDatabase(first))).ma…
+     27|    expect((await getBylineFieldDefs(registerBylineDatabase(second))).m…
+       |                                                                                                         ^
+     28|   } finally { await first.close(); await second.close(); }
+     29|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/bylines/database-cache-isolation.test.ts > Byline field cache belongs to the actual configured database > keeps different real D1 bindings distinct within the same request at the same even version
+AssertionError: expected [ [ …(2) ] ] to deeply equal [ [ …(2) ] ]
+
+- Expected
++ Received
+
+  [
+    [
+-     "01M452BRP7C9J0QYPQ1YYB9C3F",
+-     "second_job",
++     "01M452BRNKTP1CYWK587AB1W9Z",
++     "first_job",
+    ],
+  ]
+
+ ❯ tests/bylines/database-cache-isolation.test.ts:45:106
+     43|    await runWithContext({editMode:false},async () => {
+     44|     expect((await getBylineFieldDefs(registerBylineDatabase(first))).m…
+     45|     expect((await getBylineFieldDefs(registerBylineDatabase(second))).…
+       |                                                                                                          ^
+     46|    });
+     47|   } finally { await first.close(); await second.close(); await firstSt…
+ ❯ tests/bylines/database-cache-isolation.test.ts:43:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 18 passed (20)
+   Start at  03:40:10
+   Duration  7.05s (transform 803ms, setup 0ms, import 1.80s, tests 4.80s, environment 0ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

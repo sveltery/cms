@@ -1,0 +1,136 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (23 tests) 1593ms
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts (64 tests | 3 failed) 2612ms
+     ✓ creates and reads bylines 151ms
+     ✓ supports updates and paginated listing 92ms
+     ✓ assigns ordered bylines to content and syncs primary_byline_id 53ms
+     ✓ reorders bylines and updates primary_byline_id 67ms
+     × hydrates avatar storage key and alt via the media join 79ms
+     × hydrates avatar storage key for author-inferred bylines via findByUserIds 42ms
+     × hydrates avatar media on the single-row byline finders 71ms
+     ✓ getContentBylinesMany handles more IDs than SQL_BATCH_SIZE 49ms
+     ✓ getContentBylinesMany does not duplicate credits for repeated content IDs 41ms
+     ✓ findByUserIds handles more IDs than SQL_BATCH_SIZE 56ms
+     ✓ deletes byline, removes links, and nulls primary_byline_id 75ms
+       ✓ create() mints translation_group equal to id for anchors 24ms
+       ✓ create({ translationOf }) joins the source's translation_group 52ms
+       ✓ create({ translationOf }) throws when the source byline is missing 25ms
+       ✓ (slug, locale) is unique — same slug across locales is allowed 15ms
+       ✓ findBySlug filters strictly by locale when provided 58ms
+       ✓ findByUserId filters strictly by locale when provided 20ms
+       ✓ findMany filters strictly by locale 17ms
+       ✓ setContentBylines stores translation_group in the junction (not row id) 15ms
+       ✓ setContentBylines sets primary_byline_id to the translation_group 45ms
+       ✓ getContentBylines returns the row at the requested locale 16ms
+       ✓ getContentBylines is strict — credits with no row at the requested locale are omitted 26ms
+       ✓ getContentBylines without a locale returns every locale variant of the credit 65ms
+       ✓ getContentBylinesMany is strict per requested locale 24ms
+       ✓ copyContentBylines clones junction rows verbatim 32ms
+       ✓ copyContentBylines is a no-op when the target already has credits 51ms
+       ✓ delete preserves siblings and keeps junction rows when other translations exist 21ms
+       ✓ delete cascades junction rows when the last sibling is removed 22ms
+       ✓ listTranslations / findByTranslationGroup return every sibling 36ms
+       ✓ listTranslations returns [] for a missing byline 12ms
+       ✓ hasContentBylines distinguishes empty from unresolved-at-locale 20ms
+       ✓ hasContentBylinesMany returns the set of credited content ids 21ms
+       ✓ setContentBylines dedupes by translation_group, not wire row id 19ms
+       ✓ schema enforces one row per (translation_group, locale) 39ms
+       ✓ populates customFields as {} when no fields are registered 30ms
+       ✓ hydrates translatable values per locale variant 36ms
+       ✓ hydrates group-shared values identically across every locale variant 44ms
+       ✓ mixes translatable and group-shared values on the same byline 41ms
+       ✓ hydrates customFields across findMany / findByTranslationGroup / findByUserIds 15ms
+       ✓ hydrates customFields onto ContentBylineCredit via getContentBylines 47ms
+       ✓ hydrates customFields per-row when the same byline appears multiple times in one batch 28ms
+       ✓ hydrateBylineCustomFields batches disjoint-group hydration in one pass 50ms
+       ✓ dedupes group-shared queries across locale buckets within one request 31ms
+       ✓ tolerates orphaned value rows (definition deleted but value lingering) 35ms
+       ✓ an isolated request never consults the global holder (matched-version case) 82ms
+       ✓ an isolated request does not poison the global holder 77ms
+       ✓ removes group-shared values when the last sibling of an identity is deleted 28ms
+       ✓ preserves group-shared values when a non-last sibling is deleted 23ms
+       ✓ clears per-row translatable values via app-level cleanup (works without FK pragma) 28ms
+       ✓ FK ON DELETE CASCADE on _emdash_byline_field_values still serves as defense-in-depth 26ms
+       ✓ cascades per-row translatable values via FK when any sibling is deleted 20ms
+       ✓ writes a translatable value and round-trips via findById 60ms
+       ✓ writes a non-translatable value to the group-shared table 25ms
+       ✓ upsert is idempotent — re-applying the same write yields the same row 62ms
+       ✓ overwrites an existing value on subsequent updates 35ms
+       ✓ clears a value when written as null (deletes the row) 58ms
+       ✓ throws EmDashValidationError on unknown slugs (no partial write) 27ms
+       ✓ rejects type mismatches with EmDashValidationError 29ms
+       ✓ rejects select values outside the registered options 54ms
+       ✓ rejects url values that don't parse as a URL 21ms
+       ✓ rejects url values with non-http(s) schemes (javascript:, data:, mailto:, ftp:) 58ms
+       ✓ hydration ignores rows written to the wrong owner table 43ms
+       ✓ invalidates the per-request group-shared cache after a non-translatable write 11ms
+       ✓ does not write customFields when the input omits the key entirely 16ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts (43 tests) 1579ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts (18 tests) 1124ms
+       ✓ rejects an empty-string locale on byline create  369ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts > BylineRepository > hydrates avatar storage key and alt via the media join
+Error: table media has no column named status
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts:154:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts > BylineRepository > hydrates avatar storage key for author-inferred bylines via findByUserIds
+Error: table media has no column named status
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts:217:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts > BylineRepository > hydrates avatar media on the single-row byline finders
+Error: table media has no column named status
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts:259:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  3 failed | 145 passed (148)
+   Start at  01:29:10
+   Duration  13.96s (transform 2.35s, setup 0ms, import 5.20s, tests 6.91s, environment 0ms)
+
+JSON report written to /tmp/byline-source-first-runtime-r2.json

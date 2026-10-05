@@ -1,0 +1,39 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-complete-byline-backend
+Getting Svelte diagnostics...
+
+/workspace/cms-complete-byline-backend/src/lib/server/bylines/routes-profile.ts:69:33
+Error: Type 'Promise<unknown>' is not assignable to type 'void | Promise<void>'.
+  Type 'Promise<unknown>' is not assignable to type 'Promise<void>'.
+    Type 'unknown' is not assignable to type 'void'. 
+		const byline = result.data;
+		if (emdash.hooks) after(() => emdash.hooks!.runBylineAfterSave(byline, false));
+	}
+
+/workspace/cms-complete-byline-backend/src/lib/server/bylines/routes-profile.ts:91:29
+Error: Type 'Promise<unknown>' is not assignable to type 'void | Promise<void>'.
+  Type 'Promise<unknown>' is not assignable to type 'Promise<void>'.
+    Type 'unknown' is not assignable to type 'void'. 
+		invalidateBylineCache();
+		if (existing) after(() => emdash.hooks!.runBylineAfterDelete(existing));
+		return apiSuccess({ deleted: true });
+
+/workspace/cms-complete-byline-backend/src/lib/server/bylines/routes-profiles.ts:85:34
+Error: Type 'Promise<unknown>' is not assignable to type 'void | Promise<void>'.
+  Type 'Promise<unknown>' is not assignable to type 'Promise<void>'.
+    Type 'unknown' is not assignable to type 'void'. 
+			const byline = result.data;
+			if (emdash.hooks) after(() => emdash.hooks!.runBylineAfterSave(byline, true));
+		}
+
+/workspace/cms-complete-byline-backend/src/lib/server/bylines/routes-translations.ts:90:34
+Error: Type 'Promise<unknown>' is not assignable to type 'void | Promise<void>'.
+  Type 'Promise<unknown>' is not assignable to type 'Promise<void>'.
+    Type 'unknown' is not assignable to type 'void'. 
+			const byline = result.data;
+			if (emdash.hooks) after(() => emdash.hooks!.runBylineAfterSave(byline, true));
+		}
+
+====================================
+svelte-check found 4 errors and 0 warnings in 3 files
+[ELIFECYCLE] Command failed with exit code 1.
