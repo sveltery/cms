@@ -17,7 +17,7 @@
   });
 </script>
 {#if open}<div class="cms-sw"><div class="modal-backdrop"><dialog class="modal" use:modal={() => onOpenChange(false)} aria-labelledby="section-picker-title"><header class="toolbar"><h2 id="section-picker-title">Insert Section</h2><button type="button" aria-label="Close" onclick={() => onOpenChange(false)}>×</button></header>
-  <input placeholder="Search sections..." aria-label="Search sections..." bind:value={search} />
+  <input placeholder="Search sections..." aria-label="Search sections..." bind:value={search} onkeydown={event => { if (event.key === 'Enter') event.preventDefault(); }} />
   {#if loading}<p>Loading sections...</p>{:else if error}<p role="alert">{error}</p>{:else if sections.length === 0}<p>{debounced ? 'No sections found' : 'No sections available'}</p>{:else}<div class="cards">{#each sections as section (section.id)}<button type="button" class="panel" onclick={() => { onSelect(section); onOpenChange(false); }}>{#if section.previewUrl}<img class="preview" src={section.previewUrl} alt={`Preview of ${section.title}`} />{/if}<strong>{section.title}</strong>{#if section.description}<p>{section.description}</p>{/if}</button>{/each}</div>{/if}
   <button type="button" onclick={() => onOpenChange(false)}>Cancel</button>
 </dialog></div></div>{/if}
