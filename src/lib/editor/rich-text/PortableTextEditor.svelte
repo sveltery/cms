@@ -12,6 +12,8 @@
   import TableSelectionAnnouncer from './TableSelectionAnnouncer.svelte';
   import { createPortableTextEditor } from './create-editor';
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
+  import EmbedIcon from './EmbedIcon.svelte';
+  import { htmlMessage } from './html-messages.source';
   import { insertTable } from './insert-table';
   import { getTableControlState, runTableAction, type TableActionId } from './TableActions';
   import { selectionTouchesTable, selectionIsContainedInTableCells } from './TableExtensions';
@@ -212,6 +214,7 @@
           <button type="button" aria-label="Numbered List" aria-pressed={active('orderedList')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleOrderedList().run()}>1.</button>
           <button type="button" aria-label="Quote" aria-pressed={active('blockquote')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleBlockquote().run()}>“</button>
           <button type="button" aria-label="Code Block" aria-pressed={active('codeBlock')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleCodeBlock().run()}>[ ]</button>
+          <button type="button" aria-label={htmlMessage(t, 'Insert HTML')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => { if (editor) insertHtmlBlock(editor); }}><EmbedIcon name="BracketsAngle" size={16} /></button>
           <button type="button" aria-label="Insert Link" disabled={!editable} onmousedown={event => event.preventDefault()} onclick={link}>↗</button>
           {#each [['Left', 'left'], ['Center', 'center'], ['Right', 'right']] as [label, align]}<button type="button" aria-label={`Align ${label}`} disabled={!editable || alignmentUnavailable} onmousedown={event => event.preventDefault()} onclick={() => editor && setSelectionTextAlignment(editor, align as TextAlignment)}>{label}</button>{/each}
           <button type="button" aria-label="Table" data-emdash-table-trigger aria-expanded={tableMenu} disabled={!editable} onmousedown={event => event.preventDefault()} onclick={() => { tableMenu = !tableMenu; }}>▦</button>

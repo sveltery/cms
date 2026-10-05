@@ -2,6 +2,7 @@
 // MIT notices/emdash-MIT.txt; same authoring translator, no provider or catalog owner.
 import type { Translate } from './types';
 const IDS: Readonly<Record<string, string>> = {
+  "Insert HTML": "k76x3g",
   "Preview": "rdUucN",
   "HTML": "FBknns",
   "HTML code": "uyG1Zq",

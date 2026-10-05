@@ -39,7 +39,7 @@
 {#if viewState.node.type.name === 'htmlBlock'}
   <HtmlBlockEditor state={viewState} />
 {:else if draft && focus}
-  <EmbedBlockCard state={viewState} className="iframe-block" {tabs} activeTab={tab} onTabChange={changeTab}
+  <EmbedBlockCard state={viewState} className="not-prose" {tabs} activeTab={tab} onTabChange={changeTab}
     menuLabel={embedMessage(t, 'Iframe block options')} onDelete={remove} {focus} onPanelReady={element => { panel = element; }}>
     {#if tab === 'preview'}
       {#if url && draft.state.loadable === embed.src}

@@ -32,7 +32,7 @@
   const editorLabel = (field: HtmlField) => t(field === 'js' ? 'JavaScript code' : `${field.toUpperCase()} code`);
   const placeholder = (field: HtmlField) => t(field === 'html' && isolated ? 'Write HTML, or paste a snippet with its styles and scripts…' : field === 'js' ? 'Write JavaScript…' : `Write ${field.toUpperCase()}…`);
 </script>
-<EmbedBlockCard state={viewState} className="html-block" {tabs} {activeTab} onTabChange={changeTab}
+<EmbedBlockCard state={viewState} className="not-prose" {tabs} {activeTab} onTabChange={changeTab}
   menuLabel={t('HTML block options')} onDelete={remove} {focus} {isolated} onModeChange={setMode} onPanelReady={element => { panel = element; }}>
   {#if activeTab === 'preview'}
     <HtmlBlockPreview {...values} {isolated} allowScripts={draft.state.allowScripts} onRun={run} lastHeight={previewHeight} translate={viewState.translate} />
