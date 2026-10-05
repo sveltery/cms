@@ -27,7 +27,7 @@ export const RedirectRepository=Redirect as unknown as Constructor<typeof Redire
 export const BlockTypeRegistry=Block as unknown as Constructor<typeof Block>;
 export const FTSManager=FTS as unknown as Constructor<typeof FTS>;
 export const MediaUsageRepository=Usage as unknown as Constructor<typeof Usage>;
-export type {MediaUsageExistingSourceProjection,MediaUsageNewSourceProjection,MediaUsageSource} from '../blocks/upstream/database/repositories/media-usage.ts';
+export type {MediaUsageExistingSourceProjection,MediaUsageNewSourceProjection,MediaUsageSource,MediaUsageOccurrenceInput,MediaUsageSourceInput} from '../blocks/upstream/database/repositories/media-usage.ts';
 export const setReferenceSelection=referenceSelection as unknown as SourceQuery<typeof referenceSelection>;
 export const findTaxonomyStructure=findStructure as unknown as SourceQuery<typeof findStructure>;
 export const saveTaxonomyStructure=saveStructure as unknown as SourceQuery<typeof saveStructure>;
@@ -39,3 +39,7 @@ export const resolveBlockTypes=blockTypes as unknown as SourceQuery<typeof block
 export const normalizeBlocksData=blocksData as unknown as SourceQuery<typeof blocksData>;
 export const jsonTextValues=textValues as unknown as SourceQuery<typeof textValues>;
 export {CONTENT_MEDIA_USAGE_ADAPTER_ID,CONTENT_MEDIA_USAGE_COLLECTION_SCOPE} from '../blocks/upstream/media/usage/schema-invalidation.ts';
+
+export type BylineRepository=InstanceType<typeof Byline>;
+export type TaxonomyRepository=InstanceType<typeof Taxonomy>;
+export type MediaUsageRepository=InstanceType<typeof Usage>;

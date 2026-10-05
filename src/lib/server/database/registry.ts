@@ -450,7 +450,7 @@ export class SchemaRegistry {
       if(capture.collectionId!==input.collectionId) throw new Error('Collection capture identity changed');
       const retained= (query:CompiledQuery) => capture.resuming ?
         CompiledQuery.raw(query.sql.replace(/^CREATE (UNIQUE )?INDEX /i,'CREATE $1INDEX IF NOT EXISTS ')
-          .replace(/^CREATE TABLE /i,'CREATE TABLE IF NOT EXISTS '),query.parameters) : query;
+          .replace(/^CREATE TABLE /i,'CREATE TABLE IF NOT EXISTS '),[...query.parameters]) : query;
       await this.batch([...statements.slice(0,collectionOffset),retained(statements[tableOffset])],'LIMIT_EXCEEDED',owner);
       await installPreparedMediaUsageCollectionCapture(db,identity);
       await markMediaUsageCollectionCaptureReady(db,identity);
