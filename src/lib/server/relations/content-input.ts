@@ -1,6 +1,7 @@
 // Source resolve-before-write and required-reference contract at immutable
 //913cb1bb9b7f08c3ff0d258b4420e53835b6a58e content.ts1213/1245/1563.
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
+import {sql} from 'kysely';
 import {CmsError,type CmsDatabase} from '../database/contract.ts';
 import {invalidateCollectionCache} from '../menus/object-cache.ts';
 import {resolveReferenceSelectionTargets,resolveReferenceSelection,type ResolvedReferenceTargets,type ReferenceSelectionWrite} from './handlers.ts';
@@ -78,7 +79,6 @@ export async function prepareContentReferencePublication(database:CmsDatabase,co
  }
  const plan=await prepareContentReferenceWrites(database,selections);
  if(Object.keys(published).length===0)return plan;
- const {sql}=await import('kysely');
  // The actual content UPDATE supplies the authoritative live revision ID.
  // json_set shallow-merges only the owned Source reserved key and retains all
  // scalar data, staged slug and historical baseline bytes in that real row.
