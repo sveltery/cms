@@ -1,0 +1,17 @@
+✔ native atomic batch follows queued reads and commits the completed write bookmark (false) (65.891678ms)
+✔ native atomic batch issued before reads remains first (false) (63.119885ms)
+✔ failed native atomic batch rejects its caller and leaves later reads ordered (false) (63.262232ms)
+✔ native atomic batch follows queued reads and commits the completed write bookmark (true) (41.199475ms)
+✔ native atomic batch issued before reads remains first (true) (44.564217ms)
+✔ failed native atomic batch rejects its caller and leaves later reads ordered (true) (41.682935ms)
+✔ coalescing actual D1 refuses registered dynamic operations before flushing, preparing or enqueuing (145.124652ms)
+✔ coalescing actual D1 refuses serialized dynamic operations before flushing, preparing or enqueuing (91.229627ms)
+✔ coalescing actual D1 ordinary atomic writes and real result positions remain intact (85.28544ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 732.927145

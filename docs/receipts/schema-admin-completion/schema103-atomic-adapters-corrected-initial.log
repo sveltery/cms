@@ -1,0 +1,226 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts (5 tests | 4 failed) 1011ms
+   × Node preserves real operator rereads through an ordinary shallow compiled-query wrapper 72ms
+   × Node rereads real mutations from the preceding published provider15 marker write 26ms
+   × raw D1 checks projected rows at the actual provider position and rolls back earlier batch writes 378ms
+   × Node refuses a serialized dynamic operation instead of silently running its SELECT once 27ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > Node preserves real operator rereads through an ordinary shallow compiled-query wrapper
+AssertionError: promise rejected "Error: UNIQUE constraint failed: index 'u… { …(3) }" instead of resolving
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:43:38
+     41|       BEGIN UPDATE ec_posts SET translation_group='b' WHERE id='c'; EN…
+     42|     const wrapped:CmsDatabase={...native,atomicBatch:queries=>native.a…
+     43|     await expect(migrateCms(wrapped)).resolves.toBeUndefined();
+       |                                      ^
+     44|     await repaired(native);
+     45|   }finally{await native.close();}
+
+Caused by: Error: UNIQUE constraint failed: index 'uidx_ec_posts_active_tg_locale'
+ ❯ Object.run src/lib/server/database/node-sqlite-compat.ts:87:38
+ ❯ src/lib/server/database/sqlite.ts:21:40
+ ❯ #props.executor.provideConnection.freeze.signal node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ migrateCms src/lib/server/database/migrations.ts:313:9
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:43:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 2067, errstr: 'constraint failed' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > Node rereads real mutations from the preceding published provider15 marker write
+AssertionError: promise rejected "CmsError: MIGRATION_REQUIRED { …(2) }" instead of resolving
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:55:39
+     53|     await sql`CREATE TRIGGER operator_after_provider AFTER INSERT ON _…
+     54|       BEGIN UPDATE ec_posts SET translation_group='g' WHERE id IN ('b'…
+     55|     await expect(migrateCms(database)).resolves.toBeUndefined();
+       |                                       ^
+     56|     await repaired(database);
+     57|     expect((await sql`SELECT version FROM _cms_migrations ORDER BY ver…
+
+Caused by: CmsError: MIGRATION_REQUIRED
+ ❯ contentSnapshot src/lib/server/database/lifecycle-migrations.ts:231:138
+ ❯ Object.expectedObjects src/lib/server/database/lifecycle-migrations.ts:300:21
+ ❯ migrationState src/lib/server/database/migrations.ts:241:25
+ ❯ migrateCms src/lib/server/database/migrations.ts:278:21
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:55:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'MIGRATION_REQUIRED', details: undefined }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > raw D1 checks projected rows at the actual provider position and rolls back earlier batch writes
+AssertionError: expected [Function] to throw error including 'sveltery-cms-collection-index-prerequ…' but got 'D1_ERROR: UNIQUE constraint failed: i…'
+
+Expected: "sveltery-cms-collection-index-prerequisite-changed"
+Received: "D1_ERROR: UNIQUE constraint failed: index 'uidx_ec_posts_active_tg_locale': SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)"
+
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:83:48
+     81|     const queries:CompiledQuery[]=[...plan.guards,
+     82|       sql`UPDATE ec_posts SET translation_group='b' WHERE id='c'`.comp…
+     83|     await expect(database.atomicBatch(queries)).rejects.toThrow('svelt…
+       |                                                ^
+     84|     expect(await snapshot(database)).toEqual(before);
+     85|   }finally{await database.close();await fixture.runtime.dispose();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > Node refuses a serialized dynamic operation instead of silently running its SELECT once
+AssertionError: promise resolved "[ { rows: [ { …(1) } ] }, …(21) ]" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+[
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('name',name,'type',type,'sql',sql)) AS snapshot
+    FROM (SELECT name,type,sql FROM sqlite_master WHERE name='_cms_collections' COLLATE NOCASE AND type<>'trigger' ORDER BY name,type))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('id',id,'slug',slug,'version',version)) AS snapshot
+  FROM (SELECT id,slug,version FROM _cms_collections ORDER BY slug))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql)) AS snapshot
+      FROM (SELECT name,type,tbl_name,sql FROM sqlite_master WHERE type<>'trigger'
+        AND lower(name) IN (SELECT lower(value) FROM json_each(?)) ORDER BY name,type))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('id',id,'translation_group',translation_group,
+    'locale',locale,'created_at',created_at,'deleted_at',deleted_at)) AS snapshot
+    FROM (SELECT id,translation_group,locale,created_at,deleted_at FROM \"ec_posts\" ORDER BY id))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "insertId": 2n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 2n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+]
+
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:95:47
+     93|     const plan=await collectionStandardIndexesMigration.prepare!(datab…
+     94|     const copied=JSON.parse(JSON.stringify([...plan.guards,...plan.sta…
+     95|     await expect(database.atomicBatch(copied)).rejects.toMatchObject({…
+       |                                               ^
+     96|     expect(await snapshot(database)).toEqual(before);
+     97|   }finally{await database.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  00:42:34
+   Duration  1.83s (transform 340ms, setup 0ms, import 709ms, tests 1.01s, environment 0ms)
+
