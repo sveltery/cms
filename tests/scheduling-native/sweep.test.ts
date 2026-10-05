@@ -8,6 +8,7 @@ import { registerLifecycleDatabase } from '../../src/lib/server/database/lifecyc
 import { ContentRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
 import { OptionsRepository } from '../../src/lib/server/options/repository.ts';
 import { canonicalSourceDatabase } from '../../src/lib/server/canonical-storage/namespace.ts';
+import { RevisionRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
 
 // Supplemental actual storage contracts; no credentials, HTTP, principal,
 // session, concurrency gate, media facade or newly authored race probe.
@@ -109,4 +110,27 @@ it('never calls a publisher for future or soft-deleted scheduled storage', async
   const publish = vi.fn(async () => ({success: true}));
   expect(await publishDueContent(database.db, {currentTime: now, publish})).toEqual([]);
   expect(publish).not.toHaveBeenCalled();
+});
+
+it('reports the pinned staged-slug conflict without publishing or losing the pending schedule', async () => {
+  const {database, repo} = await fixture();
+  await new SchemaRegistry(database).updateCollection('post', {supports: ['revisions']});
+  await repo.create({type: 'post', slug: 'taken', data: {title: 'Other'}});
+  const live = await repo.create({type: 'post', slug: 'live', data: {title: 'Live'},
+    status: 'published', publishedAt: '2030-03-01T08:00:00.000Z'});
+  const revision = await new RevisionRepository(database.db as any).create({
+    collection: 'post', entryId: live.id, data: {title: 'Pending', _slug: 'taken'}
+  });
+  await repo.setDraftRevision('post', live.id, revision.id);
+  await repo.schedule('post', live.id, '2030-03-02T09:00:00.000Z', before);
+  const stored = await repo.findById('post', live.id);
+  const specifier = '../../src/lib/server/scheduling/' + 'publisher.ts';
+  let publisher: any;
+  await expect((async () => { publisher = await import(specifier); })()).resolves.toBeUndefined();
+  expect(await publisher.handleContentPublish(database.db, 'post', live.id, {
+    requireScheduledDue: true, expectedScheduledAt: '2030-03-02T09:00:00.000Z', currentTime: now
+  })).toMatchObject({success: false, error: {code: 'SLUG_CONFLICT'}});
+  expect(await repo.findById('post', live.id)).toEqual(stored);
+  expect((await new RevisionRepository(database.db as any).findById(revision.id))?.data)
+    .toEqual({title: 'Pending', _slug: 'taken'});
 });
