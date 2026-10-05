@@ -18,7 +18,7 @@ export function publicationStatementExecutor(database:CmsDatabase,collection:Pub
   }):null;
   // Existing first-publish, equal-slug and zero-table statement behavior stays.
   if(!plan&&!references)return statement.execute(database.db);
-  const token=ulid();const updatedToken=ulid();
+  const token=ulid();const updatedToken=references?ulid():undefined;
   const prefix=[
    sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections
     WHERE id=${collection.id} AND version=${collection.version}) THEN 1 ELSE 0 END`.compile(database.db),
@@ -30,7 +30,7 @@ export function publicationStatementExecutor(database:CmsDatabase,collection:Pub
     EXISTS(SELECT 1 FROM ${sql.ref(`ec_${collection.slug}`)} WHERE id=${existing.id} AND version=${existing.version+1}
     AND deleted_at IS NULL AND status='published' AND draft_revision_id IS NULL) THEN 1 ELSE 0 END`.compile(database.db)]:[]),
    ...(references?.after??[]),...(references?.cleanup??[]),
-   sql`DELETE FROM _cms_guards WHERE token IN (${token},${updatedToken})`.compile(database.db)
+   (references?sql`DELETE FROM _cms_guards WHERE token IN (${token},${updatedToken})`:sql`DELETE FROM _cms_guards WHERE token=${token}`).compile(database.db)
   ];
   let results;
   // Keep the final actually attempted plan while the repository retains its
