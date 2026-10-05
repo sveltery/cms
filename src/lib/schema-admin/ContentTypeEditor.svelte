@@ -51,14 +51,14 @@
     finally { saving = false; }
   }
   async function reorder(active: string, over: string) {
-    if (reordering || locked) return;
+    if (reordering || locked || pending) return;
     const slugs = fields.map((value: any) => value.slug), next = moveCollection(slugs,active,over); if (next === slugs) return;
     reordering = true; reorderError = '';
     try { await onReorderFields?.(next); }
     catch (cause) { reorderError = cause instanceof Error ? cause.message : 'Field order could not be saved'; }
     finally { reordering = false; }
   }
-  async function fieldSave(input: any) { await (editingField ? onUpdateField?.(editingField.slug,input) : onAddField?.(input)); fieldOpen = false; editingField = undefined; }
+  async function fieldSave(input: any) { if (pending) throw new Error('Wait for the current schema operation to finish'); await (editingField ? onUpdateField?.(editingField.slug,input) : onAddField?.(input)); fieldOpen = false; editingField = undefined; }
   async function confirmFieldDelete() {
     if (!deleteTarget || deleting || locked || !deletionAvailable) return;
     deleting = true; deleteError = '';
@@ -110,15 +110,15 @@
   {#if !isNew && !changes && !displayChanged}<span role="status">{pending ? 'Saving...' : 'Saved'}</span>{/if}
 </form>
 {#if !isNew}
-<section><h2>Fields</h2><p>6 system + {fields.length} custom fields</p>{#if !locked}<button type="button" onclick={() => { editingField = undefined; fieldOpen = true; }}>Add Field</button>{/if}
+<section><h2>Fields</h2><p>6 system + {fields.length} custom fields</p>{#if !locked}<button type="button" disabled={pending} onclick={() => { editingField = undefined; fieldOpen = true; }}>Add Field</button>{/if}
   {#if !deletionAvailable}<p role="status">Deletion is unavailable until relationships and content references can be cleaned up</p>{/if}
   {#if reorderError}<p role="alert">{reorderError}</p>{/if}
   {#each fields as field (field.id)}<div role="group" aria-label={`Field ${field.label}`} class="field" ondragover={event => event.preventDefault()} ondrop={event => { event.preventDefault(); reorder(dragging,field.slug); dragging = ''; }}>
-    {#if !locked}<button type="button" disabled={reordering} draggable="true" aria-label={`Reorder ${field.label} field`} ondragstart={() => dragging = field.slug}
+    {#if !locked}<button type="button" disabled={reordering || pending} draggable="true" aria-label={`Reorder ${field.label} field`} ondragstart={() => dragging = field.slug}
       onkeydown={event => { const index = fields.findIndex((value: any) => value.slug === field.slug); if (event.key === 'ArrowUp' && index > 0) { event.preventDefault(); void reorder(field.slug,fields[index - 1].slug); } if (event.key === 'ArrowDown' && index < fields.length - 1) { event.preventDefault(); void reorder(field.slug,fields[index + 1].slug); } }}>↕</button>{/if}
     <span>{field.label}</span><code>{field.slug}</code><span>{field.unsupportedType?.type ?? field.type}</span>
     {#if field.unsupportedType}<span>Unsupported</span>{/if}{#if field.required}<span>Required</span>{/if}{#if field.unique}<span>Unique</span>{/if}{#if field.searchable}<span>Searchable</span>{/if}
-    {#if !locked}<button type="button" disabled={Boolean(field.unsupportedType)} aria-label={`Edit ${field.label} field`} onclick={() => { editingField = field; fieldOpen = true; }}>Edit</button><button type="button" disabled={!deletionAvailable} aria-label={`Delete ${field.label} field`} onclick={() => { deleteError = ''; deleteTarget = field; deleteRelation = true; }}>Delete</button>{/if}
+    {#if !locked}<button type="button" disabled={pending || Boolean(field.unsupportedType)} aria-label={`Edit ${field.label} field`} onclick={() => { editingField = field; fieldOpen = true; }}>Edit</button><button type="button" disabled={pending || !deletionAvailable} aria-label={`Delete ${field.label} field`} onclick={() => { deleteError = ''; deleteTarget = field; deleteRelation = true; }}>Delete</button>{/if}
   </div>{:else}<p>No custom fields yet</p><p>Add fields to define the structure of your content</p>{/each}
   <h3>System Fields</h3>{#each systems as system}<p>{system[0]} <code>{system[1]}</code> · <span>{system[2]}</span></p>{/each}
 </section>
@@ -131,7 +131,7 @@
 </section>
 {/if}
 </div>
-{#if fieldOpen}{#if fieldEditor}{@render fieldEditor({open:fieldOpen,field:editingField,onOpenChange:(value: boolean) => fieldOpen = value,onSave:fieldSave,onCreateRelation,collectionSlug:collection?.slug})}{:else}<FieldEditor open={fieldOpen} field={editingField} onOpenChange={(value: boolean) => fieldOpen = value} onSave={fieldSave} {onCreateRelation} {relationsAvailable} collectionSlug={collection?.slug} {client} />{/if}{/if}
+{#if fieldOpen}{#if fieldEditor}{@render fieldEditor({open:fieldOpen,field:editingField,onOpenChange:(value: boolean) => fieldOpen = value,onSave:fieldSave,onCreateRelation,collectionSlug:collection?.slug})}{:else}<FieldEditor open={fieldOpen} field={editingField} isSaving={pending} onOpenChange={(value: boolean) => fieldOpen = value} onSave={fieldSave} {onCreateRelation} {relationsAvailable} collectionSlug={collection?.slug} {client} />{/if}{/if}
 {#if deleteTarget}<dialog open use:modal={() => { if (!deleting) deleteTarget = null; }} aria-label="Delete Field?"><h2>Delete Field?</h2><p>Delete {deleteTarget.label}?</p>{#if targetRelation}<label><input type="checkbox" disabled={deleting} bind:checked={deleteRelation} />Also delete the relationship this field uses</label><RelationImpact relations={[targetRelation]} excludeField={{collection:collection.slug,slug:deleteTarget.slug}} />{/if}{#if deleteError}<p role="alert">{deleteError}</p>{/if}<button type="button" disabled={deleting} onclick={() => deleteTarget = null}>Cancel</button><button type="button" disabled={deleting || locked} onclick={confirmFieldDelete}>{deleting ? 'Deleting...' : 'Delete'}</button></dialog>{/if}
 {#if relationDialog !== undefined}<dialog open use:modal={() => relationDialog = undefined}><RelationForm {collections} relation={relationDialog} defaultParentCollection={collection?.slug} onCancel={() => relationDialog = undefined} onSubmit={async (input: any) => { if (relationDialog) await onUpdateRelation(relationDialog.id,input); else await onCreateRelation(input); relationDialog = undefined; }} /></dialog>{/if}
 {#if relationDelete}<dialog open use:modal={() => { if (!deleting) relationDelete = null; }} aria-label="Delete Relation?"><h2>Delete Relation?</h2><RelationImpact relations={[relationDelete]} />{#if deleteError}<p role="alert">{deleteError}</p>{/if}<button type="button" disabled={deleting} onclick={() => relationDelete = null}>Cancel</button><button type="button" disabled={deleting || locked} onclick={confirmRelationDelete}>{deleting ? 'Deleting...' : 'Delete'}</button></dialog>{/if}

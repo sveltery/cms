@@ -6,7 +6,7 @@
   let { data } = $props();
   let collection=$state<CollectionWithFields | null>(null), pending=$state(false), error=$state('');
   async function refresh() { collection=await adminClient.getCollection(page.params.collection ?? ''); }
-  async function mutate(run:()=>Promise<unknown>) { if(pending)return; pending=true;error='';try{await run();await refresh();}catch(cause){error=cause instanceof Error?cause.message:'Schema could not be saved';throw cause;}finally{pending=false;} }
+  async function mutate(run:()=>Promise<unknown>) { if(pending)throw new Error('Wait for the current schema operation to finish'); pending=true;error='';try{await run();await refresh();}catch(cause){error=cause instanceof Error?cause.message:'Schema could not be saved';throw cause;}finally{pending=false;} }
   $effect(()=>{
     const slug=page.params.collection ?? '';let active=true;collection=null;error='';
     void adminClient.getCollection(slug).then(value=>{if(active)collection=value;}).catch(cause=>{if(active)error=cause instanceof Error?cause.message:'Schema unavailable';});
