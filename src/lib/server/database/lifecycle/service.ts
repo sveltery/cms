@@ -1,5 +1,6 @@
 import { sql, type CompiledQuery } from 'kysely';
 import type {ContentReferencePlan} from '../../relations/content-plan.ts';
+import {hydrateBoundContentReferences} from '../../relations/read-host.ts';
 import {referenceSelectionMap} from '../content-validation.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type RevisionPrecondition } from '../contract.ts';
@@ -115,8 +116,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   }
   async function hydrateReferences(item:ContentItem,includeDrafts:boolean):Promise<ContentItem> {
     const collection=await definition(item.type);
-    if(!collection.fields.some(field=>field.type==='reference'&&field.validation?.relation))return item;
-    return (await import('../../relations/content-read.ts')).hydrateContentReferences(database,item,includeDrafts);
+    return hydrateBoundContentReferences(database,item,collection.fields,includeDrafts);
   }
   function prune(collection:string,id:string,revisionId:string) {
     // Pinned runtime/cleanup isolate deferred bookkeeping failures. The queue

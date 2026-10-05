@@ -9,6 +9,7 @@ import {RevisionRepository} from './lifecycle/upstream/database/repositories/rev
 import {EmDashValidationError,ContentCollectionNotFoundError,InvalidCursorError,type ContentItem,type FindManyOptions} from './lifecycle/upstream/database/repositories/types.ts';
 import {InvalidCursorError as NativeInvalidCursorError} from './trash-cursor.ts';
 import {lifecycleService} from './lifecycle/service.ts';
+import {hydrateBoundContentReferences} from '../relations/read-host.ts';
 import type {LifecycleDependencies} from './lifecycle/upstream/host.ts';
 import {genericContentList,genericContentUpdate} from './content-validation.ts';
 import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInput,listTrashedDraftInput,parse,restoreDraftInput,tableName} from './validation.ts';
@@ -49,9 +50,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  }
  async function hydrateReferences(item:ContentItem):Promise<ContentItem&DraftEntry>{
   const collection=await definition(item.type);
-  if(collection.fields.some(field=>field.type==='reference'&&field.validation?.relation))
-   await (await import('../relations/content-read.ts')).hydrateContentReferences(database,item,true);
-  return entry(item);
+  return entry(await hydrateBoundContentReferences(database,item,collection.fields,true));
  }
  function summary(item:ContentItem,titleField='title'):DraftSummary{
   const {data,liveData,...value}=entry(item);const title=data[titleField];return{...value,title:typeof title==='string'?title.slice(0,200):null};
