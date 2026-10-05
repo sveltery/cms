@@ -58,6 +58,39 @@ for(const target of ['Node SQLite','raw workerd D1'] as const){
    assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
   }}finally{await f.close();}
  });
+ test(`${target}: update returns exactly the original stored-profile mutation projection`,async()=>{
+  const f=await fixture();try{
+   const response=await update(f.context(f.author.id,{name:'Changed'}));assert.equal(response.status,200);
+   const item=(await response.json()).data.item;
+   assert.deepEqual(Object.keys(item).sort(),['id','email','name','avatarUrl','role','emailVerified','disabled','createdAt','updatedAt'].sort());
+   assert.equal(item.name,'Changed');assert.equal(item.id,f.author.id);
+  }finally{await f.close();}
+ });
+ test(`${target}: malformed stored profile returns the original endpoint fallback messages`,async()=>{
+  const f=await fixture();try{
+   await f.database.db.updateTable('_cms_auth_profiles').set({data:'{bad'}).where('user_id','=',f.author.id).execute();
+   for(const [response,code,message] of [
+    [await list(f.context()),'USER_LIST_ERROR','Failed to list users'],
+    [await detail(f.context(f.author.id)),'USER_DETAIL_ERROR','Failed to get user details'],
+    [await update(f.context(f.author.id,{name:'Wrong'})),'USER_UPDATE_ERROR','Failed to update user'],
+    [await disable(f.context(f.author.id,{})),'USER_DISABLE_ERROR','Failed to disable user'],
+    [await enable(f.context(f.author.id,{})),'USER_ENABLE_ERROR','Failed to enable user']
+   ] as const){assert.equal(response.status,500);assert.deepEqual((await response.json()).error,{code,message});}
+   assert.equal((await f.database.db.selectFrom('_cms_auth_profiles').select('data').where('user_id','=',f.author.id).executeTakeFirstOrThrow()).data,'{bad');
+  }finally{await f.close();}
+ });
+ test(`${target}: shared request validation exposes the original structured issue details`,async()=>{
+  const f=await fixture();try{
+   const query=f.context();query.url.searchParams.set('limit','0');
+   const listResponse=await list(query);assert.equal(listResponse.status,400);
+   const listBody=await listResponse.json();assert.equal(listBody.error.message,'Invalid request data');
+   assert.equal(listBody.error.details.issues[0].path,'limit');
+   const before=await f.users.findById(f.author.id);
+   const response=await update(f.context(f.author.id,{role:41}));assert.equal(response.status,400);
+   assert.deepEqual((await response.json()).error,{code:'VALIDATION_ERROR',message:'Invalid request data',details:{issues:[{path:'role',message:'Invalid role level. Must be 10, 20, 30, 40, or 50'}]}});
+   assert.deepEqual(await f.users.findById(f.author.id),before);
+  }finally{await f.close();}
+ });
  test(`${target}: invalid role and conflicting email return unchanged stored profile`,async()=>{
   const f=await fixture();try{const before=await f.users.findById(f.author.id);
    for(const [body,status,code] of [[{role:41},400,'VALIDATION_ERROR'],[{email:f.admin.email},409,'EMAIL_IN_USE']] as const){

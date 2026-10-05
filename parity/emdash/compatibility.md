@@ -2386,6 +2386,43 @@ BYL-LF02 documents framework transport separately: Source-shaped `nativeContentA
 The owned whole immutable families contain72 callback declarations/225 expects across three files. At this checkpoint,68 register with52 passes/two genuine user-fixture stops/fourteen missing fixture-constructor stops; permanent-deletion4 stops at its genuine Seed import before registration. Whole content-handler54 alone reaches52 passes/two user prerequisite stops. Three initial redirect namespace stops are repaired by a fixture-only mapping of the actual three SELECT TableNode identifiers; SQL values/RawNodes/results stay untouched and transport adds zero Source causal credit. The initial schedule fixture argument shape and one new Native form revision-token fixture are retained in raw history before framework correction, with zero Source causal credit. Complete supplemental Native24 and existing whole lifecycle30 pass; focused type checking reports zero errors/warnings. The broader66-file mention inventory is static evidence with zero execution credit. Full normal13/secured10, fresh/configured review, exact-head Root approval and author regular merge remain open. [Provenance and evidence](../../docs/byline-content-lifecycle.md) retain these limits.
 
 
+## Standalone ContentPicker client cache ownership (proposed CP-03)
+
+Authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, whole `packages/admin/src/App.tsx` query provider and `packages/admin/src/components/ContentPickerModal.tsx`, retained in the existing 31-authority picker manifest. Source uses one React Query provider with its fixed API module. The native Svelte modal additionally accepts a supplied client and can run without a dashboard provider or explicit QueryClient. At actual public Main `90fa2410625e5b497f1547093e4a832c1440690f`, its standalone WeakMap used the read method as identity. Distinct class instances sharing that prototype method then returned the first client's cached content, collections and manifest in the second modal.
+
+Proposed CP-03 keys that single standalone cache by the actual supplied client object, retaining same-object cache reuse, existing query keys, method receivers, one-minute freshness and one retry; explicit QueryClient ownership is unchanged. This is a repair to the native framework extension, not an upstream bug or additional Source assertion credit. No query-client clone, credential fingerprint, new cache layer, protected HTTP/session probe or provider/database change is introduced. The paired [picker documentation](../../docs/content-picker.md#standalone-client-cache-isolation) identifies the five supplemental controls and complete original tests.
+
+Test-first `5d146f03` registers 29 native cases: previous24 and two new controls pass; two direct account-isolation values fail, and the explicit-owner control's empty standalone cache assertion also fails from prior shared-prototype cache ownership. Explicit query-client result assertions already pass and earn zero causal repair credit. Fix `95263bfc` and the subsequent owner-naming refactor each pass all29. Whole core Source19 plus existing backend Native3 pass with zero new Source causal-red credit. All31 whole authorities/four original test files/22 original declarations and all old fixtures, mocks, clocks, Source/raw history, gates and dependencies remain intact.
+
+Proposed branch: `fix/content-picker-standalone-client`; owned PR and regular merge are pending, specific Root acceptance is not yet recorded. Current whole13 normal/secured9 hosted, independent final-head and configured review remain required. Development reuses identical-lock published dependencies and grants zero own frozen-install credit. Full Kumo rendering, multilingual catalogs, global palette, relation writes, Section/reference consumer wiring and PostgreSQL remain incomplete with their owning families.
+
+### CP-03 PR110 initial validation checkpoint
+
+Owned [PR #110](https://github.com/sveltery/cms/pull/110) initial head `bf49f10da26fa74e534b4529792bb04098b681ee` / tree `518a370162745e6b4312180a5c84b429b9d4e15d`: secured CI515 browser `111622929008` passes; normal `111622929121` cancels at the unchanged fifteen-minute deadline after ten completed stages with Node hosting interrupted, earning zero complete hosted13 credit. Configured review completes without inline findings and initial-head independent review clears the bounded repair. The retained local log records all13 paired stages and passing aggregates, SHA256 `e507880642e803ace5b60e25b50081cf2906e8e0ff7e42d4a648a71ac9ecf89e`; its original wrapper session/final exit is unavailable and no wrapper exit is invented. The [paired checkpoint](../../docs/content-picker.md#pr110-initial-validation-checkpoint) preserves these limits. Current public-Main adoption, current13/9, fresh reviews, specific CP-03 decision and author regular expected-head merge remain pending; no new product or Source credit follows from this documentation.
+
+### CP-03 actual scheduling-main integration
+
+Regular merge `86ac7146eabd1e3f017dc1e49ecd8604443b50d9` adopts actual public Main `98332aaa81bf857b3e8214a7e572cb086390d703`, preserving its full calendar/scheduled-publication graph and compatibility text alongside the complete CP-03 records. Package/dependency/lock/bootstrap/CI/attributes and all historical Source/raw/test bytes remain intact. Relative to actual Main, only cache.ts, five supplemental standalone-client tests and paired picker/compatibility documentation differ. [Integration details](../../docs/content-picker.md#pr110-actual-scheduling-main-integration) identify both ordinary parents. Current stationary successor normal13/secured9, configured and fresh independent review, specific CP-03 acceptance and author regular expected-head merge remain pending. This merge and document update grant zero new test or parity credit.
+
+### CP-03 schema-administration main integration
+
+Regular merge `4773c7343a065afedf6aac11b68e2837d95eab1d` preserves both the previous public PR110 head `e414d6bbb3ba541b183b9618f7bf74126b7d4614` and actual public Main `f2b2e560f6ea54f53e941db76fac732601772ce9`. The complete incoming main compatibility text is an exact byte prefix; the existing CP-03 tail is retained unchanged. All incoming package, lock, bootstrap, CI, security, providers, original Source and previous native test bytes are preserved. CI551's previous-head normal jobs `111910188554` and its single authorized retry `111918625392` both cancelled at the unchanged fifteen-minute deadline, after ten and eleven completed stages respectively; neither earns complete normal credit. The new successor requires current normal13/secured10, fresh independent review, configured review or recorded quota exception, specific Root CP-03 acceptance and author expected-head regular merge. The [paired checkpoint](../../docs/content-picker.md#pr110-schema-administration-main-integration) separates Source19, native backend3, native UI29 and original browser3; this metadata union adds zero execution or Source causal credit.
+
+
+### CI-NORMAL-PHASE01 complete sequential normal validation
+
+This is an intentional CI execution change against Native Main `f2b2e560f6ea54f53e941db76fac732601772ce9`, tree `58ed4caa164e3636934e64aa58ddd3b3985f7315`, with no behavior change to pinned EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The former single fifteen-minute normal job becomes three ordered, isolated jobs, each retaining its fifteen-minute deadline, plus a fail-closed required `validate` aggregate. All thirteen original bootstrap commands execute exactly once in original order; two additional frozen installs initialize fresh Source and hosting runners. This increases total workflow elapsed allowance and does not establish success within the old single-job deadline. Root explicitly qualified this finite execution scope before implementation; final-head review, manager merge approval and landing remain separate decisions.
+
+The local bootstrap and complete secured browser job are byte-exact. Product/Source tests, callback bodies, clocks, datasets, snapshots, concurrency, SQL, caches, permissions, runtime, providers, dependencies, locks and existing receipts change zero. [Validation diagnostics](../../docs/validation.md) records exact boundaries and supplemental test-first evidence: two actual workflow contract value reds, one preservation control and 23 prerequisite stops; whole26 orchestration contracts pass after implementation/refactor. Command-recording fixtures run zero product/Source assertions and earn zero EmDash parity or Source causal credit. Actual hosted normal13/current secured10 success, independent/configured review, manager exact-head approval, regular author merge and post-main checks remain required. Historical cancellations and local900 receipts are retained as failures.
+
+CI guard scope correction: new supplemental fixture `e0ed036e` retains all actual browser bytes while appending an independent feature job and reaches one real value red with25 controls passing. `fef37787` preserves the actual browser job byte guard while excluding later independent jobs; whole26 is green. This corrects only the new orchestration test's scope, with zero original Source/product/security change or parity credit. Earlier four-node public alias `33ce0bf5` and its scoped independent clearance remain historical; the regular successor requires its own exact-head hosted results and fresh final review.
+
+Root CI-GUARD-JOB-ID01 follow-up restores the documented valid GitHub job ID boundary `[A-Za-z_][A-Za-z0-9_-]*`. Supplemental digit/uppercase/leading-underscore fixtures first register whole26 with25 passing and one genuine digit-case value red (later variants unreached), then all26 pass after the parser correction. Actual browser bytes, workflow execution, runner helpers, original bootstrap, Source/product assertions, security and historical evidence remain unchanged. Final current hosted phase/aggregate/browser success and exact Root approval remain separate pending requirements; this parser repair adds zero EmDash parity or Source causal credit.
+
+
+CI116 actual Main union: approved public Picker110 Main `fa86186aa2bd83b7678f59c26026b7fc6c9d57cf` (tree `c9621d2176c350f246f6e703569e9d82314f0825`) is adopted by an ordinary merge with public CI head `ab1303298b7a03fcadd97fad584ba66b3258b85c`. Entire actual Main compatibility bytes plus the exact previous CI-owned tail are retained. Picker cache, complete standalone client test and owning feature documentation preserve actual incoming Main bytes. Original bootstrap, all production/Source tests, Source chain, dependency pins and secured browser bytes remain unchanged. Earlier queued services cancellation with zero steps earns zero normal validation credit; final current phase/aggregate/browser gates and manager approval remain pending.
+
+
 ## Core user repository and pure role scope policy (proposed)
 
 [PR #99](https://github.com/sveltery/cms/pull/99) proposes the foundation described
@@ -2446,7 +2483,7 @@ evidence does not establish product integration or qualify a raw users facade.
 The shared package change appends the whole new 65-case guard/family after the
 entire actual public Main14 Source chain, including its canonical storage guard.
 Versions, dependency locks, media patch/notices, frozen providers, existing normal
-thirteen-stage and secured nine-launch gates/deadlines remain unchanged. Those
+thirteen-stage and secured ten-launch gates/deadlines remain unchanged. Those
 gates and final independent/configured review must qualify the eventual head.
 Full admin APIs/DTO/UI, broader byline/plugin/content consumers, legacy enrollment,
 invites/recovery/OAuth/API tokens, complete logical facade/raw UPSERT routing and
@@ -2829,15 +2866,59 @@ SEED-CAPTURE-NODE: complete original capture69 andapply85 pass on genuine Node S
 
 SEED-D1-FIRST: whole original apply85=18pass/67fail andcapture69=4pass/65fail on genuine localD1, retaining every original callback/data/clock/deadline. Unsupported domain-plan/callback/raw-write prerequisites and their downstream wrong-error assertions earn zero product-repair credit. Fixed-plan closure remains pending; no callback or result emulation is introduced.
 
-### CI-NORMAL-PHASE01 complete sequential normal validation
+## Stored user administration backend — proposed continuation of PR #99
 
-This is an intentional CI execution change against Native Main `f2b2e560f6ea54f53e941db76fac732601772ce9`, tree `58ed4caa164e3636934e64aa58ddd3b3985f7315`, with no behavior change to pinned EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The former single fifteen-minute normal job becomes three ordered, isolated jobs, each retaining its fifteen-minute deadline, plus a fail-closed required `validate` aggregate. All thirteen original bootstrap commands execute exactly once in original order; two additional frozen installs initialize fresh Source and hosting runners. This increases total workflow elapsed allowance and does not establish success within the old single-job deadline. Root explicitly qualified this finite execution scope before implementation; final-head review, manager merge approval and landing remain separate decisions.
+The [owning record](../../docs/user-administration-backend.md) and
+[whole Source consumer inventory](../../docs/user-admin-inputs-source-inventory.json)
+record immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+Source authorities, actual Native test-first failures/repairs/refactor and
+remaining prerequisites. Whole Core65, Native stored-administration42, original
+parser2 and original Source-only reference qualifiers9 pass in finite installed
+dependency runs. No full Users API/UI/OAuth, normal/browser, or deployed parity
+claim follows from those results. Specific final-head acceptance is pending.
 
-The local bootstrap and complete secured browser job are byte-exact. Product/Source tests, callback bodies, clocks, datasets, snapshots, concurrency, SQL, caches, permissions, runtime, providers, dependencies, locks and existing receipts change zero. [Validation diagnostics](../../docs/validation.md) records exact boundaries and supplemental test-first evidence: two actual workflow contract value reds, one preservation control and 23 prerequisite stops; whole26 orchestration contracts pass after implementation/refactor. Command-recording fixtures run zero product/Source assertions and earn zero EmDash parity or Source causal credit. Actual hosted normal13/current secured10 success, independent/configured review, manager exact-head approval, regular author merge and post-main checks remain required. Historical cancellations and local900 receipts are retained as failures.
+| Record | Source and local behavior | Constraint, evidence and decision status |
+| --- | --- | --- |
+| USR-04: administration storage/HTTP adapter | Source public `astro/routes/api/admin/users` uses one `users` table and Astro locals; Native routes use genuine `_cms_auth_users`/`_cms_auth_profiles`, RequestEvent and the existing principal. List/search/exact-role/creation cursor, stored profile fields, original update DTO, validation envelope and missing-ID/fallback errors preserve Source. Detail safely projects existing credential metadata, excluding stored keys/custom JSON. | Existing canonical storage and SvelteKit transport. Node/raw-D1 Native42 and Source-only9 qualification receipts are linked above; no new provider or credential/session algorithm. Proposed PR #99; final explicit acceptance not recorded. |
+| USR-05: retained Native administrator/write guards | Source route authorization checks `locals.user.role >= Role.ADMIN`; Native rereads the real actor's current stored role/disabled flag before decoding. Native also retains its existing Origin, trusted-runtime and operator mutation opt-in gates. Original self-role, duplicate-email and last-admin restrictions remain; Native atomic split writes use existing guard/batch storage instead of Source's one-row transaction helper. | Preserve already established current-role/write safeguards and actual atomic canonical storage. Original Native assertions exercise these finite stored-role/RequestEvent and rollback boundaries; no new signed-session, replay or concurrent-auth proof. Proposed continuation, development boundary authorized by Root; final acceptance pending. |
+| USR-06: historical profileless administration | Source has a complete profile in each `users` row. Native list/detail omit historical identities lacking `_cms_auth_profiles`, list reports actual `legacyCount`, and auth-level admin counts still include actual identities under existing policy. Native initialization messages refer to its database/runtime rather than EmDash initialization. | Preserve old identity bytes and auth safeguards instead of inventing profiles. Real Node/raw-D1 legacy preservation and actual count assertions pass. Proposed continuation of USR-02; explicit enrollment remains unfinished; final acceptance pending. |
 
-CI guard scope correction: new supplemental fixture `e0ed036e` retains all actual browser bytes while appending an independent feature job and reaches one real value red with25 controls passing. `fef37787` preserves the actual browser job byte guard while excluding later independent jobs; whole26 is green. This corrects only the new orchestration test's scope, with zero original Source/product/security change or parity credit. Earlier four-node public alias `33ce0bf5` and its scoped independent clearance remain historical; the regular successor requires its own exact-head hosted results and fresh final review.
-
-Root CI-GUARD-JOB-ID01 follow-up restores the documented valid GitHub job ID boundary `[A-Za-z_][A-Za-z0-9_-]*`. Supplemental digit/uppercase/leading-underscore fixtures first register whole26 with25 passing and one genuine digit-case value red (later variants unreached), then all26 pass after the parser correction. Actual browser bytes, workflow execution, runner helpers, original bootstrap, Source/product assertions, security and historical evidence remain unchanged. Final current hosted phase/aggregate/browser success and exact Root approval remain separate pending requirements; this parser repair adds zero EmDash parity or Source causal credit.
+OAuth `oauthProviders`/`oauthAccounts` fields and their storage are unimplemented,
+not synthesized as empty successful parity values. Full UserDetail/Invite UI,
+recovery/invitations/PAT/allowed-domain flows, Transfer/OpenAPI consumers and
+legacy enrollment remain separately owned prerequisites. Their complete original
+Source files are retained and unexecuted, with zero selection-only full-family
+credit. The previous foundation's broader consumer inventory remains historical;
+Byline PR #118 separately owns its whole content54/filter14 and real user bridge.
+The two original shared-parser tests run unchanged against an existing public
+Native parser and initially passed; Source causal assertion-red credit remains0.
 
 
 CI116 actual Main union: approved public Picker110 Main `fa86186aa2bd83b7678f59c26026b7fc6c9d57cf` (tree `c9621d2176c350f246f6e703569e9d82314f0825`) is adopted by an ordinary merge with public CI head `ab1303298b7a03fcadd97fad584ba66b3258b85c`. Entire actual Main compatibility bytes plus the exact previous CI-owned tail are retained. Picker cache, complete standalone client test and owning feature documentation preserve actual incoming Main bytes. Original bootstrap, all production/Source tests, Source chain, dependency pins and secured browser bytes remain unchanged. Earlier queued services cancellation with zero steps earns zero normal validation credit; final current phase/aggregate/browser gates and manager approval remain pending.
+## USER99-DISABLED-ATOMIC-01 fidelity repair
+
+Source `auth/src/adapters/kysely.ts:155–168` and the complete public
+`astro/routes/api/admin/users/[id]/disable.ts` and `enable.ts` at immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` update the disabled flag and timestamp
+as one Source row. The previous Native split committed identity before profile,
+so profile operator rejection left a partial toggle. The
+[owning repair record](../../docs/user-administration-backend.md) preserves the
+exact independent witness, two Source controls, two Native value failures and
+new whole46 test-first42 pass/4 genuine SQLite/raw-D1 rollback failures.
+
+Both Native physical writes now use the existing canonical atomic batch. The
+existing enabled-admin count threshold, SQL conditional predicate, affected-row
+check, self/last-admin messages, stored role/principal/origin/write safeguards and
+profileless policy remain. For stored-admin disable, the existing role/profile
+canonical guard/batch pattern prevents a rejected last-admin predicate from
+committing a timestamp. No provider, table, credential/session algorithm or
+concurrency probe is added. Complete unchanged whole46 repair/refactor greens
+and two later initially green admin controls yield current whole48.
+
+This restores Source rollback behavior and is not an upstream bug or intentional
+policy change. Original Source bodies and old Native42 assertions remain exact;
+Source causal/copied-case credit is0. Proposed PR #99 continuation; reviewer
+finite-delta closure, current full normal13/secured10, explicit Root acceptance
+and author merge remain pending. Future whole Source leaves may append after the
+adjacent exactly-once user gates; that provenance integration earns0 behavioral
+or Source credit.
