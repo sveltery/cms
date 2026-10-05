@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { dirname, resolve } from 'node:path';
-import base from './vitest.schema-admin-ui-source.config';
+import base from './vitest.schema-admin-ui-source.config.ts';
 const root = import.meta.dirname, frozen = resolve(root, 'parity/emdash/schema-admin-ui-source/packages/admin');
 export default defineConfig({
   ...base,
@@ -9,7 +9,7 @@ export default defineConfig({
     if (!importer?.startsWith(frozen) || !specifier.startsWith('.')) return;
     if (resolve(dirname(importer),specifier).replace(/\.(tsx?|js)$/,'') === resolve(frozen,'tests/utils/render')) return resolve(root,'tests/helpers/schema-ui/browser-render.ts');
   } }, ...(base.plugins ?? [])],
-  test: { ...base.test, environment: undefined, setupFiles: [],
+  test: { ...base.test, environment: 'node', setupFiles: [],
     include: [...(base.test?.include ?? []), 'tests/schema-admin-ui-browser/*.test.tsx'],
     browser: { enabled:true, headless:true, provider:playwright({launchOptions:{chromiumSandbox:true,timeout:30000}}),
       instances:[{browser:'chromium'}], viewport:{width:1280,height:800} }
