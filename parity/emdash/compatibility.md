@@ -2377,6 +2377,166 @@ Schema UI receipt closure is metadata-only: exact scoped whitespace attributes p
 
 SCUI-7C14-REPEATER-SLUG01 restores immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, FieldEditor.tsx1208–1219: every repeater sub-field label edit derives the slug with lowercase, `/[^a-z0-9]+/g` and `/^_|_$/g`. Native previously saved an empty new slug or retained an older/manual slug after label edits. Test-first1b32a775 reaches two genuine save-payload value reds with31 controls passing and zero setup stops. Fix48789bb5/refactor9ae7f88b preserve copied draft ownership and manual slug edits when the label is unchanged; whole Native33 and unchanged Source138 pass. This is a fidelity repair, adds zero original Source callback/causal credit, and changes no backend/security/clock/fixture contract. [Paired feature documentation and literal receipts](../../docs/schema-admin-completion.md) retain prior history. Proposed PR111 still requires current successor gates/fresh review/exact manager approval and regular author merge; no full schema parity or canonical relationship cleanup is claimed.
 
+### Byline content lifecycle: canonical batch composition and framework transport
+
+BYL-LF01 composes the existing Byline replacement/copy/deletion plans inside the sole Native content/DraftRepository atomic owner. Creation, metadata edits, revision staging, translation and independent duplication preserve ordered roles, translation-group primary pointers, omitted selections, authoritative clears and locale-strict hydration. Both complete Source hydration function bodies remain verbatim. The existing schema/CAS/ownership/redirect guards and deferred pruning remain; no migration, provider or secondary writer is added. Permanent deletion requires exactly Source `content:delete_permanent` through the existing trusted administrator projection and cleans only a real trashed row. Public SEO/Relations cleanup owners and Seed integration remain pending.
+
+BYL-LF02 documents framework transport separately: Source-shaped `nativeContentApi` fixes identity and list policy at its trusted constructor, while existing Native forms/services retain bounded JSON, authenticated principal and request origin/CAS gates. Explicit locale always scopes; Source omitted-locale lists discover actual backing schema and may span locales, while ordinary Native omitted-locale lists retain their default. Source published creation currently uses Native draft plus publication CAS as two real writes, with zero Source single-transaction credit. Kit nullable role-label input uses the existing strict JSON adapter. No new protected HTTP, credential, session or race probes are added.
+
+The owned whole immutable families contain72 callback declarations/225 expects across three files. At this checkpoint,68 register with52 passes/two genuine user-fixture stops/fourteen missing fixture-constructor stops; permanent-deletion4 stops at its genuine Seed import before registration. Whole content-handler54 alone reaches52 passes/two user prerequisite stops. Three initial redirect namespace stops are repaired by a fixture-only mapping of the actual three SELECT TableNode identifiers; SQL values/RawNodes/results stay untouched and transport adds zero Source causal credit. The initial schedule fixture argument shape and one new Native form revision-token fixture are retained in raw history before framework correction, with zero Source causal credit. Complete supplemental Native24 and existing whole lifecycle30 pass; focused type checking reports zero errors/warnings. The broader66-file mention inventory is static evidence with zero execution credit. Full normal13/secured10, fresh/configured review, exact-head Root approval and author regular merge remain open. [Provenance and evidence](../../docs/byline-content-lifecycle.md) retain these limits.
+
+
+## Core user repository and pure role scope policy (proposed)
+
+[PR #99](https://github.com/sveltery/cms/pull/99) proposes the foundation described
+in [the owning record](../../docs/user-repository-roles.md) and
+[complete inventory](../../docs/user-repository-roles-ports.json). Authority is
+EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; all 23 whole Source
+files remain byte-exact. Only the complete Source RBAC family is registered:
+30 declarations, 35 static expectation expressions, 33 callbacks. No dedicated
+Source Core UserRepository test exists at the pin. Nine whole broader consumer
+families remain unexecuted; Native SQL cases provide zero copied Source credit.
+
+USR-01 proposes replacing Source Core's single `users` Kysely table API with the
+real Native `CmsDatabase` and a join of existing `_cms_auth_users` and
+`_cms_auth_profiles`. ID, role and disabled remain stored in the existing identity;
+all actual profile fields remain stored in the existing frozen profile table.
+Creation and multi-table updates use the actual atomic batch adapter, not a view,
+manual transaction fallback or test result shim. Genuine count/filter/cursor
+queries and real affected-row deletion preserve Core behavior for complete
+profiles. Source SQLite `(datetime('now'))` defaults produce UTC second timestamps;
+Native Core creation uses the same expression and Core update leaves updated_at
+unchanged. Existing Auth adapter ISO/Date/update behavior and stored bytes remain
+unchanged. No migration, raw users/UPSERT mapping or fabricated profile is added.
+This framework/storage substitution is proposed for finite development; final
+project-manager acceptance, final validation/review and author merge are pending.
+
+USR-02 proposes preserving historical Native identities without a profile and
+omitting them from the complete Core repository. Lookup/update return null,
+delete returns false and Core count counts joined profiles. The unchanged Auth
+adapter continues its historical identity lookup/count behavior. Source has no
+partial profile row because those fields occupy its single table. This difference
+protects actual existing identity bytes without inventing email/profile values.
+Original Node/raw-D1 preservation assertions are present, with current reached
+assertion failures followed by later unreached expectations; final acceptance
+is pending. Explicit historical profile enrollment is unfinished.
+
+USR-03 proposes a module substitution for Source's pure role scope policy: the
+entire Source scope mapping and `scopesForRole`/`clampScopes` tail remains exact
+in the existing Native permission module; three pure constants/type declarations
+come from Source tokens.ts in a separate Native module. Existing Native permission
+guards and ownership rules are unchanged. This does not implement API token
+issuance, signing, sessions or endpoints. Final exact-head acceptance is pending.
+
+The test-first Native `741b29cd04645b871af3a29c6686c91f6da74bf1` and public
+tree-equivalent `b4ec05ffddf43a8c91e8fab6ee1e501ccef2437f` precede runtime changes.
+[The full original baseline](../../docs/evidence/user-repository-roles/testfirst-whole65.log)
+records 65 callbacks: 29 pass and 36 fail. Native 31 reached assertion reds comprise
+26 actual SQL availability requirements and five pure scope availability
+requirements; later field/value expectations remain unreached. Source 28 cases
+initially pass and five stop at missing-function errors before assertions; the
+Native role-resolution control initially passes. Fixture/infra failures are zero.
+Causal reached Source assertion-red credit and upstream bug credit are both zero.
+Product green/refactor receipts remain pending, not inferred from a byte guard.
+
+The corrected seed inventory traverses 113 modules including every literal
+dynamic import, compared with 103 eager modules. It finds no users query/raw users
+SQL/UserRepository chain; Source apply itself has zero users queries. This graph
+evidence does not establish product integration or qualify a raw users facade.
+The shared package change appends the whole new 65-case guard/family after the
+entire actual public Main14 Source chain, including its canonical storage guard.
+Versions, dependency locks, media patch/notices, frozen providers, existing normal
+thirteen-stage and secured nine-launch gates/deadlines remain unchanged. Those
+gates and final independent/configured review must qualify the eventual head.
+Full admin APIs/DTO/UI, broader byline/plugin/content consumers, legacy enrollment,
+invites/recovery/OAuth/API tokens, complete logical facade/raw UPSERT routing and
+deployed-hosting parity remain unfinished.
+
+
+## Core user foundation development receipts — 2026-10-04
+
+Root specifically accepted USR-01/02/03 FOR DEVELOPMENT in the
+[immutable finite qualification](../../docs/evidence/user-repository-roles/pm-development-qualification.json),
+1,513 bytes/SHA256 `3750d5109d57103e3828aade3925f0fd05197f76635c4677a9818219955d489b`.
+It qualifies the exact R2 thirteen actions, all 34 protected files, all 23 pinned
+Source bodies, unchanged whole 65 callbacks and complete existing package/register
+prefixes. The independent review's sole USRREV-01 static guard schema finding was
+closed before application: numeric 113 module count and the lengths of the two
+complete empty users-query arrays. R1 and its original independent review remain
+preserved; this infrastructure correction earns zero product parity credit.
+
+Regular Native fix `a667ee88c43f1b1aae01d316b64d2b145312d03d`, tree
+`a1b89843f21f6ec9481c9a9d04712dcebf822dd5`, followed the immutable test-first
+commit and actual public Main14 ordinary union. The complete guard and unchanged
+65-case family passed once: all 33 Source pure-policy and 32 Native callbacks.
+[The full raw fix receipt](../../docs/evidence/user-repository-roles/fix-whole65.log)
+is 610 bytes/SHA256 `63bfa37352052a83be72d86b723281f4574e56edfad696d68b9fda2d3adb90cc`.
+Regular refactor `ba1fd60e3e7769011eddb1a48912c06c9a3367ac`, tree
+`aad9b40c520c6b4fd2ad50a0d8d4029a9b378c08`, removes duplicated join construction
+by sharing the same real complete identity/profile join for reads and counts.
+All predicates, selected values, cursor order and atomic writes stay unchanged.
+The unchanged whole 65 family passed once again;
+[the full raw refactor receipt](../../docs/evidence/user-repository-roles/refactor-whole65.log)
+is 610 bytes/SHA256 `45e027c617a7c0f6c11dedec35b9b43822778d00b6095bdfa198d86082ba2c40`.
+The [paired owning record](../../docs/user-repository-roles.md) and
+[structured full receipts](../../docs/evidence/user-repository-roles/fix-refactor-receipts.json)
+retain exact evaluated heads, commands and elapsed times.
+
+The Native baseline had 31 reached assertion failures: 26 real SQL storage
+availability assertions and five pure-policy availability assertions. Its later
+field/value/rollback/cursor/count/delete/preservation expectations are now reached
+and green. Source had five missing-function errors BEFORE assertions and 28
+initial greens; all 33 Source pure-policy callbacks now pass, with unchanged
+35 static expectation expressions. Reached causal Source assertion-red credit
+is zero. No Source bug credit, changed Source/Native assertion, new protected
+credential/session/HTTP/signature/principal/race probe or frozen migration change
+is introduced. Nine whole broader Source user consumer families remain
+unexecuted; their full product behavior remains unfinished.
+
+OWN draft PR #99 still has the earlier public tree-equivalent test-first/Main14
+union head `1aa73216cbab78e69b7299720975de7aa94cccee`; these fix/refactor receipts
+evaluate local Native commits and are not yet a public combined-head pass. Final
+shared push waits ordinary adoption of actual public fixture96+97 Main. The full
+original thirteen normal stages and secured nine browser launches, independent
+and configured final review, exact final decisions, author expected-head merge
+and actual post-Main verification remain pending. Full admin/DTO/UI, historical
+profile enrollment, broader consumers, invites/recovery/OAuth/API token issuance,
+logical/raw users facade and deployed-hosting parity remain unfinished.
+
+
+### Byline lifecycle: actual public user attribution and complete handler/filter closure
+
+Ordinary union `f863cdde` adopts actual published User99 core080/tree33c6 with native history preserved. Whole immutable content handlers54 and byline-filter handlers14 now execute68/68 green on actual canonical storage. Real stored-user attribution reaches one Source value red before constructor-only metadata fixes it; principal permissions/CAS/ownership and ordinary Native form identity constraints remain unchanged. The complete original filter family reaches two deep-equality reds and eleven actual validation/API refusal stops before assertions; the verbatim Source filter builder now forwards into the existing query owner. Its earlier14 stops were missing fixture constructor transport, correcting the provisional user-stop label; all initial raw remains, with zero Source causal credit for that repair. No fake users, secondary query/writer, new migration or private dependency substitution is added.
+
+The old selected Source216 remains green, and unchanged supplemental Native24 pass on both Node and real raw D1. Full Source72 acceptance stays open because permanent-deletion4 still imports an absent genuine Seed producer. Current type checking isolates one inherited public User99 test narrowing error; its owner has the exact report, with no old foreign test assertion/body edits here. Final whole gates, fresh/configured review, exact-head approval and author regular merge remain pending.
+
+### Byline lifecycle: Source creation metadata and one canonical initial publication
+
+Actual public User99 type continuation3ede is retained by ordinary union5309c892. Source create stores optional authorId||null without a user existence policy, and duplicate uses override||original author exactly; ordinary forms still cannot grant author metadata. Supplemental29 first reaches two real published-create value failures and then passes on Node and actual raw D1 after the sole canonical INSERT accepts trusted Source initial published status. Absent publishedAt remains null, initial version remains1, and slugless routable refusal leaves no row. Existing publication actor grants and ownership checks are preserved before the one-batch write. Whole original handler/filter68 remain green; permanent-delete4 still stops at genuine missing Seed import. Type checking is0 errors/0 warnings. Final combined-public-head gates and approvals remain pending.
+
+Trusted already-hosted Byline query handles can now retain their actual canonical owner without installing a second namespace plugin. The association records no query or new storage and leaves existing23 whole Native Byline controls green. Seed consumers must supply the real existing owner; their prior prerequisite failures remain zero Source behavior credit.
+
+## Standalone ContentPicker client cache ownership (proposed CP-03)
+
+Authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, whole `packages/admin/src/App.tsx` query provider and `packages/admin/src/components/ContentPickerModal.tsx`, retained in the existing 31-authority picker manifest. Source uses one React Query provider with its fixed API module. The native Svelte modal additionally accepts a supplied client and can run without a dashboard provider or explicit QueryClient. At actual public Main `90fa2410625e5b497f1547093e4a832c1440690f`, its standalone WeakMap used the read method as identity. Distinct class instances sharing that prototype method then returned the first client's cached content, collections and manifest in the second modal.
+
+Proposed CP-03 keys that single standalone cache by the actual supplied client object, retaining same-object cache reuse, existing query keys, method receivers, one-minute freshness and one retry; explicit QueryClient ownership is unchanged. This is a repair to the native framework extension, not an upstream bug or additional Source assertion credit. No query-client clone, credential fingerprint, new cache layer, protected HTTP/session probe or provider/database change is introduced. The paired [picker documentation](../../docs/content-picker.md#standalone-client-cache-isolation) identifies the five supplemental controls and complete original tests.
+
+Test-first `5d146f03` registers 29 native cases: previous24 and two new controls pass; two direct account-isolation values fail, and the explicit-owner control's empty standalone cache assertion also fails from prior shared-prototype cache ownership. Explicit query-client result assertions already pass and earn zero causal repair credit. Fix `95263bfc` and the subsequent owner-naming refactor each pass all29. Whole core Source19 plus existing backend Native3 pass with zero new Source causal-red credit. All31 whole authorities/four original test files/22 original declarations and all old fixtures, mocks, clocks, Source/raw history, gates and dependencies remain intact.
+
+Proposed branch: `fix/content-picker-standalone-client`; owned PR and regular merge are pending, specific Root acceptance is not yet recorded. Current whole13 normal/secured9 hosted, independent final-head and configured review remain required. Development reuses identical-lock published dependencies and grants zero own frozen-install credit. Full Kumo rendering, multilingual catalogs, global palette, relation writes, Section/reference consumer wiring and PostgreSQL remain incomplete with their owning families.
+
+### CP-03 PR110 initial validation checkpoint
+
+Owned [PR #110](https://github.com/sveltery/cms/pull/110) initial head `bf49f10da26fa74e534b4529792bb04098b681ee` / tree `518a370162745e6b4312180a5c84b429b9d4e15d`: secured CI515 browser `111622929008` passes; normal `111622929121` cancels at the unchanged fifteen-minute deadline after ten completed stages with Node hosting interrupted, earning zero complete hosted13 credit. Configured review completes without inline findings and initial-head independent review clears the bounded repair. The retained local log records all13 paired stages and passing aggregates, SHA256 `e507880642e803ace5b60e25b50081cf2906e8e0ff7e42d4a648a71ac9ecf89e`; its original wrapper session/final exit is unavailable and no wrapper exit is invented. The [paired checkpoint](../../docs/content-picker.md#pr110-initial-validation-checkpoint) preserves these limits. Current public-Main adoption, current13/9, fresh reviews, specific CP-03 decision and author regular expected-head merge remain pending; no new product or Source credit follows from this documentation.
+
+### CP-03 actual scheduling-main integration
+
+Regular merge `86ac7146eabd1e3f017dc1e49ecd8604443b50d9` adopts actual public Main `98332aaa81bf857b3e8214a7e572cb086390d703`, preserving its full calendar/scheduled-publication graph and compatibility text alongside the complete CP-03 records. Package/dependency/lock/bootstrap/CI/attributes and all historical Source/raw/test bytes remain intact. Relative to actual Main, only cache.ts, five supplemental standalone-client tests and paired picker/compatibility documentation differ. [Integration details](../../docs/content-picker.md#pr110-actual-scheduling-main-integration) identify both ordinary parents. Current stationary successor normal13/secured9, configured and fresh independent review, specific CP-03 acceptance and author regular expected-head merge remain pending. This merge and document update grant zero new test or parity credit.
+
+### CP-03 schema-administration main integration
+
+Regular merge `4773c7343a065afedf6aac11b68e2837d95eab1d` preserves both the previous public PR110 head `e414d6bbb3ba541b183b9618f7bf74126b7d4614` and actual public Main `f2b2e560f6ea54f53e941db76fac732601772ce9`. The complete incoming main compatibility text is an exact byte prefix; the existing CP-03 tail is retained unchanged. All incoming package, lock, bootstrap, CI, security, providers, original Source and previous native test bytes are preserved. CI551's previous-head normal jobs `111910188554` and its single authorized retry `111918625392` both cancelled at the unchanged fifteen-minute deadline, after ten and eleven completed stages respectively; neither earns complete normal credit. The new successor requires current normal13/secured10, fresh independent review, configured review or recorded quota exception, specific Root CP-03 acceptance and author expected-head regular merge. The [paired checkpoint](../../docs/content-picker.md#pr110-schema-administration-main-integration) separates Source19, native backend3, native UI29 and original browser3; this metadata union adds zero execution or Source causal credit.
 
 ## Standalone ContentPicker client cache ownership (proposed CP-03)
 
@@ -2609,3 +2769,37 @@ The user now explicitly authorizes ordinary repository publications and actions;
 ### Full seed engine development checkpoint
 
 The fresh full seed engine uses actual mainfa861 and qualified ordinary PUBLIC PR86/Media6908/Relations7d391 histories, preserving both full compatibility tails, providers1–16, the frozen lock, bootstrap and security controls. Exact public Byline118d524 existing-handle owner registration is a finite constructor/owner transport adoption, with zero new SQL/auth/Source execution credit. Full combined Byline/SEO content composition remains the sole assigned integrator's task. Whole original apply85=76pass9owner prerequisites; additional whole capture69=54pass15fail, including8 reached value failures. Missing module, setup, absent method and thrown prerequisite failures remain zero causal credit. Seed engine, capture, runtime and raw-D1 completeness are still pending; no full seed/setup parity is claimed. Paired `docs/source-seed-backend.md` and literal `docs/seed-engine-evidence/` retain this test-first checkpoint.
+## SEO storage PR109: shared reads and public sitemap producer
+
+The immutable authority remains EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. [The paired SEO record](../../docs/seo.md) and [storage ledger](../../docs/seo-storage-ports.json) retain nine whole Source families, 169 declarations/351 expressions and 70 complete authorities. Original callbacks, SQL/data, mocks and clocks are unchanged. Proposed PR109 currently executes repository3, hreflang14, collection-sitemap13, content integration60 and loader7 on a distinct genuine Source physical reference host. Import stops earn zero assertion/value-red credit; reference-host passes earn zero Native canonical/provider/PG/D1/Worker credit.
+
+SEO-STORAGE-01 selects only two fixed trusted physical descriptors: default Native `_cms_seo`/`_cms_collections`, or explicitly supplied genuine reference `_emdash_seo`/`_emdash_collections`. Kysely compiles actual physical identifiers; there is no catalogue/query/result rewriting or fixture detection. Source table algorithms otherwise retain the pinned no-op, partial-upsert, cache invalidation, batching and canonical-clearing duplication semantics. Canonical forward17 now follows independently verified public16 `f6d10ddfe66c81b4a6203f6cccdcf9d70d8c953b`. It implements only the Source018 SEO table/index through the existing migration/recognition owner. Frozen providers1–16 and the provider3 collection flag remain unchanged. Native original installation2 and canonical/read9 pass; DDL syntax failures before assertions earn zero assertion credit. Actual marker assertion reds precede the narrowly authorized creator upper bound16→17 and four literal Native marker-fixture extensions, with whole families12/12 and48/48 passing. This is proposed namespace hosting; specific feature acceptance is not yet recorded.
+
+SEO-STORAGE-02 adds finite scalar settings and collection explicit-db reads through the published OptionsRepository and SchemaRegistry. Its supplied-Kysely adapter cannot write or close the connection and adds no cache or writer. Native2 first reach real availability assertion reds and then pass. Whole Source media resolution semantics are incomplete: logo/favicon/defaultOGImage remain raw stored references while the genuine Media owner is absent. Existing shared content ID/slug/translation reads and menus request cache/i18n are reused unchanged. No complete Settings, loader, query SDK or draft-revision hydration acceptance is inferred.
+
+SEO-STORAGE-03 substitutes the SvelteKit public collection-sitemap GET and a finite XML producer for the Source Astro route transport. The Native GET consumes the final request-scoped database and existing trusted runtime origin, without reading forwarded headers or introducing another configuration/cache/writer owner. The Source virtual-config trailing-slash seam is an explicit producer input; actual product runtime policy composition remains pending. Native producer availability1 has a genuine assertion-red-to-green sequence; whole Source route13 passes on the explicit genuine Source physical host. Source XML, response statuses/types, noindex/soft-delete, date, locale, alternates and escaping are retained. Bare-ID media routing, index/robots, SDK/content hydration and full feature integration remain incomplete. Framework transport/trusted-origin substitution is proposed; no specific feature acceptance or final merge approval is recorded here.
+
+
+SEO-LIF01 is the authorized next finite single-writer boundary. The whole original Source content60 passes on the genuine Source physical reference owner and grants zero Native lifecycle credit. Nine actual canonical Node/raw/scoped D1 controlled requirements retain completed assertion reds for unsupported SEO input or absent planned SEO SQL and now pass through the existing owner. Source-derived readonly compiled upsert/copy/delete plans enter only the existing content owner’s create/update/revision batch, with its existing CAS/schema guards and cache invalidation after actual success. SEO remains ordinary transactional side-table metadata even for staged drafts; no `_seo` revision staging/baseline or second writer/cache owner is introduced. Shared duplication/permanent deletion and public loader integration remain pending if their actual producer is absent. This contract is authorized work, not feature acceptance or final merge approval.
+
+
+SEO-CTX01 substitutes compatibility delegates for the old independent SEO ALS/cache. The sole published menus owner retains the same original context object, all public functions and Source keys; no caller mutation, second store or private Search graph is introduced. The exact algorithm guard now follows the existing actual shared request-cache body. Whole Source loader7 has six first passes plus one retained real null-panel red, then7/7 through the shared owner; pure72 plus existing43 remain115/115. Native25 qualifies actual identity, promise/prime, isolation, explicit invalidation, real canonical committed/rolled-back cache results and a single existing request/deferred tracker. Four existing Cloudflare Source families pass23/23. Shared Native get/list and publication hydration retain only exact Source SEO shape/flags; full Source loader/SDK and deployed Worker acceptance remain open. Root authorizes this finite contract; specific feature acceptance/final merge approval remain pending.
+
+The full first Native service receipt is1500/1490pass/10fail/zero skips or cancellations, solely obsolete final marker vectors in existing lifecycle-history/startup-upgrade fixtures. Root authorizes only their four literal1..16→1..17 expectations, retaining all callback/data/history/auth/clock/DDL/concurrency assertions and zero Source/product-repair credit. Current successor whole1500/normal13/secured9 qualification remains required. The actual public Native collection sitemap also retains two trusted-base-path URL reds, then passes both unchanged callbacks through the existing validated cmsRuntime.basePath transport input. Configured settings.url retains Source precedence; the whole Native gate passes27/27 and the whole new Source suffix passes30+60+7 after every prior command. the initial incorrect success-content-type Original expectation earns zero causal credit and is corrected to the pinned charset before those URL assertions execute.
+
+The later `f7cb8c1e` whole normal receipt retained1500/1498pass/two genuine obsolete MAX(version) scalar failures before Root authorized its one literal16→17. Ordinary actual public Byline main `90fa2410` is now preserved in stationary implementation `27939fd0`: all1500 services pass, followed by original block-registry Native30/20pass/10fail/zero skips or cancellations. Four latest-marker literals (CMS_MIGRATION_VERSION at provider-preservation85/94/122 and final marker row-count215) still expect16 against actual17. [Configured review 5410125940](https://github.com/sveltery/cms/pull/109#pullrequestreview-5410125940) reports the same first three; the [whole failed normal receipt](../../docs/seo-storage-evidence/279-normal13-block-marker-red.log) preserves later stage4 callbacks and stages5–13 as unreached. Root authorizes only these four scalar16→17 repairs after the genuine whole value-red, keeping every other Source/Native body, data, snapshot, historical marker, DDL and clock unchanged. CI511 validate fails at that same stage; all nine secured browser commands pass. Fresh exact279 independent semantic review is clear for the proposed bounded implementation but grants no merge readiness. This marker maintenance earns zero Source/product-repair credit; whole30 and current stationary normal13/secured9/configured/fresh review plus exact manager approval remain required.
+
+SEO-READ02 is authorized Source fidelity work: content.ts281/295 hydrateSeo/hydrateSeoMany receive the authoritative hasSeo boolean from their existing collection metadata owner. Native own helpers instead requery it. Four new controlled Native single/batch returned-SEO/skip requirements use genuine existing SchemaRegistry metadata snapshots and ordinary sequential flag updates, producing four real property value-reds while all preceding27 cases pass; the [complete31-case red](../../docs/seo-storage-evidence/read02-native31-first-property-red.log) earns Native causal evidence only. The required internal parameter will be threaded solely from the same already-read owners, preserving schema/CAS/freshness outside this read contract and adding no public flag, cache, DB or read owner. No runner/deadline optimization is claimed.
+
+The exact03e9 [whole local timeout receipt](../../docs/seo-storage-evidence/03e9-normal13-timeout.log) finishes1500/1499pass/zero assertion failures/one cancelled original D1 scalar callback at its unchanged120-second limit; stages4–13 are unreached. Actual CI514 independently passes all1500 services, block30, Byline/Source/SEO stage4 and stages1–8 before its unchanged15-minute cancellation during stage9; stages10–13 are unreached. Its secured9 and current configured/fresh semantic reviews pass in their bounded scope. Ordinary actual public Scheduling98332aaa is now adopted with its calendar41/Native10 prefix intact. New current successor normal13/secured9/configured/fresh review plus exact manager approval remain required; timing interruptions earn zero assertion or Source repair credit.
+
+SEO-READ02 now threads the required authoritative hasSeo boolean only from existing actual getCollectionWithFields reads: private stored/includingTrashed results retain their metadata value, and already-held definitions supply other callers. Source false/empty early returns are preserved, with no public caller flag or new cache/DB/read owner. Every other old query/guard/CAS/schema-freshness path and returned public item is retained. The four property value-reds now pass in [whole Native31](../../docs/seo-storage-evidence/read02-native31-green.log); [whole original Source30+60+7](../../docs/seo-storage-evidence/read02-source97-green.log) and zero-error/warning type checking pass. Source physical reference passes still grant zero Native loader/SDK credit. This is Source fidelity evidence, not runner/deadline optimization or final feature acceptance; current stationary whole13/secured9/configured/fresh review and exact manager approval remain required.
+
+
+### SEO current public Schema UI union
+
+Ordinary union7709fbca adopts actual public Main `f2b2e560f6ea54f53e941db76fac732601772ce9` while retaining the reviewed SEO-READ02 implementation and all70 immutable authorities. Entire Main package values/scripts, frozen dependencies, bootstrap, workflow, security and deadlines remain unchanged; existing Source chain is a literal incoming prefix followed by the SEO suffix. Incoming Schema UI secure browser command remains required, making the current boundary normal13/secured10. [Paired documentation and actual terminal receipt](../../docs/seo.md) retain current original30+60+7 and Native31 passes, zero type diagnostics, earlier pre-callback pnpm environment stop and incomplete historical normal521 attempts. No new product repair, Source callback credit, provider beyond17, full SEO acceptance or hosted normal success is inferred. Current final-head gates/fresh review/exact Root approval/AUTHOR regular merge/post-main qualification remain pending.
+
+### Canonical content integration: actual public Media, Relations and SEO
+
+Regular unions retain actual public Mainfa861, Media6908, Relations7d391 and SEO3b556 histories and full Source-script inventories. The sole content writer composes actual Byline/reference/SEO/taxonomy plans with its existing schema/CAS/entry guards and post-commit invalidations. SEO read snapshots and Byline/reference hydration are preserved. Combined tree checks: own supplemental29 pass, original handler/filter68 pass, SEO Native31 pass, Relations repository Source51 pass, type check0/0. Whole permanent-delete4 remains a Seed import stop; three whole Relations lifecycle57 files currently register0 at missing content-handler import, with zero Source behavior credit. Final complete workload and exact-head review remain open.

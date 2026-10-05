@@ -1,0 +1,25 @@
+? Verifying lockfile against supply-chain policies (534 entries)...
+Update available! 12.6.0 → 12.9.1.
+Changelog: https://pnpm.io/v/12.9.1
+To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -
+✓ Lockfile passes supply-chain policies (534 entries in 8s)
+Lockfile is up to date, resolution step is skipped
+Packages: +14
+++++++++++++++
+Progress: resolved 14, reused 14, downloaded 0, added 14, done
+. prepare$ svelte-kit sync
+. prepare: Done
+
+devDependencies:
++ pg 8.18.0
+
+Done in 11.3s using pnpm v12.6.0
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  03:28:01
+   Duration  2.55s (transform 1.12s, setup 0ms, import 1.80s, tests 315ms, environment 0ms)
+

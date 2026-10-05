@@ -1,0 +1,197 @@
+✔ Node: domain null slug remains distinct with omitted data (61.020026ms)
+✔ Node: domain empty string slug remains distinct with omitted data (37.4943ms)
+✔ Node: domain null slug remains distinct with explicit empty data (39.083026ms)
+✔ Node: domain empty string slug remains distinct with explicit empty data (34.664562ms)
+✔ D1: domain null slug remains distinct with omitted data (1095.230264ms)
+✔ D1: domain empty string slug remains distinct with omitted data (391.936939ms)
+✔ D1: domain null slug remains distinct with explicit empty data (370.567305ms)
+✔ D1: domain empty string slug remains distinct with explicit empty data (342.413711ms)
+[emdash] draft hydration failed: Error: no such table: _cms_revisions
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async RevisionRepository.findById (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:103:15)
+    at async hydrate (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/content-service.ts:43:19)
+    at async file:///workspace/cms-byline-content-lifecycle/tests/content-composition-read-fault.test.ts:31:50 {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[emdash] draft hydration failed: Error: no such table: _cms_revisions
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async RevisionRepository.findById (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:103:15)
+    at async hydrate (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/content-service.ts:43:19)
+    at async Object.getTrashedContent (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/content-service.ts:111:65) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node: ordinary active read falls back to stored live values when only revision hydration fails (92.132982ms)
+✔ Node: ordinary trash read falls back to stored live values when only revision hydration fails (60.191957ms)
+[emdash] draft hydration failed: Error: D1_ERROR: no such table: _cms_revisions: SQLITE_ERROR
+    at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: no such table: _cms_revisions: SQLITE_ERROR
+      at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: ordinary active read falls back to stored live values when only revision hydration fails (1270.634845ms)
+[emdash] draft hydration failed: Error: D1_ERROR: no such table: _cms_revisions: SQLITE_ERROR
+    at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: no such table: _cms_revisions: SQLITE_ERROR
+      at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: ordinary trash read falls back to stored live values when only revision hydration fails (465.02251ms)
+✔ Node: ordinary slug-only save changes live metadata without a draft (72.318173ms)
+✔ Node: ordinary explicit empty-data save stages a slug (47.108507ms)
+[emdash:redirects] publishing redirect artifacts failed: Error: driver has already been destroyed
+    at RuntimeDriver.acquireConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:44:19)
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:8:47)
+    at DefaultQueryExecutor.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/default-query-executor.js:20:41)
+    at TransactionBuilder.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:672:37)
+    at withTransaction (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:41)
+    at publishRedirectArtifacts (file:///workspace/cms-byline-content-lifecycle/src/lib/server/redirects/artifacts.ts:185:8)
+    at async publishRedirectChanges (file:///workspace/cms-byline-content-lifecycle/src/lib/server/redirects/artifacts.ts:277:3)
+✔ D1: ordinary slug-only save changes live metadata without a draft (1174.86202ms)
+✔ D1: ordinary explicit empty-data save stages a slug (418.57177ms)
+✔ Node: invalid mixed publication date preserves the pinned partial draft commit (70.3998ms)
+[revisions] Failed to prune revisions for post/01M46X5C2Y4ETEY2H2YZVW7AWW: Error: review prune fault
+    at Object.run (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:87:38)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:64:51)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async RevisionRepository.pruneOldRevisions (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:305:18)
+    at async RevisionRepository.pruneQueuedEntry (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:327:18)
+    at async task (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/lifecycle/service.ts:126:12)
+    at async Object.flush (file:///workspace/cms-byline-content-lifecycle/tests/lifecycle-review-regressions.test.ts:27:61)
+    at async TestContext.<anonymous> (file:///workspace/cms-byline-content-lifecycle/tests/lifecycle-review-regressions.test.ts:125:12) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+[revisions] Failed to schedule pruning for post/01M46X5C4RE9QCCC35T195VV4Z: Error: no such column: missing_capture_column
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async Object.unpublish (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/lifecycle/service.ts:415:23)
+    at async TestContext.<anonymous> (file:///workspace/cms-byline-content-lifecycle/tests/lifecycle-review-regressions.test.ts:158:19)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node: slug-only update preserves the pinned public runtime live write (67.037514ms)
+✔ Node: unpublish cycles drain actual queued history at the source retention cap (282.3688ms)
+✔ Node: accepted ISO metadata SQL fault preserves the pinned mixed draft commit (30.369345ms)
+✔ Node: unpublish pruning preserves a newer queued boundary and the current draft (55.813691ms)
+✔ Node: accepted unpublish isolates a real prune fault and retains queued work for retry (75.684264ms)
+✔ Node: a real queue-capture SELECT fault cannot reject an accepted unpublish (31.897529ms)
+✔ D1: invalid mixed publication date preserves the pinned partial draft commit (926.931719ms)
+✔ D1: slug-only update preserves the pinned public runtime live write (266.94592ms)
+✔ D1: unpublish cycles drain actual queued history at the source retention cap (5063.681655ms)
+✔ D1: accepted ISO metadata SQL fault preserves the pinned mixed draft commit (240.288257ms)
+✔ D1: unpublish pruning preserves a newer queued boundary and the current draft (845.913643ms)
+[revisions] Failed to prune revisions for post/01M46X5KDJVF8EDYVRNPBZ9G7D: Error: D1_ERROR: review prune fault: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: review prune fault: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: accepted unpublish isolates a real prune fault and retains queued work for retry (895.926508ms)
+[revisions] Failed to schedule pruning for post/01M46X5M9QYJ2PKREQG0Z75JWX: Error: D1_ERROR: no such column: missing_capture_column at offset 7: SQLITE_ERROR
+    at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: no such column: missing_capture_column at offset 7: SQLITE_ERROR
+      at Error (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-byline-content-lifecycle/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: a real queue-capture SELECT fault cannot reject an accepted unpublish (222.701005ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12612.603486

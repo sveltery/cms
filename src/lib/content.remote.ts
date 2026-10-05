@@ -25,6 +25,11 @@ export const createContent = form(createInput, ({ collection, ...input }) => con
   await refreshContent(collection, input.locale);
   return receipt(value);
 }));
+export const duplicateContent = form(contentKey, ({collection,...key})=>contentResponse(async()=>{
+  const record=withRevision(await requestContent('mutation').duplicateContent({type:collection,...key}));
+  await refreshContent(collection,record.locale);
+  return receipt(record);
+}));
 export const updateContent = form(updateInput, (input) => contentResponse(async () => {
   const service = requestContent('mutation');
   const { collection, _rev, ...value } = input;
@@ -55,6 +60,16 @@ export const restoreContent = form(restoreInput, (input) => contentResponse(asyn
   await refreshTrash(collection, key.locale, key.id);
   await refreshWorkflow(collection, key.locale, key.id);
   return receipt(record);
+}));
+export const permanentDeleteContent = form(trashInput,input=>contentResponse(async()=>{
+  const {collection,_rev,...key}=input;
+  await requestContent('mutation').permanentDeleteContent({type:collection,...key,
+    get expected(){return precondition(input);}
+  });
+  await refreshContent(collection,key.locale,key.id);
+  await refreshTrash(collection,key.locale,key.id);
+  await refreshWorkflow(collection,key.locale,key.id);
+  return{id:key.id,deleted:true};
 }));
 
 async function refreshContent(collection: string, locale: string, id?: string) {
