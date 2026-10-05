@@ -1,0 +1,9 @@
+# Public content query SDK
+
+The complete pinned EmDash 1.1.0 query/loader contract consists of 27 retained test families, 192 static test declarations and 463 expectation expressions. The source pin is `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; copied tests and authorities retain their original bytes and the [MIT notice](../notices/emdash-MIT.txt). The [source manifest](query-sdk-source.json) and `scripts/check-query-sdk-source.mjs` verify those whole files. Static inventory is not execution or parity evidence.
+
+This test-first checkpoint selects 24 complete unit/loader families. Two original reference integration families await the exact trusted runtime/MCP transport review. The original fallback-locale family awaits the genuine pinned Astro `LiveEntryNotFoundError` authority or an explicitly reviewed framework transport. All three whole families remain retained and receive zero execution credit. No test body, assertion, dataset, clock or mock is changed.
+
+The Native SDK will use the existing request context, request cache, object cache and i18n owners, with one actual live-provider/loader over already-migrated canonical storage. Taxonomy, relations and byline repositories remain their developers' sole published producers; private branches are not adopted. The original wide collection requires 95 user fields plus title, while the Native schema currently limits collections to 32 fields. That policy gap remains owned by schema and is not repaired by a Source-only database fixture.
+
+The Native runtime is absent at this checkpoint. Missing modules and unreached expectations receive zero behavioral red or passing Source credit. Full query/loader/API/reference/translation/preview/cache, Node/D1/browser integration, final independent and configured review, project-manager approval and author merge remain incomplete.
