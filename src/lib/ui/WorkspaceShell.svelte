@@ -9,7 +9,7 @@
   import { formatAdminVersion } from './nav/admin-version';
   import { Card } from './vendor/sveltery/card/index';
   import './vendor/sveltery/themes-native.css';
-  let { children, homeHref = '/', schemaHref, activePage = 'content', currentPath, navigation, additionalNavigation, mediaHref, blocksHref, usersHref, version, footerLabel = 'Sveltery CMS', queryClient, currentUserClient, siteName, toolbarLabels }: {
+  let { children, homeHref = '/', schemaHref, activePage = 'content', currentPath, navigation, additionalNavigation, mediaHref, blocksHref, usersHref, version, footerLabel = 'Sveltery CMS', queryClient, currentUserClient, siteName, toolbarLabels, toolbarLocale }: {
     children: Snippet; homeHref?: string; schemaHref?: string;
     activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media' | 'blocks' | 'users' | 'redirects';
     currentPath?: string; navigation?: WorkspaceNavigation;
@@ -18,7 +18,7 @@
     mediaHref?: string; blocksHref?: string; usersHref?: string;
     version?: string; footerLabel?: string | false;
     queryClient?: QueryClient; currentUserClient?: CurrentUserClient; siteName?: string;
-    toolbarLabels?: { editMode: string; hideToolbar: string };
+    toolbarLabels?: { editMode: string; hideToolbar: string }; toolbarLocale?: string;
   } = $props();
   const navigationQuery = $derived(navigation ? undefined : getWorkspaceNavigation());
   const loadedNavigation = $derived(navigationQuery ? await navigationQuery.then(value => value,
@@ -97,7 +97,7 @@
   <main class="bg-kumo-elevated" id="workspace-main" tabindex="-1"><Card class="workspace-surface">{@render children()}</Card></main>
 </div>
 
-<WorkspaceAccount basePath={homeHref.replace(/\/$/, '')} {queryClient} {currentUserClient} {siteName} {toolbarLabels} />
+<WorkspaceAccount basePath={homeHref.replace(/\/$/, '')} {queryClient} {currentUserClient} {siteName} {toolbarLabels} {toolbarLocale} />
 
 <style>
   :global(body) { margin: 0; font-family: system-ui, sans-serif; background: var(--background); color: var(--foreground); }

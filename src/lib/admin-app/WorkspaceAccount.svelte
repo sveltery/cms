@@ -4,28 +4,32 @@
   import { onMount, untrack } from 'svelte';
   import type { QueryClient } from '@tanstack/query-core';
   import { createDashboardClient } from '../dashboard/client';
+  import { resolveAdminShellState } from './state.svelte';
   import WelcomeModal from '../dashboard/WelcomeModal.svelte';
   import { observeCurrentUser, type CurrentUserClient } from './current-user.svelte';
   import { resolveDashboardQueryClient, retainDashboardQueryClient } from '../dashboard/query.svelte';
-  let { basePath = '', queryClient: supplied, currentUserClient: suppliedClient, siteName = 'Sveltery CMS', toolbarLabels = { editMode: 'Edit', hideToolbar: 'Hide toolbar' } }: {
+  let { basePath = '', queryClient: supplied, currentUserClient: suppliedClient, siteName = 'Sveltery CMS', toolbarLabels = { editMode: 'Edit', hideToolbar: 'Hide toolbar' }, toolbarLocale = 'en' }: {
     basePath?: string; queryClient?: QueryClient; currentUserClient?: CurrentUserClient;
-    siteName?: string; toolbarLabels?: { editMode: string; hideToolbar: string };
+    siteName?: string; toolbarLabels?: { editMode: string; hideToolbar: string }; toolbarLocale?: string;
   } = $props();
   const queryClient = untrack(() => resolveDashboardQueryClient(supplied));
   const client = $derived(suppliedClient ?? createDashboardClient(basePath));
   const currentUser = observeCurrentUser(queryClient, () => client);
   const user = $derived(currentUser.result.data);
   const isFirstLogin = $derived(user?.isFirstLogin);
-  let welcomeModalOpen = $state(false);
+  const shellState = resolveAdminShellState();
   $effect(() => {
-    if (isFirstLogin) welcomeModalOpen = true;
+    const firstLogin = isFirstLogin;
+    untrack(() => shellState.observeFirstLogin(firstLogin));
   });
   $effect(() => {
     if (!user) return;
+    const currentUser = user, labels = toolbarLabels, locale = toolbarLocale;
+    if (!untrack(() => shellState.shouldUpdateToolbar(currentUser, labels, locale))) return;
     try {
       if (user.role >= 30) {
         localStorage.setItem('emdash-editor', '1');
-        localStorage.setItem('emdash-toolbar-labels', JSON.stringify(toolbarLabels));
+        localStorage.setItem('emdash-toolbar-labels', JSON.stringify(labels));
         localStorage.removeItem('emdash-toolbar-dismissed');
       } else {
         localStorage.removeItem('emdash-editor');
@@ -36,7 +40,7 @@
   onMount(() => retainDashboardQueryClient(queryClient));
 </script>
 {#if user}
-  <WelcomeModal open={welcomeModalOpen} onClose={() => welcomeModalOpen = false}
+  <WelcomeModal open={shellState.welcomeOpen} onClose={() => shellState.closeWelcome()}
     userName={user.name} userRole={user.role} {siteName} {basePath} {queryClient}
     dismissWelcome={client.dismissWelcome} />
 {/if}
