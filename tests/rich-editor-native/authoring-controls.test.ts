@@ -78,7 +78,8 @@ describe('Actual Native authoring control fidelity repairs', () => {
       { _type: 'htmlBlock', _key: 'remove', html: '<p>Remove this embed</p>' }, paragraph('after', 'After')]);
     editor.view.dispatch(editor.state.tr.setSelection(TextSelection.create(editor.state.doc, 1, 5)));
     onChange.mockClear();
-    host.querySelector<HTMLButtonElement>('[data-type="htmlBlock"] button[aria-label="Delete block"]')!.click(); await tick();
+    host.querySelector<HTMLButtonElement>('[data-type="htmlBlock"] button[aria-label="HTML block options"]')!.click(); await tick();
+    [...document.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')].find(button => button.textContent?.trim() === 'Delete block')!.click(); await tick();
     expect(editor.state.doc.content.content.map(node => node.type.name)).toEqual(['paragraph', 'paragraph']);
     expect(editor.getText()).toBe('Keep this text\n\nAfter');
     expect(onChange.mock.lastCall?.[0].map((block: AuthoringBlock) => block._key)).toEqual(['keep', 'after']);
@@ -92,7 +93,8 @@ describe('Actual Native authoring control fidelity repairs', () => {
     const [otherNode] = positions(editor, 'htmlBlock');
     editor.view.dispatch(editor.state.tr.setSelection(NodeSelection.create(editor.state.doc, otherNode)));
     onChange.mockClear();
-    host.querySelector<HTMLButtonElement>('[data-type="iframeBlock"] button[aria-label="Delete block"]')!.click(); await tick();
+    host.querySelector<HTMLButtonElement>('[data-type="iframeBlock"] button[aria-label="Iframe block options"]')!.click(); await tick();
+    [...document.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')].find(button => button.textContent?.trim() === 'Delete block')!.click(); await tick();
     expect(positions(editor, 'iframeBlock')).toEqual([]); expect(positions(editor, 'htmlBlock')).toHaveLength(1);
     expect(editor.state.doc.nodeAt(positions(editor, 'htmlBlock')[0])!.attrs.html).toBe('<p>Keep HTML</p>');
     expect(editor.getText()).toContain('Inserted before'); expect(editor.getText()).toContain('Keep text');

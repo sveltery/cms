@@ -151,5 +151,82 @@ docs/rich-editor-evidence/iframe-l10n-four-callbacks/refactor-source.log whitesp
 docs/rich-editor-evidence/iframe-live-locale/first-fix-check.log whitespace=-trailing-space
 docs/rich-editor-evidence/iframe-live-locale/first-fix-source.log whitespace=-blank-at-eof
 
+docs/rich-editor-evidence/html28-first-whole/*.log -text
+docs/rich-editor-evidence/html28-first-whole/*-report.json -text
+docs/rich-editor-evidence/html-native-integration/*.log -text
+docs/rich-editor-evidence/html-native-integration/*-report.json -text
 # Literal actual Picker110 union Source output; only observed EOF blank.
 docs/rich-editor-evidence/picker-main-live-locale-union/source.log whitespace=-blank-at-eof
+
+docs/rich-editor-evidence/html-first-browser-fix/editor-first-fix.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-first-browser-fix/html-first-fix.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-boundary-toolbar-tdd/three-first.log -text
+docs/rich-editor-evidence/html-boundary-toolbar-tdd/three-fix-check.log -text
+docs/rich-editor-evidence/html-boundary-toolbar-tdd/three-fix.log -text
+docs/rich-editor-evidence/html-boundary-toolbar-tdd/two-boundary-first.log -text
+
+# Exact observed formatting in literal HTML Source and TDD evidence.
+docs/rich-editor-evidence/html-first-browser-fix/editor-first-fix.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-first-browser-fix/html-first-fix.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-source-dependencies/dompurify-LICENSE -text whitespace=-blank-at-eof
+docs/rich-editor-evidence/html-toolbar-live-locale/check.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html28-first-whole/html-original.log -text whitespace=-trailing-space
+
+# Exact literal full original HTML and iframe green-run logs.
+docs/rich-editor-evidence/html-whole-green/html-green.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-whole-green/editor-fix.log -text whitespace=-trailing-space
+# Preserve literal trailing whitespace in exactly the 31 whole pinned locale catalogs.
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ar/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/bn/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ca/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/cs/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/da/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/de/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/en/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/en-GB/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/es-419/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/es-ES/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/eu/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/fa/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/fr/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/hi/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/hu/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/id/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ja/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ka/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ko/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/nb/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/nl/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pl/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pseudo/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pt-BR/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/sr-Latn/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/sv/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/th/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/tr/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/uk/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/zh-CN/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/zh-TW/messages.po whitespace=-blank-at-eol
+
+# Preserve the frozen DayPicker whole-module source formatting.
+parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/DayPicker.js whitespace=-blank-at-eol
+
+# Exact literal HTML hover TDD, Main union and complete historical CI585 logs.
+docs/rich-editor-evidence/html-options-hover-review/first.log -text
+docs/rich-editor-evidence/html-options-hover-review/fix.log -text
+docs/rich-editor-evidence/html-options-hover-review/guard.log -text
+docs/rich-editor-evidence/html-options-hover-review/refactor-check.log -text
+docs/rich-editor-evidence/html-options-hover-review/refactor.log -text
+docs/rich-editor-evidence/html-options-hover-review/source-positive.log -text
+docs/rich-editor-evidence/html-hover-main99-union/check.log -text
+docs/rich-editor-evidence/html-hover-main99-union/ci26.log -text
+docs/rich-editor-evidence/html-hover-main99-union/frozen-install.log -text
+docs/rich-editor-evidence/html-hover-main99-union/native63.log -text
+docs/rich-editor-evidence/html-hover-main99-union/source206.log -text whitespace=-blank-at-eof
+docs/rich-editor-evidence/html-ci585-complete-historical/aggregate.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-ci585-complete-historical/combined235of237.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-ci585-complete-historical/hosting.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-ci585-complete-historical/html28.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-ci585-complete-historical/secured10.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-ci585-complete-historical/services.log -text whitespace=-trailing-space
+docs/rich-editor-evidence/html-ci585-complete-historical/source.log -text whitespace=-trailing-space

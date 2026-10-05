@@ -1,0 +1,127 @@
+{
+  "finding": "HTML115-OPTIONS-HOVER-FOCUS-01",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "Whole EmbedBlockShell330\u2013359 default pinned Kumo2.6 menu; real runtime hover witness1PASS",
+  "testFirstCommit": "9cd86553",
+  "minimalFixCommit": "5579c9b6",
+  "refactorCommit": "b324b280",
+  "first": {
+    "total": 63,
+    "passed": 61,
+    "failed": 2,
+    "processExit": 1,
+    "reachedValues": [
+      "Inline radio hover keeps Isolated focus",
+      "Delete action hover keeps Isolated focus"
+    ]
+  },
+  "fix": {
+    "total": 63,
+    "passed": 63,
+    "failed": 0,
+    "processExit": 0
+  },
+  "refactor": {
+    "total": 63,
+    "passed": 63,
+    "failed": 0,
+    "processExit": 0
+  },
+  "refactorTypecheck": {
+    "errors": 0,
+    "warnings": 0,
+    "processExit": 0
+  },
+  "sourceOriginalAdditionalCausalCredit": 0,
+  "geometryCredit": 0,
+  "allOld61BodiesDataClocksUnchanged": true,
+  "original149Authorities35FamiliesUnchanged": true,
+  "focusPolicy": "Real shared item.focus({preventScroll:true}) for open, keys and actual mouse movement; no focus/geometry/IO overrides",
+  "files": [
+    {
+      "path": "first-report.json",
+      "bytes": 27572,
+      "sha256": "ea911d8893eeabe36dca77b45fee1dfa2ca8d0c35b7f4293fcd0f76e13130cce"
+    },
+    {
+      "path": "first.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "first.log",
+      "bytes": 24896,
+      "sha256": "faf4b4fa4b313960e41665aa015bc51d14a587d2fea20d7d8b1b19992b050512"
+    },
+    {
+      "path": "fix-report.json",
+      "bytes": 26584,
+      "sha256": "fbca81ad3b3a0e334543129aabd70d8e37a04ea142534be64d14c2adaf584526"
+    },
+    {
+      "path": "fix.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "fix.log",
+      "bytes": 27618,
+      "sha256": "17407e2079d711cd43c0e0cf806cf5a8cd17f0b97422b37ef293030e8dd1d3e4"
+    },
+    {
+      "path": "guard.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "guard.log",
+      "bytes": 125,
+      "sha256": "07d3676bfafba2215404054e59bc4200efabe472d125c7de851fceb03cb09b4b"
+    },
+    {
+      "path": "pinned-kumo-contract.json",
+      "bytes": 993,
+      "sha256": "35ed8da2aae71344d9d0fbe03cba5d4c9c345963585735e3713682e3bda1aa93"
+    },
+    {
+      "path": "refactor-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "refactor-check.log",
+      "bytes": 209,
+      "sha256": "eae6b6064795073812fe74b466316f3a46f7aac09c5e0db03653032fc8287485"
+    },
+    {
+      "path": "refactor-report.json",
+      "bytes": 26579,
+      "sha256": "3b4750598e78ba1d70617f21003ab69aebcf89d45a3fd1074647220ad526c924"
+    },
+    {
+      "path": "refactor.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "refactor.log",
+      "bytes": 25350,
+      "sha256": "dc3429289572356034f3c80fde048df8d2f1bd48229bd30a5ef9aa7da4f12c89"
+    },
+    {
+      "path": "source-positive-report.json",
+      "bytes": 987,
+      "sha256": "b427d13d02ff6880c1da5c7a0784852e9a8c90a94166c334472c8717d852f4e4"
+    },
+    {
+      "path": "source-positive.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "source-positive.log",
+      "bytes": 81,
+      "sha256": "f48e7bcca6c6a2c772416b6ffdae93ecd9be264454c01ebcdc46dcb01777f2cf"
+    }
+  ]
+}

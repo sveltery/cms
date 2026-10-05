@@ -12,6 +12,8 @@
   import TableSelectionAnnouncer from './TableSelectionAnnouncer.svelte';
   import { createPortableTextEditor } from './create-editor';
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
+  import EmbedIcon from './EmbedIcon.svelte';
+  import { htmlMessage } from './html-messages.source';
   import { insertTable } from './insert-table';
   import { getTableControlState, runTableAction, type TableActionId } from './TableActions';
   import { selectionTouchesTable, selectionIsContainedInTableCells } from './TableExtensions';
@@ -31,6 +33,11 @@
   let pendingInsert: number | null = null, movedPointer = false;
   let slash = $state<SlashMenuState>({ isOpen: false, mode: 'commands', items: [], selectedIndex: 0, clientRect: null, range: null, trigger: 'slash', gutterBlockPos: null, dismissedSlashFrom: null });
   const t = $derived(props.translate ?? sourceMessage);
+  const insertHtmlLabel = $derived.by(() => {
+    // The owning provider can change locale while keeping translator identity.
+    void props.locale;
+    return htmlMessage(t, 'Insert HTML');
+  });
   const editable = $derived(props.editable ?? true);
   const pluginTypes = $derived(new Set((props.pluginBlocks ?? []).map(block => block.type)));
   const blocked = $derived(unsupported.length > 0 || tableError);
@@ -212,6 +219,7 @@
           <button type="button" aria-label="Numbered List" aria-pressed={active('orderedList')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleOrderedList().run()}>1.</button>
           <button type="button" aria-label="Quote" aria-pressed={active('blockquote')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleBlockquote().run()}>“</button>
           <button type="button" aria-label="Code Block" aria-pressed={active('codeBlock')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleCodeBlock().run()}>[ ]</button>
+          <button type="button" aria-label={insertHtmlLabel} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => { if (editor) insertHtmlBlock(editor); }}><EmbedIcon name="BracketsAngle" size={16} /></button>
           <button type="button" aria-label="Insert Link" disabled={!editable} onmousedown={event => event.preventDefault()} onclick={link}>↗</button>
           {#each [['Left', 'left'], ['Center', 'center'], ['Right', 'right']] as [label, align]}<button type="button" aria-label={`Align ${label}`} disabled={!editable || alignmentUnavailable} onmousedown={event => event.preventDefault()} onclick={() => editor && setSelectionTextAlignment(editor, align as TextAlignment)}>{label}</button>{/each}
           <button type="button" aria-label="Table" data-emdash-table-trigger aria-expanded={tableMenu} disabled={!editable} onmousedown={event => event.preventDefault()} onclick={() => { tableMenu = !tableMenu; }}>▦</button>

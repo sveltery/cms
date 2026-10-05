@@ -1,0 +1,215 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "originalWholeTestFile": "parity/emdash/rich-editor-source/packages/admin/tests/editor/html-block-editor.test.tsx",
+  "originalBytes": 21098,
+  "originalSha256": "0880941312588f2f13ccccb452a851e60075705bc1e11a98c17f25b82bcc13ab",
+  "run": 37367331784,
+  "job": 111961372389,
+  "actualPublicHead": "80bd9c72e7f0e93fc90ef287c22899520ea5a5a0",
+  "actualCheckout": "a19686d723dbc9b65061d10a04f573d4f4c27be8",
+  "actualCheckoutTree": "efc863bbff9261d9982dfe82a391565fbe862563",
+  "actualCheckoutOrderedParents": [
+    "2e8747bef91b9b61975832b86d097b5e82c2a9b1",
+    "80bd9c72e7f0e93fc90ef287c22899520ea5a5a0"
+  ],
+  "browser": "Official Playwright Chromium1243/Chrome153.0.8010.12, secured original launch settings",
+  "beforeOwnedProductChanges": true,
+  "registered": 28,
+  "passed": 3,
+  "failed": 25,
+  "pending": 0,
+  "wholeVerdict": "failed",
+  "sourceGuard": "35 whole families /149 byte-exact authorities pass",
+  "rtlReachedValue": {
+    "expected": "rtl",
+    "received": "ltr"
+  },
+  "noBlockedSemanticClaims": true,
+  "classifications": [
+    {
+      "title": "HTML block editor inserts an isolated block from /html and types into its HTML editor",
+      "status": "failed",
+      "classification": "original-editor-readiness-stop-zero-feature-credit",
+      "blockedBehaviorCredit": 0
+    },
+    {
+      "title": "HTML block editor writes the CSS and JS tabs to their fields",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor adds a second block from the toolbar while a code editor has focus",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor adds a block right after the focused block when text follows it",
+      "status": "failed",
+      "classification": "driver-or-locator-stop-zero-blocked-behavior-credit",
+      "blockedBehaviorCredit": 0
+    },
+    {
+      "title": "HTML block editor adds a block right after the focused block when another block follows it",
+      "status": "failed",
+      "classification": "driver-or-locator-stop-zero-blocked-behavior-credit",
+      "blockedBehaviorCredit": 0
+    },
+    {
+      "title": "HTML block editor adds a block right after the focused block when a table follows it",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor places a block inserted from a list item after the list",
+      "status": "failed",
+      "classification": "driver-or-locator-stop-zero-blocked-behavior-credit",
+      "blockedBehaviorCredit": 0
+    },
+    {
+      "title": "HTML block editor keeps a selected block out of a quote",
+      "status": "passed",
+      "classification": "pass",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor leaves the code editor on Escape and returns on Enter",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor moves Tab from a selected block to that block's tabs",
+      "status": "passed",
+      "classification": "pass",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor switches the render mode from the block menu",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor deletes the block from its menu and keeps focus in the editor",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor shows the earlier code after undo in the editor",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor undoes the latest typing from the toolbar without losing it to an older step",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor writes typing that waited while the editor was read-only",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor lays out its controls in the interface direction, not the content's",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor shows read-only code and no menu when the editor is read-only",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor lets Delete act at a gap cursor before the block",
+      "status": "passed",
+      "classification": "pass",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor sends text dropped on the code editor to the code, not the document",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor lets a block dragged from the handle drop onto a code editor",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block editor undoes a block inserted from the gutter in one step",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block preview opens a saved block on Preview, sized to its content",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block preview runs a saved block's JavaScript after Run preview, and edited code right away",
+      "status": "failed",
+      "classification": "driver-or-locator-stop-zero-blocked-behavior-credit",
+      "blockedBehaviorCredit": 0
+    },
+    {
+      "title": "HTML block preview waits for Run preview when a saved block's HTML holds a script or a frame",
+      "status": "failed",
+      "classification": "driver-or-locator-stop-zero-blocked-behavior-credit",
+      "blockedBehaviorCredit": 0
+    },
+    {
+      "title": "HTML block preview keeps and removes the same markup in an inline preview as the site",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block preview cleans an inline block's preview the way the site does",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block preview says there is nothing to preview for a new block",
+      "status": "failed",
+      "classification": "reached-original-DOM-assertion",
+      "blockedBehaviorCredit": null
+    },
+    {
+      "title": "HTML block preview notes resources the security policy blocked",
+      "status": "failed",
+      "classification": "driver-or-locator-stop-zero-blocked-behavior-credit",
+      "blockedBehaviorCredit": 0
+    }
+  ],
+  "files": [
+    {
+      "path": "html-original.log",
+      "bytes": 113558,
+      "sha256": "eb51d77f581258197014cd5825d6f4ff09cafd827401ea076678d6b99f9672a3"
+    },
+    {
+      "path": "html-original-report.json",
+      "bytes": 25606,
+      "sha256": "ba429ae2abb2a1867dadc1570fd065f80972dd603c63a5900172f7c5de1aa237"
+    }
+  ],
+  "artifact": {
+    "id": 11370692977,
+    "zipBytes": 3025,
+    "sha256": "687bf39f747236283ce214e96e73e6ad88dedacf0d873775a6c2b030fea9b498"
+  }
+}

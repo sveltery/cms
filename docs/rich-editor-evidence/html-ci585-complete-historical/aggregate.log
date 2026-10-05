@@ -1,0 +1,164 @@
+﻿2026-10-05T22:30:02.7792389Z Current runner version: '2.337.0'
+2026-10-05T22:30:02.7820220Z ##[group]Runner Image Provisioner
+2026-10-05T22:30:02.7821834Z Hosted Compute Agent
+2026-10-05T22:30:02.7822571Z Version: 20260901.588
+2026-10-05T22:30:02.7823219Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-05T22:30:02.7824109Z Build Date: 2026-09-01T19:56:44Z
+2026-10-05T22:30:02.7824808Z Worker ID: {27d540a1-82ab-491c-b24e-09aad7f4399a}
+2026-10-05T22:30:02.7825505Z Azure Region: eastus2
+2026-10-05T22:30:02.7826201Z ##[endgroup]
+2026-10-05T22:30:02.7827857Z ##[group]Operating System
+2026-10-05T22:30:02.7828585Z Ubuntu
+2026-10-05T22:30:02.7829126Z 24.04.5
+2026-10-05T22:30:02.7829645Z LTS
+2026-10-05T22:30:02.7830273Z ##[endgroup]
+2026-10-05T22:30:02.7830827Z ##[group]Runner Image
+2026-10-05T22:30:02.7832227Z Image: ubuntu-24.04
+2026-10-05T22:30:02.7832890Z Version: 20260927.320.1
+2026-10-05T22:30:02.7834265Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-05T22:30:02.7835925Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-05T22:30:02.7836965Z ##[endgroup]
+2026-10-05T22:30:02.7838220Z ##[group]GITHUB_TOKEN Permissions
+2026-10-05T22:30:02.7840742Z Contents: read
+2026-10-05T22:30:02.7841621Z Metadata: read
+2026-10-05T22:30:02.7842260Z ##[endgroup]
+2026-10-05T22:30:02.7844494Z Secret source: Actions
+2026-10-05T22:30:02.7845439Z Cache mode: write
+2026-10-05T22:30:02.7846361Z Prepare workflow directory
+2026-10-05T22:30:02.8193282Z Prepare all required actions
+2026-10-05T22:30:02.8242966Z Getting action download info
+2026-10-05T22:30:03.0726905Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-05T22:30:03.1779163Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-05T22:30:03.3720819Z Complete job name: validate
+2026-10-05T22:30:03.4517470Z ##[group]Run actions/checkout@v4
+2026-10-05T22:30:03.4518444Z with:
+2026-10-05T22:30:03.4518933Z   repository: sveltery/cms
+2026-10-05T22:30:03.4523207Z   token: ***
+2026-10-05T22:30:03.4523674Z   ssh-strict: true
+2026-10-05T22:30:03.4524131Z   ssh-user: git
+2026-10-05T22:30:03.4524594Z   persist-credentials: true
+2026-10-05T22:30:03.4525112Z   clean: true
+2026-10-05T22:30:03.4525574Z   sparse-checkout-cone-mode: true
+2026-10-05T22:30:03.4526118Z   fetch-depth: 1
+2026-10-05T22:30:03.4526567Z   fetch-tags: false
+2026-10-05T22:30:03.4527030Z   show-progress: true
+2026-10-05T22:30:03.4527489Z   lfs: false
+2026-10-05T22:30:03.4528025Z   submodules: false
+2026-10-05T22:30:03.4528489Z   set-safe-directory: true
+2026-10-05T22:30:03.4529008Z   allow-unsafe-pr-checkout: false
+2026-10-05T22:30:03.4529841Z ##[endgroup]
+2026-10-05T22:30:03.5584073Z Syncing repository: sveltery/cms
+2026-10-05T22:30:03.5586534Z ##[group]Getting Git version info
+2026-10-05T22:30:03.5587847Z Working directory is '/home/runner/work/cms/cms'
+2026-10-05T22:30:03.5589434Z [command]/usr/bin/git version
+2026-10-05T22:30:03.5639537Z git version 2.55.0
+2026-10-05T22:30:03.5662506Z ##[endgroup]
+2026-10-05T22:30:03.5677705Z Temporarily overriding HOME='/home/runner/work/_temp/d2f83ddc-2b82-41b8-b696-88c4fe3a6f5f' before making global git config changes
+2026-10-05T22:30:03.5680346Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T22:30:03.5684172Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T22:30:03.5745200Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-05T22:30:03.5753304Z ##[group]Initializing the repository
+2026-10-05T22:30:03.5754505Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-05T22:30:03.5887300Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-05T22:30:03.5889178Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-05T22:30:03.5891124Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-05T22:30:03.5893490Z hint: call:
+2026-10-05T22:30:03.5894532Z hint:
+2026-10-05T22:30:03.5895510Z hint: 	git config --global init.defaultBranch <name>
+2026-10-05T22:30:03.5896601Z hint:
+2026-10-05T22:30:03.5897617Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-05T22:30:03.5899188Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-05T22:30:03.5900439Z hint:
+2026-10-05T22:30:03.5901469Z hint: 	git branch -m <name>
+2026-10-05T22:30:03.5902354Z hint:
+2026-10-05T22:30:03.5903460Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-05T22:30:03.5905278Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-05T22:30:03.5908012Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-05T22:30:03.5963241Z ##[endgroup]
+2026-10-05T22:30:03.5964719Z ##[group]Disabling automatic garbage collection
+2026-10-05T22:30:03.5967783Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-05T22:30:03.6002014Z ##[endgroup]
+2026-10-05T22:30:03.6003236Z ##[group]Setting up auth
+2026-10-05T22:30:03.6010937Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T22:30:03.6048055Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T22:30:03.6471899Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T22:30:03.6509695Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T22:30:03.6739582Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T22:30:03.6778658Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T22:30:03.7008819Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-05T22:30:03.7051738Z ##[endgroup]
+2026-10-05T22:30:03.7053227Z ##[group]Fetching the repository
+2026-10-05T22:30:03.7063646Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +073f62235ac8662b7c6eb4ec0ea3182efd9cc1b8:refs/remotes/pull/115/merge
+2026-10-05T22:30:04.9565221Z From https://github.com/sveltery/cms
+2026-10-05T22:30:04.9566441Z  * [new ref]         073f62235ac8662b7c6eb4ec0ea3182efd9cc1b8 -> pull/115/merge
+2026-10-05T22:30:04.9570195Z ##[endgroup]
+2026-10-05T22:30:04.9572128Z ##[group]Determining the checkout info
+2026-10-05T22:30:04.9574076Z ##[endgroup]
+2026-10-05T22:30:04.9579500Z [command]/usr/bin/git sparse-checkout disable
+2026-10-05T22:30:04.9643627Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-05T22:30:04.9688248Z ##[group]Checking out the ref
+2026-10-05T22:30:04.9692267Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/115/merge
+2026-10-05T22:30:05.3232060Z Note: switching to 'refs/remotes/pull/115/merge'.
+2026-10-05T22:30:05.3232937Z 
+2026-10-05T22:30:05.3233410Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-05T22:30:05.3234580Z changes and commit them, and you can discard any commits you make in this
+2026-10-05T22:30:05.3235267Z state without impacting any branches by switching back to a branch.
+2026-10-05T22:30:05.3235641Z 
+2026-10-05T22:30:05.3235946Z If you want to create a new branch to retain commits you create, you may
+2026-10-05T22:30:05.3236560Z do so (now or later) by using -c with the switch command. Example:
+2026-10-05T22:30:05.3236879Z 
+2026-10-05T22:30:05.3237045Z   git switch -c <new-branch-name>
+2026-10-05T22:30:05.3237293Z 
+2026-10-05T22:30:05.3237505Z Or undo this operation with:
+2026-10-05T22:30:05.3237747Z 
+2026-10-05T22:30:05.3237877Z   git switch -
+2026-10-05T22:30:05.3238359Z 
+2026-10-05T22:30:05.3238650Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-05T22:30:05.3239084Z 
+2026-10-05T22:30:05.3239547Z HEAD is now at 073f622 Merge a65d72e4facc3a3b4e12ad41c5830a0515f944f9 into 028dce4a9d71d47f9b9c9bb3e96d7496d11b70ec
+2026-10-05T22:30:05.3259934Z ##[endgroup]
+2026-10-05T22:30:05.3312912Z [command]/usr/bin/git log -1 --format=%H
+2026-10-05T22:30:05.3343535Z 073f62235ac8662b7c6eb4ec0ea3182efd9cc1b8
+2026-10-05T22:30:05.3639514Z ##[group]Run actions/setup-node@v4
+2026-10-05T22:30:05.3639903Z with:
+2026-10-05T22:30:05.3640165Z   node-version: 24
+2026-10-05T22:30:05.3640482Z   always-auth: false
+2026-10-05T22:30:05.3640744Z   check-latest: false
+2026-10-05T22:30:05.3644159Z   token: ***
+2026-10-05T22:30:05.3644445Z ##[endgroup]
+2026-10-05T22:30:05.5167518Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-05T22:30:05.5172411Z (node:2307) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T22:30:05.5173935Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T22:30:05.5175859Z ##[group]Environment details
+2026-10-05T22:30:05.9747661Z node: v24.21.0
+2026-10-05T22:30:05.9748150Z npm: 11.19.0
+2026-10-05T22:30:05.9748466Z yarn: 1.22.22
+2026-10-05T22:30:05.9749801Z ##[endgroup]
+2026-10-05T22:30:05.9928269Z ##[group]Run node scripts/ci-validation-result.mjs "$SERVICES_RESULT" "$SOURCE_RESULT" "$HOSTING_RESULT"
+2026-10-05T22:30:05.9929096Z [36;1mnode scripts/ci-validation-result.mjs "$SERVICES_RESULT" "$SOURCE_RESULT" "$HOSTING_RESULT"[0m
+2026-10-05T22:30:06.0230530Z shell: /usr/bin/bash -e {0}
+2026-10-05T22:30:06.0230972Z env:
+2026-10-05T22:30:06.0231452Z   SERVICES_RESULT: success
+2026-10-05T22:30:06.0231778Z   SOURCE_RESULT: success
+2026-10-05T22:30:06.0232078Z   HOSTING_RESULT: success
+2026-10-05T22:30:06.0232377Z ##[endgroup]
+2026-10-05T22:30:06.0599918Z All mandatory validation phases succeeded: services, source, hosting
+2026-10-05T22:30:06.0762778Z Post job cleanup.
+2026-10-05T22:30:06.1989392Z (node:2346) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T22:30:06.1990567Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T22:30:06.2237416Z Post job cleanup.
+2026-10-05T22:30:06.3164844Z [command]/usr/bin/git version
+2026-10-05T22:30:06.3209248Z git version 2.55.0
+2026-10-05T22:30:06.3249952Z Temporarily overriding HOME='/home/runner/work/_temp/4fcced61-e5e0-42d3-a275-e042cd7cec0d' before making global git config changes
+2026-10-05T22:30:06.3252400Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T22:30:06.3256762Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T22:30:06.3300631Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T22:30:06.3349205Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T22:30:06.3613130Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T22:30:06.3643724Z http.https://github.com/.extraheader
+2026-10-05T22:30:06.3664086Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-05T22:30:06.3709347Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T22:30:06.3973008Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T22:30:06.4028022Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T22:30:06.4451079Z Cleaning up orphan processes
+2026-10-05T22:30:06.4759823Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

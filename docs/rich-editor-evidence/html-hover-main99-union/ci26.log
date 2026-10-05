@@ -1,0 +1,34 @@
+✔ normal work uses separate sequential bounded jobs at the same reviewed checkout (3.5933ms)
+✔ required validate runs after every outcome and forwards every mandatory result (0.537668ms)
+✔ local bootstrap and the entire secured browser job remain byte-exact (1.344471ms)
+✔ services executes its complete original command boundary and frozen prerequisite (21.201688ms)
+✔ services stops at pnpm install --frozen-lockfile and preserves its failure status (10.63607ms)
+✔ services stops at pnpm check and preserves its failure status (9.759782ms)
+✔ services stops at pnpm test and preserves its failure status (11.488481ms)
+✔ source executes its complete original command boundary and frozen prerequisite (16.146477ms)
+✔ source stops at pnpm install --frozen-lockfile and preserves its failure status (7.915526ms)
+✔ source stops at pnpm test:source-ports and preserves its failure status (10.170886ms)
+✔ source stops at node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json and preserves its failure status (13.011225ms)
+✔ source stops at pnpm test:ui-source and preserves its failure status (14.100831ms)
+✔ source stops at pnpm test:date-time and preserves its failure status (16.492437ms)
+✔ hosting executes its complete original command boundary and frozen prerequisite (18.887536ms)
+✔ hosting stops at pnpm install --frozen-lockfile and preserves its failure status (10.477396ms)
+✔ hosting stops at pnpm build and preserves its failure status (10.099829ms)
+✔ hosting stops at pnpm test:production and preserves its failure status (13.591827ms)
+✔ hosting stops at pnpm package:node and preserves its failure status (18.205601ms)
+✔ hosting stops at pnpm test:node and preserves its failure status (14.739502ms)
+✔ hosting stops at pnpm build:cloudflare and preserves its failure status (16.492872ms)
+✔ hosting stops at pnpm test:cloudflare and preserves its failure status (15.381472ms)
+✔ ordered phases execute all thirteen original commands exactly once plus two isolated frozen installs (44.730365ms)
+✔ unknown or missing phase rejects before executing any prerequisite or workload (8.91003ms)
+✔ required aggregate succeeds only after all three normal jobs succeed (43.723641ms)
+✔ required aggregate fails closed for failure, cancellation, skipping, empty and unknown results in each job (650.585014ms)
+✔ missing or extra mandatory aggregate results are rejected (164.188639ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1293.277054

@@ -1,0 +1,19 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-rich104-html-embed-card
+Getting Svelte diagnostics...
+
+/workspace/cms-rich104-html-embed-card/tests/rich-editor-native/html-toolbar-live-locale.test.ts:12:53
+Error: No overload matches this call.
+  Overload 1 of 2, '(descriptor: MessageDescriptor): string', gave the following error.
+    Argument of type 'string | MessageDescriptor' is not assignable to parameter of type 'MessageDescriptor'.
+      Type 'string' is not assignable to type 'MessageDescriptor'.
+  Overload 2 of 2, '(id: string, values?: Values | undefined, options?: MessageOptions | undefined): string', gave the following error.
+    Argument of type 'string | MessageDescriptor' is not assignable to parameter of type 'string'.
+      Type 'MessageDescriptor' is not assignable to type 'string'. 
+  const i18n = setupI18n({ locale: 'en', messages: { en: {}, 'es-ES': { k76x3g: 'Insertar HTML', rdUucN: 'Avance' } } });
+  const translate: Translate = descriptor => i18n._(descriptor);
+  const state = bridgeState<PortableTextEditorProps>({ value: [{ _type: 'htmlBlock', _key: 'saved', html: '<p>Saved</p>' }], translate, locale: i18n.locale });
+
+====================================
+svelte-check found 1 error and 0 warnings in 1 file
+[ELIFECYCLE] Command failed with exit code 1.
