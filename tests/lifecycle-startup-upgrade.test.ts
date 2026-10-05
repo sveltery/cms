@@ -96,7 +96,7 @@ for (const target of ['Node','D1'] as const) {
       assert.deepEqual(markers.slice(0,8),[1,2,3,4,5,6,7,8]);
         assert.deepEqual(markers,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]);
       assert.equal((await sql<{version:number}>`SELECT MAX(version) AS version FROM _cms_migrations WHERE version<=8`.execute(database.db)).rows[0].version,8);
-      assert.equal((await sql<{version:number}>`SELECT MAX(version) AS version FROM _cms_migrations`.execute(database.db)).rows[0].version,16);
+      assert.equal((await sql<{version:number}>`SELECT MAX(version) AS version FROM _cms_migrations`.execute(database.db)).rows[0].version,17);
       await storage.close(); storage = await schemaAdminStorage(target,directory);
       await migrateCms(storage.database);
       assert.equal((await sql<{status:string}>`SELECT status FROM ec_post WHERE id=${entry.id}`.execute(storage.database.db)).rows[0].status,'draft');
