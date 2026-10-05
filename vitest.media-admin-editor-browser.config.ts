@@ -19,6 +19,8 @@ export default defineConfig({plugins:[{name:'whole-media-native-framework-transp
  if(id==='$app/paths')return resolve(root,'tests/helpers/media-panel-client-paths.ts');
  if(importer===resolve(root,'src/lib/media/MediaDetails.svelte')&&id==='./client')return resolve(root,'tests/helpers/media-panel-client-host.ts');
  if(importer?.startsWith(resolve(root,'src/lib/media/'))&&id==='./detail-api')return resolve(root,'tests/helpers/media-panel-api-host.ts');
+ if(importer===resolve(root,'tests/helpers/media-picker-react-bridge.ts')&&id==='./media-picker-api-host')return resolve(root,'tests/helpers/media-panel-api-host.ts');
+ if(importer===resolve(root,'tests/helpers/MediaPickerReactDetail.svelte')&&id==='./media-picker-detail-react')return resolve(root,'tests/helpers/media-panel-react-bridge.ts');
  if(!importer?.startsWith(source)||!id.startsWith('.'))return;
  const target=resolve(dirname(importer.split('?')[0]!),id).replace(/\.(tsx?|js)$/,'');
  const named={
