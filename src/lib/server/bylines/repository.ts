@@ -1,8 +1,9 @@
+import { executeBylineWrites } from "./atomic-writes.ts";
 // EmDash 1.1.0, immutable 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright 2026 Cloudflare Inc.; MIT; notices/emdash-MIT.txt.
 // Complete Source bodies with native imports/storage hosting; docs/byline-backend.md.
 import { bylineDatabase, bylineDatabaseOwner, type BylineDatabaseInput } from "./storage.ts";
-import { sql, type Kysely, type Selectable } from "kysely";
+import { sql, type CompiledQuery, type Kysely, type Selectable } from "kysely";
 import { ulid } from "ulidx";
 
 import { getBylineFieldDefs } from "./field-defs-cache.ts";
@@ -682,27 +683,28 @@ export class BylineRepository {
 	 * Returns `true` when any group-shared row was touched so the caller
 	 * can invalidate the per-request cache post-commit.
 	 */
-	private async applyCustomFieldWritesInTrx(
+	private planCustomFieldWrites(
 		trx: Kysely<Database>,
 		bylineId: string,
 		translationGroup: string,
 		writes: Array<{ field: BylineFieldDefinition; value: CustomFieldValue }>,
 		now: string,
-	): Promise<boolean> {
-		if (writes.length === 0) return false;
+	): {statements:CompiledQuery[];touchedGroupShared:boolean} {
+		const statements: CompiledQuery[] = [];
+		if (writes.length === 0) return {statements,touchedGroupShared:false};
 		let touchedGroupShared = false;
 		for (const { field, value } of writes) {
 			if (!field.translatable) touchedGroupShared = true;
 			if (field.translatable) {
 				if (value === null) {
-					await trx
+					statements.push(trx
 						.deleteFrom("_emdash_byline_field_values")
 						.where("byline_id", "=", bylineId)
 						.where("field_id", "=", field.id)
-						.execute();
+						.compile());
 				} else {
 					const encoded = JSON.stringify(value);
-					await trx
+					statements.push(trx
 						.insertInto("_emdash_byline_field_values")
 						.values({
 							byline_id: bylineId,
@@ -717,18 +719,18 @@ export class BylineRepository {
 								updated_at: now,
 							}),
 						)
-						.execute();
+						.compile());
 				}
 			} else {
 				if (value === null) {
-					await trx
+					statements.push(trx
 						.deleteFrom("_emdash_byline_field_group_values")
 						.where("translation_group", "=", translationGroup)
 						.where("field_id", "=", field.id)
-						.execute();
+						.compile());
 				} else {
 					const encoded = JSON.stringify(value);
-					await trx
+					statements.push(trx
 						.insertInto("_emdash_byline_field_group_values")
 						.values({
 							translation_group: translationGroup,
@@ -743,11 +745,11 @@ export class BylineRepository {
 								updated_at: now,
 							}),
 						)
-						.execute();
+						.compile());
 				}
 			}
 		}
-		return touchedGroupShared;
+		return {statements,touchedGroupShared};
 	}
 
 	async create(input: CreateBylineInput): Promise<BylineSummary> {
@@ -772,9 +774,8 @@ export class BylineRepository {
 		// partial failure rolls both back on Node/PG. D1 still has its
 		// own no-transactions limitation — recovery for that path lives
 		// in `handleBylineCreate`.
-		let touchedGroupShared = false;
-		await withTransaction(this.db, async (trx) => {
-			await trx
+		const {statements:fieldStatements,touchedGroupShared} = this.planCustomFieldWrites(this.db,id,translationGroup,customFieldWrites,now);
+		await executeBylineWrites(this.db,[this.db
 				.insertInto("_emdash_bylines")
 				.values({
 					id,
@@ -792,16 +793,7 @@ export class BylineRepository {
 					...(input.locale !== undefined ? { locale: input.locale } : {}),
 					translation_group: translationGroup,
 				})
-				.execute();
-
-			touchedGroupShared = await this.applyCustomFieldWritesInTrx(
-				trx,
-				id,
-				translationGroup,
-				customFieldWrites,
-				now,
-			);
-		});
+				.compile(), ...fieldStatements]);
 
 		if (touchedGroupShared) {
 			clearRequestCacheEntry(`byline-field-group-values:${translationGroup}`);
@@ -840,17 +832,8 @@ export class BylineRepository {
 		// partial failure rolls both back on Node/PG. The post-commit
 		// invalidation below clears the per-request cache that the
 		// top-of-method `findById` populated for this group.
-		let touchedGroupShared = false;
-		await withTransaction(this.db, async (trx) => {
-			await trx.updateTable("_emdash_bylines").set(updates).where("id", "=", id).execute();
-			touchedGroupShared = await this.applyCustomFieldWritesInTrx(
-				trx,
-				id,
-				group,
-				customFieldWrites,
-				now,
-			);
-		});
+		const {statements:fieldStatements,touchedGroupShared} = this.planCustomFieldWrites(this.db,id,group,customFieldWrites,now);
+		await executeBylineWrites(this.db,[this.db.updateTable("_emdash_bylines").set(updates).where("id","=",id).compile(),...fieldStatements]);
 
 		if (touchedGroupShared) {
 			clearRequestCacheEntry(`byline-field-group-values:${group}`);
@@ -1384,20 +1367,21 @@ export class BylineRepository {
 			bylines.push({ ...item, group });
 		}
 
+		const statements:CompiledQuery[] = [];
 		// This method is expected to be called within a transaction context
 		// (content handlers wrap in withTransaction, seed applies sequentially).
 		// All operations use this.db directly -- callers are responsible for
 		// wrapping in a transaction when atomicity is required.
-		await this.db
+		statements.push(this.db
 			.deleteFrom("_emdash_content_bylines")
 			.where("collection_slug", "=", collectionSlug)
 			.where("content_id", "=", contentId)
-			.execute();
+			.compile());
 
 		for (let i = 0; i < bylines.length; i++) {
 			const item = bylines[i];
 			if (!item) continue;
-			await this.db
+			statements.push(this.db
 				.insertInto("_emdash_content_bylines")
 				.values({
 					id: ulid(),
@@ -1408,16 +1392,18 @@ export class BylineRepository {
 					role_label: item.roleLabel ?? null,
 					created_at: new Date().toISOString(),
 				})
-				.execute();
+				.compile());
 		}
 
 		const primaryGroup = bylines[0]?.group ?? null;
-		await sql`
+		statements.push(sql`
 			UPDATE ${sql.ref(tableName)}
 			SET primary_byline_id = ${primaryGroup}
 			WHERE id = ${contentId}
-		`.execute(this.db);
+		`.compile(this.db));
 
+		
+		await executeBylineWrites(this.db,statements);
 		// Byline credits are folded into this entry's cached payload.
 		invalidateCollectionCache(collectionSlug);
 

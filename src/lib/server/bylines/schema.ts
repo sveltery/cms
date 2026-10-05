@@ -6,7 +6,7 @@ import type { Kysely } from "kysely";
 import { sql } from "kysely";
 import { ulid } from "ulidx";
 
-import { withTransaction } from "./transaction.ts";
+import { executeBylineWrites } from "./atomic-writes.ts";
 import type { BylineFieldTable, Database } from "./database-types.ts";
 import { validateIdentifier } from "../menus/validate.ts";
 import {
@@ -192,8 +192,8 @@ export class BylineSchemaRegistry {
 		const sortOrder = input.sortOrder ?? (await this.nextSortOrder());
 
 		await this.markVersionDirty();
-		await withTransaction(this.db, async (trx) => {
-			await trx
+		await executeBylineWrites(this.db, [
+this.db
 				.insertInto("_emdash_byline_fields")
 				.values({
 					id,
@@ -205,8 +205,8 @@ export class BylineSchemaRegistry {
 					validation: validation ? JSON.stringify(validation) : null,
 					sort_order: sortOrder,
 				})
-				.execute();
-		});
+				.compile()
+		]);
 		await this.markVersionClean();
 
 		const created = await this.getFieldById(id);
@@ -289,13 +289,13 @@ export class BylineSchemaRegistry {
 		updates.updated_at = new Date().toISOString();
 
 		await this.markVersionDirty();
-		await withTransaction(this.db, async (trx) => {
-			await trx
+		await executeBylineWrites(this.db, [
+this.db
 				.updateTable("_emdash_byline_fields")
 				.set(updates)
 				.where("id", "=", field.id)
-				.execute();
-		});
+				.compile()
+		]);
 		await this.markVersionClean();
 
 		const updated = await this.getFieldById(field.id);
@@ -322,17 +322,17 @@ export class BylineSchemaRegistry {
 		// row last, so a crash leaves the definition recoverable on retry
 		// rather than orphan values pointing at a vanished id.
 		await this.markVersionDirty();
-		await withTransaction(this.db, async (trx) => {
-			await trx
+		await executeBylineWrites(this.db, [
+this.db
 				.deleteFrom("_emdash_byline_field_values")
 				.where("field_id", "=", field.id)
-				.execute();
-			await trx
+				.compile(),
+this.db
 				.deleteFrom("_emdash_byline_field_group_values")
 				.where("field_id", "=", field.id)
-				.execute();
-			await trx.deleteFrom("_emdash_byline_fields").where("id", "=", field.id).execute();
-		});
+				.compile(),
+this.db.deleteFrom("_emdash_byline_fields").where("id", "=", field.id).compile()
+		]);
 		await this.markVersionClean();
 	}
 
@@ -374,17 +374,14 @@ export class BylineSchemaRegistry {
 
 		const now = new Date().toISOString();
 		await this.markVersionDirty();
-		await withTransaction(this.db, async (trx) => {
-			for (let i = 0; i < slugs.length; i++) {
-				const slug = slugs[i];
-				if (slug === undefined) continue;
-				await trx
-					.updateTable("_emdash_byline_fields")
-					.set({ sort_order: i, updated_at: now })
-					.where("slug", "=", slug)
-					.execute();
-			}
-		});
+		const statements = [];
+		for (let i = 0; i < slugs.length; i++) {
+			const slug = slugs[i];
+			if (slug === undefined) continue;
+			statements.push(this.db.updateTable("_emdash_byline_fields")
+				.set({ sort_order: i, updated_at: now }).where("slug", "=", slug).compile());
+		}
+		await executeBylineWrites(this.db, statements);
 		await this.markVersionClean();
 	}
 

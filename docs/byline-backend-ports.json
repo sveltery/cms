@@ -3920,5 +3920,26 @@
         "sha256": "79dcff0f68979fe5d893024cd01ef10a252de8beac1f653476563d6d27714fec"
       }
     ]
+  },
+  "atomicRuntimeCheckpoint": {
+    "native": {
+      "tests": 8,
+      "passed": 8,
+      "runtimes": [
+        "Node SQLite",
+        "raw Miniflare D1",
+        "serialized D1 connection adapter"
+      ],
+      "report": "docs/byline-evidence/byline-native-atomic-first-repair.json",
+      "sessionBookmarkedRuntimeCredit": 0
+    },
+    "source": {
+      "wholeFamilies": 6,
+      "registered": 159,
+      "passed": 159,
+      "protectedRouteFamily": "31 declarations not registered: missing route host; no causal Source red credit",
+      "report": "docs/byline-evidence/byline-source-auth-import-r3.json"
+    },
+    "typecheck": "0 errors / 0 warnings; docs/byline-evidence/byline-check-atomic.log"
   }
 }

@@ -1,0 +1,32 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts (0 test)
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts (64 tests) 752ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (23 tests) 318ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts (43 tests) 336ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts (18 tests) 249ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/field-defs-cache.test.ts (6 tests) 225ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/integration/database/byline-fields-races.test.ts (5 tests) 78ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts ]
+Error: Cannot find module '/tests/helpers/bylines/reference-field-routes.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts:29:1
+     27| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     28|
+     29| import {
+       | ^
+     30|  GET as getOne,
+     31|  PATCH as patchOne,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  159 passed (159)
+   Start at  01:46:36
+   Duration  4.33s (transform 526ms, setup 0ms, import 1.42s, tests 1.96s, environment 1ms)
+
+JSON report written to /tmp/byline-source-auth-import-r3.json
