@@ -8,5 +8,8 @@ export const GET:RequestHandler=event=>accountsApi('USER_DETAIL_ERROR',async()=>
 export const PUT:RequestHandler=event=>accountsApi('USER_UPDATE_ERROR',async()=>{
  const {repository,actorId}=await requestAccounts(event,true);const id=requiredUserId(event.params.id);await repository.requireProfile(id);
  const body=await accountBody(event);if(isParseError(body))return body;
- return {item:await repository.update(id,actorId,body)};
+ const updated=await repository.update(id,actorId,body);
+ return {item:{id:updated.id,email:updated.email,name:updated.name,avatarUrl:updated.avatarUrl,
+  role:updated.role,emailVerified:updated.emailVerified,disabled:updated.disabled,
+  createdAt:updated.createdAt,updatedAt:updated.updatedAt}};
 });
