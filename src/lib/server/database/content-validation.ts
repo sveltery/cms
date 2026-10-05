@@ -32,4 +32,7 @@ export const taxonomySlugMap=v.custom<Record<string,string[]>>(value=>
  value!==null&&typeof value==='object'&&!Array.isArray(value)&&
  Object.values(value).every(slugs=>Array.isArray(slugs)&&slugs.every(slug=>typeof slug==='string'&&slug.length>0)));
 export const contentBylineInput=v.array(v.strictObject({bylineId:v.pipe(v.string(),v.minLength(1)),roleLabel:v.optional(v.nullable(v.string()))}));
-export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData),taxonomies:v.optional(taxonomySlugMap),bylines:v.optional(contentBylineInput)});
+export const referenceSelectionMap=v.custom<Record<string,string[]>>(value=>
+ value!==null&&typeof value==='object'&&!Array.isArray(value)&&
+ Object.values(value).every(ids=>Array.isArray(ids)&&ids.every(id=>typeof id==='string')));
+export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData),taxonomies:v.optional(taxonomySlugMap),bylines:v.optional(contentBylineInput),references:v.optional(referenceSelectionMap)});

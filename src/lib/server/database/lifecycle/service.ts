@@ -1,4 +1,7 @@
 import { sql, type CompiledQuery } from 'kysely';
+import type {ContentReferencePlan} from '../../relations/content-plan.ts';
+import {hydrateBoundContentReferences} from '../../relations/read-host.ts';
+import {referenceSelectionMap} from '../content-validation.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type RevisionPrecondition } from '../contract.ts';
 import type { ServerPrincipal } from '../service.ts';
@@ -32,11 +35,11 @@ import {resolveTaxonomySlugMap,contentTaxonomyStatements,newContentTaxonomyState
 // restore:4974 at immutable913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 const DRAFT_ONLY_UPDATE_KEYS = new Set(['data','slug','locale','skipRevision','taxonomies','references','actor','migrateBlocks','replaceBlocks']);
-const UNSUPPORTED = ['seo','references','actor','migrateBlocks','replaceBlocks','inheritFields'];
+const UNSUPPORTED = ['seo','actor','migrateBlocks','replaceBlocks','inheritFields'];
 export interface ContentKey {type:string;id:string;locale?:string}
 export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition}
 export interface ContentUpdate extends ContentMutation {
-  data?:Record<string,unknown>;bylines?:ContentBylineInput[];taxonomies?:Record<string,string[]>;slug?:string|null;skipRevision?:boolean;publishedAt?:string|null;
+  data?:Record<string,unknown>;bylines?:ContentBylineInput[];taxonomies?:Record<string,string[]>;references?:Record<string,string[]>;slug?:string|null;skipRevision?:boolean;publishedAt?:string|null;
 }
 export interface ContentReceipt {item:ContentItem;liveContentChanged:boolean}
 /** Trusted importer/API attribution metadata; never read from mutation input. */
@@ -68,6 +71,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     if(value.slug!==undefined)parse(v.nullable(v.pipe(v.string(),v.maxLength(200))),value.slug);
     if(value.taxonomies!==undefined&&(value.taxonomies===null||typeof value.taxonomies!=='object'||Array.isArray(value.taxonomies)))throw new CmsError('VALIDATION_ERROR','taxonomies must be a map of term slugs');
     if(bylineSelections&&value.bylines!==undefined)parse(contentBylineInput,value.bylines);
+    if(value.references!==undefined)parse(referenceSelectionMap,value.references);
     if(value.skipRevision!==undefined)parse(v.boolean(),value.skipRevision);
     if(value.status!==undefined)parse(v.string(),value.status);
     return value;
@@ -123,6 +127,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     for(const [field,value]of Object.entries(revision.data))if(!field.startsWith('_'))draftData[field]=value;
     return hydratedBylines({...item,data:{...item.data,...draftData},liveData:item.data});
   }
+  async function hydrateReferences(item:ContentItem,includeDrafts:boolean):Promise<ContentItem> {
+    const collection=await definition(item.type);
+    return hydrateBoundContentReferences(database,item,collection.fields,includeDrafts);
+  }
   function prune(collection:string,id:string,revisionId:string) {
     // Pinned runtime/cleanup isolate deferred bookkeeping failures. The queue
     // remains unacknowledged when pruning fails, so later work can retry it.
@@ -149,7 +157,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       throw cause;
     }
   }
-  async function prepareAtomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[]) {
+  async function prepareAtomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[],references?:ContentReferencePlan) {
     const actor=authenticated();const assignments=[];
     const collection=await definition(value.type);
     if((input.status??item.status)==='published'&&collection.routable&&!(input.slug!==undefined?input.slug:item.slug)?.trim())
@@ -167,11 +175,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       oldPublishedAt:item.publishedAt??null,newPublishedAt});
     const taxonomy=contentTaxonomyStatements(database,value.type,item.translationGroup??null,selections);
     const bylineStatements=input.bylines===undefined?[]:await bylines.planContentBylineReplacement(value.type,value.id,input.bylines);
-    const hasSideWrites=selections.length>0||input.bylines!==undefined;
+    const hasSideWrites=selections.length>0||input.bylines!==undefined||!!references?.after.length;
     const updatedToken=ulid();
     const prefix:CompiledQuery[]=[
       sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version})THEN 1 ELSE 0 END`.compile(database.db),
-      ...taxonomy.before,
+      ...taxonomy.before,...(references?.before??[]),
       // Keep this UPDATE last: the existing redirect owner requires its own
       // changes() guard immediately after the actual content mutation.
       sql`UPDATE ${sql.ref(tableName(value.type))} SET ${sql.join(assignments)} WHERE id=${value.id} AND locale=${value.locale}
@@ -186,14 +194,14 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           AND deleted_at IS NULL AND version=${item.version+1}
           ${actor.permissions.has(anyPermission)?sql``:sql`AND author_id=${actor.id}`}
         )THEN 1 ELSE 0 END`.compile(database.db)]:[]),
-      ...taxonomy.after,...bylineStatements,...taxonomy.cleanup,
+      ...taxonomy.after,...bylineStatements,...(references?.after??[]),...taxonomy.cleanup,...(references?.cleanup??[]),
       ...(hasSideWrites?[sql`DELETE FROM _cms_guards WHERE token=${updatedToken}`.compile(database.db)]:[]),
       sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)
     ];
     return {prefix,suffix,redirects,updateResultIndex,selections,bylineInput:input.bylines as ContentBylineInput[]|undefined};
   }
-  async function atomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[]) {
-    const plan=await prepareAtomicUpdate(value,item,input,data,anyPermission,selections);
+  async function atomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[],references?:ContentReferencePlan) {
+    const plan=await prepareAtomicUpdate(value,item,input,data,anyPermission,selections,references);
     const {prefix,suffix,redirects,updateResultIndex}=plan;
     const statements=[...prefix,...(redirects?.statements??[]),...suffix];
     let results;
@@ -203,6 +211,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     if(!row)throw new CmsError('CONFLICT');
     if(redirects&&redirects.redirectResultIndices.some(index=>results[prefix.length+index]?.rows.length))completeContentSlugRedirect(database,dependencies.after);
     await completeContentTaxonomies(selections);completeBylines(value.type,plan.bylineInput);
+    if(references){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(references);}
     return plan.bylineInput===undefined?content.mapRow(value.type,row):stored(value);
   }
 
@@ -229,7 +238,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         if(collection.routable&&!slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
       }
       const selections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,locale));
-      const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined;
+      const needsReferences=value.references!==undefined||collection.fields.some(field=>field.type==='reference'&&field.validation?.relation&&field.required);
+      const references=needsReferences?await (await import('../../relations/content-input.ts')).prepareContentReferencesCreate(database,type,value.references):undefined;
+      let referencePlan:ContentReferencePlan|undefined;
+      const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined||references!==undefined;
       const dates={
         createdAt:value.createdAt?await translate(()=>datetimes.normalizeValue(type,value.createdAt)):undefined,
         publishedAt:value.publishedAt?await translate(()=>datetimes.normalizeValue(type,value.publishedAt)):null,
@@ -239,10 +251,12 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         const taxonomy=newContentTaxonomyStatements(database,type,entry,selections);
         const statements=value.bylines!==undefined?await bylines.planContentBylineReplacement(type,entry.id,value.bylines)
           :translation?await bylines.planContentBylineCopy(type,translation.id,entry.id):[];
-        return {...taxonomy,after:[...taxonomy.after,...statements]};
+        referencePlan=references?.(entry.translationGroup);
+        return {before:[...taxonomy.before,...(referencePlan?.before??[])],after:[...taxonomy.after,...statements,...(referencePlan?.after??[])],cleanup:[...taxonomy.cleanup,...(referencePlan?.cleanup??[])]};
       }:undefined,translation,dates);
       await completeContentTaxonomies(selections);if(value.bylines!==undefined||translation)invalidateCollectionCache(type);
-      return hydratedBylines(await stored({type,id:item.id,locale}));
+      if(referencePlan){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(referencePlan);}
+      return hydrateReferences(await hydratedBylines(await stored({type,id:item.id,locale})),true);
     },
     async duplicateContent(input:unknown):Promise<ContentItem> {
       const actor=requirePermission('content:create');mutationPermission('content:edit_own','content:edit_any');
@@ -298,7 +312,23 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       // Only the trusted constructor host opts into omitted-locale inference;
       // all callers share the same actual definition/read/not-found owner.
       const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
-      return hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true));
+      return hydrateReferences(await hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true)),true);
+    },
+    async getPublishedContent(input:unknown):Promise<ContentItem> {
+      requirePermission('content:read');const item=await stored(key(input));
+      if(item.status!=='published')throw new CmsError('NOT_FOUND');
+      return hydrateReferences(await hydratedBylines(item),false);
+    },
+    async compareContent(input:unknown) {
+      requirePermission('content:read');requirePermission('content:read_drafts');
+      const value=key(input);
+      // A shared slug can identify multiple locales. Retain the resolved row's
+      // identity when the unchanged Source comparison performs its second read.
+      const item=await stored(value,false,true);
+      const {compareContentReferences}=await import('../../relations/content-read.ts');
+      const result=await compareContentReferences(database,value.type,item.id);
+      if(!result.success){if(result.error.code==='NOT_FOUND')throw new CmsError('NOT_FOUND',result.error.message);throw new Error(result.error.message);}
+      return result.data;
     },
     async listContent(input:unknown,options:{allLocales?:boolean;sourceSchemaDiscovery?:boolean}={}) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input,false);
@@ -325,7 +355,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         const stale=staleStoredKeys(data,base,fields);if(stale.length){data={...data};for(const field of stale)delete data[field];}
         await checked(value.type,data,true);
       }
-      const usesDraftRevisions=data!==undefined&&collection.supports.includes('revisions');
+      const usesDraftRevisions=(data!==undefined||value.references!==undefined)&&collection.supports.includes('revisions');
+      const referenceDraft=usesDraftRevisions&&value.references!==undefined?await (await import('../../relations/content-input.ts')).prepareContentReferenceDraft(database,value.type,value.id,value.references):undefined;
+      const references=usesDraftRevisions||value.references===undefined?undefined:await (await import('../../relations/content-input.ts')).prepareContentReferencesUpdate(database,value.type,value.id,value.references);
       const taxonomySelections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,value.locale));
       const liveMetaTouched=Object.entries(value).some(([field,fieldValue])=>fieldValue!==undefined&&!['type','id','expected','_rev'].includes(field)&&!DRAFT_ONLY_UPDATE_KEYS.has(field));
       if(usesDraftRevisions){
@@ -333,10 +365,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
           const base=existing.draftRevisionId?(await revisions.findById(existing.draftRevisionId))?.data??existing.data:existing.data;
           const merged=keepKnownFields({...base,...data},fields);if(value.slug!==undefined)merged._slug=value.slug;
+          if(referenceDraft){const {mergeStagedReferences,mergeStagedReferenceBaselines}=await import('../../relations/staged.ts');merged._references=mergeStagedReferences(base,referenceDraft.staged);merged._referencesBaseline=mergeStagedReferenceBaselines(base,referenceDraft.baselines);}
           const revisionInput={collection:value.type,entryId:value.id,data:merged,authorId:actor.id};
           // With taxonomy writes, insert the real revision and stage it in the
           // same actual fixed batch. Existing no-taxonomy Source staging stays.
-          const prepared=taxonomySelections.length||value.bylines!==undefined?await revisions.prepareCreate(revisionInput):undefined;
+          const prepared=taxonomySelections.length||value.bylines!==undefined||referenceDraft?await revisions.prepareCreate(revisionInput):undefined;
           const revision=prepared?{id:prepared.id}:await revisions.create(revisionInput);
           const metadata=prepared&&liveMetaTouched?await prepareAtomicUpdate(value,
             {...existing,version:existing.version+1,draftRevisionId:prepared.id},
@@ -382,6 +415,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
             if(value.expected!==undefined||attempt===31)throw new CmsError('CONFLICT');existing=await stored(value);continue;
           }
           if(prepared){completeBylines(value.type,value.bylines);await revisions.queuePruning(value.type,value.id,prepared.id);await completeContentTaxonomies(taxonomySelections);}
+          if(referenceDraft){const {completeContentReferenceDraft}=await import('../../relations/content-input.ts');completeContentReferenceDraft(value.type);}
           if(value.skipRevision&&existing.draftRevisionId)await revisions.deleteIfUnreferenced(value.type,value.id,existing.draftRevisionId);
           else prune(value.type,value.id,revision.id);
           let item=await stored(value);
@@ -390,18 +424,22 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         }
         throw new CmsError('CONFLICT');
       }
-      const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections);
-      return {item:await hydrate(item),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length)};
+      const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections,references);
+      return {item:await hydrate(item),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length||references?.after.length)};
     },
     async publish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
       publicationDatePermission(value);
       let redirectCreated=false;
-      const executePublication=publicationStatementExecutor(database,{id:collection.id,slug:value.type,version:collection.version,urlPattern:collection.urlPattern??null},candidate=>{redirectCreated=candidate;});
+      const needsReferences=collection.fields.some(field=>field.type==='reference'&&field.validation?.relation);
+      const publicationReferences=needsReferences?await (await import('../../relations/content-input.ts')).prepareContentReferencePublication(database,value.type,item,
+        item.draftRevisionId?(await revisions.findById(item.draftRevisionId))?.data:undefined):undefined;
+      const executePublication=publicationStatementExecutor(database,{id:collection.id,slug:value.type,version:collection.version,urlPattern:collection.urlPattern??null},candidate=>{redirectCreated=candidate;},publicationReferences);
       const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,
         {version:item.version,updatedAt:item.updatedAt},undefined,executePublication));
       if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
+      if(publicationReferences){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(publicationReferences,value.type);}
       return hydratedBylines(published);
     },
     async scheduleContent(input:unknown,currentTime:Date=new Date()):Promise<ContentItem> {

@@ -137,3 +137,13 @@ export function clearRequestCacheEntry(key: string): void {
 	const cache = store.get(ctx);
 	cache?.delete(key);
 }
+
+/** Native write composition: clear only a trusted collection-key prefix in
+ * this same Source request store. No additional context or cache owner. */
+export function clearRequestCachePrefix(prefix: string): void {
+	const ctx = getRequestContext();
+	if (!ctx) return;
+	const cache = store.get(ctx);
+	if (!cache) return;
+	for (const key of cache.keys()) if (key.startsWith(prefix)) cache.delete(key);
+}
