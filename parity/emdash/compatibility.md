@@ -2459,3 +2459,23 @@ persistent welcome observer remain bounded Native framework substitutions.
 earlier failures and incomplete backend/UI scope. Current successor normal13,
 secured9, configured and fresh independent reviews, explicit Root approval and
 the author's expected-head regular merge remain required.
+
+### PR100 explicit client identity and persistent owner closure
+
+Configured review at `4994a4c0` exposes actual account and picker cache collisions
+under one root with different explicit API clients. Whole Native16 first-red at
+`261ca427` is old12 pass plus four genuine new value failures; corrected whole
+baseline retains all four reds. Fix `fa3a07d5` isolates explicit account caches,
+shell state and real persistent welcome observers per provider, and explicit
+picker APIs reuse their existing client caches. Default account/picker consumers
+retain the root cache and pinned Source keys/freshness; supplied QueryClient
+control is preserved. The framework substitution remains proposed until Root
+acceptance and final checks; divergent doctor-command assertions still earn zero
+fidelity credit. No Source body, dataset, clock, protected boundary or global user
+state changes. [Paired feature documentation](../../docs/dashboard-welcome-ui.md)
+and the complete r9 evidence envelope classify every raw failure, fixture cache
+adaptation and focused green result. Incoming published schema Main `f6d10ddf`
+and its whole Source terminal commands are retained. Full current-union normal13,
+secured9, configured and fresh independent reviews, explicit Root approval and
+the author's expected-head regular merge remain pending. Full dashboard/admin
+UI and real backend90/CoreUpdate/plugin/widget/runtime integration remain open.

@@ -366,3 +366,38 @@ unchanged dashboard/app terminals. Both compatibility histories and all literal
 attributes are retained. The lockfile keeps the incoming graph and the existing
 query-core runtime importer. This merge adds no new behavior or Source credit;
 full successor checks, reviews and Root approval remain required.
+
+The configured review of `4994a4c0` found two real explicit-client cache leaks:
+account consumers shared `currentUser`, and picker overrides shared metadata and
+content keys beneath one root. Four Native regressions were committed first at
+`261ca427`; old12 controls passed and all four new callbacks reached actual
+identity/content/call-count value failures. The corrected complete replay keeps
+those same four reds after adding only new-test DOM readiness. Two earlier
+replay setup stops registered zero callbacks. All complete raw outputs and
+classifications are retained in [the evidence envelope](../parity/emdash/admin-app-source/evidence/r9-client-overrides-whole-evidence.json).
+
+Explicit account API clients now receive separate caches, shell effect state and
+actual persistent welcome MutationObservers in their own provider. Repeated
+consumers of the same stable query function share that scope, and reactive client
+replacement mounts the corresponding account view. Default consumers retain the
+root cache, original `currentUser` key, staleTime300000 and retryfalse. A supplied
+QueryClient remains under caller control. Explicit picker overrides reuse their
+existing client cache; the default picker still shares the root cache. Mutation
+subscriptions follow each mounted view while the real observer survives route
+remounts. No process-global user/scope state is introduced.
+
+The old Native cache probe now reads the actual production scope instead of the
+root when an explicit API override is supplied. Its default closed-picker fixture
+omits its explicit API prop, matching its existing test title. Old assertions,
+datasets and clocks are unchanged. These fixture adaptations fix six cache-access
+failures in the first fix run; a seventh newly reached row assertion gained only
+actual DOM readiness. They supply zero original Source or additional causal-red
+credit. Fix `fa3a07d5` and the ownership refactor pass Native17 plus actualSSR2;
+the additional default-root control uses seeded ordinary data and no HTTP.
+SourceApp12, DashboardNative24, PickerSource22/Native24 and oldSSR19 pass. Original
+Dashboard33 remains32pass plus the strict-qualified literal command failure with
+zero fidelity credit for that callback. Check reports zero errors and warnings.
+The ordinary successor incorporates published schema Main `f6d10ddf`, including
+its complete Source commands and provider16. Full exact-union normal13/secured9,
+configured and fresh independent review, Root approval and author regular merge
+remain required; whole admin/backend/product parity remains incomplete.
