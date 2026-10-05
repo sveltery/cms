@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { resolve, dirname } from 'node:path';
 import ts from 'typescript';
 
 const manifest = JSON.parse(await readFile('docs/query-sdk-astro-authority.json', 'utf8'));
@@ -31,4 +32,9 @@ const original = ts.createSourceFile(originalPath, await readFile(originalPath, 
 const imports = original.statements.filter(node => ts.isImportDeclaration(node) && node.moduleSpecifier.text === 'astro/content/runtime');
 assert.equal(imports.length, 1);
 assert.deepEqual(imports[0].importClause.namedBindings.elements.map(node => node.name.text), ['LiveEntryNotFoundError']);
+const providerPath = 'src/lib/server/query-sdk/live-provider.ts';
+const provider = ts.createSourceFile(providerPath, await readFile(providerPath, 'utf8'), ts.ScriptTarget.Latest, true);
+const actualImports = provider.statements.filter(node => ts.isImportDeclaration(node) && node.importClause?.namedBindings && ts.isNamedImports(node.importClause.namedBindings) && node.importClause.namedBindings.elements.some(element => element.name.text === 'LiveEntryNotFoundError'));
+assert.equal(actualImports.length, 1);
+assert.equal(resolve(dirname(providerPath), actualImports[0].moduleSpecifier.text), resolve(errorFile.path));
 console.log(JSON.stringify({genuinePackage:'astro@7.3.2', wholeAuthorities:manifest.files.length, errorLeafRuntimeDependencies:0, requestedOriginalExports:['LiveEntryNotFoundError'], productTestsRun:0, fullAstroRuntimeOrRendererCredit:0}));

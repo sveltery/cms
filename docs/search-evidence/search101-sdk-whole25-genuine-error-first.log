@@ -1,0 +1,315 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts (4 tests | 2 failed) 317ms
+     ✓ resolves bare media ID in src to a file URL 117ms
+     × resolves bare media ID in loadEntry 74ms
+     ✓ does not rewrite an existing local media URL 43ms
+     × resolves bare media ID in revision-backed loadEntry 80ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts (4 tests | 2 failed) 399ms
+     ✓ returns booleans from collection loads without coercing integer fields 114ms
+     ✓ filters a collection by a boolean field 166ms
+     × returns booleans from single-entry loads 63ms
+     × returns booleans from revision previews without coercing integer fields 54ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (0 test)
+stderr | parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should return all entries when where has only invalid field names
+[emdash] where filter: invalid field name "invalid-field!" ignored
+
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts (15 tests) 741ms
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts (21 tests) 868ms
+stderr | parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > ignores range operators on the byline key
+[emdash] where filter: range operators are not supported on "byline", ignored
+
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts (10 tests) 436ms
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts (9 tests) 423ms
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts (7 tests) 347ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fallback-locale.test.ts (0 test)
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts (4 tests) 291ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 17 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts:16:1
+     14| import { beforeEach, afterEach, expect, it } from "vitest";
+     15|
+     16| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     17|
+     18| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts:31:1
+     29| import { afterEach, beforeEach, expect, it } from "vitest";
+     30|
+     31| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     32|
+     33| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/field-defs-cache.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:14:1
+     12| import { afterEach, beforeEach, expect, it } from "vitest";
+     13|
+     14| import { resetBylineFieldDefsCacheForTests } from "../../src/bylines/f…
+       | ^
+     15| import { BylineRepository } from "../../src/database/repositories/byli…
+     16| import { ContentRepository } from "../../src/database/repositories/con…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts:20:1
+     18| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     19|
+     20| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     21|
+     22| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts:19:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:5:1
+      3|
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts:5:1
+      3|
+      4| import { handleContentCreate, handleContentPublish } from "../../src/a…
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { peekSeoPanel } from "../../src/page/seo-panel.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fallback-locale.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fallback-locale.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fallback-locale.test.ts:8:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts:21:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts:21:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts:4:1
+      2| import { describe, it, expect, beforeEach, afterEach, vi } from "vites…
+      3|
+      4| import { BylineRepository } from "../../../src/database/repositories/b…
+       | ^
+      5| import { ContentRepository } from "../../../src/database/repositories/…
+      6| import { UserRepository } from "../../../src/database/repositories/use…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/21]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from single-entry loads
+AssertionError: expected undefined to be defined
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:105:18
+    103|   );
+    104|
+    105|   expect(result).toBeDefined();
+       |                  ^
+    106|   expect((result as { data: Record<string, unknown> }).data.enabled).t…
+    107|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from revision previews without coercing integer fields
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:127:62
+    125|    }),
+    126|   );
+    127|   const data = (result as { data: Record<string, unknown> }).data;
+       |                                                              ^
+    128|
+    129|   expect(data.title).toBe("Draft title");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in loadEntry
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:70:23
+     68|   );
+     69|
+     70|   const hero = entry!.data.hero as Record<string, unknown>;
+       |                       ^
+     71|   expect(hero.id).toBe(MEDIA_ID);
+     72|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/21]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in revision-backed loadEntry
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:125:23
+    123|   );
+    124|
+    125|   const hero = entry!.data.hero as Record<string, unknown>;
+       |                       ^
+    126|   expect(hero.id).toBe(MEDIA_ID);
+    127|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/21]⎯
+
+
+ Test Files  19 failed | 6 passed (25)
+      Tests  4 failed | 70 passed (74)
+   Start at  01:25:48
+   Duration  15.80s (transform 1.47s, setup 0ms, import 3.51s, tests 3.82s, environment 2ms)
+
+JSON report written to /tmp/search101-sdk-whole25-genuine-error-first.json

@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { sql } from 'kysely';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
-import { runWithContext, getRequestContext } from '../../src/lib/server/menus/context.ts';
+import { runWithContext, getRequestContext, type RequestContext } from '../../src/lib/server/menus/context.ts';
 import { requestCached } from '../../src/lib/server/menus/request-cache.ts';
 import { createQueryScope } from '../../src/lib/server/query-sdk/scope.ts';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
@@ -57,7 +57,7 @@ describe('Native query constructor request scope', () => {
     const isolated = await database();
     const scope = createQueryScope(bound);
     const keepAlive = (_task: Promise<void>) => {};
-    const original = {editMode: true, db: isolated.db, dbIsIsolated: true,
+    const original = {editMode: true, db: isolated.db as unknown as RequestContext['db'], dbIsIsolated: true,
       locale: 'fr', preview: {collection: 'post', id: 'existing-row'}, keepAlive};
     await runWithContext(original, async () => {
       expect(scope(getRequestContext)).toBe(original);
