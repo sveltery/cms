@@ -15,7 +15,7 @@ for(const mode of ['Node','raw D1','scoped D1'] as const satisfies readonly Stor
   try{
    await migrateCms(host.database);
    const registry=new SchemaRegistry(host.database);
-   for(const slug of ['post','page']){await registry.createCollection({slug,label:slug});await registry.createField(slug,{slug:'title',label:'Title',type:'string'});}
+   for(const slug of ['post','page']){await registry.createCollection({slug,label:slug,supports:[]});await registry.createField(slug,{slug:'title',label:'Title',type:'string'});}
    const relation=await new RelationRepository(host.database).create({slug:'owner_refs',parentCollection:'post',childCollection:'page',parentLabel:'Posts',childLabel:'Pages'});
    await registry.createField('post',{slug:'related',label:'Related',type:'reference',validation:{relation:relation.slug}});
    const owner=ordinaryContentService(host.database,servicePrincipal({id:'ordinary-original-unit-admin',role:Role.ADMIN}));
@@ -38,7 +38,7 @@ for(const mode of ['Node','raw D1','scoped D1'] as const satisfies readonly Stor
   try{
    await migrateCms(host.database);
    const registry=new SchemaRegistry(host.database);
-   for(const slug of ['post','page']){await registry.createCollection({slug,label:slug});await registry.createField(slug,{slug:'title',label:'Title',type:'string'});}
+   for(const slug of ['post','page']){await registry.createCollection({slug,label:slug,supports:[]});await registry.createField(slug,{slug:'title',label:'Title',type:'string'});}
    const relation=await new RelationRepository(host.database).create({slug:'owner_abort',parentCollection:'post',childCollection:'page',parentLabel:'Posts',childLabel:'Pages'});
    await registry.createField('post',{slug:'related',label:'Related',type:'reference',validation:{relation:relation.slug}});
    const owner=ordinaryContentService(host.database,servicePrincipal({id:'ordinary-original-unit-admin',role:Role.ADMIN}));

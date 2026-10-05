@@ -1,7 +1,8 @@
 // Read-only Native content composition of the whole pinned Source ordered
 // relation selection algorithms. Copyright 2026 Cloudflare Inc. MIT;
 // immutable913cb1bb9b7f08c3ff0d258b4420e53835b6a58e, notices/emdash-MIT.txt.
-import {sql,type CompiledQuery} from 'kysely';
+import {sql,type CompiledQuery,type Kysely} from 'kysely';
+import type {Database} from '../database/lifecycle/upstream/database/types.ts';
 import {ulid} from 'ulidx';
 import type {CmsDatabase} from '../database/contract.ts';
 import {RelationRepository,type Relation} from './repository.ts';
@@ -18,17 +19,18 @@ type Edge={id:string;relation_id:string;parent_group:string;child_group:string;s
 interface PreparedSelection {relation:Relation;selection:ResolvedReferenceTargets;existing:Edge[];positions:Map<string,number>}
 async function prepare(database:CmsDatabase,selection:ResolvedReferenceTargets,entryGroup:string|null):Promise<PreparedSelection>{
  const repo=new RelationRepository(database);
+ const db=database.db as unknown as Kysely<Database>;
  const relation=await repo.findById(selection.relation)??await repo.findBySlug(selection.relation);
  if(!relation)throw new Error('Reference relation no longer exists');
  const side=selection.side==='parent'?'parent_group':'child_group';
- const existing=entryGroup===null?[]:await database.db.selectFrom('_cms_content_references').selectAll()
+ const existing=entryGroup===null?[]:await db.selectFrom('_cms_content_references').selectAll()
   .where('relation_id','=',relation.id).where(side,'=',entryGroup).execute() as Edge[];
  const positions=new Map<string,number>();
  if(selection.side==='child'){
   const current=new Set(existing.map(edge=>edge.parent_group));
   const added=[...new Set(selection.groups)].filter(group=>!current.has(group));
   for(let start=0;start<added.length;start+=16){
-   const rows=await database.db.selectFrom('_cms_content_references')
+   const rows=await db.selectFrom('_cms_content_references')
     .select(eb=>['parent_group',eb.fn.max('sort_order').as('max')])
     .where('relation_id','=',relation.id).where('parent_group','in',added.slice(start,start+16)).groupBy('parent_group').execute();
    for(const row of rows)positions.set(row.parent_group,row.max===null?0:Number(row.max)+1);
@@ -38,7 +40,7 @@ async function prepare(database:CmsDatabase,selection:ResolvedReferenceTargets,e
 }
 function compile(database:CmsDatabase,prepared:PreparedSelection,entryGroup:string):ContentReferencePlan{
  const {relation,selection,existing,positions}=prepared;
- const db=database.db as any;
+ const db=database.db as unknown as Kysely<Database>;
  const groups=[...new Set(selection.groups)];
  const selected=new Set(groups);
  const parent=selection.side==='parent';
