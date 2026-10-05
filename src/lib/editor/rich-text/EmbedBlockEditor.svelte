@@ -6,7 +6,7 @@
   import { buildHtmlBlockFrame, HTML_BLOCK_FRAME_SANDBOX } from '../portable-text/html-block';
   let { state: viewState }: { state: NodeViewState } = $props();
   let tab = $state('html');
-  const draft = iframeDraft(viewState, viewState.node.attrs.src ? iframeEmbedToCode(iframeEmbedFromAttrs(viewState.node.attrs)) : '');
+  const draft = iframeDraft(() => viewState);
   const iframe = $derived(viewState.node.type.name === 'iframeBlock');
   const tabs = $derived(iframe ? ['code', 'preview'] : ['html', 'css', 'js', 'preview']);
   const code = $derived(viewState.node.attrs.src ? iframeEmbedToCode(iframeEmbedFromAttrs(viewState.node.attrs)) : '');
