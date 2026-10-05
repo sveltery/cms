@@ -1,0 +1,52 @@
+{
+  "currentGuardSHA256": "fd283d19d8047f29b039036e25494ef36b63c08b321b98541f64e0f37d81a47e",
+  "actualWholeGuard": true,
+  "unchangedOriginalWholeCases": "previous four controls plus exact core-prefix negative",
+  "results": [
+    {
+      "case": "current",
+      "wholeGuardExit": 0,
+      "expectedExit": 0,
+      "exactCoreCount": 1,
+      "exactAdminCount": 1,
+      "stdout": "User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.\n",
+      "stderr": ""
+    },
+    {
+      "case": "future_whole_byline_leaf",
+      "wholeGuardExit": 0,
+      "expectedExit": 0,
+      "exactCoreCount": 1,
+      "exactAdminCount": 1,
+      "stdout": "User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.\n",
+      "stderr": ""
+    },
+    {
+      "case": "missing_admin_replaced_with_different_leaf",
+      "wholeGuardExit": 1,
+      "expectedExit": 1,
+      "exactCoreCount": 1,
+      "exactAdminCount": 0,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: whole user administration gate occurs once\n\n0 !== 1\n\n    at file:///tmp/user99-fafe-reviewer-guard-fixture/scripts/check-user-repository-source.mjs:118:8\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 0,\n  expected: 1,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    },
+    {
+      "case": "legitimate_future_whole_user_ui_leaf",
+      "wholeGuardExit": 0,
+      "expectedExit": 0,
+      "exactCoreCount": 1,
+      "exactAdminCount": 1,
+      "stdout": "User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.\n",
+      "stderr": ""
+    },
+    {
+      "case": "missing_core_replaced_with_different_leaf",
+      "wholeGuardExit": 1,
+      "expectedExit": 1,
+      "exactCoreCount": 0,
+      "exactAdminCount": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: whole user gate occurs once\n\n0 !== 1\n\n    at file:///tmp/user99-fafe-reviewer-guard-fixture/scripts/check-user-repository-source.mjs:117:8\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 0,\n  expected: 1,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    }
+  ]
+}

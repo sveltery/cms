@@ -1,0 +1,21 @@
+$ node --test tests/user-source-gate/whole-guard.test.mjs
+✔ accepts the complete current workload (414.476807ms)
+✔ accepts whitespace around the complete required command tokens (362.091661ms)
+✔ accepts an unrelated future whole feature leaf (384.884158ms)
+✔ accepts a future admin UI leaf sharing the required command prefix (400.501261ms)
+✔ accepts a future repository leaf sharing the required command prefix (451.43653ms)
+✔ rejects replacement of the required admin gate by a different command (410.422439ms)
+✔ rejects replacement of the required core gate by a different command (494.037661ms)
+✔ rejects a duplicated complete admin gate (393.572307ms)
+✔ rejects a duplicated complete core gate (447.631611ms)
+✔ rejects separation of the required adjacent gates (403.075401ms)
+✔ rejects reversal of the required adjacent gates (458.501454ms)
+✔ rejects deletion of the historical workload prefix (418.907364ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5136.070076

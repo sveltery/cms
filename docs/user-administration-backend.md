@@ -190,3 +190,25 @@ reference9, whole-checker12 and CI orchestration26 pass. These focused results
 do not replace the final-head full phase CI, original secured browser workload,
 Calendar browser jobs, configured review and independent finite-delta review.
 Root's exact-head approval and the author's regular merge remain pending.
+
+## Approved public SEO Main integration
+
+The full independent review of `fafe2816` is CLEAR and closes both findings above;
+its exact whole report is retained. Root subsequently qualified that head's
+original complete normal phase jobs and sole current secured-browser retry as
+successful. These are historical `fafe2816`/Calendar Main results.
+
+Main then advanced through the approved regular SEO PR #109 merge
+`cc1fc9044ae54ab44efba993cd71849fe2f990b0`, with ordered parents `99c659f6` and
+`c0aa3206`. This continuation merges only that actual public Main. Its complete
+Source command chain, including both SEO storage leaves, precedes the exact
+existing Core/admin/infrastructure leaves. All public Main dependencies, lock,
+CI/bootstrap, compatibility text and attributes are preserved. Both user fixes,
+immutable whole Source policies, Native48 and infrastructure12 remain unchanged;
+this integration introduces no product work, test edit or new authentication
+probe. The whole focused suites and provenance guards run against this union.
+
+The successor requires its own complete hosted services/Source/hosting, secured
+browser and Calendar jobs, a current configured review request, independent
+integration review and exact Root approval before the author's regular merge.
+The earlier CLEAR and historical full-gate success do not qualify the new head.
