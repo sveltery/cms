@@ -2,7 +2,7 @@
 // Default consumers retain the root cache and pinned Source query keys/policy.
 import { getContext, setContext } from 'svelte';
 import type { QueryClient } from '@tanstack/query-core';
-import { createDashboardQueryClient, resolveDashboardQueryClient, getDashboardClientQueryClientResolver } from '../dashboard/query.svelte';
+import { createDashboardQueryClient, resolveDashboardQueryClient, getDashboardClientQueryClientResolver, createDashboardClientQueryClientResolver } from '../dashboard/query.svelte';
 import { createWelcomeDismissal } from '../dashboard/welcome-dismissal.svelte';
 import { createAdminShellState, resolveAdminShellState } from './state.svelte';
 import type { CurrentUserClient } from './current-user.svelte';
@@ -11,8 +11,7 @@ export function createAccountScope(queryClient = createDashboardQueryClient(), s
 }
 export type AccountScope = ReturnType<typeof createAccountScope>;
 const contextKey = Symbol('sveltery-admin-client-scopes');
-function createScopeResolver(root: AccountScope, resolveClientCache?: (identity: object) => QueryClient) {
- const clients = new WeakMap<CurrentUserClient, AccountScope>();
+function createScopeResolver(root: AccountScope, resolveClientCache = createDashboardClientQueryClientResolver()) {
  const caches = new WeakMap<QueryClient, AccountScope>([[root.queryClient, root]]);
  function forCache(queryClient: QueryClient): AccountScope {
   let scope = caches.get(queryClient);
@@ -22,9 +21,7 @@ function createScopeResolver(root: AccountScope, resolveClientCache?: (identity:
  function resolve(client?: CurrentUserClient, supplied?: QueryClient): AccountScope {
   if (supplied) return forCache(supplied);
   if (!client) return root;
-  let scope = clients.get(client);
-  if (!scope) { scope = forCache(resolveClientCache?.(client) ?? createDashboardQueryClient()); clients.set(client, scope); }
-  return scope;
+  return forCache(resolveClientCache(client));
  }
  return resolve;
 }

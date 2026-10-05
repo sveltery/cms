@@ -20,13 +20,16 @@ export function provideDashboardQueryClient(client: QueryClient): void { setCont
 export function getDashboardQueryClient(): QueryClient | undefined {
   return getContext<QueryClient | undefined>(contextKey);
 }
-export function provideDashboardClientQueryClients(): void {
+export function createDashboardClientQueryClientResolver(): (identity: object) => QueryClient {
   const clients = new WeakMap<object, QueryClient>();
-  setContext(clientCachesKey, (identity: object) => {
+  return (identity: object) => {
     let client = clients.get(identity);
     if (!client) { client = createDashboardQueryClient(); clients.set(identity, client); }
     return client;
-  });
+  };
+}
+export function provideDashboardClientQueryClients(): void {
+  setContext(clientCachesKey, createDashboardClientQueryClientResolver());
 }
 export function getDashboardClientQueryClientResolver(): ((identity: object) => QueryClient) | undefined {
   return getContext<((identity: object) => QueryClient) | undefined>(clientCachesKey);
