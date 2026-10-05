@@ -28,14 +28,19 @@
   const gridDays=$derived(monthGridDays(month,weekStartsOn)),range=$derived(fetchRange(gridDays));
   const filters=$derived<CalendarFilterValues>({collections:readList(search.collections).filter(slug=>collectionOrder.includes(slug)),locales:readList(search.locales).filter(value=>locales.includes(value)),states:readList(search.states).filter(isCalendarState)});
   const filtered=$derived(filters.collections.length+filters.locales.length+filters.states.length>0);
+  const rangeHasNow=$derived(now>=Date.parse(range.from)&&now<Date.parse(range.to));
+  let calendarObserver=$state<QueryObserver<CalendarRange,Error,CalendarRange,CalendarRange,readonly ['calendar',string,string]>>();
   $effect(()=>{
     if(!manifest)return;
-    const rangeHasNow=now>=Date.parse(range.from)&&now<Date.parse(range.to);
-    const observer=new QueryObserver(queryClient,{...calendarQueryOptions(range.from,range.to),staleTime:0,refetchInterval:query=>rangeHasNow&&query.state.status!=='error'?60000:false});
+    const observer=new QueryObserver(queryClient,{...calendarQueryOptions(range.from,range.to),staleTime:0,refetchInterval:query=>untrack(()=>rangeHasNow)&&query.state.status!=='error'?60000:false});
+    calendarObserver=observer;
     const apply=(result:ReturnType<typeof observer.getCurrentResult>)=>{data=result.data;updatedAt=result.dataUpdatedAt;fetching=result.isFetching;error=result.error;};
     const unsubscribe=observer.subscribe(apply);apply(observer.getCurrentResult());refetch=()=>{void observer.refetch();};
     return()=>{unsubscribe();observer.destroy();};
   });
+  // The Source keeps one observer per range. A minute clock updates interval
+  // eligibility without remounting stale queries or restarting terminal errors.
+  $effect(()=>{const observer=calendarObserver,containsNow=rangeHasNow;if(observer)observer.setOptions({...observer.options,refetchInterval:query=>containsNow&&query.state.status!=='error'?60000:false});});
   onMount(()=>{
     let timer:ReturnType<typeof setTimeout>;
     const tick=()=>{timer=setTimeout(()=>{now=Date.now();tick();},60000-(Date.now()%60000));};tick();
@@ -69,7 +74,7 @@
 <header><div><h1>Calendar</h1><p>Published and scheduled entries across collections, in the site's time zone.</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
 {#if notice}<div role={notice.type==='error'?'alert':'status'} class="notice"><strong>{notice.title}</strong><p>{notice.description}</p><button type="button" aria-label="Dismiss notification" onclick={()=>notice=undefined}>×</button></div>{/if}
 <div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>Month</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>Agenda</button></div>
-<div class="toolbar"><div><h2>{display.monthTitle(month)}</h2><p title={`Times are in ${display.zoneName}.`}>{display.zoneShortName(zoneTime)}{#if display.viewerZoneDiffers} · Your time: {display.viewerZoneShortName(zoneTime)}{/if}</p></div><div class="month-nav"><button type="button" aria-label="Previous month" onclick={()=>goToMonth(shiftMonth(month,-1))} onpointerenter={()=>prefetch(shiftMonth(month,-1))} onfocus={()=>prefetch(shiftMonth(month,-1))}>‹</button><button type="button" onclick={()=>goToMonth(undefined)}>Today</button><button type="button" aria-label="Next month" onclick={()=>goToMonth(shiftMonth(month,1))} onpointerenter={()=>prefetch(shiftMonth(month,1))} onfocus={()=>prefetch(shiftMonth(month,1))}>›</button></div></div>
+<div class="toolbar"><div><h2>{display.monthTitle(month)}</h2><p title={`Times are in ${display.zoneName}.`}>{display.zoneShortName(zoneTime)}{#if display.viewerZoneDiffers} · Your time: {display.viewerZoneShortName(zoneTime)}{/if}</p></div><div class="month-nav">{#if fetching}<span class="loader" role="img" aria-label="Loading">◌</span>{/if}<button type="button" aria-label="Previous month" onclick={()=>goToMonth(shiftMonth(month,-1))} onpointerenter={()=>prefetch(shiftMonth(month,-1))} onfocus={()=>prefetch(shiftMonth(month,-1))}>‹</button><button type="button" onclick={()=>goToMonth(undefined)}>Today</button><button type="button" aria-label="Next month" onclick={()=>goToMonth(shiftMonth(month,1))} onpointerenter={()=>prefetch(shiftMonth(month,1))} onfocus={()=>prefetch(shiftMonth(month,1))}>›</button></div></div>
 {#if error}<div role="alert"><h3>Could not load the calendar</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>Retry</button></div>{/if}
 {#if data?.truncated}<div role="status"><h3>This range has more than {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)} entries</h3><p>The calendar shows the first {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)}{loadedThrough?`, which end on ${display.monthDay(loadedThrough)}`:''}.</p></div>{/if}
 {#if !(error&&!data)}{#if view==='month'}<Month {month} {gridDays} {days} {unfilteredDays} {today} {now} {display} loading={!data} {loadedThrough} {compact} {selectedKey} onSelect={openEntry} onMonthChange={goToMonth} onClearFilters={filtered?clearFilters:undefined}/>
