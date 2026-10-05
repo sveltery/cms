@@ -27,6 +27,10 @@ async function render(value: AuthoringBlock[]) {
     onEditorReady: current => { editor = current; } } });
   cleanups.push(async () => { await unmount(instance); host.remove(); });
   await tick(); expect(editor).toBeTruthy();
+  // jsdom has no layout or Range.getClientRects. These are persisted-data and
+  // control regressions; suppress only the browser's scroll presentation via
+  // the real ProseMirror hook, without fabricating geometry or changing data.
+  editor!.setOptions({ editorProps: { ...editor!.options.editorProps, handleScrollToSelection: () => true } });
   return { host, editor: editor!, onChange };
 }
 function positions(editor: Editor, name: string): number[] {
