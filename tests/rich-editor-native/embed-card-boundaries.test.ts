@@ -15,6 +15,13 @@ async function host(value: AuthoringBlock[]) {
   await tick(); expect(editor).toBeTruthy(); return target;
 }
 describe('Source embed node boundary ownership', () => {
+  it('inserts isolated HTML from the real Source toolbar action', async () => {
+    const target = await host([{ _type: 'block', _key: 'text', style: 'normal', children: [{ _type: 'span', _key: 'span', text: 'Text' }] }]);
+    const button = target.querySelector<HTMLButtonElement>('button[aria-label="Insert HTML"]');
+    expect(button).not.toBeNull();
+    button!.click(); await tick();
+    expect(target.querySelectorAll('[data-type="htmlBlock"]')).toHaveLength(1);
+  });
   it('counts two saved HTML blocks as two Source wrappers', async () => {
     const target = await host([
       { _type: 'htmlBlock', _key: 'one', html: '<p>One</p>' },
