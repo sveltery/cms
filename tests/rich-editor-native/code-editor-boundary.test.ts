@@ -19,7 +19,8 @@ afterEach(async () => { for (const release of cleanup.splice(0)) await release()
 it('shows the Source reload fallback for real CodeMirror mount errors and mounts normally after recovery', async () => {
   const broken = await renderInDraftForm({ value: [{ _type: 'iframe', _key: 'broken', src: '' }] });
   cleanup.push(broken.cleanup);
-  await vi.waitFor(() => expect(broken.host.querySelector('.code-load-error')?.textContent).toContain("The code editor couldn't load. Save your work, then reload the page."));
+  await vi.waitFor(() => expect(broken.host.querySelector('.code-load-error')).not.toBeNull());
+  expect(broken.host.querySelector('.code-load-error')!.textContent).toContain("The code editor couldn't load. Save your work, then reload the page.");
   expect(broken.host.querySelector<HTMLButtonElement>('.code-load-error button')?.type).toBe('button');
   expect(broken.host.querySelector('.cm-content')).toBeNull();
   await broken.cleanup(); cleanup.pop(); failure.active = false;
