@@ -3,7 +3,7 @@
   "status": "private preparation; no qualification/publication/acceptance",
   "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "privateBase": "89340738750c688842f5716352f8d47f0189f03c",
-  "candidateCode": "a7a0871a5c8da93227e70b3f9147a3a50334b77e",
+  "candidateCode": "b01b4cb040ba8be2191cd306c07583cf71708890",
   "branch": "feat/calendar-picker-keyboard-private",
   "originalAuthorityLedger": "docs/scheduled-publishing-source.json",
   "originalAuthoritiesUnchanged": 86,
@@ -324,16 +324,40 @@
       ],
       "tree": "de17102c9de2be14f1ec3d493ab1d824fa637871",
       "subject": "fix: preserve compact calendar focus history independently of selection"
+    },
+    {
+      "commit": "22befcd10f47306e2b10f81424096c2872e21932",
+      "parents": [
+        "a7a0871a5c8da93227e70b3f9147a3a50334b77e"
+      ],
+      "tree": "c086489da866e19737f40b0bb6fe1dd083b3959a",
+      "subject": "docs: seal private calendar keyboard evidence and open vendor focus limits"
+    },
+    {
+      "commit": "98a603135d48cfeca83f7b8d3f2872ce7f78704a",
+      "parents": [
+        "22befcd10f47306e2b10f81424096c2872e21932"
+      ],
+      "tree": "ed7db42faf596a7bd49dcb84fc82036f40bef404",
+      "subject": "test: require source remembered tab target before internal focus"
+    },
+    {
+      "commit": "b01b4cb040ba8be2191cd306c07583cf71708890",
+      "parents": [
+        "98a603135d48cfeca83f7b8d3f2872ce7f78704a"
+      ],
+      "tree": "8a589a34c749b8693de4f2d6329a89b275bed8a7",
+      "subject": "fix: compute calendar tab target before internal focused modifier"
     }
   ],
   "supplementalStructuralCensus": [
     {
       "path": "tests/calendar-picker-keyboard/movement.test.ts",
-      "declarations": 3,
-      "direct": 5,
+      "declarations": 4,
+      "direct": 6,
       "element": 0,
       "poll": 0,
-      "staticMatcherRoots": 5
+      "staticMatcherRoots": 6
     },
     {
       "path": "tests/calendar-picker-keyboard-browser/focus-selection.test.ts",
@@ -344,10 +368,10 @@
       "staticMatcherRoots": 29
     }
   ],
-  "actualPureCases": 41,
+  "actualPureCases": 42,
   "pureFirstDateValueReds": 27,
   "pureFirstFocusTargetValueReds": 1,
-  "pureFinalPasses": 41,
+  "pureFinalPasses": 42,
   "pureTimezone": "America/New_York; command prefixes for earlier runs and final configuration env",
   "preparedBrowserCases": 12,
   "actualBrowserCallbacks": 0,
@@ -501,6 +525,59 @@
       "bytes": 218,
       "sha256": "a876bf2c989698a660ceffd9eae9a21db444d0a84cdc7473d496ad7f7fc1dcb4",
       "gitBlob": "36ba0130cce6175f15b821b94493d7fbaa72ec10"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-source-target-first42.log",
+      "exitCode": 1,
+      "classification": "distinct Source-order Native value red after Native-only17 assumption was recorded",
+      "result": {
+        "registered": 42,
+        "passed": 41,
+        "reachedValueRed": 1
+      },
+      "bytes": 1239,
+      "sha256": "75b0058102d93e51a00b88094ea78154511f6abf2bcaa50df8181cf3042fb83a",
+      "gitBlob": "315358543d11fc177d1277009cebbd269558ac0d"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-final-pure42.log",
+      "exitCode": 0,
+      "classification": "final pure callbacks at exact corrected codeb01b4cb040ba8be2191cd306c07583cf71708890",
+      "result": {
+        "registered": 42,
+        "passed": 42,
+        "reachedValueRed": 0
+      },
+      "bytes": 232,
+      "sha256": "67658eef77165e9851e4cd1e399c6f17febbdff7aba3a030cd2ea6e4bc5774f1",
+      "gitBlob": "502f5584f407fa8e0983362136caa3f5ef42e897"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-final-source-order-check.log",
+      "exitCode": 0,
+      "classification": "checker at exact corrected codeb01b4cb040ba8be2191cd306c07583cf71708890",
+      "result": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "bytes": 218,
+      "sha256": "a876bf2c989698a660ceffd9eae9a21db444d0a84cdc7473d496ad7f7fc1dcb4",
+      "gitBlob": "36ba0130cce6175f15b821b94493d7fbaa72ec10"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-final-source86-guard.log",
+      "exitCode": 0,
+      "classification": "immutable provenance only;0Source product callbacks",
+      "result": {
+        "wholeAuthorities": 86,
+        "wholeFamilies": 16,
+        "declarations": 126,
+        "staticMatcherRoots": 360,
+        "executionCredit": 0
+      },
+      "bytes": 189,
+      "sha256": "f55e5f3fd56b2a6193d02bdb1a5ccbad218cf2d97d74ec605ee0da385a59036f",
+      "gitBlob": "71305fcfb52b509de3ffa01e0750cfc6d6e66e24"
     }
   ],
   "pureAlgorithmAdaptation": "Native local-noon day-key/date-fns move and focus-target helper; no shared DateTime or dependency changes",
@@ -510,7 +587,7 @@
   "storageExecutionCredit": 0,
   "nativeUrlCredit": 0,
   "incomplete": [
-    "exact Source custom-modifier versus internal active-focus tab-target parity",
+    "actual Source and Native browser blur/focus/Tab ordering after corrected pure target algorithm",
     "locale-derived Source getLocaleDir integration",
     "vendor accessibility/Today/selected localization and endonyms",
     "complete vendor focus/ARIA/CSS",
@@ -520,13 +597,76 @@
     "final independent/configured review and Root qualification/acceptance",
     "publication/owned PR/approval/merge"
   ],
-  "openFocusTabTargetDifference": {
+  "candidateCodeValidationLimit": "Pure42/check0/0 and Source86 static guard executed at b01b4cb0; final docs successor changes documentation only. Full whole-gate and behavior acceptance remain pending.",
+  "pureFirstSourceOrderTargetValueReds": 1,
+  "historicalFocusTabTargetDifference": {
     "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
     "reference": "actual Kumo2.6 bundle calculateFocusTarget/getModifiers before internal active focus applies during rendering",
     "sourceStaticDerived": "lastFocusedOctober16 may remain tab target while internal activeOctober17; no custom focused modifier in SourceCalendarMonth",
     "native": "calendarFocusTarget selects activeOctober17 over lastOctober16",
     "decision": "unaccepted Native adaptation; exact vendor tab-target parity remains incomplete",
-    "evidence": "fresh static review only; no pinned Source browser reproduction. Initial active-priority pure expectation establishes Native behavior with0Source equivalence credit."
+    "evidence": "fresh static review only; no pinned Source browser reproduction. Initial active-priority pure expectation establishes Native behavior with0Source equivalence credit.",
+    "resolvedByCandidateCode": "b01b4cb040ba8be2191cd306c07583cf71708890"
   },
-  "candidateCodeValidationLimit": "Pure41/check0/0 executed at a7a0871a; subsequent Source-claim corrections change comments/documentation only. No final whole-gate or acceptance claim."
+  "focusTabTargetCorrection": {
+    "source": "actual Kumo2.6 bundledDayPicker9.13.2 default getModifiers pass has no custom focused flag; tab target is computed before internal active focus is applied during rendering",
+    "native": "available lastFocused first, then selected; internal activefocus is separate and ignored by the tab-target helper",
+    "dedicatedFirstRun": {
+      "registered": 42,
+      "passed": 41,
+      "reachedValueRed": 1,
+      "actual": "2030-10-17",
+      "expected": "2030-10-16"
+    },
+    "priorNativeExpectationCorrection": "historical supplemental Native-only17 assumption corrected16 after distinct Source-order assertion reached red; no original Source assertion changed;0original Source credit",
+    "historicalWholeAssertionFiles": [
+      {
+        "commit": "9c7c5dcd",
+        "path": "tests/calendar-picker-keyboard/movement.test.ts",
+        "bytes": 4760,
+        "sha256": "ffe2982894bdcbfa8ece9050765e644157061639494eb6548f6d7acaa5e22502",
+        "gitBlob": "b7e7309e5939dbcba6ca52390f47f734a190c07d"
+      },
+      {
+        "commit": "a7a0871a",
+        "path": "tests/calendar-picker-keyboard/movement.test.ts",
+        "bytes": 4760,
+        "sha256": "ffe2982894bdcbfa8ece9050765e644157061639494eb6548f6d7acaa5e22502",
+        "gitBlob": "b7e7309e5939dbcba6ca52390f47f734a190c07d"
+      },
+      {
+        "commit": "98a60313",
+        "path": "tests/calendar-picker-keyboard/movement.test.ts",
+        "bytes": 5133,
+        "sha256": "4a0787519ce2b4a439f63406036732b1ef3365feaf028ee94173a4dfbf62ff42",
+        "gitBlob": "125994f343ef540bad6f697f3740bd1d6d891bb6"
+      }
+    ],
+    "historicalNativeOnlyAssertion": "expect(calendarFocusTarget('2030-10', '2030-10-17', '2030-10-16', '2030-10-15')).toBe('2030-10-17');",
+    "finalWholeAssertionFile": {
+      "commit": "b01b4cb040ba8be2191cd306c07583cf71708890",
+      "path": "tests/calendar-picker-keyboard/movement.test.ts",
+      "bytes": 5211,
+      "sha256": "c1daaa813f4454ef8fe649511fe0856db8ed88ffd3ac1cc96c2d22d5f0b0beb8",
+      "gitBlob": "03e5b06eb3f36f7d6619e7fc8884f0ca7d00ebbe"
+    },
+    "sourceBrowserExecution": 0,
+    "supplementalBrowserExecution": 0,
+    "finalBehaviorAcceptance": false
+  },
+  "blurOrderAuthority": {
+    "actualKumoBundle": "dist/chunks/date-picker-mjocqqbggb76n8rt.js",
+    "useFocusLines": "2529\u20132544",
+    "blurStatements": "s(u), l(void 0); (stores current focused state, then clears it)",
+    "handleDayBlurLines": "2741\u20132743",
+    "handleDayBlurStatements": "Le(), w?.(p.date, Y, g); (calls the blur owner before optional day callback)",
+    "moveFocusStatements": "t.goToDay(v), l(v); (navigate to target and store active focus)",
+    "internalFocusOverlayLines": "2873\u20132878",
+    "internalFocusOverlay": "S[_.focused] assigned during rendering, while tabIndex uses the previously computed Vt target",
+    "sourceCalendarDayButton": "packages/admin/src/components/calendar/CalendarMonth.tsx445\u2013452; modifiers.focused causes actual ref.focus after render",
+    "externalStaticCrossCheck": "react-day-picker9.14.0 dist/esm/useFocus.js23\u201325,moveFocus28\u201343; DayPicker.js174keyboard/168blur",
+    "nativeStatements": "keydown stores nextfocus then requests controlledmonth; actual Svelte effect calls button.focus; blur stores current focusDay then clears it; native onfocus records focusedday",
+    "eventOrderRuntimeVerification": 0
+  },
+  "postCorrectionFreshReview": "Attempted fresh read-only final reviewer; spawn rejected agent thread limit reached. No old agent reused. Static prior source-order finding is repaired, but fresh final candidate/configured review remains pending."
 }
