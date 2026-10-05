@@ -37,6 +37,25 @@ export default defineConfig({
     }
   }, svelte({ configFile: false })],
   resolve: { alias: { $lib: resolve(root, 'src/lib') }, conditions: ['browser'] },
+  // The whole Source families retain original provider mocks. Do not scan those
+  // mocked module bodies: their unmounted React providers are not prerequisites
+  // of the Native editor. Prebundle the actual harness/authoring graph before
+  // setup so lazy editor loading cannot reload an active Vitest runner.
+  optimizeDeps: {
+    noDiscovery: true,
+    include: [
+      'react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime',
+      'vitest-browser-react', '@testing-library/react', '@lingui/core', '@lingui/react', '@tanstack/react-query',
+      '@tiptap/core', '@tiptap/react', '@tiptap/starter-kit', '@tiptap/suggestion',
+      '@tiptap/pm/model', '@tiptap/pm/state', '@tiptap/pm/view', '@tiptap/pm/tables', '@tiptap/pm/history', '@tiptap/pm/transform',
+      '@tiptap/extension-character-count', '@tiptap/extension-code', '@tiptap/extension-code-block-lowlight',
+      '@tiptap/extension-focus', '@tiptap/extension-link', '@tiptap/extension-list', '@tiptap/extension-placeholder',
+      '@tiptap/extension-subscript', '@tiptap/extension-superscript', '@tiptap/extension-text-align',
+      '@tiptap/extension-typography', '@tiptap/extension-table', '@tiptap/extension-table-cell',
+      '@tiptap/extension-table-header', '@tiptap/extension-table-row',
+      'lowlight', 'highlight.js/lib/languages/dockerfile'
+    ]
+  },
   oxc: { jsx: { runtime: 'automatic' } },
   test: {
     fileParallelism: false,
