@@ -54,8 +54,8 @@ for(const target of ['Node SQLite','raw workerd D1'] as const){
   }finally{await f.close();}
  });
  test(`${target}: original missing-ID detail and update semantics are explicit`,async()=>{
-  const f=await fixture();try{for(const response of [await detail(f.context()),await update(f.context(undefined,{name:'Wrong'}))]){
-   assert.equal(response.status,400);assert.equal((await response.json()).error.code,'MISSING_PARAM');
+  const f=await fixture();try{for(const [response,code] of [[await detail(f.context()),'MISSING_PARAM'],[await update(f.context(undefined,{name:'Wrong'})),'MISSING_PARAM'],[await disable(f.context(undefined,{})),'VALIDATION_ERROR'],[await enable(f.context(undefined,{})),'VALIDATION_ERROR']] as const){
+   assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
   }}finally{await f.close();}
  });
  test(`${target}: invalid role and conflicting email return unchanged stored profile`,async()=>{
