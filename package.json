@@ -75,7 +75,9 @@
     "test:calendar-admin-fidelity-browser": "vitest run --config vitest.calendar-picker-keyboard.browser.config.ts && vitest run --config vitest.calendar-descriptor-preparation.browser.config.ts && vitest run --config vitest.calendar-fidelity.browser.config.ts",
     "test:general-media-source": "node scripts/check-general-media-source.mjs && vitest run --config vitest.general-media-source.config.ts",
     "test:general-media-r2-source": "node scripts/check-general-media-source.mjs && vitest run --config vitest.general-media-r2-source.config.ts",
-    "test:general-media-native": "vitest run --config vitest.general-media-native.config.ts"
+    "test:general-media-native": "vitest run --config vitest.general-media-native.config.ts",
+    "check:media-admin-editor-source": "node scripts/check-media-admin-editor-source.mjs",
+    "test:media-admin-editor:pure": "node scripts/check-media-admin-editor-source.mjs && vitest run --config vitest.media-admin-editor-pure.config.ts"
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
