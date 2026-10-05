@@ -44,3 +44,11 @@ checkCompleteNodes('parity/emdash/general-media-source/upstream/'+r2.source,r2.r
 const usage=readJson('parity/emdash/general-media-source/usage-read-functions.json');
 checkCompleteNodes('parity/emdash/general-media-source/upstream/'+usage.source,usage.runtime,usage.functions,node=>ts.isFunctionDeclaration(node)?node.name?.text:undefined);
 console.log('Verified '+transformations.runtimeModules.length+' complete native module algorithms, complete R2 class, and seven complete media read functions; no whole-handler/env-factory credit.');
+const cleanup=readJson('parity/emdash/general-media-source/cleanup-blocks.json');
+const cleanupSource=parse('parity/emdash/general-media-source/upstream/'+cleanup.source),cleanupNative=parse(cleanup.runtime);
+for(const row of cleanup.blocks){
+  function block(file,name){return file.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text===name)?.body?.statements.find(node=>ts.isTryStatement(node)&&node.getText(file).includes(row.discriminator));}
+  const original=block(cleanupSource,row.sourceFunction),actual=block(cleanupNative,row.runtimeFunction);
+  if(!original||!actual||original.getText(cleanupSource)!==actual.getText(cleanupNative)||createHash('sha256').update(original.getText(cleanupSource)).digest('hex')!==row.sha256)throw new Error('Complete Source upload cleanup block changed: '+row.discriminator);
+}
+console.log('Verified two complete upload cleanup subsystem blocks; no full system cleanup credit.');

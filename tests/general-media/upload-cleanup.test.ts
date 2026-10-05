@@ -6,13 +6,16 @@ import {join} from 'node:path';
 import {openSqlite} from '../../src/lib/server/database/sqlite.ts';
 import {openD1} from '../../src/lib/server/database/d1.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
+import type {CmsDatabase} from '../../src/lib/server/database/contract.ts';
+import type {Kysely} from 'kysely';
+import type {MediaTable} from '../../src/lib/server/general-media/upstream/database/types.ts';
 import {LocalStorage,MediaRepository} from '../../src/lib/server/general-media/index.ts';
 const modules=import.meta.glob('../../src/lib/server/general-media/cleanup.ts');
 describe('Original trusted canonical upload cleanup using owned local bytes',()=>{
   it.each(['sqlite','d1'] as const)('%s removes abandoned pending and orphan attempt bytes while retaining a ready shared key',async kind=>{
     const directory=await mkdtemp(join(tmpdir(),'native-media-cleanup-'));
     const runtime=kind==='d1'?new Miniflare({modules:true,script:'export default { fetch() { return new Response("owned local cleanup fixture"); } }',compatibilityDate:'2026-05-07',d1Databases:{CMS_DB:'native-media-cleanup-db'},host:'127.0.0.1',port:0,cf:false}):undefined;
-    const database=runtime?openD1(await runtime.getD1Database('CMS_DB')):openSqlite(':memory:');
+    const database:CmsDatabase=runtime?openD1(await runtime.getD1Database('CMS_DB')):openSqlite(':memory:');
     try{
       await migrateCms(database);
       const load=modules['../../src/lib/server/general-media/cleanup.ts'];expect(load,'trusted actual media upload cleanup operator').toBeTypeOf('function');
@@ -23,7 +26,7 @@ describe('Original trusted canonical upload cleanup using owned local bytes',()=
       const pending=await repository.createPending({filename:'abandoned.bin',mimeType:'application/octet-stream',storageKey:'abandoned.bin'});
       const sharedPending=await repository.createPending({filename:'shared.bin',mimeType:'application/octet-stream',storageKey:'shared.bin'});
       const ready=await repository.create({filename:'shared.bin',mimeType:'application/octet-stream',storageKey:'shared.bin'});
-      await database.db.updateTable('_cms_media').set({created_at:'2000-01-01T00:00:00.000Z'}).where('id','in',[pending.id,sharedPending.id]).execute();
+      await (database.db as unknown as Kysely<{_cms_media:MediaTable}>).updateTable('_cms_media').set({created_at:'2000-01-01T00:00:00.000Z'}).where('id','in',[pending.id,sharedPending.id]).execute();
       await repository.trackStorageKeyForCleanup('deleted-fixture-media','orphan.bin');
       expect(await cleanupMediaUploads(database,storage)).toEqual({pendingUploads:1,pendingUploadFiles:1,uploadAttempts:1});
       expect(await repository.findById(pending.id)).toBeNull();expect(await repository.findById(sharedPending.id)).toBeNull();

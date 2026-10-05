@@ -10,7 +10,7 @@ admin media library yet.
 
 The behavior authority is EmDash 1.1.0
 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The
-[187 whole Source authorities](../parity/emdash/general-media-source/authority.json),
+[188 whole Source authorities](../parity/emdash/general-media-source/authority.json),
 [whole test expression inventory](../parity/emdash/general-media-source/test-inventory.json),
 [finite runtime import substitutions](../parity/emdash/general-media-source/runtime-transformations.json)
 and [test-first receipts](general-media-tdd.json) preserve attribution and
@@ -30,6 +30,15 @@ mapped owner is registered with the sole published block/media-usage host, so
 unsupported D1 callback transactions fail closed through the existing boundary.
 The sole published MediaUsageRepository remains the usage storage writer.
 No provider, namespace installer, DDL or alternate database is added.
+
+The trusted `cleanupMediaUploads` operator uses the exact complete Source
+system-cleanup subsystem 3 and 4 try blocks. It removes abandoned pending
+records/object bytes and orphan upload attempts while preserving a ready media
+row sharing the same key. Only its three actual subsystem counts are returned.
+The [two-block authority](../parity/emdash/general-media-source/cleanup-blocks.json)
+retains both complete blocks and the whole original system-cleanup file. This
+operator installs no cron and does not emulate Source `runSystemCleanup`; other
+subsystem results and the full original stream/cleanup family remain unclaimed.
 
 Trusted server configuration supplies a `Storage` instance through the existing
 runtime presentation/request configuration. The final scoped D1 database spread
@@ -68,11 +77,12 @@ or canonical application startup.
 
 Supplemental native workflows first expose unavailable canonical backend,
 permission/storage composition, routes, R2 adapter, sequential upload and the
-options namespace gap as genuine value assertions. The current 14 native
+options namespace gap as genuine value assertions. The current 16 native
 cases exercise actual canonical SQLite and local raw D1, reversible local file
 bytes, actual local Miniflare R2 bytes, deduplication, folders, focal coordinates,
 mutation/origin/ownership guards, public file URLs, private assets, pending
-stream/confirmation, same-key replacement and settings usage counts. Native
+stream/confirmation, same-key replacement, settings usage counts and upload
+cleanup on both canonical SQLite and raw D1. Native
 route calls use controlled trusted principals directly; they do not establish
 real protected HTTP/session/PAT acceptance. The R2 original mock establishes
 no actual cloud hosting evidence. The local binding test provisions no external
