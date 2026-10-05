@@ -40,12 +40,12 @@ export interface ContentUpdate extends ContentMutation {
 }
 export interface ContentReceipt {item:ContentItem;liveContentChanged:boolean}
 /** Trusted importer/API attribution metadata; never read from mutation input. */
-export interface ContentCreationAttribution {readonly authorId?:string|null}
+export interface ContentCreationAttribution {readonly authorId?:string|null;readonly status?:'draft'|'published'}
 
 /** Compose only with trusted authentication; input never supplies identity. */
 export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal|null, dependencies:LifecycleDependencies={},creationAttribution?:ContentCreationAttribution) {
   registerLifecycleDatabase(database,dependencies);
-  const creationMetadata=creationAttribution===undefined?undefined:{authorId:creationAttribution.authorId||null};
+  const creationMetadata=creationAttribution===undefined?undefined:{authorId:creationAttribution.authorId||null,status:creationAttribution.status??'draft'};
   const identity=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)
     ? {id:principal.id,permissions:new Set<string>(principal.permissions)} : null;
   const registry=new SchemaRegistry(database);
@@ -211,7 +211,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const actor=requirePermission('content:create');const value=object(input);
       publicationDatePermission(value);
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale===undefined?getI18nConfig()?.defaultLocale??'en':resolveConfiguredLocale(parse(localeInput,value.locale)));
-      if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
+      if(value.status!==undefined&&value.status!=='draft'&&!(creationMetadata?.status==='published'&&value.status==='published'))throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
       const collection=await definition(type);
       let data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       let translation: {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:string[]}|undefined;
@@ -223,6 +223,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       }
       const slugSource=typeof data.title==='string'&&data.title.length>0?data.title:typeof data.name==='string'&&data.name.length>0?data.name:null;
       const slug=value.slug===undefined?(slugSource?await content.generateUniqueSlug(type,slugSource,locale):null):value.slug;
+      if(creationMetadata?.status==='published'){
+        const publisher=mutationPermission('content:publish_own','content:publish_any');
+        if(!publisher.permissions.has('content:publish_any')&&creationMetadata.authorId!==publisher.id)throw new CmsError('FORBIDDEN');
+        if(collection.routable&&!slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
+      }
       const selections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,locale));
       const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined;
       const dates={

@@ -8,7 +8,7 @@ import { SchemaRegistry, fieldMax } from './registry.ts';
 import { countTrashedDraftInput, createDraftInput, entryId, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, tableName, updateDraftInput, deleteDraftInput } from './validation.ts';
 
 interface EntryRow {
-  id: string; slug: string | null; status: 'draft'; author_id: string | null;
+  id: string; slug: string | null; status: string; author_id: string | null;
   locale: string; version: number; created_at: string; updated_at: string;
   deleted_at?: string | null;
   [key: string]: unknown;
@@ -54,7 +54,7 @@ function cursorDecode(input: unknown, type: string, locale: string): { createdAt
 
 /** Internal storage API. Request callers must use cmsService for authorization. */
 interface DraftTranslationSource {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:readonly string[]}
-interface DraftCreationMetadata {createdAt?:string;publishedAt?:string|null;authorId?:string|null}
+interface DraftCreationMetadata {createdAt?:string;publishedAt?:string|null;authorId?:string|null;status?:'draft'|'published'}
 export class DraftRepository {
   private readonly registry: SchemaRegistry;
   private readonly database: CmsDatabase;
@@ -75,7 +75,7 @@ export class DraftRepository {
     const id = ulid();
     const now = new Date().toISOString();
     const columns = ['id', 'slug', 'status', 'author_id', 'created_at', 'updated_at', 'version', 'locale', 'translation_group', ...Object.keys(value.data)];
-    const values = [id, value.slug || null, 'draft', dates?.authorId===undefined?authorId:dates.authorId, dates?.createdAt??now, now, 1, value.locale, translation?.translationGroup??id, ...Object.values(value.data).map(serializeValue)];
+    const values = [id, value.slug || null, dates?.status??'draft', dates?.authorId===undefined?authorId:dates.authorId, dates?.createdAt??now, now, 1, value.locale, translation?.translationGroup??id, ...Object.values(value.data).map(serializeValue)];
     if(dates?.publishedAt!==undefined){columns.push('published_at');values.push(dates.publishedAt);}
     const db = this.database.db;
     const inherited=new Set(translation?.inheritFields??[]);

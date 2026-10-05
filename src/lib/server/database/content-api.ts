@@ -38,11 +38,8 @@ export function nativeContentApi(database:CmsDatabase,principal:ServerPrincipal|
   async create(collection:string,body:Body){try{
    // Pinned core handler forwards metadata independently of authenticated actor;
    // repository create stores authorId || null and performs no user-row lookup.
-   const creator=lifecycleService(database,principal,dependencies,creationAttribution??{authorId:body.authorId});
-   let item=await creator.createContent({...body,type:collection,status:body.status==='published'?undefined:body.status});
-   // Native public creation retains its established draft/publication CAS.
-   // This two-write transport is documented separately from Source atomicity.
-   if(body.status==='published')item=await owner.publish({type:collection,id:item.id,locale:item.locale,publishedAt:body.publishedAt,expected:{version:item.version,updatedAt:item.updatedAt}});
+   const creator=lifecycleService(database,principal,dependencies,{...creationAttribution,authorId:creationAttribution===undefined?body.authorId:creationAttribution.authorId,status:body.status==='published'?'published':'draft'});
+   const item=await creator.createContent({...body,type:collection});
    return receipt(item);
   }catch(cause){return failure(cause,'CREATE',collection);}},
   async get(collection:string,id:string,locale?:string){try{return receipt(await get(collection,id,locale));}catch(cause){return failure(cause,'GET',collection);}},
