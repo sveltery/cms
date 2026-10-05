@@ -1,0 +1,54 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 1 failed) 2033ms
+     × treats a missing activation table as inactive without aborting the transaction 46ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts (16 tests | 1 failed) 1850ms
+     × keeps block media in independent live and draft projections 119ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts (7 tests | 1 failed) 291ms
+     × discovers every retained block version and fingerprints contract changes 54ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > treats a missing activation table as inactive without aborting the transaction
+TypeError: invalidateContentMediaUsageSchemaChange is not a function
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:56:36
+     54|    });
+     55|    const writeFence = await findMediaUsageActivationWriteFenceError(tr…
+     56|    const schemaInvalidated = await invalidateContentMediaUsageSchemaCh…
+       |                                    ^
+     57|     trx,
+     58|     "missing_collection",
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:680:32
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:50:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > discovers every retained block version and fingerprints contract changes
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps block media in independent live and draft projections
+Error: Source table _emdash_block_types has no qualified seed provider
+ ❯ mappedName src/lib/server/seed/namespace.ts:89:36
+     87| ]);
+     88| function mappedName(name: string): string {
+     89|   if (unavailable.has(name)) throw new Error(`Source table ${name} has…
+       |                                    ^
+     90|   return Object.hasOwn(names, name) ? names[name] : name;
+     91| }
+ ❯ SeedNamespace.transformTable src/lib/server/seed/namespace.ts:262:18
+ ❯ SeedNamespace.transformNodeImpl ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/operation-node/operation-node-transformer.js:152:45
+ ❯ SeedNamespace.transformNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/operation-node/operation-node-transformer.js:147:26
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/operation-node/operation-node-transformer.js:158:47
+ ❯ SeedNamespace.transformNodeList ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/operation-node/operation-node-transformer.js:158:28
+ ❯ SeedNamespace.transformFrom ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/operation-node/operation-node-transformer.js:210:25
+ ❯ SeedNamespace.transformNodeImpl ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/operation-node/operation-node-transformer.js:152:45
+ ❯ SeedNamespace.transformNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/operation-node/operation-node-transformer.js:147:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  3 failed | 2 passed (5)
+      Tests  3 failed | 66 passed (69)
+   Start at  21:52:58
+   Duration  12.10s (transform 2.04s, setup 0ms, import 5.38s, tests 5.67s, environment 0ms)
+

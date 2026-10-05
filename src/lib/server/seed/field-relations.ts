@@ -2,7 +2,7 @@
 // Exact complete named Source declarations; only native imports differ.
 import type { Kysely } from 'kysely';
 import { backfillReferenceEdges } from './upstream/database/reference-backfill.ts';
-import { RelationRepository, type Relation } from '../relations/repository.ts';
+import { RelationRepository, type Relation } from './providers.ts';
 import { withTransaction } from '../database/lifecycle/upstream/database/transaction.ts';
 import type { Database } from './upstream/database/types.ts';
 import { SchemaRegistry, SchemaError } from './registry.ts';

@@ -2,11 +2,11 @@
 // Source 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/media/usage/content-snapshots.ts; complete import-adapted body.
 import { sql, type Kysely } from "kysely";
 
-import { jsonTextValues } from "../../../../blocks/upstream/database/json-recordset.ts";
+import { jsonTextValues } from "../../../providers.ts";
 import type {
 	MediaUsageOccurrenceInput,
 	MediaUsageSourceInput,
-} from "../../../../blocks/upstream/database/repositories/media-usage.ts";
+} from "../../../providers.ts";
 import type { Database } from "../../database/types.ts";
 import { validateIdentifier } from "../../database/validate.ts";
 import {

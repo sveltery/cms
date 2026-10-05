@@ -20,34 +20,34 @@ import type {
 import mime from "mime/lite";
 import { ulid } from "ulidx";
 
-import { setReferenceSelection } from "../relations/handlers.ts";
+import { setReferenceSelection } from "./providers.ts";
 import { bindReferenceField, createFieldRelation } from "./field-relations.ts";
 import { sanitizeGalleryImages } from "./upstream/content/converters/gallery.ts";
 import type { DatetimeContextCache } from "./upstream/database/content-datetime.ts";
-import { BylineRepository } from "../bylines/repository.ts";
+import { BylineRepository } from "./providers.ts";
 import { ContentRepository } from "./upstream/database/repositories/content.ts";
 import { MediaRepository } from "../general-media/upstream/database/repositories/media.ts";
 import { OptionsRepository } from "../comments/upstream/database/repositories/options.ts";
-import { RedirectRepository } from "../redirects/repository.ts";
+import { RedirectRepository } from "./providers.ts";
 import { RevisionRepository } from "./upstream/database/repositories/revision.ts";
 import {
 	findTaxonomyStructure,
 	saveTaxonomyStructure,
-} from "../taxonomies/definitions.ts";
-import { TaxonomyRepository } from "../taxonomies/repository.ts";
+} from "./providers.ts";
+import { TaxonomyRepository } from "./providers.ts";
 import type { ContentItem } from "../database/lifecycle/upstream/database/repositories/types.ts";
 import { withTransaction } from "../database/lifecycle/upstream/database/transaction.ts";
 import type { Database } from "./upstream/database/types.ts";
-import type { MediaValue } from "../schema/types.ts";
+import type { MediaValue } from "../general-media/upstream/media/types.ts";
 import { getI18nConfig, resolveConfiguredLocale } from "./i18n-config.ts";
 import { ssrfSafeFetch, validateExternalUrl } from "./upstream/import/ssrf.ts";
-import { markContentMediaUsageCollectionStaleSafely } from "../blocks/upstream/media/usage/schema-invalidation.ts";
+import { markContentMediaUsageCollectionStaleSafely } from "./providers.ts";
 import { coalesceObjectCacheWrites, invalidateMenuObjectCache } from "../menus/object-cache.ts";
-import { BlockTypeRegistry } from "../blocks/upstream/schema/block-type-registry.ts";
-import { normalizeBlocksData, resolveBlockTypes } from "../blocks/upstream/schema/block-values.ts";
+import { BlockTypeRegistry } from "./providers.ts";
+import { normalizeBlocksData, resolveBlockTypes } from "./providers.ts";
 import { SchemaError, SchemaRegistry } from "./registry.ts";
 import type { CollectionWithFields, Field } from "../schema/types.ts";
-import { FTSManager } from "../content-picker/fts-manager.ts";
+import { FTSManager } from "./providers.ts";
 import { invalidateSiteSettingsCache, setSiteSettings } from "./site-settings.ts";
 import type { SiteSettings } from "./settings-types.ts";
 import type { Storage } from "./storage-types.ts";
@@ -1313,7 +1313,7 @@ async function applySeedWrites(
 	}
 
 	if (result.redirects.created + result.redirects.updated > 0) {
-		const { publishRedirectChanges } = await import("../redirects/artifacts.ts");
+		const { publishRedirectChanges } = await import("./providers.ts");
 		await publishRedirectChanges(db);
 	}
 	await invalidateSeedCaches();

@@ -1,0 +1,43 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 5 failed) 875ms
+     × rejects seed writes until field metadata and capture publication are complete 48ms
+     × resumes collection capture after the content table commits before registration 32ms
+     × resumes collection publication after verified capture reaches ready 34ms
+     × resumes collection capture after registration commits before finalization 32ms
+     × resumes seed capture and restores missing field metadata before finalization 35ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects seed writes until field metadata and capture publication are complete
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after the content table commits before registration
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection publication after verified capture reaches ready
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after registration commits before finalization
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes seed capture and restores missing field metadata before finalization
+Error: index idx_ec_posts_draft_list already exists
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ SingleConnectionProvider.#run ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/single-connection-provider.js:24:22
+ ❯ SingleConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/single-connection-provider.js:16:41
+ ❯ DefaultQueryExecutor.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/default-query-executor.js:20:41
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:39
+ ❯ NotCommittedOrRolledBackAssertingExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:1011:31
+ ❯ Transaction.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:535:43
+ ❯ Object.atomicBatch src/lib/server/database/registry.ts:445:60
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  5 failed | 64 passed (69)
+   Start at  21:49:14
+   Duration  5.32s (transform 786ms, setup 0ms, import 2.08s, tests 2.62s, environment 0ms)
+

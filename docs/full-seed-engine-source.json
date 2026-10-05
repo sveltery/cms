@@ -102,6 +102,18 @@
       "bytes": 25418,
       "sha256": "824cab963af4057b79a5931b6c750390784ba1be9ba42b1792eb89cfabe5633a",
       "gitBlob": "02d85eb11db4ef777906af87720ce543dcbd3b66"
+    },
+    {
+      "path": "packages/core/src/schema/registry.ts",
+      "bytes": 88618,
+      "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "gitBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e"
+    },
+    {
+      "path": "packages/admin/src/portable-text-table.ts",
+      "bytes": 25945,
+      "sha256": "6fc591cf554cc0889d78ce170b07dee1cc1afa6a3cc7e06fcea6148df988c5a6",
+      "gitBlob": "5ed005afb9e146778b4a42a303e391abef5dcace"
     }
   ],
   "runtime": [
@@ -136,6 +148,10 @@
     {
       "native": "src/lib/server/seed/upstream/database/migrations/063_media_usage_incremental_work.ts",
       "source": "packages/core/src/database/migrations/063_media_usage_incremental_work.ts"
+    },
+    {
+      "native": "src/lib/server/seed/upstream/content/converters/portable-text-table.ts",
+      "source": "packages/admin/src/portable-text-table.ts"
     }
   ],
   "selected": [
@@ -176,6 +192,26 @@
         "urlPatternCache",
         "invalidateUrlPatternCache"
       ]
+    },
+    {
+      "native": "src/lib/server/seed/registry.ts",
+      "source": "packages/core/src/schema/registry.ts",
+      "declarations": [
+        "COLUMN_TYPES",
+        "VALID_SOURCES",
+        "isCollectionSource",
+        "isFieldType",
+        "isColumnType",
+        "REPEATER_SUB_FIELD_TYPE_SET",
+        "findUnsupportedRepeaterSubFieldType",
+        "VALID_COLLECTION_SUPPORTS",
+        "UNORDERED_COLLECTION_RANK",
+        "collectionOrder",
+        "isCollectionSupport",
+        "isRecord",
+        "parseSupports",
+        "parseCollectionAdmin"
+      ]
     }
   ],
   "testFamilies": [
@@ -190,5 +226,23 @@
     "apply-budget.test.ts",
     "apply-object-cache.test.ts"
   ],
-  "execution": "See literal evidence; static provenance gives zero execution or causal credit."
+  "execution": "See literal evidence; static provenance gives zero execution or causal credit.",
+  "members": [
+    {
+      "native": "src/lib/server/seed/registry.ts",
+      "source": "packages/core/src/schema/registry.ts",
+      "class": "SchemaRegistry",
+      "members": [
+        "listCollections",
+        "getCollection",
+        "getCollectionWithFields",
+        "listFields",
+        "getField",
+        "mapCollectionRow",
+        "mapFieldRow",
+        "normalizeBlocksFieldValidation",
+        "collectionHasContent"
+      ]
+    }
+  ]
 }

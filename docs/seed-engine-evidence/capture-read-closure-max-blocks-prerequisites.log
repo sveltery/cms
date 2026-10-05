@@ -1,0 +1,44 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts (16 tests | 1 failed) 1422ms
+     × keeps block media in independent live and draft projections 107ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts (7 tests | 1 failed) 463ms
+     × discovers every retained block version and fingerprints contract changes 39ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > discovers every retained block version and fingerprints contract changes
+SchemaError: maxItems must be an integer between 1 and undefined
+ ❯ SchemaRegistry.normalizeBlocksFieldValidation src/lib/server/seed/registry.ts:305:10
+    303|   }
+    304|   if (!Number.isInteger(maxItems) || maxItems < 1 || maxItems > MAX_BL…
+    305|    throw new SchemaError(
+       |          ^
+    306|     `maxItems must be an integer between 1 and ${MAX_BLOCKS_ITEMS}`,
+    307|     "VALIDATION_ERROR",
+ ❯ SchemaRegistry.createField src/lib/server/seed/registry.ts:402:76
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:144:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps block media in independent live and draft projections
+SchemaError: maxItems must be an integer between 1 and undefined
+ ❯ SchemaRegistry.normalizeBlocksFieldValidation src/lib/server/seed/registry.ts:305:10
+    303|   }
+    304|   if (!Number.isInteger(maxItems) || maxItems < 1 || maxItems > MAX_BL…
+    305|    throw new SchemaError(
+       |          ^
+    306|     `maxItems must be an integer between 1 and ${MAX_BLOCKS_ITEMS}`,
+    307|     "VALIDATION_ERROR",
+ ❯ SchemaRegistry.createField src/lib/server/seed/registry.ts:402:76
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:317:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  2 failed | 67 passed (69)
+   Start at  21:51:12
+   Duration  9.76s (transform 1.48s, setup 0ms, import 3.79s, tests 4.74s, environment 1ms)
+
