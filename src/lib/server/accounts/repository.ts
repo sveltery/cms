@@ -16,11 +16,15 @@ export interface AdminUserDetail extends AdminUser {
 export class AccountError extends Error {
  constructor(readonly code:string,message:string,readonly status:number){super(message);this.name='AccountError';}
 }
+/** Source PUT returns only stored profile fields, excluding detail metadata. */
+export function storedProfileProjection(user:Pick<AdminUser,'id'|'email'|'name'|'avatarUrl'|'role'|'emailVerified'|'disabled'|'createdAt'|'updatedAt'>){
+ return {id:user.id,email:user.email,name:user.name,avatarUrl:user.avatarUrl,role:user.role,
+  emailVerified:user.emailVerified,disabled:user.disabled,createdAt:user.createdAt,updatedAt:user.updatedAt};
+}
 /** Explicit allowlist keeps custom identity metadata out of administrator transport receipts. */
 function adminProjection(user:User,lastLogin:Date|null,credentialCount:number):AdminUser {
- return {id:user.id,email:user.email,name:user.name,avatarUrl:user.avatarUrl,role:user.role,
-  emailVerified:user.emailVerified,disabled:user.disabled,createdAt:user.createdAt.toISOString(),
-  updatedAt:user.updatedAt.toISOString(),lastLogin:lastLogin?.toISOString()??null,credentialCount};
+ return {...storedProfileProjection({...user,createdAt:user.createdAt.toISOString(),updatedAt:user.updatedAt.toISOString()}),
+  lastLogin:lastLogin?.toISOString()??null,credentialCount};
 }
 export function accountsRepository(database:CmsDatabase){
  const db=identityDb(database),adapter=identityAdapter(database);
