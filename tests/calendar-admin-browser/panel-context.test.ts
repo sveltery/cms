@@ -1,7 +1,7 @@
 // Supplemental Native UI controls. Original Source callbacks remain unchanged;
 // these controlled client fixtures establish no HTTP/storage/authorization credit.
 import { afterEach,describe,expect,it,vi } from 'vitest';
-import { page } from 'vitest/browser';
+import { page,userEvent } from 'vitest/browser';
 import { flushSync,mount,unmount } from 'svelte';
 import Panel from '../../src/lib/calendar/CalendarEntryPanel.svelte';
 import { createCalendarDisplay,toCalendarItems } from '../../src/lib/calendar/calendar.ts';
@@ -18,6 +18,17 @@ function render(){
   return {state,onClose,panel:page.getByRole('dialog',{name:'Launch'})};
 }
 describe('Native calendar panel context',()=>{
+  it('closes the wide panel on Escape while keeping calendar access nonmodal',async()=>{
+    const {panel,onClose}=render();await expect.element(panel).toBeVisible();
+    await userEvent.keyboard('{Escape}');
+    await expect.poll(()=>onClose.mock.calls.length).toBe(1);
+  });
+  it('dismisses the compact panel by clicking its actual backdrop',async()=>{
+    const {state,panel,onClose}=render();flushSync(()=>{state.compact=true;});
+    await expect.element(panel).toBeVisible();
+    await panel.click({position:{x:150,y:-20},force:true});
+    await expect.poll(()=>onClose.mock.calls.length).toBe(1);
+  });
   it('updates actual modality when the open panel crosses the compact breakpoint',async()=>{
     const {state,panel,onClose}=render();
     await expect.element(panel).toBeVisible();

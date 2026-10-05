@@ -37,7 +37,8 @@ describe('Native calendar overlay keyboard behavior',()=>{
   });
   it('retains a day-grid tab stop after keyboard movement and toolbar month navigation',async()=>{
     const state=renderMonth(true);
-    await page.getByRole('button',{name:/October 15th, 2030/}).press('ArrowRight');
+    await page.getByRole('button',{name:/October 15th, 2030/}).click();
+    await userEvent.keyboard('{ArrowRight}');
     await expect.poll(()=>document.activeElement?.getAttribute('data-calendar-day')).toBe('2030-10-16');
     flushSync(()=>{state.month='2030-11';state.gridDays=monthGridDays('2030-11',0);});
     await expect.poll(()=>document.querySelectorAll('[data-calendar-day][tabindex="0"]').length).toBe(1);

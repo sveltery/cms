@@ -15,6 +15,11 @@ function render(onSchedule:(at:string)=>void|Promise<void>=vi.fn()){
   return {state,onOpenChange,onSchedule,panel:page.getByRole('dialog',{name:'Change schedule'})};
 }
 describe('Native calendar schedule dialog',()=>{
+  it('dismisses an abandoned schedule by clicking its actual backdrop',async()=>{
+    const {panel,onOpenChange}=render();await expect.element(panel).toBeVisible();
+    await panel.click({position:{x:-12,y:30},force:true});
+    await expect.poll(()=>onOpenChange.mock.calls).toEqual([[false]]);
+  });
   it('keeps an unchanged schedule disabled and resets an abandoned edit',async()=>{
     const {state,panel,onOpenChange}=render();
     await expect.element(panel.getByRole('textbox',{name:'Hour'})).toHaveValue('09');
