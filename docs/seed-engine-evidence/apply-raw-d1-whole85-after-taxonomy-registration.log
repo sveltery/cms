@@ -1,0 +1,1238 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts (78 tests | 61 failed) 7497ms
+       × should overwrite settings in update mode 82ms
+       × creates reference fields that target a later seed collection 138ms
+       × creates reference-heavy schemas within the D1 query budget 93ms
+       × should create collections and fields 91ms
+       × creates a declared relation with its labels and limits 59ms
+       × binds a field that names a relation instead of creating a second one 58ms
+       × binds a field on the other collection to the child side of the same relation 86ms
+       × keeps the declared side for a relation whose ends are the same collection 57ms
+       × updates labels and limits on re-apply, and leaves them on skip 61ms
+       × refuses to move a relation onto different collections 61ms
+       × refuses a field naming a relation that does not exist 60ms
+       × refuses a field naming a relation that does not touch its collection 63ms
+       × drops a forward $ref that names a collection seeded later 56ms
+       × binds an existing unbound reference field when a re-applied seed names a target 234ms
+       × seeds content for a reference field bound to the child side 55ms
+       × should create taxonomy definitions 86ms
+       × should not create terms by default 64ms
+       × should create flat taxonomy terms when includeContent is true 60ms
+       × should create hierarchical taxonomy terms with parents 60ms
+       × should skip existing terms 55ms
+       × should create menus with items 73ms
+       × should create nested menu items 76ms
+       × should replace items in existing menu 54ms
+       × should create widget areas with widgets 54ms
+       × should create menu widgets 59ms
+       × should create component widgets 57ms
+       × should replace widgets in existing area 53ms
+       × should create redirects 56ms
+       × should skip redirects when source already exists 47ms
+       × should create bylines and assign ordered credits to content 105ms
+       × should seed a byline avatar as a media row and link it 62ms
+       × links a byline avatar on update (onConflict: update) 62ms
+       × should create content when includeContent is true 105ms
+       × idempotently publishes slugless content for a non-routable collection 82ms
+       × should skip existing content entries 117ms
+       × skips an entry whose slug an earlier entry of the same seed took 111ms
+       × should resolve $ref: references between content into reference edges 87ms
+       × writes $ref: to the column for a reference field that names no target collection 110ms
+       × should assign taxonomy terms to content 115ms
+       × reads the site timezone and field definitions as often for ten entries as for one 192ms
+       × resolves seeded datetimes in the timezone and fields of the seed being applied 103ms
+       × should create content before menus so refs resolve 117ms
+       × should create sections 58ms
+       × should skip existing sections 57ms
+       × should be safe to run multiple times 117ms
+       × imports menu translations sharing one translation_group 74ms
+       × imports taxonomy def translations sharing one translation_group 80ms
+       × takes a taxonomy translation's structure from the taxonomy 65ms
+       × takes a taxonomy's structure from its source entry when translations come first 67ms
+       × follows a chain of taxonomy translations to the entry that declares the structure 70ms
+       × imports menu item translations sharing one translation_group 57ms
+       × falls back to fresh group when item translationOf is missing 70ms
+       × imports term translations sharing one translation_group 77ms
+       × keeps a term translation that names no parent under its term's parent 103ms
+     × honors skip for trashed slugless seed IDs 103ms
+     × honors update for trashed slugless seed IDs 90ms
+       × skips entries whose slug collides with a trashed row (onConflict: skip) 115ms
+       × does not resurrect trashed content (onConflict: update) 124ms
+       × reports a clear conflict for trashed collisions (onConflict: error) 157ms
+       × does not resolve references through a skipped trashed entry 99ms
+       × does not create relation edges to a skipped trashed entry 104ms
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts (5 tests | 4 failed) 1445ms
+     × resolves references, term parents, bylines and menus across calls as a single call does 904ms
+     × keeps every call near its budget, however many entries earlier calls wrote 232ms
+     × counts trashed collisions as completed work without exceeding the query budget 127ms
+     × keeps every call near its budget while it creates many terms and bylines 112ms
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts (2 tests | 2 failed) 982ms
+     × writes each invalidated epoch to the backend once for a seed with sample content 899ms
+     × invalidates cached menus only when the seed writes them 82ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 67 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > resolves references, term parents, bylines and menus across calls as a single call does
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:619:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applyInCalls parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:49:19
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:148:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget, however many entries earlier calls wrote
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applyInCalls parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:49:19
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:189:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > counts trashed collisions as completed work without exceeding the query budget
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:203:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget while it creates many terms and bylines
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:619:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applyInCalls parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:49:19
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:250:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts > applySeed with an object cache > writes each invalidated epoch to the backend once for a seed with sample content
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ Module.applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts:84:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts > applySeed with an object cache > invalidates cached menus only when the seed writes them
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1132:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ Module.applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts:132:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should overwrite settings in update mode
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ setSiteSettings src/lib/server/seed/site-settings.ts:32:3
+ ❯ applySiteSettings src/lib/server/seed/apply.ts:81:3
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:367:3
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates reference fields that target a later seed collection
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:544:67
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:231:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates reference-heavy schemas within the D1 query budget
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:544:67
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:252:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > should create collections and fields
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:296:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > creates a declared relation with its labels and limits
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds a field that names a relation instead of creating a second one
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds a field on the other collection to the child side of the same relation
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > keeps the declared side for a relation whose ends are the same collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > updates labels and limits on re-apply, and leaves them on skip
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses to move a relation onto different collections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > drops a forward $ref that names a collection seeded later
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > seeds content for a reference field bound to the child side
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedRelations src/lib/server/seed/apply.ts:1561:5
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:372:3
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a field naming a relation that does not exist
+AssertionError: expected Error: D1 taxonomy writes require atomic … to match object { code: 'RELATION_NOT_FOUND' }
+
+- Expected
++ Received
+
+- {
+-   "code": "RELATION_NOT_FOUND",
++ Error {
++   "message": "D1 taxonomy writes require atomic adaptation",
+  }
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:623:37
+    621|    });
+    622|
+    623|    await expect(applySeed(db, seed)).rejects.toMatchObject({ code: "RE…
+       |                                     ^
+    624|   });
+    625|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a field naming a relation that does not touch its collection
+AssertionError: expected [Function] to throw error matching /has no child end on collection "pages"/ but got 'D1 taxonomy writes require atomic ada…'
+
+- Expected:
+/has no child end on collection "pages"/
+
++ Received:
+"D1 taxonomy writes require atomic adaptation"
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:641:37
+    639|    });
+    640|
+    641|    await expect(applySeed(db, seed)).rejects.toThrow(/has no child end…
+       |                                     ^
+    642|   });
+    643|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds an existing unbound reference field when a re-applied seed names a target
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ upsertSeedField src/lib/server/seed/apply.ts:1827:4
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:434:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:697:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create taxonomy definitions
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:744:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should not create terms by default
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:775:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create flat taxonomy terms when includeContent is true
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:803:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create hierarchical taxonomy terms with parents
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:828:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should skip existing terms
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:851:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should create menus with items
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1132:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:906:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should create nested menu items
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1132:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:962:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should replace items in existing menu
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:986:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create widget areas with widgets
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1221:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1051:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create menu widgets
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1221:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1079:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create component widgets
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1221:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1107:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should replace widgets in existing area
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1131:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > redirects > should create redirects
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ RedirectRepository.withLease src/lib/server/redirects/repository.ts:222:6
+ ❯ RedirectRepository.withWriteLock src/lib/server/redirects/repository.ts:202:15
+ ❯ RedirectRepository.create src/lib/server/redirects/repository.ts:314:16
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1183:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > redirects > should skip redirects when source already exists
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ RedirectRepository.withLease src/lib/server/redirects/repository.ts:222:6
+ ❯ RedirectRepository.withWriteLock src/lib/server/redirects/repository.ts:202:15
+ ❯ RedirectRepository.create src/lib/server/redirects/repository.ts:314:16
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1216:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should create bylines and assign ordered credits to content
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:795:6
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:774:21
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1270:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should seed a byline avatar as a media row and link it
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ MediaRepository.create src/lib/server/general-media/upstream/database/repositories/media.ts:170:49
+ ❯ resolveSeedBylineAvatar src/lib/server/seed/apply.ts:2276:48
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:771:35
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > links a byline avatar on update (onConflict: update)
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:795:6
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:774:21
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1346:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should create content when includeContent is true
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1483:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > idempotently publishes slugless content for a non-routable collection
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1508:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should skip existing content entries
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ ContentRepository.create src/lib/server/seed/upstream/database/repositories/content.ts:483:6
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1543:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > skips an entry whose slug an earlier entry of the same seed took
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1584:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should resolve $ref: references between content into reference edges
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:544:67
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1625:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > writes $ref: to the column for a reference field that names no target collection
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1677:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should assign taxonomy terms to content
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1705:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > reads the site timezone and field definitions as often for ten entries as for one
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ lookupsFor parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1766:6
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1782:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > resolves seeded datetimes in the timezone and fields of the seed being applied
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1789:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > apply order > should create content before menus so refs resolve
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1869:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > sections > should create sections
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1289:6
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1905:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > sections > should skip existing sections
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1941:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > idempotency > should be safe to run multiple times
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2014:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports menu translations sharing one translation_group
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1132:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2057:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[45/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports taxonomy def translations sharing one translation_group
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2097:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[46/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > takes a taxonomy translation's structure from the taxonomy
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2141:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[47/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > takes a taxonomy's structure from its source entry when translations come first
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2186:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[48/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > follows a chain of taxonomy translations to the entry that declares the structure
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2218:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[49/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports menu item translations sharing one translation_group
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1132:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2275:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[50/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > falls back to fresh group when item translationOf is missing
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1132:8
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2319:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[51/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports term translations sharing one translation_group
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2364:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[52/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > keeps a term translation that names no parent under its term's parent
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:636:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2415:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[53/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > honors skip for trashed slugless seed IDs
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > honors update for trashed slugless seed IDs
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:1015:17
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2439:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[54/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > skips entries whose slug collides with a trashed row (onConflict: skip)
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ ContentRepository.create src/lib/server/seed/upstream/database/repositories/content.ts:483:6
+ ❯ setupTrashedEntry parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2465:20
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2484:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[55/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not resurrect trashed content (onConflict: update)
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ ContentRepository.create src/lib/server/seed/upstream/database/repositories/content.ts:483:6
+ ❯ setupTrashedEntry parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2465:20
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2502:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[56/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > reports a clear conflict for trashed collisions (onConflict: error)
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ ContentRepository.create src/lib/server/seed/upstream/database/repositories/content.ts:483:6
+ ❯ setupTrashedEntry parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2465:20
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2522:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[57/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not resolve references through a skipped trashed entry
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ ContentRepository.create src/lib/server/seed/upstream/database/repositories/content.ts:483:6
+ ❯ setupTrashedEntry parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2465:20
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2530:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[58/67]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not create relation edges to a skipped trashed entry
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ ContentRepository.create src/lib/server/seed/upstream/database/repositories/content.ts:483:6
+ ❯ setupTrashedEntry parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2465:20
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:2573:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[59/67]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  67 failed | 18 passed (85)
+   Start at  22:18:43
+   Duration  13.15s (transform 1.17s, setup 0ms, import 2.87s, tests 9.92s, environment 0ms)
+

@@ -24,7 +24,7 @@ import { PostgresAdapter, sql } from "kysely";
 
 import type { DatabaseDialectType } from "../db/adapters.ts";
 import type { Database } from "./types.ts";
-import { validateIdentifier, validateJsonFieldName } from "./validate.ts";
+import { validateIdentifier, validateJsonFieldName } from "../../../database/lifecycle/upstream/database/validate.ts";
 
 export type { DatabaseDialectType };
 

@@ -1,0 +1,28 @@
+Loading svelte-check in workspace: /workspace/cms-full-seed-engine
+Getting Svelte diagnostics...
+
+/workspace/cms-full-seed-engine/tests/helpers/full-seed/source-d1-fixture-handle.ts:25:84
+Error: Type 'QueryResult<unknown>' is not assignable to type 'QueryResult<UnknownRow>'.
+  Type 'unknown' is not assignable to type 'UnknownRow'. 
+    let result = await owner.db.executeQuery(query, options);
+    for (const plugin of executor.plugins) result = await plugin.transformResult({ result, queryId: query.queryId });
+    return result;
+
+/workspace/cms-full-seed-engine/tests/helpers/full-seed/source-d1-fixture-handle.ts:44:73
+Error: Expected 2 arguments, but got 1. 
+        if (node.kind === 'InsertQueryNode' && !node.returning) rows = [new InsertResult(result.insertId, result.numAffectedRows)];
+        if (node.kind === 'UpdateQueryNode' && !node.returning) rows = [new UpdateResult(result.numAffectedRows ?? 0n)];
+        if (node.kind === 'DeleteQueryNode' && !node.returning) rows = [new DeleteResult(result.numAffectedRows ?? 0n)];
+
+/workspace/cms-full-seed-engine/tests/helpers/full-seed/source-d1-fixture-handle.ts:47:93
+Error: Argument of type 'RootOperationNode' is not assignable to parameter of type 'QueryNode'.
+  Type 'CreateTableNode' is not assignable to type 'QueryNode'.
+    Type 'CreateTableNode' is not assignable to type 'UpdateQueryNode'.
+      Types of property 'kind' are incompatible.
+        Type '"CreateTableNode"' is not assignable to type '"UpdateQueryNode"'. 
+        if (key === 'execute') return rows;
+        if (key === 'executeTakeFirstOrThrow' && rows.length === 0) throw new NoResultError(query.query);
+        return rows[0];
+
+====================================
+svelte-check found 3 errors and 0 warnings in 1 file

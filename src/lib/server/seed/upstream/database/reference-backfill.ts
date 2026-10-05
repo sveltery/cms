@@ -7,7 +7,7 @@ import { ulid } from "ulidx";
 import { chunks, SQL_BATCH_SIZE } from "../../../schema/chunks.ts";
 import { currentTimestampValue, tableExists } from "./dialect-helpers.ts";
 import { REFERENCE_INSERT_BATCH_SIZE } from "./repositories/relation.ts";
-import { validateIdentifier } from "./validate.ts";
+import { validateIdentifier } from "../../../database/lifecycle/upstream/database/validate.ts";
 
 /** What to copy, and which relation to copy it into. */
 export interface ReferenceBackfill {

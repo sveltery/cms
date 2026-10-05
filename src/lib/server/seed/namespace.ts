@@ -494,6 +494,12 @@ function compilationOnly<T extends object>(target: T): T {
   } });
 }
 const physicalNames = new Set(Object.values(names));
+/** Trusted synchronous planning on an existing owner. Execution stays unavailable. */
+export function seedDomainPlanCompiler(db: Kysely<any>): Kysely<any> {
+  const context = views.get(db);
+  if (!context) throw new Error('Seed domain planning requires its actual registered query handle');
+  return compilationOnly(context.atomicLogical.withPlugin(namespace));
+}
 function allowedMutationTable(node: OperationNode | undefined): boolean {
   const name = tableName(node);
   return name !== undefined && (physicalNames.has(name) || /^ec_[a-z][a-z0-9_]{0,63}$/.test(name));

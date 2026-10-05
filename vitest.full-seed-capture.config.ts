@@ -15,7 +15,7 @@ const modules: Record<string, string> = {
   'src/media/usage/source-key.js': 'src/lib/server/blocks/upstream/media/usage/source-key.ts',
   'src/database/repositories/media-usage.js': 'src/lib/server/blocks/upstream/database/repositories/media-usage.ts',
   'src/database/repositories/revision.js': 'src/lib/server/seed/upstream/database/repositories/revision.ts',
-  'src/database/validate.js': 'src/lib/server/seed/upstream/database/validate.ts',
+  'src/database/validate.js': 'src/lib/server/database/lifecycle/upstream/database/validate.ts',
   'src/schema/block-type-registry.js': 'src/lib/server/blocks/upstream/schema/block-type-registry.ts',
   'src/api/media-usage-write-fence.js': 'src/lib/server/seed/upstream/api/media-usage-write-fence.ts',
   'src/database/migrations/063_media_usage_incremental_work.js': 'src/lib/server/seed/upstream/database/migrations/063_media_usage_incremental_work.ts'

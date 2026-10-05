@@ -6,7 +6,7 @@ import {seedDatabaseOwner} from './namespace.ts';
 import {SchemaError} from '../blocks/upstream/schema/registry.ts';
 import type {Database,CollectionTable,FieldTable} from './upstream/database/types.ts';
 import {FIELD_TYPE_TO_COLUMN,REPEATER_SUB_FIELD_TYPES,type Collection,type CollectionWithFields,type Field,type CollectionSource,type FieldType,type ColumnType,type UnsupportedFieldType,type CollectionSupport,type CollectionAdminConfig,type CreateCollectionInput,type CreateFieldInput,type FieldValidation,type UpdateCollectionInput,type UpdateFieldInput} from '../schema/types.ts';
-import {validateIdentifier} from './upstream/database/validate.ts';
+import {validateIdentifier} from '../database/lifecycle/upstream/database/validate.ts';
 import {MAX_BLOCKS_ITEMS} from '../schema/types.ts';
 export {SchemaError};
 const COLUMN_TYPES: ReadonlySet<string> = new Set(["TEXT", "REAL", "INTEGER", "JSON"]);

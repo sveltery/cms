@@ -18,6 +18,7 @@ import { getMediaUsageActivationStatus, canResumeMediaUsageCollectionCapture,
   finalizeMediaUsageCollectionCapture } from '../seed/upstream/media/usage/activation.ts';
 import { markContentMediaUsageCollectionStaleSafely } from '../blocks/upstream/media/usage/schema-invalidation.ts';
 import type { CreateCollectionInput, CreateFieldInput } from '../schema/types.ts';
+import { buildSeedCapturedCreationPlan } from './seed-capture-plan.ts';
 
 
 export const MAX_COLLECTIONS = 100;
@@ -297,7 +298,10 @@ export class SchemaRegistry {
     const columns = definitions.filter(field => !isStoragelessField(field)).map(field =>
       sql`${sql.ref(field.slug)} ${sql.raw(FIELD_TYPE_TO_COLUMN[field.type])} ${field.type === 'blocks' ? sql`NOT NULL DEFAULT '[]'` : field.required ?
         sql`NOT NULL DEFAULT ${sql.raw(formatFieldDefault(field.defaultValue, field.type))}` : sql``}`);
+    const primaryByline = await collectionPrimaryBylinePlan(this.database,value.slug);
+    const standardIndexes = await collectionStandardIndexPlan(this.database,value.slug);
     const statements: CompiledQuery[] = [
+      primaryByline.guard,standardIndexes.guard,
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
         CASE WHEN (SELECT COUNT(*) FROM _cms_collections) < ${MAX_COLLECTIONS} THEN 1 ELSE 0 END`.compile(db),
       db.insertInto('_cms_collections').values({ id, slug: value.slug, label: value.label,
@@ -318,7 +322,9 @@ export class SchemaRegistry {
         ${columns.length ? sql`${sql.join(columns)},` : sql``} UNIQUE(slug, locale)
       )`.compile(db),
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
-      trashIndexStatement(this.database, value.slug)
+      trashIndexStatement(this.database, value.slug),
+      ...(primaryByline.index ? [primaryByline.index] : []),
+      ...standardIndexes.indexes
     ];
     // Every metadata row has 17 bindings. Five rows use85, within raw D1's100.
     for (let offset = 0; offset < rows.length; offset += 5) statements.push(
@@ -328,7 +334,7 @@ export class SchemaRegistry {
     for (const field of rows) if (field.indexed) statements.push(...this.fieldIndexStatements(value.slug, field.id, field.slug));
     statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
     if (active) await this.executeCapturedCreation({collectionId:id,collectionSlug:value.slug,
-      registeredCollectionId:existing?.id,creationFingerprint},statements,1,2);
+      registeredCollectionId:existing?.id,creationFingerprint},statements,3,4);
     else await this.batch(statements, 'LIMIT_EXCEEDED');
     await markContentMediaUsageCollectionStaleSafely(this.database.db as unknown as Parameters<typeof markContentMediaUsageCollectionStaleSafely>[0],value.slug,'CONTENT_USAGE_STALE');
   }
@@ -436,7 +442,10 @@ export class SchemaRegistry {
     input: Parameters<typeof prepareMediaUsageCollectionCapture>[1],
     statements: CompiledQuery[], collectionOffset: number, tableOffset: number
   ): Promise<void> {
-    if (!this.database.atomicQueryLoops) throw new Error('Durable schema capture requires its fixed D1 creation plan');
+    if (!this.database.atomicQueryLoops) {
+      await this.batch(await buildSeedCapturedCreationPlan(this.database,input,statements,collectionOffset,tableOffset),'LIMIT_EXCEEDED');
+      return;
+    }
     const execute = async (trx: Kysely<any>) => {
       const owner: CmsDatabase = {...this.database,db:trx as CmsDatabase['db'],
         async atomicBatch(plan) {

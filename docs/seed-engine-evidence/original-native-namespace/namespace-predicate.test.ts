@@ -3,14 +3,12 @@ import { sql } from 'kysely';
 import { seedSourceDatabase } from 'seed-namespace-subject';
 import { schemaAdminStorage } from '../helpers/schema-admin-storage.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
-import { prepareOpaqueMediaIndexFixture } from '../helpers/source-seed-backend/opaque-media-index-fixture.ts';
 
 // Whole original Native Boolean-catalog cases; no Source/auth credit.
 async function fixture(target: 'Node' | 'D1') {
   const storage = await schemaAdminStorage(target);
   try {
     await migrateCms(storage.database);
-    await prepareOpaqueMediaIndexFixture(storage.database);
     await sql`CREATE INDEX _cms_media ON _cms_options(name)`.execute(storage.database.db);
     return storage;
   } catch (error) { await storage.close(); throw error; }

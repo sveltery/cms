@@ -8,7 +8,7 @@ import type {
 	MediaUsageSourceInput,
 } from "../../../providers.ts";
 import type { Database } from "../../database/types.ts";
-import { validateIdentifier } from "../../database/validate.ts";
+import { validateIdentifier } from "../../../../database/lifecycle/upstream/database/validate.ts";
 import {
 	loadContentMediaUsageFields,
 	type ContentMediaUsageField,

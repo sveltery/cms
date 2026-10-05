@@ -1,0 +1,95 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/capture-native.test.ts (8 tests | 5 failed) 1268ms
+   × Node: gives seed collections the existing canonical byline and standard indexes 22ms
+   × D1: publishes a new captured collection with exact durable triggers 768ms
+   × D1: captures a whole 74-field seed schema before content writes 117ms
+   × D1: rolls back capture and DDL when collection publication fails 111ms
+   × D1: gives seed collections the existing canonical byline and standard indexes 102ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/capture-native.test.ts > Node: gives seed collections the existing canonical byline and standard indexes
+AssertionError: expected [ …(4) ] to include 'idx_ec_seed_indexes_primary_byline'
+ ❯ tests/source-seed-backend/capture-native.test.ts:72:21
+     70|       await new SchemaRegistry(storage.database).createSeedCollectionS…
+     71|       const names = (await sql<{ name: string }>`SELECT name FROM sqli…
+     72|       expect(names).toContain('idx_ec_seed_indexes_primary_byline');
+       |                     ^
+     73|       expect(names).toContain('idx_ec_seed_indexes_status');
+     74|     } finally { await storage.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/source-seed-backend/capture-native.test.ts > D1: publishes a new captured collection with exact durable triggers
+AssertionError: expected Error: Durable schema capture requires it… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "Durable schema capture requires its fixed D1 creation plan",
+}
+
+ ❯ tests/source-seed-backend/capture-native.test.ts:21:21
+     19|       const registry = new SchemaRegistry(storage.database);
+     20|       const error = await registry.createCollection({ slug: 'captured'…
+     21|       expect(error).toBeNull();
+       |                     ^
+     22|       const collection = (await registry.getCollection('captured'))!;
+     23|       const identity = { collectionId: collection.id, collectionSlug: …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/source-seed-backend/capture-native.test.ts > D1: captures a whole 74-field seed schema before content writes
+AssertionError: expected Error: Durable schema capture requires it… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "Durable schema capture requires its fixed D1 creation plan",
+}
+
+ ❯ tests/source-seed-backend/capture-native.test.ts:42:21
+     40|       const fields = Array.from({ length: 74 }, (_, index) => ({ slug:…
+     41|       const error = await registry.createSeedCollectionSchema({ slug: …
+     42|       expect(error).toBeNull();
+       |                     ^
+     43|       const collection = (await registry.getCollectionWithFields('capt…
+     44|       expect(collection.fields).toHaveLength(74);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/source-seed-backend/capture-native.test.ts > D1: rolls back capture and DDL when collection publication fails
+AssertionError: expected [Function] to throw error including 'controlled capture publication failure' but got 'Durable schema capture requires its f…'
+
+Expected: "controlled capture publication failure"
+Received: "Durable schema capture requires its fixed D1 creation plan"
+
+ ❯ tests/source-seed-backend/capture-native.test.ts:59:127
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/source-seed-backend/capture-native.test.ts > D1: gives seed collections the existing canonical byline and standard indexes
+AssertionError: expected [ …(4) ] to include 'idx_ec_seed_indexes_primary_byline'
+ ❯ tests/source-seed-backend/capture-native.test.ts:72:21
+     70|       await new SchemaRegistry(storage.database).createSeedCollectionS…
+     71|       const names = (await sql<{ name: string }>`SELECT name FROM sqli…
+     72|       expect(names).toContain('idx_ec_seed_indexes_primary_byline');
+       |                     ^
+     73|       expect(names).toContain('idx_ec_seed_indexes_status');
+     74|     } finally { await storage.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 3 passed (8)
+   Start at  22:22:40
+   Duration  2.18s (transform 409ms, setup 0ms, import 791ms, tests 1.27s, environment 0ms)
+
