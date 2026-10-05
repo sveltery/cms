@@ -1,6 +1,5 @@
 import {base} from '$app/paths';
 import {computeContentHash,MAX_CONTENT_HASH_BYTES} from './hash';
-import {localMediaFileUrl} from './source/media-utils';
 import type {MediaItem} from './types';
 
 export class MediaRequestError extends Error {
@@ -26,7 +25,7 @@ export async function uploadMediaFile(file:File,options:UploadMediaFileOptions={
  }
  options.signal?.throwIfAborted();
  const pending=await mediaRequest<{uploadUrl:string;method:'PUT';headers:Record<string,string>;mediaId:string;existing?:boolean}>('/api/media/upload-url',{method:'POST',headers:{'content-type':'application/json'},signal:options.signal,body:JSON.stringify({filename:file.name,contentType:file.type||'application/octet-stream',size:file.size,contentHash,...(options.deduplicate===false?{deduplicate:false}:{}),...(options.ensureUniqueFilename?{ensureUniqueFilename:true}:{}),...(options.folderId!==undefined?{folderId:options.folderId}:{})})});
- if(pending.existing){const item=(await mediaRequest<{item:MediaItem}>(`/api/media/${encodeURIComponent(pending.mediaId)}`,{signal:options.signal})).item;return {...item,url:localMediaFileUrl(item.storageKey)};}
+ if(pending.existing)return (await mediaRequest<{item:MediaItem}>(`/api/media/${encodeURIComponent(pending.mediaId)}`,{signal:options.signal})).item;
  const response=await fetch(mediaHref(pending.uploadUrl),{method:pending.method,headers:pending.headers,body:file,signal:options.signal});
  if(!response.ok){let failure;try{failure=await response.json();}catch{/* External storage may return a non-JSON error. */}throw new MediaRequestError(failure?.error?.code??'UPLOAD_FAILED',failure?.error?.message??'File upload failed',response.status);}
  return (await mediaRequest<{item:MediaItem}>(`/api/media/${encodeURIComponent(pending.mediaId)}/confirm`,{method:'POST',headers:{'content-type':'application/json'},signal:options.signal,body:'{}'})).item;

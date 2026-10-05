@@ -1087,30 +1087,6 @@
       "frozenPath": "parity/emdash/media/source-tests/packages/core/tests/workerd/media-usage-projection-admission-d1.test.ts",
       "status": "inventory-only",
       "executed": false
-    },
-    {
-      "sourcePath": "packages/admin/tests/components/MediaImageCropper.test.tsx",
-      "blob": "30d8de3abd728409cc475290bcd836d1b5bae368",
-      "sha256": "8a81697c52d948f773a275037376f237b416cc329a9df957aeb828b7437da0b4",
-      "frozenPath": "parity/emdash/media/source-tests/packages/admin/tests/components/MediaImageCropper.test.tsx",
-      "status": "inventory-only-before-native-crop-component-implementation",
-      "executed": false
-    },
-    {
-      "sourcePath": "packages/admin/tests/components/MediaDetailPanel.test.tsx",
-      "blob": "c3f4021e501ed5c64b41cf13c23b3919c67c178f",
-      "sha256": "09e5a30be1d31bc33b06b2da4b7a9d4b27963f6d138503b675ddd1f5c96c36e9",
-      "frozenPath": "parity/emdash/media/source-tests/packages/admin/tests/components/MediaDetailPanel.test.tsx",
-      "status": "inventory-only-before-native-crop-component-implementation",
-      "executed": false
-    },
-    {
-      "sourcePath": "packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx",
-      "blob": "7753f437ac881538ca0ba3cc4ac092eea08d1a0f",
-      "sha256": "faaab82bdb226052a9db1e8958bc99ecad97743fb41ae49fcbb45678a5af168b",
-      "frozenPath": "parity/emdash/media/source-tests/packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx",
-      "status": "inventory-only-before-native-crop-component-implementation",
-      "executed": false
     }
   ],
   "runs": [
@@ -1264,104 +1240,12 @@
       "additionalFiles": 4,
       "additionalExecutions": 59,
       "boundary": "Exact installed crypto1.0.1 diagnostic resolver, original source callbacks/helper bodies/fixtures/expectations/deadlines unchanged. Existing selected29 families retain original mocks and actualSQLite/D1 adapters; new4 are pure/original-mocked contracts. Later baseline selection supplies zero new assertion red credit. No actual image endpoint, browser crop, external provider or full ME3 claim."
-    },
-    {
-      "id": "hosted-a062-normal",
-      "receipt": "parity/emdash/media/evidence/hosted-a062-normal.json",
-      "sourceAssertionRedCredit": 0
-    },
-    {
-      "id": "crop-pre-ui-local-bootstrap",
-      "receipt": "parity/emdash/media/evidence/crop-pre-ui-local-bootstrap.json",
-      "fullBootstrapPass": false,
-      "sourceAssertionRedCredit": 0
-    },
-    {
-      "id": "approved-main45-settings109-composition",
-      "receipt": "parity/emdash/media/evidence/approved-main45-settings109-composition.json",
-      "copiedCallbackChanges": 0,
-      "futureMediaUsageProvider": 12
-    },
-    {
-      "id": "hosted-crop-before-ui-red",
-      "receipt": "parity/emdash/media/evidence/hosted-crop-before-ui-red.json",
-      "nativeUniqueGenuineAssertionReds": 1,
-      "nativeTargetAssertionExecutions": 2,
-      "copiedSourceAssertionRedCredit": 0
-    },
-    {
-      "id": "native-crop-first-implementation",
-      "stage": "After actual completed native crop baseline; before pointer/keyboard resize implementation",
-      "pureHelperProductPath": "src/lib/media/source/crop-image.ts",
-      "nativeUiPaths": [
-        "src/lib/media/MediaCropDialog.svelte",
-        "src/lib/media/MediaImageCropper.svelte"
-      ],
-      "sourceCanvasWholeExpandedExecutionsSelected": 15,
-      "sourceCropperWholeCallbacksSelected": 12,
-      "executionPending": true,
-      "copiedSourceAssertionRedCredit": 0,
-      "nativeSourceRendererSubstitutions": "Test-only React-to-actual-Svelte bridge, render wrapper and native external CSS; no full renderer/Lingui/query/CSS parity claim."
-    },
-    {
-      "id": "hosted-3a-normal-before-crop-ui",
-      "receipt": "parity/emdash/media/evidence/hosted-3a-normal-before-crop-ui.json",
-      "fullBootstrapPass": true,
-      "nativeCropAssertionBaselineOnly": true,
-      "copiedSourceAssertionRedCredit": 0
-    },
-    {
-      "id": "hosted-crop-component-baseline",
-      "receipt": "parity/emdash/media/evidence/hosted-crop-component-baseline.json",
-      "nativeCropPassEachTarget": 1,
-      "wholeCanvasPass": 15,
-      "wholeCropperPass": 3,
-      "wholeCropperFail": 9,
-      "genuineCompletedValueSourceAssertionReds": 1,
-      "excludedLocatorActionFailures": 8
-    },
-    {
-      "id": "native-crop-pointer-keyboard-implementation",
-      "preImplementationSourceReceipt": "parity/emdash/media/evidence/hosted-crop-component-baseline.json",
-      "qualifiedCompletedValueSourceReds": 1,
-      "wholeSourceCallbacksUnchanged": 12,
-      "newNormalSecuredExecutionPending": true,
-      "actualCompiledOwnedComponentsWarnings": 0,
-      "exactInstalledTestTypesDiagnosticCheck": {
-        "errors": 0,
-        "warnings": 0,
-        "normalCheckCredit": false
-      }
-    },
-    {
-      "kind": "hosted-cropper-green",
-      "head": "910bda1f96a31317120d2e557ed3f5319b5a817d",
-      "tree": "0cf6d63d6513d92caa36d3ed84063cf61d1cff00",
-      "run": 37107312007,
-      "receipt": "parity/emdash/media/evidence/hosted-910-crop-green.json",
-      "wholeCanvasPassEachTarget": 15,
-      "wholeCropperPassEachTarget": 12,
-      "wholeLibraryPassEachTarget": 4,
-      "originalRealCropPassEachTarget": 1,
-      "sourceCompletedValueRedToGreen": 1,
-      "normalBootstrapPass": true,
-      "fullBrowserPass": false,
-      "fullNodeBrowserReached": false
-    },
-    {
-      "kind": "local-whole-admin-pure-baseline",
-      "wholeFiles": 4,
-      "executions": 17,
-      "pass": 17,
-      "causalAssertionRedCredit": 0,
-      "receipt": "parity/emdash/media/evidence/admin-pure-first-baseline.json",
-      "securedBrowserPending": true
     }
   ],
   "inventoryCounts": {
-    "files": 122,
-    "callbackDeclarations": 1149,
-    "literalExpectCalls": 3325,
+    "files": 119,
+    "callbackDeclarations": 1049,
+    "literalExpectCalls": 3109,
     "productParityCredit": 0
   }
 }

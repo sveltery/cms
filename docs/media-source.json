@@ -737,68 +737,6 @@
         "AST-selected complete declarations with exact bodies and imported type closure; no live plugin infrastructure claim"
       ],
       "productSha256": "8f5563389fefee57f7216752f0d5e4b2b403477c7e6fdfdd1a7018a52aae0529"
-    },
-    {
-      "sourcePath": "packages/admin/src/lib/crop-image.ts",
-      "blob": "be54844431ff53708d3268f58aa9dff25aca457f",
-      "sourceSha256": "b3af82cc8e11901937508791bc61522b31edc4283edd63504065db654c5aaec4",
-      "productPath": "src/lib/media/source/crop-image.ts",
-      "productSha256": "b3af82cc8e11901937508791bc61522b31edc4283edd63504065db654c5aaec4",
-      "transformations": []
-    },
-    {
-      "sourcePath": "packages/admin/src/lib/api/media.ts",
-      "blob": "f800820c79efe3edf90f207c8195cc49fed5138c",
-      "sourceSha256": "073de5c192fffb5f85c8ef7f5f12875bb590d794b0fdc214dd000daa14b231f3",
-      "productPath": "src/lib/media/source/api/media.ts",
-      "productSha256": "43ff1ce4b7840f07e76eb298af6a378e25adb749b183bc8d6e2ae8e84f34078f",
-      "transformations": [
-        "Whole module; only Lingui imports bind explicit native English tag/translator (zero translation parity credit); declaration bodies unchanged"
-      ]
-    },
-    {
-      "sourcePath": "packages/admin/src/lib/api/client.ts",
-      "blob": "e9c26bde8b401e202b9046bed5ac78c2c26c44b2",
-      "sourceSha256": "2836ccbff42d891af6c789e01259c6912d7ba73c4799620499f3913081997e18",
-      "productPath": "src/lib/media/source/api/client.ts",
-      "productSha256": "cad6e395abecffeb92fef3c304edfd90d448f21202e835b2544e44f5a4d9563b",
-      "transformations": [
-        "AST-selected complete declarations and FindManyResult type with unchanged bodies; explicit native English binding; no unrelated manifest/auth/client module claims"
-      ],
-      "sourceSymbols": [
-        "API_BASE",
-        "apiFetch",
-        "isRecord",
-        "ApiResponseError",
-        "formatValidationIssues",
-        "formatSandboxedSaveRejection",
-        "RETRYABLE_CLIENT_ERROR_STATUSES",
-        "isTerminalRequestError",
-        "throwResponseError",
-        "FindManyResult",
-        "parseApiResponse"
-      ]
-    },
-    {
-      "sourcePath": "packages/admin/src/lib/media-utils.ts",
-      "blob": "59068082c2e7da125dd041d6639fef6a73c29880",
-      "sourceSha256": "810e922dd92053396397fb19397585b2f4bc644334387dad02813405fd4f5efd",
-      "productPath": "src/lib/media/source/media-utils.ts",
-      "productSha256": "810e922dd92053396397fb19397585b2f4bc644334387dad02813405fd4f5efd",
-      "transformations": []
-    },
-    {
-      "sourcePath": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "sourceSha256": "a66da686dd45adbcc8b1587eac7ba312519c59a6850dc3b1c492665d00c2680c",
-      "blob": "b5f5d636e6fe958e2f3e1ec433c453c0bfb7fe45",
-      "sourceSymbols": [
-        "normalizeCropMime"
-      ],
-      "productPath": "src/lib/media/source/crop-mime.ts",
-      "productSha256": "3e424f4c8a5cfc781acac10da88c15fbcd3da006c8aa9de428e6504f3c79c48a",
-      "transformations": [
-        "AST-selected complete private helper body, exported for native browser use; zero full detail-component claim"
-      ]
     }
   ]
 }
