@@ -6,13 +6,11 @@ if (results.length !== phases.length) {
   process.exit(1);
 }
 
-let failed = false;
-for (let index = 0; index < phases.length; index += 1) {
-  const result = results[index];
-  if (result !== 'success') {
-    console.error(`Mandatory validation phase ${phases[index]} did not succeed: ${result || '(missing)'}`);
-    failed = true;
-  }
+const failures = phases.flatMap((phase, index) => results[index] === 'success'
+  ? []
+  : [`Mandatory validation phase ${phase} did not succeed: ${results[index] || '(missing)'}`]);
+if (failures.length > 0) {
+  for (const failure of failures) console.error(failure);
+  process.exit(1);
 }
-if (failed) process.exit(1);
 console.log('All mandatory validation phases succeeded: services, source, hosting');
