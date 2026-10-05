@@ -1,0 +1,32 @@
+✔ copied build tests/helpers/basepath-server.mjs resolves its genuine Seed virtual module (521.05598ms)
+✔ copied build tests/helpers/pattern-base-build.ts resolves its genuine Seed virtual module (34.07014ms)
+✖ copied build tests/helpers/trash-count.ts resolves its genuine Seed virtual module (6.181599ms)
+✔ copied build tests/helpers/collection-trash.ts resolves its genuine Seed virtual module (35.691499ms)
+✔ copied build tests/helpers/required-scalar-fields-server.mjs resolves its genuine Seed virtual module (32.487138ms)
+✔ copied build tests/helpers/trash-restore-fields-server.mjs resolves its genuine Seed virtual module (44.02242ms)
+✔ copied build tests/browser/collection-cursor.spec.ts resolves its genuine Seed virtual module (33.06837ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 924.885376
+
+✖ failing tests:
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/helpers/trash-count.ts resolves its genuine Seed virtual module (6.181599ms)
+  evalmachine.<anonymous>:7
+    paths: { base: ${JSON.stringify(base)} }, experimental: { remoteFunctions: true },
+                                    ^
+  
+  ReferenceError: base is not defined
+      at evalmachine.<anonymous>:7:35
+      at Script.runInContext (node:vm:149:12)
+      at Script.runInNewContext (node:vm:154:17)
+      at runInNewContext (node:vm:310:38)
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:45:58)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

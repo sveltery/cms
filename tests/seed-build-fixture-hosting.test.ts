@@ -42,7 +42,7 @@ for (const fixture of fixtures) {
       await cp(join(checkout, 'src/lib/server/seed/default.ts'), join(directory, 'src/lib/server/seed/default.ts'));
       await cp(join(checkout, 'package.json'), join(directory, 'package.json'));
       await symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir');
-      await writeFile(join(directory, 'vite.config.ts'), runInNewContext(config, { nodeTarget: false }));
+      await writeFile(join(directory, 'vite.config.ts'), runInNewContext(config, { nodeTarget: false, base: '/cms' }));
       const loaded = await loadConfigFromFile({ command: 'build', mode: 'production' }, join(directory, 'vite.config.ts'));
       assert.ok(loaded);
       const plugin = loaded.config.plugins?.flat().find(value => value && typeof value === 'object' && 'name' in value && value.name === 'sveltery-source-seed');
