@@ -10,7 +10,7 @@ import {SchemaRegistry} from '../../src/lib/server/database/registry.ts';
 import {canonicalSourceDatabase} from '../../src/lib/server/canonical-storage/namespace.ts';
 import {TaxonomyRepository} from '../../src/lib/server/taxonomies/repository.ts';
 import {setI18nConfig} from '../../src/lib/server/menus/i18n-config.ts';
-import {handleContentCreate,handleContentUpdate,nativeTaxonomyContentHost} from '../../src/lib/server/taxonomies/content.ts';
+import {handleContentCreate,handleContentGet,handleContentUpdate,nativeTaxonomyContentHost} from '../../src/lib/server/taxonomies/content.ts';
 
 const controlled=vi.hoisted(()=>({storage:null as CmsDatabase|null,db:null as ReturnType<typeof canonicalSourceDatabase>|null}));
 // Original controlled unit-context substitution: only the taxonomy route's
@@ -65,4 +65,33 @@ it('TAXRUNREV03: omitted-locale update resolves the existing French entry and re
  expect(result.data.item.locale).toBe('fr');
  expect(result.data.item.version).toBeGreaterThan(created.data.item.version);
  expect((await repository.getTermsForEntry('post',result.data.item.id,'tag','fr')).map(value=>value.id)).toEqual([replacement.id]);
+});
+
+it('TAXRUNREV04: explicit FR get by slug resolves the real French entry',async()=>{
+ // Pinned Source content.ts1075–1078 canonicalizes before genuine slug lookup.
+ setI18nConfig({defaultLocale:'en',locales:['en','fr']});
+ const created=await handleContentCreate(controlled.db!,'post',{slug:'bonjour',data:{title:'Français'},locale:'fr'},host);
+ expect(created.success).toBe(true);if(!created.success)throw new Error(created.error.message);
+ expect(created.data.item.id).not.toBe('bonjour');
+ const result=await handleContentGet(controlled.db!,'post','bonjour','FR',host);
+ expect(result.success).toBe(true);if(!result.success)throw new Error(result.error.message);
+ expect(result.data.item.id).toBe(created.data.item.id);
+ expect(result.data.item.locale).toBe('fr');
+ expect(result.data.item.data.title).toBe('Français');
+});
+
+it('TAXRUNREV04: explicit FR update by slug replaces real French assignments under current CAS',async()=>{
+ // Pinned Source content.ts587–590/1496 resolves slug before the update.
+ setI18nConfig({defaultLocale:'en',locales:['en','fr']});
+ await repository.create({name:'tag',slug:'initial',label:'Initial',locale:'fr'});
+ const replacement=await repository.create({name:'tag',slug:'suivant',label:'Suivant',locale:'fr'});
+ const created=await handleContentCreate(controlled.db!,'post',{slug:'bonjour',data:{title:'Français'},locale:'fr',taxonomies:{tag:['initial']}},host);
+ expect(created.success).toBe(true);if(!created.success)throw new Error(created.error.message);
+ expect(created.data.item.id).not.toBe('bonjour');
+ const result=await handleContentUpdate(controlled.db!,'post','bonjour',{locale:'FR',_rev:created.data._rev,taxonomies:{tag:['suivant']}},host);
+ expect(result.success).toBe(true);if(!result.success)throw new Error(result.error.message);
+ expect(result.data.item.id).toBe(created.data.item.id);
+ expect(result.data.item.locale).toBe('fr');
+ expect(result.data.item.version).toBeGreaterThan(created.data.item.version);
+ expect((await repository.getTermsForEntry('post',created.data.item.id,'tag','fr')).map(value=>value.id)).toEqual([replacement.id]);
 });
