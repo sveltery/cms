@@ -105,3 +105,10 @@ it('disables reference creation when the real route reports its relationship dep
   expect(reference?.disabled).toBe(true);
   expect(target.textContent).toContain('Reference fields require available relationship management');
 });
+it('disables actual destructive controls when their reference cleanup capability is unavailable',async()=>{
+  const target=await list({onDelete:vi.fn(),deletionAvailable:false});
+  expect(target.querySelector<HTMLButtonElement>('button[aria-label="Delete Posts"]')?.disabled).toBe(true);
+  const editor=document.createElement('section');document.body.append(editor);
+  mounted.push(mount(Editor,{target:editor,props:{collection:{...collection,fields:[{id:'title',slug:'title',label:'Title',type:'string'}]},deletionAvailable:false,client}}));await tick();
+  expect(editor.querySelector<HTMLButtonElement>('button[aria-label="Delete Title field"]')?.disabled).toBe(true);
+});
