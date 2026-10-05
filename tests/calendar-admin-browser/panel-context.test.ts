@@ -11,7 +11,7 @@ afterEach(async()=>{if(component)await unmount(component);component=undefined;ta
 function render(){
   target=document.createElement('div');document.body.append(target);
   const now=Date.now(),item=toCalendarItems([{collection:'posts',id:'launch',locale:'en',title:'Launch',kind:'scheduled',status:'scheduled',at:new Date(2030,9,20,9,0).toISOString()}],{timeZone:'UTC',loadedAt:now,collectionOrder:['posts']})[0]!;
-  const display=createCalendarDisplay({locale:'en',timeZone:'UTC',viewerTimeZone:'UTC',collections:[{slug:'posts',label:'Posts'}]});
+  const display=createCalendarDisplay({locale:'en',timeZone:'UTC',viewerTimeZone:'UTC',collections:[{slug:'posts',label:'Posts'}],showLocale:false});
   const onClose=vi.fn(),client={fetchContent:vi.fn().mockResolvedValue({id:'launch',type:'posts',locale:'en',updatedAt:new Date().toISOString(),authorId:'editor',_rev:'rev-1'}),publishContent:vi.fn(),unscheduleContent:vi.fn(),scheduleContent:vi.fn()};
   const state=bridgeState({item,display,now,compact:false,user:{id:'editor',email:'editor@example.com',role:40},client,onClose,onRescheduled:vi.fn()});
   component=flushSync(()=>mount(Panel,{target:target!,props:state as any}));
@@ -35,6 +35,7 @@ describe('Native calendar panel context',()=>{
     await expect.element(schedule).toBeVisible();
     await schedule.getByRole('textbox',{name:'Minute'}).fill('30');
     flushSync(()=>{state.item={...(state.item as object)};});
+    await expect.poll(()=>Boolean(document.querySelector<HTMLDialogElement>('dialog[aria-labelledby="calendar-schedule-title"]')?.open)).toBe(true);
     await expect.element(schedule).toBeVisible();
     await expect.element(schedule.getByRole('textbox',{name:'Minute'})).toHaveValue('30');
   });

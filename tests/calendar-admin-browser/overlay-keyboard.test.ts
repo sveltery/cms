@@ -10,7 +10,7 @@ import { bridgeState } from '../helpers/calendar-admin/state.svelte.ts';
 let component:ReturnType<typeof mount>|undefined,target:HTMLElement|undefined;
 afterEach(async()=>{if(component)await unmount(component);component=undefined;target?.remove();target=undefined;});
 function host(){target=document.createElement('div');document.body.append(target);}
-const display=createCalendarDisplay({locale:'en',timeZone:'UTC',viewerTimeZone:'UTC',collections:[{slug:'posts',label:'Posts'},{slug:'pages',label:'Pages'}]});
+const display=createCalendarDisplay({locale:'en',timeZone:'UTC',viewerTimeZone:'UTC',collections:[{slug:'posts',label:'Posts'},{slug:'pages',label:'Pages'}],showLocale:false});
 const now=Date.parse('2030-10-15T12:00:00Z');
 function renderMonth(compact=false){
   host();const items=toCalendarItems(Array.from({length:5},(_,i)=>({collection:'posts',id:`entry-${i}`,locale:'en',title:`Entry ${i}`,kind:'scheduled' as const,status:'scheduled' as const,at:`2030-10-20T0${i}:00:00.000Z`})),{timeZone:'UTC',loadedAt:now,collectionOrder:['posts']});
