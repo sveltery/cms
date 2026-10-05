@@ -1829,3 +1829,95 @@ checks and closure are audited externally against their actual commit, without a
 self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
 full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
 unfinished. No new CLI/auth/HTTP probe or private provider is introduced.
+
+### Byline backend: canonical storage and native administrative transport (proposed PR108)
+
+This preparation snapshot covers [PR108](https://github.com/sveltery/cms/pull/108)
+against actual public Main `c3d135a6f20e4319ee07eebb0f9009b57f2985f9`,
+with immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+The [backend scope](../../docs/byline-backend.md) and
+[authority/evidence inventory](../../docs/byline-backend-ports.json) distinguish
+whole Source callbacks, supplemental Original native requirements and held scope.
+The fourteen whole original files contain234 declarations and598 static expect
+expressions; AST corrects the preliminary route-registration regex estimate from
+six to five callbacks. Static inventory and copied dependency closure establish
+no runtime credit. Nine families execute216 callbacks without modifying their
+bodies, clocks, fixtures, data or expectations. Genuine Source reference SQLite
+and canonical native storage are separate databases. PostgreSQL is unconfigured.
+
+**BYL-01 — storage/API framework substitution.** The pinned authorities are
+`packages/core/src/database/repositories/byline.ts`, `schema/byline-registry.ts`,
+`bylines/{index,credits,field-defs-cache}.ts`, `api/handlers/bylines.ts`,
+`api/handlers/byline-fields.ts`, and the seven complete Astro byline/byline-fields
+route modules. Source uses `_emdash_*` byline tables, `media`, `options`, Astro
+Role contexts and injected `/_emdash/api/admin/*` URLs. Native code uses the
+existing canonical provider9 tables and provider14 content pointer indices.
+Only seven finite Kysely TableNodes map to the physical tables; raw SQL text,
+literals, catalogues, logs, results and returned datasets are never rewritten.
+The sole field-definition cache keeps its original version/odd-bookend/deadline
+behavior under `sveltery:byline-field-defs`, sharing existing menus ALS,
+request/object caches, i18n and deferred task owners. SvelteKit exposes
+`/api/bylines` and `/api/byline-fields`; static reorder wins by native routing.
+The five original Astro registration callbacks remain unconfigured and receive
+zero registration parity credit. No second tables, database or migration are
+installed. This necessary framework substitution is proposed; a specific final
+BYL-01 acceptance decision is not recorded at this snapshot.
+
+**BYL-02 — mandatory actual-owner atomic writes.** Source's profile/custom-field
+transaction helper and content-credit methods use callback transactions or rely
+on their outer caller for atomicity. The canonical adapter contract requires
+compiled atomic batches and forbids non-atomic callback fallbacks. Native
+profile/custom-field writes, field deletion/reorder, credit replacement/copy and
+last-sibling cleanup use the actual registered owner's atomic batch. The last
+sibling conditions execute in SQL after deleting that sibling within the same
+batch. Read-only compiled replacement/copy/deletion plans let the sole content
+lifecycle owner append credits to its own atomic batch and invalidate only after
+success; this PR does not install another content lifecycle. Original canonical
+requirements observe physical rows and pointers after real SQL aborts on Node,
+raw Miniflare D1 and the serialized D1 connection adapter. Initial unsupported-D1
+values, partial replacement/copy rollback values and actual missing-plan values
+are genuine native reds; import/fixture errors receive zero causal credit.
+Original Source domain controls remain unchanged and pass on genuine separate
+Source SQLite. These native guarantees are intentional architecture differences,
+not a reproduced Source bug fix or Source-D1 parity claim. D1 Sessions/bookmarks
+and deployed D1 remain unconfigured. Specific final BYL-02 acceptance is pending.
+
+**BYL-03 — actual permission/origin composition and unavailable hooks.** Immutable
+`packages/auth/src/{types,rbac}.ts` assigns bylines:read to Subscriber and
+bylines:manage to Editor. Both literals already existed in the native permission
+threshold owner; this PR only appends them to the existing service-principal
+projection and Permission union, preserving all old permissions/order. Whole
+existing permission-array/admin-count controls retain their bodies and receive
+Source-backed expected-array maintenance (admin25). Unchanged original
+controlled Role/APIContext route fixtures map through this actual owner. They
+do not execute Source auth middleware, real HTTP session resolution, credentials,
+signatures or CSRF, and receive zero such credit. Native routes consume the
+existing trusted composition, mutation opt-in and session origin guard; native
+unconfigured/disabled storage returns503 whereas Source route initialization
+returns500. Source response schemas, coercion (including original boolean query
+coercion), validations and reachable error statuses remain unchanged. Real
+configured byline hook callbacks may be supplied at the domain seam; an absent
+native full plugin pipeline is omitted, rather than replaced by a fake pipeline.
+Complete pipeline isolation/capability/MCP and the original hooks2/userlink5
+families remain unconfigured. The finite permission integration was authorized
+by Root during development; final exact-head BYL-03 acceptance is still pending.
+
+**BYL-04 — honest test hosting and incomplete scope.** The Source fixture registers
+its real Source owner explicitly and runs nine complete pinned migration bodies
+001/002/003/008/009/024/031/040/042 plus ordinary post/page collection metadata.
+It supplies no Source migration runner/locking, schema producer, general users
+facade or canonical installation credit. The unchanged whole protected route
+families use direct controlled Role contexts; Source cache6/race5 retain original
+clocks/gates and SQLite rows/version bookends, with PG0. Missing dependency
+imports and Native fixture mistakes remain retained and classified separately.
+The canonical installation still proves no `_emdash_*` tables. Full SDK reverse
+query/empty-table hydration2, Astro registration5, userlink5/hooks2, content
+permanent-delete4, UI, MCP, Seed, general users, PostgreSQL and deployed hosting
+remain unfinished. The current exported reverse helper explicitly rejects while
+its public SDK dependency is unavailable; it does not synthesize empty results.
+
+At this immutable preparation point, complete final-head normal13/secured9
+checks, fresh independent/configured review, final BYL-01 through BYL-04
+acceptance, exact-head Root approval, author expected-head regular merge and
+post-Main verification are pending. Earlier focused reports are historical
+receipts, not self-referential qualification of a future successor head.

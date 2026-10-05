@@ -1228,6 +1228,18 @@ export class BylineRepository {
 		sourceContentId: string,
 		targetContentId: string,
 	): Promise<void> {
+		const statements = await this.planContentBylineCopy(collection, sourceContentId, targetContentId);
+		if (statements.length === 0) return;
+		await executeBylineWrites(this.db, statements);
+		invalidateCollectionCache(collection);
+	}
+
+	/** Compile a locale-agnostic inherited credit copy for the lifecycle owner. */
+	async planContentBylineCopy(
+		collection: string,
+		sourceContentId: string,
+		targetContentId: string,
+	): Promise<readonly CompiledQuery[]> {
 		bylineDatabaseOwner(this.db);
 		validateIdentifier(collection, "collection slug");
 		const tableName = `ec_${collection}`;
@@ -1242,7 +1254,7 @@ export class BylineRepository {
 			.where("collection_slug", "=", collection)
 			.where("content_id", "=", targetContentId)
 			.executeTakeFirst();
-		if (existing) return;
+		if (existing) return Object.freeze([]);
 
 		const sourceRows = await this.db
 			.selectFrom("_emdash_content_bylines")
@@ -1251,7 +1263,7 @@ export class BylineRepository {
 			.where("content_id", "=", sourceContentId)
 			.orderBy("sort_order", "asc")
 			.execute();
-		if (sourceRows.length === 0) return;
+		if (sourceRows.length === 0) return Object.freeze([]);
 
 		const now = new Date().toISOString();
 		const insert = this.db
@@ -1278,10 +1290,7 @@ export class BylineRepository {
 			WHERE id = ${targetContentId}
 		`.compile(this.db);
 
-		await executeBylineWrites(this.db, [insert, pointer]);
-
-		// Byline credits are folded into the target entry's cached payload.
-		invalidateCollectionCache(collection);
+		return Object.freeze([insert, pointer]);
 	}
 
 	/**
@@ -1300,6 +1309,20 @@ export class BylineRepository {
 		contentId: string,
 		inputBylines: ContentBylineInput[],
 	): Promise<ContentBylineCredit[]> {
+		const statements = await this.planContentBylineReplacement(collectionSlug, contentId, inputBylines);
+		await executeBylineWrites(this.db, statements);
+		invalidateCollectionCache(collectionSlug);
+		return await this.getContentBylines(collectionSlug, contentId);
+	}
+
+	/** Compile the real credit/pointer writes without committing or invalidating.
+	 * The sole content lifecycle owner supplies its actual atomic batch and
+	 * invalidates its collection only after that complete batch succeeds. */
+	async planContentBylineReplacement(
+		collectionSlug: string,
+		contentId: string,
+		inputBylines: ContentBylineInput[],
+	): Promise<readonly CompiledQuery[]> {
 		bylineDatabaseOwner(this.db);
 		validateIdentifier(collectionSlug, "collection slug");
 		const tableName = `ec_${collectionSlug}`;
@@ -1344,10 +1367,9 @@ export class BylineRepository {
 		}
 
 		const statements:CompiledQuery[] = [];
-		// This method is expected to be called within a transaction context
-		// (content handlers wrap in withTransaction, seed applies sequentially).
-		// All operations use this.db directly -- callers are responsible for
-		// wrapping in a transaction when atomicity is required.
+		// Compile without writing. The owning content lifecycle may append
+		// these statements to its one actual atomic batch. Standalone writes
+		// use the identical plan through executeBylineWrites below.
 		statements.push(this.db
 			.deleteFrom("_emdash_content_bylines")
 			.where("collection_slug", "=", collectionSlug)
@@ -1377,22 +1399,17 @@ export class BylineRepository {
 			SET primary_byline_id = ${primaryGroup}
 			WHERE id = ${contentId}
 		`.compile(this.db));
+		return Object.freeze(statements);
+	}
 
-		
-		await executeBylineWrites(this.db,statements);
-		// Byline credits are folded into this entry's cached payload.
-		invalidateCollectionCache(collectionSlug);
-
-		return await this.getContentBylines(collectionSlug, contentId);
+	async planContentBylineDeletion(collectionSlug: string, contentId: string): Promise<readonly CompiledQuery[]> {
+		bylineDatabaseOwner(this.db);
+		return Object.freeze([this.db.deleteFrom("_emdash_content_bylines")
+			.where("collection_slug", "=", collectionSlug).where("content_id", "=", contentId).compile()]);
 	}
 
 	async deleteContentBylines(collectionSlug: string, contentId: string): Promise<number> {
-		bylineDatabaseOwner(this.db);
-		const result = await this.db
-			.deleteFrom("_emdash_content_bylines")
-			.where("collection_slug", "=", collectionSlug)
-			.where("content_id", "=", contentId)
-			.executeTakeFirst();
-		return Number(result.numDeletedRows ?? 0);
+		const results = await executeBylineWrites(this.db, await this.planContentBylineDeletion(collectionSlug, contentId));
+		return Number(results[0]?.numAffectedRows ?? 0);
 	}
 }

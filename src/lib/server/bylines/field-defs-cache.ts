@@ -18,7 +18,7 @@
  * cancelled mid-query can never strand later byline hydrations on the
  * isolate (the workerd never-settling-promise hazard that produced 524s).
  *
- * Stored on globalThis under `Symbol.for("emdash:byline-field-defs")` so
+ * Stored on globalThis under `Symbol.for("sveltery:byline-field-defs")` so
  * Vite SSR chunk duplication can't produce two independent caches (same
  * pattern as `request-cache.ts` and `request-context.ts`).
  *
@@ -76,7 +76,7 @@ interface FieldDefsHolder {
 	lock: InitLock;
 }
 
-const HOLDER_KEY = Symbol.for("emdash:byline-field-defs");
+const HOLDER_KEY = Symbol.for("sveltery:byline-field-defs");
 const g = globalThis as Record<symbol, unknown>;
 const holder: FieldDefsHolder =
 	// eslint-disable-next-line typescript/no-unsafe-type-assertion -- globalThis singleton pattern (see request-cache.ts)
