@@ -14,14 +14,15 @@ export function calendarMenuOpenTarget(key:string,count:number):number{return !c
 /** Bundled Menu typeahead: label prefix, current-relative cycle, 500ms reset. */
 export function createCalendarTypeahead(){
   let buffer='',base=-1,last:number|null=null,timer:ReturnType<typeof setTimeout>|undefined;
-  const reset=()=>{clearTimeout(timer);buffer='';base=last??-1;};
+  const expire=()=>{clearTimeout(timer);buffer='';base=last??-1;};
+  const reset=()=>{expire();last=null;};
   return {
     get typing(){return buffer.length>0;},
     key(event:Pick<KeyboardEvent,'key'|'ctrlKey'|'metaKey'|'altKey'>,labels:readonly string[],current:number):number|undefined{
       if(event.key.length!==1||event.ctrlKey||event.metaKey||event.altKey||!labels.length)return;
       const first=buffer==='';if(first)base=current;
       if(labels.every(label=>label[0]?.toLocaleLowerCase()!==label[1]?.toLocaleLowerCase())&&buffer===event.key){buffer='';base=last??-1;}
-      buffer+=event.key;clearTimeout(timer);timer=setTimeout(reset,500);
+      buffer+=event.key;clearTimeout(timer);timer=setTimeout(expire,500);
       const start=(first?current:base)+1,needle=buffer.toLocaleLowerCase();
       for(let offset=0;offset<labels.length;offset++){const index=((start+offset)%labels.length+labels.length)%labels.length;if(labels[index]?.toLocaleLowerCase().startsWith(needle)){last=index;return index;}}
       if(event.key!==' ')buffer='';return;
@@ -40,15 +41,15 @@ export function createCalendarTooltipGroup(initialDelay=600):CalendarTooltipGrou
   };
 }
 /** Mouse rest is independent of entry; focus-visible opens immediately. */
-export function createCalendarHoverTiming(show:()=>void,hide:()=>void,group?:CalendarTooltipGroup){
-  let opening:ReturnType<typeof setTimeout>|undefined,isOpen=false;
+export function createCalendarHoverTiming(show:()=>void|boolean,hide:()=>void,group?:CalendarTooltipGroup){
+  let opening:ReturnType<typeof setTimeout>|undefined,isOpen=false,blocked=false;
   const cancel=()=>{clearTimeout(opening);opening=undefined;};
-  const close=()=>{cancel();if(isOpen){isOpen=false;hide();group?.closed(close);}};
-  const open=()=>{cancel();if(isOpen)return;isOpen=true;show();group?.opened(close);};
+  const close=()=>{cancel();blocked=true;if(isOpen){isOpen=false;hide();group?.closed(close);}};
+  const open=()=>{cancel();if(isOpen)return;if(show()===false)return;isOpen=true;group?.opened(close);};
   return {
-    enter(pointerType:string){if(pointerType==='mouse'&&(group?.delay()??600)===0)open();},
+    enter(pointerType:string){blocked=false;if(pointerType==='mouse'&&(group?.delay()??600)===0)open();},
     move(pointerType:string,movementX=0,movementY=0){
-      if(pointerType!=='mouse'||isOpen)return;const delay=group?.delay()??600;if(delay===0||opening!==undefined&&movementX**2+movementY**2<2)return;
+      if(pointerType!=='mouse'||isOpen||blocked)return;const delay=group?.delay()??600;if(delay===0||opening!==undefined&&movementX**2+movementY**2<2)return;
       cancel();opening=setTimeout(open,delay);
     },focus:open,cancel,close,destroy:close,
   };

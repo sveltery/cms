@@ -12,7 +12,7 @@
   let anchor=$state<HTMLAnchorElement>(),tooltip=$state<HTMLDivElement>(),tooltipOpen=$state(false),left=$state(0),top=$state(0),below=$state(false);
   function hideTooltip(){hover.close();}
   function closeTooltip(){tooltipOpen=false;}
-  function showTooltip(){if(!chip||!anchor)return;const rect=anchor.getBoundingClientRect();left=Math.max(8,Math.min(rect.left,window.innerWidth-272));top=Math.max(8,rect.top-10);tooltipOpen=true;}
+  function showTooltip(){if(!chip||!anchor)return false;const rect=anchor.getBoundingClientRect();left=Math.max(8,Math.min(rect.left,window.innerWidth-272));top=Math.max(8,rect.top-10);tooltipOpen=true;return true;}
   const hover=createCalendarHoverTiming(showTooltip,closeTooltip,getContext<CalendarTooltipGroup|undefined>('calendar-tooltip-group'));
   function hoverTooltip(event:PointerEvent){if(chip)hover.enter(event.pointerType);}
   function leaveTooltip(event:PointerEvent){hover.cancel();if(event.relatedTarget instanceof Node&&(anchor?.contains(event.relatedTarget)||tooltip?.contains(event.relatedTarget)))return;hideTooltip();}
@@ -21,7 +21,7 @@
 </script>
 <a bind:this={anchor} {href} class:chip class:published={item.state === 'published'} class:overdue={item.state === 'overdue'}
   aria-haspopup={onSelect ? 'dialog' : undefined} aria-current={selected ? 'true' : undefined}
-  aria-describedby={tooltipOpen?tooltipId:undefined} onpointerenter={hoverTooltip} onpointermove={event=>{if(chip)hover.move(event.pointerType,event.movementX,event.movementY);}} onpointerleave={leaveTooltip} onfocus={event=>{if(event.currentTarget.matches(':focus-visible'))hover.focus();}} onblur={hideTooltip} onkeydown={event=>{if(event.key==='Escape'&&tooltipOpen){event.preventDefault();event.stopPropagation();hideTooltip();}}}
+  aria-describedby={tooltipOpen?tooltipId:undefined} onpointerenter={hoverTooltip} onpointermove={event=>{if(chip)hover.move(event.pointerType,event.movementX,event.movementY);}} onpointerleave={leaveTooltip} onfocus={event=>{if(chip&&event.currentTarget.matches(':focus-visible'))hover.focus();}} onblur={hideTooltip} onkeydown={event=>{if(event.key==='Escape'&&tooltipOpen){event.preventDefault();event.stopPropagation();hideTooltip();}}}
   onclick={event => {hideTooltip();if (onSelect && isPlainClick(event)) { event.preventDefault(); onSelect(item, event.currentTarget); } }}>
   <span class="time">{display.formatTime(item.time)}</span><span dir="auto" class="title">{item.title}</span>
   <span class="state">{stateLabels[item.state]}</span>
