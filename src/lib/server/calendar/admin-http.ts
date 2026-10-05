@@ -70,10 +70,11 @@ export async function calendarContentPost(event:Event):Promise<Response>{
     const text=await event.request.text();if(text.length>8192)return apiError('VALIDATION_ERROR','Request is too large',400);
     let raw:unknown;try{raw=JSON.parse(text);}catch{return apiError('VALIDATION_ERROR','Invalid JSON',400);}
     const value=parse(calendarMutation,raw);
-    const key={collection:event.params.collection!,id:event.params.id!,locale:event.url.searchParams.get('locale')??'en'};
-    const input={type:key.collection,id:key.id,locale:key.locale,...(value._rev===undefined?{}:{expected:precondition({...key,_rev:value._rev})})};
     const keepAlive=cms.keepAlive;
     const service=lifecycleService(cms.database,cms.principal,keepAlive?{after:task=>keepAlive(Promise.resolve().then(task))}:{});
+    const locale=event.url.searchParams.get('locale')||undefined;
+    const key=await service.resolvePublicationKey({type:event.params.collection,id:event.params.id,...(locale===undefined?{}:{locale})});
+    const input={...key,...(value._rev===undefined?{}:{expected:precondition({collection:key.type,id:key.id,locale:key.locale,_rev:value._rev})})};
     const item=value.action==='publish'?await service.publish(input):value.action==='schedule'?await service.schedule({...input,scheduledAt:value.scheduledAt}):await service.unschedule(input);
     return apiSuccess(withRevision(contentEntry(item)));
   }catch(cause){if(cause instanceof SessionOriginError)return apiError(cause.code,cause.message,403);return failure(cause);}

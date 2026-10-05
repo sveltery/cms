@@ -293,6 +293,14 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections);
       return {item:await hydrate(item),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length)};
     },
+    /** Read-only preparation; the existing writer repeats owner and CAS checks. */
+    async resolvePublicationKey(input:unknown):Promise<ContentKey&{locale:string}> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');
+      const value=key(input);value.locale=resolveConfiguredLocale(value.locale);
+      const item=await stored(value,object(input).locale===undefined,true);
+      owner(item,actor,'content:publish_any');
+      return {type:value.type,id:item.id,locale:parse(localeInput,item.locale)};
+    },
     async publish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
