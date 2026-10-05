@@ -29,7 +29,7 @@
   observer=current;const stop=current.subscribe(result=>usage=result);usage=current.getCurrentResult();
   return()=>{stop();current.destroy();};
  });
- $effect(()=>{const enabled=open;if(observer)observer.setOptions({...observer.options,enabled});if(manifestObserver)manifestObserver.setOptions({...manifestObserver.options,enabled});});
+ $effect(()=>{const enabled=open;if(observer)observer.setOptions({...observer.options,initialPageParam:undefined as string|undefined,getNextPageParam:page=>page.nextCursor,enabled});if(manifestObserver)manifestObserver.setOptions({...manifestObserver.options,enabled});});
  const pages=$derived(usage?.data?.pages??[]),entries=$derived(pages.flatMap(page=>page.items)),settings=$derived(pages[0]?.siteSettings??[]);
  const denied=$derived(usage?.error instanceof MediaUsageAccessDeniedError);
  function aggregate(statuses:readonly MediaUsageCoverageStatus[]):MediaUsageCoverageStatus|undefined{
@@ -47,7 +47,7 @@
  function metadata(entry:MediaUsageEntryDetail){
   const label=manifest?.collections[entry.collection]?.label;
   const fields=[...new Set(entry.sources.flatMap(source=>source.occurrences.map(occurrence=>occurrence.fieldSlug)))].map(field=>manifest?.collections[entry.collection]?.fields[field]?.label||field);
-  return{title:entry.title||entry.slug||'Untitled',titleDir:entry.title?'auto':entry.slug?'ltr':'auto',label:label||entry.collection,labelDir:label?'auto':'ltr',location:fields.length?new Intl.ListFormat(locale,{style:'short',type:'conjunction'}).format(fields):entry.slug||entry.contentId,locationDir:fields.length?'auto':'ltr',showLocale:Boolean(manifest?.i18n&&entry.locale)};
+  return{title:entry.title||entry.slug||'Untitled',titleDir:entry.title?'auto':entry.slug?'ltr':'auto',label:label||entry.collection,labelDir:label?'auto':'ltr',location:fields.length?new Intl.ListFormat(locale,{style:'short',type:'conjunction'}).format(fields):entry.slug||entry.contentId,locationDir:fields.length?'auto':'ltr',showLocale:Boolean(manifest?.i18n&&entry.locale)} as const;
  }
  function click(event:MouseEvent,entry:MediaUsageEntryDetail){if(navigationBlocked){event.preventDefault();return;}onEntryClick?.(event,entry);}
 </script>

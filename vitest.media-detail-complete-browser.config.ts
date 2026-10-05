@@ -1,9 +1,9 @@
 // Whole unchanged Source callbacks; finite Svelte/React import and mock transport only.
 import {defineConfig} from 'vitest/config';
 import {resolve,dirname} from 'node:path';
-import parentConfig from './vitest.media-admin-editor-browser.config';
+import parentConfig from './vitest.media-admin-editor-browser.config.ts';
 const root=import.meta.dirname,source=resolve(root,'parity/emdash/media-admin-editor/source/packages/admin');
-export default defineConfig({...parentConfig,plugins:[{
+export default defineConfig({...parentConfig,cacheDir:resolve(root,'.svelte-kit/media-detail-vite-cache'),plugins:[{
  name:'complete-detail-native-widget-transport',enforce:'pre',resolveId(id,importer){
   if(importer?.split('?')[0]===resolve(root,'src/lib/media/MediaDetails.svelte')){
    if(id==='./MediaImageCropper.svelte')return resolve(root,'tests/helpers/MediaPanelCropperMock.svelte');

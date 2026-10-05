@@ -31,7 +31,7 @@
 <div class="focal-editor">
  <div bind:this={frame} aria-busy={!ready} class="focal-frame">
   <div class="focal-image" style:width={display?`${display.width}px`:undefined} style:height={display?`${display.height}px`:undefined}>
-   {#key src}<img {src} {alt} draggable={false} onload={event=>{const image=event.currentTarget;loaded={src,width:image.naturalWidth,height:image.naturalHeight};onReadyChange?.(true);}} onerror={event=>{const image=event.currentTarget;if(fallbackSrc&&!image.dataset.thumbFallback){fallbackToOriginalThumbnail(image,fallbackSrc);return;}loaded=null;onReadyChange?.(false);}} />{/key}
+   {#key src}<img {src} {alt} draggable={false} onload={event=>{const image=event.currentTarget as HTMLImageElement;loaded={src,width:image.naturalWidth,height:image.naturalHeight};onReadyChange?.(true);}} onerror={event=>{const image=event.currentTarget as HTMLImageElement;if(fallbackSrc&&!image.dataset.thumbFallback){fallbackToOriginalThumbnail(image,fallbackSrc);return;}loaded=null;onReadyChange?.(false);}} />{/key}
    {#if editing&&ready}<button type="button" aria-label="Focal point. Use arrow keys to move it." aria-describedby={descriptionId} {disabled} onpointerdown={pointer} onpointermove={pointer} onpointerup={pointer} onpointercancel={pointer} onlostpointercapture={pointer} onkeydown={keydown}><span aria-hidden="true" style:left={`${current.focalX*100}%`} style:top={`${current.focalY*100}%`}></span></button>{/if}
   </div>
  </div>

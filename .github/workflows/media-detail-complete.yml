@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   media-detail-source:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4

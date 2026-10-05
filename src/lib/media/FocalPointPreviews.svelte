@@ -11,7 +11,7 @@
 <div class="focal-previews" data-testid="focal-preview-group">
  {#each previews as [id,label,ratio]}
   <figure><div use:previewFrame={id} class="preview-frame" style:aspect-ratio={ratio}>
-   {#key src}<img {src} alt="" data-testid={`focal-preview-${id}`} style:object-position={position} onerror={event=>{if(fallbackSrc)fallbackToOriginalThumbnail(event.currentTarget,fallbackSrc);}} />{/key}
+   {#key src}<img {src} alt="" data-testid={`focal-preview-${id}`} style:object-position={position} onerror={event=>{if(fallbackSrc)fallbackToOriginalThumbnail(event.currentTarget as HTMLImageElement,fallbackSrc);}} />{/key}
   </div><figcaption>{label}</figcaption></figure>
  {/each}
 </div>
