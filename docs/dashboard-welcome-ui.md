@@ -401,3 +401,16 @@ The ordinary successor incorporates published schema Main `f6d10ddf`, including
 its complete Source commands and provider16. Full exact-union normal13/secured9,
 configured and fresh independent review, Root approval and author regular merge
 remain required; whole admin/backend/product parity remains incomplete.
+
+Before final review, the same closure added an actual two-root picker control at
+`ec27b452`: old17 controls pass and the new callback reaches `First root content`
+instead of `Second root content`. Reusing the standalone picker map beneath a
+provider still shared its warm cache across roots. Fix `8f0d8490` supplies one
+provider-owned API cache resolver for account and picker consumers, with no new
+module-global cache; the existing standalone picker fallback remains available.
+The later refactor guarantees one account state and real mutation owner per
+QueryClient, including when an API cache is explicitly supplied elsewhere. Whole
+Native18 and actualSSR2 pass after fix and refactor. The [complete r10 envelope](../parity/emdash/admin-app-source/evidence/r10-client-caches-provider-scope-whole.json)
+retains the genuine baseline and both green runs. All Source authorities and old
+assertions/data/clocks remain unchanged; current whole checks and reviews remain
+required for the successor.

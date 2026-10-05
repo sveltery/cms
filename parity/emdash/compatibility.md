@@ -2479,3 +2479,14 @@ and its whole Source terminal commands are retained. Full current-union normal13
 secured9, configured and fresh independent reviews, explicit Root approval and
 the author's expected-head regular merge remain pending. Full dashboard/admin
 UI and real backend90/CoreUpdate/plugin/widget/runtime integration remain open.
+
+PR100's same client-identity closure subsequently proves and fixes explicit picker
+warm-cache sharing across two actual roots. Test-first `ec27b452` reaches one new
+genuine content value red with old17 controls passing. Fix `8f0d8490` uses a
+provider-owned API cache resolver shared by account/picker consumers; existing
+standalone fallback remains, with no new module-global cache. The refactor keeps
+one account state/persistent mutation owner per QueryClient. Whole Native18 and
+actualSSR2 pass after both phases. Complete r10 raw evidence is linked from the
+paired feature documentation above. This is bounded framework/cache evidence,
+zero new original Source callback or full-product parity credit; final exact-head
+checks, reviews, Root approval and author regular merge remain pending.
