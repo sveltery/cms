@@ -78,7 +78,7 @@
 </script>
 <div bind:this={container} class="calendar">
 <header><div><h1>{t("Calendar")}</h1><p>{t("Published and scheduled entries across collections, in the site's time zone.")}</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
-{#if notice}<div role={notice.type==='error'?'alert':'status'} class="notice"><strong>{notice.title}</strong><p>{notice.description}</p><button type="button" aria-label="Dismiss notification" onclick={()=>notice=undefined}>×</button></div>{/if}
+{#if notice}<div role={notice.type==='error'?'alert':'status'} class="notice"><strong>{notice.title}</strong>{#if notice.description}<p>{notice.description}</p>{/if}<button type="button" aria-label="Dismiss notification" onclick={()=>notice=undefined}>×</button></div>{/if}
 <div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>{t("Month")}</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>{t("Agenda")}</button></div>
 <Toolbar title={display.monthTitle(month)} {display} {zoneTime} loading={fetching} onPrevious={()=>goToMonth(shiftMonth(month,-1))} onNext={()=>goToMonth(shiftMonth(month,1))} onToday={()=>goToMonth(undefined)} onPreviewPrevious={()=>prefetch(shiftMonth(month,-1))} onPreviewNext={()=>prefetch(shiftMonth(month,1))}/>
 {#if error}<div role="alert"><h3>{t("Could not load the calendar")}</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>{t("Retry")}</button></div>{/if}

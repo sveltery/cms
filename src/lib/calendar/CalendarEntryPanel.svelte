@@ -9,7 +9,7 @@
   import { QueryObserver, type QueryClient } from '@tanstack/react-query';
   import { formatTimeAgo,formatTimeUntil,type CalendarDisplay,type CalendarItem } from './calendar.ts';
   import { stateLabels } from './entry.ts';
-  import type { CalendarMessage } from './message-descriptors.ts';
+  import { calendarMutationError, calendarMutationErrorMessage, type CalendarInlineError } from './mutation-error.ts';
   import type { CalendarClient,CalendarContent,CalendarManifest,CalendarUser,CalendarNotice } from './ui-types.ts';
   let { item,display,now,compact, i18n,urlPatterns={},user,onClose,onRescheduled,onNotice,returnFocus,client,queryClient }: {
     item:CalendarItem|undefined;display:CalendarDisplay;now:number;compact:boolean;
@@ -17,7 +17,7 @@
     onClose:()=>void;onRescheduled:(item:CalendarItem,scheduledAt:string)=>void;onNotice?:(notice:CalendarNotice)=>void;returnFocus?:{current:HTMLElement|null};
     client:CalendarClient;queryClient?:QueryClient;
   }=$props();
-  let entry=$state<CalendarContent>(),error=$state<string|{message:CalendarMessage}>(),pending=$state(false),scheduleOpen=$state(false),previewing=$state(false),translations=$state<{id:string;locale:string;status:string}[]>([]),dialog=$state<HTMLDialogElement>();
+  let entry=$state<CalendarContent>(),error=$state<CalendarInlineError|null>(),pending=$state(false),scheduleOpen=$state(false),previewing=$state(false),translations=$state<{id:string;locale:string;status:string}[]>([]),dialog=$state<HTMLDialogElement>();
   const selectedKey=$derived(item?.key);
   $effect(()=>{selectedKey;scheduleOpen=false;pending=false;previewing=false;});
   $effect(()=>{
@@ -66,7 +66,7 @@
       refresh(selected);
       onNotice?.(action==='publish'?{title:t("Published"),description:t("{title} is now live.",{title:selected.title})}:{title:t("Schedule removed"),description:selected.status==='published'?t("The scheduled changes to {title} stay as a draft.",{title:selected.title}):t("{title} is a draft again.",{title:selected.title})});
       if(item?.key===selected.key)onClose();
-    }catch(cause){const description=cause instanceof Error?cause.message:t("An error occurred");if(item?.key===selected.key)error=cause instanceof Error?description:{message:"An error occurred"};onNotice?.({title:action==='publish'?t("Could not publish"):t("Could not remove the schedule"),description,type:'error'});}
+    }catch(cause){const description=calendarMutationErrorMessage(cause,t);if(item?.key===selected.key)error=calendarMutationError(cause);onNotice?.({title:action==='publish'?t("Could not publish"):t("Could not remove the schedule"),description,type:'error'});}
     finally{if(item?.key===selected.key)pending=false;}
   }
   async function reschedule(at:string){

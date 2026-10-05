@@ -4,14 +4,14 @@
   // PublishingScheduleDialog context/submission behavior, EmDash1.1.0
   // pin913cb1bb; MIT notices/emdash-MIT.txt. Native browser dialog transport.
   import { untrack } from 'svelte';
-  import type { CalendarMessage } from './message-descriptors.ts';
+  import { calendarMutationError, type CalendarInlineError } from './mutation-error.ts';
   import Fields from '../ui/PublishingDateTimeFields.svelte';
   import { publishingInstantToLocalFields,publishingFieldsMatchInstant,serializeFuturePublishingDateTime } from '../ui/publishing-datetime.ts';
   let { open,entryKey,scheduledAt=null,isLive=false,isPending=false,locale='en',onOpenChange,onSchedule }: {
     open:boolean;entryKey:string;scheduledAt?:string|null;isLive?:boolean;isPending?:boolean;locale?:string;
     onOpenChange:(open:boolean)=>void;onSchedule:(at:string)=>void|Promise<void>;
   }=$props();
-  let date=$state<Date>(),time=$state(''),validationError=$state<string>(),mutationError=$state<string|{message:CalendarMessage}>(),submitting=$state(false),dialog=$state<HTMLDialogElement>();
+  let date=$state<Date>(),time=$state(''),validationError=$state<string>(),mutationError=$state<CalendarInlineError|null>(),submitting=$state(false),dialog=$state<HTMLDialogElement>();
   let generation=0,activeSubmission:{entryKey:string;generation:number}|null=null,returnFocus:HTMLElement|null=null;
   const pending=$derived(isPending||submitting),isEditing=$derived(Boolean(scheduledAt));
   // Parent entry objects can refresh without changing the schedule context.
@@ -32,7 +32,7 @@
     if(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))return;
     clearError();const submission={entryKey,generation:++generation};activeSubmission=submission;submitting=true;
     try{await onSchedule(result.value);if(entryKey===submission.entryKey&&generation===submission.generation){reset();onOpenChange(false);}}
-    catch(error){if(entryKey===submission.entryKey&&generation===submission.generation)mutationError=error instanceof Error?error.message:{message:"An error occurred"};}
+    catch(error){if(entryKey===submission.entryKey&&generation===submission.generation)mutationError=calendarMutationError(error);}
     finally{if(activeSubmission===submission)activeSubmission=null;if(entryKey===submission.entryKey&&generation===submission.generation)submitting=false;}
   }
 </script>
