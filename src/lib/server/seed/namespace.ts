@@ -5,6 +5,7 @@ import { OperationNodeTransformer, type AliasNode, type Kysely, type KyselyPlugi
 import type { CmsDatabase } from '../database/contract.ts';
 import { registerRelationDatabase } from '../relations/storage.ts';
 import { registerBlockDatabaseHost } from '../blocks/upstream/host.ts';
+import { registerBylineDatabaseHandle } from '../bylines/storage.ts';
 import { RawBindingD1Adapter } from '../database/d1.ts';
 import { registerLifecycleDatabase } from '../database/lifecycle/upstream/host.ts';
 import type { Database } from './upstream/database/types.ts';
@@ -419,26 +420,56 @@ const views = new WeakMap<object, SeedViewContext>();
 export function seedSourceDatabase(database: CmsDatabase): Kysely<Database> {
   const base = database.db.getExecutor().adapter instanceof RawBindingD1Adapter
     ? database.db.withPlugin(d1SourceBoundary) : database.db;
-  function view(logical: Kysely<any>, atomicLogical: Kysely<any>): Kysely<Database> {
+  function view(logical: Kysely<any>, atomicLogical: Kysely<any>, owner: CmsDatabase = database): Kysely<Database> {
     const target = logical.withPlugin(namespace);
     const proxy = new Proxy(target, { get(instance, key) {
       if (key === 'withPlugin') return (plugin: KyselyPlugin) => {
         const wrapped = logicalPlugin(plugin);
-        return view(logical.withPlugin(wrapped), atomicLogical.withPlugin(wrapped));
+        return view(logical.withPlugin(wrapped), atomicLogical.withPlugin(wrapped), owner);
       };
-      if (key === 'withSchema') return (schema: string) => view(logical.withSchema(schema), atomicLogical.withSchema(schema));
-      if (key === 'withTables') return () => view(logical.withTables(), atomicLogical.withTables());
+      if (key === 'withSchema') return (schema: string) => view(logical.withSchema(schema), atomicLogical.withSchema(schema), owner);
+      if (key === 'withTables') return () => view(logical.withTables(), atomicLogical.withTables(), owner);
+      if (key === 'transaction') return () => {
+        // Kysely owns this genuine transaction and its single commit/rollback.
+        // Derived handles retain observers and use the same transaction for plans.
+        const wrapBuilder = (builder: ReturnType<Kysely<any>['transaction']>): typeof builder =>
+          new Proxy(builder, { get(current, member) {
+            if (member === 'execute') return (run: (db: Kysely<Database>) => Promise<unknown>) =>
+              current.execute(async trx => {
+                const transactionOwner: CmsDatabase = {
+                  ...owner,
+                  db: trx as unknown as CmsDatabase['db'],
+                  async atomicBatch(statements) {
+                    const results: QueryResult<unknown>[] = [];
+                    for (const statement of statements) results.push(await trx.executeQuery(statement));
+                    return results;
+                  },
+                  async close() { throw new Error('A transaction does not own the database connection'); }
+                };
+                return run(view(trx, trx, transactionOwner));
+              });
+            const value = Reflect.get(current, member, current);
+            return typeof value === 'function' ? (...args: unknown[]) =>
+              wrapBuilder(value.apply(current, args)) : value;
+          } });
+        return wrapBuilder(logical.transaction());
+      };
       if (key === 'withoutPlugins') return () => { throw new Error('Removing seed namespace/boundary plugins is not qualified'); };
       const value = Reflect.get(instance, key, instance);
       return typeof value === 'function' ? value.bind(instance) : value;
     } }) as Kysely<Database>;
-    views.set(proxy, { owner: database, logical, atomicLogical });
-    registerLifecycleDatabase({ ...database, db: proxy as unknown as CmsDatabase['db'] });
-    registerRelationDatabase(database, proxy);
-    registerBlockDatabaseHost({ ...database, db: proxy as unknown as CmsDatabase['db'] });
+    views.set(proxy, { owner, logical, atomicLogical });
+    registerLifecycleDatabase({ ...owner, db: proxy as unknown as CmsDatabase['db'] });
+    registerRelationDatabase(owner, proxy);
+    registerBlockDatabaseHost({ ...owner, db: proxy as unknown as CmsDatabase['db'] });
+    registerBylineDatabaseHandle(owner, proxy as unknown as Parameters<typeof registerBylineDatabaseHandle>[1]);
     return proxy;
   }
   return view(base, database.db);
+}
+/** Trusted handle identity lookup; unknown handles never gain an owner. */
+export function registeredSeedDatabaseOwner(db: object): CmsDatabase | undefined {
+  return views.get(db)?.owner;
 }
 /** Resolve the real trusted owner for native schema and fixed domain plans. */
 export function seedDatabaseOwner(db: object): CmsDatabase {
