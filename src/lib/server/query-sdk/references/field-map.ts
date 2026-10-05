@@ -50,6 +50,7 @@ async function loadBindings(
 ): Promise<ReferenceFieldBinding[]> {
 	// The relation's id joins in here rather than being looked up per field at
 	// render time: the field stores a slug, but the link table is keyed by id.
+	const tables = queryReadStorage(db);
 	const relationSlug = jsonExtractExpr(db, "validation", "relation");
 	let rows: { slug: string; validation: string | null; relation_id: string | null }[];
 	try {
@@ -59,9 +60,9 @@ async function loadBindings(
 			relation_id: string | null;
 		}>`
 			SELECT f.slug AS slug, f.validation AS validation, r.id AS relation_id
-			FROM ${sql.ref(queryReadStorage(db).fields)} AS f
-			INNER JOIN ${sql.ref(queryReadStorage(db).collections)} AS c ON c.id = f.collection_id
-			LEFT JOIN ${sql.ref(queryReadStorage(db).relations)} AS r ON r.slug = ${sql.raw(relationSlug)}
+			FROM ${sql.ref(tables.fields)} AS f
+			INNER JOIN ${sql.ref(tables.collections)} AS c ON c.id = f.collection_id
+			LEFT JOIN ${sql.ref(tables.relations)} AS r ON r.slug = ${sql.raw(relationSlug)}
 			WHERE c.slug = ${collection} AND f.type = 'reference'
 		`.execute(db);
 		rows = result.rows;

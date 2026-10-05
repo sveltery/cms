@@ -133,6 +133,7 @@ export const FOLDED_BYLINES_EXIST = Symbol.for("emdash:foldedBylinesExist");
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- any Kysely instance
 function foldedHydrationSelects(db: Kysely<any>, type: string, outer: string) {
+	const tables = queryReadStorage(db);
 	const o = sql.ref(outer);
 	const pg = isPostgres(db);
 	const obj = (pairs: string) =>
@@ -155,7 +156,7 @@ function foldedHydrationSelects(db: Kysely<any>, type: string, outer: string) {
 	const termAgg = pg
 		? sql`coalesce(json_agg(${termObj}) FILTER (WHERE ${selectedTermId} IS NOT NULL), '[]'::json)`
 		: sql`json_group_array(${termObj}) FILTER (WHERE ${selectedTermId} IS NOT NULL)`;
-	const terms = sql`(SELECT ${termAgg} FROM ${sql.ref(queryReadStorage(db).assignments)} AS ct LEFT JOIN ${sql.ref(queryReadStorage(db).terms)} AS exact_term ON exact_term.translation_group = ct.taxonomy_id AND exact_term.locale = ${o}.locale LEFT JOIN ${sql.ref(queryReadStorage(db).terms)} AS default_term ON default_term.translation_group = ct.taxonomy_id AND default_term.locale = ${defaultLocale} WHERE ct.collection = ${type} AND ct.entry_id = ${o}.translation_group) AS ${sql.ref("_emdash_terms")}`;
+	const terms = sql`(SELECT ${termAgg} FROM ${sql.ref(tables.assignments)} AS ct LEFT JOIN ${sql.ref(tables.terms)} AS exact_term ON exact_term.translation_group = ct.taxonomy_id AND exact_term.locale = ${o}.locale LEFT JOIN ${sql.ref(tables.terms)} AS default_term ON default_term.translation_group = ct.taxonomy_id AND default_term.locale = ${defaultLocale} WHERE ct.collection = ${type} AND ct.entry_id = ${o}.translation_group) AS ${sql.ref("_emdash_terms")}`;
 
 	const bylineInner = obj(
 		"'id', b.id, 'slug', b.slug, 'displayName', b.display_name, 'bio', b.bio, 'avatarMediaId', b.avatar_media_id, 'avatarStorageKey', m.storage_key, 'avatarAlt', m.alt, 'avatarBlurhash', m.blurhash, 'avatarDominantColor', m.dominant_color, 'websiteUrl', b.website_url, 'userId', b.user_id, 'isGuest', b.is_guest, 'createdAt', b.created_at, 'updatedAt', b.updated_at, 'locale', b.locale, 'translationGroup', b.translation_group",
@@ -166,12 +167,12 @@ function foldedHydrationSelects(db: Kysely<any>, type: string, outer: string) {
 			)
 		: sql.raw("json_object('roleLabel', cb.role_label, 'sortOrder', cb.sort_order, 'byline', ");
 	const credit = sql`${creditObj}${bylineInner})`;
-	const bylines = sql`(SELECT ${agg(credit)} FROM ${sql.ref(queryReadStorage(db).credits)} AS cb ${foldJoin} ${sql.ref(queryReadStorage(db).bylines)} AS b ON b.translation_group = cb.byline_id LEFT JOIN ${sql.ref(queryReadStorage(db).media)} AS m ON m.id = b.avatar_media_id WHERE cb.collection_slug = ${type} AND cb.content_id = ${o}.id AND b.locale = ${o}.locale) AS ${sql.ref("_emdash_bylines")}`;
+	const bylines = sql`(SELECT ${agg(credit)} FROM ${sql.ref(tables.credits)} AS cb ${foldJoin} ${sql.ref(tables.bylines)} AS b ON b.translation_group = cb.byline_id LEFT JOIN ${sql.ref(tables.media)} AS m ON m.id = b.avatar_media_id WHERE cb.collection_slug = ${type} AND cb.content_id = ${o}.id AND b.locale = ${o}.locale) AS ${sql.ref("_emdash_bylines")}`;
 	// Uncorrelated existence probe (evaluated once per statement, not per row):
 	// 1 when `_emdash_bylines` has any row, NULL when empty. An empty table
 	// means an empty fold is authoritative — no credit in any locale, no
 	// author-fallback byline — so hydration can skip the byline query path.
-	const bylinesExist = sql`(SELECT 1 FROM ${sql.ref(queryReadStorage(db).bylines)} LIMIT 1) AS ${sql.ref("_emdash_bylines_exist")}`;
+	const bylinesExist = sql`(SELECT 1 FROM ${sql.ref(tables.bylines)} LIMIT 1) AS ${sql.ref("_emdash_bylines_exist")}`;
 	return { terms, bylines, bylinesExist };
 }
 
@@ -190,6 +191,7 @@ function foldedHydrationSelects(db: Kysely<any>, type: string, outer: string) {
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- any Kysely instance
 function foldedSeoSelect(db: Kysely<any>, type: string, outer: string) {
+	const tables = queryReadStorage(db);
 	const o = sql.ref(outer);
 	const pg = isPostgres(db);
 	// Use raw column names (not aliases) as JSON keys: the JSON is expanded back
@@ -198,18 +200,19 @@ function foldedSeoSelect(db: Kysely<any>, type: string, outer: string) {
 	const pairs =
 		"'seo_title', s.seo_title, 'seo_description', s.seo_description, 'seo_image', s.seo_image, 'seo_canonical', s.seo_canonical, 'seo_no_index', s.seo_no_index";
 	const obj = pg ? sql.raw(`json_build_object(${pairs})`) : sql.raw(`json_object(${pairs})`);
-	return sql`(SELECT ${obj} FROM ${sql.ref(queryReadStorage(db).seo)} AS s WHERE s.collection = ${type} AND s.content_id = ${o}.id LIMIT 1) AS ${sql.ref(SEO_FOLDED_COLUMN)}`;
+	return sql`(SELECT ${obj} FROM ${sql.ref(tables.seo)} AS s WHERE s.collection = ${type} AND s.content_id = ${o}.id LIMIT 1) AS ${sql.ref(SEO_FOLDED_COLUMN)}`;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- any Kysely instance
 function foldedBooleanFieldsSelect(db: Kysely<any>, type: string) {
+	const tables = queryReadStorage(db);
 	const aggregate = isPostgres(db)
 		? sql`coalesce(json_agg(f.slug), '[]'::json)`
 		: sql`json_group_array(f.slug)`;
 	return sql`(
 		SELECT ${aggregate}
-		FROM ${sql.ref(queryReadStorage(db).fields)} AS f
-		INNER JOIN ${sql.ref(queryReadStorage(db).collections)} AS c ON c.id = f.collection_id
+		FROM ${sql.ref(tables.fields)} AS f
+		INNER JOIN ${sql.ref(tables.collections)} AS c ON c.id = f.collection_id
 		WHERE c.slug = ${type} AND f.type = ${"boolean"}
 	) AS ${sql.ref(BOOLEAN_FIELDS_FOLDED_COLUMN)}`;
 }
@@ -1184,6 +1187,7 @@ export function buildTaxonomyPivotQuery(
 		offset,
 		driveFromContent = false,
 	} = opts;
+	const tables = queryReadStorage(db);
 
 	const primary = getPrimarySort(orderBy);
 	const isIndexedSort = isIndexedPivotSort(orderBy);
@@ -1212,7 +1216,7 @@ export function buildTaxonomyPivotQuery(
 	// Byline assignments remain keyed to a locale-specific content row.
 	const bylineCt = bylineGroups
 		? sql`AND EXISTS (
-				SELECT 1 FROM ${sql.ref(queryReadStorage(db).credits)} cb
+				SELECT 1 FROM ${sql.ref(tables.credits)} cb
 				WHERE cb.collection_slug = ${collection}
 					AND cb.content_id = r.id
 					AND cb.byline_id IN (${sql.join(bylineGroups.map((g) => sql`${g}`))})
@@ -1494,6 +1498,7 @@ export function emdashLoader(): LiveLoader<EntryData, EntryFilter, CollectionFil
 			try {
 				// Get DB instance (initializes on first use)
 				const db = await getDb();
+				const tables = queryReadStorage(db);
 
 				// Type filter is required
 				const type = filter?.type;
@@ -1703,7 +1708,7 @@ export function emdashLoader(): LiveLoader<EntryData, EntryFilter, CollectionFil
 					// locale variant of the byline and we match the group directly.
 					const bylineCond = bylineFilter
 						? sql`AND EXISTS (
-							SELECT 1 FROM ${sql.ref(queryReadStorage(db).credits)} cb
+							SELECT 1 FROM ${sql.ref(tables.credits)} cb
 							WHERE cb.collection_slug = ${type}
 								AND cb.content_id = ${sql.ref(tableName)}.id
 								AND cb.byline_id IN (${sql.join(bylineFilter.groups.map((g) => sql`${g}`))})
@@ -1827,6 +1832,7 @@ export function emdashLoader(): LiveLoader<EntryData, EntryFilter, CollectionFil
 			try {
 				// Get DB instance
 				const db = await getDb();
+				const tables = queryReadStorage(db);
 
 				// Both type and id are required
 				const type = filter?.type;
@@ -1917,7 +1923,7 @@ export function emdashLoader(): LiveLoader<EntryData, EntryFilter, CollectionFil
 				const revisionId = filter?.revisionId;
 				if (revisionId) {
 					const revRow = await sql<{ data: string }>`
-						SELECT data FROM ${sql.ref(queryReadStorage(db).revisions)}
+						SELECT data FROM ${sql.ref(tables.revisions)}
 						WHERE id = ${revisionId}
 						LIMIT 1
 					`.execute(db);
