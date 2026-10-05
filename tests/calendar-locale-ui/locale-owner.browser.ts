@@ -8,12 +8,12 @@ let mounted:ReturnType<typeof mount>|undefined;
 const initialLang=document.documentElement.getAttribute('lang'),initialDir=document.documentElement.getAttribute('dir');
 afterEach(async()=>{if(mounted)await unmount(mounted);mounted=undefined;document.body.replaceChildren();i18n.loadAndActivate({locale:'en',messages:{}});vi.restoreAllMocks();for(const[name,value]of[['lang',initialLang],['dir',initialDir]] as const)if(value===null)document.documentElement.removeAttribute(name);else document.documentElement.setAttribute(name,value);});
 it('updates actual shared schedule labels through one existing Calendar subscription',async()=>{
-  i18n.loadAndActivate({locale:'en',messages:{LhMjLm:['First time'],6XgEPi:['First hour']}});
+  i18n.loadAndActivate({locale:'en',messages:{LhMjLm:['First time'],'6XgEPi':['First hour']}});
   const on=vi.spyOn(i18n,'on');mounted=mount(Owner,{target:document.body});await tick();
   expect(document.querySelector('legend')?.textContent).toBe('First time');
   expect(document.querySelector('input[aria-label="First hour"]')).not.toBeNull();
   expect(on.mock.calls.filter(([event])=>event==='change')).toHaveLength(1);
-  i18n.load('en',{LhMjLm:['Second time'],6XgEPi:['Second hour']});await tick();
+  i18n.load('en',{LhMjLm:['Second time'],'6XgEPi':['Second hour']});await tick();
   expect(document.querySelector('legend')?.textContent).toBe('Second time');
   expect(document.querySelector('input[aria-label="Second hour"]')).not.toBeNull();
   expect(on.mock.calls.filter(([event])=>event==='change')).toHaveLength(1);
