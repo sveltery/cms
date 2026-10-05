@@ -1,14 +1,15 @@
 import type { NodeViewState } from './node-view-state.svelte';
-import { iframeEmbedAttrs, iframeEmbedToCode, parseIframeInput } from '../portable-text/iframe-embed';
+import { iframeEmbedAttrs, iframeEmbedFromAttrs, iframeEmbedToCode, parseIframeInput } from '../portable-text/iframe-embed';
 
 // Pinned IframeBlockNode draft ownership: retain authored text until blur/tab,
 // debounce parsing at the original delay, and keep unwritable valid input pending.
 const PARSE_DELAY_MS = 250;
-export function iframeDraft(viewState: NodeViewState, initialCode: string) {
+export function iframeDraft(getViewState: () => NodeViewState) {
   const state = $state({ typed: null as string | null, error: '' });
   let pending: string | null = null;
   let valid = true;
-  let known = initialCode;
+  const initialNode = getViewState().node;
+  let known = initialNode.attrs.src ? iframeEmbedToCode(iframeEmbedFromAttrs(initialNode.attrs)) : '';
   let timer: ReturnType<typeof setTimeout> | undefined;
 
   function flush(): boolean {
@@ -24,6 +25,7 @@ export function iframeDraft(viewState: NodeViewState, initialCode: string) {
       return false;
     }
     state.error = '';
+    const viewState = getViewState();
     if (viewState.editor.isDestroyed || !viewState.editor.isEditable || typeof viewState.getPos?.() !== 'number') return false;
     pending = null;
     known = result.embed ? iframeEmbedToCode(result.embed) : '';

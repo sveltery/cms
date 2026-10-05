@@ -8,7 +8,7 @@ import { iframeEmbedToCode } from '../../src/lib/editor/portable-text/iframe-emb
 import { renderInDraftForm } from '../helpers/rich-editor/native-authoring-dom';
 const cleanups: (() => Promise<void>)[] = [];
 afterEach(async () => { for (const cleanup of cleanups.splice(0)) await cleanup(); vi.useRealTimers(); });
-async function render(value: Parameters<typeof renderInDraftForm>[0]['value']) {
+async function render(value: NonNullable<Parameters<typeof renderInDraftForm>[0]>['value']) {
   const result = await renderInDraftForm({ value }); cleanups.push(result.cleanup); return result;
 }
 function inputValue(input: HTMLTextAreaElement, value: string) { input.value = value; input.dispatchEvent(new Event('input', { bubbles: true })); }
