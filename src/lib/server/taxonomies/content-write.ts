@@ -10,10 +10,13 @@ export interface ResolvedTaxonomySelection {
  readonly name:string;
  readonly terms:readonly {id:string;slug:string;locale:string;translationGroup:string|null}[];
 }
+async function taxonomyRepository(db:Kysely<Database>){
+ const {TaxonomyRepository}=await import('./repository.ts');
+ return new TaxonomyRepository(db);
+}
 /** Reads/validation only; every Native write remains in its actual content batch. */
 export async function resolveTaxonomySlugMap(db:Kysely<Database>,taxonomies:Record<string,unknown>,locale:string|undefined):Promise<ResolvedTaxonomySelection[]> {
- const {TaxonomyRepository}=await import('./repository.ts');
- const repository=new TaxonomyRepository(db);const selections:ResolvedTaxonomySelection[]=[];
+ const repository=await taxonomyRepository(db);const selections:ResolvedTaxonomySelection[]=[];
  for(const [name,slugs] of Object.entries(taxonomies)) {
   if(!Array.isArray(slugs))throw new EmDashValidationError(`taxonomies.${name} must be an array of term slugs`);
   const terms:ResolvedTaxonomySelection['terms'][number][]=[];
@@ -29,8 +32,7 @@ export async function resolveTaxonomySlugMap(db:Kysely<Database>,taxonomies:Reco
 }
 /** Source-only genuine transaction hosts use the same real Native taxonomy repository. */
 export async function applyResolvedTaxonomySelections(db:Kysely<Database>,collection:string,id:string,selections:readonly ResolvedTaxonomySelection[]):Promise<void> {
- const {TaxonomyRepository}=await import('./repository.ts');
- const repository=new TaxonomyRepository(db);
+ const repository=await taxonomyRepository(db);
  for(const selection of selections)await repository.setTermsForEntry(collection,id,selection.name,selection.terms.map(term=>term.id));
 }
 /** Explicit fixed plan on the canonical physical owner. No callback-transaction emulation. */
