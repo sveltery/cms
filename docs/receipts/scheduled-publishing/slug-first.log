@@ -1,0 +1,61 @@
+
+ RUN  v4.1.10 /workspace/cms-full-scheduling-calendar
+
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts (0 test)
+ ❯ tests/scheduling-native/sweep.test.ts (5 tests | 1 failed) 861ms
+   ✓ publishes a bounded real due backlog at its intended time and drains it on later sweeps  520ms
+   ✓ persists the attempted cursor so a failed bounded window does not starve the next due item 112ms
+   ✓ awaits each successful cache callback and keeps a committed publication when that callback rejects 73ms
+   ✓ never calls a publisher for future or soft-deleted scheduled storage 59ms
+   × reports the pinned staged-slug conflict without publishing or losing the pending schedule 96ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts [ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts ]
+Error: Cannot find module '../../after.js' imported from /workspace/cms-full-scheduling-calendar/parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/content.ts
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/content.ts:8:1
+      6| import { sql } from "kysely";
+      7|
+      8| import { after } from "../../after.js";
+       | ^
+      9| import type { ContentFieldFilters } from "../../content-list-query.js";
+     10| import { isSqlite } from "../../database/dialect-helpers.js";
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/scheduling-native/sweep.test.ts > reports the pinned staged-slug conflict without publishing or losing the pending schedule
+AssertionError: expected { success: false, error: { …(2) } } to match object { success: false, …(1) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+-     "code": "SLUG_CONFLICT",
++     "code": "VALIDATION_ERROR",
+    },
+    "success": false,
+  }
+
+ ❯ tests/scheduling-native/sweep.test.ts:132:7
+    130|   expect(await publisher.handleContentPublish(database.db, 'post', liv…
+    131|     requireScheduledDue: true, expectedScheduledAt: '2030-03-02T09:00:…
+    132|   })).toMatchObject({success: false, error: {code: 'SLUG_CONFLICT'}});
+       |       ^
+    133|   expect(await repo.findById('post', live.id)).toEqual(stored);
+    134|   expect((await new RevisionRepository(database.db as any).findById(re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  1 failed | 4 passed (5)
+   Start at  03:51:25
+   Duration  3.28s (transform 1.46s, setup 50ms, import 1.60s, tests 861ms, environment 0ms)
+
+JSON report written to /tmp/scheduling105-slug-first.json
