@@ -41,8 +41,19 @@ The first isolated-worktree attempt stopped at missing generated Kit types;
 that raw prerequisite failure and the successful genuine framework sync are
 retained.
 
-Full normal validation, secured browser validation, independent final-head
-review, configured review and manager approval are still pending. The parent
+The bounded actual installed checker finishes with zero errors/warnings, and
+the unchanged whole base-path app test passes, including its genuine isolated
+app build and denial/navigation assertions. The exact pnpm12.6 invocation first
+stopped during auto-install because the existing dependency directory was a
+symlink; it is retained and grants no checker, frozen-install or bootstrap
+credit. The direct installed checker grants only checker credit. The existing
+whole Source object-cache family passes all 35 callbacks unchanged, and 17
+existing Native cache/relations-owner controls pass.
+
+Proposed [PR #122](https://github.com/sveltery/cms/pull/122) targets the existing
+Byline feature branch. Full normal validation, secured browser validation,
+independent final-head review, configured review and manager approval are still
+pending. The parent
 Byline/Seed feature work retains its separate failures and incomplete scope.
 Neither these infrastructure controls nor this proposed PR establishes deployed
 Worker support or full EmDash parity.

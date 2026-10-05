@@ -1,0 +1,25 @@
+✔ native menu cache hints preserve the pinned Source tag value (0.614684ms)
+✔ Node actual lifecycle and ordinary reads hydrate staged selections while public reads retain published links (162.695942ms)
+✔ Node comparison uses real live edges and merges a staged subset without rewriting history (69.999788ms)
+✔ Node inverse hydration returns locale fallback and filters real soft-deleted targets (69.254429ms)
+✔ raw D1 actual lifecycle and ordinary reads hydrate staged selections while public reads retain published links (3069.339019ms)
+✔ raw D1 comparison uses real live edges and merges a staged subset without rewriting history (2941.124186ms)
+✔ raw D1 inverse hydration returns locale fallback and filters real soft-deleted targets (2448.051998ms)
+✔ scoped D1 actual lifecycle and ordinary reads hydrate staged selections while public reads retain published links (2828.687975ms)
+✔ scoped D1 comparison uses real live edges and merges a staged subset without rewriting history (3121.09069ms)
+✔ scoped D1 inverse hydration returns locale fallback and filters real soft-deleted targets (2738.242185ms)
+✔ Node hydration pages the actual 51-entry draft selection and retains its next cursor (269.086325ms)
+✔ comparison accepts the real entry slug through the existing pinned identifier lookup (56.928777ms)
+✔ ordinary published reads hide draft targets and existing subscriber rights still deny comparison and draft reads (74.68951ms)
+✔ a committed reference draft refreshes only the selecting collection in the same actual request cache (64.233156ms)
+✔ a committed reference-only draft refreshes the existing configured L2 collection snapshot (65.023144ms)
+✔ publication with no staged reference selection refreshes the bound collection snapshot (100.978258ms)
+✔ an actual staged-reference SQL abort retains warm L1/L2 snapshots and the stored selection (53.497288ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18713.669278
