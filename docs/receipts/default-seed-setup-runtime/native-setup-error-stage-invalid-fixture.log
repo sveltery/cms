@@ -1,0 +1,59 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+ ❯ tests/default-seed-setup-error-caller.test.ts (3 tests | 3 failed) 113ms
+   × real virtual seed load failures use the original outer SETUP_ERROR boundary 68ms
+   × actual application errors preserve their original class and 400 response 22ms
+   × actual ordinary application failures use the original inner SEED_ERROR boundary 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/default-seed-setup-error-caller.test.ts > real virtual seed load failures use the original outer SETUP_ERROR boundary
+AssertionError: expected 400 to be 500 // Object.is equality
+
+- Expected
++ Received
+
+- 500
++ 400
+
+ ❯ tests/default-seed-setup-error-caller.test.ts:49:34
+     47|   const actual = await callSetup();
+     48|   expect(actual.selects).toBe(1); // Only the real setup-completion gu…
+     49|   expect(actual.response.status).toBe(500);
+       |                                  ^
+     50|   expect(actual.body.error).toEqual({ code: 'SETUP_ERROR', message: 'S…
+     51| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/default-seed-setup-error-caller.test.ts > actual application errors preserve their original class and 400 response
+AssertionError: expected 1 to be greater than 1
+ ❯ tests/default-seed-setup-error-caller.test.ts:55:26
+     53| it('actual application errors preserve their original class and 400 re…
+     54|   const actual = await callSetup(new InvalidCursorError('actual invali…
+     55|   expect(actual.selects).toBeGreaterThan(1); // Guard failure is allow…
+       |                          ^
+     56|   expect(actual.response.status).toBe(400);
+     57|   expect(actual.body.error).toEqual({ code: 'INVALID_CURSOR', message:…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/default-seed-setup-error-caller.test.ts > actual ordinary application failures use the original inner SEED_ERROR boundary
+AssertionError: expected 1 to be greater than 1
+ ❯ tests/default-seed-setup-error-caller.test.ts:62:26
+     60| it('actual ordinary application failures use the original inner SEED_E…
+     61|   const actual = await callSetup(new Error('actual caller query failur…
+     62|   expect(actual.selects).toBeGreaterThan(1);
+       |                          ^
+     63|   expect(actual.response.status).toBe(500);
+     64|   expect(actual.body.error).toEqual({ code: 'SEED_ERROR', message: 'Fa…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  01:06:02
+   Duration  1.95s (transform 1.25s, setup 0ms, import 1.71s, tests 113ms, environment 0ms)
+
