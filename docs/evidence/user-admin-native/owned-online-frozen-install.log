@@ -1,0 +1,69 @@
+? Verifying lockfile against supply-chain policies (534 entries)...
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: /workspace/.pnpm-store/v11
+  Virtual store is at:             node_modules/.pnpm
+✓ Lockfile passes supply-chain policies (534 entries in 7.5s)
+Lockfile is up to date, resolution step is skipped
+Packages: +403
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 403, reused 403, downloaded 0, added 403, done
+. prepare$ svelte-kit sync
+. prepare: Done
+
+dependencies:
++ @oslojs/crypto 1.0.1
++ @oslojs/encoding 1.1.0
++ @oslojs/webauthn 1.0.0
++ @wordpress/block-serialization-default-parser 5.38.0
++ blurhash 2.0.5
++ cn 0.2.2
++ date-fns 4.1.0
++ image-size 2.0.2
++ jpeg-js 0.4.4
++ jsonc-parser 3.3.1
++ kysely 0.29.2
++ mime 4.1.0
++ parse5 7.3.0
++ smol-toml 1.6.0
++ ulidx 2.4.1
++ upng-js 2.1.0
++ valibot 1.5.0
++ zod 4.5.4
+
+devDependencies:
++ @babel/core 7.29.7
++ @cloudflare/kumo 2.6.0
++ @cloudflare/workers-types 4.20260507.1
++ @lingui/babel-plugin-lingui-macro 5.9.5
++ @lingui/conf 5.9.5
++ @lingui/core 5.9.5
++ @lingui/react 5.9.5
++ @playwright/test 1.63.0
++ @sveltejs/adapter-auto 7.0.1
++ @sveltejs/adapter-cloudflare 7.2.9
++ @sveltejs/adapter-node 5.5.7
++ @sveltejs/kit 2.70.3
++ @sveltejs/vite-plugin-svelte 7.3.1
++ @tanstack/react-query 5.90.21
++ @tanstack/react-router 1.163.2
++ @testing-library/react 16.3.2
++ @types/jsdom 30.0.0
++ @types/node 24.19.0
++ @types/react 19.3.0
++ @types/react-dom 19.3.0
++ @vitest/browser-playwright 4.1.10
++ devalue 5.9.4
++ jsdom 30.1.1
++ miniflare 4.20260507.1
++ pg 8.18.0
++ react 19.3.0
++ react-dom 19.3.0
++ svelte 5.57.1
++ svelte-check 4.7.6
++ typescript 6.0.3
++ vite 8.3.2
++ vitest 4.1.10
++ vitest-browser-react 2.2.0
++ wrangler 4.99.0
+
+Done in 8.6s using pnpm v12.6.0

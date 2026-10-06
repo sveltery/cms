@@ -1,0 +1,35 @@
+import {test,expect} from '/workspace/cms-complete-user99-backend/node_modules/vitest/dist/index.js';
+import {sql} from '/workspace/cms-complete-user99-backend/node_modules/kysely/dist/index.js';
+import {openSqlite} from '/workspace/cms-complete-user99-backend/src/lib/server/database/sqlite.ts';
+import {migrateCms} from '/workspace/cms-complete-user99-backend/src/lib/server/database/migrations.ts';
+import {UserRepository} from '/workspace/cms-complete-user99-backend/src/lib/server/users/repository.ts';
+import {accountsRepository} from '/workspace/cms-complete-user99-backend/src/lib/server/accounts/repository.ts';
+import {setupTestDatabase,teardownTestDatabase} from '/workspace/cms-complete-user99-backend/tests/helpers/user-admin-reference-db.mjs';
+import {createKyselyAdapter} from '/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/auth/src/adapters/kysely.mjs';
+import {POST as sourceDisable} from '/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/astro/routes/api/admin/users/[id]/disable.mjs';
+import {POST as sourceEnable} from '/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/astro/routes/api/admin/users/[id]/enable.mjs';
+for(const disabled of [true,false]) {
+ test(`Source ${disabled?'disable':'enable'} rollback preserves original user state`,async()=>{
+  const db=await setupTestDatabase();try{
+   const adapter=createKyselyAdapter(db),admin=await adapter.createUser({email:'admin@example.test',role:50}),author=await adapter.createUser({email:'author@example.test',role:30});
+   await adapter.updateUser(author.id,{disabled:!disabled});
+   const before=await db.selectFrom('users').selectAll().where('id','=',author.id).executeTakeFirstOrThrow();
+   await sql`CREATE TRIGGER operator_reject_profile BEFORE UPDATE ON users BEGIN SELECT RAISE(ABORT,'operator profile rejection'); END`.execute(db);
+   const response=await (disabled?sourceDisable:sourceEnable)({params:{id:author.id},locals:{emdash:{db},user:admin}} as any);
+   expect(response.status).toBe(500);
+   expect(await db.selectFrom('users').selectAll().where('id','=',author.id).executeTakeFirstOrThrow()).toEqual(before);
+  }finally{await teardownTestDatabase(db);}
+ });
+ test(`Native ${disabled?'disable':'enable'} rollback preserves original user state`,async()=>{
+  const database=openSqlite(':memory:');try{
+   await migrateCms(database);const users=new UserRepository(database),admin=await users.create({email:'admin@example.test',role:'admin'}),author=await users.create({email:'author@example.test',role:'author'});
+   await database.db.updateTable('_cms_auth_users').set({disabled:disabled?0:1}).where('id','=',author.id).execute();
+   const before=await database.db.selectFrom('_cms_auth_users').selectAll().where('id','=',author.id).executeTakeFirstOrThrow();
+   const profileBefore=await database.db.selectFrom('_cms_auth_profiles').selectAll().where('user_id','=',author.id).executeTakeFirstOrThrow();
+   await sql`CREATE TRIGGER operator_reject_profile BEFORE UPDATE ON _cms_auth_profiles BEGIN SELECT RAISE(ABORT,'operator profile rejection'); END`.execute(database.db);
+   await expect(accountsRepository(database).setDisabled(author.id,admin.id,disabled)).rejects.toThrow('operator profile rejection');
+   expect(await database.db.selectFrom('_cms_auth_profiles').selectAll().where('user_id','=',author.id).executeTakeFirstOrThrow()).toEqual(profileBefore);
+   expect(await database.db.selectFrom('_cms_auth_users').selectAll().where('id','=',author.id).executeTakeFirstOrThrow()).toEqual(before);
+  }finally{await database.close();}
+ });
+}

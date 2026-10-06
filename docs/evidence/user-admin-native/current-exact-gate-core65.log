@@ -1,0 +1,26 @@
+? Verifying lockfile against supply-chain policies (534 entries)...
+Update available! 12.6.0 → 12.9.1.
+Changelog: https://pnpm.io/v/12.9.1
+To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -
+✓ Lockfile passes supply-chain policies (534 entries in 6.1s)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+. prepare$ svelte-kit sync
+. prepare: Done
+
+devDependencies:
++ @floating-ui/dom 1.8.0
++ react-day-picker 9.14.0
+
+Done in 7.1s using pnpm v12.6.0
+$ node scripts/check-user-repository-source.mjs && vitest run --config vitest.users.config.ts
+User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+
+ Test Files  3 passed (3)
+      Tests  65 passed (65)
+   Start at  22:29:33
+   Duration  3.98s (transform 348ms, setup 0ms, import 771ms, tests 2.77s, environment 0ms)
+

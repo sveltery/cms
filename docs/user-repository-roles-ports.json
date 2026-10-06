@@ -1,0 +1,306 @@
+{
+  "kind": "core-user-repository-and-pure-role-policy-authorities",
+  "sourceVersion": "EmDash 1.1.0",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "initialPublicBase": "ab43accd4de235b07a22dd0ac24289605902d959",
+  "currentPublicBase": "90d62391e7ddc61f41f8f3dad9e7077c9fc9de52",
+  "nativeTestfirst": "741b29cd04645b871af3a29c6686c91f6da74bf1",
+  "publicTestfirst": "b4ec05ffddf43a8c91e8fab6ee1e501ccef2437f",
+  "authorities": [
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "blob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "destination": "parity/emdash/users/source/LICENSE",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/database/repositories/user.ts",
+      "bytes": 7158,
+      "sha256": "f58a1066c40f8ba48ac02ac115f325fe3ce7bed329842bf9c16a7b6cf119c46e",
+      "blob": "05182745afeaa8bbde8bf4769f1db2cb49ca1d3e",
+      "destination": "parity/emdash/users/source/packages/core/src/database/repositories/user.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/database/types.ts",
+      "bytes": 31530,
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "destination": "parity/emdash/users/source/packages/core/src/database/types.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/database/repositories/types.ts",
+      "bytes": 13959,
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "destination": "parity/emdash/users/source/packages/core/src/database/repositories/types.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/utils/chunks.ts",
+      "bytes": 529,
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "destination": "parity/emdash/users/source/packages/core/src/utils/chunks.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/auth/src/adapters/kysely.ts",
+      "bytes": 20225,
+      "sha256": "ade818b1bc6ce264cbc3e0812ee10e384b7cca8c29806187a950e996abd07433",
+      "blob": "7cb68baea14a9696296c8fc9c414abe95c8ea594",
+      "destination": "parity/emdash/users/source/packages/auth/src/adapters/kysely.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/auth/src/types.ts",
+      "bytes": 10246,
+      "sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "destination": "parity/emdash/users/source/packages/auth/src/types.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/auth/src/rbac.ts",
+      "bytes": 7361,
+      "sha256": "1d5663c430cb02e934eafeca27c512007112dcc0c975d6a84ad3c73c9343d85e",
+      "blob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb",
+      "destination": "parity/emdash/users/source/packages/auth/src/rbac.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/auth/src/rbac.test.ts",
+      "bytes": 6356,
+      "sha256": "72c96f2e4b69a72793ddafa54f159aad7f34b4b705f78980816d9fd1bf25bac4",
+      "blob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "destination": "parity/emdash/users/source/packages/auth/src/rbac.test.ts",
+      "executedAsWholeTest": true
+    },
+    {
+      "path": "packages/auth/src/tokens.ts",
+      "bytes": 9438,
+      "sha256": "9699e9636b3329812bc3743987ba4e36a5abab1a21dcf0dfffe03bf877bc215d",
+      "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+      "destination": "parity/emdash/users/source/packages/auth/src/tokens.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/008_auth.ts",
+      "bytes": 7437,
+      "sha256": "7698709e8bdc5a3de32b84be22368982829bc94aef6ce258fa2e6197a7ca82ba",
+      "blob": "70bc0f799c59ce72fac69aad24d2fc9cdd9ce1c0",
+      "destination": "parity/emdash/users/source/packages/core/src/database/migrations/008_auth.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/database/migrations/009_user_disabled.ts",
+      "bytes": 1010,
+      "sha256": "df12eb1b324686e8e3dd750ce1d0881dd276b9944ae74c97d12fd9ea6c61018b",
+      "blob": "827db35e316bcf4af35ba7c36ea4d9436db837e1",
+      "destination": "parity/emdash/users/source/packages/core/src/database/migrations/009_user_disabled.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/api/schemas/users.ts",
+      "bytes": 2468,
+      "sha256": "e29ed02f63aadc36f858ce67905de264af0c8d7af71dc0cd4399c65fece55f94",
+      "blob": "51626da451ba6879a015ae5404a159a781bd252d",
+      "destination": "parity/emdash/users/source/packages/core/src/api/schemas/users.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/src/plugins/context.ts",
+      "bytes": 61202,
+      "sha256": "09b8e2784d0aed1d21527ba74a0cd5a03d7c64d1a956ca35bf8b6f3eede77747",
+      "blob": "ee05129cc8b217ec64f96e92a412947712fc3473",
+      "destination": "parity/emdash/users/source/packages/core/src/plugins/context.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/integration/api/byline-hooks.test.ts",
+      "bytes": 5884,
+      "sha256": "a93b9494404d67429885a5cbf0f1d57a35af564f852cafed1f5ca5ef4a5b8b7a",
+      "blob": "f94104c01e27e25b396a470486eda9ed721178df",
+      "destination": "parity/emdash/users/source/packages/core/tests/integration/api/byline-hooks.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/integration/api/byline-translation-user-link.test.ts",
+      "bytes": 7275,
+      "sha256": "7039481b0860479b03c7a189a9d9a6cc4534aded119d4529389b1cf8a574d8ea",
+      "blob": "2900b624e1e05753be8bf2efa2cec5951d2332ed",
+      "destination": "parity/emdash/users/source/packages/core/tests/integration/api/byline-translation-user-link.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/integration/content/content-list-byline-filter.test.ts",
+      "bytes": 11617,
+      "sha256": "139dafde51d729e5ec0476338608b85eaab047c2cebdccb6512a9bf208936426",
+      "blob": "20e12ad7f6c0e6d83d2abb55f054360ed2e34aad",
+      "destination": "parity/emdash/users/source/packages/core/tests/integration/content/content-list-byline-filter.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "bytes": 9588,
+      "sha256": "446ec771358e945072b14dc9c2141b499509525c31d993241850a4c71fb19636",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "destination": "parity/emdash/users/source/packages/core/tests/integration/content/content-list-filters.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/byline-access.test.ts",
+      "bytes": 6328,
+      "sha256": "f0a90f393a39144fa965c523fc70e19f260821b2c545c64c81705d79623724bd",
+      "blob": "5010b4eb4da2b8f16bac887bff0f0301897277f4",
+      "destination": "parity/emdash/users/source/packages/core/tests/integration/plugins/byline-access.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/capabilities.test.ts",
+      "bytes": 63569,
+      "sha256": "7cb8fb022f7116c13d2b3e8192c60a8641738eb9235572cbacacb8287952cc40",
+      "blob": "1f85f5441807e80e36372c9143f25581026052fd",
+      "destination": "parity/emdash/users/source/packages/core/tests/integration/plugins/capabilities.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/unit/api/content-handlers.test.ts",
+      "bytes": 39771,
+      "sha256": "176412daffe131e71a4bdf1c8e6d1b39dd0ce97abb9ff42516a1f4e2bcaef7df",
+      "blob": "e9fd563de4da76e50a28e4029825c659c04408ce",
+      "destination": "parity/emdash/users/source/packages/core/tests/unit/api/content-handlers.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "bytes": 3200,
+      "sha256": "ccd11fb00a967ab4e1649755b3d86416b1d2a07464fb78acad8708ab6dbcb0b5",
+      "blob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "destination": "parity/emdash/users/source/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "executedAsWholeTest": false
+    },
+    {
+      "path": "packages/core/tests/unit/bylines/bylines-query.test.ts",
+      "bytes": 24934,
+      "sha256": "f14278bbd5f36fa7c408ccde1b08195eae1667b95d5ee07dc4a8c95bea56aa4f",
+      "blob": "f1294167ef22d937100889b6de914c5cd8f6a9aa",
+      "destination": "parity/emdash/users/source/packages/core/tests/unit/bylines/bylines-query.test.ts",
+      "executedAsWholeTest": false
+    }
+  ],
+  "wholeRoleFamily": {
+    "path": "packages/auth/src/rbac.test.ts",
+    "declarations": 30,
+    "staticExpectationExpressions": 35,
+    "expandedCallbacks": 33,
+    "baselineInitialGreenCallbacks": 28,
+    "baselineMissingFunctionPreExpectationFailures": 5,
+    "causalReachedSourceAssertionReds": 0
+  },
+  "nativeFamilies": [
+    {
+      "path": "tests/users-native/repository.test.ts",
+      "bytes": 16656,
+      "sha256": "d78b45242ea19ea35cae1676f22052b256a86995579fb41dcd48dfed8f4f8c86",
+      "expandedCallbacks": 27
+    },
+    {
+      "path": "tests/users-native/scopes.test.ts",
+      "bytes": 905,
+      "sha256": "f4d0d04cdd26665a246f3ef49c337f3c504acc0344defc0596110ab5a7f8e111",
+      "expandedCallbacks": 5
+    }
+  ],
+  "nativeCallbacks": 32,
+  "wholeBaseline": {
+    "callbacks": 65,
+    "passes": 29,
+    "failures": 36,
+    "nativeReachedAssertionReds": 31,
+    "sourcePreExpectationFailures": 5,
+    "fixtureInfrastructureFailures": 0,
+    "laterAssertionsInFailedCallbacks": "unreached"
+  },
+  "baselineReceipt": {
+    "path": "docs/evidence/user-repository-roles/testfirst-whole65.log",
+    "bytes": 26954,
+    "sha256": "17778243019e00b6277b0150582a47602829f8e9227156e6a1f4a0116b5effee"
+  },
+  "consumerWholeFamiliesRetainedUnexecuted": 9,
+  "userRepositorySourceTestFile": "No dedicated Source Core UserRepository test exists at this pin; all SQL cases are original Native requirements.",
+  "seedGraph": {
+    "eagerModules": 103,
+    "includingAllLiteralDynamicImports": 113,
+    "unresolvedRelativeEdges": 0,
+    "usersQueries": 0,
+    "rawSqlUsersQueries": 0,
+    "UserRepositoryChain": false,
+    "evidence": "docs/evidence/user-repository-roles/source-inventory.json"
+  },
+  "runtimeSubstitution": "Real CmsDatabase joined identity/profile queries and atomic batches; no fake users table/view, migration, raw users writes or fabricated profiles.",
+  "legacyProfilelessIdentityDecision": "Specifically accepted FOR DEVELOPMENT by Root3750d510: preserve unchanged and omit from the complete Core projection; final exact-head acceptance and broader legacy recovery remain pending.",
+  "sourceTimestamp": "Pinned 008_auth SQLite default (datetime('now')); Core creates use equivalent UTC second-format bytes and Core updates leave updated_at unchanged. Auth adapter ISO/Date semantics remain unchanged.",
+  "pureScopes": "Entire Source rbac scope mapping and policy bodies; tokens source contributes only constant data and ApiTokenScope type, not issuance/crypto.",
+  "sharedPublicSourceChainBefore": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs",
+  "unfinished": [
+    "Complete nine broader Source UserRepository consumer test families",
+    "User admin APIs/DTO/UI and byline/plugin/content consumer integration",
+    "Explicit historical identity profile enrollment",
+    "Invites/recovery/OAuth/API token issuance and hosting parity",
+    "Complete read-only logical users facade and raw users/UPSERT routing"
+  ],
+  "developmentQualification": {
+    "path": "docs/evidence/user-repository-roles/pm-development-qualification.json",
+    "bytes": 1513,
+    "sha256": "3750d5109d57103e3828aade3925f0fd05197f76635c4677a9818219955d489b",
+    "decisions": [
+      "USR-01 real split CmsDatabase Core API",
+      "USR-02 preserve/omit profileless identities",
+      "USR-03 pure Source scope module substitution"
+    ],
+    "scope": "development only; final exact-head approval/merge remains pending"
+  },
+  "fixRefactorWholeReceipts": [
+    {
+      "phase": "fix",
+      "nativeHead": "a667ee88c43f1b1aae01d316b64d2b145312d03d",
+      "command": "pnpm test:user-repository-roles",
+      "exitCode": 0,
+      "elapsedSeconds": 3.576376438140869,
+      "wholeCallbacks": 65,
+      "passedCallbacks": 65,
+      "SourceWholePureCallbacks": 33,
+      "NativeCallbacks": 32,
+      "sourceCausalReachedAssertionRedCredit": 0,
+      "nineBroaderWholeSourceConsumersExecuted": 0,
+      "log": {
+        "path": "docs/evidence/user-repository-roles/fix-whole65.log",
+        "bytes": 610,
+        "sha256": "63bfa37352052a83be72d86b723281f4574e56edfad696d68b9fda2d3adb90cc"
+      }
+    },
+    {
+      "phase": "refactor",
+      "nativeHead": "ba1fd60e3e7769011eddb1a48912c06c9a3367ac",
+      "command": "pnpm test:user-repository-roles",
+      "exitCode": 0,
+      "elapsedSeconds": 3.629690408706665,
+      "wholeCallbacks": 65,
+      "passedCallbacks": 65,
+      "SourceWholePureCallbacks": 33,
+      "NativeCallbacks": 32,
+      "sourceCausalReachedAssertionRedCredit": 0,
+      "nineBroaderWholeSourceConsumersExecuted": 0,
+      "log": {
+        "path": "docs/evidence/user-repository-roles/refactor-whole65.log",
+        "bytes": 610,
+        "sha256": "45e027c617a7c0f6c11dedec35b9b43822778d00b6095bdfa198d86082ba2c40"
+      }
+    }
+  ],
+  "currentFeatureStatus": "Local fix/refactor complete and whole65 green; public product push/current combined13+9/final review/approval/author merge/post-Main remain pending actual public fixture96+97 adoption."
+}

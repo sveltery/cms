@@ -1,0 +1,34 @@
+{
+  "unchangedWholeGuardBytes": 8391,
+  "cases": [
+    {
+      "case": "current",
+      "wholeGuardExit": 0,
+      "actualCompleteAdminGateCount": 1,
+      "stdout": "User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.\n",
+      "stderr": ""
+    },
+    {
+      "case": "future_whole_byline_leaf",
+      "wholeGuardExit": 0,
+      "actualCompleteAdminGateCount": 1,
+      "stdout": "User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.\n",
+      "stderr": ""
+    },
+    {
+      "case": "missing_admin_replaced_with_different_leaf",
+      "wholeGuardExit": 0,
+      "actualCompleteAdminGateCount": 0,
+      "stdout": "User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.\n",
+      "stderr": ""
+    },
+    {
+      "case": "legitimate_future_whole_user_ui_leaf",
+      "wholeGuardExit": 1,
+      "completeActualCoreGateCount": 1,
+      "completeActualAdminGateCount": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: whole user administration gate occurs once\n\n3 !== 2\n\n    at file:///tmp/user99-c6b-reviewer-guard-fixture/scripts/check-user-repository-source.mjs:116:8\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 3,\n  expected: 2,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+    }
+  ]
+}
