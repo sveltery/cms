@@ -19,13 +19,13 @@ it('resolves current local image bytes from the actual API and shared query cach
   try {
     await migrateCms(database);bindCurrentMediaApi(database);
     const item=await new MediaRepository(database).create({filename:'current.png',mimeType:'image/png',storageKey:'current.png',contentHash:'sha1:cropped',authorId:'source-client-owner'});
-    const reader=vi.spyOn(globalThis,'fetch'),sourceAttrs=Object.freeze({mediaId:item.id,provider:'local',src:'/old-stored-image.png'});
+    const reader=vi.spyOn(globalThis,'fetch'),sourceAttrs=Object.freeze({mediaId:item.id,provider:'local',src:'/_emdash/api/media/file/current.png'});
     const {observeImageMediaPreview}=await mediaPreviewModule();const current=observeImageMediaPreview(queryClient,sourceAttrs);preview=current;
     current.start();
     await vi.waitFor(()=>expect(current.snapshot().src).toBe('/_emdash/api/media/file/current.png?_emdash_media=sha1%3Acropped'));
     expect(queryClient.getQueryData(['media',item.id])).toMatchObject({id:item.id,contentHash:'sha1:cropped'});
     expect(reader.mock.calls[0]?.[1]?.signal).toBeInstanceOf(AbortSignal);
-    expect(sourceAttrs).toEqual({mediaId:item.id,provider:'local',src:'/old-stored-image.png'});
+    expect(sourceAttrs).toEqual({mediaId:item.id,provider:'local',src:'/_emdash/api/media/file/current.png'});
   } finally {preview?.dispose();queryClient.clear();vi.restoreAllMocks();vi.unstubAllGlobals();await database.close();}
 });
 
@@ -34,11 +34,11 @@ it('keeps gallery preview reads disabled and observes the real shared image cach
   try {
     await migrateCms(database);bindCurrentMediaApi(database);
     const item=await new MediaRepository(database).create({filename:'gallery.png',mimeType:'image/png',storageKey:'gallery.png',contentHash:'sha1:current',authorId:'source-client-owner'});
-    const reader=vi.spyOn(globalThis,'fetch'),image=Object.freeze({asset:{_ref:item.id,provider:'local',url:'/stored-gallery.png'}});
+    const reader=vi.spyOn(globalThis,'fetch'),image=Object.freeze({asset:{_ref:item.id,provider:'local',url:'/_emdash/api/media/file/stored-gallery.png'}});
     const {observeGalleryMediaPreview}=await mediaPreviewModule();const current=observeGalleryMediaPreview(queryClient,image);preview=current;
-    current.start();expect(current.snapshot().src).toBe('/stored-gallery.png');expect(reader).not.toHaveBeenCalled();
+    current.start();expect(current.snapshot().src).toBe('/_emdash/api/media/file/stored-gallery.png');expect(reader).not.toHaveBeenCalled();
     await queryClient.fetchQuery({queryKey:['media',item.id],queryFn:({signal})=>fetchMediaItem(item.id,{signal})});
-    await vi.waitFor(()=>expect(current.snapshot().src).toBe('/stored-gallery.png?_emdash_media=sha1%3Acurrent'));
-    expect(reader).toHaveBeenCalledTimes(1);expect(image.asset.url).toBe('/stored-gallery.png');
+    await vi.waitFor(()=>expect(current.snapshot().src).toBe('/_emdash/api/media/file/stored-gallery.png?_emdash_media=sha1%3Acurrent'));
+    expect(reader).toHaveBeenCalledTimes(1);expect(image.asset.url).toBe('/_emdash/api/media/file/stored-gallery.png');
   } finally {preview?.dispose();queryClient.clear();vi.restoreAllMocks();vi.unstubAllGlobals();await database.close();}
 });
