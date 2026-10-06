@@ -1,0 +1,716 @@
+﻿2026-10-06T01:44:17.2260646Z Current runner version: '2.337.0'
+2026-10-06T01:44:17.2298380Z ##[group]Runner Image Provisioner
+2026-10-06T01:44:17.2299788Z Hosted Compute Agent
+2026-10-06T01:44:17.2301141Z Version: 20260901.588
+2026-10-06T01:44:17.2302751Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-06T01:44:17.2304267Z Build Date: 2026-09-01T19:56:44Z
+2026-10-06T01:44:17.2305622Z Worker ID: {a4ad5d61-608a-440b-8df9-e4bf75da7589}
+2026-10-06T01:44:17.2306991Z Azure Region: northcentralus
+2026-10-06T01:44:17.2308275Z ##[endgroup]
+2026-10-06T01:44:17.2311831Z ##[group]Operating System
+2026-10-06T01:44:17.2313042Z Ubuntu
+2026-10-06T01:44:17.2314060Z 22.04.5
+2026-10-06T01:44:17.2315017Z LTS
+2026-10-06T01:44:17.2316080Z ##[endgroup]
+2026-10-06T01:44:17.2317164Z ##[group]Runner Image
+2026-10-06T01:44:17.2318214Z Image: ubuntu-22.04
+2026-10-06T01:44:17.2319405Z Version: 20260927.309.1
+2026-10-06T01:44:17.2322001Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20260927.309/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-06T01:44:17.2325062Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20260927.309
+2026-10-06T01:44:17.2326995Z ##[endgroup]
+2026-10-06T01:44:17.2329086Z ##[group]GITHUB_TOKEN Permissions
+2026-10-06T01:44:17.2332625Z Contents: read
+2026-10-06T01:44:17.2333707Z Metadata: read
+2026-10-06T01:44:17.2334674Z ##[endgroup]
+2026-10-06T01:44:17.2337835Z Secret source: Actions
+2026-10-06T01:44:17.2339443Z Cache mode: write
+2026-10-06T01:44:17.2340775Z Prepare workflow directory
+2026-10-06T01:44:17.2845596Z Prepare all required actions
+2026-10-06T01:44:17.2919738Z Getting action download info
+2026-10-06T01:44:17.5459221Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-06T01:44:17.6757331Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-10-06T01:44:18.0072562Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-06T01:44:18.1475431Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-06T01:44:18.4462281Z Complete job name: media-admin-editor-source (library)
+2026-10-06T01:44:18.5302649Z ##[group]Run actions/checkout@v4
+2026-10-06T01:44:18.5303776Z with:
+2026-10-06T01:44:18.5304511Z   repository: sveltery/cms
+2026-10-06T01:44:18.5308736Z   token: ***
+2026-10-06T01:44:18.5309385Z   ssh-strict: true
+2026-10-06T01:44:18.5309950Z   ssh-user: git
+2026-10-06T01:44:18.5310488Z   persist-credentials: true
+2026-10-06T01:44:18.5311186Z   clean: true
+2026-10-06T01:44:18.5311965Z   sparse-checkout-cone-mode: true
+2026-10-06T01:44:18.5312697Z   fetch-depth: 1
+2026-10-06T01:44:18.5313275Z   fetch-tags: false
+2026-10-06T01:44:18.5313843Z   show-progress: true
+2026-10-06T01:44:18.5314556Z   lfs: false
+2026-10-06T01:44:18.5315103Z   submodules: false
+2026-10-06T01:44:18.5315739Z   set-safe-directory: true
+2026-10-06T01:44:18.5316396Z   allow-unsafe-pr-checkout: false
+2026-10-06T01:44:18.5317426Z ##[endgroup]
+2026-10-06T01:44:18.6380658Z Syncing repository: sveltery/cms
+2026-10-06T01:44:18.6384167Z ##[group]Getting Git version info
+2026-10-06T01:44:18.6385916Z Working directory is '/home/runner/work/cms/cms'
+2026-10-06T01:44:18.6387822Z [command]/usr/bin/git version
+2026-10-06T01:44:18.6515337Z git version 2.55.0
+2026-10-06T01:44:18.6574382Z ##[endgroup]
+2026-10-06T01:44:18.6584771Z Temporarily overriding HOME='/home/runner/work/_temp/945d4718-d3ce-45ef-bf73-3d737ca9e62e' before making global git config changes
+2026-10-06T01:44:18.6587441Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T01:44:18.6590388Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T01:44:18.6631289Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-06T01:44:18.6635960Z ##[group]Initializing the repository
+2026-10-06T01:44:18.6639658Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-06T01:44:18.6778011Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-06T01:44:18.6791796Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-06T01:44:18.6793516Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-06T01:44:18.6794951Z hint: call:
+2026-10-06T01:44:18.6796262Z hint:
+2026-10-06T01:44:18.6797472Z hint: 	git config --global init.defaultBranch <name>
+2026-10-06T01:44:18.6798594Z hint:
+2026-10-06T01:44:18.6799885Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-06T01:44:18.6802020Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-06T01:44:18.6803532Z hint:
+2026-10-06T01:44:18.6804611Z hint: 	git branch -m <name>
+2026-10-06T01:44:18.6805672Z hint:
+2026-10-06T01:44:18.6807250Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-06T01:44:18.6809330Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-06T01:44:18.6812860Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-06T01:44:18.6840639Z ##[endgroup]
+2026-10-06T01:44:18.6842872Z ##[group]Disabling automatic garbage collection
+2026-10-06T01:44:18.6864180Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-06T01:44:18.6909177Z ##[endgroup]
+2026-10-06T01:44:18.6911312Z ##[group]Setting up auth
+2026-10-06T01:44:18.6917295Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T01:44:18.6955578Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T01:44:18.7401308Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T01:44:18.7444270Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T01:44:18.7717109Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T01:44:18.7759605Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T01:44:18.8028833Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-06T01:44:18.8075306Z ##[endgroup]
+2026-10-06T01:44:18.8076471Z ##[group]Fetching the repository
+2026-10-06T01:44:18.8084473Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +75fd61ec31e6268944950117a7103a89c235dc9a:refs/remotes/pull/121/merge
+2026-10-06T01:44:19.9571758Z From https://github.com/sveltery/cms
+2026-10-06T01:44:19.9574393Z  * [new ref]         75fd61ec31e6268944950117a7103a89c235dc9a -> pull/121/merge
+2026-10-06T01:44:19.9578827Z ##[endgroup]
+2026-10-06T01:44:19.9580316Z ##[group]Determining the checkout info
+2026-10-06T01:44:19.9582251Z ##[endgroup]
+2026-10-06T01:44:19.9587507Z [command]/usr/bin/git sparse-checkout disable
+2026-10-06T01:44:19.9650746Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-06T01:44:19.9689347Z ##[group]Checking out the ref
+2026-10-06T01:44:19.9692853Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/121/merge
+2026-10-06T01:44:20.4585625Z Note: switching to 'refs/remotes/pull/121/merge'.
+2026-10-06T01:44:20.4586199Z 
+2026-10-06T01:44:20.4586552Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-06T01:44:20.4587999Z changes and commit them, and you can discard any commits you make in this
+2026-10-06T01:44:20.4588923Z state without impacting any branches by switching back to a branch.
+2026-10-06T01:44:20.4589448Z 
+2026-10-06T01:44:20.4589800Z If you want to create a new branch to retain commits you create, you may
+2026-10-06T01:44:20.4590571Z do so (now or later) by using -c with the switch command. Example:
+2026-10-06T01:44:20.4591431Z 
+2026-10-06T01:44:20.4592010Z   git switch -c <new-branch-name>
+2026-10-06T01:44:20.4592321Z 
+2026-10-06T01:44:20.4592522Z Or undo this operation with:
+2026-10-06T01:44:20.4592827Z 
+2026-10-06T01:44:20.4592994Z   git switch -
+2026-10-06T01:44:20.4593229Z 
+2026-10-06T01:44:20.4593619Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-06T01:44:20.4594161Z 
+2026-10-06T01:44:20.4594759Z HEAD is now at 75fd61e Merge 563b3fb36a43265336e34c4610cd6e2306195a8a into d8989c402af17e329be09c0f17773fa33e36d7a9
+2026-10-06T01:44:20.4612173Z ##[endgroup]
+2026-10-06T01:44:20.4659948Z [command]/usr/bin/git log -1 --format=%H
+2026-10-06T01:44:20.4691907Z 75fd61ec31e6268944950117a7103a89c235dc9a
+2026-10-06T01:44:20.4955429Z ##[group]Run pnpm/action-setup@v4
+2026-10-06T01:44:20.4955742Z with:
+2026-10-06T01:44:20.4955954Z   version: 12.6.0
+2026-10-06T01:44:20.4956168Z   dest: ~/setup-pnpm
+2026-10-06T01:44:20.4956388Z   run_install: null
+2026-10-06T01:44:20.4956617Z   cache: false
+2026-10-06T01:44:20.4956843Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-06T01:44:20.4957153Z   package_json_file: package.json
+2026-10-06T01:44:20.4957423Z   standalone: false
+2026-10-06T01:44:20.4957643Z ##[endgroup]
+2026-10-06T01:44:20.6457658Z ##[group]Running self-installer...
+2026-10-06T01:44:21.1266941Z (node:2038) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:44:21.1268516Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:44:21.2984451Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-06T01:44:21.6562680Z Packages: +3
+2026-10-06T01:44:21.6563502Z +++
+2026-10-06T01:44:22.2792771Z Progress: resolved 15, reused 0, downloaded 3, added 3, done
+2026-10-06T01:44:22.2957676Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall$ node install.js
+2026-10-06T01:44:24.1811002Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall: Done
+2026-10-06T01:44:24.1817951Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall$ node install.js
+2026-10-06T01:44:24.2349550Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall: Done
+2026-10-06T01:44:25.7879119Z 
+2026-10-06T01:44:25.7880090Z dependencies:
+2026-10-06T01:44:25.7881190Z + pnpm 12.6.0 (12.9.1 is available)
+2026-10-06T01:44:25.7882035Z 
+2026-10-06T01:44:25.7925433Z Done in 4.8s
+2026-10-06T01:44:25.8447486Z ##[endgroup]
+2026-10-06T01:44:25.8448266Z Installation Completed!
+2026-10-06T01:44:25.8652630Z ##[group]Run actions/setup-node@v4
+2026-10-06T01:44:25.8652923Z with:
+2026-10-06T01:44:25.8653123Z   node-version: 24
+2026-10-06T01:44:25.8653327Z   cache: pnpm
+2026-10-06T01:44:25.8653524Z   always-auth: false
+2026-10-06T01:44:25.8653738Z   check-latest: false
+2026-10-06T01:44:25.8656315Z   token: ***
+2026-10-06T01:44:25.8656517Z env:
+2026-10-06T01:44:25.8656777Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:44:25.8657120Z ##[endgroup]
+2026-10-06T01:44:26.0267372Z (node:2069) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T01:44:26.0268370Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:44:26.0275051Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-06T01:44:26.0275936Z ##[group]Environment details
+2026-10-06T01:44:26.4588632Z node: v24.21.0
+2026-10-06T01:44:26.4588920Z npm: 11.19.0
+2026-10-06T01:44:26.4589134Z yarn: 1.22.22
+2026-10-06T01:44:26.4590365Z ##[endgroup]
+2026-10-06T01:44:26.4615902Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-06T01:44:26.4830554Z /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:44:26.5958550Z Cache hit for: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:44:26.6097519Z (node:2069) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:44:27.7163748Z Received 134217728 of 174062786 (77.1%), 126.9 MBs/sec
+2026-10-06T01:44:27.9727178Z Received 174062786 of 174062786 (100.0%), 131.2 MBs/sec
+2026-10-06T01:44:27.9728878Z Cache Size: ~166 MB (174062786 B)
+2026-10-06T01:44:27.9766705Z [command]/usr/bin/tar -xf /home/runner/work/_temp/cc935a5f-3dc3-4065-86e6-7a40aa571783/cache.tzst -P -C /home/runner/work/cms/cms --use-compress-program unzstd
+2026-10-06T01:44:30.2648538Z Cache restored successfully
+2026-10-06T01:44:30.3049816Z Cache restored from key: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:44:30.3342868Z ##[group]Run pnpm install --frozen-lockfile
+2026-10-06T01:44:30.3343317Z [36;1mpnpm install --frozen-lockfile[0m
+2026-10-06T01:44:30.3940969Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:44:30.3941302Z env:
+2026-10-06T01:44:30.3942066Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:44:30.3942456Z ##[endgroup]
+2026-10-06T01:44:30.4532298Z ? Verifying lockfile against supply-chain policies (534 entries)...
+2026-10-06T01:44:30.6699139Z Packages are hard linked from the content-addressable store to the virtual store.
+2026-10-06T01:44:30.6700219Z   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:44:30.6700972Z   Virtual store is at:             node_modules/.pnpm
+2026-10-06T01:44:32.9075130Z ✓ Lockfile passes supply-chain policies (534 entries in 2.5s)
+2026-10-06T01:44:32.9075975Z Lockfile is up to date, resolution step is skipped
+2026-10-06T01:44:32.9137124Z Packages: +403
+2026-10-06T01:44:32.9138242Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-06T01:44:32.9677076Z Progress: resolved 403, reused 403, downloaded 0, added 403, done
+2026-10-06T01:44:33.0398355Z . prepare$ svelte-kit sync
+2026-10-06T01:44:34.2631649Z . prepare: Done
+2026-10-06T01:44:34.2641000Z 
+2026-10-06T01:44:34.2641298Z dependencies:
+2026-10-06T01:44:34.2642240Z + @oslojs/crypto 1.0.1
+2026-10-06T01:44:34.2642951Z + @oslojs/encoding 1.1.0
+2026-10-06T01:44:34.2643609Z + @oslojs/webauthn 1.0.0
+2026-10-06T01:44:34.2644372Z + @wordpress/block-serialization-default-parser 5.38.0
+2026-10-06T01:44:34.2644919Z + blurhash 2.0.5
+2026-10-06T01:44:34.2645246Z + cn 0.2.2
+2026-10-06T01:44:34.2645557Z + date-fns 4.1.0
+2026-10-06T01:44:34.2645909Z + image-size 2.0.2
+2026-10-06T01:44:34.2646246Z + jpeg-js 0.4.4
+2026-10-06T01:44:34.2646597Z + jsonc-parser 3.3.1
+2026-10-06T01:44:34.2646947Z + kysely 0.29.2
+2026-10-06T01:44:34.2647262Z + mime 4.1.0
+2026-10-06T01:44:34.2647570Z + parse5 7.3.0
+2026-10-06T01:44:34.2647945Z + smol-toml 1.6.0
+2026-10-06T01:44:34.2648324Z + ulidx 2.4.1
+2026-10-06T01:44:34.2648642Z + upng-js 2.1.0
+2026-10-06T01:44:34.2648958Z + valibot 1.5.0
+2026-10-06T01:44:34.2649283Z + zod 4.5.4
+2026-10-06T01:44:34.2649467Z 
+2026-10-06T01:44:34.2649754Z devDependencies:
+2026-10-06T01:44:34.2650113Z + @babel/core 7.29.7
+2026-10-06T01:44:34.2650548Z + @cloudflare/kumo 2.6.0
+2026-10-06T01:44:34.2651113Z + @cloudflare/workers-types 4.20260507.1
+2026-10-06T01:44:34.2652035Z + @floating-ui/dom 1.8.0
+2026-10-06T01:44:34.2652885Z + @lingui/babel-plugin-lingui-macro 5.9.5
+2026-10-06T01:44:34.2653683Z + @lingui/conf 5.9.5
+2026-10-06T01:44:34.2654300Z + @lingui/core 5.9.5
+2026-10-06T01:44:34.2654899Z + @lingui/react 5.9.5
+2026-10-06T01:44:34.2655538Z + @playwright/test 1.63.0
+2026-10-06T01:44:34.2656238Z + @sveltejs/adapter-auto 7.0.1
+2026-10-06T01:44:34.2656984Z + @sveltejs/adapter-cloudflare 7.2.9
+2026-10-06T01:44:34.2657764Z + @sveltejs/adapter-node 5.5.7
+2026-10-06T01:44:34.2658409Z + @sveltejs/kit 2.70.3
+2026-10-06T01:44:34.2659217Z + @sveltejs/vite-plugin-svelte 7.3.1
+2026-10-06T01:44:34.2660011Z + @tanstack/react-query 5.90.21
+2026-10-06T01:44:34.2660602Z + @tanstack/react-router 1.163.2
+2026-10-06T01:44:34.2661092Z + @testing-library/react 16.3.2
+2026-10-06T01:44:34.2662536Z + @types/jsdom 30.0.0
+2026-10-06T01:44:34.2663100Z + @types/node 24.19.0
+2026-10-06T01:44:34.2663572Z + @types/react 19.3.0
+2026-10-06T01:44:34.2664892Z + @types/react-dom 19.3.0
+2026-10-06T01:44:34.2665468Z + @vitest/browser-playwright 4.1.10
+2026-10-06T01:44:34.2665970Z + devalue 5.9.4
+2026-10-06T01:44:34.2666320Z + jsdom 30.1.1
+2026-10-06T01:44:34.2666710Z + miniflare 4.20260507.1
+2026-10-06T01:44:34.2667113Z + pg 8.18.0
+2026-10-06T01:44:34.2667459Z + react 19.3.0
+2026-10-06T01:44:34.2667886Z + react-day-picker 9.14.0
+2026-10-06T01:44:34.2668313Z + react-dom 19.3.0
+2026-10-06T01:44:34.2668680Z + svelte 5.57.1
+2026-10-06T01:44:34.2669051Z + svelte-check 4.7.6
+2026-10-06T01:44:34.2669462Z + typescript 6.0.3
+2026-10-06T01:44:34.2669829Z + vite 8.3.2
+2026-10-06T01:44:34.2670517Z + vitest 4.1.10
+2026-10-06T01:44:34.2670988Z + vitest-browser-react 2.2.0
+2026-10-06T01:44:34.2671676Z + wrangler 4.99.0
+2026-10-06T01:44:34.2671928Z 
+2026-10-06T01:44:34.2672197Z Done in 3.8s using pnpm v12.6.0
+2026-10-06T01:44:34.3022553Z ##[group]Run pnpm exec playwright install --with-deps chromium
+2026-10-06T01:44:34.3023114Z [36;1mpnpm exec playwright install --with-deps chromium[0m
+2026-10-06T01:44:34.3095774Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:44:34.3096099Z env:
+2026-10-06T01:44:34.3096416Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:44:34.3096827Z ##[endgroup]
+2026-10-06T01:44:34.9892052Z Installing dependencies...
+2026-10-06T01:44:34.9979512Z Switching to root user to install dependencies...
+2026-10-06T01:44:35.1275595Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-06T01:44:35.1562285Z Get:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
+2026-10-06T01:44:35.1673975Z Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-10-06T01:44:35.1700095Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+2026-10-06T01:44:35.1752889Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+2026-10-06T01:44:35.1783509Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+2026-10-06T01:44:35.2366550Z Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main arm64 Packages [551 kB]
+2026-10-06T01:44:35.2581003Z Get:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main amd64 Packages [797 kB]
+2026-10-06T01:44:35.4357022Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3907 kB]
+2026-10-06T01:44:35.4619982Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [576 kB]
+2026-10-06T01:44:35.4653936Z Get:11 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6714 kB]
+2026-10-06T01:44:35.4971378Z Get:12 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1290 kB]
+2026-10-06T01:44:35.5053672Z Get:13 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1285 kB]
+2026-10-06T01:44:35.5123991Z Get:14 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [325 kB]
+2026-10-06T01:44:35.6273968Z Get:15 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3631 kB]
+2026-10-06T01:44:35.6448085Z Get:16 http://azure.archive.ubuntu.com/ubuntu jammy-security/main Translation-en [508 kB]
+2026-10-06T01:44:35.6480974Z Get:17 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6465 kB]
+2026-10-06T01:44:35.6764721Z Get:18 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1244 kB]
+2026-10-06T01:44:35.7252437Z Get:19 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1052 kB]
+2026-10-06T01:44:35.7313502Z Get:20 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe Translation-en [237 kB]
+2026-10-06T01:44:41.6189392Z Fetched 29.0 MB in 3s (8994 kB/s)
+2026-10-06T01:44:42.9236199Z Reading package lists...
+2026-10-06T01:44:42.9879252Z Reading package lists...
+2026-10-06T01:44:43.2281380Z Building dependency tree...
+2026-10-06T01:44:43.2293385Z Reading state information...
+2026-10-06T01:44:43.3988047Z fonts-liberation is already the newest version (1:1.07.4-11).
+2026-10-06T01:44:43.3988751Z fonts-liberation set to manually installed.
+2026-10-06T01:44:43.3989779Z libatk-bridge2.0-0 is already the newest version (2.38.0-3).
+2026-10-06T01:44:43.3990636Z libatk-bridge2.0-0 set to manually installed.
+2026-10-06T01:44:43.3992101Z libatk1.0-0 is already the newest version (2.36.0-3build1).
+2026-10-06T01:44:43.3993003Z libatk1.0-0 set to manually installed.
+2026-10-06T01:44:43.3994031Z libatspi2.0-0 is already the newest version (2.44.0-3).
+2026-10-06T01:44:43.3995219Z libatspi2.0-0 set to manually installed.
+2026-10-06T01:44:43.3996558Z libfontconfig1 is already the newest version (2.13.1-4.2ubuntu5).
+2026-10-06T01:44:43.3997868Z libfontconfig1 set to manually installed.
+2026-10-06T01:44:43.3999027Z libxcb1 is already the newest version (1.14-3ubuntu3).
+2026-10-06T01:44:43.4000042Z libxcb1 set to manually installed.
+2026-10-06T01:44:43.4001955Z libxcomposite1 is already the newest version (1:0.4.5-1build2).
+2026-10-06T01:44:43.4002779Z libxcomposite1 set to manually installed.
+2026-10-06T01:44:43.4003527Z libxdamage1 is already the newest version (1:1.1.5-2build2).
+2026-10-06T01:44:43.4004271Z libxdamage1 set to manually installed.
+2026-10-06T01:44:43.4004988Z libxext6 is already the newest version (2:1.3.4-1build1).
+2026-10-06T01:44:43.4005650Z libxext6 set to manually installed.
+2026-10-06T01:44:43.4006311Z libxfixes3 is already the newest version (1:6.0.0-1).
+2026-10-06T01:44:43.4006972Z libxfixes3 set to manually installed.
+2026-10-06T01:44:43.4007666Z libxkbcommon0 is already the newest version (1.4.0-1).
+2026-10-06T01:44:43.4008362Z libxkbcommon0 set to manually installed.
+2026-10-06T01:44:43.4009105Z libxrandr2 is already the newest version (2:1.5.2-1build1).
+2026-10-06T01:44:43.4009834Z libxrandr2 set to manually installed.
+2026-10-06T01:44:43.4010706Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.22.04.1).
+2026-10-06T01:44:43.4011956Z libasound2 is already the newest version (1.2.6.1-1ubuntu1.2).
+2026-10-06T01:44:43.4012730Z libasound2 set to manually installed.
+2026-10-06T01:44:43.4013489Z libcairo2 is already the newest version (1.16.0-5ubuntu2.1).
+2026-10-06T01:44:43.4014221Z libcairo2 set to manually installed.
+2026-10-06T01:44:43.4015012Z libcups2 is already the newest version (2.4.1op1-1ubuntu4.21).
+2026-10-06T01:44:43.4015762Z libcups2 set to manually installed.
+2026-10-06T01:44:43.4016516Z libdbus-1-3 is already the newest version (1.12.20-2ubuntu4.1).
+2026-10-06T01:44:43.4017280Z libdbus-1-3 set to manually installed.
+2026-10-06T01:44:43.4018058Z libdrm2 is already the newest version (2.4.113-2~ubuntu0.22.04.1).
+2026-10-06T01:44:43.4018793Z libdrm2 set to manually installed.
+2026-10-06T01:44:43.4019594Z libfreetype6 is already the newest version (2.11.1+dfsg-1ubuntu0.3).
+2026-10-06T01:44:43.4020391Z libfreetype6 set to manually installed.
+2026-10-06T01:44:43.4021201Z libgbm1 is already the newest version (23.2.1-1ubuntu3.1~22.04.4).
+2026-10-06T01:44:43.4022220Z libgbm1 set to manually installed.
+2026-10-06T01:44:43.4022981Z libglib2.0-0 is already the newest version (2.72.4-0ubuntu2.10).
+2026-10-06T01:44:43.4023743Z libglib2.0-0 set to manually installed.
+2026-10-06T01:44:43.4024540Z libnspr4 is already the newest version (2:4.35-0ubuntu0.22.04.1).
+2026-10-06T01:44:43.4025474Z libnss3 is already the newest version (2:3.98-0ubuntu0.22.04.4).
+2026-10-06T01:44:43.4026406Z libpango-1.0-0 is already the newest version (1.50.6+ds-2ubuntu1).
+2026-10-06T01:44:43.4027187Z libpango-1.0-0 set to manually installed.
+2026-10-06T01:44:43.4028078Z libwayland-client0 is already the newest version (1.20.0-1ubuntu0.1).
+2026-10-06T01:44:43.4028960Z libwayland-client0 set to manually installed.
+2026-10-06T01:44:43.4029796Z libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+2026-10-06T01:44:43.4030552Z libx11-6 set to manually installed.
+2026-10-06T01:44:43.4031380Z xvfb is already the newest version (2:21.1.4-2ubuntu1.7~22.04.16).
+2026-10-06T01:44:43.4032535Z The following additional packages will be installed:
+2026-10-06T01:44:43.4032918Z   xfonts-encodings xfonts-utils
+2026-10-06T01:44:43.4033212Z Recommended packages:
+2026-10-06T01:44:43.4033497Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-10-06T01:44:43.4267270Z The following NEW packages will be installed:
+2026-10-06T01:44:43.4268415Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-06T01:44:43.4273944Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-06T01:44:43.4274838Z   xfonts-utils
+2026-10-06T01:44:43.4457374Z 0 upgraded, 9 newly installed, 0 to remove and 20 not upgraded.
+2026-10-06T01:44:43.4458115Z Need to get 18.4 MB of archives.
+2026-10-06T01:44:43.4458872Z After this operation, 56.8 MB of additional disk space will be used.
+2026-10-06T01:44:43.4459756Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-06T01:44:43.5087196Z Get:2 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-06T01:44:43.7360875Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 fonts-freefont-ttf all 20120503-10build1 [2388 kB]
+2026-10-06T01:44:43.8170484Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-06T01:44:43.8416341Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-unifont all 1:14.0.01-1 [3551 kB]
+2026-10-06T01:44:43.9767792Z Get:6 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-06T01:44:44.2325974Z Get:7 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-06T01:44:44.2645080Z Get:8 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-utils amd64 1:7.7+6build2 [94.6 kB]
+2026-10-06T01:44:44.2900450Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 xfonts-cyrillic all 1:1.0.5 [386 kB]
+2026-10-06T01:44:44.3269785Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-scalable all 1:1.0.3-1.2ubuntu1 [306 kB]
+2026-10-06T01:44:44.6566310Z Fetched 18.4 MB in 1s (20.4 MB/s)
+2026-10-06T01:44:44.6896191Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-06T01:44:44.7317899Z (Reading database ... 
+2026-10-06T01:44:44.7318388Z (Reading database ... 5%
+2026-10-06T01:44:44.7318821Z (Reading database ... 10%
+2026-10-06T01:44:44.7319229Z (Reading database ... 15%
+2026-10-06T01:44:44.7319624Z (Reading database ... 20%
+2026-10-06T01:44:44.7320135Z (Reading database ... 25%
+2026-10-06T01:44:44.7320521Z (Reading database ... 30%
+2026-10-06T01:44:44.7320911Z (Reading database ... 35%
+2026-10-06T01:44:44.7321300Z (Reading database ... 40%
+2026-10-06T01:44:44.7322039Z (Reading database ... 45%
+2026-10-06T01:44:44.7322449Z (Reading database ... 50%
+2026-10-06T01:44:44.8441848Z (Reading database ... 55%
+2026-10-06T01:44:45.0505025Z (Reading database ... 60%
+2026-10-06T01:44:45.3004284Z (Reading database ... 65%
+2026-10-06T01:44:45.5145275Z (Reading database ... 70%
+2026-10-06T01:44:45.7411361Z (Reading database ... 75%
+2026-10-06T01:44:45.9994749Z (Reading database ... 80%
+2026-10-06T01:44:46.2413661Z (Reading database ... 85%
+2026-10-06T01:44:46.4967278Z (Reading database ... 90%
+2026-10-06T01:44:46.7074579Z (Reading database ... 95%
+2026-10-06T01:44:46.7075166Z (Reading database ... 100%
+2026-10-06T01:44:46.7076044Z (Reading database ... 260411 files and directories currently installed.)
+2026-10-06T01:44:46.7130011Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-06T01:44:46.7235157Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-06T01:44:46.9718989Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-06T01:44:46.9928809Z Preparing to unpack .../1-fonts-freefont-ttf_20120503-10build1_all.deb ...
+2026-10-06T01:44:46.9935378Z Unpacking fonts-freefont-ttf (20120503-10build1) ...
+2026-10-06T01:44:47.1752917Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-06T01:44:47.1958208Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-06T01:44:47.1964991Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-06T01:44:47.2194063Z Selecting previously unselected package fonts-unifont.
+2026-10-06T01:44:47.2401355Z Preparing to unpack .../3-fonts-unifont_1%3a14.0.01-1_all.deb ...
+2026-10-06T01:44:47.2407182Z Unpacking fonts-unifont (1:14.0.01-1) ...
+2026-10-06T01:44:47.3251321Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-06T01:44:47.3459303Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-06T01:44:47.3577905Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-06T01:44:47.8417201Z Selecting previously unselected package xfonts-encodings.
+2026-10-06T01:44:47.8625734Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-06T01:44:47.8632656Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-06T01:44:47.8951317Z Selecting previously unselected package xfonts-utils.
+2026-10-06T01:44:47.9153940Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build2_amd64.deb ...
+2026-10-06T01:44:47.9160318Z Unpacking xfonts-utils (1:7.7+6build2) ...
+2026-10-06T01:44:47.9584149Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-06T01:44:47.9787306Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5_all.deb ...
+2026-10-06T01:44:47.9795094Z Unpacking xfonts-cyrillic (1:1.0.5) ...
+2026-10-06T01:44:48.0324330Z Selecting previously unselected package xfonts-scalable.
+2026-10-06T01:44:48.0537164Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.2ubuntu1_all.deb ...
+2026-10-06T01:44:48.0543950Z Unpacking xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-06T01:44:48.1123189Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-06T01:44:48.1245269Z Setting up fonts-freefont-ttf (20120503-10build1) ...
+2026-10-06T01:44:48.1262413Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-06T01:44:48.1282556Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-06T01:44:48.1302814Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-06T01:44:48.1386434Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-06T01:44:48.1408571Z Setting up fonts-unifont (1:14.0.01-1) ...
+2026-10-06T01:44:48.1427347Z Setting up xfonts-utils (1:7.7+6build2) ...
+2026-10-06T01:44:48.1470806Z Setting up xfonts-cyrillic (1:1.0.5) ...
+2026-10-06T01:44:48.1854086Z Setting up xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-06T01:44:48.2156168Z Processing triggers for man-db (2.10.2-1) ...
+2026-10-06T01:44:48.2181022Z Not building database; man-db/auto-update is not 'true'.
+2026-10-06T01:44:48.2194188Z Processing triggers for fontconfig (2.13.1-4.2ubuntu5) ...
+2026-10-06T01:44:48.9545334Z 
+2026-10-06T01:44:48.9546048Z Running kernel seems to be up-to-date.
+2026-10-06T01:44:48.9546570Z 
+2026-10-06T01:44:48.9546921Z No services need to be restarted.
+2026-10-06T01:44:48.9547268Z 
+2026-10-06T01:44:48.9547542Z No containers need to be restarted.
+2026-10-06T01:44:48.9547861Z 
+2026-10-06T01:44:48.9552874Z No user sessions are running outdated binaries.
+2026-10-06T01:44:48.9553309Z 
+2026-10-06T01:44:48.9553849Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-06T01:44:50.1935776Z Downloading Chrome for Testing 153.0.8010.12 (playwright chromium v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-linux64.zip
+2026-10-06T01:44:50.6259316Z |                                                                                |   0% of 186.8 MiB
+2026-10-06T01:44:50.7883229Z |■■■■■■■■                                                                        |  10% of 186.8 MiB
+2026-10-06T01:44:50.8889837Z |■■■■■■■■■■■■■■■■                                                                |  20% of 186.8 MiB
+2026-10-06T01:44:51.0381255Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 186.8 MiB
+2026-10-06T01:44:51.2582517Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 186.8 MiB
+2026-10-06T01:44:51.3798521Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 186.8 MiB
+2026-10-06T01:44:51.5784955Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 186.8 MiB
+2026-10-06T01:44:51.7201812Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 186.8 MiB
+2026-10-06T01:44:51.8505133Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 186.8 MiB
+2026-10-06T01:44:51.9727472Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 186.8 MiB
+2026-10-06T01:44:52.0958640Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 186.8 MiB
+2026-10-06T01:44:55.1287171Z Chrome for Testing 153.0.8010.12 (playwright chromium v1243) downloaded to /home/runner/.cache/ms-playwright/chromium-1243
+2026-10-06T01:44:55.1290506Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+2026-10-06T01:44:55.4976143Z |                                                                                |   0% of 2.3 MiB
+2026-10-06T01:44:55.5021018Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+2026-10-06T01:44:55.5047890Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+2026-10-06T01:44:55.5110177Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+2026-10-06T01:44:55.5128916Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+2026-10-06T01:44:55.5147726Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+2026-10-06T01:44:55.5161961Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+2026-10-06T01:44:55.5179463Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+2026-10-06T01:44:55.5209310Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+2026-10-06T01:44:55.5210575Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+2026-10-06T01:44:55.5213878Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+2026-10-06T01:44:55.5816827Z FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+2026-10-06T01:44:55.5820247Z Downloading Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-headless-shell-linux64.zip
+2026-10-06T01:44:55.9953670Z |                                                                                |   0% of 114.3 MiB
+2026-10-06T01:44:56.1825054Z |■■■■■■■■                                                                        |  10% of 114.3 MiB
+2026-10-06T01:44:56.2678851Z |■■■■■■■■■■■■■■■■                                                                |  20% of 114.3 MiB
+2026-10-06T01:44:56.3382574Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.3 MiB
+2026-10-06T01:44:56.4423529Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.3 MiB
+2026-10-06T01:44:56.5022403Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.3 MiB
+2026-10-06T01:44:56.6086489Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.3 MiB
+2026-10-06T01:44:56.7204366Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.3 MiB
+2026-10-06T01:44:56.7722583Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.3 MiB
+2026-10-06T01:44:56.8348121Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.3 MiB
+2026-10-06T01:44:56.9102513Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.3 MiB
+2026-10-06T01:44:59.1403431Z Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1243
+2026-10-06T01:44:59.1673507Z ##[group]Run pnpm test:media-admin-editor:browser --reporter=default --reporter=json --outputFile=media-source-results.json
+2026-10-06T01:44:59.1674440Z [36;1mpnpm test:media-admin-editor:browser --reporter=default --reporter=json --outputFile=media-source-results.json[0m
+2026-10-06T01:44:59.1746151Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:44:59.1746435Z env:
+2026-10-06T01:44:59.1746730Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:44:59.1747142Z   MEDIA_SOURCE_GROUP: library
+2026-10-06T01:44:59.1747440Z   DEBUG: pw:browser
+2026-10-06T01:44:59.1747682Z ##[endgroup]
+2026-10-06T01:44:59.2028774Z $ node scripts/check-media-admin-editor-source.mjs && vitest run --config vitest.media-admin-editor-browser.config.ts --reporter=default --reporter=json --outputFile=media-source-results.json
+2026-10-06T01:44:59.5046880Z {"immutableFiles":44,"wholeTestFiles":42,"runtimeWholeTestFiles":3,"declarations":497,"expectationExpressions":2015,"pinnedApiBodies":2,"productTestsRun":0}
+2026-10-06T01:45:00.3943602Z 
+2026-10-06T01:45:00.3947807Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:45:00.3948457Z 
+2026-10-06T01:45:01.3707253Z 2026-10-06T01:45:01.369Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-KofYoZ --remote-debugging-pipe --no-startup-window
+2026-10-06T01:45:01.3773271Z 2026-10-06T01:45:01.377Z pw:browser <launched> pid=2998
+2026-10-06T01:45:01.8837298Z [2m1:45:01 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+2026-10-06T01:45:01.9243413Z 2026-10-06T01:45:01.923Z pw:browser [pid=2998][err] [1006/014501.652984:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-06T01:45:01.9245910Z 2026-10-06T01:45:01.924Z pw:browser [pid=2998][err] Unable to revert mtime: /usr/share/fonts
+2026-10-06T01:45:01.9254895Z 2026-10-06T01:45:01.924Z pw:browser [pid=2998][err] Unable to revert mtime: /usr/share/fonts/truetype
+2026-10-06T01:45:01.9256355Z 2026-10-06T01:45:01.924Z pw:browser [pid=2998][err] Unable to revert mtime: /usr/share/fonts/truetype/dejavu
+2026-10-06T01:45:01.9258729Z 2026-10-06T01:45:01.924Z pw:browser [pid=2998][err] [1006/014501.690507:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-06T01:45:01.9260360Z 2026-10-06T01:45:01.924Z pw:browser [pid=2998][err] [1006/014501.694364:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-06T01:45:02.0071041Z 2026-10-06T01:45:02.006Z pw:browser [pid=2998][err] Unable to revert mtime: /usr/share/fonts/truetype/lato
+2026-10-06T01:45:02.6436595Z 2026-10-06T01:45:02.643Z pw:browser [pid=2998][err] Unable to revert mtime: /usr/share/fonts/truetype/liberation
+2026-10-06T01:45:02.7223001Z 2026-10-06T01:45:02.722Z pw:browser [pid=2998][err] Unable to revert mtime: /usr/share/fonts/truetype/noto
+2026-10-06T01:45:02.9408042Z 2026-10-06T01:45:02.938Z pw:browser [pid=2998][err] [1006/014502.937895:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-06T01:45:02.9425356Z 2026-10-06T01:45:02.940Z pw:browser [pid=2998][err] [1006/014502.940106:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-06T01:45:02.9462346Z 2026-10-06T01:45:02.945Z pw:browser [pid=2998][err] [1006/014502.945722:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-06T01:45:03.3115028Z 2026-10-06T01:45:03.311Z pw:browser [pid=2998][err] [1006/014503.311078:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:45:03.3207906Z 2026-10-06T01:45:03.320Z pw:browser [pid=2998][err] [1006/014503.317782:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:45:03.3819303Z 2026-10-06T01:45:03.379Z pw:browser [pid=2998][err] [1006/014503.375853:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:45:03.3953728Z 2026-10-06T01:45:03.393Z pw:browser [pid=2998][err] [1006/014503.383283:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:45:04.2769474Z [2m1:45:04 AM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: tests/helpers/media-admin-editor-state.svelte.ts:2:8 `$state(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+2026-10-06T01:45:04.2772281Z https://svelte.dev/e/state_invalid_placement
+2026-10-06T01:45:04.2773234Z   Plugin: [35mvite-plugin-svelte:compile-module[39m
+2026-10-06T01:45:04.2774257Z   File: [36mtests/helpers/media-admin-editor-state.svelte.ts[39m:2:9
+2026-10-06T01:45:04.2775305Z [33m   1 |  export function nativeMediaState(props) {
+2026-10-06T01:45:04.2775934Z    2 |    return $state(props);
+2026-10-06T01:45:04.2776377Z                               ^
+2026-10-06T01:45:04.2776792Z    3 |  }
+2026-10-06T01:45:04.2777241Z    4 |  [39m
+2026-10-06T01:45:04.4254326Z [2m1:45:04 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: tests/helpers/media-admin-editor-state.svelte.ts:2:8 `$state(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+2026-10-06T01:45:04.4256886Z https://svelte.dev/e/state_invalid_placement[39m
+2026-10-06T01:45:04.4283490Z   Plugin: [35mvite-plugin-svelte:compile-module[39m
+2026-10-06T01:45:04.4285865Z   File: [36mtests/helpers/media-admin-editor-state.svelte.ts[39m:2:9
+2026-10-06T01:45:04.4303659Z [33m   1 |  export function nativeMediaState(props) {
+2026-10-06T01:45:04.4304476Z    2 |    return $state(props);
+2026-10-06T01:45:04.4305068Z                               ^
+2026-10-06T01:45:04.4305581Z    3 |  }
+2026-10-06T01:45:04.4306074Z    4 |  [39m
+2026-10-06T01:45:04.4640425Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.test.tsx [2m([22m[2m0 test[22m[2m)[22m
+2026-10-06T01:45:04.5053171Z 2026-10-06T01:45:04.505Z pw:browser [pid=2998][err] [1006/014504.504899:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:45:04.5242703Z 2026-10-06T01:45:04.523Z pw:browser [pid=2998][err] [1006/014504.521227:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:45:04.6446935Z [2m1:45:04 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "../../src/components/MediaFolderDialog" from "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx". Does the file exist?[39m
+2026-10-06T01:45:04.6448490Z   Plugin: [35mvite:import-analysis[39m
+2026-10-06T01:45:04.6449745Z   File: [36m/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx[39m:7:34
+2026-10-06T01:45:04.6451941Z [33m  4  |  import { beforeEach, describe, expect, it, vi } from "vitest";
+2026-10-06T01:45:04.6452902Z   5  |  import { userEvent } from "vitest/browser";
+2026-10-06T01:45:04.6453875Z   6  |  import { MediaFolderDialog } from "../../src/components/MediaFolderDialog";
+2026-10-06T01:45:04.6454770Z      |                                     ^
+2026-10-06T01:45:04.6455574Z   7  |  import { ApiResponseError } from "../../src/lib/api";
+2026-10-06T01:45:04.6456834Z   8  |  import { render } from "../utils/render.tsx";[39m
+2026-10-06T01:45:04.6458586Z       at TransformPluginContext._formatLog (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8766:39)
+2026-10-06T01:45:04.6461126Z       at TransformPluginContext.error (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8763:14)
+2026-10-06T01:45:04.6463774Z       at normalizeUrl (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26423:18)
+2026-10-06T01:45:04.6465862Z       at file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26493:30
+2026-10-06T01:45:04.6467604Z       at async Promise.all (index 5)
+2026-10-06T01:45:04.6469244Z       at TransformPluginContext.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26459:4)
+2026-10-06T01:45:04.6473082Z       at EnvironmentPluginContainer.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8545:14)
+2026-10-06T01:45:04.6475543Z       at loadAndTransform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:19988:26)
+2026-10-06T01:45:04.6576731Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx [2m([22m[2m0 test[22m[2m)[22m
+2026-10-06T01:45:04.6855366Z 2026-10-06T01:45:04.684Z pw:browser [pid=2998][err] [1006/014504.684442:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:45:04.6920554Z 2026-10-06T01:45:04.691Z pw:browser [pid=2998][err] [1006/014504.691633:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:45:04.7737990Z [2m1:45:04 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "../../dist/styles.css" from "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx". Does the file exist?[39m
+2026-10-06T01:45:04.7742144Z   Plugin: [35mvite:import-analysis[39m
+2026-10-06T01:45:04.7743134Z   File: [36m/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx[39m:6:0
+2026-10-06T01:45:04.7744304Z [33m  10 |  const __vi_import_1__ = await globalThis["__vitest_browser_runner__"].wrapDynamicImport(() => import("react"));
+2026-10-06T01:45:04.7745248Z   11 |  const __vi_import_2__ = await globalThis["__vitest_browser_runner__"].wrapDynamicImport(() => import("vitest/browser"));
+2026-10-06T01:45:04.7746024Z   12 |  ..."__vitest_browser_runner__"].wrapDynamicImport(() => import("../../dist/styles.css"));
+2026-10-06T01:45:04.7746543Z      |                                                                 ^
+2026-10-06T01:45:04.7747181Z   13 |  const __vi_import_4__ = await globalThis["__vitest_browser_runner__"].wrapDynamicImport(() => import("../../src/compo...
+2026-10-06T01:45:04.7748187Z   14 |  const __vi_import_5__ = await globalThis["__vitest_browser_runner__"].wrapDynamicImport(() => import("../utils/render...[39m
+2026-10-06T01:45:04.7749405Z       at TransformPluginContext._formatLog (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8766:39)
+2026-10-06T01:45:04.7750779Z       at TransformPluginContext.error (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8763:14)
+2026-10-06T01:45:04.7752598Z       at normalizeUrl (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26423:18)
+2026-10-06T01:45:04.7753786Z       at file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26493:30
+2026-10-06T01:45:04.7754488Z       at async Promise.all (index 3)
+2026-10-06T01:45:04.7755380Z       at TransformPluginContext.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26459:4)
+2026-10-06T01:45:04.7756785Z       at EnvironmentPluginContainer.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8545:14)
+2026-10-06T01:45:04.7758108Z       at loadAndTransform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:19988:26)
+2026-10-06T01:45:04.7866878Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx [2m([22m[2m0 test[22m[2m)[22m
+2026-10-06T01:45:04.8079541Z 2026-10-06T01:45:04.807Z pw:browser [pid=2998][err] [1006/014504.806220:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:45:04.8157214Z 2026-10-06T01:45:04.815Z pw:browser [pid=2998][err] [1006/014504.815406:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:45:04.8703070Z [2m1:45:04 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "../../src/components/media/useMediaUploadQueue.js" from "parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx". Does the file exist?[39m
+2026-10-06T01:45:04.8705544Z   Plugin: [35mvite:import-analysis[39m
+2026-10-06T01:45:04.8707248Z   File: [36m/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx[39m:4:36
+2026-10-06T01:45:04.8708819Z [33m  1  |  import { expect, it, vi } from "vitest";
+2026-10-06T01:45:04.8709568Z   2  |  import { renderHook } from "vitest-browser-react";
+2026-10-06T01:45:04.8710739Z   3  |  import { useMediaUploadQueue } from "../../src/components/media/useMediaUploadQueue.js";
+2026-10-06T01:45:04.8711672Z      |                                       ^
+2026-10-06T01:45:04.8712208Z   4  |  function deferred() {
+2026-10-06T01:45:04.8712768Z   5  |  	let resolve;[39m
+2026-10-06T01:45:04.8713941Z       at TransformPluginContext._formatLog (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8766:39)
+2026-10-06T01:45:04.8715396Z       at TransformPluginContext.error (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8763:14)
+2026-10-06T01:45:04.8716696Z       at normalizeUrl (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26423:18)
+2026-10-06T01:45:04.8717861Z       at file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26493:30
+2026-10-06T01:45:04.8718543Z       at async Promise.all (index 2)
+2026-10-06T01:45:04.8719599Z       at TransformPluginContext.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26459:4)
+2026-10-06T01:45:04.8721802Z       at EnvironmentPluginContainer.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8545:14)
+2026-10-06T01:45:04.8723438Z       at loadAndTransform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:19988:26)
+2026-10-06T01:45:04.8782002Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx [2m([22m[2m0 test[22m[2m)[22m
+2026-10-06T01:45:04.9016256Z 2026-10-06T01:45:04.900Z pw:browser [pid=2998][err] [1006/014504.900669:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:45:04.9083817Z 2026-10-06T01:45:04.908Z pw:browser [pid=2998][err] [1006/014504.907800:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:45:05.0258270Z [2m1:45:05 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "../../src/components/MediaImportSummary.js" from "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx". Does the file exist?[39m
+2026-10-06T01:45:05.0260486Z   Plugin: [35mvite:import-analysis[39m
+2026-10-06T01:45:05.0262405Z   File: [36m/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx[39m:7:35
+2026-10-06T01:45:05.0264107Z [33m  4  |  import { renderToStaticMarkup } from "react-dom/server";
+2026-10-06T01:45:05.0264878Z   5  |  import { describe, expect, it } from "vitest";
+2026-10-06T01:45:05.0265751Z   6  |  import { MediaImportSummary } from "../../src/components/MediaImportSummary.js";
+2026-10-06T01:45:05.0266499Z      |                                      ^
+2026-10-06T01:45:05.0267534Z   7  |  var _jsxFileName = "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components...
+2026-10-06T01:45:05.0268902Z   8  |  import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";[39m
+2026-10-06T01:45:05.0270644Z       at TransformPluginContext._formatLog (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8766:39)
+2026-10-06T01:45:05.0273772Z       at TransformPluginContext.error (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8763:14)
+2026-10-06T01:45:05.0276152Z       at normalizeUrl (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26423:18)
+2026-10-06T01:45:05.0279166Z       at file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26493:30
+2026-10-06T01:45:05.0280388Z       at async Promise.all (index 5)
+2026-10-06T01:45:05.0282179Z       at TransformPluginContext.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26459:4)
+2026-10-06T01:45:05.0284748Z       at EnvironmentPluginContainer.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8545:14)
+2026-10-06T01:45:05.0287165Z       at loadAndTransform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:19988:26)
+2026-10-06T01:45:05.0453774Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx [2m([22m[2m0 test[22m[2m)[22m
+2026-10-06T01:45:05.0810219Z 2026-10-06T01:45:05.080Z pw:browser [pid=2998][err] [1006/014505.080042:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:45:05.0945359Z 2026-10-06T01:45:05.094Z pw:browser [pid=2998][err] [1006/014505.093917:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:45:05.1704492Z [2m1:45:05 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "../../src/components/MediaUploadDialog.js" from "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx". Does the file exist?[39m
+2026-10-06T01:45:05.1707101Z   Plugin: [35mvite:import-analysis[39m
+2026-10-06T01:45:05.1708922Z   File: [36m/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx[39m:4:34
+2026-10-06T01:45:05.1710607Z [33m  1  |  import * as React from "react";
+2026-10-06T01:45:05.1711454Z   2  |  import { expect, it, vi } from "vitest";
+2026-10-06T01:45:05.1712959Z   3  |  import { MediaUploadDialog } from "../../src/components/MediaUploadDialog.js";
+2026-10-06T01:45:05.1715219Z      |                                     ^
+2026-10-06T01:45:05.1716096Z   4  |  import { render } from "../utils/render.tsx";
+2026-10-06T01:45:05.1717839Z   5  |  var _jsxFileName = "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components...[39m
+2026-10-06T01:45:05.1719214Z       at TransformPluginContext._formatLog (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8766:39)
+2026-10-06T01:45:05.1720645Z       at TransformPluginContext.error (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8763:14)
+2026-10-06T01:45:05.1722299Z       at normalizeUrl (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26423:18)
+2026-10-06T01:45:05.1723499Z       at file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26493:30
+2026-10-06T01:45:05.1724192Z       at async Promise.all (index 2)
+2026-10-06T01:45:05.1725348Z       at TransformPluginContext.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26459:4)
+2026-10-06T01:45:05.1726814Z       at EnvironmentPluginContainer.transform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8545:14)
+2026-10-06T01:45:05.1728164Z       at loadAndTransform (file:///home/runner/work/cms/cms/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:19988:26)
+2026-10-06T01:45:05.1955709Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx [2m([22m[2m0 test[22m[2m)[22m
+2026-10-06T01:45:05.1984570Z 
+2026-10-06T01:45:05.1985865Z [31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 6 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2026-10-06T01:45:05.1986322Z 
+2026-10-06T01:45:05.1989991Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx[2m [ parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx ][22m
+2026-10-06T01:45:05.1993981Z [31m[1mError[22m: Failed to import test file /home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx[39m
+2026-10-06T01:45:05.1998008Z [31m[1mCaused by: TypeError[22m: Failed to fetch dynamically imported module: http://localhost:63315/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx?import&browserv=1791251104636[39m
+2026-10-06T01:45:05.2005308Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯[22m[39m
+2026-10-06T01:45:05.2005902Z 
+2026-10-06T01:45:05.2008616Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx[2m [ parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx ][22m
+2026-10-06T01:45:05.2012531Z [31m[1mError[22m: Failed to import test file /home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx[39m
+2026-10-06T01:45:05.2016376Z [31m[1mCaused by: TypeError[22m: Failed to fetch dynamically imported module: http://localhost:63315/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx?import&browserv=1791251105020[39m
+2026-10-06T01:45:05.2018335Z 
+2026-10-06T01:45:05.2019006Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯[22m[39m
+2026-10-06T01:45:05.2019542Z 
+2026-10-06T01:45:05.2022203Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx[2m [ parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx ][22m
+2026-10-06T01:45:05.2024679Z [31m[1mError[22m: Failed to import test file /home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx[39m
+2026-10-06T01:45:05.2026798Z [31m[1mCaused by: TypeError[22m: Failed to fetch dynamically imported module: http://localhost:63315/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx?import&browserv=1791251104758[39m
+2026-10-06T01:45:05.2028149Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯[22m[39m
+2026-10-06T01:45:05.2028455Z 
+2026-10-06T01:45:05.2029775Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.test.tsx[2m [ parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.test.tsx ][22m
+2026-10-06T01:45:05.2031012Z [2m Test Files [22m [1m[31m6 failed[39m[22m[90m (6)[39m
+2026-10-06T01:45:05.2031754Z [2m      Tests [22m [2mno tests[22m
+2026-10-06T01:45:05.2032647Z [2m   Start at [22m 01:45:00
+2026-10-06T01:45:05.2033592Z [2m   Duration [22m 4.80s[2m (transform 0ms, setup 298ms, import 0ms, tests 0ms, environment 0ms)[22m
+2026-10-06T01:45:05.2034002Z 
+2026-10-06T01:45:05.2035736Z [31m[1mError[22m: Failed to import test file /home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.test.tsx[39m
+2026-10-06T01:45:05.2036693Z JSON report written to /home/runner/work/cms/cms/media-source-results.json
+2026-10-06T01:45:05.2038635Z [31m[1mCaused by: TypeError[22m: Failed to fetch dynamically imported module: http://localhost:63315/tests/helpers/media-admin-editor-library-react.tsx[39m
+2026-10-06T01:45:05.2039915Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯[22m[39m
+2026-10-06T01:45:05.2040438Z 
+2026-10-06T01:45:05.2042601Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx[2m [ parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx ][22m
+2026-10-06T01:45:05.2044490Z [31m[1mError[22m: Failed to import test file /home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx[39m
+2026-10-06T01:45:05.2046440Z [31m[1mCaused by: TypeError[22m: Failed to fetch dynamically imported module: http://localhost:63315/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx?import&browserv=1791251105166[39m
+2026-10-06T01:45:05.2048048Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯[22m[39m
+2026-10-06T01:45:05.2048378Z 
+2026-10-06T01:45:05.2050553Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx[2m [ parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx ][22m
+2026-10-06T01:45:05.2054129Z [31m[1mError[22m: Failed to import test file /home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx[39m
+2026-10-06T01:45:05.2057027Z [31m[1mCaused by: TypeError[22m: Failed to fetch dynamically imported module: http://localhost:63315/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx?import&browserv=1791251104866[39m
+2026-10-06T01:45:05.2058323Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯[22m[39m
+2026-10-06T01:45:05.2058538Z 
+2026-10-06T01:45:05.2087098Z 2026-10-06T01:45:05.208Z pw:browser [pid=2998][err] [1006/014505.205227:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-06T01:45:05.2090345Z 2026-10-06T01:45:05.208Z pw:browser [pid=2998][err] [1006/014505.207267:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-06T01:45:05.2215103Z 2026-10-06T01:45:05.221Z pw:browser [pid=2998] <gracefully close start>
+2026-10-06T01:45:05.2443030Z 2026-10-06T01:45:05.244Z pw:browser [pid=2998] <process did exit: exitCode=0, signal=null>
+2026-10-06T01:45:05.2444746Z 2026-10-06T01:45:05.244Z pw:browser [pid=2998] starting temporary directories cleanup
+2026-10-06T01:45:05.2483250Z 2026-10-06T01:45:05.248Z pw:browser [pid=2998] finished temporary directories cleanup
+2026-10-06T01:45:05.2484381Z 2026-10-06T01:45:05.248Z pw:browser [pid=2998] <gracefully close end>
+2026-10-06T01:45:05.3129896Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-06T01:45:05.3163575Z ##[error]Process completed with exit code 1.
+2026-10-06T01:45:05.3269015Z ##[group]Run actions/upload-artifact@v4
+2026-10-06T01:45:05.3269323Z with:
+2026-10-06T01:45:05.3269537Z   name: media-source-library
+2026-10-06T01:45:05.3269805Z   path: media-source-results.json
+2026-10-06T01:45:05.3270071Z   retention-days: 14
+2026-10-06T01:45:05.3270300Z   if-no-files-found: warn
+2026-10-06T01:45:05.3270576Z   compression-level: 6
+2026-10-06T01:45:05.3270789Z   overwrite: false
+2026-10-06T01:45:05.3271003Z   include-hidden-files: false
+2026-10-06T01:45:05.3271241Z env:
+2026-10-06T01:45:05.3271748Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:45:05.3272078Z ##[endgroup]
+2026-10-06T01:45:05.5042621Z (node:3072) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T01:45:05.5043763Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:45:05.5094219Z With the provided path, there will be 1 file uploaded
+2026-10-06T01:45:05.5101015Z Artifact name is valid!
+2026-10-06T01:45:05.5102140Z Root directory input is valid!
+2026-10-06T01:45:05.7837316Z Beginning upload of artifact content to blob storage
+2026-10-06T01:45:05.8128264Z (node:3072) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:45:05.8996933Z Uploaded bytes 595
+2026-10-06T01:45:05.9314059Z Finished uploading artifact content to blob storage!
+2026-10-06T01:45:05.9315242Z SHA256 digest of uploaded artifact zip is 64da83477f9c4f5afeb3ad6e593b1cae9ab371df4f6dff21d5f481760083d8fa
+2026-10-06T01:45:05.9317250Z Finalizing artifact upload
+2026-10-06T01:45:06.1697592Z Artifact media-source-library.zip successfully finalized. Artifact ID 11384892392
+2026-10-06T01:45:06.1699029Z Artifact media-source-library has been successfully uploaded! Final size is 595 bytes. Artifact ID is 11384892392
+2026-10-06T01:45:06.1703504Z Artifact download URL: https://github.com/sveltery/cms/actions/runs/37396334940/artifacts/11384892392
+2026-10-06T01:45:06.1929094Z Post job cleanup.
+2026-10-06T01:45:06.3476553Z Pruning is unnecessary.
+2026-10-06T01:45:06.3648706Z Post job cleanup.
+2026-10-06T01:45:06.4685111Z [command]/usr/bin/git version
+2026-10-06T01:45:06.4734152Z git version 2.55.0
+2026-10-06T01:45:06.4778182Z Temporarily overriding HOME='/home/runner/work/_temp/bfa62954-48f5-46d8-897c-f74d68a88365' before making global git config changes
+2026-10-06T01:45:06.4779958Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T01:45:06.4783973Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T01:45:06.4826105Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T01:45:06.4864289Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T01:45:06.5170551Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T01:45:06.5198568Z http.https://github.com/.extraheader
+2026-10-06T01:45:06.5210767Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-06T01:45:06.5251839Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T01:45:06.5556591Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T01:45:06.5604758Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T01:45:06.6076778Z Cleaning up orphan processes
+2026-10-06T01:45:06.6395482Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,89 @@
+{
+  "purpose": "Exact public pre-review widget full-family replay, not an adopted production branch",
+  "pr": 128,
+  "mustNeverMergeOrAdopt": true,
+  "head": "8fa35aaacc6b4d306de3c1bbe3ccdb57a7af20f1",
+  "tree": "7ca0d23b039ed5cf07e4cc15e0c5e4129a9e8978",
+  "actualCheckoutCommit": "34ff2bf249bb09fc04797a874e777737c118d46a",
+  "oldWidgetPublicHead": "7f2e0d2893154849e4a5e120a5e41656ad075083",
+  "oldWidgetBlob": "66f76a32c4fbd92e21d881bb8603c4c9a74f1a44",
+  "oldWidgetBytes": 39214,
+  "oldWidgetSha256": "f4e34b40b9d42310abefe618117111f4d5cb2326867703cbd97c54198aaeaed2",
+  "run": 37396462148,
+  "job": 112053513787,
+  "artifact": 11382744223,
+  "registered": 136,
+  "passed": 131,
+  "failed": 5,
+  "pending": 0,
+  "oldSourceCallbacksPassed": 129,
+  "oldNativeRowCallbacksPassed": 2,
+  "newNativeReviewGenuineValueReds": 5,
+  "locatorPrerequisiteStops": 0,
+  "pureNativeStep": "skipped after browser failure; zero old-fixture logic execution credit",
+  "sameCaseNamesAndAssertionsAsGreen": true,
+  "greenHead": "563b3fb36a43265336e34c4610cd6e2306195a8a",
+  "greenRun": 37396335223,
+  "greenJob": 112053084681,
+  "failedThenPassed": [
+    {
+      "name": "CURRENT Native resets unchanged Freeform aspect to Original",
+      "oldStatus": "failed",
+      "currentStatus": "passed",
+      "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeEnabled()\u001b[22m\n\nReceived element is not enabled:\n  \u001b[31m<button\n  aria-label=\"Reset crop\"\n  class=\"svelte-uod5p2\"\n  disabled=\"\"\n  type=\"button\"\n/>\u001b[39m\n    at Proxy.__VITEST_POLL_CHAIN__ (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=7718dbbe:3748:47)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791248394873:106:30\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=7718dbbe:1903:20",
+      "laterExpectations": "unreached after first failure in old replay; all callback expectations execute on current green"
+    },
+    {
+      "name": "CURRENT Native resets unchanged Square (1:1) aspect to Original",
+      "oldStatus": "failed",
+      "currentStatus": "passed",
+      "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeEnabled()\u001b[22m\n\nReceived element is not enabled:\n  \u001b[31m<button\n  aria-label=\"Reset crop\"\n  class=\"svelte-uod5p2\"\n  disabled=\"\"\n  type=\"button\"\n/>\u001b[39m\n    at Proxy.__VITEST_POLL_CHAIN__ (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=7718dbbe:3748:47)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791248394873:106:30\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=7718dbbe:1903:20",
+      "laterExpectations": "unreached after first failure in old replay; all callback expectations execute on current green"
+    },
+    {
+      "name": "CURRENT Native disables reset and aspect controls after the actual crop source fails",
+      "oldStatus": "failed",
+      "currentStatus": "passed",
+      "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeDisabled()\u001b[22m\n\nReceived element is not disabled:\n  \u001b[31m<button\n  aria-label=\"Reset crop\"\n  class=\"svelte-uod5p2\"\n  type=\"button\"\n/>\u001b[39m\n    at Proxy.__VITEST_POLL_CHAIN__ (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=7718dbbe:3748:47)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791248394873:129:6\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=7718dbbe:1903:20",
+      "laterExpectations": "unreached after first failure in old replay; all callback expectations execute on current green"
+    },
+    {
+      "name": "CURRENT Native keeps exposed aspect options and crop draft stable while a real crop upload is pending",
+      "oldStatus": "failed",
+      "currentStatus": "passed",
+      "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeDisabled()\u001b[22m\n\nReceived element is not disabled:\n  \u001b[31m<button\n  aria-selected=\"false\"\n  class=\"svelte-uod5p2\"\n  role=\"option\"\n  type=\"button\"\n/>\u001b[39m\n    at Proxy.__VITEST_POLL_CHAIN__ (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=7718dbbe:3748:47)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791248394873:152:39\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=7718dbbe:1903:20",
+      "laterExpectations": "unreached after first failure in old replay; all callback expectations execute on current green"
+    },
+    {
+      "name": "CURRENT Native Uploaded text and title retain the pinned hour and minute display",
+      "oldStatus": "failed",
+      "currentStatus": "passed",
+      "firstFailure": "AssertionError: expected 'Jan 15, 2025' to be 'Jan 15, 2025, 05:30 AM' // Object.is equality\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791248394873:167:27\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=7718dbbe:1903:20",
+      "laterExpectations": "unreached after first failure in old replay; all callback expectations execute on current green"
+    }
+  ],
+  "fixtureTransport": "Only bridge import resolves exact historical widget fixture; its relative imports retain existing Native transport identity; no value transformations",
+  "productionRepair": {
+    "file": "src/lib/media/MediaDetails.svelte",
+    "oldBlob": "66f76a32c4fbd92e21d881bb8603c4c9a74f1a44",
+    "currentBlob": "887a70ef07e5d45f014bef26716998fffa80e4c3",
+    "addedLines": 4,
+    "removedLines": 2,
+    "patch": "media-detail-complete-review-six-product-line-repair.patch"
+  },
+  "files": {
+    "media-detail-complete-review-old-widget-genuine-red.json": {
+      "bytes": 44074,
+      "sha256": "cdb3755b0200f387e3717eab5651725646b171db99c75a2616a67f1216f76621"
+    },
+    "media-detail-complete-review-old-widget-genuine-red.log": {
+      "bytes": 431002,
+      "sha256": "71056a159a57d1a448d29411739c3677d75097b775bb93e5873b85fe5bec5b20"
+    },
+    "media-detail-complete-review-old-widget-genuine-red.zip": {
+      "bytes": 6173,
+      "sha256": "924c46ea80bd29a5ee46de038d202f15ee4e133eafb4243eac198a67ae3378fc"
+    }
+  },
+  "limits": "Supplemental Native value reds give zero copied Source or real backend/provider/auth/storage/deployment credit. Old first-run three-value/two-locator classification is preserved separately; no rewritten past credit."
+}
