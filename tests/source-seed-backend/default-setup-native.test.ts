@@ -7,7 +7,8 @@ import {schemaAdminStorage} from '../helpers/schema-admin-storage.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
 import {createInitLock} from '../../src/lib/server/redirects/init-lock.ts';
 import {seedSourceDatabase} from '../../src/lib/server/seed/namespace.ts';
-import {SchemaRegistry,buildSeedCollectionCaptureFingerprint} from '../../src/lib/server/seed/registry.ts';
+import {SchemaRegistry} from '../../src/lib/server/seed/registry.ts';
+import {buildSeedCollectionCaptureFingerprint} from '../../src/lib/server/seed/fingerprint.ts';
 import {OptionsRepository} from '../../src/lib/server/comments/upstream/database/repositories/options.ts';
 import * as engine from '../../src/lib/server/seed/index.ts';
 
@@ -46,7 +47,7 @@ for(const target of ['Node','D1']as const)describe(`${target}: real default/setu
    const outcome=await Reflect.get(engine,'initializeDefaultSeed')(f.db,f.parameters);
    expect(outcome).toMatchObject({attempted:false,complete:false});
    expect((await sql`SELECT state,activated_at FROM _cms_media_usage_activation WHERE task_key='incremental_capture'`.execute(f.storage.database.db)).rows).toEqual([{state:'expanded',activated_at:null}]);
-   expect((await new SchemaRegistry(f.db).getCollections()).map(c=>c.slug)).toEqual(['articles']);
+   expect((await new SchemaRegistry(f.db).listCollections()).map(c=>c.slug)).toEqual(['articles']);
   }finally{await f.storage.close();}
  },30000);
  it('does not mark an invalid default seed complete',async()=>{
@@ -55,7 +56,21 @@ for(const target of ['Node','D1']as const)describe(`${target}: real default/setu
    const outcome=await Reflect.get(engine,'initializeDefaultSeed')(f.db,f.parameters);
    expect(outcome).toMatchObject({attempted:true,complete:false,validation:{valid:false}});
    expect(await f.options.get('emdash:seed_complete')).toBeNull();
-   expect(await new SchemaRegistry(f.db).getCollections()).toEqual([]);
+   expect(await new SchemaRegistry(f.db).listCollections()).toEqual([]);
+  }finally{await f.storage.close();}
+ },30000);
+ it('does not report completion or seed after an actual options read failure',async()=>{
+  const f=await fixture(target);try{
+   fixtureSeed.value=sourceSeed();
+   const db=f.db.withPlugin({transformQuery({node}){
+    if(node.kind==='SelectQueryNode'&&JSON.stringify(node.from).includes('"name":"options"'))throw new Error('Actual caller options observer read failure');
+    return node;
+   },async transformResult({result}){return result;}});
+   const outcome=await Reflect.get(engine,'initializeDefaultSeed')(db,f.parameters);
+   expect(outcome).toMatchObject({attempted:false,complete:false});
+   expect(await f.options.get('emdash:seed_complete')).toBeNull();
+   expect(await new SchemaRegistry(f.db).listCollections()).toEqual([]);
+   expect((await sql`SELECT state FROM _cms_media_usage_activation WHERE task_key='incremental_capture'`.execute(f.storage.database.db)).rows).toEqual([{state:'expanded'}]);
   }finally{await f.storage.close();}
  },30000);
  it('resumes an interrupted default with the actual capture identity',async()=>{
@@ -90,7 +105,7 @@ for(const target of ['Node','D1']as const)describe(`${target}: real default/setu
    expect(Math.max(...counts)).toBeLessThan(1000);expect(counts.length).toBeGreaterThan(1);expect(complete).toBe(true);
    expect(progress.slice(0,-1).every(p=>p.total===112)).toBe(true);expect(progress.slice(0,-1).map(p=>p.done)).toEqual(entries.slice(0,-1));
    expect(new Set(progress.slice(0,-1).map(p=>p.done)).size).toBe(progress.length-1);
-   expect(entries.at(-1)).toBe(112);expect(await f.options.get('emdash:site_title')).toBe('My Site');expect(await f.options.get('emdash:site_tagline')).toBe('Form tagline');
+   expect(entries.at(-1)).toBe(112);expect(await f.options.get('site:title')).toBe('My Site');expect(await f.options.get('site:tagline')).toBe('Form tagline');
    expect(await f.options.get('emdash:setup_state')).toBeNull();
   }finally{await f.storage.close();}
  },30000);

@@ -1,0 +1,110 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+stdout | tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > resumes an interrupted default with the actual capture identity
+Auto-seeded default collections
+
+stdout | tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > resumes an interrupted default with the actual capture identity
+Auto-seeded default collections
+
+ ❯ tests/source-seed-backend/default-setup-native.test.ts (10 tests | 8 failed) 4048ms
+     × leaves an existing configured site inactive 30ms
+     × does not mark an invalid default seed complete 21ms
+     × resumes an interrupted default with the actual capture identity 53ms
+     × continues the same112 setup entries with actual500-query budget and form overrides 227ms
+     × leaves an existing configured site inactive 105ms
+     × does not mark an invalid default seed complete 87ms
+     × resumes an interrupted default with the actual capture identity 206ms
+     × continues the same112 setup entries with actual500-query budget and form overrides 2186ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > leaves an existing configured site inactive
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > leaves an existing configured site inactive
+TypeError: (intermediate value).getCollections is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:49:43
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > does not mark an invalid default seed complete
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > does not mark an invalid default seed complete
+TypeError: (intermediate value).getCollections is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:58:42
+     56|    expect(outcome).toMatchObject({attempted:true,complete:false,valida…
+     57|    expect(await f.options.get('emdash:seed_complete')).toBeNull();
+     58|    expect(await new SchemaRegistry(f.db).getCollections()).toEqual([]);
+       |                                          ^
+     59|   }finally{await f.storage.close();}
+     60|  },30000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > resumes an interrupted default with the actual capture identity
+TypeError: buildSeedCollectionCaptureFingerprint is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:68:28
+     66|    await sql`DELETE FROM _cms_fields WHERE collection_id=${pages.id}`.…
+     67|    await sql`DELETE FROM _cms_collections WHERE id=${pages.id}`.execut…
+     68|    const fingerprint=await buildSeedCollectionCaptureFingerprint({slug…
+       |                            ^
+     69|    await sql`UPDATE _cms_media_usage_index_status SET capture_state='i…
+     70|    await f.options.set('emdash:seed_complete',false);f.parameters.hold…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > continues the same112 setup entries with actual500-query budget and form overrides
+AssertionError: expected null to be 'My Site' // Object.is equality
+
+- Expected:
+"My Site"
+
++ Received:
+null
+
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:93:86
+     91|    expect(progress.slice(0,-1).every(p=>p.total===112)).toBe(true);exp…
+     92|    expect(new Set(progress.slice(0,-1).map(p=>p.done)).size).toBe(prog…
+     93|    expect(entries.at(-1)).toBe(112);expect(await f.options.get('emdash…
+       |                                                                                      ^
+     94|    expect(await f.options.get('emdash:setup_state')).toBeNull();
+     95|   }finally{await f.storage.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > resumes an interrupted default with the actual capture identity
+TypeError: buildSeedCollectionCaptureFingerprint is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:68:28
+     66|    await sql`DELETE FROM _cms_fields WHERE collection_id=${pages.id}`.…
+     67|    await sql`DELETE FROM _cms_collections WHERE id=${pages.id}`.execut…
+     68|    const fingerprint=await buildSeedCollectionCaptureFingerprint({slug…
+       |                            ^
+     69|    await sql`UPDATE _cms_media_usage_index_status SET capture_state='i…
+     70|    await f.options.set('emdash:seed_complete',false);f.parameters.hold…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > continues the same112 setup entries with actual500-query budget and form overrides
+AssertionError: expected null to be 'My Site' // Object.is equality
+
+- Expected:
+"My Site"
+
++ Received:
+null
+
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:93:86
+     91|    expect(progress.slice(0,-1).every(p=>p.total===112)).toBe(true);exp…
+     92|    expect(new Set(progress.slice(0,-1).map(p=>p.done)).size).toBe(prog…
+     93|    expect(entries.at(-1)).toBe(112);expect(await f.options.get('emdash…
+       |                                                                                      ^
+     94|    expect(await f.options.get('emdash:setup_state')).toBeNull();
+     95|   }finally{await f.storage.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 2 passed (10)
+   Start at  00:08:30
+   Duration  5.93s (transform 1.19s, setup 0ms, import 1.76s, tests 4.05s, environment 0ms)
+
