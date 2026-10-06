@@ -1,0 +1,14 @@
+✔ Node: readiness never installs missing storage or grants an unmarked descriptor (12.71513ms)
+✔ Node: canonical readiness preserves every Source026 nullable field/default and due index (35.238978ms)
+✔ Node: readiness refuses changed index columns and preserves the actual wrong layout (52.854122ms)
+✔ Node: read-only readiness rejects a future/gapped marker sequence with unchanged storage (47.863737ms)
+✔ Node: creation supports actual18 while future/gapped canonical admission remains refused (48.359091ms)
+✔ Node: actual persisted Cron rows and readiness survive canonical reopen/idempotence (58.148302ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 866.537552

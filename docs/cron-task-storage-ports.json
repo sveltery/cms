@@ -73,6 +73,14 @@
       "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
       "blob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
       "role": "authority"
+    },
+    {
+      "path": "packages/core/src/db/adapters.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/db/adapters.ts",
+      "bytes": 6397,
+      "sha256": "98c0bc2bd8aacc1a65c0f2679459bdc9b2bff428d38dc70498cbace71dbee9de",
+      "blob": "1f98d07ec556ee5897796cefb1f250a7a50b1272",
+      "role": "authority"
     }
   ],
   "wholeFamilies": [
@@ -132,6 +140,65 @@
       "raw": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log",
       "canonicalStartupCredit": 0,
       "causalProductCredit": 0
+    },
+    "nativeCanonicalFirstFix": {
+      "registered": 9,
+      "pass": 9,
+      "fail": 0,
+      "raw": "docs/cron-task-storage-evidence/native9-canonical-first-fix.log",
+      "sourceCausalCredit": 0
+    },
+    "affectedNativeWholeFirst": {
+      "files": 6,
+      "registered": 80,
+      "pass": 48,
+      "fail": 32,
+      "raw": "docs/cron-task-storage-evidence/native-affected-whole-latest17-first-red.log",
+      "failures": "current marker17 expectedactual18, and actualcollectionindexadmission>17 rejectsactual18",
+      "sourceCausalCredit": 0
+    },
+    "affectedNativeWholeFix": {
+      "files": 6,
+      "registered": 80,
+      "pass": 80,
+      "fail": 0,
+      "raw": "docs/cron-task-storage-evidence/native-affected-whole-current18-fix.log",
+      "durationMs": 71619.540789,
+      "sourceCausalCredit": 0
+    },
+    "seoWholeFirst": {
+      "registered": 6,
+      "pass": 4,
+      "fail": 2,
+      "raw": "docs/cron-task-storage-evidence/native-seo-whole-latest17-first-red.log",
+      "failures": "actual18collectionStandardIndexPlan admission fails atgenuineNativecollectioncreation",
+      "sourceCausalCredit": 0
+    },
+    "seoWholeFix": {
+      "registered": 6,
+      "pass": 6,
+      "fail": 0,
+      "raw": "docs/cron-task-storage-evidence/native-seo-whole-current18-fix.log",
+      "sourceCausalCredit": 0
+    },
+    "nativeReadinessNodeFirst": {
+      "registered": 6,
+      "pass": 6,
+      "fail": 0,
+      "raw": "docs/cron-task-storage-evidence/native-readiness-node-first.log",
+      "fullFamily": false,
+      "remaining": "sevenD1/scopedD1callbacksawaitsharedworkerdwindow",
+      "sourceCausalCredit": 0
+    },
+    "sourceWholeNodeCurrent": {
+      "registered": 2,
+      "pass": 2,
+      "fail": 0,
+      "raw": "docs/cron-task-storage-evidence/source2-whole-node-current.log",
+      "sourcePhysicalReferenceOnly": true,
+      "canonicalStartupCredit": 0,
+      "causalProductCredit": 0
     }
-  }
+  },
+  "scopeDecision": "Root explicitly authorized ONLY forward canonical provider18 Cron storage; no standalone Native088 helper; Source088 is vacuously satisfied when026 creates emptyCron table during legitimate1\u201317 upgrade."
 }

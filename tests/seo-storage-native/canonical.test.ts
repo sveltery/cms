@@ -36,7 +36,7 @@ for (const mode of ['Node', 'raw D1'] as const) {
       await reopened.delete('post','entry');
       assert.equal((await reopened.get('post','entry')).title,null);
       const markers=(await sql<{version:number}>`SELECT version FROM _cms_migrations ORDER BY version`.execute(fixture.database.db)).rows;
-      assert.deepEqual(markers.map(row=>row.version),Array.from({length:17},(_,index)=>index+1));
+      assert.deepEqual(markers.map(row=>row.version),Array.from({length:18},(_,index)=>index+1));
     } finally { await fixture.close(); }
   }, 90000);
 

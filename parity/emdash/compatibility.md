@@ -1,5 +1,18 @@
 # Current compatibility register and historical audit
 
+## Proposed canonical Cron storage prerequisite
+
+Source: EmDash 1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+complete migrations 026/088, complete database types and whole two-callback UTC
+migration family. See [the feature record](../../docs/cron-task-storage.md),
+[whole Source ledger](../../docs/cron-task-storage-ports.json) and
+[finite Native adaptation ledger](../../docs/cron-task-storage-native-adaptations.json).
+
+| ID | Observable Source and Native behavior | Evidence and decision status |
+| --- | --- | --- |
+| CRON-STORAGE-01: canonical namespace and chronology | Source026 creates `_emdash_cron_tasks`; Native provider18 creates `_cms_cron_tasks` after unchanged providers1–17, preserving all columns, nullable/default behavior, unique constraint and scheduler indexes. Source088 converts existing one-shot UTC values. Legitimate Native1–17 has noCron rows/table, so empty creation satisfies088; unknown pre18Cron objects are refused rather than adopted. | Root explicitly authorized this forward Cron provider18 for development. Native9 genuine canonical reds→green; complete affected80 first48pass/32fail→80green and SEO6 first4pass/2fail→6green. All allowed existing-file edits reconstruct exact publicMain41. Exact-head review/gates/manager approval/regular author merge and final acceptance remain pending; landing alone is not acceptance. |
+| CRON-STORAGE-02: Source fixture/runtime limits | The complete original088 family passes two callbacks on explicit physicalSource NodeSQLite. Supplemental realD1 passes one and stops the105-row callback during the unchanged20×9-binding insert before088. Native readiness inspects contiguous markers1–18 and exact objects with no writes. | Original wholeSource bodies/data/clocks remain exact; fixture/setup stops earn0causal/product credit. The additive D1 reference command retains its failure and is not a fake-green normal gate. Existing C-07 atomic fixed-batch substitution remains unchanged. PostgreSQL, full named migration locks/runner, scheduler/plugin behavior and deployed support remain incomplete scope. |
+
 The default is the selected EmDash behavior on both self-hosted Node and Cloudflare. A passing scaffold build does not establish either hosting target. Keep differences visible and correct accidental divergence before widening the CMS surface.
 
 ## Proposed Calendar display locale packet — local preparation

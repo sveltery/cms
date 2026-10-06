@@ -10,5 +10,6 @@ export default defineConfig({
     if (target === path.join(frozen, 'tests/utils/test-db.js')) return path.join(root, 'tests/helpers/cron-storage/source-db.ts');
   } }],
   test: { environment: 'node', globals: true, fileParallelism: false,
+    provide: { cronStorageDialects: ['sqlite'] },
     include: ['parity/emdash/cron-storage-source/upstream/packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts'] }
 });
