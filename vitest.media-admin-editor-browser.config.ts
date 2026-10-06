@@ -17,6 +17,10 @@ if(group&&!Object.hasOwn(groups,group))throw new Error(`Unknown whole Media Sour
 const include=(group?groups[group as keyof typeof groups]:Object.values(groups).flat()).map(path=>`parity/emdash/media-admin-editor/source/packages/admin/tests/${path}`);
 export default defineConfig({plugins:[{name:'whole-media-native-framework-transport',enforce:'pre',resolveId(id,importer){
  if(id==='$app/paths')return resolve(root,'tests/helpers/media-panel-client-paths.ts');
+ if(importer?.split('?')[0]===resolve(root,'src/lib/media/MediaDetails.svelte')){
+  if(id==='./MediaImageCropper.svelte')return resolve(root,'tests/helpers/MediaPanelCropperMock.svelte');
+  if(id==='./MediaUsedIn.svelte')return resolve(root,'tests/helpers/MediaPanelUsedInMock.svelte');
+ }
  if(importer===resolve(root,'src/lib/media/MediaDetails.svelte')&&id==='./client')return resolve(root,'tests/helpers/media-panel-client-host.ts');
  if(importer?.startsWith(resolve(root,'src/lib/media/'))&&id==='./detail-api')return resolve(root,'tests/helpers/media-panel-api-host.ts');
  if(importer===resolve(root,'tests/helpers/media-picker-react-bridge.ts')&&id==='./media-picker-api-host')return resolve(root,'tests/helpers/media-panel-api-host.ts');
@@ -26,8 +30,12 @@ export default defineConfig({plugins:[{name:'whole-media-native-framework-transp
  const named={
   'src/components/MediaLibrary':'tests/helpers/media-admin-editor-library-react.tsx',
   'src/components/MediaDetailPanel':'tests/helpers/media-panel-react-bridge.ts',
+  'src/components/FocalPointEditor':'tests/helpers/media-panel-focal-react-bridge.ts',
+  'src/components/MediaUsedIn':'tests/helpers/media-panel-used-in-react-bridge.ts',
+  'src/components/useContainedMediaSize':'tests/helpers/media-panel-contained-react-bridge.ts',
   'src/components/MediaPickerModal':'tests/helpers/media-picker-react-bridge.ts',
   'src/lib/api':'tests/helpers/media-panel-api-host.ts',
+  'src/lib/api/index':'tests/helpers/media-panel-api-host.ts',
   'src/lib/api/media':'src/lib/media/source/api/media.ts',
   'src/lib/api/client':'src/lib/media/source/api/client.ts',
   'src/lib/api/current-user':'tests/helpers/media-picker-current-user.ts',
