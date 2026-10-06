@@ -15,7 +15,7 @@ export class NativeMediaUsageCollectionDeletionPhases {
   readonly #database:CmsDatabase;
   readonly #view:Kysely<Database>;
   constructor(database:CmsDatabase,registeredView?:Kysely<Database>) {
-    const view=registeredView??seedSourceDatabase(database) as Kysely<Database>;
+    const view=registeredView??seedSourceDatabase(database) as unknown as Kysely<Database>;
     if(seedDatabaseOwner(view)!==database)throw new Error('Deletion phases require their exact registered CMS owner');
     this.#database=database;this.#view=view;
   }
