@@ -108,3 +108,33 @@ CI607's failed hosting/aggregate and browser gates remain failures. The old
 successor requires all fresh current normal/secured/calendar gates, finite
 independent review and exact manager approval before author regular merge into
 the Byline branch. No local heavy checker/build/bootstrap is claimed.
+
+
+## Exact literal evidence whitespace
+
+Root finding `RAW-WHITESPACE01/P3` checks the complete publicByline9a-to-581
+diff, rather than only product files. It exits2 with91 diagnostics confined to
+seven literal logs. The [exact failed-check receipt](seed-hosting-evidence/raw-whitespace-first-fullrange-failure.json)
+contains the complete original UTF-8 text, byte count12676 and SHA256
+`4ffc7f18e915d8617428fe82a6d26380f0f91b8541d1b1dbd3c4b013521969f1`;
+its JSON text round-trips to the unchanged original bytes.
+
+Seven exact-path `.gitattributes` entries preserve only the proven classes:
+EOF blank lines for `bounded-check-first.log`, `original-whole-object-cache.log`
+and `parent9a-whole-source-cache35.log`; trailing whitespace for
+`copied-config-seven-first-green.log`,
+`current924-hosting-production-export-first-red.log`,
+`lazy-context-three-allocation-red.log` and
+`original-four-workerd-first-kit-prerequisite.log`. No raw bytes are normalized.
+
+[Actual Git controls](seed-hosting-evidence/whitespace-exception-controls.mjs)
+run in an isolated repository with the real attributes. Before the fix, seven
+permitted-format expectations fail and17 negative controls pass. Afterwards
+all24 pass: the demonstrated class is allowed on each exact owned path, both
+other classes remain rejected there, and unowned EOF blanks, trailing
+whitespace and space-before-tab remain rejected. The complete real PR range
+then passes `git diff --check`. The [preservation proof](seed-hosting-evidence/whitespace-exception-preservation.json)
+hashes all seven exact original files. These evidence-format controls provide
+zero Source/product behavior credit. Product/tests/Source/guards/pins/CI and
+all former receipts remain unchanged; current hosted gates, finite review and
+Root exact-head approval remain required before author regular merge.
