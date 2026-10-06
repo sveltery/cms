@@ -1,0 +1,94 @@
+{
+  "sourceOriginalCallbacks": 129,
+  "oldCurrentNative": 2,
+  "newCurrentNativeBrowser": 5,
+  "preFix": {
+    "head": "97a2ee1b479268f8aba3fa7857d23f6748c63a2e",
+    "run": 37393627423,
+    "job": 112044274561,
+    "artifact": 11382657006,
+    "registered": 136,
+    "passed": 131,
+    "failed": 5,
+    "reachedNewNativeDOMValueReds": 3,
+    "newNativeLocatorPrerequisites": 2,
+    "failures": [
+      {
+        "title": "CURRENT Native resets unchanged Freeform aspect to Original",
+        "firstFailure": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('option', { name: 'Freeform', exact: true })\n\n\u001b[36m<body>\u001b[39m\n  \u001b[0m\n  \n\n\u001b[0m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<div>\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[36m<dialog\u001b[39m \u2026\u001b[36m />\u001b[39m\n      \u001b[0m\u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m \u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m\u001b[0m\n    \u001b[36m</div>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m\n    at Object.getElementError (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/context.js?v=51f81401:619:16)\n    at PlaywrightLocator.element (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/index-D8jtZoIM.js?v=51f81401:4:13689)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791247030038:92:5\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=51f81401:1903:20",
+        "classification": "locator prerequisite; zero value/causal credit"
+      },
+      {
+        "title": "CURRENT Native resets unchanged Square (1:1) aspect to Original",
+        "firstFailure": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('option', { name: 'Square (1:1)', exact: true })\n\n\u001b[36m<body>\u001b[39m\n  \u001b[0m\n  \n\n\u001b[0m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<div>\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[36m<dialog\u001b[39m \u2026\u001b[36m />\u001b[39m\n      \u001b[0m\u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m \u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m\u001b[0m\n    \u001b[36m</div>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m\n    at Object.getElementError (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/context.js?v=51f81401:619:16)\n    at PlaywrightLocator.element (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/index-D8jtZoIM.js?v=51f81401:4:13689)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791247030038:92:5\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=51f81401:1903:20",
+        "classification": "locator prerequisite; zero value/causal credit"
+      },
+      {
+        "title": "CURRENT Native disables reset and aspect controls after the actual crop source fails",
+        "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeDisabled()\u001b[22m\n\nReceived element is not disabled:\n  \u001b[31m<button\n  aria-label=\"Reset crop\"\n  class=\"svelte-hp8qr4\"\n  type=\"button\"\n/>\u001b[39m\n    at Proxy.__VITEST_POLL_CHAIN__ (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=51f81401:3748:47)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791247030038:125:6\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=51f81401:1903:20",
+        "classification": "reached actual Native DOM value red"
+      },
+      {
+        "title": "CURRENT Native keeps exposed aspect options and crop draft stable while a real crop upload is pending",
+        "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeDisabled()\u001b[22m\n\nReceived element is not disabled:\n  \u001b[31m<button\n  aria-selected=\"false\"\n  class=\"svelte-hp8qr4\"\n  role=\"option\"\n  type=\"button\"\n/>\u001b[39m\n    at Proxy.__VITEST_POLL_CHAIN__ (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=51f81401:3748:47)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791247030038:148:39\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=51f81401:1903:20",
+        "classification": "reached actual Native DOM value red"
+      },
+      {
+        "title": "CURRENT Native Uploaded text and title retain the pinned hour and minute display",
+        "firstFailure": "AssertionError: expected 'Jan 15, 2025' to be 'Jan 15, 2025, 05:30 AM' // Object.is equality\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791247030038:163:27\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=51f81401:1903:20",
+        "classification": "reached actual Native DOM value red"
+      }
+    ]
+  },
+  "currentFix": {
+    "head": "461dbf645f9652d2fede0faf23b1a516e8b57e18",
+    "run": 37394428654,
+    "job": 112046905839,
+    "artifact": 11382812861,
+    "registered": 136,
+    "passed": 134,
+    "failed": 2,
+    "newNativeGenuineValuesPassing": 3,
+    "newNativeLocatorPrerequisites": 2,
+    "failures": [
+      {
+        "title": "CURRENT Native resets unchanged Freeform aspect to Original",
+        "firstFailure": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('option', { name: 'Freeform', exact: true })\n\n\u001b[36m<body>\u001b[39m\n  \u001b[0m\n  \n\n\u001b[0m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<div>\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[36m<dialog\u001b[39m \u2026\u001b[36m />\u001b[39m\n      \u001b[0m\u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m \u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m\u001b[0m\n    \u001b[36m</div>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m\n    at Object.getElementError (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/context.js?v=6bc7e4ee:619:16)\n    at PlaywrightLocator.element (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/index-D8jtZoIM.js?v=6bc7e4ee:4:13689)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791247467687:92:5\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=6bc7e4ee:1903:20",
+        "classification": "locator prerequisite; zero value/causal credit"
+      },
+      {
+        "title": "CURRENT Native resets unchanged Square (1:1) aspect to Original",
+        "firstFailure": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('option', { name: 'Square (1:1)', exact: true })\n\n\u001b[36m<body>\u001b[39m\n  \u001b[0m\n  \n\n\u001b[0m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<div>\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[36m<dialog\u001b[39m \u2026\u001b[36m />\u001b[39m\n      \u001b[0m\u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m \u001b[0m\n      \u001b[90m<!---->\u001b[39m\n      \u001b[0m\u001b[0m\n    \u001b[36m</div>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m\n    at Object.getElementError (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/context.js?v=6bc7e4ee:619:16)\n    at PlaywrightLocator.element (http://localhost:63315/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/index-D8jtZoIM.js?v=6bc7e4ee:4:13689)\n    at http://localhost:63315/home/runner/work/cms/cms/tests/media-panel-host/current-crop-review.browser.tsx?import&browserv=1791247467687:92:5\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=6bc7e4ee:1903:20",
+        "classification": "locator prerequisite; zero value/causal credit"
+      }
+    ]
+  },
+  "finiteHelperRepair": "Await real userEvent.click and actual listbox visibility in the five supplemental Native controls; no assertion/data/clock/geometry/focus/IO change. Exact old-widget replay and current whole qualification pending.",
+  "pureControlsSourceDOMBackendCredit": 0,
+  "evidence": {
+    "media-detail-complete-review-hosted-first-red.log": {
+      "bytes": 424826,
+      "sha256": "003f35b04928b29d36afad05cfba004efd3aa23162bd5f8536f35cab051cc8d0"
+    },
+    "media-detail-complete-review-hosted-first-red.json": {
+      "bytes": 45182,
+      "sha256": "642812dae8cb059e50b5e7387977172502b051a5d6a44b19972540e288754d99"
+    },
+    "media-detail-complete-review-hosted-first-red.zip": {
+      "bytes": 6391,
+      "sha256": "440c90317c17bb945800ae9999b4bf9085f2aedee492fa0a7c909afd55745d5a"
+    },
+    "media-detail-complete-review-hosted-current-prereq.log": {
+      "bytes": 419551,
+      "sha256": "817acb4a035e1807e6b0d189716352a067440cf491c99b4a04a475b3ba32a737"
+    },
+    "media-detail-complete-review-hosted-current-prereq.json": {
+      "bytes": 43105,
+      "sha256": "ff460f6dc637a13660c55f6244e9f903f44b088788206207e14c789031446e64"
+    },
+    "media-detail-complete-review-hosted-current-prereq.zip": {
+      "bytes": 6026,
+      "sha256": "e0eb51b5e41f66d72d5c442fe3e0d1eb71090442aeec617a928aabb1581d66ca"
+    }
+  }
+}
