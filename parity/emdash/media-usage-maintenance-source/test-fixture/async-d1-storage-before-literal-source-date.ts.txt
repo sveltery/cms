@@ -92,10 +92,7 @@ export default {
 };
 `;
 
-async function newRuntime(d1Databases: Record<string, string>, directory?: string, script?: string|readonly FixtureWorkerModule[], literalSourceCompatibilityDate?: '2026-05-14') {
-  if (literalSourceCompatibilityDate !== undefined && literalSourceCompatibilityDate !== '2026-05-14') {
-    throw new Error('Only the pinned literal Source fixture compatibility date is supported');
-  }
+async function newRuntime(d1Databases: Record<string, string>, directory?: string, script?: string|readonly FixtureWorkerModule[]) {
   const scripts = script === undefined
     ? [{ type: 'ESModule' as const, path: `${root}/worker.js`, contents: worker }]
     : [{ type: 'ESModule' as const, path: `${root}/worker.js`, contents: customWorker },
@@ -103,7 +100,7 @@ async function newRuntime(d1Databases: Record<string, string>, directory?: strin
       ...(typeof script==='string'?[{ type: 'ESModule' as const, path: `${root}/application.js`, contents: script }]:script)];
   const runtime = new Miniflare({ modulesRoot: root,
     modules: [...scripts, ...await modules],
-    compatibilityDate: literalSourceCompatibilityDate ?? '2026-05-07', host: '127.0.0.1', port: 0, cf: false,
+    compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0, cf: false,
     d1Databases, d1Persist: directory ?? false });
   try { await runtime.ready; return runtime; }
   catch (cause) { await runtime.dispose(); throw cause; }
@@ -187,7 +184,7 @@ export async function asyncD1Storage(directory?: string) {
 }
 
 /** Dedicated real runtime with an existing fixture's exact identifier and script. */
-export async function asyncD1StorageFor(databaseName: string, directory?: string, script?: string|readonly FixtureWorkerModule[], literalSourceCompatibilityDate?: '2026-05-14') {
-  const runtime = await newRuntime({ DB: databaseName }, directory, script, literalSourceCompatibilityDate);
+export async function asyncD1StorageFor(databaseName: string, directory?: string, script?: string|readonly FixtureWorkerModule[]) {
+  const runtime = await newRuntime({ DB: databaseName }, directory, script);
   return { runtime, binding: bindingFor(runtime, 'DB') };
 }

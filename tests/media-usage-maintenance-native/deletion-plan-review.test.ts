@@ -17,7 +17,7 @@ it('compiles the complete finite deletion phase vectors for Root review without 
     const queries:string[]=[];
     const view=seedSourceDatabase(owner).withPlugin({transformQuery({node,queryId}){
       queries.push(queryId.queryId);return node;
-    },async transformResult({result}){throw new Error('Compile-only review must not receive an executed query result');}}) as Kysely<Database>;
+    },async transformResult({result}){throw new Error('Compile-only review must not receive an executed query result');}}) as unknown as Kysely<Database>;
     const claim:MediaUsageCollectionDeletionRecord & {leaseToken:string}={
       collectionId:'review-collection',collectionSlug:'review_posts',forceDelete:false,
       state:'leased',phase:'work',workCursor:null,sourceKey:null,occurrenceCursor:null,

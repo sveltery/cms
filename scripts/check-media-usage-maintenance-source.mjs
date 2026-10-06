@@ -46,6 +46,9 @@ for (const record of native.records) {
   }
 }
 console.log(JSON.stringify({ immutableFiles: manifest.records.length, immutableReferenceFiles:reference.records.length,
-  nativeWholeBodies:native.records.filter(record=>!record.completeOwnedFunctions).length,
+  nativeWholeModuleTransports:native.records.filter(record=>!record.completeOwnedFunctions).length,
+  nativeNamespaceImportOnlyTransports:native.records.filter(record=>!record.completeOwnedFunctions && !record.substitutions.some(delta=>delta.includes('parameter property')||delta.includes('D1 branch'))).length,
+  nativeConstructorTransports:native.records.filter(record=>record.substitutions.some(delta=>delta.includes('parameter property'))).length,
+  nativePhaseBranchTransports:native.records.filter(record=>record.substitutions.some(delta=>delta.includes('D1 branch'))).length,
   nativeCompleteOwnedFunctionGroups:native.records.filter(record=>record.completeOwnedFunctions).length, wholeFamilies,
   testDeclarations, assertionExpressions, productTestsRun: 0, causalCredit: 0 }));
