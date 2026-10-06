@@ -1,0 +1,75 @@
+Loading svelte-check in workspace: /workspace/cms-complete-media-detail-panel
+Getting Svelte diagnostics...
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/library-runtime.ts:50:43
+Error: Expected 0-5 type arguments, but got 6. 
+  const media=new QueryObserver<MediaListResult>(queryClient,mediaOptions());
+  const folders=new InfiniteQueryObserver<MediaFolderListResult,Error,InfiniteData<MediaFolderListResult>,MediaFolderListResult,readonly unknown[],string|undefined>(queryClient,folderOptions());
+  const currentFolder=new QueryObserver<MediaFolder>(queryClient,currentFolderOptions());
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/library-runtime.ts:54:72
+Error: Argument of type '{ queryKey: (string | { search: string; })[]; queryFn: ({ pageParam }: { pageParam: string | undefined; }) => Promise<MediaFolderListResult>; initialPageParam: string | undefined; getNextPageParam: (lastPage: MediaFolderListResult) => string | undefined; enabled: boolean; }' is not assignable to parameter of type 'InfiniteQueryObserverOptions<MediaFolderListResult, Error, InfiniteData<MediaFolderListResult, unknown>, MediaFolderListResult, readonly unknown[]>'.
+  Types of property 'queryFn' are incompatible.
+    Type '({ pageParam }: { pageParam: string | undefined; }) => Promise<MediaFolderListResult>' is not assignable to type 'unique symbol | QueryFunction<MediaFolderListResult, MediaFolderListResult, readonly unknown[]> | undefined'.
+      Type '({ pageParam }: { pageParam: string | undefined; }) => Promise<MediaFolderListResult>' is not assignable to type 'QueryFunction<MediaFolderListResult, MediaFolderListResult, readonly unknown[]>'.
+        Types of parameters '__0' and 'context' are incompatible.
+          Type '{ client: QueryClient; queryKey: MediaFolderListResult; signal: AbortSignal; pageParam: readonly unknown[]; direction: FetchDirection; meta: Record<...> | undefined; }' is not assignable to type '{ pageParam: string | undefined; }'.
+            Types of property 'pageParam' are incompatible.
+              Type 'readonly unknown[]' is not assignable to type 'string'. 
+  const resetPage=()=>{page=1;retainedTotalCount=0;};
+  function sync() {media.setOptions(mediaOptions());folders.setOptions(folderOptions());currentFolder.setOptions(currentFolderOptions());emit();}
+  async function refreshEnabled() {
+
+/workspace/cms-complete-media-detail-panel/tests/media-admin-editor/usage-read-canonical-current.test.ts:33:32
+Error: Type '((context: ReferenceContext) => Promise<Response>) | undefined' does not satisfy the constraint '(...args: any) => any'.
+  Type 'undefined' is not assignable to type '(...args: any) => any'. 
+
+type RouteContext = Parameters<typeof usageRoute.GET>[0];
+
+/workspace/cms-complete-media-detail-panel/tests/media-admin-editor/usage-read-canonical-current.test.ts:408:26
+Error: Cannot invoke an object which is possibly 'undefined'. 
+		const request = new Request(`http://localhost/_emdash/api/media/${usedMedia.id}/usage`);
+		const response = await usageRoute.GET({
+			params: { id: usedMedia.id },
+
+/workspace/cms-complete-media-detail-panel/tests/media-admin-editor/usage-read-canonical-current.test.ts:408:26
+Error: 'usageRoute.GET' is possibly 'undefined'. 
+		const request = new Request(`http://localhost/_emdash/api/media/${usedMedia.id}/usage`);
+		const response = await usageRoute.GET({
+			params: { id: usedMedia.id },
+
+/workspace/cms-complete-media-detail-panel/tests/media-admin-editor/usage-read-canonical-current.test.ts:408:41
+Error: Conversion of type '{ params: { id: string; }; request: Request; locals: { emdash: {}; user: { id: string; role: 20; }; }; }' to type 'ReferenceContext' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  The types of 'locals.emdash' are incompatible between these types.
+    Type '{}' is missing the following properties from type 'MediaRuntime': db, config, handleMediaList, handleMediaGet, and 4 more. 
+		const request = new Request(`http://localhost/_emdash/api/media/${usedMedia.id}/usage`);
+		const response = await usageRoute.GET({
+			params: { id: usedMedia.id },
+			request,
+			locals: { emdash: {}, user: { id: "user-1", role: Role.CONTRIBUTOR } },
+		} as RouteContext);
+
+/workspace/cms-complete-media-detail-panel/tests/media-admin-editor/usage-read-canonical-current.test.ts:429:10
+Error: Cannot invoke an object which is possibly 'undefined'. 
+		);
+		return usageRoute.GET({
+			params: { id: input.id },
+
+/workspace/cms-complete-media-detail-panel/tests/media-admin-editor/usage-read-canonical-current.test.ts:429:25
+Error: Conversion of type '{ params: { id: string | undefined; }; request: Request; locals: { emdash: { db: Kysely<DatabaseSchema>; }; user: { id: string; role: RoleLevel; } | null; tokenScopes: string[] | undefined; }; }' to type 'ReferenceContext' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  The types of 'locals.emdash' are incompatible between these types.
+    Type '{ db: Kysely<Database>; }' is missing the following properties from type 'MediaRuntime': config, handleMediaList, handleMediaGet, handleMediaCreate, and 3 more. 
+		);
+		return usageRoute.GET({
+			params: { id: input.id },
+			request,
+			locals: {
+				emdash: { db },
+				user: input.role === null ? null : { id: "user-1", role: input.role },
+				tokenScopes: input.tokenScopes ? [...input.tokenScopes] : undefined,
+			},
+		} as RouteContext) as Promise<Response>;
+	}
+
+====================================
+svelte-check found 8 errors and 0 warnings in 2 files
