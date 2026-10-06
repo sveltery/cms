@@ -1,0 +1,62 @@
+{
+  "verdict": "CLEAR finite semantic Main union; gates still pending",
+  "head": "2d582a1aaeb2c1237d389419c7a3e75c753215c2",
+  "tree": "f69da13790b1c41a6ab64a6dbd37a7927ba66a1d",
+  "base": "cc1fc9044ae54ab44efba993cd71849fe2f990b0",
+  "actualPublicEntries": 5096,
+  "actualNativeBlobs": 3845,
+  "eachWorkingFileHashMatchesPublic": true,
+  "mainProtectedExact": 3646,
+  "qualifiedOverlays": [
+    ".gitattributes",
+    "package.json",
+    "parity/emdash/compatibility.md",
+    "src/lib/server/auth/permissions.ts"
+  ],
+  "oldExecutableAndAuthorityPathsExact": 2948,
+  "changedExecutableLeavesExactlyIncomingApprovedMain": [
+    "src/lib/server/database/collection-indexes.ts",
+    "src/lib/server/database/content-service.ts",
+    "src/lib/server/database/content-validation.ts",
+    "src/lib/server/database/lifecycle/service.ts",
+    "src/lib/server/database/migrations.ts",
+    "src/lib/server/seo/context.ts",
+    "src/lib/server/seo/request-cache.ts",
+    "tests/blocks/provider-preservation.test.ts",
+    "tests/canonical-feature-atomicity-original.test.ts",
+    "tests/canonical-feature-storage-original.test.ts",
+    "tests/canonical-installation-values.test.ts",
+    "tests/canonical-installation.test.ts",
+    "tests/lifecycle-canonical-storage.test.ts",
+    "tests/lifecycle-startup-upgrade.test.ts"
+  ],
+  "oldOwnedRawEvidenceExact": 51,
+  "newEvidenceHashesQualified": 6,
+  "ownHistory": [
+    {
+      "commit": "7bc42b81917e16820adb4f560a4c37f8994e66a3",
+      "parents": [
+        "fafe2816cee9d7d1332232b4fefadeaf66102bb3",
+        "cc1fc9044ae54ab44efba993cd71849fe2f990b0"
+      ],
+      "message": "merge: retain approved public SEO Main and complete user gates"
+    },
+    {
+      "commit": "2d582a1aaeb2c1237d389419c7a3e75c753215c2",
+      "parents": [
+        "7bc42b81917e16820adb4f560a4c37f8994e66a3"
+      ],
+      "message": "docs(users): retain CLEAR review and public SEO union validation"
+    }
+  ],
+  "priorFullReview": {
+    "path": "/tmp/user99-fafe-independent-full-final-semantic-review.json",
+    "bytes": 13323,
+    "sha256": "cd6d81a6af19f89316cf2f4d3879bfb0a52fbf214831ac368f38892a74c568f2"
+  },
+  "priorFindings": "DISABLED-ATOMIC01 and SOURCE-GATE-EXACT01 remain closed; previous complete semantic scope retained",
+  "sourceCredit": 0,
+  "newProtectedAuthProbes": 0,
+  "productChanges": "No old owned user bodies changed. Only actual Main SEO integration and docs/raw additions.",
+  "remaining": "Current full six hosted gates including sole browser retry, actual GitHub two successor commits, stationarity, Root exact approval and author regular merge. Full OAuth/tokens/invitations/recovery/user admin product remains incomplete."
+}
