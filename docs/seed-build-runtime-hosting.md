@@ -138,3 +138,33 @@ hashes all seven exact original files. These evidence-format controls provide
 zero Source/product behavior credit. Product/tests/Source/guards/pins/CI and
 all former receipts remain unchanged; current hosted gates, finite review and
 Root exact-head approval remain required before author regular merge.
+
+
+## Native Node package export inventory continuation
+
+At public head `59d60f6c`, CI638 hosting job112061223293 passes the whole
+production280 suite. The subsequent whole Native Node package command reports
+four tests, three passes and one reached value failure at
+`tests/node-hosting/package.test.ts:99`. Its actual compiled registry includes
+the same public Byline9a `duplicateContent` and `permanentDeleteContent`
+exports; this separate historical closed list still omits them. The main
+package callback stops at that assertion, so its later boundary/restart checks
+and later Cloudflare hosting stage are not qualified by this failed run.
+
+The [complete failed job receipt](seed-hosting-evidence/current59-hosting-node-package-first-red.json)
+preserves all318767 original UTF-8 bytes through an exact JSON text round-trip,
+SHA256 `586495f87f3e266ea659a8e203f8b9f6c482efdd6d5eb466d49ad94806277814`.
+The [whole original Native file](seed-hosting-evidence/current59-node-package-original.ts.txt)
+and [literal insertion proof](seed-hosting-evidence/node-package-export-two-literal-preservation.json)
+retain every other test byte: reversing only those two sorted names reproduces
+the original16965-byte file exactly. All assertions, boundary calls, fixtures,
+data, clocks, principals, sessions, credentials and actions remain intact.
+The new closed38-name list matches the actual compiled names in the failed
+receipt. That static comparison is not a new whole Node package execution.
+
+This inventory correction changes no product, Source, guard, dependency,
+bootstrap or CI code and earns zero Source causal credit. The old59 failed
+hosting result remains literal history, with no old-head browser retry. The
+ordinary successor requires the complete current hosted normal, secured and
+calendar gates, finite independent review and Root exact-head approval before
+author regular merge into Byline. No new local heavy build/checker is claimed.
