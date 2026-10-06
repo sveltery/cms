@@ -1,0 +1,22 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "authorBefore": "18048527",
+  "wholeFiles": 2,
+  "totalCases": 14,
+  "originalEightUnchanged": true,
+  "newMetadataCases": 6,
+  "failuresAtAssertions": 14,
+  "preAssertionFailures": 0,
+  "sourceCredit": 0,
+  "additionalRedTriggers": [
+    "Compiled Source field-table identifiers remain unmapped before any execution on absent logical tables.",
+    "Published lifecycle owner WeakMap has no real atomic host for initial/plugin/table/schema derived logical database views."
+  ],
+  "testOnlyAtomicBridge": "Compiles builders through the existing published namespace and submits them to the real Native atomic host. It provides no replacement provider, virtual schema or success stub. All baseline atomic cases stop at exact compiled SQL assertion, so they earn no baseline atomic-write credit.",
+  "evidence": {
+    "path": "/tmp/source-seed-namespace-native-metadata-baseline-red.log",
+    "bytes": 8827,
+    "sha256": "a8dff86c2c00f9ed0731985c5778874d5af08e11726f0c12f66039e8a2988864"
+  },
+  "status": "Finite namespace/atomic candidate remains unapplied under /tmp. The original eight reached baseline and eight first-greens are preserved separately."
+}

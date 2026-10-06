@@ -1,0 +1,91 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+stderr | tests/default-seed-setup-error-caller.test.ts > real virtual seed load failures use the original outer SETUP_ERROR boundary
+[SEED_ERROR] Error: actual seed accessor failure
+    at /workspace/cms-default-seed-setup-runtime/tests/default-seed-setup-error-caller.test.ts:46:23
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20
+    at new Promise (<anonymous>)
+    at runWithCancel (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20
+    at new Promise (<anonymous>)
+    at runWithTimeout (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2955:64
+
+stderr | tests/default-seed-setup-error-caller.test.ts > actual application errors preserve their original class and 400 response
+[SEED_ERROR] SetupSeedApplyError: Setup seed application failed
+    at Module.applySetupSeedWithinBudgetDomain (/workspace/cms-default-seed-setup-runtime/src/lib/server/seed/startup.ts:86:22)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at Module.applySetupSite (/workspace/cms-default-seed-setup-runtime/src/lib/server/setup/site.ts:46:17)
+    at callSetup (/workspace/cms-default-seed-setup-runtime/tests/default-seed-setup-error-caller.test.ts:36:22)
+    at /workspace/cms-default-seed-setup-runtime/tests/default-seed-setup-error-caller.test.ts:54:18
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20 {
+  [cause]: InvalidCursorError: Invalid pagination cursor: actual invalid cursor
+      at /workspace/cms-default-seed-setup-runtime/tests/default-seed-setup-error-caller.test.ts:54:34
+      at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11
+      at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26
+      at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20
+      at new Promise (<anonymous>)
+      at runWithCancel (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)
+      at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20
+      at new Promise (<anonymous>)
+      at runWithTimeout (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)
+      at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2955:64
+}
+
+ ❯ tests/default-seed-setup-error-caller.test.ts (3 tests | 2 failed) 152ms
+   × real virtual seed load failures use the original outer SETUP_ERROR boundary 91ms
+   × actual application errors preserve their original class and 400 response 34ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/default-seed-setup-error-caller.test.ts > real virtual seed load failures use the original outer SETUP_ERROR boundary
+AssertionError: expected { code: 'SEED_ERROR', …(1) } to deeply equal { code: 'SETUP_ERROR', …(1) }
+
+- Expected
++ Received
+
+  {
+-   "code": "SETUP_ERROR",
+-   "message": "Setup failed",
++   "code": "SEED_ERROR",
++   "message": "Failed to apply seed",
+  }
+
+ ❯ tests/default-seed-setup-error-caller.test.ts:50:29
+     48|   expect(actual.selects).toBe(1); // Only the real setup-completion gu…
+     49|   expect(actual.response.status).toBe(500);
+     50|   expect(actual.body.error).toEqual({ code: 'SETUP_ERROR', message: 'S…
+       |                             ^
+     51| });
+     52|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/default-seed-setup-error-caller.test.ts > actual application errors preserve their original class and 400 response
+AssertionError: expected 500 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 500
+
+ ❯ tests/default-seed-setup-error-caller.test.ts:56:34
+     54|   const actual = await callSetup(new InvalidCursorError('actual invali…
+     55|   expect(actual.selects).toBeGreaterThan(1); // Guard failure is allow…
+     56|   expect(actual.response.status).toBe(400);
+       |                                  ^
+     57|   expect(actual.body.error).toEqual({ code: 'INVALID_CURSOR', message:…
+     58| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  01:06:31
+   Duration  1.99s (transform 1.25s, setup 0ms, import 1.71s, tests 152ms, environment 0ms)
+

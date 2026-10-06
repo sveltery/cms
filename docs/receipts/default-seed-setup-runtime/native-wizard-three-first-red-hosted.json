@@ -1,0 +1,151 @@
+{
+  "head": "74d9005d92d9dc88c69c115062ddce07da762005",
+  "run": 37401886662,
+  "job": 112070697468,
+  "raw": {
+    "path": "docs/receipts/default-seed-setup-runtime/native-wizard-three-first-red-hosted.log",
+    "bytes": 72622,
+    "sha256": "0cb634cd7118018212c07d6bcdf647b043edc2b8d578658338843397e8360a43"
+  },
+  "source": {
+    "whole": 18,
+    "passed": 18,
+    "failed": 0,
+    "duration": "4.98s",
+    "clocks": "Original exact15000ms callback/30000mslaunch"
+  },
+  "native": {
+    "whole": 3,
+    "passed": 0,
+    "genuineValueReds": 3,
+    "prerequisiteStops": 0,
+    "duration": "3.27s",
+    "naturalExit": 1,
+    "failures": [
+      "Site My Custom Blog retained, expected Source default My Awesome Blog",
+      "Account admin@example.com retained, expected Source empty",
+      "Only one admin request observed, expected fresh second before credential boundary"
+    ]
+  },
+  "artifact": {
+    "id": 11385866488,
+    "zipBytes": 2283,
+    "zipSha256": "2f3ca851229806a5a9d2f531f4dfd26bcd2cc6efd8c91effb50d62bd257b0a3b",
+    "localInspection": "exact ZIP verified, two complete original actual reporter JSON files extracted"
+  },
+  "reporters": {
+    "source-eighteen": {
+      "path": "docs/receipts/default-seed-setup-runtime/source-eighteen-first-native-red-reporter.json",
+      "bytes": 5717,
+      "sha256": "fa5b6f5f0660eb196ee7c747efb446aa3dff4a306b5786b11c27724dc1bd8485",
+      "counts": {
+        "numTotalTests": 18,
+        "numPassedTests": 18,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "success": true
+      },
+      "callbacks": [
+        {
+          "fullName": "SetupWizard shows site setup step first with title input",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard empty title prevents advancing and shows validation error",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard filling title and clicking Next advances to admin step",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard does not present media usage tracking as an onboarding choice",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard admin step shows email input",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard empty email prevents advancing on admin step",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard step indicator shows three steps",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard prefills title and tagline from seedInfo",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard uses empty string for title and tagline when not in seedInfo",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard prefilled title can be edited and submitted",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard starting from a site package offers import alongside sample content and an empty site",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard starting from a site package skips sample content and lands on the Transfer import after signing in",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard starting from a site package keeps sample content and the dashboard as the default",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard starting from a site package skips sample content for an empty site",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard starting from a site package goes straight to the Transfer import when Cloudflare Access completes setup",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard keeps posting while sample content remains, then advances",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard keeps the added sample content after a failed request and resumes on Continue",
+          "status": "passed"
+        },
+        {
+          "fullName": "SetupWizard stops posting when a request reports no progress",
+          "status": "passed"
+        }
+      ]
+    },
+    "native-three": {
+      "path": "docs/receipts/default-seed-setup-runtime/native-three-first-native-red-reporter.json",
+      "bytes": 2899,
+      "sha256": "d6af212a4334fed9c443b92ad7728e3081acefc2bfdf10c238787b9713ef28dd",
+      "counts": {
+        "numTotalTests": 3,
+        "numPassedTests": 0,
+        "numFailedTests": 3,
+        "numPendingTests": 0,
+        "success": false
+      },
+      "callbacks": [
+        {
+          "fullName": "Native wizard presentation lifecycle returning to Site remounts its seed defaults and starting choice",
+          "status": "failed"
+        },
+        {
+          "fullName": "Native wizard presentation lifecycle returning from Sign In remounts empty Account fields",
+          "status": "failed"
+        },
+        {
+          "fullName": "Native wizard presentation lifecycle each controlled registration attempt prepares fresh account options before the credential boundary",
+          "status": "failed"
+        }
+      ]
+    }
+  },
+  "boundary": "supplemental controlled Native3 only;0Original Source causal/newauth/backendchallenge correctness; Original adminfixture has no options, controlled credential caller throws before creating/returning credential; no real expiry/security/session/credential probes"
+}

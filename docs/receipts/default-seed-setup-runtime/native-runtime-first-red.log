@@ -1,0 +1,53 @@
+✖ actual configured runtime initializes the default posts/pages schema before its caller resolves (78.251247ms)
+✖ actual configured runtime activates capture before publishing seeded schema as ready (27.654838ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 386.893122
+
+✖ failing tests:
+
+test at tests/default-seed-runtime-caller.test.ts:19:1
+✖ actual configured runtime initializes the default posts/pages schema before its caller resolves (78.251247ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'pages',
+  -   'posts'
+  - ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-default-seed-setup-runtime/tests/default-seed-runtime-caller.test.ts:23:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'pages', 'posts' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/default-seed-runtime-caller.test.ts:29:1
+✖ actual configured runtime activates capture before publishing seeded schema as ready (27.654838ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'expanded'
+  - 'active'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-default-seed-setup-runtime/tests/default-seed-runtime-caller.test.ts:35:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'expanded',
+    expected: 'active',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

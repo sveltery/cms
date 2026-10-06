@@ -11,7 +11,7 @@ import type { Storage } from '../general-media/upstream/storage/types.ts';
 const servicePermissions: readonly Permission[] = Object.freeze([
   'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create',
   'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any',
-  'content:publish_own', 'content:publish_any', 'taxonomies:read', 'taxonomies:manage', 'menus:read', 'menus:manage', 'redirects:read', 'redirects:manage', 'sections:read', 'sections:manage', 'widgets:read', 'widgets:manage', 'comments:read', 'comments:moderate', 'comments:delete', 'comments:settings', 'bylines:read', 'bylines:manage', 'media:read', 'media:upload', 'media:edit_own', 'media:edit_any', 'media:delete_own', 'media:delete_any'
+  'content:delete_permanent', 'content:publish_own', 'content:publish_any', 'taxonomies:read', 'taxonomies:manage', 'menus:read', 'menus:manage', 'redirects:read', 'redirects:manage', 'sections:read', 'sections:manage', 'widgets:read', 'widgets:manage', 'comments:read', 'comments:moderate', 'comments:delete', 'comments:settings', 'bylines:read', 'bylines:manage', 'media:read', 'media:upload', 'media:edit_own', 'media:edit_any', 'media:delete_own', 'media:delete_any'
 ]);
 
 /** Accept only a server-resolved principal; request claims never enter this bridge. */

@@ -3,7 +3,8 @@ import { error, redirect } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { requestIdentity, identityCookiePath } from '$lib/server/auth/identity-request';
 import { AuthFlowError, authenticationOptions, authenticatePasskey, beginAdminSetup, finishAdminSetup,
-  issueSession, SESSION_MAX_AGE_SECONDS, SETUP_NONCE_COOKIE, SETUP_NONCE_MAX_AGE_SECONDS, setupStatus } from '$lib/server/auth/passkey-flow';
+  issueSession, SESSION_MAX_AGE_SECONDS, SETUP_NONCE_COOKIE, SETUP_NONCE_MAX_AGE_SECONDS } from '$lib/server/auth/passkey-flow';
+import { runtimeSetupStatus } from '$lib/server/setup/status';
 import { registrationCredential, authenticationCredential, emailInput } from '$lib/server/auth/identity-schemas';
 import { PasskeyAuthenticationError } from '$lib/server/auth/vendor/passkey/authenticate';
 import { SESSION_COOKIE_NAME, SESSION_COOKIE_OPTIONS, SESSION_COOKIE_DELETE_OPTIONS, SessionOriginError } from '$lib/server/auth/request';
@@ -29,7 +30,7 @@ async function authResponse<T>(action: () => Promise<T>): Promise<T> {
     error(500, { code: 'AUTH_ERROR', message: 'Authentication request failed' });
   }
 }
-export const getSetupStatus = query(() => authResponse(() => setupStatus(requestIdentity(getRequestEvent()))));
+export const getSetupStatus = query(() => authResponse(() => runtimeSetupStatus(requestIdentity(getRequestEvent()))));
 export const getCurrentUser = query(() => authResponse(() => currentUser(getRequestEvent())));
 // Profile availability is independent of the principal already resolved by the hook.
 export const getAuthenticatedState = query(() => ({ authenticated: getRequestEvent().locals.cms?.principal != null }));

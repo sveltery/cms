@@ -83,6 +83,9 @@ export interface DraftEntry {
   publishedAt?: string | null; scheduledAt?: string | null;
   liveRevisionId?: string | null; draftRevisionId?: string | null;
   translationGroup?: string | null; liveData?: Record<string, unknown> | null;
+  primaryBylineId?: string | null;
+  bylines?: import('../bylines/repository-types.ts').ContentBylineCredit[];
+  byline?: import('../bylines/repository-types.ts').BylineSummary | null;
   data: Record<string, unknown>;
 }
 export interface DraftSummary extends Omit<DraftEntry, 'data'> { title: string | null }

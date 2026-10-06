@@ -1,0 +1,52 @@
+{
+  "head": "141d384ed990eed941a9bcb338431ede0a24b97c",
+  "tree": "12ef7925715f8f2ce50880d91f09b0ef539195d5",
+  "run": 37400659680,
+  "job": 112066883728,
+  "raw": {
+    "path": "docs/receipts/default-seed-setup-runtime/original-wizard-whole18-after-ui-green.log",
+    "bytes": 58105,
+    "sha256": "1d89123a386114bd7d7e8450d3d1b91dfec2102c74101149b3e2c3e8d5ae12a5"
+  },
+  "registered": 18,
+  "passed": 18,
+  "failed": 0,
+  "skipped": 0,
+  "naturalExit": 0,
+  "duration": "4.47s",
+  "callbacks": [
+    "SetupWizard > shows site setup step first with title input 73ms",
+    "SetupWizard > empty title prevents advancing and shows validation error 139ms",
+    "SetupWizard > filling title and clicking Next advances to admin step 118ms",
+    "SetupWizard > does not present media usage tracking as an onboarding choice 54ms",
+    "SetupWizard > admin step shows email input 111ms",
+    "SetupWizard > empty email prevents advancing on admin step 165ms",
+    "SetupWizard > step indicator shows three steps 54ms",
+    "SetupWizard > prefills title and tagline from seedInfo 54ms",
+    "SetupWizard > uses empty string for title and tagline when not in seedInfo 54ms",
+    "SetupWizard > prefilled title can be edited and submitted 106ms",
+    "SetupWizard > starting from a site package > offers import alongside sample content and an empty site 55ms",
+    "SetupWizard > starting from a site package > skips sample content and lands on the Transfer import after signing in 294ms",
+    "SetupWizard > starting from a site package > keeps sample content and the dashboard as the default 249ms",
+    "SetupWizard > starting from a site package > skips sample content for an empty site 300ms",
+    "SetupWizard > starting from a site package > goes straight to the Transfer import when Cloudflare Access completes setup 151ms",
+    "SetupWizard > keeps posting while sample content remains, then advances 159ms",
+    "SetupWizard > keeps the added sample content after a failed request and resumes on Continue 208ms",
+    "SetupWizard > stops posting when a request reports no progress 150ms"
+  ],
+  "browser": "official Playwright Chromium1243/sandbox true",
+  "originalClocks": "callback15000ms/launch30000ms unchanged",
+  "artifact": {
+    "id": 11384089963,
+    "url": "https://github.com/sveltery/cms/actions/runs/37400659680/artifacts/11384089963",
+    "zipBytes": 1282,
+    "zipSha256": "17c3d3b44816f3f64b91daa6bb50dd7884559c9d299d5fe294e8e85c0240c29f",
+    "localInspection": "actual ZIP downloaded; exact published SHA256 verified; only setup-source-results.json present; whole18 actual statuses/totals asserted",
+    "reporter": {
+      "path": "docs/receipts/default-seed-setup-runtime/original-wizard-whole18-after-ui-reporter.json",
+      "bytes": 5759,
+      "sha256": "146b8994713d2bfdda460adfd206c7d0a3c26af5edc2c4cfa72831eaa159aa13"
+    }
+  },
+  "boundary": "whole controlled Original UI18;0productionexternal-auth/new-security/fullNativeRuntime proof"
+}

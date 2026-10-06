@@ -1,0 +1,30 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 1 failed) 4326ms
+     × treats a missing activation table as inactive without aborting the transaction 74ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > treats a missing activation table as inactive without aborting the transaction
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:50:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 68 passed (69)
+   Start at  23:35:36
+   Duration  20.29s (transform 987ms, setup 0ms, import 3.54s, tests 16.16s, environment 0ms)
+

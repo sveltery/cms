@@ -38,6 +38,7 @@ export function createCmsRuntime(
   const sqlite = new Map<string, Promise<CmsDatabase>>();
   const bindings = new Map<D1Binding, Promise<CmsDatabase>>();
   const configurations = new WeakMap<RequestEvent, RuntimeConfiguration>();
+  const seedWork = new Set<Promise<unknown>>();
   let closed = false;
   let closing: Promise<void> | undefined;
 
@@ -88,6 +89,13 @@ export function createCmsRuntime(
     return cachedAdapter(bindings, binding, () => openD1(binding));
   }
 
+  function trackSeedWork<T>(task: Promise<T>): Promise<T> {
+    seedWork.add(task);
+    const settled = () => { seedWork.delete(task); };
+    void task.then(settled, settled);
+    return task;
+  }
+
   async function storageFor(config: RuntimeConfiguration): Promise<Storage | undefined> {
     if (config.mediaStorage && config.kind !== 'sqlite') {
       throw new Error('SVELTERY_MEDIA_DIRECTORY requires the Node SQLite runtime');
@@ -119,6 +127,17 @@ export function createCmsRuntime(
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
     const storage = await storageFor(config);
     const database = await databaseFor(config);
+    assertOpen();
+    // Retry incomplete/nonfatal initialization on later requests, like Source.
+    // Both this call and its deadline-anchored work belong to runtime teardown.
+    await trackSeedWork((async () => {
+      const { initializeConfiguredDefaultSeed } = await import('./default-seed.ts');
+      assertOpen();
+      return initializeConfiguredDefaultSeed(database, { ...config, keepAlive: task => {
+        trackSeedWork(task);
+        config.keepAlive?.(task);
+      } });
+    })());
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     configurations.set(event, config);
@@ -200,6 +219,7 @@ export function createCmsRuntime(
         const pending = [...sqlite.values(), ...bindings.values()];
         sqlite.clear(); bindings.clear();
         const initialized = await Promise.allSettled(pending);
+        while (seedWork.size) await Promise.allSettled(seedWork);
         await Promise.all(initialized.filter(result => result.status === 'fulfilled')
           .map(result => result.value.close()));
       })();

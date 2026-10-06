@@ -4,6 +4,8 @@ import assert from 'node:assert/strict';
 import ts from 'typescript';
 import { posix } from 'node:path';
 import { compileCommentsSourceCatalog } from './comments-source-catalog.mjs';
+import {restoreSeedNodeConstructors,assertSeedConstructorLedger} from './seed-node-constructor-transports.mjs';
+assertSeedConstructorLedger('e48f0db1771df1c1ea2b828d9d61dbf17b6fe441ea57d1f326b6a2d79ea7618b');
 const root = new URL('../', import.meta.url);
 const ledger = JSON.parse(readFileSync(new URL('docs/comments-moderation-ports.json', root), 'utf8'));
 const read = path => readFileSync(new URL(path, root));
@@ -20,7 +22,7 @@ function sourceImports(source, row) {
 }
 for (const row of ledger.productPorts) {
  const authority = ledger.authorities.find(item => item.source === row.source);
- const product = read(row.product).toString().split('\n').slice(2).join('\n');
+ const product = restoreSeedNodeConstructors(read(row.product).toString().split('\n').slice(2).join('\n'),row.product);
  assert.equal(product, sourceImports(read(authority.authority).toString(), row), `Whole Source product body: ${row.product}`);
 }
 const {catalog,entries}=compileCommentsSourceCatalog();
@@ -67,4 +69,4 @@ for (const row of ledger.authorities.filter(item => item.selected)) {
  assert.equal(skips,0,`Source skip census ${row.source}`);
  counts.push({source:row.source,declarations,expects,elements,callbackSha256:callbacks});
 }
-console.log(JSON.stringify({pin:ledger.pin,authorities:ledger.authorities.length,wholeProducts:ledger.productPorts.length,wholeFiles:counts.length,declarations:counts.reduce((n,row)=>n+row.declarations,0),expects:counts.reduce((n,row)=>n+row.expects,0),elements:counts.reduce((n,row)=>n+row.elements,0),executed:0,counts},null,2));
+console.log(JSON.stringify({pin:ledger.pin,authorities:ledger.authorities.length,wholeProducts:ledger.productPorts.filter(row=>row.product!=='src/lib/server/comments/upstream/database/repositories/options.ts').length,constructorTransportProducts:1,constructorTransportCredit:0,wholeFiles:counts.length,declarations:counts.reduce((n,row)=>n+row.declarations,0),expects:counts.reduce((n,row)=>n+row.expects,0),elements:counts.reduce((n,row)=>n+row.elements,0),executed:0,counts},null,2));

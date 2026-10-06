@@ -1,3 +1,5 @@
+import {hydrateCanonicalBylines,hydrateCanonicalBylinesMany} from '../bylines/canonical-hydration.ts';
+import {resolveBylineFilter} from '../bylines/content-list.ts';
 import {sql,type CompiledQuery} from 'kysely';
 import {hydrateContentSeo,hydrateContentSeoMany} from '../seo/content-read.ts';
 import {ulid} from 'ulidx';
@@ -10,6 +12,7 @@ import {RevisionRepository} from './lifecycle/upstream/database/repositories/rev
 import {EmDashValidationError,ContentCollectionNotFoundError,InvalidCursorError,type ContentItem,type FindManyOptions} from './lifecycle/upstream/database/repositories/types.ts';
 import {InvalidCursorError as NativeInvalidCursorError} from './trash-cursor.ts';
 import {lifecycleService} from './lifecycle/service.ts';
+import {hydrateBoundContentReferences} from '../relations/read-host.ts';
 import type {LifecycleDependencies} from './lifecycle/upstream/host.ts';
 import {genericContentList,genericContentUpdate} from './content-validation.ts';
 import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInput,listTrashedDraftInput,parse,restoreDraftInput,tableName} from './validation.ts';
@@ -30,13 +33,14 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  function mutation(own:Permission,any:Permission){if(!actor)throw new CmsError('UNAUTHENTICATED');if(!actor.permissions.includes(own)&&!actor.permissions.includes(any))throw new CmsError('FORBIDDEN');return actor;}
  function owner(item:ContentItem,any:Permission){if(!actor?.permissions.includes(any)&&item.authorId!==actor?.id)throw new CmsError('FORBIDDEN');}
  async function definition(type:string){const collection=await registry.getCollectionWithFields(type);if(!collection)throw new CmsError('NOT_FOUND');return collection;}
- function entry(item:ContentItem):DraftEntry{if(typeof item.locale!=='string')throw new CmsError('VALIDATION_ERROR','Persisted content locale is missing');return{...item,locale:item.locale};}
+ function entry(item:ContentItem):ContentItem&DraftEntry{if(typeof item.locale!=='string')throw new CmsError('VALIDATION_ERROR','Persisted content locale is missing');return{...item,locale:item.locale};}
  function nativeRow(type:string,row:Record<string,unknown>,fields:Array<{slug:string}>):ContentItem{
   const data=Object.fromEntries(fields.filter(field=>Object.hasOwn(row,field.slug)).map(field=>[field.slug,deserializeValue(row[field.slug])]));
   return {...repository().mapRow(type,row),data};
  }
- async function hydrate(item:ContentItem,hasSeo:boolean):Promise<DraftEntry>{
+ async function hydrate(item:ContentItem,hasSeo:boolean):Promise<ContentItem&DraftEntry>{
   item=await hydrateContentSeo(database,item.type,item,hasSeo);
+  await hydrateCanonicalBylines(database,item.type,item);
   const stored=entry(item);if(!item.draftRevisionId)return stored;
   try{
    const revision=await revisions().findById(item.draftRevisionId);if(!revision)return stored;
@@ -48,6 +52,10 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    console.error('[emdash] draft hydration failed:',cause);
    return stored;
   }
+ }
+ async function hydrateReferences(item:ContentItem):Promise<ContentItem&DraftEntry>{
+  const collection=await definition(item.type);
+  return entry(await hydrateBoundContentReferences(database,item,collection.fields,true));
  }
  function summary(item:ContentItem,titleField='title'):DraftSummary{
   const {data,liveData,...value}=entry(item);const title=data[titleField];return{...value,title:typeof title==='string'?title.slice(0,200):null};
@@ -72,6 +80,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   const where:FindManyOptions['where']={locale:value.locale};
   if(value.status)where.status=value.status;if(value.authorId)where.authorId=value.authorId;
   if(value.fieldFilters&&Object.keys(value.fieldFilters).length)where.fieldFilters=value.fieldFilters as any;
+  const bylineFilter=resolveBylineFilter(value,value.locale);if(bylineFilter)where.bylineFilter=bylineFilter;
   if(value.dateField&&(value.dateFrom||value.dateTo))where.dateFilter={field:value.dateField,from:bound(value.dateFrom,'start'),to:bound(value.dateTo,'end')};
   return{value,collection,options:{limit:value.limit,cursor:value.cursor,where,
    ...(value.orderBy?{orderBy:{field:value.orderBy,direction:value.order??'desc'}}:{}),
@@ -91,7 +100,11 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  }
  return{
   async createContent(input:unknown){permission('content:create');return entry(await lifecycle().createContent(input));},
-  async getContent(input:unknown){read();const value=parse(getDraftInput,input);const persisted=await includingTrashed(value.type,value.id,value.locale);const item=persisted.item;if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrate(active,persisted.hasSeo);},
+  async duplicateContent(input:unknown){return entry(await lifecycle().duplicateContent(input));},
+  permanentDeleteContent:(input:unknown)=>lifecycle().permanentDeleteContent(input),
+  async getContent(input:unknown){read();const value=parse(getDraftInput,input);const persisted=await includingTrashed(value.type,value.id,value.locale);const item=persisted.item;if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrateReferences(await hydrate(active,persisted.hasSeo));},
+  async getPublishedContent(input:unknown){permission('content:read');return entry(await lifecycle().getPublishedContent(parse(getDraftInput,input)));},
+  async compareContent(input:unknown){read();return lifecycle().compareContent(parse(getDraftInput,input));},
   async updateContent(input:unknown){
    mutation('content:edit_own','content:edit_any');
    // Preserve required caller CAS and JSON/slug bounds. Omitted data remains
@@ -101,7 +114,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    const parsed=parse(genericContentUpdate,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
-   const result=await translate(()=>repository().findMany(value.type,options));return{...result,items:(await hydrateContentSeoMany(database,value.type,result.items,collection.hasSeo)).map(item=>summary(item,collection.titleField??'title'))};
+   const result=await translate(()=>repository().findMany(value.type,options));await hydrateCanonicalBylinesMany(database,value.type,result.items);return{...result,items:(await hydrateContentSeoMany(database,value.type,result.items,collection.hasSeo)).map(item=>summary(item,collection.titleField??'title'))};
   },
   async countContent(input:unknown){read();const {value,options}=await listOptions(input);return translate(()=>repository().count(value.type,options.where));},
   async getTrashedContent(input:unknown){read();const value=parse(getTrashedDraftInput,input);const persisted=await includingTrashed(value.type,value.id,value.locale);const item=persisted.item;

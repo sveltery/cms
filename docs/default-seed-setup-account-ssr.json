@@ -1,0 +1,102 @@
+{
+  "status": "Finite Root-authorized test-only account component SSR transport;0wholeWizard/fullSourceSSR/new-auth-probe credit",
+  "baseline": "41ee48fe781db307174079837387f4565814456c",
+  "proposalSha256": "dcb57a08189153fa6aab830365ddc7843d60e9bb393653b8e95af3cea1c2d268",
+  "protected": {
+    "src/lib/server/auth/identity-request.ts": "66569c21267f97d6e8067977d9f1de940a8db504dc015ecc46c981eab9e440aa",
+    "src/lib/server/auth/identity-store.ts": "b638655d0d759011a66b8a5bc02d355018d452f28b4447bba474833380d75ba1",
+    "src/lib/server/auth/passkey-flow.ts": "9bc40a0fb46b2e89ca8163d3e6fa1c7b8d418ac84a511a3a1d15ea978fd6f3ee",
+    "tests/helpers/passkey-runtime.ts": "2d028647ebeb36c4e7238feda0e37b46de54c11e1a9d08716126ce5e7f1e47ae",
+    "tests/helpers/passkey-runtime-server.mjs": "c5e63f1c7fa5bb93f1690763e31ef1e5ae1c9b0bd9baa939c9055177500fed33",
+    "tests/helpers/schema-admin-storage.ts": "755b07bb84420451e9f3f368f03c7a28e1420200a15af4546aa75eef6c1b7b85",
+    "scripts/ci-validation-phase.sh": "aeb491847fce29f74dd5cb72393847ecc977176a25ee4cdd30ca1b20f0e9a0e1",
+    ".github/workflows/ci.yml": "0dfa3df8b40296e51e5786dc52efa8989dd13c53521bf9eb33418d6375374e20",
+    "pnpm-lock.yaml": "771cfbbd146985c26194b7b0f5af24cdea15a82b188fafc9196090754420972b"
+  },
+  "transports": [
+    {
+      "path": "tests/helpers/default-seed-setup/account-ssr-runtime.ts",
+      "original": "tests/helpers/passkey-runtime.ts",
+      "originalSha256": "2d028647ebeb36c4e7238feda0e37b46de54c11e1a9d08716126ce5e7f1e47ae",
+      "reverse": [
+        {
+          "from": "export async function accountSetupSsrRuntime(",
+          "to": "export async function passkeyRuntime("
+        },
+        {
+          "from": "cwd: new URL('../../../', import.meta.url)",
+          "to": "cwd: new URL('../../', import.meta.url)"
+        },
+        {
+          "from": "from '../schema-admin-storage.ts'",
+          "to": "from './schema-admin-storage.ts'"
+        },
+        {
+          "from": "\n        CMS_AUTH_OUTPUT: \"tests/.default-seed-account-ssr/output\",",
+          "to": ""
+        },
+        {
+          "from": "\nimport { ensureAccountSsrBuild } from './account-ssr-build.ts';",
+          "to": ""
+        },
+        {
+          "from": "\n  await ensureAccountSsrBuild();",
+          "to": ""
+        }
+      ]
+    },
+    {
+      "path": "tests/production/passkey-email-source.test.ts",
+      "original": "tests/production/passkey-email-source.test.ts",
+      "originalSha256": "b5a6842889feeda3fd3ac7df373ecd2d059ea99d85ec9167de99777f2d1a85e1",
+      "reverse": [
+        {
+          "from": "import { accountSetupSsrRuntime } from '../helpers/default-seed-setup/account-ssr-runtime.ts';",
+          "to": "import { passkeyRuntime } from '../helpers/passkey-runtime.ts';"
+        },
+        {
+          "from": "const h = await accountSetupSsrRuntime(target);",
+          "to": "const h = await passkeyRuntime(target);"
+        }
+      ]
+    },
+    {
+      "path": "tests/helpers/default-seed-setup/account-component-ssr-host.svelte",
+      "original": "src/routes/setup/+page.svelte",
+      "originalSha256": "b3bcb8858cbf7a7498b0980f85cde80fdcc0f53ea1e0519793bfcc4b55182fa0",
+      "reverse": []
+    },
+    {
+      "path": "src/lib/auth.remote.ts",
+      "original": "src/lib/auth.remote.ts",
+      "originalSha256": "e4de4ac51b535fe42514b7a50992b265cd7ea97e503ce86e1ad607a54eb96f9a",
+      "reverse": [
+        {
+          "from": "  issueSession, SESSION_MAX_AGE_SECONDS, SETUP_NONCE_COOKIE, SETUP_NONCE_MAX_AGE_SECONDS } from '$lib/server/auth/passkey-flow';\nimport { runtimeSetupStatus } from '$lib/server/setup/status';",
+          "to": "  issueSession, SESSION_MAX_AGE_SECONDS, SETUP_NONCE_COOKIE, SETUP_NONCE_MAX_AGE_SECONDS, setupStatus } from '$lib/server/auth/passkey-flow';"
+        },
+        {
+          "from": "runtimeSetupStatus(requestIdentity(getRequestEvent()))",
+          "to": "setupStatus(requestIdentity(getRequestEvent()))"
+        }
+      ]
+    }
+  ],
+  "ownedConfigSha256": "2e0104957ba51177de462fb22e85cf7b42321eff081f32a76e2015618a014f67",
+  "supportedSourceOutput": {
+    "path": "tests/helpers/passkey-runtime-server.mjs",
+    "literal": "const output = resolve(process.env.CMS_AUTH_OUTPUT ?? '.svelte-kit/output');"
+  },
+  "actualBuild": {
+    "file": "tests/helpers/default-seed-setup/account-ssr-build.ts",
+    "sha256": "2df2079dcfceb066b362670cf8ce30c858072796086d60cb92c7f51c67c0a569",
+    "command": "node <actual-root>/node_modules/vite/bin/vite.js build",
+    "status": "Root-qualified owned default config build root; exact production files/root and distinct output; actual build once per process, errors forwarded/propagated. No successor execution yet.",
+    "cwd": "tests/helpers/default-seed-setup/account-ssr-project",
+    "defaultConfig": {
+      "path": "tests/helpers/default-seed-setup/account-ssr-project/vite.config.ts",
+      "sha256": "3d99a8e8c620ee147a0e464f4cf19c92e91774d2df0639a81eac13d8dd412343"
+    },
+    "qualificationProposalSha256": "1982a0c9ec58e5c40a00a954b4039727d27b197c0ca7d3a975d327535cf3461e"
+  }
+}

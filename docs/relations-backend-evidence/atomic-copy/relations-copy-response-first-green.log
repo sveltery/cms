@@ -1,0 +1,58 @@
+✔ Node failed duplicate copies preserve the original graph and write no partial copy (57.153271ms)
+Relation delete error: Error: actual cascade fixture failure
+    at Object.all (file:///workspace/cms-complete-relations-backend/src/lib/server/database/node-sqlite-compat.ts:85:38)
+    at file:///workspace/cms-complete-relations-backend/src/lib/server/database/sqlite.ts:19:66
+    at #props.executor.provideConnection.freeze.signal (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26)
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async deleteRelationWithFields (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/deletion.ts:52:18)
+    at async handleRelationDelete (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/handlers.ts:274:12)
+    at async TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-copy-cascade-native.test.ts:47:23)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+✔ Node failed relation deletion retains both bound fields and the actual graph (59.324806ms)
+✔ raw D1 failed duplicate copies preserve the original graph and write no partial copy (1309.948592ms)
+Relation delete error: Error: D1_ERROR: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async RawBindingD1Adapter.executeAtomicBatch (file:///workspace/cms-complete-relations-backend/src/lib/server/database/d1.ts:43:13)
+    at async #props.executor.provideConnection.freeze.signal (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:20)
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async deleteRelationWithFields (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/deletion.ts:52:18)
+    at async handleRelationDelete (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/handlers.ts:274:12)
+    at async TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-copy-cascade-native.test.ts:47:23)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+  [cause]: Error: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:90:27
+      at async #fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4373:18)
+      at async ProxyServer.fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4277:14) {
+    [cause]: undefined
+  }
+}
+✔ raw D1 failed relation deletion retains both bound fields and the actual graph (1493.346986ms)
+✔ scoped D1 failed duplicate copies preserve the original graph and write no partial copy (1212.853138ms)
+Relation delete error: Error: D1_ERROR: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-complete-relations-backend/src/lib/server/database/coalescing-d1.ts:148:37 {
+  [cause]: Error: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:90:27
+      at async #fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4373:18)
+      at async ProxyServer.fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4277:14) {
+    [cause]: undefined
+  }
+}
+✔ scoped D1 failed relation deletion retains both bound fields and the actual graph (1541.531075ms)
+✔ relation responses preserve pinned Source missing-collection status (33.677053ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6266.502028

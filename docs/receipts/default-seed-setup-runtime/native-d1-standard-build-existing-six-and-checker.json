@@ -1,0 +1,87 @@
+{
+  "headExecuted": "f5d49ae271812dadfbdc26e3d0d4f091bc06a617",
+  "order": [
+    "actual production rawD1 two callers",
+    "standard normal-config/default-output production build",
+    "whole existing six account/email production callbacks including once-process actual owned account SSR build",
+    "one new 3072 sync/checker"
+  ],
+  "commands": [
+    {
+      "command": "node --test tests/default-seed-runtime-d1-caller.test.ts",
+      "exitCode": 0,
+      "nativeSupplemental": {
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      "credit": "Zero Original Runtime4/full6500factory/Source causal; actual binding/canonical owner/sql/capture values."
+    },
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=3072 node node_modules/vite/bin/vite.js build",
+      "exitCode": 0,
+      "normalManifests": {
+        "/workspace/cms-default-seed-setup-runtime/.svelte-kit/output/server/manifest.js": 31333,
+        "/workspace/cms-default-seed-setup-runtime/.svelte-kit/output/server/internal.js": 407,
+        "/workspace/cms-default-seed-setup-runtime/.svelte-kit/output/client/.vite/manifest.json": 27017
+      }
+    },
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=3072 node --test tests/production/passkey-email-source.test.ts",
+      "exitCode": 0,
+      "existingCallbacks": {
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skip": 0
+      },
+      "credit": "Existing protected cases preserved; two account-component SSR transports earn zero wholeWizard/fullSourceSSR/new-auth-probe credit."
+    },
+    {
+      "command": "node node_modules/@sveltejs/kit/svelte-kit.js sync; NODE_OPTIONS=--max-old-space-size=3072 node node_modules/svelte-check/bin/svelte-check --tsconfig ./tsconfig.json",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "cgroup": {
+    "observedStartBytes": 15000338432,
+    "observedPeakBytes": 17001140224,
+    "terminalBytes": 14655787008,
+    "limitBytes": 17179869184,
+    "oomKillBefore": 4,
+    "oomKillAfter": 4,
+    "lease": "released; all work sequential, no own heavy process remains"
+  },
+  "receipts": {
+    "native-runtime-d1-two-first.log": {
+      "bytes": 803,
+      "sha256": "49dac54cd3dd60ed388330cf003f4cddb920b2451aadd6594daa7fbf57fffee9"
+    },
+    "standard-production-build-first.log": {
+      "bytes": 84506,
+      "sha256": "f2eeed5bc20aa6e2f3a3a107d1727b3cb88d32a8020f70fd044a2724ae9b758e"
+    },
+    "standard-output-existing-six-first.log": {
+      "bytes": 97656,
+      "sha256": "9ba6e1a432b343ba51c6454e0d743cd6a1678ae3ddc5eb2dd890122505a3441f"
+    },
+    "new-fixtures-3072-checker.log": {
+      "bytes": 227,
+      "sha256": "d73d4d89a8aabb672d929615b291bf9254081f36cd08a30c8ca876e028ad538a"
+    },
+    "refactor-normal-browser-prerequisite.log": {
+      "bytes": 355279,
+      "sha256": "6e2a321af112c456a588ed2ef4b42f39314da4448c6b6307717dc488df98afaf"
+    }
+  },
+  "hostedNormalBeforeSuccessor": {
+    "head": "21414f89662797d5a8834085bbb30a3976e6a163",
+    "runId": 37402546089,
+    "browserJobId": 112072717553,
+    "browserConclusion": "failure",
+    "securedCallbacksRegistered": 0,
+    "literalReason": "Existing isolated basepath copied custom Vite configuration cannot resolve virtual:emdash/seed. Finite genuine plugin transport proposal awaiting Root review. Source sandboxed presteps succeeded. No normal/secured overall green claim."
+  },
+  "focusedReview": "Fresh read-only supplemental reviewer found shutdown seed work ownership, conservative account-read fallback and early fixture cleanup issues; fixes pending exact finite proposal. This is not fullfeature acceptance."
+}

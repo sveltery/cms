@@ -1,0 +1,49 @@
+{
+  "proposalSha256": "ab07dce2743ccf97f9d3e00f4b9f43cc4f81c448b144af1a7e36af1547065613",
+  "status": "Root-authorized Native readonly completion-query control committed before execution and repair",
+  "fixture": {
+    "path": "tests/default-seed-setup/startup-read-caller.test.ts",
+    "sha256": "7cd35f5ac7623bd4e4524ed095d2273195aab146956d90b13e52c26397fc04e8"
+  },
+  "configBeforeSha256": "290c662522e77a256e86052fddcd35c2c1c7b09e74351751287517e89f4cd5d9",
+  "configCurrentSha256": "fc6480b39e73ddc45d5dd71744b6b30c8f7c3990fa1a75db03811adfd9d606b9",
+  "productionBefore": {
+    "src/lib/server/runtime/default-seed.ts": {
+      "bytes": 2340,
+      "sha256": "1bb9ec1249f9f6e7c3d0815a422d79ceb92ce40c9206356aa725ce71aba82785"
+    },
+    "src/lib/server/runtime/composition.ts": {
+      "bytes": 9586,
+      "sha256": "27c758b20de30b91597bc65a0d979bbd6ef6345f239d16822bbf72ec41b768c9"
+    }
+  },
+  "counter": "Native1 additional metadata-read contract only;0Source/security/auth consequence/fullRuntime4 credit. Actual migrated canonical SQLite queryplugin throws at existing readonly completion query, no HTTP/session/credential/state/account action; old six Nativecaller bodies/data remain exact.",
+  "firstExecution": {
+    "head": "e1d1c02b",
+    "command": "node node_modules/vitest/vitest.mjs run --config vitest.default-seed-setup-caller.config.ts",
+    "exitCode": 1,
+    "nativePass": 6,
+    "nativeValueRed": 1,
+    "prerequisiteStops": 0,
+    "skips": 0,
+    "literal": "promise rejected actual caller completion query unavailable instead of resolving",
+    "raw": {
+      "path": "docs/receipts/default-seed-setup-runtime/native-seven-read-failure-first-red.log",
+      "bytes": 1474,
+      "sha256": "4d30843e49666c58679923e3ab9117e47cf84fed445559168a118648337bbc71"
+    },
+    "counter": "Genuine Native completion-reader value-red only;0Source/security/auth-probe credit."
+  },
+  "afterExecution": {
+    "head": "e8fed610ccf58121d27e84f9f2ca4817d6523b4d",
+    "pass": 7,
+    "fail": 0,
+    "skip": 0,
+    "exitCode": 0,
+    "raw": "docs/receipts/default-seed-setup-runtime/native-seven-read-failure-green.log"
+  },
+  "oldCallerFiles": {
+    "tests/default-seed-setup/error-caller.test.ts": "1e4ade80c9e952a6a6783e30a5299778afd974200704de936a2081a021420c6d",
+    "tests/default-seed-setup/status-caller.test.ts": "9aadc8baa0f54a060fbfd5ad5301dfb51b164950efb4d5459f3f96621cf591d0"
+  }
+}

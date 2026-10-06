@@ -1,0 +1,161 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts (1 test | 1 failed) 52ms
+     × applies 112 entries over requests that each stay under 1,000 queries 50ms
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts (8 tests | 8 failed) 196ms
+     × rejects setup on a public host without a configured site URL 45ms
+     × uses the request origin for loopback development 25ms
+     × stores the HTTPS request origin on Cloudflare Workers 21ms
+     × rejects a public Host in development on workerd 22ms
+     × rejects a spoofed loopback Host in production 22ms
+     × does not overwrite site_url when a later setup call arrives with a spoofed Host 20ms
+     × is atomic under concurrent setup POSTs with different Hosts 19ms
+     × does not overwrite a legitimately-stored empty string 21ms
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts (0 test)
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts:6:1
+      4| import { afterEach, describe, expect, it, vi } from "vitest";
+      5|
+      6| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+      7|
+      8| vi.mock(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts:6:1
+      4| import { afterEach, describe, expect, it, vi } from "vitest";
+      5|
+      6| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+      7|
+      8| vi.mock("virtual:emdash/seed", () => ({ seed: { version: "unsupported"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts > POST /setup with sample content > applies 112 entries over requests that each stay under 1,000 queries
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ postSetupCounted parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts:81:19
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts:127:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > rejects setup on a public host without a configured site URL
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:79:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > uses the request origin for loopback development
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:96:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > stores the HTTPS request origin on Cloudflare Workers
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:108:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > rejects a public Host in development on workerd
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:126:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > rejects a spoofed loopback Host in production
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:138:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > does not overwrite site_url when a later setup call arrives with a spoofed Host
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:153:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > is atomic under concurrent setup POSTs with different Hosts
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts > POST /setup — site_url write-once lock > does not overwrite a legitimately-stored empty string
+Error: Cannot find module '/src/lib/server/setup/site.ts' imported from /workspace/cms-default-seed-setup-runtime/tests/helpers/default-seed-setup/setup-context.ts
+ ❯ Module.POST tests/helpers/default-seed-setup/setup-context.ts:6:30
+      4| import { getConfiguredOrigin } from '../../../parity/emdash/default-se…
+      5| export async function POST(context: { request: Request; url: URL; loca…
+      6|   const { applySetupSite } = await import('../../../src/lib/server/set…
+       |                              ^
+      7|   const emdash = context.locals.emdash;
+      8|   return applySetupSite({ request: context.request, url: context.url,
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:223:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  9 failed (9)
+   Start at  00:35:34
+   Duration  3.12s (transform 1.00s, setup 0ms, import 2.15s, tests 248ms, environment 0ms)
+

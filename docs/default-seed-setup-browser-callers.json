@@ -1,0 +1,48 @@
+{
+  "status": "Exact Root-approved three added presentation lines per existing caller after whole18 baseline and actual wizard;no execution yet",
+  "originalCallbacksPreserved": true,
+  "callers": [
+    {
+      "path": "tests/browser/passkey-setup-login.spec.ts",
+      "original": "parity/native/default-seed-setup-callers/passkey-setup-login.spec.ts.txt",
+      "baseline": "41ee48fe781db307174079837387f4565814456c",
+      "originalSha256": "83a5cedb051c8b2c40551d849df15eaa9ff256b41daeea2be811cdc6b0df0f42",
+      "originalBlob": "145b3ced4d3dbd1d03fd85e5ba0f423537496987",
+      "approvedProposalSha256": "8b5d27982a636e99840c8de6b55c4ec59fca0a543a7a863b69c2b6513bda1eae",
+      "reverse": [
+        {
+          "from": "    await page.getByLabel('Site Title', { exact: true }).fill('Virtual Auth Site');\n    await page.getByRole('button', { name: 'Continue \u2192', exact: true }).click();\n",
+          "to": ""
+        },
+        {
+          "from": "    await page.getByRole('button', { name: 'Continue \u2192', exact: true }).click();\n",
+          "to": ""
+        }
+      ],
+      "addedLines": 3,
+      "newAction": "one legitimate same-origin canonical Site POST;existing account preparation moves to second Continue; all existing credential/session/discoverability/data/assertions/clocks remain exact",
+      "credit": "0Source/new-auth consequence probe credit"
+    },
+    {
+      "path": "tests/browser/passkey-nonresident-shared-bug.spec.ts",
+      "original": "parity/native/default-seed-setup-callers/passkey-nonresident-shared-bug.spec.ts.txt",
+      "baseline": "41ee48fe781db307174079837387f4565814456c",
+      "originalSha256": "8e6860925b2bef111684576ab5c4c7d75c01b3e9a1eb867401232e837eea7936",
+      "originalBlob": "f0164f6f96a4337f9eddd2ba7268235da483fee1",
+      "approvedProposalSha256": "c95d3fdad3b1ad88432066243efcc8c4c2f1fe6f734e3a4ecfd228ddbfebe7ad",
+      "reverse": [
+        {
+          "from": "    await page.getByLabel('Site Title', { exact: true }).fill('Nonresident Site');\n    await page.getByRole('button', { name: 'Continue \u2192', exact: true }).click();\n",
+          "to": ""
+        },
+        {
+          "from": "    await page.getByRole('button', { name: 'Continue \u2192', exact: true }).click();\n",
+          "to": ""
+        }
+      ],
+      "addedLines": 3,
+      "newAction": "one legitimate same-origin canonical Site POST;existing account preparation moves to second Continue; all existing credential/session/discoverability/data/assertions/clocks remain exact",
+      "credit": "0Source/new-auth consequence probe credit"
+    }
+  ]
+}

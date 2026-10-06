@@ -1,0 +1,369 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts (5 tests | 5 failed) 783ms
+     × resolves references, term parents, bylines and menus across calls as a single call does 208ms
+     × keeps every call near its budget, however many entries earlier calls wrote 146ms
+     × counts trashed collisions as completed work without exceeding the query budget 118ms
+     × keeps every call near its budget while it creates many terms and bylines 144ms
+     × refuses a budget unless conflicts are skipped 165ms
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts (2 tests | 2 failed) 367ms
+     × writes each invalidated epoch to the backend once for a seed with sample content 219ms
+     × invalidates cached menus only when the seed writes them 146ms
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts (78 tests | 78 failed) 11386ms
+       × should reject invalid seed file 216ms
+       × should accept minimal valid seed 123ms
+       × should apply site settings 141ms
+       × should skip existing settings and create missing ones in skip mode 150ms
+       × should apply each setting independently when a later key conflicts 188ms
+       × should overwrite settings in update mode 254ms
+       × should throw in error mode when a seeded setting already exists 140ms
+       × creates wide collection schemas within the D1 query budget 139ms
+       × creates reference fields that target a later seed collection 131ms
+       × creates reference-heavy schemas within the D1 query budget 174ms
+       × should create collections and fields 164ms
+       × applies the hidden flag from the seed 150ms
+       × updates the hidden flag when re-applying with onConflict update 163ms
+       × applies and updates collection routability 152ms
+       × applies sortOrder from the seed and orders the list by it 148ms
+       × should skip existing collections 155ms
+       × should create multiple collections 159ms
+       × creates a declared relation with its labels and limits 219ms
+       × binds a field that names a relation instead of creating a second one 171ms
+       × binds a field on the other collection to the child side of the same relation 171ms
+       × keeps the declared side for a relation whose ends are the same collection 415ms
+       × updates labels and limits on re-apply, and leaves them on skip 149ms
+       × refuses to move a relation onto different collections 147ms
+       × refuses a relation naming a collection that does not exist 112ms
+       × refuses a field naming a relation that does not exist 107ms
+       × refuses a field naming a relation that does not touch its collection 154ms
+       × drops a forward $ref that names a collection seeded later 138ms
+       × binds an existing unbound reference field when a re-applied seed names a target 147ms
+       × seeds content for a reference field bound to the child side 155ms
+       × should create taxonomy definitions 125ms
+       × should not create terms by default 137ms
+       × should create flat taxonomy terms when includeContent is true 133ms
+       × should create hierarchical taxonomy terms with parents 167ms
+       × should skip existing terms 108ms
+       × should create menus with items 118ms
+       × should create nested menu items 124ms
+       × should replace items in existing menu 178ms
+       × should create widget areas with widgets 113ms
+       × should create menu widgets 123ms
+       × should create component widgets 121ms
+       × should replace widgets in existing area 184ms
+       × should create redirects 109ms
+       × should skip redirects when source already exists 108ms
+       × should create bylines and assign ordered credits to content 145ms
+       × should not create bylines by default 196ms
+       × should seed a byline avatar as a media row and link it 125ms
+       × links a byline avatar on update (onConflict: update) 102ms
+       × rejects a malformed byline avatar 107ms
+       × should not create content by default 114ms
+       × should create content when includeContent is true 170ms
+       × idempotently publishes slugless content for a non-routable collection 116ms
+       × should skip existing content entries 160ms
+       × skips an entry whose slug an earlier entry of the same seed took 106ms
+       × should resolve $ref: references between content into reference edges 107ms
+       × writes $ref: to the column for a reference field that names no target collection 118ms
+       × should assign taxonomy terms to content 143ms
+       × reads the site timezone and field definitions as often for ten entries as for one 119ms
+       × resolves seeded datetimes in the timezone and fields of the seed being applied 111ms
+       × should create content before menus so refs resolve 159ms
+       × should create sections 120ms
+       × should skip existing sections 112ms
+       × should be safe to run multiple times 128ms
+       × imports menu translations sharing one translation_group 121ms
+       × imports taxonomy def translations sharing one translation_group 169ms
+       × takes a taxonomy translation's structure from the taxonomy 124ms
+       × takes a taxonomy's structure from its source entry when translations come first 108ms
+       × follows a chain of taxonomy translations to the entry that declares the structure 152ms
+       × imports menu item translations sharing one translation_group 135ms
+       × falls back to fresh group when item translationOf is missing 138ms
+       × imports term translations sharing one translation_group 129ms
+       × keeps a term translation that names no parent under its term's parent 225ms
+     × honors skip for trashed slugless seed IDs 112ms
+     × honors update for trashed slugless seed IDs 113ms
+       × skips entries whose slug collides with a trashed row (onConflict: skip) 125ms
+       × does not resurrect trashed content (onConflict: update) 228ms
+       × reports a clear conflict for trashed collisions (onConflict: error) 116ms
+       × does not resolve references through a skipped trashed entry 111ms
+       × does not create relation edges to a skipped trashed entry 136ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 85 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > resolves references, term parents, bylines and menus across calls as a single call does
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts > applySeed with an object cache > writes each invalidated epoch to the backend once for a seed with sample content
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts > applySeed with an object cache > invalidates cached menus only when the seed writes them
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > validation > should reject invalid seed file
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > validation > should accept minimal valid seed
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > keeps the declared side for a relation whose ends are the same collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should create content when includeContent is true
+RangeError: Maximum call stack size exceeded
+ ❯ new DefaultQueryExecutor ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/default-query-executor.js:8:9
+ ❯ DefaultQueryExecutor.withPlugin ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/default-query-executor.js:26:16
+ ❯ Kysely.withPlugin ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:378:44
+ ❯ view src/lib/server/seed/namespace.ts:424:28
+    422|     ? database.db.withPlugin(d1SourceBoundary) : database.db;
+    423|   function view(logical: Kysely<any>, atomicLogical: Kysely<any>): Kys…
+    424|     const target = logical.withPlugin(namespace);
+       |                            ^
+    425|     const proxy = new Proxy(target, { get(instance, key) {
+    426|       if (key === 'withPlugin') return (plugin: KyselyPlugin) => {
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:16
+ ❯ registerBylineDatabase src/lib/server/bylines/storage.ts:31:26
+ ❯ view src/lib/server/seed/namespace.ts:439:5
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:16
+ ❯ registerBylineDatabase src/lib/server/bylines/storage.ts:31:26
+ ❯ view src/lib/server/seed/namespace.ts:439:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/170]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > resolves references, term parents, bylines and menus across calls as a single call does
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget, however many entries earlier calls wrote
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > counts trashed collisions as completed work without exceeding the query budget
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget while it creates many terms and bylines
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > refuses a budget unless conflicts are skipped
+Error: Seed fixture requires its actual registered storage owner
+ ❯ sourceSeedOwner tests/helpers/full-seed/source-db.ts:11:21
+      9| export function sourceSeedOwner(db: object): CmsDatabase {
+     10|   const owner = owners.get(db);
+     11|   if (!owner) throw new Error('Seed fixture requires its actual regist…
+       |                     ^
+     12|   return owner;
+     13| }
+ ❯ teardownTestDatabase tests/helpers/full-seed/source-db.ts:24:9
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:92:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/170]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget, however many entries earlier calls wrote
+RangeError: Maximum call stack size exceeded
+ ❯ new QueryCreator ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-creator.js:21:16
+ ❯ new Kysely ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:81:9
+ ❯ Kysely.withPlugin ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:376:16
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:29
+    426|       if (key === 'withPlugin') return (plugin: KyselyPlugin) => {
+    427|         const wrapped = logicalPlugin(plugin);
+    428|         return view(logical.withPlugin(wrapped), atomicLogical.withPlu…
+       |                             ^
+    429|       };
+    430|       if (key === 'withSchema') return (schema: string) => view(logica…
+ ❯ registerBylineDatabase src/lib/server/bylines/storage.ts:31:26
+ ❯ view src/lib/server/seed/namespace.ts:439:5
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:16
+ ❯ registerBylineDatabase src/lib/server/bylines/storage.ts:31:26
+ ❯ view src/lib/server/seed/namespace.ts:439:5
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/170]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > counts trashed collisions as completed work without exceeding the query budget
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget while it creates many terms and bylines
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > refuses a budget unless conflicts are skipped
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should apply site settings
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should skip existing settings and create missing ones in skip mode
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should apply each setting independently when a later key conflicts
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should overwrite settings in update mode
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should throw in error mode when a seeded setting already exists
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates wide collection schemas within the D1 query budget
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates reference fields that target a later seed collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates reference-heavy schemas within the D1 query budget
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > should create collections and fields
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > applies the hidden flag from the seed
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > updates the hidden flag when re-applying with onConflict update
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > applies and updates collection routability
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > applies sortOrder from the seed and orders the list by it
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > should skip existing collections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > should create multiple collections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > creates a declared relation with its labels and limits
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds a field that names a relation instead of creating a second one
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds a field on the other collection to the child side of the same relation
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > updates labels and limits on re-apply, and leaves them on skip
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses to move a relation onto different collections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a relation naming a collection that does not exist
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a field naming a relation that does not exist
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a field naming a relation that does not touch its collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > drops a forward $ref that names a collection seeded later
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds an existing unbound reference field when a re-applied seed names a target
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > seeds content for a reference field bound to the child side
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create taxonomy definitions
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should not create terms by default
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create flat taxonomy terms when includeContent is true
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create hierarchical taxonomy terms with parents
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should skip existing terms
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should create menus with items
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should create nested menu items
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should replace items in existing menu
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create widget areas with widgets
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create menu widgets
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create component widgets
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should replace widgets in existing area
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > redirects > should create redirects
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > redirects > should skip redirects when source already exists
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should create bylines and assign ordered credits to content
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should not create bylines by default
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should seed a byline avatar as a media row and link it
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > links a byline avatar on update (onConflict: update)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > rejects a malformed byline avatar
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should not create content by default
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > idempotently publishes slugless content for a non-routable collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should skip existing content entries
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > skips an entry whose slug an earlier entry of the same seed took
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should resolve $ref: references between content into reference edges
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > writes $ref: to the column for a reference field that names no target collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should assign taxonomy terms to content
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > reads the site timezone and field definitions as often for ten entries as for one
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > resolves seeded datetimes in the timezone and fields of the seed being applied
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > apply order > should create content before menus so refs resolve
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > sections > should create sections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > sections > should skip existing sections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > idempotency > should be safe to run multiple times
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports menu translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports taxonomy def translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > takes a taxonomy translation's structure from the taxonomy
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > takes a taxonomy's structure from its source entry when translations come first
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > follows a chain of taxonomy translations to the entry that declares the structure
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports menu item translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > falls back to fresh group when item translationOf is missing
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports term translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > keeps a term translation that names no parent under its term's parent
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > honors skip for trashed slugless seed IDs
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > honors update for trashed slugless seed IDs
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > skips entries whose slug collides with a trashed row (onConflict: skip)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not resurrect trashed content (onConflict: update)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > reports a clear conflict for trashed collisions (onConflict: error)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not resolve references through a skipped trashed entry
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not create relation edges to a skipped trashed entry
+RangeError: Maximum call stack size exceeded
+ ❯ Kysely.withPlugin ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:375:15
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:29
+    426|       if (key === 'withPlugin') return (plugin: KyselyPlugin) => {
+    427|         const wrapped = logicalPlugin(plugin);
+    428|         return view(logical.withPlugin(wrapped), atomicLogical.withPlu…
+       |                             ^
+    429|       };
+    430|       if (key === 'withSchema') return (schema: string) => view(logica…
+ ❯ registerBylineDatabase src/lib/server/bylines/storage.ts:31:26
+ ❯ view src/lib/server/seed/namespace.ts:439:5
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:16
+ ❯ registerBylineDatabase src/lib/server/bylines/storage.ts:31:26
+ ❯ view src/lib/server/seed/namespace.ts:439:5
+ ❯ Proxy.<anonymous> src/lib/server/seed/namespace.ts:428:16
+ ❯ registerBylineDatabase src/lib/server/bylines/storage.ts:31:26
+ ❯ view src/lib/server/seed/namespace.ts:439:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/170]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts > applySeed with an object cache > writes each invalidated epoch to the backend once for a seed with sample content
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts > applySeed with an object cache > invalidates cached menus only when the seed writes them
+Error: Seed fixture requires its actual registered storage owner
+ ❯ sourceSeedOwner tests/helpers/full-seed/source-db.ts:11:21
+      9| export function sourceSeedOwner(db: object): CmsDatabase {
+     10|   const owner = owners.get(db);
+     11|   if (!owner) throw new Error('Seed fixture requires its actual regist…
+       |                     ^
+     12|   return owner;
+     13| }
+ ❯ Module.teardownTestDatabase tests/helpers/full-seed/source-db.ts:24:9
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts:72:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/170]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > validation > should reject invalid seed file
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > validation > should accept minimal valid seed
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should apply site settings
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should skip existing settings and create missing ones in skip mode
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should apply each setting independently when a later key conflicts
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should overwrite settings in update mode
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > settings > should throw in error mode when a seeded setting already exists
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates wide collection schemas within the D1 query budget
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates reference fields that target a later seed collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > creates reference-heavy schemas within the D1 query budget
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > should create collections and fields
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > applies the hidden flag from the seed
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > updates the hidden flag when re-applying with onConflict update
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > applies and updates collection routability
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > applies sortOrder from the seed and orders the list by it
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > should skip existing collections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > collections > should create multiple collections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > creates a declared relation with its labels and limits
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds a field that names a relation instead of creating a second one
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds a field on the other collection to the child side of the same relation
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > keeps the declared side for a relation whose ends are the same collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > updates labels and limits on re-apply, and leaves them on skip
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses to move a relation onto different collections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a relation naming a collection that does not exist
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a field naming a relation that does not exist
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > refuses a field naming a relation that does not touch its collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > drops a forward $ref that names a collection seeded later
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds an existing unbound reference field when a re-applied seed names a target
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > seeds content for a reference field bound to the child side
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create taxonomy definitions
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should not create terms by default
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create flat taxonomy terms when includeContent is true
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should create hierarchical taxonomy terms with parents
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > taxonomies > should skip existing terms
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should create menus with items
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should create nested menu items
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > menus > should replace items in existing menu
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create widget areas with widgets
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create menu widgets
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should create component widgets
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > widget areas > should replace widgets in existing area
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > redirects > should create redirects
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > redirects > should skip redirects when source already exists
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should create bylines and assign ordered credits to content
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should not create bylines by default
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should seed a byline avatar as a media row and link it
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > links a byline avatar on update (onConflict: update)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > rejects a malformed byline avatar
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should not create content by default
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should create content when includeContent is true
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > idempotently publishes slugless content for a non-routable collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should skip existing content entries
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > skips an entry whose slug an earlier entry of the same seed took
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should resolve $ref: references between content into reference edges
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > writes $ref: to the column for a reference field that names no target collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should assign taxonomy terms to content
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > reads the site timezone and field definitions as often for ten entries as for one
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > resolves seeded datetimes in the timezone and fields of the seed being applied
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > apply order > should create content before menus so refs resolve
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > sections > should create sections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > sections > should skip existing sections
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > idempotency > should be safe to run multiple times
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports menu translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports taxonomy def translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > takes a taxonomy translation's structure from the taxonomy
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > takes a taxonomy's structure from its source entry when translations come first
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > follows a chain of taxonomy translations to the entry that declares the structure
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports menu item translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > falls back to fresh group when item translationOf is missing
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > imports term translations sharing one translation_group
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > i18n round-trip > keeps a term translation that names no parent under its term's parent
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > honors skip for trashed slugless seed IDs
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > honors update for trashed slugless seed IDs
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > skips entries whose slug collides with a trashed row (onConflict: skip)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not resurrect trashed content (onConflict: update)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > reports a clear conflict for trashed collisions (onConflict: error)
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not resolve references through a skipped trashed entry
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not create relation edges to a skipped trashed entry
+Error: Seed fixture requires its actual registered storage owner
+ ❯ sourceSeedOwner tests/helpers/full-seed/source-db.ts:11:21
+      9| export function sourceSeedOwner(db: object): CmsDatabase {
+     10|   const owner = owners.get(db);
+     11|   if (!owner) throw new Error('Seed fixture requires its actual regist…
+       |                     ^
+     12|   return owner;
+     13| }
+ ❯ teardownTestDatabase tests/helpers/full-seed/source-db.ts:24:9
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:62:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/170]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  85 failed (85)
+   Start at  21:26:16
+   Duration  15.23s (transform 1.18s, setup 0ms, import 2.26s, tests 12.54s, environment 0ms)
+

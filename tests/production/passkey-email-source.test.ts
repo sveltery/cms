@@ -3,7 +3,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { passkeyRemotes } from '../helpers/passkey-remotes.ts';
-import { passkeyRuntime } from '../helpers/passkey-runtime.ts';
+import { accountSetupSsrRuntime } from '../helpers/default-seed-setup/account-ssr-runtime.ts';
 
 for (const target of ['Node', 'D1'] as const) {
   for (const endpoint of ['/api/setup/admin', '/api/auth/passkey/options']) {
@@ -17,7 +17,7 @@ for (const target of ['Node', 'D1'] as const) {
     });
   }
   test(`${target}: native setup form preserves source apostrophe-email acceptance`, async () => {
-    const h = await passkeyRuntime(target);
+    const h = await accountSetupSsrRuntime(target);
     try {
       const browser = h.browser();
       const html = await (await browser.get('/setup')).text();

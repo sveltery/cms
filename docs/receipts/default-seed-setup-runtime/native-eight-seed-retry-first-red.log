@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+ ❯ tests/default-seed-setup/startup-retry-caller.test.ts (1 test | 1 failed) 351ms
+   × a nonfatal real Seed load failure retries on the next caller using the same migrated adapter 350ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/default-seed-setup/startup-retry-caller.test.ts > a nonfatal real Seed load failure retries on the next caller using the same migrated adapter
+Error: no such column: "key" - should this be a string literal in single-quotes?
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ SelectQueryBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24
+ ❯ SelectQueryBuilderImpl.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26
+ ❯ tests/default-seed-setup/startup-retry-caller.test.ts:38:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 7 passed (8)
+   Start at  02:42:01
+   Duration  5.06s (transform 2.16s, setup 0ms, import 3.82s, tests 658ms, environment 0ms)
+

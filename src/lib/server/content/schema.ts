@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import {contentListOptions,taxonomySlugMap} from '../database/content-validation.ts';
+import {contentListOptions,taxonomySlugMap,contentBylineInput} from '../database/content-validation.ts';
 import { CmsError, type DraftEntry, type DraftSummary } from '../database/contract.ts';
 import { identifier, entryId, localeInput, revisionInput, schemaData, parse } from '../database/validation.ts';
 
@@ -48,8 +48,15 @@ const taxonomySelections=v.pipe(v.custom<string|Record<string,string[]>>(value=>
  if(value.length>200_000)return false;
  try{return v.safeParse(taxonomySlugMap,JSON.parse(value)).success;}catch{return false;}
 }),v.transform(value=>typeof value==='string'?parse(taxonomySlugMap,JSON.parse(value)):value));
-const contentEntries = { data, jsonData, slug, taxonomies:v.optional(taxonomySelections) };
-export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntries }),
+// Match the existing complex JSON form adapter: Kit cannot represent nullable
+// nested role labels statically; the shared strict domain schema checks them.
+const bylineSelections=v.pipe(v.custom<string|Record<string,any>[]>(value=>{
+ if(typeof value!=='string')return v.safeParse(contentBylineInput,value).success;
+ if(value.length>200_000)return false;
+ try{return v.safeParse(contentBylineInput,JSON.parse(value)).success;}catch{return false;}
+}),v.transform(value=>parse(contentBylineInput,typeof value==='string'?JSON.parse(value):value)));
+const contentEntries = { data, jsonData, slug, taxonomies:v.optional(taxonomySelections),bylines:v.optional(bylineSelections) };
+export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntries,translationOf:v.optional(entryId) }),
   v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data, key)),
     'Supply each field once'), ['jsonData']),
   v.transform(({ jsonData, ...input }) => ({ ...input, data: { ...input.data, ...jsonData } })),

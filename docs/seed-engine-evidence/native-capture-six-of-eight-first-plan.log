@@ -1,0 +1,39 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/capture-native.test.ts (8 tests | 2 failed) 1516ms
+   × Node: gives seed collections the existing canonical byline and standard indexes 22ms
+   × D1: gives seed collections the existing canonical byline and standard indexes 121ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/capture-native.test.ts > Node: gives seed collections the existing canonical byline and standard indexes
+AssertionError: expected [ …(4) ] to include 'idx_ec_seed_indexes_primary_byline'
+ ❯ tests/source-seed-backend/capture-native.test.ts:72:21
+     70|       await new SchemaRegistry(storage.database).createSeedCollectionS…
+     71|       const names = (await sql<{ name: string }>`SELECT name FROM sqli…
+     72|       expect(names).toContain('idx_ec_seed_indexes_primary_byline');
+       |                     ^
+     73|       expect(names).toContain('idx_ec_seed_indexes_status');
+     74|     } finally { await storage.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/source-seed-backend/capture-native.test.ts > D1: gives seed collections the existing canonical byline and standard indexes
+AssertionError: expected [ …(4) ] to include 'idx_ec_seed_indexes_primary_byline'
+ ❯ tests/source-seed-backend/capture-native.test.ts:72:21
+     70|       await new SchemaRegistry(storage.database).createSeedCollectionS…
+     71|       const names = (await sql<{ name: string }>`SELECT name FROM sqli…
+     72|       expect(names).toContain('idx_ec_seed_indexes_primary_byline');
+       |                     ^
+     73|       expect(names).toContain('idx_ec_seed_indexes_status');
+     74|     } finally { await storage.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed (8)
+   Start at  22:25:51
+   Duration  2.39s (transform 404ms, setup 0ms, import 761ms, tests 1.52s, environment 0ms)
+

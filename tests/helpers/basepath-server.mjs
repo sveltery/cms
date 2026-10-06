@@ -1,5 +1,5 @@
 // Build the real fail-closed app in isolation; this fixture adds no session or auth hook.
-import { cp, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,17 +23,21 @@ async function close(code = 0) {
 process.on('SIGTERM', () => void close());
 process.on('SIGINT', () => void close());
 try {
+  await mkdir(join(directory, 'scripts'));
   await Promise.all([
     cp(join(checkout, 'src'), join(directory, 'src'), { recursive: true }),
     cp(join(checkout, 'package.json'), join(directory, 'package.json')),
     cp(join(checkout, 'tsconfig.json'), join(directory, 'tsconfig.json')),
+    cp(join(checkout, 'scripts/source-seed-vite.ts'), join(directory, 'scripts/source-seed-vite.ts')),
+    cp(join(checkout, 'scripts/source-seed-virtual-module.ts'), join(directory, 'scripts/source-seed-virtual-module.ts')),
     symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir')
   ]);
   await writeFile(join(directory, 'vite.config.ts'), `
 import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-export default { plugins: [sveltekit({
+import { sourceSeedPlugin } from './scripts/source-seed-vite.ts';
+export default { plugins: [sourceSeedPlugin(), sveltekit({
   preprocess: vitePreprocess(), adapter: adapter(), paths: { base: '/cms' },
   experimental: { remoteFunctions: true }, compilerOptions: { experimental: { async: true } }
 })] };

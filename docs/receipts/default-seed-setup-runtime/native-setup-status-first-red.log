@@ -1,0 +1,45 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+ ❯ tests/default-seed-setup-status-caller.test.ts (3 tests | 1 failed) 88ms
+   × actual user seed metadata reaches the same runtime status consumed by the wizard 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/default-seed-setup-status-caller.test.ts > actual user seed metadata reaches the same runtime status consumed by the wizard
+AssertionError: expected { needsSetup: true, …(3) } to deeply equal { needsSetup: true, …(3) }
+
+- Expected
++ Received
+
+  {
+    "authMode": "passkey",
+    "needsSetup": true,
+-   "seedInfo": {
+-     "collections": 1,
+-     "description": "Actual description",
+-     "hasContent": true,
+-     "name": "Actual Template",
+-     "tagline": "Actual Tagline",
+-     "title": "Actual Title",
+-   },
++   "seedInfo": null,
+    "step": "start",
+  }
+
+ ❯ tests/default-seed-setup-status-caller.test.ts:32:25
+     30|     content: { posts: [] } };
+     31|   const actual = await emptyAccountStatus();
+     32|   expect(actual.status).toEqual({ needsSetup: true, step: 'start', aut…
+       |                         ^
+     33|     name: 'Actual Template', description: 'Actual description', collec…
+     34|     title: 'Actual Title', tagline: 'Actual Tagline',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 5 passed (6)
+   Start at  01:08:53
+   Duration  2.50s (transform 1.20s, setup 0ms, import 2.02s, tests 238ms, environment 0ms)
+

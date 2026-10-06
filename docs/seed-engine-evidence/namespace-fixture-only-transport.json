@@ -1,0 +1,39 @@
+{
+  "scope": "three isolated historical Native fixtures only",
+  "sourceCausalCredit": 0,
+  "before": {
+    "passed": 32,
+    "prerequisiteFailures": 28
+  },
+  "after": {
+    "passed": 60,
+    "failed": 0,
+    "targets": [
+      "Node",
+      "real raw D1"
+    ]
+  },
+  "files": [
+    {
+      "path": "tests/source-seed-backend/namespace-collision.test.ts",
+      "oldBytes": 6193,
+      "oldSha256": "557db4e6b86338ac46d0592b6fe9d4849064eaa01e69a94ece6e2304a3717bd8",
+      "newSha256": "56a2e853ecb7704ef116a6bd24add8ac9dd02f5e50e99182d96f35cbb46ad4f2",
+      "callbacksAssertionsSqlClocksUnchanged": true
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-compound.test.ts",
+      "oldBytes": 4417,
+      "oldSha256": "3248ffa07b0af6479724c0ae2e75e8bc50643f2dad16921ae7291470fa39ed01",
+      "newSha256": "66eb124477983c6df8b3695c9262d9b9dd22f48e93dc2e932f8da52fb8c57eaf",
+      "callbacksAssertionsSqlClocksUnchanged": true
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-predicate.test.ts",
+      "oldBytes": 3385,
+      "oldSha256": "b9462e8b3baeca1064289a74589e9b453a4d98323bcba9200ed43647cf65ce27",
+      "newSha256": "b8344f08422009a2ee5dca2a7758ba4f64f2aff7a3ceb4d3b3cd6759680ec84d",
+      "callbacksAssertionsSqlClocksUnchanged": true
+    }
+  ]
+}

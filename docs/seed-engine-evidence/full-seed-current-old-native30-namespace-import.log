@@ -1,0 +1,116 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/general-media/upstream/database/repositories/media.ts:140
+export class MediaRepository {
+    constructor(private db: Kysely<Database>) {}
+                        ^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+✖ tests/source-seed-backend/lifecycle.test.ts (409.183087ms)
+file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1631
+		throw new Error(`Vitest failed to find ${message}. One of the following is possible:` + "\n- \"vitest\" is imported directly without running \"vitest\" command" + "\n- \"vitest\" is imported inside \"globalSetup\" (to fix this, use \"setupFiles\" instead, because \"globalSetup\" runs in a different context)" + "\n- \"vitest\" is imported inside Vite / Vitest config file" + "\n- Otherwise, it might be a Vitest bug. Please report it to https://github.com/vitest-dev/vitest/issues\n");
+		      ^
+
+Error: Vitest failed to find the current suite. One of the following is possible:
+- "vitest" is imported directly without running "vitest" command
+- "vitest" is imported inside "globalSetup" (to fix this, use "setupFiles" instead, because "globalSetup" runs in a different context)
+- "vitest" is imported inside Vite / Vitest config file
+- Otherwise, it might be a Vitest bug. Please report it to https://github.com/vitest-dev/vitest/issues
+
+    at assert (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1631:9)
+    at getCurrentSuite (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1666:2)
+    at afterEach (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:752:9)
+    at file:///workspace/cms-full-seed-engine/tests/source-seed-backend/load.test.ts:10:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0
+✖ tests/source-seed-backend/load.test.ts (270.449731ms)
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'seed-namespace-subject' imported from /workspace/cms-full-seed-engine/tests/source-seed-backend/namespace-plan.test.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.19.0
+✖ tests/source-seed-backend/namespace-plan.test.ts (196.541479ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/general-media/upstream/database/repositories/media.ts:140
+export class MediaRepository {
+    constructor(private db: Kysely<Database>) {}
+                        ^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+✖ tests/source-seed-backend/native.test.ts (447.089914ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 661.645041
+
+✖ failing tests:
+
+test at tests/source-seed-backend/lifecycle.test.ts:1:1
+✖ tests/source-seed-backend/lifecycle.test.ts (409.183087ms)
+  'test failed'
+
+test at tests/source-seed-backend/load.test.ts:1:1
+✖ tests/source-seed-backend/load.test.ts (270.449731ms)
+  'test failed'
+
+test at tests/source-seed-backend/namespace-plan.test.ts:1:1
+✖ tests/source-seed-backend/namespace-plan.test.ts (196.541479ms)
+  'test failed'
+
+test at tests/source-seed-backend/native.test.ts:1:1
+✖ tests/source-seed-backend/native.test.ts (447.089914ms)
+  'test failed'

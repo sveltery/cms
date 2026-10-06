@@ -1,0 +1,35 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/native-observer-transport.test.ts (5 tests | 1 failed) 1021ms
+   × observes the real fixed typed plan receipt exactly once after the actual batch 84ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/native-observer-transport.test.ts > observes the real fixed typed plan receipt exactly once after the actual batch
+AssertionError: expected [] to deeply equal [ LazyQueryId{} ]
+
+- Expected
++ Received
+
+- [
+-   LazyQueryId {},
+- ]
++ []
+
+ ❯ tests/source-seed-backend/native-observer-transport.test.ts:63:51
+     61|   const receipt=await seedAtomicBatch(f.storage.database,db,plan=>[pla…
+     62|   expect(receipt[0].rows).toEqual([{name:'observed-typed-plan'}]);
+     63|   expect(queries).toHaveLength(1);expect(results).toEqual(queries);
+       |                                                   ^
+     64|   expect((await sql`SELECT name,value FROM _cms_options WHERE name='ob…
+     65|  }finally{await f.storage.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  00:15:36
+   Duration  2.77s (transform 1.00s, setup 0ms, import 1.62s, tests 1.02s, environment 0ms)
+

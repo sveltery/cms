@@ -19,7 +19,7 @@ test('server bridge derives the supported content and publication permissions fr
   assert.equal(servicePrincipal({ id: 'bad', role: 999 as any }), null);
   assert.equal(servicePrincipal({ id: '', role: Role.ADMIN }), null);
   assert.equal(servicePrincipal({ id: 'x'.repeat(129), role: Role.ADMIN }), null);
-  assert.equal(servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions.length, 33);
+  assert.equal(servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions.length, 34);
   // Supplemental bridge assertions, grounded in pinned RBAC thresholds.
   // EmDash913cb1 packages/auth/src/rbac.ts:42 taxonomies:read SUBSCRIBER.
   assert.equal(Permissions['taxonomies:read'], Role.SUBSCRIBER);
