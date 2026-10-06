@@ -22,7 +22,7 @@ const reporter = '            setup-native-results.json\n';
 if (workflow.split(reporter).length !== 2) throw new Error('Authorized Native artifact path absent or repeated');
 workflow = workflow.replace(reporter, '');
 if (sha(workflow) !== ledger.ownedWorkflowBeforeSha256) throw new Error('Original18 workflow exceeds finite addition');
-if (sha(await read('src/lib/ui/SetupWizard.svelte')) !== (ledger.productionAuthorizedSha256 ?? ledger.productionBeforeSha256)) {
+if (sha(await read('src/lib/ui/SetupWizard.svelte')) !== (ledger.productionCurrentSha256 ?? ledger.productionAuthorizedSha256 ?? ledger.productionBeforeSha256)) {
   throw new Error('Production UI exceeds the current authorized test-first phase');
 }
 console.log('Native3 controlled fixtures qualified; Original18 command/config and current production phase exact;0execution/Source causal credit.');

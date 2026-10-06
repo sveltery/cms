@@ -54,7 +54,8 @@
     failure = ''; pending = true;
     try {
       // Source requests fresh options for each registration attempt, including retry.
-      if (!await beginSetup.submit() || !beginSetup.result) throw new Error('Account setup is not prepared');
+      const prepared = await beginSetup.submit();
+      if (!prepared || !beginSetup.result) throw new Error('Account setup is not prepared');
       const credential = await createPasskey(beginSetup.result.options);
       credentialJSON = JSON.stringify(credential);
       await tick();
@@ -66,14 +67,20 @@
     finally { pending = false; }
   }
 
-  function back(destination: 'site' | 'admin') {
-    failure = ''; titleError = ''; emailError = ''; activeProvider = null; credentialJSON = '';
+  function resetStepFields(destination: 'site' | 'admin') {
+    titleError = ''; emailError = '';
     // Source conditionally remounts each step, resetting its own local fields.
     if (destination === 'site') {
       title = status.seedInfo?.title ?? ''; tagline = status.seedInfo?.tagline ?? '';
       startWith = status.seedInfo?.hasContent ? 'sample' : 'empty';
     }
-    email = ''; name = ''; step = destination;
+    email = ''; name = '';
+  }
+
+  function back(destination: 'site' | 'admin') {
+    failure = ''; activeProvider = null; credentialJSON = '';
+    resetStepFields(destination);
+    step = destination;
   }
 </script>
 
