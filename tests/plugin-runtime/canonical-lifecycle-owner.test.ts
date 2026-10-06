@@ -3,7 +3,7 @@ import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { pluginSourceDatabase, registeredPluginDatabaseOwner, assertRegisteredPluginNamespace } from '../../src/lib/server/plugins/database.ts';
 import { withTransaction } from '../../src/lib/server/plugins/transaction.ts';
-import { lifecycleDatabase } from '../../src/lib/server/database/lifecycle/upstream/host.ts';
+import { lifecycleDatabase, registerLifecycleDatabase, siteTimezone } from '../../src/lib/server/database/lifecycle/upstream/host.ts';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 const opened: CmsDatabase[] = [];
 afterEach(async () => { for (const database of opened.splice(0)) await database.close(); });
@@ -12,6 +12,21 @@ async function fixture() {
   return { database, db: pluginSourceDatabase(database) };
 }
 describe('sole canonical lifecycle owner association for plugin views', () => {
+  it('preserves the already registered owner timezone when creating its ordinary namespace view', async () => {
+    const database = openSqlite(':memory:'); opened.push(database); await migrateCms(database);
+    registerLifecycleDatabase(database, { timezone: async () => 'Europe/Berlin', after: task => { void task(); } });
+    const db = pluginSourceDatabase(database);
+    expect(await siteTimezone(database.db)).toEqual({ value: '"Europe/Berlin"' });
+    expect(await siteTimezone(db)).toEqual({ value: '"Europe/Berlin"' });
+  });
+  it('inherits the genuine owner timezone through the actual existing transaction', async () => {
+    const database = openSqlite(':memory:'); opened.push(database); await migrateCms(database);
+    registerLifecycleDatabase(database, { timezone: async () => 'Pacific/Auckland', after: task => { void task(); } });
+    const db = pluginSourceDatabase(database);
+    await withTransaction(db, async trx => {
+      expect(await siteTimezone(trx)).toEqual({ value: '"Pacific/Auckland"' });
+    });
+  });
   it('associates the genuine owner namespace while preserving its actual executor plugins', async () => {
     const { database, db } = await fixture();
     expect(registeredPluginDatabaseOwner(db)).toBe(database);
