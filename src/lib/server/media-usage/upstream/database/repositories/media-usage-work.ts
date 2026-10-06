@@ -65,7 +65,8 @@ export type MediaUsageOperatorRetryResult =
 	| { outcome: "conflict" };
 
 export class MediaUsageWorkRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+	constructor(db: Kysely<Database>) { this.db = db; }
 
 	async enqueueReconciliationPage(input: {
 		collectionId: string;

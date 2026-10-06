@@ -71,7 +71,8 @@ export type MediaUsageCollectionDeletionRetryResult =
 	| { outcome: "conflict" };
 
 export class MediaUsageCollectionDeletionRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+	constructor(db: Kysely<Database>) { this.db = db; }
 
 	async createTombstone(input: {
 		collectionId: string;

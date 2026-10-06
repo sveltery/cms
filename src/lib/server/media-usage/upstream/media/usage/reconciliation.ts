@@ -56,7 +56,8 @@ export type MediaUsageReconciliationWorkBarrier =
 	| { state: "failed"; errorCode: string };
 
 export class MediaUsageReconciliationRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+	constructor(db: Kysely<Database>) { this.db = db; }
 
 	async findByIdentity(
 		collectionId: string,

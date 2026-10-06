@@ -5,33 +5,36 @@
       "sourcePath": "packages/core/src/database/repositories/media-usage-work.ts",
       "nativePath": "src/lib/server/media-usage/upstream/database/repositories/media-usage-work.ts",
       "sourceSha256": "cb02de1bd21a5d4c42680d15c4bec13df8901beaf7c05c77eed2cea0536a3428",
-      "nativeSha256": "231c60e799d1db396c36cf225a237cb0f6de9790907b184958debc513268301f",
+      "nativeSha256": "4746726338d9698d2c9406ee5dd13c22f76d34595e0a1592d17e63e573a6036d",
       "substitutions": [
         "_emdash_ physical identifiers -> _cms_",
         ".js module suffix -> .ts",
-        "MIT/provenance header"
+        "MIT/provenance header",
+        "parameter property expanded to identical explicit assignment for Node24 erasable TypeScript"
       ]
     },
     {
       "sourcePath": "packages/core/src/media/usage/reconciliation.ts",
       "nativePath": "src/lib/server/media-usage/upstream/media/usage/reconciliation.ts",
       "sourceSha256": "c3aa6701e38cfe9bd5c9bf2018d916ff1488ef088401421ce4405514aed8cda7",
-      "nativeSha256": "0a45239269887a57914aed85a53d03450bee6353749f8c9fbc0c422712866fab",
+      "nativeSha256": "7ef1992ecf86acd95553f94caa0808b544cff2e1f3a9804f018e8c08ea6ec87b",
       "substitutions": [
         "_emdash_ physical identifiers -> _cms_",
         ".js module suffix -> .ts",
-        "MIT/provenance header"
+        "MIT/provenance header",
+        "parameter property expanded to identical explicit assignment for Node24 erasable TypeScript"
       ]
     },
     {
       "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
       "nativePath": "src/lib/server/media-usage/upstream/media/usage/collection-deletion.ts",
       "sourceSha256": "76482a1ad175d1762e48508d5fb0c457000e0df45ae1f6adae6bb6f72df01621",
-      "nativeSha256": "ed9785040a9445c592e46bac87e22df44aa08069c8976101f144a6b0a6118dc1",
+      "nativeSha256": "6187baadf59128d5c0edc4b0893c6fd05962ccea15adcf922acdb163ba90cf62",
       "substitutions": [
         "_emdash_ physical identifiers -> _cms_",
         ".js module suffix -> .ts",
-        "MIT/provenance header"
+        "MIT/provenance header",
+        "parameter property expanded to identical explicit assignment for Node24 erasable TypeScript"
       ]
     },
     {
@@ -76,6 +79,46 @@
       "substitutions": [
         "_emdash_ physical identifiers -> _cms_",
         ".js module suffix -> .ts",
+        "MIT/provenance header"
+      ]
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/content-repair.ts",
+      "nativePath": "src/lib/server/media-usage/upstream/media/usage/content-repair.ts",
+      "sourceSha256": "fd4c789bb6182b836af652244d78751de2993b73565394431a67b88802aee766",
+      "nativeSha256": "b712d595682ea1292fd3a155bfd912c92179832b1732d413fd1d1957a47521d8",
+      "substitutions": [
+        "_emdash_ physical identifiers -> _cms_",
+        ".js module suffix -> .ts",
+        "MIT/provenance header"
+      ]
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/media-usage-work.ts",
+      "nativePath": "src/lib/server/media-usage/upstream/api/handlers/media-usage-work.ts",
+      "sourceSha256": "35ab6f57145f7f976cc8bb1b013070920262f48f5d8bf4d709997884e95bb62f",
+      "nativeSha256": "538282b683247bda528b5a66747f881f3c528412fda75c083d68de44e7193ca0",
+      "substitutions": [
+        "_emdash_ physical identifiers -> _cms_",
+        ".js module suffix -> .ts",
+        "MIT/provenance header"
+      ]
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/media-usage.ts",
+      "nativePath": "src/lib/server/media-usage/upstream/api/handlers/media-usage-progress.ts",
+      "sourceSha256": "476f6fe4197347e67c610f945a6c98bbe4fb2f04632d04eee1206fee5a01bc4e",
+      "nativeSha256": "21b06bc825e0247f51b1d5215ece196e4561987b1f3ca2bc6efe4e6fb0aa78f3",
+      "completeOwnedFunctions": [
+        "handleMediaUsageProgress",
+        "handleMediaUsageProgressAdvance",
+        "continuationDelayMs",
+        "handleMediaUsageRepair",
+        "toMediaUsageRepairResponse",
+        "toMediaUsageRepairCollectionSummary"
+      ],
+      "substitutions": [
+        "imports narrowed to complete owned functions; sole Media read functions remain with Media113",
         "MIT/provenance header"
       ]
     }

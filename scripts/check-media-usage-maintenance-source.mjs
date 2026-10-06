@@ -46,5 +46,6 @@ for (const record of native.records) {
   }
 }
 console.log(JSON.stringify({ immutableFiles: manifest.records.length, immutableReferenceFiles:reference.records.length,
-  nativeWholeBodies:native.records.length, wholeFamilies,
+  nativeWholeBodies:native.records.filter(record=>!record.completeOwnedFunctions).length,
+  nativeCompleteOwnedFunctionGroups:native.records.filter(record=>record.completeOwnedFunctions).length, wholeFamilies,
   testDeclarations, assertionExpressions, productTestsRun: 0, causalCredit: 0 }));
