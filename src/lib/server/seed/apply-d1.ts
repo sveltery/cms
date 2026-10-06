@@ -233,7 +233,8 @@ class SeedBudget implements KyselyPlugin {
 	#queries = 0;
 	#mediaDownloads = 0;
 
-	constructor(private readonly limits: SeedApplyBudget) {}
+	private readonly limits: SeedApplyBudget;
+	constructor(limits: SeedApplyBudget) { this.limits = limits; }
 
 	transformQuery(args: PluginTransformQueryArgs): RootOperationNode {
 		this.#queries++;

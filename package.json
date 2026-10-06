@@ -85,7 +85,7 @@
     "test:byline-lifecycle-native": "vitest run --config vitest.byline-lifecycle-native.config.ts && vitest run --config vitest.byline-lifecycle-d1.config.ts",
     "test:user-source-gate": "node --test tests/user-source-gate/whole-guard.test.mjs",
     "test:seed-engine-source": "node scripts/check-source-seed-backend.mjs && node scripts/check-full-seed-engine-source.mjs && vitest run --config vitest.full-seed-apply.config.ts && vitest run --config vitest.full-seed-capture.config.ts",
-    "test:seed-engine-native": "vitest run --config vitest.full-seed-fixture-control.config.ts && vitest run --config vitest.full-seed-native-capture.config.ts && vitest run --config vitest.full-seed-native-usage.config.ts && vitest run --config vitest.full-seed-native-observer.config.ts && vitest run --config vitest.full-seed-native-budget.config.ts && vitest run --config vitest.full-seed-workerd-source.config.ts && vitest run --config vitest.full-seed-default-native.config.ts",
+    "test:seed-engine-native": "vitest run --config vitest.full-seed-fixture-control.config.ts && vitest run --config vitest.full-seed-native-capture.config.ts && vitest run --config vitest.full-seed-native-usage.config.ts && vitest run --config vitest.full-seed-native-observer.config.ts && vitest run --config vitest.full-seed-native-budget.config.ts && vitest run --config vitest.full-seed-workerd-source.config.ts && vitest run --config vitest.full-seed-default-native.config.ts && vitest run --config vitest.full-seed-node-constructor.config.ts",
     "test:seed-engine": "pnpm test:seed-engine-source && pnpm test:seed-engine-native"
   },
   "dependencies": {

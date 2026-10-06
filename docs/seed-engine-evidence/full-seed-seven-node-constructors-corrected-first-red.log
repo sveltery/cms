@@ -1,0 +1,365 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts (14 tests | 7 failed) 976ms
+   × src/lib/server/seed/upstream/database/repositories/relation.ts: imports the actual module in unchanged Node24 strip mode 87ms
+   × src/lib/server/seed/upstream/database/repositories/revision.ts: imports the actual module in unchanged Node24 strip mode 72ms
+   × src/lib/server/seed/upstream/database/content-datetime.ts: imports the actual module in unchanged Node24 strip mode 72ms
+   × src/lib/server/seed/upstream/database/repositories/content.ts: imports the actual module in unchanged Node24 strip mode 80ms
+   × src/lib/server/seed/schema-error.ts: imports the actual module in unchanged Node24 strip mode 67ms
+   × src/lib/server/comments/upstream/database/repositories/options.ts: imports the actual module in unchanged Node24 strip mode 79ms
+   × src/lib/server/options/repository.ts: imports the actual module in unchanged Node24 strip mode 72ms
+ ❯ tests/source-seed-backend/node-budget-constructor.test.ts (3 tests | 1 failed) 535ms
+   × loads the actual public Seed domain exports in unchanged Node24 strip mode 374ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/node-budget-constructor.test.ts > loads the actual public Seed domain exports in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/repositories/relation.ts:128
+export class RelationRepository {
+    constructor(private db: Kysely<Database>) {}
+                        ^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-budget-constructor.test.ts:18:36
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/source-seed-backend/node-seed-constructor-semantics.test.ts > src/lib/server/seed/upstream/database/repositories/relation.ts: imports the actual module in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/repositories/relation.ts:128
+export class RelationRepository {
+    constructor(private db: Kysely<Database>) {}
+                        ^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts:54:40
+     52|     const script = `const module = await import(${JSON.stringify('./' …
+     53|     const child = spawnSync(process.execPath, ['--input-type=module', …
+     54|     expect(child.status, child.stderr).toBe(0);
+       |                                        ^
+     55|     expect(child.stdout.trim()).toBe('function');
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/source-seed-backend/node-seed-constructor-semantics.test.ts > src/lib/server/seed/upstream/database/repositories/revision.ts: imports the actual module in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/repositories/revision.ts:48
+    constructor(
+        private db: Kysely<Database>,
+                ^^^^^^^^^^^^^^^^^^^^
+        datetimeContexts?: DatetimeContextCache,
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts:54:40
+     52|     const script = `const module = await import(${JSON.stringify('./' …
+     53|     const child = spawnSync(process.execPath, ['--input-type=module', …
+     54|     expect(child.status, child.stderr).toBe(0);
+       |                                        ^
+     55|     expect(child.stdout.trim()).toBe('function');
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/source-seed-backend/node-seed-constructor-semantics.test.ts > src/lib/server/seed/upstream/database/content-datetime.ts: imports the actual module in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/content-datetime.ts:63
+    constructor(
+        private readonly db: Kysely<Database>,
+                         ^^^^^^^^^^^^^^^^^^^^
+        private readonly contexts?: DatetimeContextCache,
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts:54:40
+     52|     const script = `const module = await import(${JSON.stringify('./' …
+     53|     const child = spawnSync(process.execPath, ['--input-type=module', …
+     54|     expect(child.status, child.stderr).toBe(0);
+       |                                        ^
+     55|     expect(child.stdout.trim()).toBe('function');
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/source-seed-backend/node-seed-constructor-semantics.test.ts > src/lib/server/seed/upstream/database/repositories/content.ts: imports the actual module in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/repositories/content.ts:370
+    constructor(
+        private db: Kysely<Database>,
+                ^^^^^^^^^^^^^^^^^^^^
+        private readonly datetimeContexts?: DatetimeContextCache,
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts:54:40
+     52|     const script = `const module = await import(${JSON.stringify('./' …
+     53|     const child = spawnSync(process.execPath, ['--input-type=module', …
+     54|     expect(child.status, child.stderr).toBe(0);
+       |                                        ^
+     55|     expect(child.stdout.trim()).toBe('function');
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/source-seed-backend/node-seed-constructor-semantics.test.ts > src/lib/server/seed/schema-error.ts: imports the actual module in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/seed/schema-error.ts:6
+        message: string,
+        public code: string,
+               ^^^^^^^^^^^^
+        public details?: Record<string, unknown>,
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts:54:40
+     52|     const script = `const module = await import(${JSON.stringify('./' …
+     53|     const child = spawnSync(process.execPath, ['--input-type=module', …
+     54|     expect(child.status, child.stderr).toBe(0);
+       |                                        ^
+     55|     expect(child.stdout.trim()).toBe('function');
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/source-seed-backend/node-seed-constructor-semantics.test.ts > src/lib/server/comments/upstream/database/repositories/options.ts: imports the actual module in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/comments/upstream/database/repositories/options.ts:28
+export class OptionsRepository {
+    constructor(private db: Kysely<Database>) {}
+                        ^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts:54:40
+     52|     const script = `const module = await import(${JSON.stringify('./' …
+     53|     const child = spawnSync(process.execPath, ['--input-type=module', …
+     54|     expect(child.status, child.stderr).toBe(0);
+       |                                        ^
+     55|     expect(child.stdout.trim()).toBe('function');
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  tests/source-seed-backend/node-seed-constructor-semantics.test.ts > src/lib/server/options/repository.ts: imports the actual module in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/options/repository.ts:28
+export class OptionsRepository {
+    constructor(private db: Kysely<Database>) {}
+                        ^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-seed-constructor-semantics.test.ts:54:40
+     52|     const script = `const module = await import(${JSON.stringify('./' …
+     53|     const child = spawnSync(process.execPath, ['--input-type=module', …
+     54|     expect(child.status, child.stderr).toBe(0);
+       |                                        ^
+     55|     expect(child.stdout.trim()).toBe('function');
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  8 failed | 9 passed (17)
+   Start at  00:35:45
+   Duration  2.27s (transform 76ms, setup 0ms, import 514ms, tests 1.51s, environment 0ms)
+

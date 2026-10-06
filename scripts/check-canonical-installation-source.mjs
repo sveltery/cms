@@ -4,10 +4,12 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import ts from 'typescript';
+import {restoreSeedNodeConstructors,assertSeedConstructorLedger} from './seed-node-constructor-transports.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const snapshot = resolve(root, 'parity/emdash/canonical-installation/source');
 const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
+assertSeedConstructorLedger('e48f0db1771df1c1ea2b828d9d61dbf17b6fe441ea57d1f326b6a2d79ea7618b');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const read = path => readFileSync(resolve(root, path));
 const inventory = JSON.parse(read('docs/canonical-installation-source.json'));
@@ -94,7 +96,7 @@ for (const [native,source] of runtime) {
   const lines = text.split('\n');
   assert.equal(lines[0], '// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.');
   assert.ok(lines[1].includes(pin + ':' + source), native + ' full Source attribution');
-  const productBody = lines.slice(2).join('\n');
+  const productBody = restoreSeedNodeConstructors(lines.slice(2).join('\n'),native);
   const referenceBody = readFileSync(resolve(snapshot,source),'utf8');
   const adaptation = taxonomyAdaptation.runtimeAdaptations.find(value => value.nativePath === native);
   if (adaptation) {
@@ -114,4 +116,4 @@ const protectedFamilies = [
 const config = read('vitest.canonical-installation.config.ts').toString();
 assert.ok(config.includes("include: ['parity/emdash/canonical-installation/source/" + selected + "']"));
 for (const path of protectedFamilies) assert.equal(config.includes(path),false,path + ' remains unexecuted');
-console.log('Canonical source guard:38 whole pinned authorities and MIT exact;3 whole import-adapted runtime bodies and2 whole finite Native atomic-adapted taxonomy bodies verified. Only the whole pagination2-callback/6-expression family selected. Protected whole families remain unexecuted. This byte check grants zero product/test parity credit.');
+console.log('Canonical source guard:38 whole pinned authorities and MIT exact; Options exact constructor-only transport,2 whole import-adapted runtime bodies and2 whole finite Native atomic-adapted taxonomy bodies verified. Only the whole pagination2-callback/6-expression family selected. Protected whole families remain unexecuted. This byte check grants zero product/test parity or whole-module identity credit from constructor transport.');

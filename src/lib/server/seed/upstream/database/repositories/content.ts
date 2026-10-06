@@ -364,12 +364,16 @@ function escapeRegExp(s: string): string {
  * Each field becomes a real column in the table.
  */
 export class ContentRepository {
+	private db: Kysely<Database>;
+	private readonly datetimeContexts?: DatetimeContextCache;
 	private readonly datetimes: ContentDatetimeNormalizer;
 
 	constructor(
-		private db: Kysely<Database>,
-		private readonly datetimeContexts?: DatetimeContextCache,
+		db: Kysely<Database>,
+		datetimeContexts?: DatetimeContextCache,
 	) {
+		this.db = db;
+		this.datetimeContexts = datetimeContexts;
 		this.datetimes = new ContentDatetimeNormalizer(db, datetimeContexts);
 	}
 
