@@ -1,0 +1,43 @@
+{
+  "commit": "740770e18ee4a2b2604d2818efeb7fdf59226c2a",
+  "runId": 37397050581,
+  "jobId": 112055387352,
+  "originalCallbacks": 18,
+  "reachedValueRed": 18,
+  "passed": 0,
+  "skipped": 0,
+  "exitCode": 1,
+  "durationSeconds": 272.39,
+  "actualBrowser": "official Chromium1243;chromiumSandbox:true;original15s callbacks/30s launch",
+  "raw": "docs/receipts/default-seed-setup-runtime/original-wizard-whole18-before-ui-red.log",
+  "bytes": 256249,
+  "sha256": "f335d68151093c6f31040a905babef104bee442468a5cd8c90030683a6485017",
+  "failures": [
+    "shows site setup step first with title input",
+    "empty title prevents advancing and shows validation error",
+    "filling title and clicking Next advances to admin step",
+    "does not present media usage tracking as an onboarding choice",
+    "admin step shows email input",
+    "empty email prevents advancing on admin step",
+    "step indicator shows three steps",
+    "prefills title and tagline from seedInfo",
+    "uses empty string for title and tagline when not in seedInfo",
+    "prefilled title can be edited and submitted",
+    "starting from a site package > offers import alongside sample content and an empty site",
+    "starting from a site package > skips sample content and lands on the Transfer import after signing in",
+    "starting from a site package > keeps sample content and the dashboard as the default",
+    "starting from a site package > skips sample content for an empty site",
+    "starting from a site package > goes straight to the Transfer import when Cloudflare Access completes setup",
+    "keeps posting while sample content remains, then advances",
+    "keeps the added sample content after a failed request and resumes on Continue",
+    "stops posting when a request reports no progress"
+  ],
+  "jsonArtifact": {
+    "id": 11384066807,
+    "url": "https://github.com/sveltery/cms/actions/runs/37397050581/artifacts/11384066807",
+    "zipBytes": 2987,
+    "zipSha256": "967e9a79fcd24844cab3b3fde43eba0da3adea3bec1cd8c8da44d80b2f5fdda8",
+    "status": "hosted artifact uploaded;not yet locally downloaded/inspected"
+  },
+  "classification": "whole18 genuine Original controlled UI value-red before production wizard repair;no external-auth/backend/security consequences proof"
+}
