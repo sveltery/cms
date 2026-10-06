@@ -108,15 +108,6 @@ docs/receipts/schema-admin-ui/repeater-label-refactor.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-source138.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-check.log -whitespace
 
-# Preserve the complete original relations diagnostics, including formatter blanks.
-docs/relations-backend-evidence/atomic-copy/relations-copy-response-first-red.log whitespace=-blank-at-eol
-docs/relations-backend-evidence/core/relations-check-core.log whitespace=-blank-at-eol
-docs/relations-backend-evidence/core/relations-native-atomic-first-red.log whitespace=-blank-at-eol
-docs/relations-backend-evidence/core/relations-native-initial.log whitespace=-blank-at-eol
-docs/relations-backend-evidence/handlers/relations-native-service-first-red.log whitespace=-blank-at-eol
-
-# Preserve literal seed TDD evidence, including original formatter whitespace.
-docs/seed-engine-evidence/*.log -whitespace
 # Preserve literal trailing whitespace in exactly the 31 whole pinned locale catalogs.
 parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ar/messages.po whitespace=-blank-at-eol
 parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/bn/messages.po whitespace=-blank-at-eol
@@ -192,6 +183,23 @@ docs/seo-storage-evidence/read02-source97-green.log whitespace=-blank-at-eof
 # Exact current Main schema111 SEO integration receipt.
 docs/seo-storage-evidence/current-main-schema111-focus.log -whitespace
 
+# Exact Main99 SEO and Calendar integration TDD receipts.
+docs/seo-storage-evidence/main99-calendar-first-union.log -whitespace
+docs/seo-storage-evidence/main99-native35-first-red.log -whitespace
+docs/seo-storage-evidence/main99-native35-calendar56-fixed.log -whitespace
+docs/seo-storage-evidence/main99-final-focused-refactor.log -whitespace
+
+# Exact initial Native graph assertion diagnostics: six literal trailing-space lines.
+/docs/receipts/browser-fixture-graph/before-fix.log whitespace=-blank-at-eol
+# Preserve the complete original relations diagnostics, including formatter blanks.
+docs/relations-backend-evidence/atomic-copy/relations-copy-response-first-red.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/core/relations-check-core.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/core/relations-native-atomic-first-red.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/core/relations-native-initial.log whitespace=-blank-at-eol
+docs/relations-backend-evidence/handlers/relations-native-service-first-red.log whitespace=-blank-at-eol
+
+# Preserve literal seed TDD evidence, including original formatter whitespace.
+docs/seed-engine-evidence/*.log -whitespace
 # Preserve exact public dependency Source and diagnostic bytes during regular union.
 docs/byline-lifecycle-evidence/source68-inherited-user-check-prerequisite.log -whitespace
 docs/evidence/user-admin-native/current-check.log -whitespace
@@ -339,13 +347,7 @@ docs/seed-engine-evidence/full-seed-native-budget-two-all-canonical-observers.lo
 
 docs/seed-engine-evidence/full-seed-original85-all-canonical-observers.log -whitespace
 
-# Exact Main99 SEO and Calendar integration TDD receipts.
-docs/seo-storage-evidence/main99-calendar-first-union.log -whitespace
-docs/seo-storage-evidence/main99-native35-first-red.log -whitespace
-docs/seo-storage-evidence/main99-native35-calendar56-fixed.log -whitespace
-docs/seo-storage-evidence/main99-final-focused-refactor.log -whitespace
 
-<<<<<<< HEAD
 docs/seed-engine-evidence/full-seed-current-3072-check-all-observers.log -whitespace
 
 docs/seed-engine-evidence/full-seed-node85-public-media-union.log -whitespace
@@ -395,7 +397,3 @@ docs/seed-engine-evidence/full-seed-native-observer-five-typed-receipt-first-red
 docs/seed-engine-evidence/full-seed-default-domain-3072-type-successor.log -whitespace
 
 docs/seed-engine-evidence/full-seed-native-observer-five-real-green.log -whitespace
-=======
-# Exact initial Native graph assertion diagnostics: six literal trailing-space lines.
-/docs/receipts/browser-fixture-graph/before-fix.log whitespace=-blank-at-eol
->>>>>>> 41ee48fe781db307174079837387f4565814456c
