@@ -24,5 +24,23 @@ for (const leaf of adaptations.changedLeaves) {
   assert.equal(createHash('sha256').update(bytes).digest('hex'), leaf.baseSha256, leaf.path);
   assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'), leaf.baseBlob, leaf.path);
 }
+const sourceTypes = readFileSync('parity/emdash/cron-storage-source/upstream/packages/core/src/database/types.ts', 'utf8');
+const nativeTypes = readFileSync('src/lib/server/cron/types.ts', 'utf8');
+const wholeCronInterface = value => value.match(/^export interface CronTaskTable \{\n[\s\S]*?^\}/m)?.[0];
+assert.ok(wholeCronInterface(sourceTypes));
+assert.equal(wholeCronInterface(nativeTypes), wholeCronInterface(sourceTypes), 'Whole Cron row interface');
+if (ledger.testOnlyTypeTransport) {
+  const transport = ledger.testOnlyTypeTransport;
+  const nativeTest = readFileSync(transport.path, 'utf8');
+  assert.equal(nativeTest.split(transport.after).length - 1, transport.count, transport.path);
+  const original = Buffer.from(nativeTest.replaceAll(transport.after, transport.before));
+  assert.equal(original.length, transport.beforeBytes, transport.path);
+  assert.equal(createHash('sha256').update(original).digest('hex'), transport.beforeSha256, transport.path);
+}
+for (const receipt of ledger.rawReceipts ?? []) {
+  const bytes = readFileSync(receipt.path);
+  assert.equal(bytes.length, receipt.bytes, receipt.path);
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), receipt.sha256, receipt.path);
+}
 console.log(JSON.stringify({ wholeAuthorities: ledger.authorities.length, wholeFamilies: ledger.wholeFamilies.length,
   exactFiniteExistingLeaves: adaptations.changedLeaves.length, productTestsRun: 0, sourceCausalCredit: 0 }));

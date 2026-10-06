@@ -2829,3 +2829,10 @@ migration family. See [the feature record](../../docs/cron-task-storage.md),
 | --- | --- | --- |
 | CRON-STORAGE-01: canonical namespace and chronology | Source026 creates `_emdash_cron_tasks`; Native provider18 creates `_cms_cron_tasks` after unchanged providers1–17, preserving all columns, nullable/default behavior, unique constraint and scheduler indexes. Source088 converts existing one-shot UTC values. Legitimate Native1–17 has noCron rows/table, so empty creation satisfies088; unknown pre18Cron objects are refused rather than adopted. | Root explicitly authorized this forward Cron provider18 for development. Native9 genuine canonical reds→green; complete affected80 first48pass/32fail→80green and SEO6 first4pass/2fail→6green. All allowed existing-file edits reconstruct exact publicMain41. Exact-head review/gates/manager approval/regular author merge and final acceptance remain pending; landing alone is not acceptance. |
 | CRON-STORAGE-02: Source fixture/runtime limits | The complete original088 family passes two callbacks on explicit physicalSource NodeSQLite. Supplemental realD1 passes one and stops the105-row callback during the unchanged20×9-binding insert before088. Native readiness inspects contiguous markers1–18 and exact objects with no writes. | Original wholeSource bodies/data/clocks remain exact; fixture/setup stops earn0causal/product credit. The additive D1 reference command retains its failure and is not a fake-green normal gate. Existing C-07 atomic fixed-batch substitution remains unchanged. PostgreSQL, full named migration locks/runner, scheduler/plugin behavior and deployed support remain incomplete scope. |
+
+Current local successor retains the complete Source088 SQLite family (2/2),
+all 13 Native readiness/schema/reopen callbacks across Node/raw/scoped D1, and
+a bounded checker with zero errors and zero warnings. The two CI647 unknown-row
+spread diagnostics were corrected by erased test-only result annotations; the
+whole Native test reconstructs exact preceding233 when reversed. That failed
+CI remains historical; current hosted gates and final review/approval are pending.

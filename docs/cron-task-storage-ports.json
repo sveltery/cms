@@ -98,7 +98,9 @@
       "026_cron_tasks.ts",
       "088_cron_oneshot_utc.ts"
     ],
-    "chronology": "026 creates layout;088 normalizes one-shot UTC;no other migration changes cron objects"
+    "chronology": "026 creates layout;088 normalizes one-shot UTC;no other migration changes cron objects",
+    "migrationsExcludingRunner": 91,
+    "completeNamedCensus": "docs/cron-task-storage-migration-census.json"
   },
   "limits": [
     "PostgreSQL unavailable",
@@ -198,7 +200,202 @@
       "sourcePhysicalReferenceOnly": true,
       "canonicalStartupCredit": 0,
       "causalProductCredit": 0
+    },
+    "ci647233First": {
+      "run": 37398607096,
+      "job": 112060413810,
+      "head": "233837b585897623a99be659f57b35c106fe411c",
+      "status": "failed",
+      "phase": "type/Svelte checks",
+      "errors": 2,
+      "warnings": 0,
+      "cause": "ownNativefixture unknownrowspread",
+      "serviceCallbacksRun": 0,
+      "raw": "docs/cron-task-storage-evidence/ci647-current233-checker-two-own-errors.log"
+    },
+    "nativeReadinessWholeCurrent": {
+      "registered": 13,
+      "pass": 13,
+      "fail": 0,
+      "skip": 0,
+      "durationMs": 6800.104681,
+      "raw": "docs/cron-task-storage-evidence/native13-readiness-whole-current.log",
+      "runtimes": [
+        "Node SQLite",
+        "real rawD1",
+        "real scopedD1"
+      ],
+      "sourceCausalCredit": 0
+    },
+    "bounded2048Checker": {
+      "exit": 0,
+      "errors": 0,
+      "warnings": 0,
+      "maximumOldSpaceMb": 2048,
+      "raw": "docs/cron-task-storage-evidence/native-current-2048-checker.log",
+      "sourceCausalCredit": 0
     }
   },
-  "scopeDecision": "Root explicitly authorized ONLY forward canonical provider18 Cron storage; no standalone Native088 helper; Source088 is vacuously satisfied when026 creates emptyCron table during legitimate1\u201317 upgrade."
+  "scopeDecision": "Root explicitly authorized ONLY forward canonical provider18 Cron storage; no standalone Native088 helper; Source088 is vacuously satisfied when026 creates emptyCron table during legitimate1\u201317 upgrade.",
+  "testOnlyTypeTransport": {
+    "path": "tests/cron-task-readiness.test.ts",
+    "beforeHead": "233837b585897623a99be659f57b35c106fe411c",
+    "beforeBytes": 8087,
+    "beforeSha256": "8c49fc628172c9a16c1c8e460e16be5bfd7f7d110c46b954c7d4f73670eedc8f",
+    "before": "sql`SELECT * FROM _cms_cron_tasks`",
+    "after": "sql<Record<string, unknown>>`SELECT * FROM _cms_cron_tasks`",
+    "count": 2,
+    "completeReverseIdentical": true,
+    "runtimeChanges": 0
+  },
+  "rawReceipts": [
+    {
+      "path": "docs/cron-task-storage-evidence/ci647-current233-checker-two-own-errors.log",
+      "bytes": 25951,
+      "sha256": "c2c47662faf909fdecb1d3daed4c8d78fe6cc893c5d97894b5599208d4834a47"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-affected-whole-current18-fix.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-affected-whole-current18-fix.log",
+      "bytes": 8434,
+      "sha256": "8cc969afc24287e0a7ef2b5c86de810137e35f824eab708e8d9df45849dfdfa3"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-affected-whole-latest17-first-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-affected-whole-latest17-first-red.log",
+      "bytes": 40485,
+      "sha256": "e688f24a0f0e73a2681375267b9ce8a301d8df011969967d3a4fbe42ebbafff1"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-current-2048-checker.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-current-2048-checker.log",
+      "bytes": 213,
+      "sha256": "ec8451176f12fbd96f99ec433ddef240c9f94b95b4c19f7e45165bfcca9fc93d"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-readiness-node-first.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-readiness-node-first.log",
+      "bytes": 737,
+      "sha256": "ec269a1a4aa7e6ff0e2d9e7cd504e17cf77170c2d39bb82d4757a3cf3e20b963"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-seo-whole-current18-fix.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-seo-whole-current18-fix.log",
+      "bytes": 227,
+      "sha256": "9e719e3902a19dfd4ecf0447033b8113736854aa5351e88d7a22aa9e216e1066"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-seo-whole-latest17-first-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-seo-whole-latest17-first-red.log",
+      "bytes": 2441,
+      "sha256": "f601d58217c82fb8db433fbf219cef66ab3478b0a49d51049ae7a475665e4ce2"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native13-readiness-whole-current.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native13-readiness-whole-current.log",
+      "bytes": 1469,
+      "sha256": "588226909774c2493350a2210dc0cc3f69f2625c69423ff12982f98df6b36224"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native9-canonical-first-fix.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native9-canonical-first-fix.log",
+      "bytes": 951,
+      "sha256": "91eedcf2dfca2348649b2b9560703c61d12a42e754f34c81d48ce353910c9894"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native9-canonical-first-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native9-canonical-first-red.log",
+      "bytes": 10692,
+      "sha256": "978e5efea6958a001c77cd169eb4d939a031254b300cd9500bb8e872882cf1af"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/scoped-whitespace-six-controls.json",
+      "bytes": 1967,
+      "sha256": "3754196f8ef20bc95e302d022417568be97810eed668558b54fd64f690ed34f4"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source2-whole-node-current.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source2-whole-node-current.log",
+      "bytes": 226,
+      "sha256": "aaa66558a2e9948c616f3c99bf876f6e3bfeee7f6f7f4a4ad6f417b0c2b806a1"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log",
+      "bytes": 2596,
+      "sha256": "c4c8896367ea7841f3335d4c098ca053e374e84b3cec313ce248a4e6c76fd27a"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source4-explicit-reference-first.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source4-explicit-reference-first.log",
+      "bytes": 1701,
+      "sha256": "3cd45bf3aae0e715e7fdaa8f18eae4b2b392ff5a0a66a0eddee330535f1dd253"
+    }
+  ],
+  "publicIntegration": {
+    "head": "233837b585897623a99be659f57b35c106fe411c",
+    "tree": "6a6f62734607248f150df4a6cd19cdead947f64e",
+    "parents": [
+      "7241c5c1e5d3156fa053fda83d6ce9a59228fb0a",
+      "82e3dd7b673f774ca8c3eceaafa28234641bd6b1"
+    ],
+    "blobs": 3900,
+    "apiEntries": 5168,
+    "mainBlobs": 3857,
+    "protectedMain": 3845,
+    "overlays": 12,
+    "adds": 43,
+    "deletes": 0,
+    "earlier43OwnedAddsExact": true,
+    "allMainAttrsCompatPrefixExact": true,
+    "mainPackageOnlyCronAppend": true
+  }
 }

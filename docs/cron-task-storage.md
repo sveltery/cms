@@ -68,3 +68,38 @@ Local D1 uses the existing real workerd binding and canonical atomic adapter.
 The Native C-07 fixed-batch guarantee remains stronger than Source's unsupported
 interactive D1 callback transactions; these controls do not change that
 documented difference or provide a callback fallback.
+
+## Current Main integration and final local checks
+
+The ordinary public merge `233837b585897623a99be659f57b35c106fe411c` adopts
+approved User99 Main `82e3dd7b673f774ca8c3eceaafa28234641bd6b1`. All 43 earlier
+Cron-owned additions, every unchanged Main object and whole Main attribute and
+compatibility-document prefixes are preserved. Package scripts retain the
+complete incoming Source command before the one Cron Source append; dependency
+and lockfile bytes remain exact. The actual untruncated public tree has 3,900
+blobs: 3,845 protected Main blobs, twelve specifically listed overlays and 43
+owned additions. Later documentation/receipt successors have their own tree
+counts and do not rewrite this historical snapshot.
+
+CI647 at that public merge failed only on two unknown-row spread annotations
+in the new Native persistence fixture: two errors, zero warnings and zero
+service callbacks executed. Both complete raw diagnostics remain byte-exact.
+Adding two erased `Record<string, unknown>` query-result generics reconstructs
+the entire preceding Native test file exactly when reversed; SQL, callbacks,
+assertions and clocks do not change. The whole 13-callback readiness/schema/
+reopen family then passes on actual Node, raw D1 and scoped D1 in 6.8 seconds,
+and the one bounded 2,048-MB checker exits with zero errors and zero warnings.
+The nine canonical controls, 80 affected historical-family controls and six
+SEO canonical controls retain their prior actual successful evidence; these
+overlapping family counts are not a Source parity percentage.
+
+The complete pinned census retains all 92 migration-directory files (91
+migration modules plus runner), with only 026/088 matching Cron ownership.
+All ten authorities, the whole Cron row interface, nine complete finite Native
+leaf reconstructions, the type-only test transport and every raw receipt are
+checked. Six actual Git whitespace controls prove that only the observed
+owned diagnostic formats are permitted; unrelated EOF and product trailing
+whitespace, and wrong whitespace kinds on owned files, remain rejected.
+Final current-head hosted gates, independent review, manager approval and
+regular author merge remain pending. The earlier failed CI is not retried or
+counted as a pass.

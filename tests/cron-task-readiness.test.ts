@@ -91,9 +91,9 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
     try {
       await migrateCms(fixture.database);
       await sql`INSERT INTO _cms_cron_tasks(id,plugin_id,task_name,schedule,is_oneshot,data,next_run_at,locked_at,status) VALUES('stored','plugin','stored','2030-01-02T03:04:05+02:00',1,'{"preserve":"  literal"}','2030-01-02T01:04:05.000Z','2030-01-02T00:01:00.000Z','running')`.execute(fixture.database.db);
-      const before = (await sql`SELECT * FROM _cms_cron_tasks`.execute(fixture.database.db)).rows.map(row => ({ ...row }));
+      const before = (await sql<Record<string, unknown>>`SELECT * FROM _cms_cron_tasks`.execute(fixture.database.db)).rows.map(row => ({ ...row }));
       await fixture.reopen(); await migrateCms(fixture.database); await requireCronTaskStorage(fixture.database);
-      assert.deepEqual((await sql`SELECT * FROM _cms_cron_tasks`.execute(fixture.database.db)).rows.map(row => ({ ...row })), before);
+      assert.deepEqual((await sql<Record<string, unknown>>`SELECT * FROM _cms_cron_tasks`.execute(fixture.database.db)).rows.map(row => ({ ...row })), before);
     } finally { await fixture.close(); }
   });
 }
