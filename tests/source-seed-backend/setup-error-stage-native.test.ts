@@ -4,7 +4,7 @@ import { expect, it, vi } from 'vitest';
 import { schemaAdminStorage } from '../helpers/schema-admin-storage.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { seedSourceDatabase } from '../../src/lib/server/seed/namespace.ts';
-import { applySetupSeedWithinBudget } from '../../src/lib/server/seed/index.ts';
+import { applySetupSeedWithinBudget, SetupSeedApplyError } from '../../src/lib/server/seed/index.ts';
 
 const fixture = vi.hoisted(() => ({ loadError: undefined as unknown }));
 vi.mock('virtual:emdash/seed', () => ({
@@ -35,6 +35,7 @@ for (const target of ['Node', 'D1'] as const) {
       catch (error) { actual = error; }
       expect(reads).toBeGreaterThan(0);
       expect(actual).toMatchObject({ name: 'SetupSeedApplyError', cause: failure });
+      expect(actual).toBeInstanceOf(SetupSeedApplyError);
       expect(Reflect.get(actual as object, 'cause')).toBe(failure);
     } finally { await storage.close(); }
   }, 30000);
