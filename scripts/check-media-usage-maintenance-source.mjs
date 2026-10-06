@@ -27,5 +27,24 @@ for (const record of manifest.records) {
   }
   visit(syntax);
 }
-console.log(JSON.stringify({ immutableFiles: manifest.records.length, wholeFamilies,
+const reference = JSON.parse(readFileSync(resolve(root, 'parity/emdash/media-usage-maintenance-source/reference-manifest.json'), 'utf8'));
+if (reference.pin !== manifest.pin || reference.referenceOnly !== true || reference.nativeParityCredit !== 0) {
+  throw new Error('Unexpected reference authority');
+}
+for (const record of reference.records) {
+  const bytes = readFileSync(resolve(root, record.copiedPath));
+  if (bytes.length !== record.bytes || createHash('sha256').update(bytes).digest('hex') !== record.sha256) {
+    throw new Error(`Immutable reference closure changed: ${record.sourcePath}`);
+  }
+}
+const native = JSON.parse(readFileSync(resolve(root, 'parity/emdash/media-usage-maintenance-source/native-body-manifest.json'), 'utf8'));
+if (native.pin !== manifest.pin || native.sourceCausalCredit !== 0) throw new Error('Unexpected Native provenance');
+for (const record of native.records) {
+  const bytes = readFileSync(resolve(root, record.nativePath));
+  if (createHash('sha256').update(bytes).digest('hex') !== record.nativeSha256) {
+    throw new Error(`Native provenance requires an explicit delta record: ${record.nativePath}`);
+  }
+}
+console.log(JSON.stringify({ immutableFiles: manifest.records.length, immutableReferenceFiles:reference.records.length,
+  nativeWholeBodies:native.records.length, wholeFamilies,
   testDeclarations, assertionExpressions, productTestsRun: 0, causalCredit: 0 }));

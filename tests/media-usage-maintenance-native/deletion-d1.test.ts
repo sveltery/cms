@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, beforeEach, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, expect, it } from 'vitest';
 import type { Kysely } from 'kysely';
 import { openD1 } from '../../src/lib/server/database/d1.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
@@ -23,6 +23,23 @@ beforeEach(async () => {
   await owner.db.deleteFrom('_cms_media_usage' as never).execute();
 });
 afterAll(async () => { await owner?.close(); await storage?.runtime.dispose(); });
+afterEach(async () => {
+  if (process.env.MEDIA_USAGE_PHASE_RECEIPTS !== '1') return;
+  const row = await owner.db.selectFrom('_cms_media_usage_collection_deletions' as never)
+    .selectAll().executeTakeFirstOrThrow() as unknown as {
+      phase:string;state:string;attempt_count:number;lease_token:string|null;
+      lease_expires_at:string|null;work_cursor:string|null;source_key:string|null;
+      occurrence_cursor:string|null;last_error_code:string|null;
+    };
+  const work = await owner.db.selectFrom('_cms_media_usage_work' as never).selectAll().execute();
+  console.info('Native controlled phase receipt', JSON.stringify({
+    phase:row.phase,state:row.state,attemptCount:row.attempt_count,
+    leaseToken:row.lease_token,leaseExpiresAt:row.lease_expires_at,
+    workCursor:row.work_cursor,sourceKey:row.source_key,
+    occurrenceCursor:row.occurrence_cursor,lastErrorCode:row.last_error_code,
+    remainingWorkRows:work.length,
+  }));
+});
 
 async function tombstone(phase: 'work' | 'sources' | 'status') {
   await owner.db.insertInto('_cms_media_usage_collection_deletions' as never).values({

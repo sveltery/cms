@@ -1,0 +1,119 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "baselineCodeHead": "487de3124eb8675798bab68d2a66cc0569dccfc3",
+  "sourceCausalCredit": 0,
+  "referenceNativeParityCredit": 0,
+  "nativeReachedD1ValueReds": 3,
+  "records": [
+    {
+      "name": "whole-initial",
+      "receipt": "/tmp/media-usage-maintenance-whole-baseline.log",
+      "bytes": 11993,
+      "sha256": "4b0f2e9798041de27ef8da415419312a41605d3d85c0210c8dae51435bb030f1",
+      "exitCode": 1,
+      "families": 25,
+      "registeredCallbacks": 0,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "generated-Kit prerequisite stop; zero behavioral credit"
+    },
+    {
+      "name": "whole-import",
+      "receipt": "/tmp/media-usage-maintenance-whole-baseline-import.log",
+      "bytes": 29195,
+      "sha256": "96b3211134de4f00d14cfc794414d1cb3f128118f21acee301e140265752c0c1",
+      "exitCode": 1,
+      "families": 25,
+      "registeredCallbacks": 0,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "absent Native modules and external imports; zero behavioral credit"
+    },
+    {
+      "name": "whole-literal-reference",
+      "receipt": "/tmp/media-usage-maintenance-whole-reference-closure-first.log",
+      "bytes": 6946,
+      "sha256": "dd769c3ff1753be20b4eafe9736bafefeb98c9c43cae2b3341ae9d0bd3dd2b3d",
+      "exitCode": 1,
+      "families": 28,
+      "registeredCallbacks": 230,
+      "passedCallbacks": 229,
+      "originalSkippedCallbacks": 1,
+      "note": "22 passed files, 6 import stops; literal Source reference only, zero Native parity credit"
+    },
+    {
+      "name": "native-node-phase-controls",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-node-first.log",
+      "bytes": 228,
+      "sha256": "8f52b05f639ca76748f5e5634ef4abd25d32419fca66536372a6f21a515323e4",
+      "exitCode": 0,
+      "families": 3,
+      "registeredCallbacks": 8,
+      "passedCallbacks": 8,
+      "originalSkippedCallbacks": 0,
+      "note": "actual Native canonical work/reconciliation/deletion controls; no Source causal-red credit"
+    },
+    {
+      "name": "native-d1-phase-baseline",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-first.log",
+      "bytes": 8787,
+      "sha256": "21c9862e561b202f91c59373ce90ae0a8e68670eb2d4ee6eaf9f0c304b167e77",
+      "exitCode": 1,
+      "families": 1,
+      "registeredCallbacks": 3,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "3 reached Native value reds: claimed callbacks return retry instead of progress"
+    },
+    {
+      "name": "native-d1-persisted-baseline",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-state-baseline.log",
+      "bytes": 9985,
+      "sha256": "d04a55ef4898adee5437c6763958e4dde897c46701a30aba4b9bfc5d99ede8b6",
+      "exitCode": 1,
+      "families": 1,
+      "registeredCallbacks": 3,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "same 3 assertions unchanged; supplemental actual persisted checkpoint/lease/work diagnostics"
+    }
+  ],
+  "d1PersistedState": [
+    {
+      "phase": "work",
+      "state": "retry",
+      "attemptCount": 1,
+      "leaseToken": null,
+      "leaseExpiresAt": null,
+      "workCursor": null,
+      "sourceKey": null,
+      "occurrenceCursor": null,
+      "lastErrorCode": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+      "remainingWorkRows": 1
+    },
+    {
+      "phase": "sources",
+      "state": "retry",
+      "attemptCount": 1,
+      "leaseToken": null,
+      "leaseExpiresAt": null,
+      "workCursor": null,
+      "sourceKey": null,
+      "occurrenceCursor": null,
+      "lastErrorCode": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+      "remainingWorkRows": 0
+    },
+    {
+      "phase": "status",
+      "state": "retry",
+      "attemptCount": 1,
+      "leaseToken": null,
+      "leaseExpiresAt": null,
+      "workCursor": null,
+      "sourceKey": null,
+      "occurrenceCursor": null,
+      "lastErrorCode": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+      "remainingWorkRows": 0
+    }
+  ]
+}

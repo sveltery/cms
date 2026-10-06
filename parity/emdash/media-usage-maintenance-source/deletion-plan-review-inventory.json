@@ -49,8 +49,8 @@
         "actual sorted content_id page, collection_id predicate, optional source work cursor, limit51"
       ],
       "writes": [
-        "DELETE selected <=50 exact work IDs for collection_id, same live phase lease guard",
-        "UPDATE exact live work-phase tombstone: work cursor or sources phase, clear attempt/error"
+        "DELETE selected <=50 exact work IDs for collection_id, live collection ID/state/token/expiry guard (Source has no phase/slug predicate)",
+        "UPDATE live collection ID/state/token/expiry tombstone: work cursor or sources phase, clear attempt/error (Source has no phase/slug predicate)"
       ],
       "sourceReceipt": "actual affected checkpoint count must equal1",
       "nativeReceipt": "actual checkpoint UPDATE RETURNING must have exactly1 row"
@@ -62,9 +62,9 @@
         "actual occurrence ID page for selected source key, optional occurrence cursor, limit51"
       ],
       "writes": [
-        "DELETE selected <=50 occurrence IDs for source key with exact live sources-phase lease",
-        "DELETE source key only when source_type content and collection_id match, exact live sources-phase lease",
-        "UPDATE exact live sources-phase tombstone: occurrence cursor/source key or status phase, clear attempt/error"
+        "DELETE selected <=50 occurrence IDs for source key with live collection ID/state/token/expiry guard (Source has no phase/slug predicate)",
+        "DELETE source key only when source_type content and collection_id match, same live lease guard",
+        "UPDATE live collection ID/state/token/expiry tombstone: occurrence cursor/source key or status phase, clear attempt/error (Source has no phase/slug predicate)"
       ],
       "sourceReceipt": "actual affected checkpoint count must equal1",
       "nativeReceipt": "actual checkpoint UPDATE RETURNING must have exactly1 row"
@@ -75,9 +75,9 @@
         "actual EXISTS work/source/status cleanup metadata, ignoring status for this phase"
       ],
       "writes": [
-        "DELETE reconciliations by exact collection ID/slug and live status-phase lease",
-        "DELETE status by content-media adapter/collection scope/slug/collection ID and live status-phase lease",
-        "UPDATE exact live status-phase tombstone to finalize, clear attempt/error"
+        "DELETE reconciliations by exact collection ID/slug and live collection ID/state/token/expiry guard",
+        "DELETE status by content-media adapter/collection scope/slug/collection ID and same live lease guard",
+        "UPDATE live collection ID/state/token/expiry tombstone to finalize, clear attempt/error (Source has no phase/slug predicate)"
       ],
       "sourceReceipt": "throw on actual remaining work/source; actual checkpoint affected count must equal1",
       "nativeReceipt": "same genuine cleanup refusal plus actual checkpoint UPDATE RETURNING must have exactly1 row"
@@ -198,7 +198,7 @@
   ],
   "invariants": [
     "retain exact Source lease timestamp comparisons",
-    "retain exact per-phase guards and collection identity predicates",
+    "retain exact Source phase guards and collection identity predicates where present; never invent cleanup phase/slug guards",
     "do not invent a current live collection requirement in post-registry cleanup phases",
     "preserve Source missing/zero-row outcomes, actual count/result hooks and query IDs",
     "Source callback bodies remain immutable in reference witnesses",
