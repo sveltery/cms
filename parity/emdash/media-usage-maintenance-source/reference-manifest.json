@@ -1072,6 +1072,12 @@
       "sha256": "db06bd5eca4feae571184c50951c0369f6ea8a2f63abf52cc526f097602ae646"
     },
     {
+      "sourcePath": "packages/core/src/config/errors.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/src/config/errors.ts",
+      "bytes": 412,
+      "sha256": "dcd33fdc263c724c12cbd13e772576b0d95b841666d8dafca0d13f049931b21a"
+    },
+    {
       "sourcePath": "packages/cloudflare/src/db/do-sql-types.ts",
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/cloudflare/src/db/do-sql-types.ts",
       "bytes": 4545,
@@ -1376,6 +1382,12 @@
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/src/database/content-datetime.ts",
       "bytes": 7450,
       "sha256": "fe7788a24929b78efd2ae112c6111ed23d16eb838284945243a4cc4d272e8e9d"
+    },
+    {
+      "sourcePath": "packages/admin/src/locales/index.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/admin/src/locales/index.ts",
+      "bytes": 530,
+      "sha256": "fd294772a693dd6db6fb327ddb310e045b33ca822134629628a8485b9bb974af"
     },
     {
       "sourcePath": "packages/blocks/src/index.ts",
@@ -2200,6 +2212,36 @@
       "sha256": "6f410994ca25c960baa96256ffda0626289284f486a288bc2747bf479c4a9ff2"
     },
     {
+      "sourcePath": "packages/admin/src/locales/useLocale.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/admin/src/locales/useLocale.ts",
+      "bytes": 1238,
+      "sha256": "c393e4df48b24092beb52e1aee432218e3695d9b22d9740f8a244091bcc64fb0"
+    },
+    {
+      "sourcePath": "packages/admin/src/locales/LocaleDirectionProvider.tsx",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/admin/src/locales/LocaleDirectionProvider.tsx",
+      "bytes": 914,
+      "sha256": "e631c26e85df0a268e20e4b158ece737d32ff8998ef3ae25dab0a50f02132fdd"
+    },
+    {
+      "sourcePath": "packages/admin/src/locales/loadMessages.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/admin/src/locales/loadMessages.ts",
+      "bytes": 640,
+      "sha256": "80ff92d0f1c9db282906cdbfc3497d08e6e8978b53af209e5045e065f805bf10"
+    },
+    {
+      "sourcePath": "packages/admin/src/locales/emails.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/admin/src/locales/emails.ts",
+      "bytes": 4283,
+      "sha256": "8e8804e30b4d740912b5b6e46ddc2de64aa8b4a3eada90d042eddeec70aa4487"
+    },
+    {
+      "sourcePath": "packages/admin/src/locales/config.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/admin/src/locales/config.ts",
+      "bytes": 4910,
+      "sha256": "17a66d6430680ad9fada949e84405e408a0bdad2c35b430ee237b2196f033e84"
+    },
+    {
       "sourcePath": "packages/blocks/src/renderer.tsx",
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/blocks/src/renderer.tsx",
       "bytes": 3639,
@@ -2432,12 +2474,6 @@
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/src/database/index.ts",
       "bytes": 519,
       "sha256": "390a57a450dc2aed54807eb325df3d90db0322f5c8abc860e3000e83d56202a8"
-    },
-    {
-      "sourcePath": "packages/core/src/config/errors.ts",
-      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/src/config/errors.ts",
-      "bytes": 412,
-      "sha256": "dcd33fdc263c724c12cbd13e772576b0d95b841666d8dafca0d13f049931b21a"
     },
     {
       "sourcePath": "packages/core/src/database/repositories/index.ts",
@@ -2732,6 +2768,12 @@
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/src/schema/query.ts",
       "bytes": 1462,
       "sha256": "7b1509d5162089ffaf74d4c1d03a07e2cccd400b178c3411493c5f5875cd1202"
+    },
+    {
+      "sourcePath": "packages/admin/src/locales/locales.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/admin/src/locales/locales.ts",
+      "bytes": 3967,
+      "sha256": "4d6d420f52f776cc92556adce7c78e8c92b047bf5428888772c52934dc74c94d"
     },
     {
       "sourcePath": "packages/blocks/src/blocks/accordion.tsx",
@@ -3694,9 +3736,9 @@
     "@cloudflare/kumo <- packages/blocks/src/elements/text-input.tsx",
     "@cloudflare/kumo <- packages/blocks/src/elements/toggle.tsx",
     "@cloudflare/kumo/components/chart <- packages/blocks/src/blocks/chart.tsx",
+    "@cloudflare/kumo/primitives <- packages/admin/src/locales/LocaleDirectionProvider.tsx",
     "@emdash-cms/admin/html-block <- packages/core/src/content/converters/portable-text-to-prosemirror.ts",
     "@emdash-cms/admin/html-block <- packages/core/src/content/converters/prosemirror-to-portable-text.ts",
-    "@emdash-cms/admin/locales <- packages/core/src/emdash-runtime.ts",
     "@emdash-cms/admin/portable-text-table <- packages/core/src/content/converters/portable-text-to-prosemirror.ts",
     "@emdash-cms/admin/portable-text-table <- packages/core/src/content/converters/prosemirror-to-portable-text.ts",
     "@emdash-cms/admin/portable-text-table <- packages/core/src/content/converters/types.ts",
@@ -3719,6 +3761,10 @@
     "@emdash-cms/registry-verification/artifact <- packages/core/src/api/handlers/registry.ts",
     "@emdash-cms/registry-verification/bundle <- packages/core/src/registry/artifact-verification.ts",
     "@emdash-cms/registry-verification/checksum <- packages/core/src/registry/artifact-verification.ts",
+    "@lingui/core <- packages/admin/src/locales/emails.ts",
+    "@lingui/core <- packages/admin/src/locales/loadMessages.ts",
+    "@lingui/core/macro <- packages/admin/src/locales/emails.ts",
+    "@lingui/react <- packages/admin/src/locales/useLocale.ts",
     "@modelcontextprotocol/sdk/client/index.js <- packages/core/tests/utils/mcp-runtime.ts",
     "@modelcontextprotocol/sdk/inMemory.js <- packages/core/tests/utils/mcp-runtime.ts",
     "@modelcontextprotocol/sdk/server/mcp.js <- packages/core/src/mcp/server.ts",
@@ -3796,11 +3842,6 @@
     "echarts/components <- packages/blocks/src/blocks/chart.tsx",
     "echarts/core <- packages/blocks/src/blocks/chart.tsx",
     "echarts/renderers <- packages/blocks/src/blocks/chart.tsx",
-    "emdash <- packages/cloudflare/src/db/d1-dialect.ts",
-    "emdash <- packages/cloudflare/src/db/d1.ts",
-    "emdash <- packages/cloudflare/src/db/do-sql-class.ts",
-    "emdash/database/instrumentation <- packages/cloudflare/src/db/d1.ts",
-    "emdash/internal/database/migration-lock <- packages/cloudflare/src/db/d1-dialect.ts",
     "image-size <- packages/core/src/media/placeholder.ts",
     "image-size <- packages/core/src/seed/apply.ts",
     "jose <- packages/auth/src/oauth/providers/microsoft.ts",
@@ -4123,6 +4164,8 @@
     "node:stream <- packages/core/src/cli/wxr/parser.ts",
     "node:url <- packages/core/src/astro/integration/routes.ts",
     "pg <- packages/core/tests/utils/test-db.ts",
+    "react <- packages/admin/src/locales/LocaleDirectionProvider.tsx",
+    "react <- packages/admin/src/locales/useLocale.ts",
     "react <- packages/blocks/src/blocks/accordion.tsx",
     "react <- packages/blocks/src/blocks/banner.tsx",
     "react <- packages/blocks/src/blocks/chart.tsx",
