@@ -191,3 +191,23 @@ initial registration proposal would erase trusted after/timezone metadata; that
 proposal was not implemented. The corrected finite proposal preserves existing
 base metadata and inherits it through only qualified owner-backed views and
 genuine transactions. Shared lifecycle host edits await exact review.
+
+## Qualified sole lifecycle metadata inheritance
+
+Root authorized the corrected exact three-file proposal after the regular
+test-first commits. The sole lifecycle host receives one additive inheritance
+span and a read-only callback observer; removing that span reconstructs its
+entire accepted Main82 file byte-for-byte. Existing owner registrations and
+after/timezone callback identities remain exact. New known views and genuine
+Kysely transactions inherit the same trusted callback object; cached views
+refresh current metadata without overwriting the base owner.
+
+All six dedicated Native association/timezone/after queue/unknown-view controls
+and all four canonical document/index callbacks now pass. The missing initial
+after reader remains zero causal credit; the actual queue callback observer is
+qualified separately once that seam exists. Actual transactions execute ordered
+compiled batches on the same genuine transaction and refuse connection close.
+D1 compound callback writes still reject unresolved producers. Original plain
+controlled Source databases retain their original fallback, while unknown Native
+namespace handles are rejected before it. Standard production lifecycle controls
+and all remaining full integration checks are still required for final approval.

@@ -2914,3 +2914,12 @@ four actual value reds; its earlier metadata-erasing draft was not implemented.
 The missing after-reader observer is infrastructure only and grants zero causal
 credit. Source mocks, prior accepted host callbacks and protected database owners
 remain unchanged at this checkpoint.
+
+PL1-LIFECYCLE01 is the Root-reviewed additive sole-host metadata inheritance
+transport. Its machine record reverses the one added shared-host span to the
+whole accepted Main82 file exactly. Six Native controls retain trusted timezone
+and after callback identities through real owner views/current transactions;
+four document/index controls remain green. The missing initial reader receives
+zero causal credit. Existing owner metadata, Source original mocks and D1 C-07
+guards are preserved. Wider production lifecycle and full runtime qualification
+remain pending in the [paired record](../../docs/plugin-runtime-provider.md).

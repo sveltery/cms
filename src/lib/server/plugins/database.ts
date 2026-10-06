@@ -1,6 +1,7 @@
 import { OperationNodeTransformer, type Kysely, type KyselyPlugin, type TableNode } from 'kysely';
 import type { CmsDatabase } from '../database/contract.ts';
 import type { Database } from './database-types.ts';
+import { lifecycleDatabase, registerLifecycleDatabase, inheritLifecycleDatabase } from '../database/lifecycle/upstream/host.ts';
 const owners = new WeakMap<object, CmsDatabase>();
 const views = new WeakMap<object, Kysely<Database>>();
 const tables: Readonly<Record<string, string>> = {
@@ -26,9 +27,22 @@ const namespace: KyselyPlugin = {
 /** A finite identifier view of the actual current CMS owner, with all existing plugins retained. */
 export function pluginSourceDatabase(database: CmsDatabase): Kysely<Database> {
   const prior = views.get(database.db);
-  if (prior) { owners.set(prior, database); return prior; }
+  if (prior) {
+    owners.set(prior, database);
+    inheritLifecycleDatabase({ db: prior as unknown as CmsDatabase['db'], atomicQueryLoops: database.atomicQueryLoops,
+      atomicBatch: statements => database.atomicBatch(statements),
+      async close() { throw new Error('A plugin view does not own the database connection'); }
+    }, database.db);
+    return prior;
+  }
   const view = database.db.withPlugin(namespace) as unknown as Kysely<Database>;
   owners.set(database.db, database); owners.set(view, database); views.set(database.db, view); views.set(view, view);
+  if (!lifecycleDatabase(database.db)) registerLifecycleDatabase(database);
+  inheritLifecycleDatabase({
+    db: view as unknown as CmsDatabase['db'], atomicQueryLoops: database.atomicQueryLoops,
+    atomicBatch: statements => database.atomicBatch(statements),
+    async close() { throw new Error('A plugin view does not own the database connection'); }
+  }, database.db);
   return view;
 }
 export function registeredPluginDatabaseOwner(db: object): CmsDatabase | undefined { return owners.get(db); }
@@ -44,4 +58,23 @@ export function pluginDatabaseOwner(db: object): CmsDatabase {
   return owner;
 }
 /** Private lifecycle transport: a transaction remains on its existing executor. */
-export function registerPluginTransaction(db: object, owner: CmsDatabase): void { owners.set(db, owner); }
+export async function executePluginTransaction<DB, T>(db: Kysely<DB>, run: (trx: Kysely<DB>) => Promise<T>): Promise<T> {
+  assertRegisteredPluginNamespace(db);
+  const owner = pluginDatabaseOwner(db);
+  if (db.isTransaction) return run(db);
+  if (!owner.atomicQueryLoops) throw new Error('D1 plugin compound writes require the named canonical atomic batch producer');
+  return db.transaction().execute(async trx => {
+    const transactionOwner: CmsDatabase = {
+      db: trx as unknown as CmsDatabase['db'], atomicQueryLoops: owner.atomicQueryLoops,
+      async atomicBatch(statements) {
+        const results = [];
+        for (const statement of statements) results.push(await trx.executeQuery(statement));
+        return results;
+      },
+      async close() { throw new Error('A transaction does not own the database connection'); }
+    };
+    owners.set(trx, transactionOwner);
+    inheritLifecycleDatabase(transactionOwner, db);
+    return run(trx);
+  });
+}
