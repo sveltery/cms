@@ -5,7 +5,7 @@ import ts from 'typescript';
 import { posix } from 'node:path';
 import { compileCommentsSourceCatalog } from './comments-source-catalog.mjs';
 import {restoreSeedNodeConstructors,assertSeedConstructorLedger} from './seed-node-constructor-transports.mjs';
-assertSeedConstructorLedger('e48f0db1771df1c1ea2b828d9d61dbf17b6fe441ea57d1f326b6a2d79ea7618b');
+assertSeedConstructorLedger('05fa10415d79d40d4bcbf14acc32f2e5800f1632b064523c74d9f8697c1336a5');
 const root = new URL('../', import.meta.url);
 const ledger = JSON.parse(readFileSync(new URL('docs/comments-moderation-ports.json', root), 'utf8'));
 const read = path => readFileSync(new URL(path, root));

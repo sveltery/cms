@@ -9,7 +9,7 @@ import {restoreSeedNodeConstructors,assertSeedConstructorLedger} from './seed-no
 const root = fileURLToPath(new URL('..', import.meta.url));
 const snapshot = resolve(root, 'parity/emdash/canonical-installation/source');
 const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
-assertSeedConstructorLedger('e48f0db1771df1c1ea2b828d9d61dbf17b6fe441ea57d1f326b6a2d79ea7618b');
+assertSeedConstructorLedger('05fa10415d79d40d4bcbf14acc32f2e5800f1632b064523c74d9f8697c1336a5');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const read = path => readFileSync(resolve(root, path));
 const inventory = JSON.parse(read('docs/canonical-installation-source.json'));

@@ -82,6 +82,15 @@
       "nativeSpan": "\tprivate readonly limits: SeedApplyBudget;\n\tconstructor(limits: SeedApplyBudget) { this.limits = limits; }",
       "causalCredit": 0,
       "completeSourceBodyAfterExactConstructorReversal": false
+    },
+    {
+      "native": "src/lib/server/seed/upstream/media/usage/content-fields.ts",
+      "source": "packages/core/src/media/usage/content-fields.ts",
+      "class": "MediaUsageFieldDiscoveryError",
+      "sourceSpan": "export class MediaUsageFieldDiscoveryError extends Error {\n\tconstructor(\n\t\tmessage: string,\n\t\tpublic code:\n\t\t\t| \"INVALID_REPEATER_VALIDATION\"\n\t\t\t| \"INVALID_BLOCK_VALIDATION\"\n\t\t\t| \"UNSUPPORTED_BLOCK_DEFINITION\",\n\t) {\n\t\tsuper(message);\n\t\tthis.name = \"MediaUsageFieldDiscoveryError\";\n\t}\n}",
+      "nativeSpan": "export class MediaUsageFieldDiscoveryError extends Error {\n\tpublic code:\n\t\t| \"INVALID_REPEATER_VALIDATION\"\n\t\t| \"INVALID_BLOCK_VALIDATION\"\n\t\t| \"UNSUPPORTED_BLOCK_DEFINITION\";\n\tconstructor(\n\t\tmessage: string,\n\t\tcode:\n\t\t\t| \"INVALID_REPEATER_VALIDATION\"\n\t\t\t| \"INVALID_BLOCK_VALIDATION\"\n\t\t\t| \"UNSUPPORTED_BLOCK_DEFINITION\",\n\t) {\n\t\tsuper(message);\n\t\tthis.code = code;\n\t\tthis.name = \"MediaUsageFieldDiscoveryError\";\n\t}\n}",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
     }
   ]
 }

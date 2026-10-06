@@ -1,0 +1,56 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts (10 tests | 4 failed) 2075ms
+   × D1: records a real new failed-source attempt with capture active=false 107ms
+   × D1: preserves the actual existing generation and reports a stale failed attempt with capture active=false 111ms
+   × D1: records a real new failed-source attempt with capture active=true 136ms
+   × D1: preserves the actual existing generation and reports a stale failed attempt with capture active=true 125ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: records a real new failed-source attempt with capture active=false
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: records a real new failed-source attempt with capture active=true
+AssertionError: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts:102:26
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: preserves the actual existing generation and reports a stale failed attempt with capture active=false
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: preserves the actual existing generation and reports a stale failed attempt with capture active=true
+AssertionError: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts:116:26
+    114|    const failed={...f.source,sourceFingerprint:undefined,sourceComplet…
+    115|    const outcome=await f.repo.markSourceAttemptedIfMatching(failed,bef…
+    116|    expect(outcome.error).toBeNull();expect(outcome.receipt).toEqual({a…
+       |                          ^
+    117|    const current=(await f.repo.findSource(f.source.sourceKey))!;
+    118|    expect(current.currentGeneration).toBe(before.currentGeneration);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 6 passed (10)
+   Start at  01:07:50
+   Duration  3.77s (transform 976ms, setup 0ms, import 1.57s, tests 2.08s, environment 0ms)
+

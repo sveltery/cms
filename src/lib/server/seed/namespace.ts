@@ -473,8 +473,11 @@ export function seedSourceDatabase(database: CmsDatabase): Kysely<Database> {
     } }) as Kysely<Database>;
     views.set(proxy, { owner, logical, atomicLogical });
     registerLifecycleDatabase({ ...owner, db: proxy as unknown as CmsDatabase['db'] });
-    registerRelationDatabase(owner, proxy);
-    registerCanonicalTaxonomyDatabaseHandle(owner,proxy as unknown as Parameters<typeof registerCanonicalTaxonomyDatabaseHandle>[1]);
+    const rawD1=owner.db.getExecutor().adapter instanceof RawBindingD1Adapter;
+    // The canonical Node classes keep their identity. Only their trusted
+    // owner association retains this handle's actual observers and compiler.
+    registerRelationDatabase(rawD1?owner:nativeHostedOwner(proxy,false), proxy);
+    registerCanonicalTaxonomyDatabaseHandle(rawD1?owner:nativeHostedOwner(proxy,true),proxy as unknown as Parameters<typeof registerCanonicalTaxonomyDatabaseHandle>[1]);
     registerBlockDatabaseHost({ ...owner, db: proxy as unknown as CmsDatabase['db'] });
     registerBylineDatabaseHandle(owner, proxy as unknown as Parameters<typeof registerBylineDatabaseHandle>[1]);
     return proxy;
@@ -553,6 +556,9 @@ function nativeHostedOwner(db:Kysely<any>,readonly:boolean):CmsDatabase {
   const target=context.atomicLogical.withPlugin(namespace),hosted=readonly?nativeReadCompiler(target):target;
   const plugins=target.getExecutor().plugins;
   return{...context.owner,db:hosted as unknown as CmsDatabase['db'],async atomicBatch(statements){
+    // A genuine Source callback transaction executes through trx.executeQuery;
+    // its real result hooks have already run and must not run a second time.
+    if(context.atomicLogical.isTransaction)return context.owner.atomicBatch(statements);
     const results=await context.owner.atomicBatch(statements),transformed:QueryResult<unknown>[]=[];
     for(let index=0;index<results.length;index++){
       let result=results[index];for(const plugin of plugins)result=await plugin.transformResult({result:result as QueryResult<import('kysely').UnknownRow>,queryId:statements[index].queryId});
@@ -588,6 +594,16 @@ function nativeRefreshReadView(db:Kysely<any>):Kysely<Database>{
   // qualified usage/invalidation factories retain the same underlying context.
   views.set(read,context);
   return read as Kysely<Database>;
+}
+/** Only the qualified named cleanup class receives the original owner and a
+ * private registered read/compiler view. Its canonical fixed batch transforms
+ * actual receipts itself once; do not pass the hosted result-transform owner. */
+export async function seedNativeMediaUsageCollectionDeletionPhases(db:Kysely<Database>){
+  const context=views.get(db);
+  if(!context)throw new Error('Seed Native deletion phases require their actual registered query handle');
+  const read=nativeRefreshReadView(db);
+  const actual=await import('../media-usage/collection-deletion-phases.ts');
+  return new actual.NativeMediaUsageCollectionDeletionPhases(context.owner,read as unknown as ConstructorParameters<typeof actual.NativeMediaUsageCollectionDeletionPhases>[1]);
 }
 type RefreshModule=typeof import('./upstream/media/usage/content-refresh-d1.ts');
 type DomainArguments<F extends (...args:any[])=>any>=Parameters<F> extends [unknown,...infer A]?A:never;

@@ -55,14 +55,19 @@ export async function buildContentMediaUsageFieldFingerprint(
 }
 
 export class MediaUsageFieldDiscoveryError extends Error {
+	public code:
+		| "INVALID_REPEATER_VALIDATION"
+		| "INVALID_BLOCK_VALIDATION"
+		| "UNSUPPORTED_BLOCK_DEFINITION";
 	constructor(
 		message: string,
-		public code:
+		code:
 			| "INVALID_REPEATER_VALIDATION"
 			| "INVALID_BLOCK_VALIDATION"
 			| "UNSUPPORTED_BLOCK_DEFINITION",
 	) {
 		super(message);
+		this.code = code;
 		this.name = "MediaUsageFieldDiscoveryError";
 	}
 }

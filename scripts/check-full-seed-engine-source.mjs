@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import ts from 'typescript';
 import {restoreSeedNodeConstructors,assertSeedConstructorLedger} from './seed-node-constructor-transports.mjs';
-assertSeedConstructorLedger('e48f0db1771df1c1ea2b828d9d61dbf17b6fe441ea57d1f326b6a2d79ea7618b');
+assertSeedConstructorLedger('05fa10415d79d40d4bcbf14acc32f2e5800f1632b064523c74d9f8697c1336a5');
 const inventory = JSON.parse(fs.readFileSync('docs/full-seed-engine-source.json','utf8'));
 const prefix = 'parity/emdash/full-seed-engine/source/';
 assert.equal(inventory.sourcePin,'913cb1bb9b7f08c3ff0d258b4420e53835b6a58e');
@@ -31,7 +31,7 @@ function normalized(text,path) {
 for(const item of inventory.runtime) {
   let native=fs.readFileSync(item.native,'utf8').split('\n').slice(2).join('\n');
   const source=fs.readFileSync(prefix+item.source,'utf8');
-  if(item.native==='src/lib/server/seed/apply.ts')native=restoreSeedNodeConstructors(native,item.native);
+  native=restoreSeedNodeConstructors(native,item.native);
   assert.equal(normalized(native,item.native),normalized(source,item.source),item.native+' whole import-adapted body');
 }
 // The distinct Native D1 specialization uses exactly the same constructor-only
@@ -49,4 +49,4 @@ for(const item of inventory.members ?? []) {
       assert.equal(found.length,1,path+':'+name);return found[0].getText(file);});};
   assert.deepEqual(select(item.native),select(prefix+item.source),item.native+' complete Source members');
 }
-console.log(`Full seed source guard: ${inventory.authorities.length} exact authorities, ${inventory.testFamilies.length} additional whole families, exact Budget constructor-only substitution; zero static execution/body-identity credit from substitution.`);
+console.log(`Full seed source guard: ${inventory.authorities.length} exact authorities, ${inventory.testFamilies.length} additional whole families, exact listed constructor-only substitutions; zero static execution/body-identity credit from substitution.`);

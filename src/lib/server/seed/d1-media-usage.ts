@@ -7,7 +7,7 @@ import {RawBindingD1Adapter} from '../database/d1.ts';
 import {registeredSeedDatabaseOwner} from './namespace.ts';
 import {registeredBylineDatabaseOwner} from '../bylines/storage.ts';
 import {blockDatabaseHost} from '../blocks/upstream/host.ts';
-import {MediaUsageRepository as SourceUsage,MEDIA_USAGE_GENERATION_WRITE_LEASE_MS,type MediaUsageSourceInput,type MediaUsageOccurrenceInput,type MediaUsageSource,type MediaUsageGuardedReplaceResult,type MediaUsageGuardedDeleteResult,type MediaUsageGuardedAbsentDeleteResult} from '../blocks/upstream/database/repositories/media-usage.ts';
+import {MediaUsageRepository as SourceUsage,MEDIA_USAGE_GENERATION_WRITE_LEASE_MS,type MediaUsageSourceInput,type MediaUsageOccurrenceInput,type MediaUsageSource,type MediaUsageGuardedReplaceResult,type MediaUsageGuardedDeleteResult,type MediaUsageGuardedAbsentDeleteResult,type MediaUsageGuardedAttemptResult} from '../blocks/upstream/database/repositories/media-usage.ts';
 import {validateIdentifier} from '../blocks/upstream/database/validate.ts';
 import type {Database} from '../blocks/upstream/database/types.ts';
 
@@ -16,6 +16,8 @@ import type {Database} from '../blocks/upstream/database/types.ts';
 interface PureSource {
  buildSourceRow(source:MediaUsageSourceInput,generation:string,now:string):any;
  sourceUpdateSet(row:any):any;
+ buildAttemptedSourceRow(source:MediaUsageSourceInput,generation:string,now:string):any;
+ attemptedSourceUpdateSet(source:MediaUsageSourceInput,row:any):any;
  sourceMatchExpression(expected:MediaUsageSource):any;
  currentCollectionExists(id:string|null,slug:string|null):RawBuilder<boolean>;
  currentCanonicalContentExists(row:any):RawBuilder<boolean>;
@@ -85,6 +87,45 @@ export class MediaUsageRepository extends SourceUsage {
   for(let start=0;start<keys.length;start+=50){const batch=keys.slice(start,start+50);statements.push(db.deleteFrom('_cms_media_usage_sources').where('source_key','in',batch).returning('source_key').compile(),db.updateTable('_cms_media_usage').set({cleanup_lease_token:null}).where('source_key','in',batch).compile(),db.deleteFrom('_cms_media_usage').where('source_key','in',batch).compile());}
   if(!statements.length)return 0;
   const results=await owner.atomicBatch(statements);return results.reduce((count,result,index)=>count+(index%3===0?result.rows.length:0),0);
+ }
+
+ /** Source conditional failed/unknown snapshot attempt. Existing generations,
+  * indexed timestamps and occurrences remain; only the Source attempted update
+  * set changes. The Native fixed receipt protocol retains C07 accounting. */
+ override async markSourceAttemptedIfMatching(source:MediaUsageSourceInput,expected:MediaUsageSource|null):Promise<MediaUsageGuardedAttemptResult>{
+  if(!this.nativeD1)return super.markSourceAttemptedIfMatching(source,expected);
+  const owner=this.owner!,db=owner.db as unknown as Kysely<Database>,pure=this as unknown as PureSource;
+  const generation=ulid();
+  if(expected!==null){
+   const row=pure.buildAttemptedSourceRow(source,generation,new Date().toISOString());
+   const statement=db.updateTable('_cms_media_usage_sources').set(pure.attemptedSourceUpdateSet(source,row))
+    .where('source_key','=',row.source_key).where(pure.sourceMatchExpression(expected))
+    .where(pure.currentCollectionExists(row.collection_id,row.collection_slug)).where(pure.currentCanonicalContentExists(row))
+    .returning('source_key').compile();
+   if(statement.parameters.length>100)throw new Error('Native D1 attempted source exceeds 100 bindings');
+   const receipts=await owner.atomicBatch([statement]),attempted=receipts[0].rows.length>0;
+   return{attempted,source:attempted?null:await this.findSource(source.sourceKey)};
+  }
+  const token=ulid();
+  const admission=await sql<{created_at:string}>`INSERT INTO _cms_media_usage_generation_writes(source_key,generation,lease_token,expires_at,created_at)
+   SELECT ${source.sourceKey},${generation},${token},${pure.generationWriteLeaseTimestampOffset(MEDIA_USAGE_GENERATION_WRITE_LEASE_MS/1000)},${pure.generationWriteLeaseTimestampOffset(0)}
+   WHERE ${pure.currentCollectionExists(source.collectionId??null,source.collectionSlug??null)} RETURNING created_at`.execute(db);
+  const admitted=admission.rows[0];
+  if(!admitted)return{attempted:false,source:await this.findSource(source.sourceKey)};
+  try{
+   const row=pure.buildAttemptedSourceRow(source,generation,admitted.created_at),entries=Object.entries(row);
+   const statement=sql`INSERT INTO _cms_media_usage_sources(${sql.join(entries.map(([key])=>sql.ref(key)))})
+    SELECT ${sql.join(entries.map(([,value])=>sql`${value}`))}
+    WHERE EXISTS(SELECT 1 FROM _cms_media_usage_generation_writes WHERE source_key=${row.source_key} AND generation=${row.current_generation} AND lease_token=${token} AND ${pure.generationWriteLeaseExpiryIsInFuture('expires_at')})
+    AND ${pure.currentCollectionExists(row.collection_id,row.collection_slug)} AND ${pure.currentCanonicalContentExists(row)}
+    ON CONFLICT(source_key) DO NOTHING RETURNING source_key`.compile(db);
+   if(statement.parameters.length>100)throw new Error('Native D1 attempted source exceeds 100 bindings');
+   const receipts=await owner.atomicBatch([statement]),attempted=receipts[0].rows.length>0;
+   return{attempted,source:attempted?null:await this.findSource(source.sourceKey)};
+  }finally{
+   try{await db.deleteFrom('_cms_media_usage_generation_writes').where('source_key','=',source.sourceKey).where('generation','=',generation).where('lease_token','=',token).execute();}
+   catch(error){console.error('[media-usage] Failed to release generation write lease:',error);}
+  }
  }
 
  /** Source single-source contract before capture activation. The admitted
