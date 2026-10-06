@@ -19,7 +19,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - name: Run complete immutable setup wizard Source family in sandboxed Chromium
-        run: timeout --kill-after=30s 180s pnpm exec vitest run --config vitest.default-seed-setup-wizard.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-source-results.json
+        run: timeout --kill-after=30s 360s pnpm exec vitest run --config vitest.default-seed-setup-wizard.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-source-results.json
         env:
           DEBUG: pw:browser
       - uses: actions/upload-artifact@v4

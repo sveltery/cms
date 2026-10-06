@@ -34,6 +34,14 @@
         {
           "from": "\n        CMS_AUTH_OUTPUT: \"tests/.default-seed-account-ssr/output\",",
           "to": ""
+        },
+        {
+          "from": "\nimport { ensureAccountSsrBuild } from './account-ssr-build.ts';",
+          "to": ""
+        },
+        {
+          "from": "\n  await ensureAccountSsrBuild();",
+          "to": ""
         }
       ]
     },
@@ -63,5 +71,11 @@
   "supportedSourceOutput": {
     "path": "tests/helpers/passkey-runtime-server.mjs",
     "literal": "const output = resolve(process.env.CMS_AUTH_OUTPUT ?? '.svelte-kit/output');"
+  },
+  "actualBuild": {
+    "file": "tests/helpers/default-seed-setup/account-ssr-build.ts",
+    "sha256": "4eb0a229c9955fc8a7c7dc97cf13499fd318bfc187aa2e6f8201ddad178caa6d",
+    "command": "node node_modules/vite/bin/vite.js build --config vite.default-seed-account-ssr.config.ts",
+    "status": "Root-authorized actual isolated fixture build once per Node process before old real server; no execution yet; failure propagates, no skip/fake/retry"
   }
 }

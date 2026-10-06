@@ -25,7 +25,7 @@ export default defineConfig({
       if (target === resolve(frozen, 'src/components/SetupWizard')) return resolve(root, 'tests/helpers/default-seed-setup/wizard-react.tsx');
     }
   }],
-  resolve: { conditions: ['browser'], alias: {
+  resolve: { conditions: ['browser'], dedupe: ['react', 'react-dom'], alias: {
     '$lib/auth.remote': resolve(root, 'tests/helpers/default-seed-setup/auth-remotes.ts'),
     '$lib/ui/PasskeySetup.svelte': resolve(root, 'src/lib/ui/PasskeySetup.svelte'),
     '$lib/auth/passkey-browser': resolve(root, 'src/lib/auth/passkey-browser.ts'),
@@ -38,11 +38,11 @@ export default defineConfig({
     '@lingui/core', '@lingui/react', '@tanstack/react-query', 'vitest-browser-react'
   ] },
   oxc: { jsx: { runtime: 'automatic' } },
-  test: { fileParallelism: false,
+  test: { globals: true, fileParallelism: false,
     include: ['parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx'],
-    setupFiles: ['tests/helpers/default-seed-setup/browser-setup.ts'],
+    setupFiles: ['parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/setup.ts'],
     browser: { enabled: true, headless: true,
-      provider: playwright({ launchOptions: { chromiumSandbox: true, timeout: 30000 } }),
+      provider: playwright({ launchOptions: { chromiumSandbox: true, timeout: 30000 }, contextOptions: { timezoneId: 'America/New_York' } }),
       instances: [{ browser: 'chromium' }], viewport: { width: 1280, height: 800 } }
   }
 });

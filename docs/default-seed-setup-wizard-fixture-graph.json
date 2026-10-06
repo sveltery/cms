@@ -1,13 +1,13 @@
 {
-  "nativeHead": "5d7086837be02e87317ae493f71cf7e04cc71ff6",
+  "nativeHead": "8be6821b52a22e8c2013c2a399eb132c391a491b",
   "status": "Exact finite test-only current-page fixture runtime import graph; static0execution/causal credit",
   "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "files": [
     {
-      "path": "tests/helpers/default-seed-setup/browser-setup.ts",
-      "bytes": 122,
-      "sha256": "84605ee2f051df51b8745036645a1e14c8412b44af63000ff17b84124a34a37f",
-      "blob": "93c62e12b0425c026347c9e011ba6fbd0b3836a8",
+      "path": "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/setup.ts",
+      "bytes": 188,
+      "sha256": "53fefd55be2b5d20695242be9d8cdcae43d0234eac7820f051d71f6874f2a891",
+      "blob": "60b705283b9d3788858a2589eaad21dbb5def59a",
       "compiledSvelteRuntimeImports": []
     },
     {
@@ -111,12 +111,12 @@
   ],
   "edges": [
     {
-      "from": "tests/helpers/default-seed-setup/browser-setup.ts",
+      "from": "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/setup.ts",
       "specifier": "vitest-browser-react",
       "to": "vitest-browser-react"
     },
     {
-      "from": "tests/helpers/default-seed-setup/browser-setup.ts",
+      "from": "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/setup.ts",
       "specifier": "@lingui/core",
       "to": "@lingui/core"
     },
@@ -258,11 +258,11 @@
   ],
   "externalImports": {
     "vitest-browser-react": [
-      "tests/helpers/default-seed-setup/browser-setup.ts",
+      "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/setup.ts",
       "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/utils/render.tsx"
     ],
     "@lingui/core": [
-      "tests/helpers/default-seed-setup/browser-setup.ts",
+      "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/setup.ts",
       "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/utils/render.tsx",
       "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts"
     ],

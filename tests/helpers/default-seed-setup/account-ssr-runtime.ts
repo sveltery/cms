@@ -6,8 +6,10 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { stringify, parse } from 'devalue';
 import { schemaAdminStorage } from '../schema-admin-storage.ts';
+import { ensureAccountSsrBuild } from './account-ssr-build.ts';
 
 export async function accountSetupSsrRuntime(target: 'Node' | 'D1' = 'Node') {
+  await ensureAccountSsrBuild();
   const directory = await mkdtemp(join(tmpdir(), 'cms-passkey-runtime-'));
   let origin = 'http://localhost:0';
   let child: ReturnType<typeof spawn>;

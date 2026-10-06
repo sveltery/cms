@@ -1,0 +1,26 @@
+{
+  "head": "5d7086837be02e87317ae493f71cf7e04cc71ff6",
+  "run": 37395835252,
+  "job": 112051440234,
+  "reportedValueFailures": 10,
+  "failureLabels": [
+    "2026-10-06T00:54:27.5807196Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > shows site setup step first with title input 15042ms",
+    "2026-10-06T00:54:42.6086198Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > empty title prevents advancing and shows validation error 14999ms",
+    "2026-10-06T00:54:57.5956543Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > filling title and clicking Next advances to admin step 15027ms",
+    "2026-10-06T00:54:57.7118043Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > does not present media usage tracking as an onboarding choice 15000ms",
+    "2026-10-06T00:55:12.6906088Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > admin step shows email input 14979ms",
+    "2026-10-06T00:55:42.6602748Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > empty email prevents advancing on admin step 15033ms",
+    "2026-10-06T00:55:57.6882821Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > step indicator shows three steps 15045ms",
+    "2026-10-06T00:56:12.7056850Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > prefills title and tagline from seedInfo 15024ms",
+    "2026-10-06T00:56:27.7373267Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > uses empty string for title and tagline when not in seedInfo 15018ms",
+    "2026-10-06T00:56:42.7385776Z  \u00d7  chromium  parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx > SetupWizard > prefilled title can be edited and submitted 15032ms"
+  ],
+  "fullFamilyTotal": 18,
+  "fullFamilyComplete": false,
+  "exit": 124,
+  "outerWrapperSeconds": 180,
+  "actualFrozenBrowserCallbackMilliseconds": 15000,
+  "status": "Genuine partial reached value failures on actual existing Svelte account-first page; full18 baseline still pending; not full parity evidence",
+  "raw_sha256": "784736ce7527b756b229b82d86a80ea0778677bfae0478458e1ebca9e48cd95c",
+  "raw_bytes": 98148
+}
