@@ -35,14 +35,14 @@ it('a nonfatal real Seed load failure retries on the next caller using the same 
     const database = first.locals.cms!.database;
     expect(fixture.loads).toBe(1);
     expect(await database.db.selectFrom('_cms_collections').select('slug').execute()).toEqual([]);
-    expect(await database.db.selectFrom('_cms_options').select('value').where('key', '=', AUTO_SEED_COMPLETE_OPTION).executeTakeFirst()).toBeUndefined();
+    expect(await database.db.selectFrom('_cms_options').select('value').where('name', '=', AUTO_SEED_COMPLETE_OPTION).executeTakeFirst()).toBeUndefined();
     const second = anonymousEvent();
     await runtime.handle({ event: second, resolve: async () => new Response('ok') });
     expect(second.locals.cms!.database).toBe(database);
     const collections = await database.db.selectFrom('_cms_collections').select('slug').orderBy('slug').execute();
     expect(collections.map(row => row.slug)).toEqual(['pages', 'posts']);
     expect(fixture.loads).toBe(2);
-    const completed = await database.db.selectFrom('_cms_options').select('value').where('key', '=', AUTO_SEED_COMPLETE_OPTION).executeTakeFirstOrThrow();
+    const completed = await database.db.selectFrom('_cms_options').select('value').where('name', '=', AUTO_SEED_COMPLETE_OPTION).executeTakeFirstOrThrow();
     expect(JSON.parse(completed.value)).toBe(true);
   } finally {
     try { await waitForDeferredTasks(); await runtime.close(); }
