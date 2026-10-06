@@ -5,6 +5,7 @@ import { identityOptions } from '../auth/identity-store.ts';
 import { createInitLock, type InitLock } from '../redirects/init-lock.ts';
 import { initializeDefaultSeed } from '../seed/index.ts';
 import { seedSourceDatabase } from '../seed/namespace.ts';
+import { after } from '../menus/after.ts';
 
 interface SeedHolder {
   lock: InitLock;
@@ -39,6 +40,7 @@ export async function initializeConfiguredDefaultSeed(database: CmsDatabase,
   }
   return initializeDefaultSeed(seedSourceDatabase(database), {
     databaseKey, holder, deadlineMs: DEFAULT_SEED_DEADLINE_MS,
-    anchor: configured.keepAlive, ownsConfiguredDatabase: true
+    anchor: promise => { after(() => promise); configured.keepAlive?.(promise); },
+    ownsConfiguredDatabase: true
   });
 }
