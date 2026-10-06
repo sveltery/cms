@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useQueryClient} from '@tanstack/react-query';
-import {DndContext} from '@dnd-kit/core';
+import {DndContext} from './media-library-dnd-reference';
 import {mount,unmount,flushSync} from 'svelte';
 import NativeLibrary from '../../src/lib/media/MediaLibrary.svelte';
 import {nativeMediaState} from './media-admin-editor-state.svelte';
