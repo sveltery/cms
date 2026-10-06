@@ -65,6 +65,21 @@
       "original": "src/routes/setup/+page.svelte",
       "originalSha256": "b3bcb8858cbf7a7498b0980f85cde80fdcc0f53ea1e0519793bfcc4b55182fa0",
       "reverse": []
+    },
+    {
+      "path": "src/lib/auth.remote.ts",
+      "original": "src/lib/auth.remote.ts",
+      "originalSha256": "e4de4ac51b535fe42514b7a50992b265cd7ea97e503ce86e1ad607a54eb96f9a",
+      "reverse": [
+        {
+          "from": "  issueSession, SESSION_MAX_AGE_SECONDS, SETUP_NONCE_COOKIE, SETUP_NONCE_MAX_AGE_SECONDS } from '$lib/server/auth/passkey-flow';\nimport { runtimeSetupStatus } from '$lib/server/setup/status';",
+          "to": "  issueSession, SESSION_MAX_AGE_SECONDS, SETUP_NONCE_COOKIE, SETUP_NONCE_MAX_AGE_SECONDS, setupStatus } from '$lib/server/auth/passkey-flow';"
+        },
+        {
+          "from": "runtimeSetupStatus(requestIdentity(getRequestEvent()))",
+          "to": "setupStatus(requestIdentity(getRequestEvent()))"
+        }
+      ]
     }
   ],
   "ownedConfigSha256": "8ff9dcc350a6b0b1b3c20cad422c3b40d22103e79caa41530557a935c5f6579e",
