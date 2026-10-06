@@ -1,0 +1,112 @@
+{
+  "status": "Read-only proposed scope; no TableMenu product apply or execution",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "nativeHead": "f37bc7841b2199302f0113331a097c6dbf3fbb72",
+  "sourceAuthorities": [
+    {
+      "source": "packages/admin/src/components/editor/TableControls.tsx",
+      "bytes": 19986,
+      "sha256": "4d654219dfacd6adfc92ce595710be34b655726cf1ba5d0516917edd00fb99b0",
+      "gitBlob": "1f8058e02ce036fcec26403a7d1b55d76e4c9043"
+    },
+    {
+      "source": "packages/admin/tests/editor/table-controls.test.tsx",
+      "bytes": 26756,
+      "sha256": "edc7d404029b8b6d4b7a5517b235a5be4e9bf8652cfd1143f505c36400400525",
+      "gitBlob": "02a05bb3b34bb1d4641caaa43cf779a8ad52aa3f"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "TABLE-MENU01",
+      "sourceLines": [
+        360,
+        378,
+        409
+      ],
+      "contract": "Alt+F10 moves editor focus to the Table trigger and captures selection; Escape restores bookmark and editor focus if return intent remains valid.",
+      "nativeLines": [
+        217
+      ],
+      "native": "No shortcut or bookmark restoration; only toggles tableMenu."
+    },
+    {
+      "id": "TABLE-MENU02",
+      "sourceLines": [
+        339,
+        358,
+        393,
+        406,
+        421
+      ],
+      "contract": "Close intents distinguish restoring original selection, retaining command-produced selection, and transitioning to picker. Never steal focus from an outside active control.",
+      "nativeLines": [
+        222,
+        190,
+        192
+      ],
+      "native": "Direct boolean close after successful action; no close-intent/outside-focus owner."
+    },
+    {
+      "id": "TABLE-MENU03",
+      "sourceLines": [
+        27,
+        38,
+        240,
+        301
+      ],
+      "contract": "Eight groups; correct plural current selection and deletion labels; header actions use menuitemcheckbox with independent true/false/mixed states.",
+      "nativeLines": [
+        222
+      ],
+      "native": "Flat menuitem actions; announces visible imperative label even for selection or deletion."
+    },
+    {
+      "id": "TABLE-MENU04",
+      "sourceLines": [
+        417,
+        421
+      ],
+      "contract": "Outside a table, picker inserts at the saved current editor selection; insertion and escape share toolbar bookmark/focus semantics.",
+      "nativeLines": [
+        222
+      ],
+      "native": "Outside-table toolbar action calls openGutter at document end."
+    },
+    {
+      "id": "TABLE-MENU05",
+      "sourceLines": [
+        313,
+        339,
+        417,
+        429
+      ],
+      "contract": "Separate More table actions control uses supplied editor and common state/action semantics, without toolbar-only shortcut/picker.",
+      "nativeLines": [],
+      "native": "No corresponding reusable More table actions component."
+    }
+  ],
+  "proposedOwnership": {
+    "helper": [
+      "src/lib/editor/rich-text/TableMenu.svelte",
+      "new separate Native menu DOM/browser tests"
+    ],
+    "parent": [
+      "PortableTextEditor.svelte minimal integration",
+      "shared browser config/ledger/compatibility integration"
+    ]
+  },
+  "tdd": [
+    "Immutable whole original table-controls family official sandboxed browser baseline before known picker repairs",
+    "Supplemental actual Svelte/Tiptap menu tests first; failed module/availability/assertion counts separate",
+    "Actual emitted document, selection, focus, checked state and announcement controls; no copied Reference UI implementation",
+    "Real official browser for keyboard/default interaction/geometry; jsdom receives only ordinary DOM semantic credit"
+  ],
+  "constraints": [
+    "No SQL, session, protected HTTP, signature, credential or race probes",
+    "No new package, provider, geometry, visibility or dialog polyfill",
+    "No public diagnostic upload until parent held checkpoint resolved",
+    "TableActions/TableExtensions remain immutable absent actual full Source assertion red and Root coordination"
+  ],
+  "coverageLimit": "Original table-controls35 static declarations expand forecast60; they directly exercise picker/announcer/actions/extensions rather than TableMenu. Existing PortableTextEditor whole family does not assert Alt+F10 or header menu semantics."
+}

@@ -1,0 +1,24 @@
+// Review-only scoped observation of real focus/scroll calls. Original methods
+// still run; no layout rectangles, visibility, globals, or results are invented.
+import { afterEach, expect, it, vi } from 'vitest';
+import { tick } from 'svelte';
+import { CellSelection } from '@tiptap/pm/tables';
+import { renderInDraftForm } from '../helpers/rich-editor/native-authoring-dom';
+let release: (() => Promise<void>) | undefined;
+afterEach(async () => { vi.restoreAllMocks(); await release?.(); });
+it('moves pointer focus without requesting scroll as pinned Kumo list navigation does', async () => {
+  const result = await renderInDraftForm(); release = result.cleanup;
+  result.editor.commands.insertTable({ rows: 2, cols: 2, withHeaderRow: false });
+  let cell = -1; result.editor.state.doc.descendants((node, pos) => { if (cell < 0 && node.type.name === 'tableCell') cell = pos; });
+  result.editor.view.dispatch(result.editor.state.tr.setSelection(CellSelection.create(result.editor.state.doc, cell)));
+  await tick(); result.host.querySelector<HTMLButtonElement>('[data-emdash-table-trigger]')!.click(); await tick();
+  const target = [...result.host.querySelectorAll<HTMLButtonElement>('[role="menu"] button')].find(button => button.textContent === 'Delete row')!;
+  const focus = vi.spyOn(target, 'focus'), scroll = vi.spyOn(target, 'scrollIntoView');
+  target.dispatchEvent(new MouseEvent('mousemove', { bubbles: true })); await tick();
+  expect(document.activeElement).toBe(target);
+  console.log('Source pointer focus call witness', JSON.stringify({
+    focusOptions: focus.mock.calls.at(-1)?.[0] ?? null, scrollRequests: scroll.mock.calls.length,
+  }));
+  expect({ focusOptions: focus.mock.calls.at(-1)?.[0], scrollRequests: scroll.mock.calls.length })
+    .toEqual({ focusOptions: { preventScroll: true }, scrollRequests: 0 });
+});

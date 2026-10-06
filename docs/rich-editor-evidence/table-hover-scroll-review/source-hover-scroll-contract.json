@@ -1,0 +1,28 @@
+{
+  "source_pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actual_pinned_kumo_version": "2.6.0",
+  "vendor_blob_sha256": "0cbe376f07dec5cec71d82b99eee372a977ebc3288e7c841f37bd34f8003ffd3",
+  "source_fragments": [
+    {
+      "source_line_start": 3493,
+      "source_line_end": 3512,
+      "text": "  const x = \"rootStore\" in e ? e.rootStore : e, C = x.useState(\"open\"), N = x.useState(\"floatingElement\"), P = x.useState(\"domReferenceElement\"), O = x.context.dataRef, w = Qs(N), D = Za(P), M = Et(w), F = zn(), I = Ln(S), A = r.useRef(p), T = r.useRef(a ?? -1), V = r.useRef(null), B = r.useRef(!0), H = le((ne) => {\n    s(T.current === -1 ? null : T.current, ne);\n  }), W = r.useRef(H), X = r.useRef(!!N), U = r.useRef(C), L = r.useRef(!1), $ = r.useRef(!1), z = r.useRef(null), _ = Et(h), Y = Et(C), J = Et(a), Z = Et(R), K = ln(), G = ln(), oe = le(() => {\n    function ne(ce) {\n      f ? I?.events.emit(\"virtualfocus\", ce) : z.current = Gs(ce, {\n        sync: L.current,\n        preventScroll: !0\n      });\n    }\n    const k = n.current[T.current], j = $.current;\n    k && ne(k), (L.current ? (ce) => ce() : (ce) => K.request(ce))(() => {\n      const ce = n.current[T.current] || k;\n      if (!ce)\n        return;\n      k || ne(ce), // eslint-disable-next-line @typescript-eslint/no-use-before-define\n      ae && (j || !B.current) && ce.scrollIntoView?.({\n        block: \"nearest\",\n        inline: \"nearest\"\n      });\n    });"
+    },
+    {
+      "source_line_start": 3616,
+      "source_line_end": 3628,
+      "text": "  }), ae = r.useMemo(() => ({\n    onFocus(k) {\n      L.current = !0, q(k);\n    },\n    onClick: ({\n      currentTarget: k\n    }) => k.focus({\n      preventScroll: !0\n    }),\n    // Safari\n    onMouseMove(k) {\n      L.current = !0, $.current = !1, g && q(k);\n    },"
+    },
+    {
+      "source_line_start": 12809,
+      "source_line_end": 12830,
+      "text": "  return r.useContext(Pu);\n}\nconst ra = hi(function(t) {\n  const {\n    children: n,\n    open: o,\n    onOpenChange: s,\n    onOpenChangeComplete: i,\n    defaultOpen: a = !1,\n    disabled: l = !1,\n    modal: u,\n    loopFocus: c = !0,\n    orientation: d = \"vertical\",\n    actionsRef: f,\n    closeParentOnEsc: p = !1,\n    handle: g,\n    triggerId: m,\n    defaultTriggerId: h = null,\n    highlightItemOnHover: b = !0\n  } = t, v = br(!0), E = Zt(!0), y = wu(!0), R = Hg(), S = r.useMemo(() => R && E ? {\n    type: \"menu\",\n    store: E.store"
+    },
+    {
+      "source_line_start": 12959,
+      "source_line_end": 12976,
+      "text": "    x.select(\"activeIndex\") !== ce && x.set(\"activeIndex\", ce);\n  }, [x]), ae = Bc(G, {\n    enabled: !A,\n    listRef: x.context.itemDomElements,\n    activeIndex: B,\n    nested: V.type !== void 0,\n    loopFocus: c,\n    orientation: d,\n    parentOrientation: V.type === \"menubar\" ? V.context.orientation : void 0,\n    rtl: re === \"rtl\",\n    disabledIndices: Kt,\n    onNavigate: me,\n    openOnArrowKeyDown: V.type !== \"context-menu\",\n    externalTree: _ ? P : void 0,\n    focusItemOnHover: b\n  }), ue = r.useCallback((ce) => {\n    x.context.typingRef.current = ce;\n  }, [x]), Q = Uc(G, {"
+    }
+  ],
+  "observed_contract": "Actual MenuRoot defaults pointer highlight true, listNavigation focuses preventScroll:true; pointer movement clears force-scroll and sets pointermodality; no hover scrollIntoView request. Keyboard reveal remains separate."
+}

@@ -1,0 +1,35 @@
+{
+  "actual_main": "99c659f67a2117f9e523f1231f0f44d207713396",
+  "owned_head_before_union": "5a71db28",
+  "ordered_parent_intent": [
+    "5a71db28",
+    "99c659f67a2117f9e523f1231f0f44d207713396"
+  ],
+  "conflicts": [
+    ".gitattributes",
+    ".github/workflows/ci.yml",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "workflow": "entire incoming Main prefix + byte-exact old Rich job; deadlines/security/needs unchanged",
+  "package": "all old/Main exact shared values; additive script commands and pinned entries only",
+  "lock_all_old_and_main_values_preserved": true,
+  "lock_documents": [
+    {
+      "document": 0,
+      "packages": 15,
+      "snapshots": 15
+    },
+    {
+      "document": 1,
+      "packages": 634,
+      "snapshots": 649
+    }
+  ],
+  "compatibility": {
+    "incoming_complete_prefix_bytes": 610050,
+    "owned_complete_tail_bytes": 57385,
+    "combined_sha256": "b730c167cba681b8b0d46c168a762be591823c413ac986f6f566f97172d00e58"
+  },
+  "no_private_html_adoption": true
+}

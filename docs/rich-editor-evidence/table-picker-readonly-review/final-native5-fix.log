@@ -1,0 +1,16 @@
+
+ RUN  v4.1.10 /workspace/cms-rich104-table-controls-ui
+
+ ✓ tests/rich-editor-native/table-bubble-owner.test.ts (3 tests) 646ms
+   ✓ avoids unsupported Native Range geometry while retaining the real contextual plugin  399ms
+ ✓ tests/rich-editor-native/table-readonly-transition.test.ts (1 test) 637ms
+   ✓ closes an open table action menu on actual read-only props and restores editing without hidden mutations  633ms
+ ✓ tests/rich-editor-native/table-picker-readonly.test.ts (1 test) 365ms
+   ✓ closes the actual shared slash table picker on read-only props without an update loop or query mutation  364ms
+
+ Test Files  3 passed (3)
+      Tests  5 passed (5)
+   Start at  21:31:52
+   Duration  9.45s (transform 1.88s, setup 0ms, import 4.46s, tests 1.65s, environment 2.65s)
+
+JSON report written to /tmp/rich104-table-picker-readonly-final-fix-report.json

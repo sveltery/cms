@@ -1,0 +1,87 @@
+{
+  "finding": "TABLE117-HOVER-SCROLL01",
+  "head_before_test_commit": "d31489b144fa23566783e1fd40643bbaf36f4fb7",
+  "source_pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actual_kumo": "2.6.0",
+  "actual_vendor_sha256": "0cbe376f07dec5cec71d82b99eee372a977ebc3288e7c841f37bd34f8003ffd3",
+  "source_contract": "3493\u20133512: focus preventScroll:true, explicit nearest reveal;3616\u20133628: pointer clears forced-scroll; pointermodality suppresses reveal",
+  "first_native": {
+    "registered": 3,
+    "passed": 0,
+    "failed": 3,
+    "process_exit": 1,
+    "failure": "real pointer destinations focus but request scroll; real keyboard destination focuses without pinned preventScroll option"
+  },
+  "observation": "transparent per-element vi.spyOn calls preserve actual original methods; existing Native host absence-only scroll transport retained",
+  "original_source_credit": 0,
+  "browser_layout_scroll_position_credit": 0,
+  "old_source_native_data_mocks_clocks": "unchanged",
+  "historical_ci582_d314": {
+    "whole_editor": 213,
+    "passed": 213,
+    "secured10": "PASS",
+    "whole_three_phase_aggregate": "pending at independent review snapshot; no full13 verdict"
+  },
+  "files": [
+    {
+      "name": "independent-d314-review.json",
+      "bytes": 26840,
+      "sha256": "dc07ddddb7abdb373fe22b7a064ac0fb7eff873bc3a72d0a3332e8882477a2c2"
+    },
+    {
+      "name": "source-hover-scroll-contract.json",
+      "bytes": 3459,
+      "sha256": "1d47b470a975b3a51c1a8a0c75c04946f024a13e093a53e90a7cca632cf93f0a"
+    },
+    {
+      "name": "independent-witness-report.json",
+      "bytes": 1470,
+      "sha256": "f2beaaf46f2dde7fceedf6f799595a9efe278345671db99d8aedc62fe5b1f394"
+    },
+    {
+      "name": "independent-witness.log",
+      "bytes": 1607,
+      "sha256": "ba901bf3e13016e00f88b5d3f4d22f07578c49cd7c00b4e0d73f304a4712e000"
+    },
+    {
+      "name": "independent-witness.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "name": "independent-witness.test.ts.txt",
+      "bytes": 1839,
+      "sha256": "16d34b5bb4c1f4da787b828ed8dc82330ea09776fdeee95319541d365149031e"
+    },
+    {
+      "name": "first-native3-report.json",
+      "bytes": 2813,
+      "sha256": "06fe72f73f0e1b547e19a2a339034782162f64f38bc17c94213128d460ac7113"
+    },
+    {
+      "name": "first-native3.log",
+      "bytes": 67,
+      "sha256": "ed471facece93ac4e4d6f2c5d3573c41475111e8f41702037d632c4560a29913"
+    },
+    {
+      "name": "first-native3.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "name": "historical-d314-ci582-editor213.log",
+      "bytes": 60599,
+      "sha256": "9c6b9440283e2bac4de516940b2a60bfdf2a06665ccdf272928218760647e3a5"
+    },
+    {
+      "name": "historical-d314-ci582-secured10.log",
+      "bytes": 475027,
+      "sha256": "6e6a54bc0fec6c46060939d32f3aad8fa79a234276c92debca72a2168c4d4ae6"
+    },
+    {
+      "name": "historical-d314-ci582-snapshot.json",
+      "bytes": 4031,
+      "sha256": "d70c8b3e7a270b8f0367af490e993855408fb8356158f685ab4a75a931771547"
+    }
+  ]
+}

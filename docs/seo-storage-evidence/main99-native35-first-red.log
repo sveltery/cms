@@ -1,0 +1,67 @@
+$ vitest run --config vitest.seo-storage-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/seo-storage-native/calendar-union.test.ts (4 tests | 4 failed) 3024ms
+   × Node: calendar key consumes the content item within its SEO metadata snapshot 67ms
+   × Node: calendar scheduling keeps the existing content token and SEO storage 33ms
+   × raw D1: calendar key consumes the content item within its SEO metadata snapshot 1533ms
+   × raw D1: calendar scheduling keeps the existing content token and SEO storage 1389ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/calendar-union.test.ts > Node: calendar key consumes the content item within its SEO metadata snapshot
+ FAIL  tests/seo-storage-native/calendar-union.test.ts > raw D1: calendar key consumes the content item within its SEO metadata snapshot
+AssertionError: promise rejected "CmsError: VALIDATION_ERROR { …(2) }" instead of resolving
+ ❯ tests/seo-storage-native/calendar-union.test.ts:18:99
+     16|       const service = lifecycleService(fixture.database, principal, { …
+     17|       const item = await service.createContent({ type: 'post', locale:…
+     18|       await expect(service.resolvePublicationKey({ type: 'post', id: '…
+       |                                                                                                   ^
+     19|       await expect(service.getContent({ type: 'post', id: item.id, loc…
+     20|     } finally { await fixture.close(); }
+
+Caused by: CmsError: VALIDATION_ERROR
+ ❯ parse src/lib/server/database/validation.ts:119:30
+ ❯ Object.resolvePublicationKey src/lib/server/database/lifecycle/service.ts:329:49
+ ❯ tests/seo-storage-native/calendar-union.test.ts:18:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'VALIDATION_ERROR', details: undefined }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/seo-storage-native/calendar-union.test.ts > Node: calendar scheduling keeps the existing content token and SEO storage
+AssertionError: promise rejected "CmsError: CONFLICT { …(2) }" instead of resolving
+ ❯ tests/seo-storage-native/calendar-union.test.ts:30:187
+
+
+Caused by: CmsError: CONFLICT
+ ❯ precondition src/lib/server/database/lifecycle/service.ts:76:77
+ ❯ Object.schedule src/lib/server/database/lifecycle/service.ts:345:47
+ ❯ tests/seo-storage-native/calendar-union.test.ts:30:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'CONFLICT', details: undefined }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/seo-storage-native/calendar-union.test.ts > raw D1: calendar scheduling keeps the existing content token and SEO storage
+AssertionError: promise rejected "CmsError: CONFLICT { …(2) }" instead of resolving
+ ❯ tests/seo-storage-native/calendar-union.test.ts:30:187
+
+
+Caused by: CmsError: CONFLICT
+ ❯ precondition src/lib/server/database/lifecycle/service.ts:76:77
+ ❯ Object.schedule src/lib/server/database/lifecycle/service.ts:345:47
+ ❯ tests/seo-storage-native/calendar-union.test.ts:30:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'CONFLICT', details: undefined }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed | 7 passed (8)
+      Tests  4 failed | 31 passed (35)
+   Start at  22:47:48
+   Duration  32.10s (transform 599ms, setup 0ms, import 3.20s, tests 27.98s, environment 1ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

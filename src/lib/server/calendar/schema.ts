@@ -2,6 +2,17 @@
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 import { z } from "zod";
 
+// Whole pinned content.ts contentDateTime union, reused by the Native envelope.
+export const contentDateTime = z.iso
+	.datetime({ offset: true, message: "must be an ISO 8601 datetime" })
+	.or(
+		z.iso.datetime({
+			offset: true,
+			precision: -1,
+			message: "must be an ISO 8601 datetime",
+		}),
+	);
+
 export const cursorPaginationQuery = z
 	.object({
 		cursor: z.string().max(2048).optional().meta({ description: "Opaque cursor for pagination" }),

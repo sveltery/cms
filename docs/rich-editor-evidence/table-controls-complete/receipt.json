@@ -1,0 +1,426 @@
+{
+  "scope": "Rich104 candidate complete table picker/menu/announcer/contextual bubble; supplemental Native and pending official browser proofs are separate",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "nativeBaselineHead": "f37bc7841b2199302f0113331a097c6dbf3fbb72",
+  "parentNativeSealedHead": "1bbe30a2c2257f14e3554a7e5f5e7fd88c70a34a",
+  "productTestedHead": "867d63778c82e0c14dde6f6998f0aa1ba4b62465",
+  "productTestedTree": "79896c0930a865d019d12c1390dc323fecb416a3",
+  "firstPublicParent": "45e33d1fde8aad33500347d47e288b8569af09c5",
+  "publicParentBaseline": "2e8747bef91b9b61975832b86d097b5e82c2a9b1",
+  "publicParentNativeAlias": "d4f165fda1c68e64860ee8a38bc464db375ac474",
+  "publicParentMain": "f2b2e560f6ea54f53e941db76fac732601772ce9",
+  "actualWholeNativeFinal": {
+    "registered": 75,
+    "passed": 75,
+    "failed": 0,
+    "processExit": 0,
+    "raw": "typeahead-corrected.log.json",
+    "report": "typeahead-corrected-report.json"
+  },
+  "actualPureSource": {
+    "registered": 206,
+    "passed": 206,
+    "processExit": 0,
+    "guardWholeFamilies": 34,
+    "guardExactFiles": 148,
+    "raw": "source206.log.json"
+  },
+  "diagnostics": {
+    "errors": 0,
+    "warnings": 0,
+    "processExit": 0,
+    "raw": "typeahead-final-check.log.json"
+  },
+  "productionBuild": {
+    "processExit": 0,
+    "raw": "final-build.log.json"
+  },
+  "officialWholeTableBrowser": {
+    "declarations": 35,
+    "forecastExpanded": 60,
+    "executedByCandidate": 0,
+    "sourceCausalCredit": 0,
+    "status": "Parent CI560/run37366707175 initial public baseline pending; candidate needs subsequent whole Source+supplemental4 execution"
+  },
+  "supplementalBrowser": {
+    "callbacks": 4,
+    "executed": 0,
+    "visibilityGeometryKeyboardCredit": 0,
+    "originalProtectedE2ECredit": 0,
+    "status": "pending official sandboxed Chromium1243"
+  },
+  "tddReports": [
+    {
+      "name": "rich104-table-complete-announcement-repeat-first-report.json",
+      "registered": 72,
+      "passed": 67,
+      "failed": 5,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-announcer-first-report.json",
+      "registered": 66,
+      "passed": 58,
+      "failed": 8,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-announcer-fix-report.json",
+      "registered": 66,
+      "passed": 66,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-bubble-actual-first-report.json",
+      "registered": 13,
+      "passed": 13,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-bubble-first-report.json",
+      "registered": 68,
+      "passed": 67,
+      "failed": 1,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-bubble-fix-report.json",
+      "registered": 73,
+      "passed": 73,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-bubble-range-first-report.json",
+      "registered": 3,
+      "passed": 3,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-focus-after-report.json",
+      "registered": 64,
+      "passed": 57,
+      "failed": 7,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-focus-diagnostic-report.json",
+      "registered": 63,
+      "passed": 56,
+      "failed": 7,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-integration-first-report.json",
+      "registered": 66,
+      "passed": 59,
+      "failed": 7,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-localization-corrected-first-report.json",
+      "registered": 64,
+      "passed": 56,
+      "failed": 8,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-localization-first-report.json",
+      "registered": 64,
+      "passed": 56,
+      "failed": 8,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-localization-fix-report.json",
+      "registered": 64,
+      "passed": 58,
+      "failed": 6,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-menu-disabled-first-report.json",
+      "registered": 71,
+      "passed": 67,
+      "failed": 4,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-menu-first-report.json",
+      "registered": 62,
+      "passed": 56,
+      "failed": 6,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-menu-keys-first-report.json",
+      "registered": 70,
+      "passed": 67,
+      "failed": 3,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-menu-keys-fix-report.json",
+      "registered": 72,
+      "passed": 69,
+      "failed": 3,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-menu-keys-focus-fix-report.json",
+      "registered": 24,
+      "passed": 24,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-more-first-report.json",
+      "registered": 62,
+      "passed": 56,
+      "failed": 6,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-normal-header-first-report.json",
+      "registered": 10,
+      "passed": 6,
+      "failed": 4,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-picker-fix-report.json",
+      "registered": 56,
+      "passed": 56,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-picker-refactor-report.json",
+      "registered": 56,
+      "passed": 56,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-readonly-fix-report.json",
+      "registered": 66,
+      "passed": 64,
+      "failed": 2,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-refactor-report.json",
+      "registered": 73,
+      "passed": 73,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-standalone-menu-report.json",
+      "registered": 63,
+      "passed": 56,
+      "failed": 7,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-typeahead-corrected-report.json",
+      "registered": 75,
+      "passed": 75,
+      "failed": 0,
+      "reportedSuccess": true,
+      "blanketAcceptance": true
+    },
+    {
+      "name": "rich104-table-complete-typeahead-final-report.json",
+      "registered": 75,
+      "passed": 74,
+      "failed": 1,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-complete-typeahead-session-first-report.json",
+      "registered": 12,
+      "passed": 10,
+      "failed": 2,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    },
+    {
+      "name": "rich104-table-helper-native-first-report.json",
+      "registered": 56,
+      "passed": 54,
+      "failed": 2,
+      "reportedSuccess": false,
+      "blanketAcceptance": false
+    }
+  ],
+  "exceptions": [
+    "More first missing module and any pre-import stops register0 actual callbacks and earn0 Source causal credit.",
+    "focus-after is a mixed-runtime diagnostic because product was edited during the run; preserve raw,0 stationary acceptance.",
+    "bubble-range-first reports3 passing assertions but real posToDOMRect/getClientRects unhandled1 causes process1;0 blanket acceptance. Actual absence-only Range guard retains plugin lifecycle and yields0 Native visibility/geometry credit.",
+    "First dependency promotion attempt failed YAML multi-document parsing before writes; unchanged install was explicitly interrupted(exit130), renamed before-promotion-interrupted-install.log. bubble-frozen-install.exit is its original companion. Later actual promotion frozen install completed process0.",
+    "New regular-header fixture was corrected from mixed to Source normalfalse, because BaseUI1.5 regular Item closes but CheckboxItem stays open. First raw retained.",
+    "New previously unreached typeahead s expectation corrected to Source Split merged cell; new repeated d expectation corrected to ordered Decrease column width. All first raw retained;0 Source causal credit."
+  ],
+  "finiteOldNativeDecisions": [
+    {
+      "authority": "Root explicit Source readonly correction",
+      "path": "tests/rich-editor-native/table-readonly-transition.test.ts",
+      "old": "expect(trigger().disabled).toBe(true)",
+      "new": "expect(trigger()).toBeNull()",
+      "source": "TableControls.tsx379 and332–338",
+      "oldOriginalSha256": "74e9d69fac812bcb2e24df014831c34e28f3abd1868db83aae1774e029758eee",
+      "retained": "native-readonly-before-correction.test.ts.txt",
+      "sourceCausalCredit": 0
+    },
+    {
+      "authority": "Root explicit existingNative capability helper transport correction",
+      "paths": [
+        "tests/rich-editor-native/configured-table-iframe.test.ts",
+        "tests/rich-editor-native/table-readonly-transition.test.ts"
+      ],
+      "change": "helper reports actual aria-disabled boolean and invokes actual button.click; no DOM .disabled redefinition",
+      "preserves": "all boolean expectations, supplied data, clocks and other assertions",
+      "retained": [
+        "configured-table-iframe-before-aria-helper.test.ts.txt",
+        "table-readonly-transition-before-aria-helper.test.ts.txt"
+      ],
+      "sourceCausalCredit": 0
+    }
+  ],
+  "sourceAuthorities": [
+    {
+      "path": "parity/emdash/rich-editor-source/packages/admin/src/components/editor/TableControls.tsx",
+      "bytes": 19986,
+      "sha256": "4d654219dfacd6adfc92ce595710be34b655726cf1ba5d0516917edd00fb99b0",
+      "gitBlob": "1f8058e02ce036fcec26403a7d1b55d76e4c9043"
+    },
+    {
+      "path": "parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx",
+      "bytes": 26756,
+      "sha256": "edc7d404029b8b6d4b7a5517b235a5be4e9bf8652cfd1143f505c36400400525",
+      "gitBlob": "02a05bb3b34bb1d4641caaa43cf779a8ad52aa3f"
+    },
+    {
+      "path": "parity/emdash/rich-editor-source/packages/admin/src/components/PortableTextEditor.tsx",
+      "bytes": 172878,
+      "sha256": "f63023aa7f553b64bac11754b3f16fded3a56a4d50afabd67d6d6db2041a05bb",
+      "gitBlob": "3a262115208af50bbdff84a099bd9c3b7b00ab8e"
+    }
+  ],
+  "candidateVector": [
+    {
+      "path": "src/lib/editor/rich-text/TableBubbleMenu.svelte",
+      "bytes": 5602,
+      "sha256": "98857d47bac3980f08ceeea0d885a27fafc2e2d76379bd81d0a4b5dfb0a6523f",
+      "gitBlob": "c8ca00a4802e440466c4284e76ba20751c342ae5"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableMenu.svelte",
+      "bytes": 13648,
+      "sha256": "ea712bf40b844e418328556ddc0bf8539435de7afc111d5338549db22e6fba52",
+      "gitBlob": "6c6f072dcd630afea6c8064296748cbe653a3e20"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableSelectionAnnouncer.svelte",
+      "bytes": 1953,
+      "sha256": "0a2e7bc603d24660afb87249b195c046b4aeeacd331e1e8a839be678206b6e8f",
+      "gitBlob": "238f5584d033445141d292cdf63f80b3d8068c22"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableSizePicker.svelte",
+      "bytes": 4181,
+      "sha256": "f0b0fac413f09b577e65fc97b2906e0d3e8a34d44a739f348fd8823c2ecdbd11",
+      "gitBlob": "c2d94bb7f0c74c6d03e06c0b5e38cc10f401517f"
+    },
+    {
+      "path": "src/lib/editor/rich-text/PortableTextEditor.svelte",
+      "bytes": 23912,
+      "sha256": "459e75aaf60724ca995b0e9fda3b21359c6ddaca3ad29a71b9b2eb184c0c7253",
+      "gitBlob": "d6d47526af7b8702d8cf389bc718689b45c4262e"
+    },
+    {
+      "path": "src/lib/editor/rich-text/table-menu.ts",
+      "bytes": 3648,
+      "sha256": "38914e602d20a8ab9b4320f39d8d48f468b3393e5e756fdabafb3ec31fa39a76",
+      "gitBlob": "a67c892b3585dbbd20405b60814fd8a2cd429230"
+    },
+    {
+      "path": "src/lib/editor/rich-text/table-control-messages.ts",
+      "bytes": 420,
+      "sha256": "d567044532967b133734eebe31d6f9727bf5148e61dfa983e184f975ffa56ef8",
+      "gitBlob": "228cf3af895a3b3376b6022fb7e650005e0f150f"
+    },
+    {
+      "path": "src/lib/editor/rich-text/table-control-messages.source.ts",
+      "bytes": 2720,
+      "sha256": "d602e2c131c22d38919e2735a99ee860a6bf76f84aa582e95f8223623546f130",
+      "gitBlob": "31c0a810e3bed5a811046d44729fb20d6b179775"
+    },
+    {
+      "path": "tests/helpers/rich-editor/table-react-bridge.tsx",
+      "bytes": 1800,
+      "sha256": "e6b2220b3ebe7d8ae3c8e7c3719b8fbcb8ee340f107309396841c28a8e9e8b73",
+      "gitBlob": "0e01401a5df794f294a7ef23ab54a415b840ecc4"
+    },
+    {
+      "path": "tests/helpers/rich-editor/TableControlsHost.svelte",
+      "bytes": 829,
+      "sha256": "af8491a1bf8b4efd351a2bd1b42ef5bef2557481c8b93afbf4c47d894de890c9",
+      "gitBlob": "f5f04fc3ead043a806ef2b2a1b9a2d828553f316"
+    },
+    {
+      "path": "vitest.rich-editor-browser.config.ts",
+      "bytes": 6017,
+      "sha256": "dfdc362496a709851f54a2bc607999de6f3554045dc8682fa08173d72344c03e",
+      "gitBlob": "efcfc69199534de37fc02148d40b8c91624d444b"
+    },
+    {
+      "path": "package.json",
+      "bytes": 11379,
+      "sha256": "6ae033060f0a48e8f2040e61a831e4bf2bbed2f73ec15c130aeadc1a7324011f",
+      "gitBlob": "b05afec9b1f9742a4cf56f633cd70e273bb4b10c"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 227553,
+      "sha256": "907b0cd8900c7fe0ebc3c991eca3c3e1882bd3c3d5ab2c40367de3ab79de265b",
+      "gitBlob": "877ad9bb7c825eed3c99bcf9208893081423551f"
+    }
+  ],
+  "browserConfigChanges": [
+    "Append tests/rich-editor-browser/table-controls.test.ts only to six old includes",
+    "Append already-pinned direct @tiptap/extension-bubble-menu only to optimizeDeps include; no old config/security/deadline changes"
+  ],
+  "integration": "Portable isolated edits only: real TableMenu; floatingRoot/formattingToolbar refs; !minimal actualTableBubbleMenu; keyed announceTable id/text. Parent CodeMirror/iframe/draft/selection owners stay intact. Own dependent PR, current hosted gates, fresh/configured review, Root exact approval and author regular merge pending.",
+  "manifest": "raw-manifest.json"
+}

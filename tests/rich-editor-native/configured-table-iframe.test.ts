@@ -43,7 +43,10 @@ async function tableMenu() {
   result.editor.state.doc.descendants((node, position) => { if (node.type.name === 'tableCell') cells.push(position); });
   result.editor.view.dispatch(result.editor.state.tr.setSelection(CellSelection.create(result.editor.state.doc, cells[0])));
   await tick(); result.host.querySelector<HTMLButtonElement>('button[aria-label="Table"]')!.click(); await tick();
-  const action = (label: string) => [...result.host.querySelectorAll<HTMLButtonElement>('[aria-label="Table actions"] button')].find(button => button.textContent === label)!;
+  const action = (label: string) => {
+    const button = [...result.host.querySelectorAll<HTMLButtonElement>('[aria-label="Table actions"] button')].find(item => item.textContent === label)!;
+    return { get disabled() { return button.getAttribute('aria-disabled') === 'true'; }, click: () => button.click() };
+  };
   return { ...result, cells, action };
 }
 describe('Actual table capability bindings', () => {

@@ -73,7 +73,7 @@ export default defineConfig({
       '@tiptap/extension-focus', '@tiptap/extension-link', '@tiptap/extension-list', '@tiptap/extension-placeholder',
       '@tiptap/extension-subscript', '@tiptap/extension-superscript', '@tiptap/extension-text-align',
       '@tiptap/extension-typography', '@tiptap/extension-table', '@tiptap/extension-table-cell',
-      '@tiptap/extension-table-header', '@tiptap/extension-table-row',
+      '@tiptap/extension-table-header', '@tiptap/extension-table-row', '@tiptap/extension-bubble-menu',
       'lowlight', 'highlight.js/lib/languages/dockerfile',
       '@codemirror/autocomplete', '@codemirror/commands', '@codemirror/lang-css', '@codemirror/lang-html',
       '@codemirror/lang-javascript', '@codemirror/language', '@codemirror/state', '@codemirror/view', '@lezer/highlight'
@@ -89,7 +89,8 @@ export default defineConfig({
       'parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.footer.test.tsx',
       'parity/emdash/rich-editor-source/packages/admin/tests/editor/iframe-block-editor.test.tsx',
       'parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx',
-      'tests/rich-editor-browser/form-keyboard.test.ts'
+      'tests/rich-editor-browser/form-keyboard.test.ts',
+      'tests/rich-editor-browser/table-controls.test.ts'
     ],
     browser: {
       enabled: true, headless: true,

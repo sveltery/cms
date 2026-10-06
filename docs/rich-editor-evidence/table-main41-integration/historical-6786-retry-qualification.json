@@ -1,0 +1,497 @@
+{
+  "job_id": 112024812179,
+  "run_id": 37383049710,
+  "head": "6786d709c007c70563554fde0a9cfb514b45b6f6",
+  "synthetic": "ab41253d617b9bba9aa2cf7545986f3e3e92247e",
+  "artifact_id": 11379659143,
+  "artifact_bytes": 393075,
+  "artifact_sha256": "4eba27b3c359e69860f5584ceb4a6af863f0d7fe3b47bb87b10af40909717c2e",
+  "raw_log": {
+    "path": "/workspace/browser-validation-reliability-investigation/table117-retry-browser-112024812179.log",
+    "bytes": 529564,
+    "sha256": "6336b8d2e01a8a6c02ff7eb1384ab216326ff1d236e325450456eeeb13ac448b"
+  },
+  "passing_default_run": {
+    "stats": {
+      "total": 65,
+      "expected": 65,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "ok": true
+    },
+    "duration_ms": 164063.45799999998,
+    "sum_callback_duration_ms": 81867,
+    "fixture_harness_overhead_ms": 82196.45799999998,
+    "callbacks": [
+      {
+        "file": "collection-cursor.spec.ts",
+        "title": "all 103 drafts are reachable without duplicates, with terminal/empty states and collection reset",
+        "duration_ms": 2263,
+        "start": "2026-10-05T23:22:13.017Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-cursor.spec.ts",
+        "title": "all 103 drafts are reachable without duplicates, with terminal/empty states and collection reset",
+        "duration_ms": 1946,
+        "start": "2026-10-05T23:22:16.613Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "Load More appends all 103 mixed-locale drafts, resets collection navigation and survives reload without mutations",
+        "duration_ms": 2350,
+        "start": "2026-10-05T23:22:27.413Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "per-row restore binds locale/token, isolates pending/issues/errors and refreshes native navigation",
+        "duration_ms": 2204,
+        "start": "2026-10-05T23:22:30.014Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "continuation errors retain rows and malformed native cursors expose INVALID_CURSOR",
+        "duration_ms": 443,
+        "start": "2026-10-05T23:22:32.227Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "later-page restore refreshes its exact cursor, keeps the live page and rejects stale revisions",
+        "duration_ms": 1719,
+        "start": "2026-10-05T23:22:32.679Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "Load More appends all 103 mixed-locale drafts, resets collection navigation and survives reload without mutations",
+        "duration_ms": 2910,
+        "start": "2026-10-05T23:22:34.418Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "per-row restore binds locale/token, isolates pending/issues/errors and refreshes native navigation",
+        "duration_ms": 2248,
+        "start": "2026-10-05T23:22:46.126Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "continuation errors retain rows and malformed native cursors expose INVALID_CURSOR",
+        "duration_ms": 451,
+        "start": "2026-10-05T23:22:48.383Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "later-page restore refreshes its exact cursor, keeps the live page and rejects stale revisions",
+        "duration_ms": 1740,
+        "start": "2026-10-05T23:22:48.846Z",
+        "status": "passed"
+      },
+      {
+        "file": "collection-trash.spec.ts",
+        "title": "unconfigured built previews keep trash unavailable at root and /cms",
+        "duration_ms": 1364,
+        "start": "2026-10-05T23:22:50.666Z",
+        "status": "passed"
+      },
+      {
+        "file": "content.spec.ts",
+        "title": "production preview hydrates with handled denial and disabled collection-qualified controls",
+        "duration_ms": 246,
+        "start": "2026-10-05T23:22:52.344Z",
+        "status": "passed"
+      },
+      {
+        "file": "content.spec.ts",
+        "title": "browser-origin calls use the registered form, deny anonymous writes and reject identity claims",
+        "duration_ms": 198,
+        "start": "2026-10-05T23:22:52.599Z",
+        "status": "passed"
+      },
+      {
+        "file": "content.spec.ts",
+        "title": "unavailable routes retain resolved links and client navigation across parameters",
+        "duration_ms": 797,
+        "start": "2026-10-05T23:22:52.806Z",
+        "status": "passed"
+      },
+      {
+        "file": "content.spec.ts",
+        "title": "unavailable routes retain resolved links and client navigation across parameters under /cms",
+        "duration_ms": 822,
+        "start": "2026-10-05T23:22:53.614Z",
+        "status": "passed"
+      },
+      {
+        "file": "content.spec.ts",
+        "title": "real preview controls react to value and field changes while remaining disabled",
+        "duration_ms": 1021,
+        "start": "2026-10-05T23:22:54.446Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-label.spec.ts",
+        "title": "native label forms bind independent pairs, preserve metadata tokens and show only their own validation/result",
+        "duration_ms": 770,
+        "start": "2026-10-05T23:22:55.662Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-label.spec.ts",
+        "title": "enhanced label forms keep issues, pending state and results independent and refresh editor labels",
+        "duration_ms": 854,
+        "start": "2026-10-05T23:22:56.441Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-label.spec.ts",
+        "title": "disabled gate and denied principal prevent label form writes",
+        "duration_ms": 476,
+        "start": "2026-10-05T23:22:57.307Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-options.spec.ts",
+        "title": "no-JavaScript mode controls preserve keep, empty default, replacement, empty object and clear across consecutive submissions",
+        "duration_ms": 1304,
+        "start": "2026-10-05T23:22:57.801Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-options.spec.ts",
+        "title": "enhanced options isolate modes, issues, pending/results and refresh schema and manifest after consecutive edits",
+        "duration_ms": 1043,
+        "start": "2026-10-05T23:22:59.115Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-options.spec.ts",
+        "title": "no-JavaScript mode controls preserve keep, empty default, replacement, empty object and clear across consecutive submissions",
+        "duration_ms": 1903,
+        "start": "2026-10-05T23:23:00.172Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-options.spec.ts",
+        "title": "enhanced options isolate modes, issues, pending/results and refresh schema and manifest after consecutive edits",
+        "duration_ms": 1777,
+        "start": "2026-10-05T23:23:02.091Z",
+        "status": "passed"
+      },
+      {
+        "file": "field-options.spec.ts",
+        "title": "disabled options controls and denied principal keep the production mutation boundary",
+        "duration_ms": 489,
+        "start": "2026-10-05T23:23:03.884Z",
+        "status": "passed"
+      },
+      {
+        "file": "passkey-nonresident-shared-bug.spec.ts",
+        "title": "shared-source limitation: nonresident setup succeeds with discoverable-only login options",
+        "duration_ms": 972,
+        "start": "2026-10-05T23:23:04.388Z",
+        "status": "passed"
+      },
+      {
+        "file": "passkey-setup-login.spec.ts",
+        "title": "real passkey setup then login persists role/session across process restart and logout (1)",
+        "duration_ms": 2203,
+        "start": "2026-10-05T23:23:05.383Z",
+        "status": "passed"
+      },
+      {
+        "file": "passkey-setup-login.spec.ts",
+        "title": "real passkey setup then login persists role/session across process restart and logout (2)",
+        "duration_ms": 2204,
+        "start": "2026-10-05T23:23:07.594Z",
+        "status": "passed"
+      },
+      {
+        "file": "passkey-setup-login.spec.ts",
+        "title": "real passkey setup then login persists role/session across process restart and logout (3)",
+        "duration_ms": 2195,
+        "start": "2026-10-05T23:23:09.807Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-pending.spec.ts",
+        "title": "a next validation clear choice survives a delayed previous replacement response",
+        "duration_ms": 414,
+        "start": "2026-10-05T23:23:12.016Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-pending.spec.ts",
+        "title": "metadata schema controls lock their own pending instance while other forms stay usable",
+        "duration_ms": 365,
+        "start": "2026-10-05T23:23:12.441Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-pending.spec.ts",
+        "title": "label schema controls lock their own pending instance while other forms stay usable",
+        "duration_ms": 377,
+        "start": "2026-10-05T23:23:12.817Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-pending.spec.ts",
+        "title": "add schema controls lock their own pending instance while other forms stay usable",
+        "duration_ms": 390,
+        "start": "2026-10-05T23:23:13.205Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-pending.spec.ts",
+        "title": "create schema controls lock their own pending instance while other forms stay usable",
+        "duration_ms": 362,
+        "start": "2026-10-05T23:23:13.606Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-validation.spec.ts",
+        "title": "/ native scalar pattern creation and isolated keep/replace/clear",
+        "duration_ms": 1733,
+        "start": "2026-10-05T23:23:13.985Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-validation.spec.ts",
+        "title": "/ enhanced scalar pattern creation and isolated keep/replace/clear",
+        "duration_ms": 1330,
+        "start": "2026-10-05T23:23:23.922Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-validation.spec.ts",
+        "title": "/cms native scalar pattern creation and isolated keep/replace/clear",
+        "duration_ms": 2698,
+        "start": "2026-10-05T23:23:25.262Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-validation.spec.ts",
+        "title": "/cms enhanced scalar pattern creation and isolated keep/replace/clear",
+        "duration_ms": 1283,
+        "start": "2026-10-05T23:23:27.969Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-validation.spec.ts",
+        "title": "/ scalar pattern controls stay disabled and client toggling cannot write",
+        "duration_ms": 376,
+        "start": "2026-10-05T23:23:29.262Z",
+        "status": "passed"
+      },
+      {
+        "file": "pattern-validation.spec.ts",
+        "title": "/cms scalar pattern controls stay disabled and client toggling cannot write",
+        "duration_ms": 371,
+        "start": "2026-10-05T23:23:29.649Z",
+        "status": "passed"
+      },
+      {
+        "file": "required-scalar-validation.spec.ts",
+        "title": "native direct create descriptors reject empty required string/text without writes",
+        "duration_ms": 539,
+        "start": "2026-10-05T23:23:30.143Z",
+        "status": "passed"
+      },
+      {
+        "file": "required-scalar-validation.spec.ts",
+        "title": "enhanced direct create descriptors preserve the validation envelope and revision",
+        "duration_ms": 357,
+        "start": "2026-10-05T23:23:40.740Z",
+        "status": "passed"
+      },
+      {
+        "file": "required-scalar-validation.spec.ts",
+        "title": "native direct update descriptors reject empty required string/text without writes",
+        "duration_ms": 400,
+        "start": "2026-10-05T23:23:41.108Z",
+        "status": "passed"
+      },
+      {
+        "file": "required-scalar-validation.spec.ts",
+        "title": "enhanced direct update descriptors preserve the validation envelope and revision",
+        "duration_ms": 330,
+        "start": "2026-10-05T23:23:41.518Z",
+        "status": "passed"
+      },
+      {
+        "file": "required-scalar-validation.spec.ts",
+        "title": "required legacy empty/null previews remain readable and authoring stays disabled by default",
+        "duration_ms": 685,
+        "start": "2026-10-05T23:23:41.858Z",
+        "status": "passed"
+      },
+      {
+        "file": "required-scalar-validation.spec.ts",
+        "title": "enhanced partial descriptor submission preserves omitted legacy empty/null required fields",
+        "duration_ms": 449,
+        "start": "2026-10-05T23:23:42.551Z",
+        "status": "passed"
+      },
+      {
+        "file": "schema-admin.spec.ts",
+        "title": "schema creation hydrates disabled controls and submits through the registered native form",
+        "duration_ms": 263,
+        "start": "2026-10-05T23:23:43.111Z",
+        "status": "passed"
+      },
+      {
+        "file": "schema-admin.spec.ts",
+        "title": "schema native form preserves omitted supports, explicit empty supports and anonymous denial",
+        "duration_ms": 409,
+        "start": "2026-10-05T23:23:43.385Z",
+        "status": "passed"
+      },
+      {
+        "file": "schema-admin.spec.ts",
+        "title": "schema detail denial keeps parameter-aware native navigation",
+        "duration_ms": 305,
+        "start": "2026-10-05T23:23:43.805Z",
+        "status": "passed"
+      },
+      {
+        "file": "schema-admin.spec.ts",
+        "title": "schema detail denial keeps parameter-aware native navigation under /cms",
+        "duration_ms": 286,
+        "start": "2026-10-05T23:23:44.119Z",
+        "status": "passed"
+      },
+      {
+        "file": "schema-admin.spec.ts",
+        "title": "native create, metadata and additive field forms refresh labels, preserve preconditions and survive restart",
+        "duration_ms": 1432,
+        "start": "2026-10-05T23:23:44.416Z",
+        "status": "passed"
+      },
+      {
+        "file": "seo-head.spec.ts",
+        "title": "native head updates title, canonical, noindex and one JSON-LD graph reactively",
+        "duration_ms": 745,
+        "start": "2026-10-05T23:23:45.912Z",
+        "status": "passed"
+      },
+      {
+        "file": "trash-count.spec.ts",
+        "title": "counts all/scoped/empty drafts independently of the page cap and refreshes retained queries after restore and trash",
+        "duration_ms": 497,
+        "start": "2026-10-05T23:23:46.674Z",
+        "status": "passed"
+      },
+      {
+        "file": "trash-count.spec.ts",
+        "title": "anonymous, denied and unconfigured query reads remain unavailable",
+        "duration_ms": 468,
+        "start": "2026-10-05T23:23:56.523Z",
+        "status": "passed"
+      },
+      {
+        "file": "trash-count.spec.ts",
+        "title": "counts all/scoped/empty drafts independently of the page cap and refreshes retained queries after restore and trash",
+        "duration_ms": 522,
+        "start": "2026-10-05T23:23:57.069Z",
+        "status": "passed"
+      },
+      {
+        "file": "trash-count.spec.ts",
+        "title": "anonymous, denied and unconfigured query reads remain unavailable",
+        "duration_ms": 475,
+        "start": "2026-10-05T23:24:07.256Z",
+        "status": "passed"
+      },
+      {
+        "file": "trash-restore-fields.spec.ts",
+        "title": "direct hidden spreads generate bound values and native validation, restore and stale submission",
+        "duration_ms": 644,
+        "start": "2026-10-05T23:24:07.836Z",
+        "status": "passed"
+      },
+      {
+        "file": "trash-restore-fields.spec.ts",
+        "title": "one-argument hidden spreads omit values even after fields.set and native validation prevents restore",
+        "duration_ms": 269,
+        "start": "2026-10-05T23:24:18.536Z",
+        "status": "passed"
+      },
+      {
+        "file": "trash-restore-fields.spec.ts",
+        "title": "direct native form spread enhances restore and returns a refreshed revision without navigation",
+        "duration_ms": 261,
+        "start": "2026-10-05T23:24:18.814Z",
+        "status": "passed"
+      },
+      {
+        "file": "workspace-navigation.spec.ts",
+        "title": "saving persisted collection metadata refreshes the mounted workspace navigation",
+        "duration_ms": 326,
+        "start": "2026-10-05T23:24:19.180Z",
+        "status": "passed"
+      },
+      {
+        "file": "workspace-progressive.spec.ts",
+        "title": "Node narrow authenticated navigation works without JavaScript",
+        "duration_ms": 440,
+        "start": "2026-10-05T23:24:19.528Z",
+        "status": "passed"
+      },
+      {
+        "file": "workspace-progressive.spec.ts",
+        "title": "D1 narrow authenticated navigation works without JavaScript",
+        "duration_ms": 710,
+        "start": "2026-10-05T23:24:19.980Z",
+        "status": "passed"
+      },
+      {
+        "file": "workspace-shell.spec.ts",
+        "title": "native shell folders, mobile navigation, skip focus and storage denial use actual controls",
+        "duration_ms": 1312,
+        "start": "2026-10-05T23:24:20.705Z",
+        "status": "passed"
+      },
+      {
+        "file": "writable-editor.spec.ts",
+        "title": "Node ordinary scalar create, edit, publish, trash and restore use the visible product",
+        "duration_ms": 1335,
+        "start": "2026-10-05T23:24:22.034Z",
+        "status": "passed"
+      },
+      {
+        "file": "writable-editor.spec.ts",
+        "title": "D1 ordinary scalar create, edit, publish, trash and restore use the visible product",
+        "duration_ms": 2518,
+        "start": "2026-10-05T23:24:23.381Z",
+        "status": "passed"
+      },
+      {
+        "file": "writable-editor.spec.ts",
+        "title": "editor autosave preserves later keystrokes and suppresses a terminal rejected payload",
+        "duration_ms": 17279,
+        "start": "2026-10-05T23:24:25.907Z",
+        "status": "passed"
+      }
+    ]
+  },
+  "node_interruption": {
+    "before_all_start_ms": 177351.547,
+    "interrupted_ms": 180020.358,
+    "elapsed_ms": 2668.811000000016,
+    "reported_original_hook_timeout_ms": 90000,
+    "original_outer_limit_ms": 180000,
+    "product_callback_reached": false,
+    "assertions_reached": 0,
+    "classification": "Original outer 180-second deadline interrupts setup after 2.668837 seconds; hook does not independently consume its 90-second timeout."
+  },
+  "repository_changes": 0,
+  "source_causal_credit": 0,
+  "product_causal_credit": 0
+}

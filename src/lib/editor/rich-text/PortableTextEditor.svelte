@@ -1,7 +1,7 @@
 <script lang="ts">
   // Native Svelte rendering/lifecycle port of the pinned Source editor. Real
   // TipTap/ProseMirror extensions own authoring, identity, history and tables.
-  import { onMount, tick } from 'svelte';
+  import { onMount, tick, untrack } from 'svelte';
   import type { Editor, JSONContent } from '@tiptap/core';
   import { exitSuggestion } from '@tiptap/suggestion';
   import { UnsafePortableTextTableError } from '../portable-text/portable-text-table';
@@ -10,10 +10,12 @@
   import EditorFooter from './EditorFooter.svelte';
   import TableSizePicker from './TableSizePicker.svelte';
   import TableSelectionAnnouncer from './TableSelectionAnnouncer.svelte';
+  import TableMenu from './TableMenu.svelte';
+  import TableBubbleMenu from './TableBubbleMenu.svelte';
+  import { tableMessage } from './table-control-messages';
   import { createPortableTextEditor } from './create-editor';
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
   import { insertTable } from './insert-table';
-  import { getTableControlState, runTableAction, type TableActionId } from './TableActions';
   import { selectionTouchesTable, selectionIsContainedInTableCells } from './TableExtensions';
   import { setSelectionTextAlignment, type TextAlignment } from './table-safety';
   import type { TablePasteRejection } from './TableCellSafety';
@@ -22,12 +24,14 @@
   import './editor.css';
   let props: PortableTextEditorProps = $props();
   let editor = $state.raw<Editor | null>(null), revision = $state(0);
+  let floatingRoot = $state<HTMLDivElement>(null!), formattingToolbar = $state<HTMLDivElement>(null!);
   let element = $state<HTMLDivElement>(null!), menu = $state<HTMLDivElement>(null!);
-  let headings = $state(false), tableMenu = $state(false), linkOpen = $state(false), href = $state('');
+  let headings = $state(false), linkOpen = $state(false), href = $state('');
   let sectionOpen = $state(false), sectionError = $state(''), providerMessage = $state('');
   let SectionPicker = $state<typeof import('../../ui/sections-widgets/SectionPickerModal.svelte').default>();
   let unsupported = $state<string[]>([]), tableError = $state(false), pasteReason = $state<TablePasteRejection | undefined>();
-  let announcement = $state('');
+  let announcement = $state(''), announcementId = $state(0);
+  function announceTable(message: string) { announcementId += 1; announcement = message; }
   let pendingInsert: number | null = null, movedPointer = false;
   let slash = $state<SlashMenuState>({ isOpen: false, mode: 'commands', items: [], selectedIndex: 0, clientRect: null, range: null, trigger: 'slash', gutterBlockPos: null, dismissedSlashFrom: null });
   const t = $derived(props.translate ?? sourceMessage);
@@ -36,7 +40,6 @@
   const blocked = $derived(unsupported.length > 0 || tableError);
   const inTable = $derived.by(() => { void revision; return editor ? selectionTouchesTable(editor.state) : false; });
   const alignmentUnavailable = $derived.by(() => { void revision; return editor ? selectionTouchesTable(editor.state) && !selectionIsContainedInTableCells(editor.state) : false; });
-  const controls = $derived.by(() => { void revision; return editor ? getTableControlState(editor) : null; });
   const canUndo = $derived.by(() => { void revision; return editor?.can().undo() ?? false; });
   const canRedo = $derived.by(() => { void revision; return editor?.can().redo() ?? false; });
   const selection = $derived.by(() => { void revision; return editor?.state.selection; });
@@ -45,14 +48,6 @@
     pasteReason === 'table-must-be-top-level' ? 'Tables cannot be pasted inside lists or quotes. Paste the table into its own paragraph and try again.' :
     pasteReason === 'invalid-table' ? 'This table has unsupported cell formatting, merged cells, or column widths. Paste it as plain text or simplify the table and try again.' :
     'Table cells accept text, links, and formatting only.');
-  const actions: [TableActionId, string][] = [
-    ['select-row', 'Select row'], ['select-column', 'Select column'], ['select-table', 'Select table'],
-    ['add-row-before', 'Add row above'], ['add-row-after', 'Add row below'], ['delete-row', 'Delete row'],
-    ['add-column-before', 'Add column before'], ['add-column-after', 'Add column after'], ['delete-column', 'Delete column'],
-    ['header-row', 'Toggle header row'], ['header-column', 'Toggle header column'], ['merge', 'Merge selected cells'], ['split', 'Split merged cell'],
-    ['decrease-width', 'Decrease column width'], ['increase-width', 'Increase column width'], ['distribute-widths', 'Distribute columns evenly'], ['reset-widths', 'Reset column widths'],
-    ['paragraph-before', 'Insert paragraph before'], ['paragraph-after', 'Insert paragraph after'], ['delete-table', 'Delete table']
-  ];
   const commands = $derived.by(() => {
     const items = defaultSlashCommands.filter(item => item.id !== 'iframe' || !pluginTypes.has('iframe')).map(item => {
       const insert = item.id === 'htmlBlock' ? insertHtmlBlock : item.id === 'iframe' ? insertIframeBlock : undefined;
@@ -96,7 +91,7 @@
     if (unsupported.length) return;
     try { portableTextToProsemirror(props.value ?? [], pluginTypes); } catch (cause) { error(cause); return; }
     const current = createPortableTextEditor({ element, props: () => props, filterCommands, getSlashState: () => slash, setSlashState: setSlash,
-      onTransaction: () => { revision += 1; }, onError: error, onPasteRejected: reason => { pasteReason = reason; }, onAnnouncement: message => { announcement = message; } });
+      onTransaction: () => { revision += 1; }, onError: error, onPasteRejected: reason => { pasteReason = reason; }, onAnnouncement: announceTable });
     editor = current; props.onEditorReady?.(current); props.onGutterReady?.(openGutter);
     const gutterKeys = (event: KeyboardEvent) => {
       if (!slash.isOpen || slash.trigger !== 'gutter') return;
@@ -113,9 +108,15 @@
     return () => { current.view.dom.removeEventListener('keydown', gutterKeys, true); props.onEditorReady?.(null); current.destroy(); editor = null; };
   });
   $effect(() => {
-    if (!editor) return;
-    if (editor.isEditable !== (editable && !blocked)) editor.setEditable(editable && !blocked);
-    if (!editable) closeTableControls();
+    const current = editor, isEditable = editable, canEdit = isEditable && !blocked;
+    if (!current) return;
+    // These imperative ProseMirror calls synchronously read/write slash state.
+    // The effect owns only actual editor/editability props, not transaction
+    // state emitted while a read-only transition closes the shared picker.
+    untrack(() => {
+      if (current.isEditable !== canEdit) current.setEditable(canEdit);
+      if (!isEditable) closeTableControls();
+    });
   });
   $effect(() => {
     if (!slash.isOpen || !menu) { movedPointer = false; return; }
@@ -132,7 +133,6 @@
     if (editor && state.trigger === 'slash') exitSuggestion(editor.view);
   }
   function closeTableControls() {
-    tableMenu = false;
     if (slash.mode === 'table-size') closeSlash();
   }
   function openGutter(position: number) {
@@ -187,7 +187,7 @@
     if (!editor?.isEditable) return;
     if (!insertTable(editor, rows, columns, header, slash.trigger === 'slash' ? slash.range ?? undefined : undefined, slash.trigger === 'gutter' ? slash.gutterBlockPos ?? undefined : undefined)) return;
     if (slash.trigger === 'slash') exitSuggestion(editor.view);
-    setSlash(previous => ({ ...previous, isOpen: false, mode: 'commands', gutterBlockPos: null, dismissedSlashFrom: null })); announcement = 'Table inserted';
+    setSlash(previous => ({ ...previous, isOpen: false, mode: 'commands', gutterBlockPos: null, dismissedSlashFrom: null })); announceTable(t(tableMessage('Table inserted')));
   }
   function tableCancel() { closeSlash(); editor?.view.focus(); }
   function active(mark: string) { void revision; return editor?.isActive(mark) ?? false; }
@@ -197,13 +197,13 @@
   function applyLink() { if (!editor) return; const url = href.trim(); if (url) setSelectedTextLink(editor, url); else editor.chain().focus().unsetLink().run(); linkOpen = false; }
 </script>
 
-<div class={`rich-editor min-w-0 ${props.className ?? ''}`} data-emdash-editor-floating-root>
+<div bind:this={floatingRoot} class={`rich-editor min-w-0 ${props.className ?? ''}`} data-emdash-editor-floating-root>
   {#if tableError}<div role="alert" class="rich-error"><p>This table cannot be edited safely</p><p>This field contains table content that the editor cannot preserve. Update it through the API before editing or saving this content.</p></div>
   {:else if unsupported.length}<div role="alert" class="rich-error"><p>This content cannot be edited safely</p><p>This field contains unsupported Portable Text marks: <code dir="auto">{unsupported.join(', ')}</code>. Remove them through the API before editing or saving this content.</p></div>
   {:else}
     <div class:bg-kumo-base={!props.minimal} class="editor-surface" data-emdash-editor-surface>
       {#if editor && !props.minimal}
-        <div role="toolbar" aria-label="Text formatting" class="formatting-toolbar">
+        <div bind:this={formattingToolbar} role="toolbar" aria-label="Text formatting" class="formatting-toolbar">
           {#each [['Bold', 'bold', 'B'], ['Italic', 'italic', 'I'], ['Underline', 'underline', 'U'], ['Strikethrough', 'strike', 'S'], ['Inline Code', 'code', '</>']] as [label, name, symbol]}
             <button type="button" aria-label={label} aria-pressed={active(name)} disabled={!editable} onmousedown={event => event.preventDefault()} onclick={() => mark(name)}>{symbol}</button>
           {/each}
@@ -214,24 +214,24 @@
           <button type="button" aria-label="Code Block" aria-pressed={active('codeBlock')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleCodeBlock().run()}>[ ]</button>
           <button type="button" aria-label="Insert Link" disabled={!editable} onmousedown={event => event.preventDefault()} onclick={link}>↗</button>
           {#each [['Left', 'left'], ['Center', 'center'], ['Right', 'right']] as [label, align]}<button type="button" aria-label={`Align ${label}`} disabled={!editable || alignmentUnavailable} onmousedown={event => event.preventDefault()} onclick={() => editor && setSelectionTextAlignment(editor, align as TextAlignment)}>{label}</button>{/each}
-          <button type="button" aria-label="Table" data-emdash-table-trigger aria-expanded={tableMenu} disabled={!editable} onmousedown={event => event.preventDefault()} onclick={() => { tableMenu = !tableMenu; }}>▦</button>
+          <TableMenu {editor} {editable} translate={t} onRun={announceTable} />
           <button type="button" aria-label="Undo" disabled={!editable || !canUndo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().undo().run()}>↶</button>
           <button type="button" aria-label="Redo" disabled={!editable || !canRedo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().redo().run()}>↷</button>
         </div>
         {#if headings}<div role="menu" aria-label="Headings" class="heading-menu"><button type="button" role="menuitem" onclick={() => void heading(0)}>Paragraph</button>{#each [1, 2, 3, 4, 5, 6] as level}<button type="button" role="menuitem" data-emdash-heading-item onclick={() => void heading(level)}>Heading {level}</button>{/each}</div>{/if}
-        {#if tableMenu && editable}<div role="menu" aria-label="Table actions" class="table-menu">{#if controls}{#each actions as [id, label]}<button type="button" role="menuitem" disabled={!controls.can[id]} onclick={() => { if (editor?.isEditable && runTableAction(editor, id)) { announcement = label; tableMenu = false; } }}>{label}</button>{/each}{:else}<button type="button" role="menuitem" onclick={() => { if (!editor?.isEditable) return; tableMenu = false; openGutter(editor.state.doc.content.size); setSlash(previous => ({ ...previous, mode: 'table-size' })); }}>Insert table</button>{/if}</div>{/if}
         {#if linkOpen}<div class="link-form"><label>Link URL<input value={href} oninput={event => { href = event.currentTarget.value; }} onkeydown={event => { if (event.key === 'Enter') { event.preventDefault(); applyLink(); } else if (event.key === 'Escape') { event.preventDefault(); linkOpen = false; editor?.view.focus(); } }} placeholder="https://" /></label><button type="button" onclick={applyLink}>Apply</button><button type="button" onclick={() => { linkOpen = false; editor?.view.focus(); }}>Cancel</button></div>{/if}
       {/if}
       <div bind:this={element} class:spotlight-mode={props.focusMode === 'spotlight'} aria-labelledby={props['aria-labelledby']}></div>
-      {#if editor}<TableSelectionAnnouncer {editor} onChange={message => { announcement = message; }} translate={t} />{/if}
+      {#if editor}<TableSelectionAnnouncer {editor} onChange={announceTable} translate={t} />{/if}
       {#if editor && !props.minimal}<EditorFooter {editor} translate={t} />{/if}
       {#if editor && editable && !props.onGutterReady}<button type="button" class="gutter-insert" aria-label="Insert block" onclick={() => { const selection = editor!.state.selection.$from; const at = selection.depth ? selection.after(1) : selection.pos; openGutter(at); }}>+</button>{/if}
     </div>
     {#if editor && editable && selection && !selection.empty}<div data-emdash-inline-bubble-menu class="inline-bubble"><button type="button" aria-label="Subscript" onmousedown={event => event.preventDefault()} onclick={() => mark('subscript')}>x₂</button><button type="button" aria-label="Superscript" onmousedown={event => event.preventDefault()} onclick={() => mark('superscript')}>x²</button></div>{/if}
+    {#if editor && !props.minimal}<TableBubbleMenu {editor} {editable} {floatingRoot} {formattingToolbar} translate={t} onRun={announceTable} />{/if}
     {#if pasteReason}<div role="alert"><p>{pasteMessage}</p><button type="button" aria-label="Dismiss table paste error" onclick={() => { pasteReason = undefined; }}>×</button></div>{/if}
     {#if sectionError}<div role="alert"><p>Could not insert section</p><p>{sectionError}</p><button type="button" aria-label="Dismiss section error" onclick={() => { sectionError = ''; }}>×</button></div>{/if}
     {#if providerMessage}<p role="status">{providerMessage}</p>{/if}
-    <div role="status" aria-live="polite" aria-atomic="true" class="sr-only">{announcement}</div>
+    <div role="status" aria-live="polite" aria-atomic="true" class="sr-only">{#key announcementId}<span>{announcement}</span>{/key}</div>
   {/if}
 </div>
 {#if slash.isOpen}
@@ -240,7 +240,7 @@
        owns focus; the whole pinned stylesheet keeps these outside Tab order. -->
   <span data-base-ui-focus-guard tabindex="-1" aria-hidden="true" onfocus={() => editor?.view.focus()}></span>
   <div bind:this={menu} class="slash-command-menu" data-slash-command-menu role="dialog" tabindex="-1" aria-label="Insert block" onpointermove={() => { movedPointer = true; }}>
-    {#if slash.mode === 'table-size'}<TableSizePicker onInsert={tableInsert} onCancel={tableCancel} />
+    {#if slash.mode === 'table-size'}<TableSizePicker onInsert={tableInsert} onCancel={tableCancel} translate={t} />
     {:else}
       {#if slash.items[slash.selectedIndex]}<span role="status" class="sr-only">Selected {t(slash.items[slash.selectedIndex].title)}</span>{/if}
       <div data-slash-menu-scroll-viewport class="overflow-y-auto overscroll-contain slash-scroll">

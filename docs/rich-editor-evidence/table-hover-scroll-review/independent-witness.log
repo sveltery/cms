@@ -1,0 +1,43 @@
+
+ RUN  v4.1.10 /workspace/cms-table117-successor-review
+
+stdout | tests/rich-editor-native/independent-hover-scroll-review.test.ts > moves pointer focus without requesting scroll as pinned Kumo list navigation does
+Source pointer focus call witness {"focusOptions":null,"scrollRequests":1}
+
+ ❯ tests/rich-editor-native/independent-hover-scroll-review.test.ts (1 test | 1 failed) 250ms
+   × moves pointer focus without requesting scroll as pinned Kumo list navigation does 249ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/rich-editor-native/independent-hover-scroll-review.test.ts > moves pointer focus without requesting scroll as pinned Kumo list navigation does
+AssertionError: expected { focusOptions: undefined, …(1) } to deeply equal { focusOptions: { …(1) }, …(1) }
+
+- Expected
++ Received
+
+  {
+-   "focusOptions": {
+-     "preventScroll": true,
+-   },
+-   "scrollRequests": 0,
++   "focusOptions": undefined,
++   "scrollRequests": 1,
+  }
+
+ ❯ tests/rich-editor-native/independent-hover-scroll-review.test.ts:23:6
+     21|   }));
+     22|   expect({ focusOptions: focus.mock.calls.at(-1)?.[0], scrollRequests:…
+     23|     .toEqual({ focusOptions: { preventScroll: true }, scrollRequests: …
+       |      ^
+     24| });
+     25|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  22:17:45
+   Duration  2.64s (transform 1.33s, setup 0ms, import 1.72s, tests 250ms, environment 556ms)
+
+JSON report written to /tmp/table117-d314-hover-scroll-witness-report.json

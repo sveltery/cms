@@ -1,0 +1,59 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/seo-storage-native/canonical.test.ts (6 tests | 2 failed) 13784ms
+   × Node: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch 238ms
+   × raw D1: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch 6281ms
+ ❯ tests/seo-storage-native/read-seams.test.ts (2 tests | 1 failed) 243ms
+   × SEO collection info reuses the stored Registry flag and metadata 105ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/canonical.test.ts > Node: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch
+CmsError: MIGRATION_REQUIRED
+ ❯ collectionStandardIndexPlan src/lib/server/database/collection-indexes.ts:48:62
+     46|   const versions:unknown=JSON.parse(receipt);
+     47|   if (!Array.isArray(versions) || !versions.length || versions.length>…
+     48|     versions.some((version,index)=>version!==index+1)) throw new CmsEr…
+       |                                                              ^
+     49|   return {guard:sql`SELECT json_extract('[]', CASE WHEN (${query})=${r…
+     50|     THEN '$' ELSE ${collectionIndexPrerequisiteChanged} END)`.compile(…
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:185:29
+ ❯ tests/seo-storage-native/canonical.test.ts:18:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/seo-storage-native/canonical.test.ts > raw D1: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch
+CmsError: MIGRATION_REQUIRED
+ ❯ collectionStandardIndexPlan src/lib/server/database/collection-indexes.ts:48:62
+     46|   const versions:unknown=JSON.parse(receipt);
+     47|   if (!Array.isArray(versions) || !versions.length || versions.length>…
+     48|     versions.some((version,index)=>version!==index+1)) throw new CmsEr…
+       |                                                              ^
+     49|   return {guard:sql`SELECT json_extract('[]', CASE WHEN (${query})=${r…
+     50|     THEN '$' ELSE ${collectionIndexPrerequisiteChanged} END)`.compile(…
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:185:29
+ ❯ tests/seo-storage-native/canonical.test.ts:18:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/seo-storage-native/read-seams.test.ts > SEO collection info reuses the stored Registry flag and metadata
+CmsError: MIGRATION_REQUIRED
+ ❯ collectionStandardIndexPlan src/lib/server/database/collection-indexes.ts:48:62
+     46|   const versions:unknown=JSON.parse(receipt);
+     47|   if (!Array.isArray(versions) || !versions.length || versions.length>…
+     48|     versions.some((version,index)=>version!==index+1)) throw new CmsEr…
+       |                                                              ^
+     49|   return {guard:sql`SELECT json_extract('[]', CASE WHEN (${query})=${r…
+     50|     THEN '$' ELSE ${collectionIndexPrerequisiteChanged} END)`.compile(…
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:185:29
+ ❯ tests/seo-storage-native/read-seams.test.ts:39:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  3 failed | 6 passed (9)
+   Start at  03:51:04
+   Duration  19.55s (transform 1.89s, setup 0ms, import 3.95s, tests 14.56s, environment 0ms)
+

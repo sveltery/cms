@@ -1,0 +1,81 @@
+{
+  "base": "cc1fc9044ae54ab44efba993cd71849fe2f990b0",
+  "source_pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "classification": "Native fixture build-graph/performance repair; no Source or product behavior change.",
+  "command": "NODE_OPTIONS=--max-old-space-size=2048 node --test tests/browser-fixture-build-graph.test.ts",
+  "execution": "Sequential actual real factories at at most 2 GiB; no HTTP/session/credential requests.",
+  "runs": [
+    {
+      "path": "docs/receipts/browser-fixture-graph/before-fix.log",
+      "head": "e4e1083ae08d6c913fb97e596a8489c199317b66",
+      "bytes": 24217,
+      "sha256": "d7a299969e48cd4135751dc1004bb205d955f9dda2b2e749a56dfeeab669611a",
+      "exit_code": 1,
+      "tests": 7,
+      "passed": 3,
+      "failed": 4,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 18503.01392
+    },
+    {
+      "path": "docs/receipts/browser-fixture-graph/first-fix.log",
+      "head": "d324c734653bf38fcf72305a8cc2f9bc95d47919",
+      "bytes": 784,
+      "sha256": "8313a5217c2d74e94789dedf9833b99fe575af8572f6ab54fb8640207ba8634b",
+      "exit_code": 0,
+      "tests": 7,
+      "passed": 7,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 11722.138446
+    },
+    {
+      "path": "docs/receipts/browser-fixture-graph/refactor.log",
+      "head": "e91ae6ac7ccebed90efa0f9c7d882239d001555d",
+      "bytes": 776,
+      "sha256": "e6eb409b4ff6fbb5c8b8544847d1a21615a25d45ffe766d5052e4b3690b9cd8a",
+      "exit_code": 0,
+      "tests": 7,
+      "passed": 7,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 9904.885238
+    }
+  ],
+  "genuine_native_initial_failures": 3,
+  "initial_aggregate_parent_failures": 1,
+  "native_positive_controls_initial_passed": 3,
+  "source_causal_credit": 0,
+  "product_causal_credit": 0,
+  "protected_main_files_byte_exact": 711,
+  "generated_templates_byte_exact": {
+    "tests/helpers/trash-count.ts": 4,
+    "tests/helpers/trash-restore-fields-server.mjs": 10
+  },
+  "scope": [
+    "tests/helpers/trash-count.ts staging only",
+    "tests/helpers/trash-restore-fields-server.mjs staging only",
+    "new isolated staging helper",
+    "new Native controls",
+    "Native documentation/receipts"
+  ],
+  "frozen_install": {
+    "command": "pnpm install --frozen-lockfile",
+    "pnpm": "12.6.0",
+    "node": "24.19.0",
+    "exit_code": 0,
+    "path": "docs/receipts/browser-fixture-graph/frozen-install.log",
+    "sha256": "33d3c320ba856498eaf9cb8e4820d2eb31386953ebc33a7a256d2c95f42ad3b0"
+  },
+  "current_gates": {
+    "full_normal_validation": "pending",
+    "whole_secured_ten_commands": "pending",
+    "independent_final_head_review": "pending",
+    "configured_final_head_review": "pending",
+    "root_exact_head_approval": "pending",
+    "author_expected_head_regular_merge": "pending"
+  }
+}

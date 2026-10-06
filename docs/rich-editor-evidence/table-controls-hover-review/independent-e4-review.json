@@ -1,0 +1,672 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-05T21:18:25.641388+00:00",
+  "reviewer": "fresh table117_full_independent_final_reviewer",
+  "pr": "https://github.com/sveltery/cms/pull/117",
+  "verdict": "REQUEST_CHANGES",
+  "stationary_head": "e4b252dc32da9bcfda57cc8630f75351a424cc5c",
+  "tree": "bd561d582361c2f9f2e9839ae3d2c2ff564beef6",
+  "ordered_parents": [
+    "77c3df840fa1fbe969430e22f14f5c6d990b76cf",
+    "ab5464d2f4e6aaad784984f469e6797af0ec0a65"
+  ],
+  "base": "ab5464d2f4e6aaad784984f469e6797af0ec0a65",
+  "source_pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "isolated_worktree": "/workspace/cms-table117-independent-review",
+  "product_edits": 0,
+  "static_checks": {
+    "count": 171,
+    "passed": 171,
+    "public_blob_vector_entries": 3916,
+    "changed_vs_base": 137,
+    "source_exact_files": 148,
+    "regular_table_histories": 29,
+    "all_raw106_hashes_verified": true,
+    "all11_current_author_handoff_raw_hashes_verified": true,
+    "all_package_lock_old_values_preserved": "All YAML documents exact except new direct existing Bubble3.20 binding; actual Source SRI exact."
+  },
+  "semantic_review": [
+    {
+      "name": "Picker switch, coarse initial focus, grid keyboard and RTL",
+      "source": "TableControls95\u2013213",
+      "assessment": "Genuine Svelte switch/select/grid; roles, clamp, hover preview, Home/End/Control and active focus match Source. Native custom select is explicit framework presentation."
+    },
+    {
+      "name": "Eight action groups, plural labels and selected rectangle",
+      "source": "TableControls groups and ActionMenu",
+      "assessment": "All20 action ids/order, deletion pluralization and command result messages match Source. Actual shared TableActions/insertTable owners unchanged."
+    },
+    {
+      "name": "Mixed headers close, normal headers persist",
+      "source": "ActionMenu regular Item versus CheckboxItem; pinned BaseUI1.5 true/false closeOnClick",
+      "assessment": "Native keepOpen matches normal/mixed header semantics for both axes; first incorrect new fixture retained with zero Source causal credit."
+    },
+    {
+      "name": "Unavailable items focusable, activation guarded",
+      "source": "BaseUI useButton focusableWhenDisabled:true; MenuRoot disabledIndices empty",
+      "assessment": "Actual aria-disabled and can guards match Source; no fake DOM disabled property. One pointer-focus gap is separately reported."
+    },
+    {
+      "name": "Keyboard and typeahead",
+      "source": "BaseUI1.5 actual useTypeahead/MenuRoot",
+      "assessment": "ArrowUp/Down/Home/End;500ms session/case-insensitive prefixes/unmatched reset/repeated letters/active Space suppression match exact Source. New expectation corrections retained separately."
+    },
+    {
+      "name": "Bookmarks, Alt+F10, Escape, outside focus",
+      "source": "TableControls TableMenu close-intent/restore guard",
+      "assessment": "Real SelectionBookmark owner restores only where Source allows; command produced selection retained, outside focus undisturbed. Genuine Native value assertions pass."
+    },
+    {
+      "name": "Middle insertion",
+      "source": "Source TableMenu/insertTable",
+      "assessment": "Uses unchanged sole insertion owner at real selection, not doc end; picker transition does not overwrite selection. Native middle insertion callback passes."
+    },
+    {
+      "name": "Announcements",
+      "source": "TableSelectionAnnouncer selectionUpdate/transaction subscriptions and meta keys",
+      "assessment": "Exact row/column Source ICU descriptor IDs, real structural data, keyed repeated-label announcement refresh and cleanup."
+    },
+    {
+      "name": "Localization descriptors",
+      "source": "Whole immutable TableControls/PortableTextEditor macro compilation",
+      "assessment": "Independent installed exact Lingui recompilation verifies all64 candidate message IDs against182 extracted Source messages. No simulated matching or Source test body edits."
+    },
+    {
+      "name": "Actual Bubble plugin and cleanup",
+      "source": "PortableTextEditor4369\u20134448",
+      "assessment": "Genuine3.20 BubbleMenuPlugin/PluginKey registration, current readonly capture, editor/menu focus and selection predicate, sole floating root append, real unregister cleanup; minimal mode excluded."
+    },
+    {
+      "name": "Bubble positioning",
+      "source": "PortableTextEditor3050\u20133070 and4369\u20134448",
+      "assessment": "Actual absolute/top/offset8, visualviewport safeTop/rootBoundary/padding8, real middleware and availableWidth application match Source. Official current geometry outcomes still pending."
+    },
+    {
+      "name": "Unsupported Native Range",
+      "source": "Root finite actual absence qualification",
+      "assessment": "Only missing actual getBoundingClientRect/getClientRects stops shouldShow; no fake Range/layout/visibility. Original unhandled/process1 retained, Native plugin lifecycle earns zero geometry credit."
+    },
+    {
+      "name": "Parent ownership",
+      "source": "Published Rich ab546 base vector",
+      "assessment": "All incoming CodeMirror/iframe/Lingui/preload Source/raw bytes exact. Portable edits restricted to table imports/refs/mounts/announcement dispatch; no private bytes adopted."
+    },
+    {
+      "name": "Finite old Native transports",
+      "source": "Root readonly absence and two capability-helper decisions",
+      "assessment": "Only readonly trigger expectation and genuine aria-disabled helper transports change; all old boolean/data/clocks/other tests retained, old bytes hash-equal public base; zero extra Source causal credit."
+    }
+  ],
+  "descriptor_proof": {
+    "sourceMessages": 182,
+    "candidateDescriptors": 64,
+    "failed": []
+  },
+  "independent_runs": {
+    "native": {
+      "registered": 79,
+      "passed": 79,
+      "failed": 0,
+      "pending": 0,
+      "process_exit": 0
+    },
+    "pure_source": {
+      "registered": 206,
+      "passed": 206,
+      "failed": 0,
+      "pending": 0,
+      "process_exit": 0
+    },
+    "diagnostics": {
+      "errors": 0,
+      "warnings": 0,
+      "process_exit": 0
+    },
+    "production_build": {
+      "process_exit": 0
+    },
+    "first_prerequisites": {
+      "registered": 0,
+      "cause": "Isolated fresh worktree lacked generated .svelte-kit/tsconfig.json; Native optimizer also stopped resolving node:module. Actual svelte-kit sync0 supplied configuration; raw first failures retained, zero value causal credit."
+    },
+    "review_probe": {
+      "registered": 1,
+      "passed": 0,
+      "failed": 1,
+      "process_exit": 1,
+      "causal_credit": "one genuine supplemental Native focus equality red; zero original Source or geometry credit"
+    }
+  },
+  "findings": [
+    {
+      "id": "TABLE117-HOVER-FOCUS01",
+      "priority": "P2",
+      "path": "src/lib/editor/rich-text/TableMenu.svelte",
+      "line": 180,
+      "also_line": 189,
+      "title": "Restore Source pointer focus for table menu items",
+      "body": "The opened Native menu focuses Select row and leaves it focused when the pointer moves over Delete row. Action buttons and the Insert table item have no mouse/pointer focus owner. Exact Source Kumo2.6 DropdownMenu forwards actual Menu.Root whose highlightItemOnHover defaults true and passes to real list navigation. Source mouse movement focuses the hovered item, including unavailable items. Missing behavior leaves stale highlighting and subsequent Enter/Space/arrow activation operating from stale focus. Use the existing focusItem owner for Source-faithful mouse movement, retain disabled activation guards, and cover normal/More/Insert menu cases test-first.",
+      "actual_native_reproducer": "/workspace/cms-table117-independent-review/tests/rich-editor-native/independent-review-menu-hover.test.ts",
+      "source_contract": "/tmp/table117-source-hover-contract.json",
+      "native_red_report": "/tmp/table117-independent-hover-report.json"
+    }
+  ],
+  "hosted_current": {
+    "observed_at_utc": "2026-10-05T21:16:00Z",
+    "pr": {
+      "head": "e4b252dc32da9bcfda57cc8630f75351a424cc5c",
+      "base": "ab5464d2f4e6aaad784984f469e6797af0ec0a65"
+    },
+    "run": {
+      "id": 37371251863,
+      "head": "e4b252dc32da9bcfda57cc8630f75351a424cc5c",
+      "event": "pull_request",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    "jobs": [
+      {
+        "id": 111968663679,
+        "name": "validate",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_id": 37371251863,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run pnpm/action-setup@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run sh scripts/bootstrap.sh",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 5
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 8
+          },
+          {
+            "name": "Post Run pnpm/action-setup@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 9
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 10
+          }
+        ]
+      },
+      {
+        "id": 111968664170,
+        "name": "browser",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 37371251863,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run pnpm/action-setup@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run pnpm install --frozen-lockfile",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run pnpm exec playwright install --with-deps chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run complete bulk taxonomy Source callbacks in sandboxed Chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run sandboxed datetime widget source assertions",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Run complete menu Source callbacks in sandboxed Chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Run complete redirect admin Source callbacks in sandboxed Chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Run complete pinned Sections and Widgets Source callbacks in sandboxed Chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Run complete comments Source inbox assertions in sandboxed Chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Run complete content picker Source callbacks in sandboxed Chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Run complete pinned schema administration UI Source callbacks in sandboxed Chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Run pnpm build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Run sandboxed browser tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Run pnpm build:node",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Run sandboxed Node browser tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 19
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 36
+          },
+          {
+            "name": "Post Run pnpm/action-setup@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 37
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 38
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 39
+          }
+        ]
+      },
+      {
+        "id": 111974233478,
+        "name": "rich-editor-source",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_id": 37371251863,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run pnpm/action-setup@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run pnpm install --frozen-lockfile",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 5
+          },
+          {
+            "name": "Run pnpm exec playwright install --with-deps chromium",
+            "status": "pending",
+            "conclusion": null,
+            "number": 6
+          },
+          {
+            "name": "Verify all whole rich editor Source families and immutable files",
+            "status": "pending",
+            "conclusion": null,
+            "number": 7
+          },
+          {
+            "name": "Run all whole rich editor, slash and footer Source assertions in sandboxed Chromium",
+            "status": "pending",
+            "conclusion": null,
+            "number": 8
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 9
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 16
+          },
+          {
+            "name": "Post Run pnpm/action-setup@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 17
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 18
+          }
+        ]
+      }
+    ],
+    "synthetic": {
+      "sha": "349ac45eae7c5fd42f7960648a2e5d52b386ab0b",
+      "tree": "bd561d582361c2f9f2e9839ae3d2c2ff564beef6",
+      "parents": [
+        "ab5464d2f4e6aaad784984f469e6797af0ec0a65",
+        "e4b252dc32da9bcfda57cc8630f75351a424cc5c"
+      ],
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqxAtZCRC1aQ7uu5UhlAAAR/IQAB9uST4lUI/TF31neLBXn2k0\n0OXMoEMkJpqEIpDQ0roL8ETxbLxVda0haJzYkDZw4TX/Wc0yWBLbveYU0/kvtvZI\nsPaxYxWqNZ5FoEDsjZMfYY3bmnVsK1OZXpClhLPJDtyxgCwBNs1S7iLVwDbpP5x0\n2Xuggt9nrtu2fqfDvUiyyzhjbAhjfPivHc3S/PJptB+5kOqnIoVkaZn0tvt6SRqz\nSrf5tn4kcrFGSfyqR9oEHsgqRz0sKBzDArddkRG+Fy/jR4FIT6isKq5ImD30M9i9\nz52gSqRiGJlTFvAThWDtR46QFXJhPG9xea7M8CROG0iypSN3yCuL2KNHbvOd8ekF\nT9sXeREZDuamHZX+bHpaaswvg3yiIswsL8Fkuy2QCQkNu0wK1+tCKekY/dneEz56\nqLUnOHD8cWIGpmsz9ckZnAe57FyaK/bLDG7NPnoRjZbUmuKyqQLaw+zbFpzB+dHd\nj5AJI0acS7jazxVpb6rfdkNP3iM36fi86PhsPRUjJMXr9btCEaZm1mfdB9AAWRix\n414X6OtVx5n7vzrJY5Ocmdi2WNcwGNoxIqW+hNcg4pXssTrL5a0LTp4sqYBU5btG\nPxRek51gyxRU6bsnnxE/cdXY2VxwyARszXlbAJr+UG58HfmA/ml5NfCgrAm0GNna\nPzrYptTuP7O/woFIXWvH\n=Tr7S\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree bd561d582361c2f9f2e9839ae3d2c2ff564beef6\nparent ab5464d2f4e6aaad784984f469e6797af0ec0a65\nparent e4b252dc32da9bcfda57cc8630f75351a424cc5c\nauthor Hugo Hsi <146384069+hugo-hsi-dev@users.noreply.github.com> 1791232857 +0000\ncommitter GitHub <noreply@github.com> 1791232857 +0000\n\nMerge e4b252dc32da9bcfda57cc8630f75351a424cc5c into ab5464d2f4e6aaad784984f469e6797af0ec0a65\n",
+        "verified_at": "2026-10-05T20:40:58Z"
+      }
+    },
+    "configured_review": {
+      "reviews": [],
+      "quota_notice": {
+        "id": 6002484945,
+        "created_at": "2026-10-05T20:38:28Z",
+        "on_current_exact_head": "not established; notice predates e4b public update20:50",
+        "genuine": true
+      },
+      "exact_head_verdict": "absent"
+    }
+  },
+  "historical_original_baseline": {
+    "head": "2e8747bef91b9b61975832b86d097b5e82c2a9b1",
+    "run": 37366707175,
+    "registered": 209,
+    "passed": 206,
+    "failed": 3,
+    "table": {
+      "registered": 60,
+      "passed": 58,
+      "failed": 2,
+      "genuine_value": "missing Header-row switch; coarse focus expectation unreached"
+    },
+    "iframe": {
+      "registered": 11,
+      "passed": 11
+    },
+    "other_source": {
+      "registered": 137,
+      "passed": 136,
+      "failed": 1,
+      "cause": "cold first editor readiness null before conversion expectation; zero product causal credit"
+    },
+    "native_enter": {
+      "registered": 1,
+      "passed": 1
+    },
+    "original_log_sha256": "3b157a3f240114526bdaac9bd57f81a0a52499ab56c5fc80adc7bb6051f07ed0",
+    "original_report_sha256": "88d1a2dd93f4057955e652cd93c3bf59b982913414470e7bf293b95c59519127"
+  },
+  "limits": [
+    "Current normal13 and complete213 are incomplete; no current Table60/browser or supplemental4 visibility/geometry acceptance.",
+    "Genuine configured quota notice6002484945 exists; it predates current e4 publication, so current exact-head association and configured verdict are not established.",
+    "Root exact-head approval and AUTHOR regular expected-head merge remain pending.",
+    "Parent future public locale successor requires ordinary public union and finite successor review; current review covers exact e4 only.",
+    "Full Rich media/gallery/plugin/provider/reference/repeater/protected E2E/public renderer/deployed product remain incomplete outside this table review.",
+    "Only an untracked review probe exists in isolated reviewer tree; author workspace/stationary public product unchanged."
+  ],
+  "raw_evidence": [
+    {
+      "path": "/tmp/table117-independent-build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-build.log",
+      "bytes": 57291,
+      "sha256": "6fd843118ce0c763c04629ff857642ce1605242248c9983c36f43e54db386533"
+    },
+    {
+      "path": "/tmp/table117-independent-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-check.log",
+      "bytes": 152,
+      "sha256": "8aaca014d52f8af4c39950f2aeb7dd71e97b52eb259edfd27447947c2ebd58ab"
+    },
+    {
+      "path": "/tmp/table117-independent-ci569-secured.log",
+      "bytes": 472974,
+      "sha256": "76340041cd7c72c0e4c7c6e913159d9272fbf37d68f1a4072a0ae29526cd8ba4"
+    },
+    {
+      "path": "/tmp/table117-independent-hosted-snapshot.json",
+      "bytes": 6814,
+      "sha256": "68dc460b7040e50280a82741e3fc63fbff2979ceaefe569090fee5d80b5d65a9"
+    },
+    {
+      "path": "/tmp/table117-independent-hover-report.json",
+      "bytes": 1475,
+      "sha256": "be43f9657a36dacfc78e783ad0191f529f1ec7e8dec951181c1d61bd49c5407f"
+    },
+    {
+      "path": "/tmp/table117-independent-hover.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-independent-hover.log",
+      "bytes": 67,
+      "sha256": "505fa8aea3b765cb6df90850c83eda09fac17a94b597caedfa42d0ca9f9bc525"
+    },
+    {
+      "path": "/tmp/table117-independent-kit-sync.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-kit-sync.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/table117-independent-message-compile.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-message-compile.log",
+      "bytes": 62,
+      "sha256": "aa4043cca495e137fbb7987d2ee2924b62dc7e402afe209c54ef11d4155e2b1f"
+    },
+    {
+      "path": "/tmp/table117-independent-message-ids.json",
+      "bytes": 74,
+      "sha256": "e9469708eac96aa64cb747f16e817b6961aec07db38ba5a524b9800812886f9c"
+    },
+    {
+      "path": "/tmp/table117-independent-native-after-sync-report.json",
+      "bytes": 32705,
+      "sha256": "7e5334d0d5907e9f5bfdbb9cb7ef05dba511274a720f73845a34d086d010a500"
+    },
+    {
+      "path": "/tmp/table117-independent-native-after-sync.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-native-after-sync.log",
+      "bytes": 79,
+      "sha256": "c2fc97bd5603c950238af9d7d09eb4adfdbe3cba7347e618820c4bb6c4df744f"
+    },
+    {
+      "path": "/tmp/table117-independent-native.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-independent-native.log",
+      "bytes": 1864,
+      "sha256": "b0e212744788e8378d6ec2cde3118aedd97ad14978da3db61e600196da6943ba"
+    },
+    {
+      "path": "/tmp/table117-independent-source-after-sync-report.json",
+      "bytes": 71706,
+      "sha256": "3f22051b02c72db501068138a4c90a5d43738d9c667758d2e97fd56587e74ccc"
+    },
+    {
+      "path": "/tmp/table117-independent-source-after-sync.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-source-after-sync.log",
+      "bytes": 79,
+      "sha256": "adc3500d5773d65fd15fd18ed3f4012489a8905a606f1a7dea42c6e43fc12414"
+    },
+    {
+      "path": "/tmp/table117-independent-source-guard.log",
+      "bytes": 125,
+      "sha256": "cf28192e7c148258c1c1b17a0b5cba9a99111bcf8202b1e2c775ab0309449318"
+    },
+    {
+      "path": "/tmp/table117-independent-source-report.json",
+      "bytes": 9961,
+      "sha256": "209f750313fbe69dacf04ef112d808a8c6162a502dee8c20f992fdbee3c5cbbe"
+    },
+    {
+      "path": "/tmp/table117-independent-source.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-independent-source.log",
+      "bytes": 68,
+      "sha256": "51373d5382238049f80035dd8d8a86929ed972324114ef1d9554f8a474271319"
+    },
+    {
+      "path": "/tmp/table117-independent-static-review.json",
+      "bytes": 43061,
+      "sha256": "da444814c8387864b1d17c321e495f572dfa7e478ee467d208dbe9dcac8d5d7d"
+    },
+    {
+      "path": "/tmp/table117-independent-static-review.py",
+      "bytes": 5236,
+      "sha256": "95f42073d2c4f154f01dc9db819051bad3ef8ad3898478747a45b5a2341b6069"
+    },
+    {
+      "path": "/tmp/table117-public-tree.json",
+      "bytes": 1316764,
+      "sha256": "1b4ad1815e3720e2408947837c304b6b139dee178fc21d02bdf4f656e6fc3a93"
+    },
+    {
+      "path": "/tmp/table117-source-hover-contract.json",
+      "bytes": 934,
+      "sha256": "a76a3959438ffa33ee80f835f64fe05fa5dec34a9e00e185f7ee418cea97acd4"
+    }
+  ]
+}

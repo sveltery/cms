@@ -27,11 +27,14 @@ it('closes an open table action menu on actual read-only props and restores edit
   current.view.dispatch(current.state.tr.setSelection(CellSelection.create(current.state.doc, cell))); await tick();
   const trigger = () => host.querySelector<HTMLButtonElement>('button[aria-label="Table"]')!;
   const menu = () => host.querySelector('[aria-label="Table actions"]');
-  const action = () => [...host.querySelectorAll<HTMLButtonElement>('[aria-label="Table actions"] button')].find(button => button.textContent === 'Add row below')!;
+  const action = () => {
+    const button = [...host.querySelectorAll<HTMLButtonElement>('[aria-label="Table actions"] button')].find(item => item.textContent === 'Add row below')!;
+    return { get disabled() { return button.getAttribute('aria-disabled') === 'true'; }, click: () => button.click() };
+  };
   trigger().click(); await tick(); expect(action().disabled).toBe(false);
   const before = current.getJSON(); onChange.mockClear();
   props.editable = false; await tick();
-  expect(current.isEditable).toBe(false); expect(menu()).toBeNull(); expect(trigger().disabled).toBe(true);
+  expect(current.isEditable).toBe(false); expect(menu()).toBeNull(); expect(trigger()).toBeNull();
   expect(current.getJSON()).toEqual(before); expect(onChange).not.toHaveBeenCalled();
   props.editable = true; await tick(); expect(current.isEditable).toBe(true); expect(menu()).toBeNull();
   trigger().click(); await tick(); expect(action().disabled).toBe(false); action().click(); await tick();

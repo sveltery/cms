@@ -1,0 +1,50 @@
+{
+  "task": "Rich104 TableControls helper",
+  "head": "f37bc7841b2199302f0113331a097c6dbf3fbb72",
+  "base": "1bbe30a2c2257f14e3554a7e5f5e7fd88c70a34a",
+  "wholeNative": {
+    "registered": 56,
+    "passed": 54,
+    "failed": 2,
+    "exit": 1
+  },
+  "supplemental": {
+    "registered": 5,
+    "passed": 3,
+    "genuineValueReds": 2,
+    "reasons": [
+      "Header-row input has no Source switch role",
+      "Coarse initial activeElement is body rather than Rows select"
+    ]
+  },
+  "originalSource": {
+    "wholeCallbacksRegistered": 0,
+    "staticDeclarations": 35,
+    "staticMatchers": 140,
+    "sha256": "edc7d404029b8b6d4b7a5517b235a5be4e9bf8652cfd1143f505c36400400525",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e"
+  },
+  "limits": [
+    "No actual browser geometry/keyboard credit from jsdom",
+    "Existing CodeMirror jsdom Range.getClientRects diagnostics retained unchanged",
+    "No product repair until first official whole Source TableControls baseline",
+    "No public publication yet"
+  ],
+  "records": [
+    {
+      "path": "/tmp/rich104-table-helper-native-first.log",
+      "bytes": 25891,
+      "sha256": "c161236e50b5a4771f4d8f47c4017ba8d7fa83b749d73af35078bbaf4b7bee40"
+    },
+    {
+      "path": "/tmp/rich104-table-helper-native-first-report.json",
+      "bytes": 24696,
+      "sha256": "cb8ddff858f31e48869d6d4522d56e51ffa710d3188f37cdc8b1dd875a932caf"
+    },
+    {
+      "path": "/tmp/rich104-table-helper-frozen-install.log",
+      "bytes": 2961,
+      "sha256": "a44a85539d76d7fd5518caac99837345eafbd4aa50785e02e8956a15399a534d"
+    }
+  ]
+}

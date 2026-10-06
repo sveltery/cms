@@ -1,0 +1,65 @@
+{
+  "head_before_test_commit": "e4b252dc32da9bcfda57cc8630f75351a424cc5c",
+  "finding": "TABLE117-HOVER-FOCUS01",
+  "source_pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "pinned_kumo_version": "2.6.0",
+  "actual_source_files_verified": [
+    {
+      "path": "package/dist/chunks/dropdown-irp18txvgz8590e9.js",
+      "bytes": 9155,
+      "sha256": "fbb64a0557c9e7fa4e02f36354090cac5dc3825c7837c98e64ac8d812904c154"
+    },
+    {
+      "path": "package/dist/chunks/vendor-base-ui-f9z44m829vvptrg0.js",
+      "bytes": 720947,
+      "sha256": "0cbe376f07dec5cec71d82b99eee372a977ebc3288e7c841f37bd34f8003ffd3"
+    }
+  ],
+  "first_native": {
+    "registered": 4,
+    "passed": 0,
+    "failed": 4,
+    "process_exit": 1,
+    "genuine_failure": "actual mounted menu item focus does not follow mouse movement"
+  },
+  "original_source_causal_credit": 0,
+  "browser_geometry_credit": 0,
+  "old_source_and_native_tests": "unchanged",
+  "files": [
+    {
+      "name": "first-native4.log",
+      "bytes": 66,
+      "sha256": "189dd55d89f22124fdb1f3b5794b68ac6cf2d2ef647a890d84fab94c4b583dc3"
+    },
+    {
+      "name": "first-native4.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "name": "first-native4-report.json",
+      "bytes": 4119,
+      "sha256": "1f7a8f282fb887993334f6e30655e65ef264a9673206223e6231b35a6c2607e4"
+    },
+    {
+      "name": "source-hover-contract.json",
+      "bytes": 934,
+      "sha256": "a76a3959438ffa33ee80f835f64fe05fa5dec34a9e00e185f7ee418cea97acd4"
+    },
+    {
+      "name": "independent-e4-review.json",
+      "bytes": 25727,
+      "sha256": "c16aaeec221347850d0a5f79f8dee4ce3cc4833a142859d57a2a018c992f1e58"
+    },
+    {
+      "name": "independent-hover-report.json",
+      "bytes": 1475,
+      "sha256": "be43f9657a36dacfc78e783ad0191f529f1ec7e8dec951181c1d61bd49c5407f"
+    },
+    {
+      "name": "independent-hover-probe.test.ts.txt",
+      "bytes": 1300,
+      "sha256": "5ed635d49ed4cda1c2e7a7010f52d8ca887ccf5d59fc3fb9a4090acf8d300017"
+    }
+  ]
+}
