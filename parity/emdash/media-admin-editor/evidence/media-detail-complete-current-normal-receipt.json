@@ -1,0 +1,821 @@
+{
+  "head": "563b3fb36a43265336e34c4610cd6e2306195a8a",
+  "tree": "fb84b8be907199ed3910fc6f6b3199aa210ca768",
+  "normalRun": 37396334940,
+  "normalRequiredJobs": [
+    {
+      "name": "browser",
+      "job": 112053083725,
+      "conclusion": "success",
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run pnpm install --frozen-lockfile",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run pnpm exec playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run complete bulk taxonomy Source callbacks in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run sandboxed datetime widget source assertions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run complete menu Source callbacks in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run complete redirect admin Source callbacks in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run complete pinned Sections and Widgets Source callbacks in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run complete comments Source inbox assertions in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run complete content picker Source callbacks in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run complete pinned schema administration UI Source callbacks in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Run pnpm build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Run sandboxed browser tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Run pnpm build:node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Run sandboxed Node browser tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Post Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39
+        }
+      ]
+    },
+    {
+      "name": "calendar-admin-source",
+      "job": 112053083952,
+      "conclusion": "success",
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run pnpm install --frozen-lockfile",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run pnpm exec playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run all six whole calendar Source families in sandboxed Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run supplemental native calendar schedule dialog controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run supplemental Calendar picker locale and tooltip controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "name": "validate-services",
+      "job": 112053084123,
+      "conclusion": "success",
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify complete CI orchestration contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run sh scripts/ci-validation-phase.sh services",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "name": "validate-source",
+      "job": 112057888745,
+      "conclusion": "success",
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run sh scripts/ci-validation-phase.sh source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        }
+      ]
+    },
+    {
+      "name": "validate-hosting",
+      "job": 112061461746,
+      "conclusion": "success",
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run sh scripts/ci-validation-phase.sh hosting",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run pnpm/action-setup@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        }
+      ]
+    },
+    {
+      "name": "validate",
+      "job": 112063011883,
+      "conclusion": "success",
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Require every normal validation phase to succeed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        }
+      ]
+    }
+  ],
+  "normalRawAuthority": "Root independently retained and qualified complete six-job logs; this receipt preserves actual job/step results and grants no invented assertion counts from metadata",
+  "genericMatrix": {
+    "gallery": {
+      "numTotalTests": 0,
+      "numPassedTests": 0,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "success": false,
+      "suites": [
+        {
+          "file": "gallery-detail-panel.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "GalleryFocalPoint.test.ts",
+          "status": "failed",
+          "callbacks": 0
+        }
+      ]
+    },
+    "settings": {
+      "numTotalTests": 0,
+      "numPassedTests": 0,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "success": false,
+      "suites": [
+        {
+          "file": "MediaUsageSettings.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        }
+      ]
+    },
+    "library": {
+      "numTotalTests": 0,
+      "numPassedTests": 0,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "success": false,
+      "suites": [
+        {
+          "file": "MediaFolderDialog.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "MediaImportSummary.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "MediaLibrary.layout.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "MediaLibrary.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "MediaUploadDialog.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "useMediaUploadQueue.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        }
+      ]
+    },
+    "helpers": {
+      "numTotalTests": 95,
+      "numPassedTests": 95,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "success": false,
+      "suites": [
+        {
+          "file": "pt-gallery-converters.test.ts",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "pt-image-converters.test.ts",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "crop-image.test.ts",
+          "status": "passed",
+          "callbacks": 15
+        },
+        {
+          "file": "media-api.test.ts",
+          "status": "passed",
+          "callbacks": 5
+        },
+        {
+          "file": "media-file-url.test.ts",
+          "status": "passed",
+          "callbacks": 8
+        },
+        {
+          "file": "media-folders.test.ts",
+          "status": "passed",
+          "callbacks": 3
+        },
+        {
+          "file": "media-pagination.test.ts",
+          "status": "passed",
+          "callbacks": 2
+        },
+        {
+          "file": "media-playback.test.ts",
+          "status": "passed",
+          "callbacks": 3
+        },
+        {
+          "file": "media-search.test.ts",
+          "status": "passed",
+          "callbacks": 4
+        },
+        {
+          "file": "media-thumbnail.test.ts",
+          "status": "passed",
+          "callbacks": 8
+        },
+        {
+          "file": "media-upload.test.ts",
+          "status": "passed",
+          "callbacks": 17
+        },
+        {
+          "file": "media-usage-activation-api.test.ts",
+          "status": "passed",
+          "callbacks": 30
+        }
+      ]
+    },
+    "panel": {
+      "numTotalTests": 129,
+      "numPassedTests": 129,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "success": true,
+      "suites": [
+        {
+          "file": "FocalPointEditor.test.tsx",
+          "status": "passed",
+          "callbacks": 1
+        },
+        {
+          "file": "MediaDetailPanel.test.tsx",
+          "status": "passed",
+          "callbacks": 86
+        },
+        {
+          "file": "MediaDetailPanelNavigation.test.tsx",
+          "status": "passed",
+          "callbacks": 6
+        },
+        {
+          "file": "MediaImageCropper.test.tsx",
+          "status": "passed",
+          "callbacks": 12
+        },
+        {
+          "file": "MediaUsedIn.test.tsx",
+          "status": "passed",
+          "callbacks": 23
+        },
+        {
+          "file": "useContainedMediaSize.test.tsx",
+          "status": "passed",
+          "callbacks": 1
+        }
+      ]
+    },
+    "picker": {
+      "numTotalTests": 53,
+      "numPassedTests": 53,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "success": false,
+      "suites": [
+        {
+          "file": "media-picker-multiselect.test.tsx",
+          "status": "passed",
+          "callbacks": 6
+        },
+        {
+          "file": "BlockKitMediaPickerField.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "ImageFieldRenderer.test.tsx",
+          "status": "failed",
+          "callbacks": 0
+        },
+        {
+          "file": "MediaPickerModal.test.tsx",
+          "status": "passed",
+          "callbacks": 37
+        },
+        {
+          "file": "MediaPickerUpload.test.tsx",
+          "status": "passed",
+          "callbacks": 10
+        }
+      ]
+    },
+    "image": {
+      "conclusion": "cancelled",
+      "noCompletedCallbackReport": true,
+      "observedImportPrerequisites": [
+        "ImageDetailPanel",
+        "ImageFieldRenderer",
+        "@tiptap/pm/state",
+        "@tiptap/starter-kit"
+      ],
+      "sourceValueCredit": 0
+    }
+  },
+  "genericMatrixJobs": [
+    {
+      "name": "media-admin-editor-source (panel)",
+      "job": 112053084030,
+      "conclusion": "success"
+    },
+    {
+      "name": "media-admin-editor-source (library)",
+      "job": 112053084041,
+      "conclusion": "failure"
+    },
+    {
+      "name": "media-admin-editor-source (image)",
+      "job": 112053084093,
+      "conclusion": "cancelled"
+    },
+    {
+      "name": "media-admin-editor-source (helpers)",
+      "job": 112053084099,
+      "conclusion": "failure"
+    },
+    {
+      "name": "media-admin-editor-source (settings)",
+      "job": 112053084116,
+      "conclusion": "failure"
+    },
+    {
+      "name": "media-admin-editor-source (gallery)",
+      "job": 112053084132,
+      "conclusion": "failure"
+    },
+    {
+      "name": "media-admin-editor-source (picker)",
+      "job": 112053084197,
+      "conclusion": "failure"
+    }
+  ],
+  "overallMediaUiComplete": false,
+  "workflowOverallGreenClaimed": false,
+  "files": {
+    "media-detail-complete-current-matrix-gallery.json": {
+      "bytes": 1244,
+      "sha256": "dea35583c44cca8207eafd52aa7b77152e45b9e98f96ab82b4f0c94809bd2107"
+    },
+    "media-detail-complete-current-matrix-gallery.log": {
+      "bytes": 61124,
+      "sha256": "950c0eb31f72c4a15f3e17ea39122a3f1ded592abaa9d53ed0236cfd98e168eb"
+    },
+    "media-detail-complete-current-matrix-gallery.zip": {
+      "bytes": 550,
+      "sha256": "e5e49c33cc1950b83ee4cb8b00140c6980d335fb00096b83e1b953be93295e2f"
+    },
+    "media-detail-complete-current-matrix-helpers.json": {
+      "bytes": 30422,
+      "sha256": "dafb4f243143cefaf2b2fda87759d1e838e992590d8fd131140f8f90c3cd1d46"
+    },
+    "media-detail-complete-current-matrix-helpers.log": {
+      "bytes": 66798,
+      "sha256": "6a07b13329745775fbb4da03f5e265a07cb982e30fa440ac6a74c51a400adcea"
+    },
+    "media-detail-complete-current-matrix-helpers.zip": {
+      "bytes": 3847,
+      "sha256": "c9fc89ab061c622db3acfb0f14886fe31952ec3f1984e5bc0fb3c733f9e7f880"
+    },
+    "media-detail-complete-current-matrix-image.log": {
+      "bytes": 68948,
+      "sha256": "da82a44229884764bc39d14ecd23e3e43f234c894ff06dce7886b821fea2aa44"
+    },
+    "media-detail-complete-current-matrix-library.json": {
+      "bytes": 2822,
+      "sha256": "2d3681037891bb227f45ab78d26199e5da7780feb1d7568e0b68db86630b3c8b"
+    },
+    "media-detail-complete-current-matrix-library.log": {
+      "bytes": 77265,
+      "sha256": "7a07b321ec30c6f52f4d46ae9f3559a0fafccee0695297094db1bef1c99c8e90"
+    },
+    "media-detail-complete-current-matrix-library.zip": {
+      "bytes": 595,
+      "sha256": "64da83477f9c4f5afeb3ad6e593b1cae9ab371df4f6dff21d5f481760083d8fa"
+    },
+    "media-detail-complete-current-matrix-panel.json": {
+      "bytes": 37980,
+      "sha256": "3a315177e29f179ad9ba4fd93e271878d837a7253c6d3c61a12fbec4641a917a"
+    },
+    "media-detail-complete-current-matrix-panel.log": {
+      "bytes": 385569,
+      "sha256": "9807675bcd77837dec14b58c53f7456cbe23f6d7b22df11c52bce554805549a6"
+    },
+    "media-detail-complete-current-matrix-panel.zip": {
+      "bytes": 5168,
+      "sha256": "fef8eb50ebbed41891fdb1e234980eea07f7e016abafe1bb2620d7df18aa58cf"
+    },
+    "media-detail-complete-current-matrix-picker.json": {
+      "bytes": 17847,
+      "sha256": "9e7e08ce96113a9a769fe7513c04305fae3ef03272397d061d9ba0d66287cbb5"
+    },
+    "media-detail-complete-current-matrix-picker.log": {
+      "bytes": 64458,
+      "sha256": "be4b99de927323c9670cd852c4fb923d893680f23c46f4411834c6ead9e0db35"
+    },
+    "media-detail-complete-current-matrix-picker.zip": {
+      "bytes": 2766,
+      "sha256": "831c05884553390ffcc1c09e08925afced82fb805aac851f68b50d9d36442113"
+    },
+    "media-detail-complete-current-matrix-settings.json": {
+      "bytes": 892,
+      "sha256": "548789143cb632e1d47dafc628508d3a90b35d018ffd9d71f773cd0109808633"
+    },
+    "media-detail-complete-current-matrix-settings.log": {
+      "bytes": 56752,
+      "sha256": "a5a624e54c9d81ecdeaee74e8e515f2eb58fe6a9eeaef44d29eea78ddd26ea0a"
+    },
+    "media-detail-complete-current-matrix-settings.zip": {
+      "bytes": 521,
+      "sha256": "a336e4bae05313c190a60c17e8b6430b90c96be73aeb19f905962a775a7ef505"
+    }
+  },
+  "limits": "Normal required six and owned full detail green do not qualify all42 media Source files. Missing-import callbacks grant zero causal value credit; cancelled image job has no completed whole-family report. All existing failed jobs/Source bytes are retained."
+}

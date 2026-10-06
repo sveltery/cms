@@ -1,0 +1,90 @@
+{
+  "head": "563b3fb36a43265336e34c4610cd6e2306195a8a",
+  "tree": "fb84b8be907199ed3910fc6f6b3199aa210ca768",
+  "parentHead": "d8989c402af17e329be09c0f17773fa33e36d7a9",
+  "run": 37396335223,
+  "job": 112053084681,
+  "artifact": 11382704100,
+  "browser": {
+    "registered": 136,
+    "passed": 136,
+    "failed": 0,
+    "pending": 0,
+    "sourceOriginal": 129,
+    "nativeRow": 2,
+    "nativeReview": 5
+  },
+  "nativeLogic": {
+    "passed": 7,
+    "failed": 0,
+    "separateNoDomCredit": true
+  },
+  "families": [
+    {
+      "file": "current-crop-review.browser.tsx",
+      "callbacks": 5,
+      "status": "passed"
+    },
+    {
+      "file": "current-row-preservation.browser.tsx",
+      "callbacks": 2,
+      "status": "passed"
+    },
+    {
+      "file": "FocalPointEditor.test.tsx",
+      "callbacks": 1,
+      "status": "passed"
+    },
+    {
+      "file": "MediaDetailPanel.test.tsx",
+      "callbacks": 86,
+      "status": "passed"
+    },
+    {
+      "file": "MediaDetailPanelNavigation.test.tsx",
+      "callbacks": 6,
+      "status": "passed"
+    },
+    {
+      "file": "MediaImageCropper.test.tsx",
+      "callbacks": 12,
+      "status": "passed"
+    },
+    {
+      "file": "MediaUsedIn.test.tsx",
+      "callbacks": 23,
+      "status": "passed"
+    },
+    {
+      "file": "useContainedMediaSize.test.tsx",
+      "callbacks": 1,
+      "status": "passed"
+    }
+  ],
+  "files": {
+    "media-detail-complete-review-helper-green.zip": {
+      "bytes": 5538,
+      "sha256": "3523d4ec2854377bbaf17b9a08b53aaa56d6a32c9ace6eebbfa450434a8e2595"
+    },
+    "media-detail-complete-review-helper-green.json": {
+      "bytes": 40462,
+      "sha256": "5d0c42a283f54f35729b747c887a094e1c11e13cd758253d87f52bd476fd7ced"
+    },
+    "media-detail-complete-review-helper-green.log": {
+      "bytes": 413423,
+      "sha256": "dbba769fca9c0b723c2d5b51420474bab3f6c685b53014c57c34a117432cf18a"
+    }
+  },
+  "priorFailuresRetained": true,
+  "oldExactWidgetReplay": {
+    "pr": 128,
+    "run": 37396462148,
+    "job": 112053513787,
+    "status": "completed:131pass5genuineNativeValueFail0skip",
+    "receipt": "media-detail-complete-review-old-widget-genuine-red-receipt.json"
+  },
+  "limits": "Source supplied mocks and Native controlled API fixtures grant zero real backend, provider, principal, storage or deployment credit. Normal required gates, genuine old widget five-value-red replay, fresh review and Root approval remain pending.",
+  "actualCheckoutCommit": "75fd61ec31e6268944950117a7103a89c235dc9a",
+  "actualCheckoutTree": "fb84b8be907199ed3910fc6f6b3199aa210ca768",
+  "actualCheckoutExactlyEqualsCandidateTree": true
+}
