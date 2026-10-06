@@ -1,0 +1,552 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "sourceLockSha256": "385a0995c565c14ccccf822424398987df233967f4a1d8e3a3a18c01703395ea",
+  "scope": "Root qualification requested only for additional isolated Reference-only genuine AT Protocol OAuthNodeClient closure; no Main/package/lock/shared node_modules/protected probes edits",
+  "missingImporterSelections": [
+    {
+      "importer": "packages/auth-atproto/src/db-store.ts",
+      "specifier": "@atcute/oauth-node-client",
+      "packageManifest": "packages/auth-atproto/package.json",
+      "packageManifestSha256": "7af22bb39ad2be1174242e3236d26596f9e69c417da0a049cbe20b79e845bf77",
+      "sourceDeclaredSpecifier": "catalog:",
+      "selected": {
+        "specifier": "catalog:",
+        "version": "2.0.0(@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)"
+      },
+      "snapshotKey": "@atcute/oauth-node-client@2.0.0(@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)"
+    },
+    {
+      "importer": "packages/auth-atproto/src/oauth-client.ts",
+      "specifier": "@atcute/oauth-node-client",
+      "packageManifest": "packages/auth-atproto/package.json",
+      "packageManifestSha256": "7af22bb39ad2be1174242e3236d26596f9e69c417da0a049cbe20b79e845bf77",
+      "sourceDeclaredSpecifier": "catalog:",
+      "selected": {
+        "specifier": "catalog:",
+        "version": "2.0.0(@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)"
+      },
+      "snapshotKey": "@atcute/oauth-node-client@2.0.0(@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)"
+    }
+  ],
+  "completeSelectedExternalLockClosure": [
+    {
+      "snapshotKey": "@atcute/client@5.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/client@5.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-Dtrc1no1oAtpUTmkBxH0xKSgy8qcnk8orPf/PkEATW+MB3k8FPHtPH2fshiKd55rioZkb+xaN+7A29WtqPQHRA=="
+        },
+        "peerDependencies": {
+          "@atcute/lexicons": "^2.0.0"
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/identity": "2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/lexicons": "2.0.0"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/identity-resolver@2.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-IKg1BDQAF2bIdN10DL6KAXmTjK+3enTU2IRbuani9TsFahBwGZ7O5FiVmTiL6QlGfauGNW5S0xNCOxWXWMoR2Q=="
+        },
+        "peerDependencies": {
+          "@atcute/identity": "^2.0.0",
+          "@atcute/lexicons": "^2.0.0"
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/identity": "2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/lexicons": "2.0.0",
+          "@atcute/util-fetch": "2.0.0(typescript@6.0.3)",
+          "valibot": "1.4.0(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/identity@2.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-YXFsggO7eJYifqkN85+kUXJE2a1iI9AyuzPTDjtS/4WE1Zs1/XiPkWmwZlAgtp+pYhVtjm3mJqy/h/mZ0OnIVw=="
+        },
+        "peerDependencies": {
+          "@atcute/lexicons": "^2.0.0"
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/lexicons": "2.0.0",
+          "valibot": "1.4.0(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/lexicons@2.0.0",
+      "packageKey": "@atcute/lexicons@2.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-fIlwP+TPEAGoF5aU5s+f8N5sOjOu8Mww/sQL1B57Dp2hj3G/EWG9XwOHPokzycBCgXx+UxIIrzZCGy8whsVDZw=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/uint8array": "1.1.1",
+          "@atcute/util-text": "1.3.1",
+          "@standard-schema/spec": "1.1.0",
+          "esm-env": "1.2.2"
+        }
+      }
+    },
+    {
+      "snapshotKey": "@atcute/multibase@1.2.0",
+      "packageKey": "@atcute/multibase@1.2.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-ZK2GRra+qIYq9nNuQB52m2ul0hOmCQEtPobGfTSUxm7pF0OGEkWGkWHugFhNEDVzHzTwPxHp6VGotdZFue4lYQ=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/uint8array": "1.1.1"
+        }
+      }
+    },
+    {
+      "snapshotKey": "@atcute/oauth-crypto@1.0.0(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-crypto@1.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-2UC1msk4PyUArk/5Pl8zgtz1T8O+LZdFfB8ENLHjQVYitpqzGj2ZpDJaWZvCF3Y8lly4KoeUHLpFPDzbP+3u+g=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/multibase": "1.2.0",
+          "@atcute/uint8array": "1.1.1",
+          "nanoid": "5.1.11",
+          "valibot": "1.4.1(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/oauth-keyset@0.1.1(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-keyset@0.1.1",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-BpaaXSuMawxILhWTOR0YIpKzFSA0MQC1W5Hn0HGE+giTqYFAKcdf0oA+2RZG9ZLVIzfO2txBsTeMpxB5qL6lEQ=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/oauth-crypto": "1.0.0(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/oauth-node-client@2.0.0(@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-node-client@2.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-1+q7eszInPXR/aTmYyyhW6RD+rnNTpHXF3vgum3mmCt44oSCTeKuzCBrR538LORpspgNwhopotvKJ1AN5UD4kQ=="
+        },
+        "peerDependencies": {
+          "@atcute/identity-resolver": "^2.0.0",
+          "@atcute/lexicons": "^2.0.0"
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/client": "5.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/identity": "2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/identity-resolver": "2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/lexicons": "2.0.0",
+          "@atcute/oauth-crypto": "1.0.0(typescript@6.0.3)",
+          "@atcute/oauth-keyset": "0.1.1(typescript@6.0.3)",
+          "@atcute/oauth-types": "1.0.0(typescript@6.0.3)",
+          "@atcute/util-fetch": "2.0.0(typescript@6.0.3)",
+          "nanoid": "5.1.11",
+          "valibot": "1.4.1(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/oauth-types@1.0.0(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-types@1.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-YOpjLU8H5PG6oKfgau+dx7rSmGsLxIA36MeGL7BDeopcyq80RqPSBAzOasEEsmbMRJ/nTsMRJhnmGkp3RCa/Zw=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/identity": "2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/lexicons": "2.0.0",
+          "@atcute/oauth-keyset": "0.1.1(typescript@6.0.3)",
+          "valibot": "1.4.1(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/uint8array@1.1.1",
+      "packageKey": "@atcute/uint8array@1.1.1",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-3LsC8XB8TKe9q/5hOA5sFuzGaIFdJZJNewC5OKa3o/eU6+K7JR6see9Zy2JbQERNVnRl11EzbNov1efgLMAs4g=="
+        }
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "@atcute/util-fetch@2.0.0(typescript@6.0.3)",
+      "packageKey": "@atcute/util-fetch@2.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-v+4aFQ/tuBqTV+URDJaFgm3mASWdglKXiPaGutJ1bs7QtQKmPZeesPY5MzW/a+MtI8GWCEJk8X9wOfalPOFSlg=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "valibot": "1.4.1(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/util-text@1.3.1",
+      "packageKey": "@atcute/util-text@1.3.1",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-MRgJXkx67znuBXuoAYCJkBZyd3OApL7zZlNf5kXhuoCXcdiu1nblRDycYTADSkym4epBSQWxh26kmI9sewaq6A=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "unicode-segmenter": "0.14.5"
+        }
+      }
+    },
+    {
+      "snapshotKey": "@standard-schema/spec@1.1.0",
+      "packageKey": "@standard-schema/spec@1.1.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="
+        }
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "esm-env@1.2.2",
+      "packageKey": "esm-env@1.2.2",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA=="
+        }
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "nanoid@5.1.11",
+      "packageKey": "nanoid@5.1.11",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-v+KEsUv2ps74PaSKv0gHTxTCgMXOIfBEbaqa6w6ISIGC7ZsvHN4N9oJ8d4cmf0n5oTzQz2SLmThbQWhjd/8eKg=="
+        },
+        "engines": {
+          "node": "^18 || >=20"
+        }
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "typescript@6.0.3",
+      "packageKey": "typescript@6.0.3",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw=="
+        },
+        "engines": {
+          "node": ">=14.17"
+        },
+        "hasBin": true
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "unicode-segmenter@0.14.5",
+      "packageKey": "unicode-segmenter@0.14.5",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-jHGmj2LUuqDcX3hqY12Ql+uhUTn8huuxNZGq7GvtF6bSybzH3aFgedYu/KTzQStEgt1Ra2F3HxadNXsNjb3m3g=="
+        }
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "valibot@1.4.0(typescript@6.0.3)",
+      "packageKey": "valibot@1.4.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-iC/x7fVcSyOwlm/VSt7RlHnzNGLGvR9GnxdifUeWoCJo0q4ZZvrVkIHC6faTlkxG47I2Y4UrFquPuVHCrOnrLg=="
+        },
+        "peerDependencies": {
+          "typescript": ">=5"
+        },
+        "peerDependenciesMeta": {
+          "typescript": {
+            "optional": true
+          }
+        }
+      },
+      "sourceSnapshot": {
+        "optionalDependencies": {
+          "typescript": "6.0.3"
+        }
+      }
+    },
+    {
+      "snapshotKey": "valibot@1.4.1(typescript@6.0.3)",
+      "packageKey": "valibot@1.4.1",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-klCmFTz2jeDluy9RwX+F884TCiogtdBJ/YaxSx1EOBYXa3NXNWj8kR1jjN8rzluwojJVWWaHJ4r1U5LfICnM3g=="
+        },
+        "peerDependencies": {
+          "typescript": ">=5"
+        },
+        "peerDependenciesMeta": {
+          "typescript": {
+            "optional": true
+          }
+        }
+      },
+      "sourceSnapshot": {
+        "optionalDependencies": {
+          "typescript": "6.0.3"
+        }
+      }
+    }
+  ],
+  "alreadyVerifiedOverlap": [
+    {
+      "snapshotKey": "@atcute/client@5.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/client@5.0.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__client@5.0.0/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/identity@2.0.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__identity@2.0.0/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@atcute/lexicons@2.0.0",
+      "packageKey": "@atcute/lexicons@2.0.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__lexicons@2.0.0/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@atcute/uint8array@1.1.1",
+      "packageKey": "@atcute/uint8array@1.1.1",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__uint8array@1.1.1/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@atcute/util-text@1.3.1",
+      "packageKey": "@atcute/util-text@1.3.1",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__util-text@1.3.1/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "unicode-segmenter@0.14.5",
+      "packageKey": "unicode-segmenter@0.14.5",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/unicode-segmenter@0.14.5/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@standard-schema/spec@1.1.0",
+      "packageKey": "@standard-schema/spec@1.1.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@standard-schema__spec@1.1.0/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "esm-env@1.2.2",
+      "packageKey": "esm-env@1.2.2",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/esm-env@1.2.2/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "valibot@1.4.0(typescript@6.0.3)",
+      "packageKey": "valibot@1.4.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/valibot@1.4.0/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "typescript@6.0.3",
+      "packageKey": "typescript@6.0.3",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/typescript@6.0.3/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/identity-resolver@2.0.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__identity-resolver@2.0.0/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@atcute/util-fetch@2.0.0(typescript@6.0.3)",
+      "packageKey": "@atcute/util-fetch@2.0.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__util-fetch@2.0.0/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "valibot@1.4.1(typescript@6.0.3)",
+      "packageKey": "valibot@1.4.1",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/valibot@1.4.1/package",
+      "sourceExactSRIMatch": true
+    },
+    {
+      "snapshotKey": "@atcute/multibase@1.2.0",
+      "packageKey": "@atcute/multibase@1.2.0",
+      "actualPackageDirectory": "/tmp/plugin127-complete-reference-packages/archives/@atcute__multibase@1.2.0/package",
+      "sourceExactSRIMatch": true
+    }
+  ],
+  "additionalUniquePackages": [
+    {
+      "snapshotKey": "@atcute/oauth-node-client@2.0.0(@atcute/identity-resolver@2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-node-client@2.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-1+q7eszInPXR/aTmYyyhW6RD+rnNTpHXF3vgum3mmCt44oSCTeKuzCBrR538LORpspgNwhopotvKJ1AN5UD4kQ=="
+        },
+        "peerDependencies": {
+          "@atcute/identity-resolver": "^2.0.0",
+          "@atcute/lexicons": "^2.0.0"
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/client": "5.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/identity": "2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/identity-resolver": "2.0.0(@atcute/identity@2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3))(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/lexicons": "2.0.0",
+          "@atcute/oauth-crypto": "1.0.0(typescript@6.0.3)",
+          "@atcute/oauth-keyset": "0.1.1(typescript@6.0.3)",
+          "@atcute/oauth-types": "1.0.0(typescript@6.0.3)",
+          "@atcute/util-fetch": "2.0.0(typescript@6.0.3)",
+          "nanoid": "5.1.11",
+          "valibot": "1.4.1(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/oauth-crypto@1.0.0(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-crypto@1.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-2UC1msk4PyUArk/5Pl8zgtz1T8O+LZdFfB8ENLHjQVYitpqzGj2ZpDJaWZvCF3Y8lly4KoeUHLpFPDzbP+3u+g=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/multibase": "1.2.0",
+          "@atcute/uint8array": "1.1.1",
+          "nanoid": "5.1.11",
+          "valibot": "1.4.1(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "nanoid@5.1.11",
+      "packageKey": "nanoid@5.1.11",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-v+KEsUv2ps74PaSKv0gHTxTCgMXOIfBEbaqa6w6ISIGC7ZsvHN4N9oJ8d4cmf0n5oTzQz2SLmThbQWhjd/8eKg=="
+        },
+        "engines": {
+          "node": "^18 || >=20"
+        }
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "@atcute/oauth-keyset@0.1.1(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-keyset@0.1.1",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-BpaaXSuMawxILhWTOR0YIpKzFSA0MQC1W5Hn0HGE+giTqYFAKcdf0oA+2RZG9ZLVIzfO2txBsTeMpxB5qL6lEQ=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/oauth-crypto": "1.0.0(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    },
+    {
+      "snapshotKey": "@atcute/oauth-types@1.0.0(typescript@6.0.3)",
+      "packageKey": "@atcute/oauth-types@1.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-YOpjLU8H5PG6oKfgau+dx7rSmGsLxIA36MeGL7BDeopcyq80RqPSBAzOasEEsmbMRJ/nTsMRJhnmGkp3RCa/Zw=="
+        }
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@atcute/identity": "2.0.0(@atcute/lexicons@2.0.0)(typescript@6.0.3)",
+          "@atcute/lexicons": "2.0.0",
+          "@atcute/oauth-keyset": "0.1.1(typescript@6.0.3)",
+          "valibot": "1.4.1(typescript@6.0.3)"
+        },
+        "transitivePeerDependencies": [
+          "typescript"
+        ]
+      }
+    }
+  ],
+  "executeInstallScripts": false,
+  "sourceReferenceCredit": 0,
+  "nativeProductCredit": 0,
+  "protectedSecurityCredit": 0,
+  "acquisitionState": "PROPOSED ONLY, no new package acquired"
+}
