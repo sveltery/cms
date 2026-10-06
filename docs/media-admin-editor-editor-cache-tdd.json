@@ -111,6 +111,26 @@
       "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-refactor.json",
       "bytes": 10980,
       "sha256": "6e117631813af6b11905b42e3efc39f34623ba593f7515e68af76b8bcd78d23c"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-byte-first-fixture-stop.log",
+      "bytes": 9428,
+      "sha256": "0f394909b60d77b165734ce72f9a27b9d1f4b77401207087cda05ae36c4a6cb4"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-byte-first-fixture-stop.json",
+      "bytes": 12242,
+      "sha256": "7bb8e2389bf4e50a874c38768f0d504e60bd20d6e807a7eae78325e6e7b68214"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-byte-current.log",
+      "bytes": 7933,
+      "sha256": "eb61f6a219b471894e6d18d5b4addd7266f6570e796e9075d44350b254ed4ca4"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-byte-current.json",
+      "bytes": 11407,
+      "sha256": "b4c900b5d8632b73985c724faad1d5c83ed4beb3977300aa8e0600deb595f005"
     }
   ],
   "refactor": {
@@ -121,5 +141,33 @@
     "failed": 3,
     "newNativeCachePassed": 2,
     "remaining": "The same three known canonical cursor-class failures."
+  },
+  "physicalReplacementAcceptance": {
+    "testFirstCommit": "dd9ae1e3",
+    "initial": {
+      "registered": 25,
+      "passed": 21,
+      "failed": 4,
+      "newCase": "Actual product route exists; own Native fixture lacked its /[id]/replace parameter binding. This is a framework prerequisite stop, zero product causal/Source credit."
+    },
+    "finiteFixtureChange": "Own controlled Native API binding now dispatches existing [id]/replace exports and passes supplied real Storage. Same actual Role.EDITOR controlled principal, origin, Native context and canonical writer remain unchanged; no server/live session/token/protected probe. Existing identical Native replacement/LocalStorage controls establish this fixture provenance.",
+    "current": {
+      "registered": 25,
+      "passed": 22,
+      "failed": 3,
+      "newPhysicalCasePassed": 1,
+      "productRepair": false,
+      "newCausalProductCredit": 0,
+      "OriginalSourceCallbacks": 0
+    },
+    "actualObservation": [
+      "Actual canonical persisted media and real LocalStorage byte replacement through complete pinned client and production replace API. Existing JPEG_4x4 with the same real trailing-byte replacement as existing canonical Native replacement acceptance.",
+      "Same media ID/storage key; persisted new computed content hash, dimensions and byte count; actual stored replacement bytes read back.",
+      "Actual QueryClient invalidateQueries triggers the Image observer read; Gallery stays disabled and sees the same cache hash. Exact calls are GET, PUT, GET; immutable stored attributes remain unchanged."
+    ],
+    "limits": [
+      "No actual browser crop/Images/R2 execution in this Node filesystem case.",
+      "Invalidation is explicit test-framework invocation, not actual approved child Detail/node-view/FieldHost UI. No full editor/save/hydration integration credit."
+    ]
   }
 }
