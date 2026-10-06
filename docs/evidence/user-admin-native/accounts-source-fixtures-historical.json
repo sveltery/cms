@@ -1,0 +1,91 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "notice": "notices/emdash-MIT.txt",
+  "scope": "Read-only Source auth adapter/helpers and relevant actual migration functions; no full ninety-migration Runner or Source Astro host claim.",
+  "files": [
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "local": "tests/fixtures/accounts/packages/core/src/database/validate.ts"
+    },
+    {
+      "source": "packages/core/src/database/dialect-helpers.ts",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "local": "tests/fixtures/accounts/packages/core/src/database/dialect-helpers.ts"
+    },
+    {
+      "source": "packages/core/src/database/types.ts",
+      "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "local": "tests/fixtures/accounts/packages/core/src/database/types.ts"
+    },
+    {
+      "source": "packages/core/src/db/adapters.ts",
+      "blob": "1f98d07ec556ee5897796cefb1f250a7a50b1272",
+      "sha256": "98c0bc2bd8aacc1a65c0f2679459bdc9b2bff428d38dc70498cbace71dbee9de",
+      "local": "tests/fixtures/accounts/packages/core/src/db/adapters.ts"
+    },
+    {
+      "source": "packages/core/src/database/migrations/037_credential_algorithm.ts",
+      "blob": "4185f250f702efe32887aa69bfa3898e898d95d5",
+      "sha256": "a4d749608420f5250a4462886d0fa6edde91d4d732565fbe829a905756620a1b",
+      "local": "tests/fixtures/accounts/packages/core/src/database/migrations/037_credential_algorithm.ts"
+    },
+    {
+      "source": "packages/core/src/database/migrations/009_user_disabled.ts",
+      "blob": "827db35e316bcf4af35ba7c36ea4d9436db837e1",
+      "sha256": "df12eb1b324686e8e3dd750ce1d0881dd276b9944ae74c97d12fd9ea6c61018b",
+      "local": "tests/fixtures/accounts/packages/core/src/database/migrations/009_user_disabled.ts"
+    },
+    {
+      "source": "packages/core/src/database/migrations/008_auth.ts",
+      "blob": "70bc0f799c59ce72fac69aad24d2fc9cdd9ce1c0",
+      "sha256": "7698709e8bdc5a3de32b84be22368982829bc94aef6ce258fa2e6197a7ca82ba",
+      "local": "tests/fixtures/accounts/packages/core/src/database/migrations/008_auth.ts"
+    },
+    {
+      "source": "packages/core/src/database/migrations/001_initial.ts",
+      "blob": "aba2d82b24a34a721814e90c00dc0e34cd009911",
+      "sha256": "3c91298a957d40f5b576dfd5012e3ce66480db95516add28d45a5669e651fee9",
+      "local": "tests/fixtures/accounts/packages/core/src/database/migrations/001_initial.ts"
+    },
+    {
+      "source": "packages/auth/src/types.ts",
+      "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "local": "tests/fixtures/accounts/packages/auth/src/types.ts"
+    },
+    {
+      "source": "packages/auth/src/tokens.ts",
+      "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+      "sha256": "9699e9636b3329812bc3743987ba4e36a5abab1a21dcf0dfffe03bf877bc215d",
+      "local": "tests/fixtures/accounts/packages/auth/src/tokens.ts"
+    },
+    {
+      "source": "packages/auth/src/magic-link/index.ts",
+      "blob": "1767804b45e1d3ca6d89d551484c354ce7092e2b",
+      "sha256": "a7c3eb4a17cad58979563a2c12c0701091bdd70b867e4c2a7a33e3dc77120dfe",
+      "local": "tests/fixtures/accounts/packages/auth/src/magic-link/index.ts"
+    },
+    {
+      "source": "packages/auth/src/invite.ts",
+      "blob": "2f216967177496fa515ee807db1a6bafcc9bbb09",
+      "sha256": "a9018b1c860b8a74ae34836831ca60b1aa6b4de0750ae4345a44671e726e9794",
+      "local": "tests/fixtures/accounts/packages/auth/src/invite.ts"
+    },
+    {
+      "source": "packages/auth/src/signup.ts",
+      "blob": "2c10e70dc8bc690f88724189fc76e8aea961136a",
+      "sha256": "cdabc4a0cbc28ad99486009879cf2420c96dbd8a4d5064fd43731c294afb0eb7",
+      "local": "tests/fixtures/accounts/packages/auth/src/signup.ts"
+    },
+    {
+      "source": "packages/auth/src/adapters/kysely.ts",
+      "blob": "7cb68baea14a9696296c8fc9c414abe95c8ea594",
+      "sha256": "ade818b1bc6ce264cbc3e0812ee10e384b7cca8c29806187a950e996abd07433",
+      "local": "tests/fixtures/accounts/packages/auth/src/adapters/kysely.ts"
+    }
+  ]
+}

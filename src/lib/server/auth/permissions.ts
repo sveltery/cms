@@ -1,11 +1,12 @@
 // Adapted from EmDash 1.1.0, MIT, Copyright 2026 Cloudflare Inc.
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.ts
-// See notices/emdash-MIT.txt. API token scope helpers remain deferred.
+// See notices/emdash-MIT.txt. Pure scope policy is supplied; token issuance remains unfinished.
 /**
  * Role-Based Access Control
  */
 
 import { Role, isRoleLevel, type RoleLevel } from "./roles.ts";
+import type { ApiTokenScope } from "./role-scopes.ts";
 
 /**
  * Permission definitions with minimum role required
@@ -183,4 +184,65 @@ export class PermissionError extends Error {
 		this.name = "PermissionError";
 		this.code = code;
 	}
+}
+
+// ---------------------------------------------------------------------------
+// API Token Scope ↔ Role mapping
+//
+// Maps each API token scope to the minimum RBAC role required to hold it.
+// Used at token issuance time to clamp granted scopes to the user's role.
+// ---------------------------------------------------------------------------
+
+/**
+ * Minimum role required for each API token scope.
+ *
+ * This is the authoritative mapping between the two authorization systems
+ * (RBAC roles and API token scopes). When issuing a token, the granted
+ * scopes must be intersected with the scopes allowed by the user's role.
+ */
+const SCOPE_MIN_ROLE: Record<Exclude<ApiTokenScope, `mcp:tools:${string}`>, RoleLevel> = {
+	"content:read": Role.SUBSCRIBER,
+	"content:write": Role.CONTRIBUTOR,
+	"media:read": Role.SUBSCRIBER,
+	"media:write": Role.CONTRIBUTOR,
+	"schema:read": Role.EDITOR,
+	"schema:write": Role.ADMIN,
+	"taxonomies:manage": Role.EDITOR,
+	"menus:manage": Role.EDITOR,
+	"settings:read": Role.EDITOR,
+	"settings:manage": Role.ADMIN,
+	"mcp:tools": Role.ADMIN,
+	"transfer:export": Role.ADMIN,
+	"transfer:analyze": Role.ADMIN,
+	"transfer:execute": Role.ADMIN,
+	admin: Role.ADMIN,
+};
+
+/**
+ * Return the maximum set of API token scopes a given role level may hold.
+ *
+ * Used at token issuance time (device flow, authorization code exchange)
+ * to enforce: effective_scopes = requested_scopes ∩ scopesForRole(role).
+ */
+export function scopesForRole(role: RoleLevel): ApiTokenScope[] {
+	// eslint-disable-next-line typescript/no-unsafe-type-assertion -- Object.entries loses tuple types; SCOPE_MIN_ROLE keys are ApiTokenScope by construction
+	const entries = Object.entries(SCOPE_MIN_ROLE) as [ApiTokenScope, RoleLevel][];
+	return entries.reduce<ApiTokenScope[]>((acc, [scope, minRole]) => {
+		if (role >= minRole) acc.push(scope);
+		return acc;
+	}, []);
+}
+
+/**
+ * Clamp a set of requested scopes to those permitted by a user's role.
+ *
+ * Returns the intersection of `requested` and the scopes the role allows.
+ * This is the central policy enforcement point: effective permissions =
+ * role permissions ∩ token scopes.
+ */
+export function clampScopes(requested: string[], role: RoleLevel): string[] {
+	const allowed = new Set<string>(scopesForRole(role));
+	return requested.filter(
+		(scope) => allowed.has(scope) || (scope.startsWith("mcp:tools:") && role >= Role.SUBSCRIBER),
+	);
 }
