@@ -47,7 +47,7 @@ export function createMediaLibraryRuntime(queryClient:QueryClient,options:MediaL
     };
   };
   const media=new QueryObserver<MediaListResult>(queryClient,mediaOptions());
-  const folders=new InfiniteQueryObserver<MediaFolderListResult,Error,InfiniteData<MediaFolderListResult>,MediaFolderListResult,readonly unknown[],string|undefined>(queryClient,folderOptions());
+  const folders=new InfiniteQueryObserver<MediaFolderListResult,Error,InfiniteData<MediaFolderListResult>,readonly unknown[],string|undefined>(queryClient,folderOptions());
   const currentFolder=new QueryObserver<MediaFolder>(queryClient,currentFolderOptions());
   const emit=()=>{if(!disposed)for(const listener of listeners)listener();};
   const resetPage=()=>{page=1;retainedTotalCount=0;};
