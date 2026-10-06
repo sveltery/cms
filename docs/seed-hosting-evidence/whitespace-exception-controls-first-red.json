@@ -1,0 +1,254 @@
+{
+  "controls": 24,
+  "pass": 17,
+  "fail": 7,
+  "ownedExactPaths": [
+    {
+      "path": "docs/seed-hosting-evidence/bounded-check-first.log",
+      "allowed": "blank-at-eof"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/copied-config-seven-first-green.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-whole-object-cache.log",
+      "allowed": "blank-at-eof"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log",
+      "allowed": "blank-at-eof"
+    }
+  ],
+  "results": [
+    {
+      "path": "docs/seed-hosting-evidence/bounded-check-first.log",
+      "problem": "blank-at-eof",
+      "permitted": true,
+      "exit": 2,
+      "expected": 0,
+      "passed": false,
+      "diagnostics": "docs/seed-hosting-evidence/bounded-check-first.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/bounded-check-first.log",
+      "problem": "blank-at-eol",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/bounded-check-first.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/bounded-check-first.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/bounded-check-first.log:1: space before tab in indent.\n+ \tliteral\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/copied-config-seven-first-green.log",
+      "problem": "blank-at-eof",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/copied-config-seven-first-green.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/copied-config-seven-first-green.log",
+      "problem": "blank-at-eol",
+      "permitted": true,
+      "exit": 2,
+      "expected": 0,
+      "passed": false,
+      "diagnostics": "docs/seed-hosting-evidence/copied-config-seven-first-green.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/copied-config-seven-first-green.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/copied-config-seven-first-green.log:1: space before tab in indent.\n+ \tliteral\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log",
+      "problem": "blank-at-eof",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log",
+      "problem": "blank-at-eol",
+      "permitted": true,
+      "exit": 2,
+      "expected": 0,
+      "passed": false,
+      "diagnostics": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log:1: space before tab in indent.\n+ \tliteral\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log",
+      "problem": "blank-at-eof",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log",
+      "problem": "blank-at-eol",
+      "permitted": true,
+      "exit": 2,
+      "expected": 0,
+      "passed": false,
+      "diagnostics": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log:1: space before tab in indent.\n+ \tliteral\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log",
+      "problem": "blank-at-eof",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log",
+      "problem": "blank-at-eol",
+      "permitted": true,
+      "exit": 2,
+      "expected": 0,
+      "passed": false,
+      "diagnostics": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log:1: space before tab in indent.\n+ \tliteral\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-whole-object-cache.log",
+      "problem": "blank-at-eof",
+      "permitted": true,
+      "exit": 2,
+      "expected": 0,
+      "passed": false,
+      "diagnostics": "docs/seed-hosting-evidence/original-whole-object-cache.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-whole-object-cache.log",
+      "problem": "blank-at-eol",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/original-whole-object-cache.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-whole-object-cache.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/original-whole-object-cache.log:1: space before tab in indent.\n+ \tliteral\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log",
+      "problem": "blank-at-eof",
+      "permitted": true,
+      "exit": 2,
+      "expected": 0,
+      "passed": false,
+      "diagnostics": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log",
+      "problem": "blank-at-eol",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log:1: space before tab in indent.\n+ \tliteral\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/unowned-whitespace-control.log",
+      "problem": "blank-at-eof",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/unowned-whitespace-control.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/unowned-whitespace-control.log",
+      "problem": "blank-at-eol",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/unowned-whitespace-control.log:1: trailing whitespace.\n+literal \n"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/unowned-whitespace-control.log",
+      "problem": "space-before-tab",
+      "permitted": false,
+      "exit": 2,
+      "expected": 2,
+      "passed": true,
+      "diagnostics": "docs/seed-hosting-evidence/unowned-whitespace-control.log:1: space before tab in indent.\n+ \tliteral\n"
+    }
+  ],
+  "sourceOrProductBehaviorCredit": 0
+}

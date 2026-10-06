@@ -67,6 +67,8 @@ export async function createRequiredScalarFieldsServer() {
       cp(join(checkout, 'src'), join(directory, 'src'), { recursive: true }),
       cp(join(checkout, 'package.json'), join(directory, 'package.json')),
       cp(join(checkout, 'tsconfig.json'), join(directory, 'tsconfig.json')),
+      cp(join(checkout, 'scripts/source-seed-vite.ts'), join(directory, 'scripts/source-seed-vite.ts')),
+      cp(join(checkout, 'scripts/source-seed-virtual-module.ts'), join(directory, 'scripts/source-seed-virtual-module.ts')),
       symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir')
     ]);
     await writeFile(join(directory, 'vite.config.ts'), `
@@ -74,7 +76,8 @@ import adapter from '@sveltejs/adapter-auto';
 import node from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-export default { plugins: [sveltekit({
+import { sourceSeedPlugin } from './scripts/source-seed-vite.ts';
+export default { plugins: [sourceSeedPlugin(), sveltekit({
   preprocess: vitePreprocess(), adapter: ${nodeTarget ? "node({ out: 'build/node' })" : 'adapter()'}, experimental: { remoteFunctions: true },
   compilerOptions: { experimental: { async: true } }
 })] };

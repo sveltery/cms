@@ -1,0 +1,88 @@
+{
+  "finding": "RAW-WHITESPACE01/P3",
+  "originalFullRangeExit": 2,
+  "originalDiagnostics": 91,
+  "exactRawReceiptSha256": "4ffc7f18e915d8617428fe82a6d26380f0f91b8541d1b1dbd3c4b013521969f1",
+  "exceptions": [
+    {
+      "path": "docs/seed-hosting-evidence/bounded-check-first.log",
+      "allowed": "blank-at-eof"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/copied-config-seven-first-green.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log",
+      "allowed": "blank-at-eol"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-whole-object-cache.log",
+      "allowed": "blank-at-eof"
+    },
+    {
+      "path": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log",
+      "allowed": "blank-at-eof"
+    }
+  ],
+  "actualGitControls": {
+    "pass": 24,
+    "fail": 0,
+    "initialPass": 17,
+    "initialFail": 7
+  },
+  "rawPreservation": [
+    {
+      "path": "docs/seed-hosting-evidence/bounded-check-first.log",
+      "bytes": 531,
+      "sha256": "d203243eba3d16003db0ad010ec808e84f46f120533420ff7adc968ce6d57b1e",
+      "unchangedExactOriginal581": true
+    },
+    {
+      "path": "docs/seed-hosting-evidence/copied-config-seven-first-green.log",
+      "bytes": 1702,
+      "sha256": "04d438db7b489d1eee77701c45a0f4efc4a1a363d5942a05708179ba3087dc8f",
+      "unchangedExactOriginal581": true
+    },
+    {
+      "path": "docs/seed-hosting-evidence/current924-hosting-production-export-first-red.log",
+      "bytes": 209081,
+      "sha256": "e49d03e6e4fe4586026f13ab3e90053883c8197b5758be8ebc5edda77b55183e",
+      "unchangedExactOriginal581": true
+    },
+    {
+      "path": "docs/seed-hosting-evidence/lazy-context-three-allocation-red.log",
+      "bytes": 3337,
+      "sha256": "4782f0a2bf9720ffbf6398ac77a17192914ea61b1980dbe6191f3290561eb163",
+      "unchangedExactOriginal581": true
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-four-workerd-first-kit-prerequisite.log",
+      "bytes": 8020,
+      "sha256": "99eed0546dfb19e7558d9309e9ca47186dce4849fb1500ec588128625c76957f",
+      "unchangedExactOriginal581": true
+    },
+    {
+      "path": "docs/seed-hosting-evidence/original-whole-object-cache.log",
+      "bytes": 227,
+      "sha256": "faec82ca9c109702d2163ff1b90c040b0d3f5cb8976ccfccce8f883efa3fdbe3",
+      "unchangedExactOriginal581": true
+    },
+    {
+      "path": "docs/seed-hosting-evidence/parent9a-whole-source-cache35.log",
+      "bytes": 227,
+      "sha256": "39bfe6635ffdf94fa62b8d9ef02fa5be88321a80b64195a79a32f45c93e8ec7d",
+      "unchangedExactOriginal581": true
+    }
+  ],
+  "sourceOrProductBehaviorCredit": 0,
+  "parent": "9a2270b87a0b91fd55d682eb11893dc1e3bad19e"
+}

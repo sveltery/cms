@@ -8,21 +8,22 @@ import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { cmsService } from '../../src/lib/server/database/service.ts';
+import { sql } from 'kysely';
 import { withRevision } from '../../src/lib/server/content/schema.ts';
 
 const checkout = fileURLToPath(new URL('../../', import.meta.url));
 /** @type {import('../../src/lib/server/database/service.ts').ServerPrincipal} */
 const principal = {
-  id: 'trash_fields_author',
+  id: 'scalar_fields_author',
   permissions: ['content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:delete_own']
 };
 
-export async function createTrashRestoreFieldsServer() {
+export async function createRequiredScalarFieldsServer() {
   const nodeTarget = process.env.SVELTERY_BROWSER_TARGET === 'node';
   // Other browser fixtures use Vite dev servers, which can set the worker's NODE_ENV.
-  // This fixture verifies production Kit behavior, including its production-only hidden-field probe.
+  // This fixture verifies production Kit behavior, including direct field descriptor spreads.
   const fixtureEnvironment = { ...process.env, NODE_ENV: 'production' };
-  const directory = await mkdtemp(join(tmpdir(), 'cms-trash-fields-'));
+  const directory = await mkdtemp(join(tmpdir(), 'cms-required-scalar-'));
   const databasePath = join(directory, 'content.sqlite');
   /** @type {import('node:child_process').ChildProcess | undefined} */
   let server;
@@ -48,16 +49,17 @@ export async function createTrashRestoreFieldsServer() {
     try {
       await migrateCms(seed);
       const registry = new SchemaRegistry(seed);
-      await registry.createCollection({ slug: 'post', label: 'Post' });
-      await registry.createField('post', { slug: 'title', label: 'Title', type: 'string' });
+      await registry.createCollection({ slug: 'scalars', label: 'Scalars' });
+      await registry.createField('scalars', { slug: 'string', label: 'Required string', type: 'string', required: true, defaultValue: 'Metadata default', validation: { minLength: 0 } });
+      await registry.createField('scalars', { slug: 'text', label: 'Required text', type: 'text', required: true, defaultValue: '', validation: { minLength: 0 } });
+      await registry.createField('scalars', { slug: 'optional', label: 'Optional text', type: 'text', defaultValue: 'Optional default' });
+      await registry.createCollection({ slug: 'legacy', label: 'Legacy' });
+      for (const type of ['string', 'text']) await registry.createField('legacy', { slug: type, label: 'Legacy ' + type, type, defaultValue: 'Legacy fallback' });
+      await registry.createField('legacy', { slug: 'detail', label: 'Detail', type: 'text' });
       const service = cmsService(seed, principal);
-      for (const name of ['native', 'enhanced', 'missing']) {
-        const entry = await service.createDraft({ type: 'post', data: { title: name } });
-        await service.deleteDraft({ type: 'post', id: entry.id, locale: entry.locale,
-          expected: { version: entry.version, updatedAt: entry.updatedAt } });
-        const trashed = withRevision(await service.getTrashedDraft({ type: 'post', id: entry.id, locale: entry.locale }));
-        inputs[name] = { collection: 'post', id: trashed.id, locale: trashed.locale, _rev: trashed._rev };
-      }
+      const legacy = await service.createDraft({ type: 'legacy', data: { string: '', text: null, detail: 'Old detail' } });
+      await sql`UPDATE _cms_fields SET required = 1 WHERE collection_id = (SELECT id FROM _cms_collections WHERE slug = 'legacy') AND slug IN ('string', 'text')`.execute(seed.db);
+      inputs.legacy = { collection: 'legacy', ...withRevision(legacy) };
     } finally {
       await seed.close();
     }
@@ -65,8 +67,6 @@ export async function createTrashRestoreFieldsServer() {
       cp(join(checkout, 'src'), join(directory, 'src'), { recursive: true }),
       cp(join(checkout, 'package.json'), join(directory, 'package.json')),
       cp(join(checkout, 'tsconfig.json'), join(directory, 'tsconfig.json')),
-      cp(join(checkout, 'scripts/source-seed-vite.ts'), join(directory, 'scripts/source-seed-vite.ts')),
-      cp(join(checkout, 'scripts/source-seed-virtual-module.ts'), join(directory, 'scripts/source-seed-virtual-module.ts')),
       symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir')
     ]);
     await writeFile(join(directory, 'vite.config.ts'), `
@@ -74,8 +74,7 @@ import adapter from '@sveltejs/adapter-auto';
 import node from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { sourceSeedPlugin } from './scripts/source-seed-vite.ts';
-export default { plugins: [sourceSeedPlugin(), sveltekit({
+export default { plugins: [sveltekit({
   preprocess: vitePreprocess(), adapter: ${nodeTarget ? "node({ out: 'build/node' })" : 'adapter()'}, experimental: { remoteFunctions: true },
   compilerOptions: { experimental: { async: true } }
 })] };
@@ -84,45 +83,47 @@ export default { plugins: [sourceSeedPlugin(), sveltekit({
 import { openSqlite } from '$lib/server/database/sqlite';
 const database = openSqlite(${JSON.stringify(databasePath)});
 export const handle = ({ event, resolve }) => {
-  event.locals.cms = { database, mutationsEnabled: true,
-    principal: event.cookies.get('trash-fields-session') === 'author' ? ${JSON.stringify(principal)} : null };
+  event.locals.cms = { database, ...(event.cookies.get('scalar-fields-write-gate') === 'enabled' ? { mutationsEnabled: true } : {}),
+    principal: event.cookies.get('scalar-fields-session') === 'author' ? ${JSON.stringify(principal)} : null };
   return resolve(event);
 };
 `);
     await writeFile(join(directory, 'src/routes/+page.server.ts'), `
-const inputs = ${JSON.stringify(inputs)};
-export const load = ({ url }) => ({
-  input: inputs[url.searchParams.get('case')] ?? inputs.native,
-  missing: url.searchParams.has('missing')
+const legacy = ${JSON.stringify(inputs.legacy)};
+export const load = ({ url }) => ({ legacy,
+  update: url.searchParams.has('update'), empty: url.searchParams.get('empty') ?? 'string'
 });
 `);
     await writeFile(join(directory, 'src/routes/+page.svelte'), `
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { restoreContent } from '$lib/content.remote';
+  import { createContent, updateContent } from '$lib/content.remote';
   let { data } = $props();
-  restoreContent.fields.set(data.input);
+  let failure = $state('');
+  const createData = $derived(JSON.stringify({ string: data.empty === 'string' ? '' : 'Valid', text: data.empty === 'text' ? '' : 'Valid' }));
+  const updateData = $derived(JSON.stringify(data.empty === 'detail' ? { detail: 'Changed detail' } : { [data.empty]: '' }));
   onMount(() => { document.body.dataset.hydrated = 'true'; });
+  async function submit({ submit }) { failure = ''; try { await submit(); } catch (error) { failure = error.body?.code ?? 'UNEXPECTED'; } }
 </script>
-<h1>Isolated native restore fields</h1>
-<form {...restoreContent}>
-  {#if data.missing}
-    <input {...restoreContent.fields.collection.as('hidden')} />
-    <input {...restoreContent.fields.id.as('hidden')} />
-    <input {...restoreContent.fields.locale.as('hidden')} />
-    <input {...restoreContent.fields._rev.as('hidden')} />
-  {:else}
-    <input {...restoreContent.fields.collection.as('hidden', data.input.collection)} />
-    <input {...restoreContent.fields.id.as('hidden', data.input.id)} />
-    <input {...restoreContent.fields.locale.as('hidden', data.input.locale)} />
-    <input {...restoreContent.fields._rev.as('hidden', data.input._rev)} />
-  {/if}
-  <button>Restore draft</button>
-</form>
-{#each restoreContent.fields.allIssues() ?? [] as issue}
-  <p role="alert" data-path={issue.path.join('.')}>{issue.message}</p>
-{/each}
-{#if restoreContent.result}<output>{JSON.stringify(restoreContent.result)}</output>{/if}
+<h1>Isolated required scalar descriptors</h1>
+{#if data.update}
+  <form {...updateContent.enhance(submit)}>
+    <input {...updateContent.fields.collection.as('hidden', 'legacy')} />
+    <input {...updateContent.fields.id.as('hidden', data.legacy.id)} />
+    <input {...updateContent.fields._rev.as('hidden', data.legacy._rev)} />
+    <input {...updateContent.fields.data.as('hidden', updateData)} />
+    <button>Update draft</button>
+  </form>
+  {#if updateContent.result}<output>{JSON.stringify(updateContent.result)}</output>{/if}
+{:else}
+  <form {...createContent.enhance(submit)}>
+    <input {...createContent.fields.collection.as('hidden', 'scalars')} />
+    <input {...createContent.fields.data.as('hidden', createData)} />
+    <button>Create draft</button>
+  </form>
+  {#if createContent.result}<output>{JSON.stringify(createContent.result)}</output>{/if}
+{/if}
+{#if failure}<p role="alert">{failure}</p>{/if}
 `);
     let buildOutput = '';
     const buildProcess = spawn(process.execPath, [join(checkout, 'node_modules/vite/bin/vite.js'), 'build'], {
@@ -131,7 +132,7 @@ export const load = ({ url }) => ({
     build = buildProcess;
     for (const stream of [buildProcess.stdout, buildProcess.stderr]) stream?.on('data', chunk => { buildOutput = (buildOutput + chunk).slice(-20_000); });
     const result = await new Promise((resolve, reject) => { buildProcess.once('exit', resolve); buildProcess.once('error', reject); });
-    if (result !== 0) throw new Error(`Native restore fixture build failed (${result}):\n${buildOutput}`);
+    if (result !== 0) throw new Error(`Required scalar fixture build failed (${result}):\n${buildOutput}`);
     await writeFile(join(directory, 'preview-runner.mjs'), nodeTarget ? `
 import { createServer } from 'node:http';
 const server = createServer();
@@ -155,10 +156,10 @@ process.send(server.resolvedUrls.local[0]);
     for (const stream of [previewProcess.stdout, previewProcess.stderr]) stream?.on('data', chunk => { buildOutput = (buildOutput + chunk).slice(-20_000); });
     /** @type {Promise<string>} */
     const started = new Promise((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error(`Native restore fixture startup timed out:\n${buildOutput}`)), 15_000);
+      const timer = setTimeout(() => reject(new Error(`Required scalar fixture startup timed out:\n${buildOutput}`)), 15_000);
       previewProcess.once('message', value => { clearTimeout(timer); resolve(String(value)); });
       previewProcess.once('error', error => { clearTimeout(timer); reject(error); });
-      previewProcess.once('exit', code => { clearTimeout(timer); reject(new Error(`Native restore fixture exited (${code}):\n${buildOutput}`)); });
+      previewProcess.once('exit', code => { clearTimeout(timer); reject(new Error(`Required scalar fixture exited (${code}):\n${buildOutput}`)); });
     });
     const baseURL = await started;
     const { manifest } = await import(pathToFileURL(join(directory, '.svelte-kit/output/server/manifest.js')).href);
@@ -167,7 +168,7 @@ process.send(server.resolvedUrls.local[0]);
       const { default: exports } = await load();
       for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
     }
-    return { baseURL, inputs, ids, close };
+    return { baseURL, inputs, ids, databasePath, close };
   } catch (error) {
     await close();
     throw error;
