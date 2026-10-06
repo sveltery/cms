@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/canonical-storage.test.ts (4 tests | 1 failed) 113ms
+     × creates the declared expression index on canonical storage and removes only orphaned declarations 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/canonical-storage.test.ts > actual canonical plugin declared indexes > creates the declared expression index on canonical storage and removes only orphaned declarations
+AssertionError: expected [ { …(2) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "error": "no such table: main._plugin_storage",
++     "index": "idx_plugin_plugin_records_score",
++   },
++ ]
+
+ ❯ tests/plugin-runtime/canonical-storage.test.ts:53:28
+     51|     const { database, db } = await fixture();
+     52|     const created = await createStorageIndexes(db, 'plugin', 'records'…
+     53|     expect(created.errors).toEqual([]);
+       |                            ^
+     54|     expect(created.created).toEqual(['idx_plugin_plugin_records_score'…
+     55|     expect(await getPluginIndexStatus(db, 'plugin')).toEqual([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  01:50:15
+   Duration  679ms (transform 258ms, setup 0ms, import 425ms, tests 113ms, environment 0ms)
+

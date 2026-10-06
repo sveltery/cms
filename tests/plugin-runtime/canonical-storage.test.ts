@@ -44,3 +44,19 @@ describe('actual canonical plugin document storage', () => {
     expect(() => new PluginStorageRepository(derived, 'plugin', 'records', [])).toThrow('registered CMS database owner');
   });
 });
+
+import { createStorageIndexes, getPluginIndexStatus, removeOrphanedIndexes } from '../../src/lib/server/plugins/storage-indexes.ts';
+describe('actual canonical plugin declared indexes', () => {
+  it('creates the declared expression index on canonical storage and removes only orphaned declarations', async () => {
+    const { database, db } = await fixture();
+    const created = await createStorageIndexes(db, 'plugin', 'records', ['score']);
+    expect(created.errors).toEqual([]);
+    expect(created.created).toEqual(['idx_plugin_plugin_records_score']);
+    expect(await getPluginIndexStatus(db, 'plugin')).toEqual([
+      expect.objectContaining({ collection: 'records', indexName: 'idx_plugin_plugin_records_score', fields: ['score'] })
+    ]);
+    expect(await database.db.selectFrom('_cms_plugin_indexes').selectAll().execute()).toHaveLength(1);
+    expect((await removeOrphanedIndexes(db, 'plugin', 'records', [])).errors).toEqual([]);
+    expect(await getPluginIndexStatus(db, 'plugin')).toEqual([]);
+  });
+});
