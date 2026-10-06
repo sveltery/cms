@@ -30,7 +30,9 @@ describe('configured Native plugin kernel with actual canonical state and option
    'plugin:deactivate': async (_event, ctx) => { await ctx.kv.set('cleanup', true); calls.push('deactivate'); }
   } }]);
   await value.setPluginStatus('configured', 'inactive');
-  expect(value.manager.isActive('configured')).toBe(false); expect(value.hooks.getRegisteredHooks()).toEqual([]);
+  expect(value.manager.isActive('configured')).toBe(false);
+  expect(value.hooks.hasHooks('plugin:activate')).toBe(false);
+  expect(value.hooks.hasHooks('plugin:deactivate')).toBe(false);
   await value.setPluginStatus('configured', 'active'); expect(value.manager.isActive('configured')).toBe(true);
   expect(await value.createContext('configured').kv.get('cleanup')).toBe(true); expect(calls).toEqual(['deactivate', 'activate']);
  });

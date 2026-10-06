@@ -9,6 +9,8 @@ import { CronExecutor } from './cron.ts';
 import { definePlugin } from './define-plugin.ts';
 import { pluginSourceDatabase } from './database.ts';
 import { EmailPipeline } from './email.ts';
+import { DEV_CONSOLE_EMAIL_PLUGIN_ID, devConsoleEmailDeliver } from './email-console.ts';
+import { DEFAULT_COMMENT_MODERATOR_PLUGIN_ID, defaultCommentModerate } from '../comments/upstream/comments/moderator.ts';
 import { createHookPipeline, resolveExclusiveHooks, type HookPipeline } from './hooks.ts';
 import { handlePluginList } from './handlers.ts';
 import { disableRuntimePlugin, enableRuntimePlugin } from './lifecycle.ts';
@@ -46,6 +48,7 @@ export interface ConfiguredPluginRuntimeOptions extends Omit<PluginContextFactor
 /** Configured startup is implicitly active when no state exists; no install or activation write. */
 export class CmsPluginRuntime {
   readonly configuredPlugins: ResolvedPlugin[];
+  private readonly allPipelinePlugins: ResolvedPlugin[];
   readonly sandboxedPluginEntries: SandboxedPluginEntry[] = [];
   readonly email: EmailPipeline;
   readonly cronExecutor: CronExecutor;
@@ -65,6 +68,22 @@ export class CmsPluginRuntime {
 
   private constructor(private readonly options: ConfiguredPluginRuntimeOptions, plugins: ResolvedPlugin[]) {
     this.configuredPlugins = plugins;
+    this.allPipelinePlugins = [...plugins];
+    // Source gates console delivery on the real build development flag. An
+    // unbundled Node host has no such flag and receives no console provider.
+    if (import.meta.env?.DEV) {
+      try {
+        const plugin = definePlugin({ id: DEV_CONSOLE_EMAIL_PLUGIN_ID, version: '0.0.0',
+          capabilities: ['hooks.email-transport:register'],
+          hooks: { 'email:deliver': { exclusive: true, handler: devConsoleEmailDeliver } } });
+        this.allPipelinePlugins.push(plugin); this.enabled.add(plugin.id);
+      } catch (error) { console.warn('[email] Failed to register dev console email provider:', error); }
+    }
+    try {
+      const plugin = definePlugin({ id: DEFAULT_COMMENT_MODERATOR_PLUGIN_ID, version: '0.0.0', capabilities: ['users:read'],
+        hooks: { 'comment:moderate': { exclusive: true, handler: defaultCommentModerate } } });
+      this.allPipelinePlugins.push(plugin); this.enabled.add(plugin.id);
+    } catch (error) { console.warn('[comments] Failed to register default moderator:', error); }
     this.factoryOptions = { ...options, db: this.db, getDb: () => this.db };
     this.pipeline = createHookPipeline([], this.factoryOptions);
     this.email = new EmailPipeline(this.pipeline);
@@ -116,7 +135,7 @@ export class CmsPluginRuntime {
   }
 
   private async rebuildHookPipeline(): Promise<void> {
-    const pipeline = createHookPipeline(this.configuredPlugins.filter(plugin => this.enabled.has(plugin.id)), this.factoryOptions);
+    const pipeline = createHookPipeline(this.allPipelinePlugins.filter(plugin => this.enabled.has(plugin.id)), this.factoryOptions);
     const options = new OptionsRepository(this.db);
     await resolveExclusiveHooks({ pipeline, isActive: id => this.enabled.has(id),
       getOption: key => options.get<string>(key),
@@ -125,7 +144,8 @@ export class CmsPluginRuntime {
         return new Map([...values].filter((entry): entry is [string, string] => typeof entry[1] === 'string'));
       },
       setOption: (key, value) => options.set(key, value), deleteOption: key => options.delete(key),
-      preferredHints: this.options.preferredHints, fallbackProviders: this.options.fallbackProviders });
+      preferredHints: this.options.preferredHints,
+      fallbackProviders: new Set([DEFAULT_COMMENT_MODERATOR_PLUGIN_ID, ...this.options.fallbackProviders ?? []]) });
     pipeline.setContextFactory({ emailPipeline: this.email, cronReschedule: () => this.scheduler?.reschedule() });
     this.email.setPipeline(pipeline);
     this.pipeline = pipeline;

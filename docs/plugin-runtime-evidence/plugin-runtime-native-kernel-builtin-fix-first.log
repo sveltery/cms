@@ -1,0 +1,36 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/kernel/configured.test.ts (3 tests | 1 failed) 104ms
+     × retains deactivate access through cleanup and rebuilds the real hook pipeline on each transition 26ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/kernel/configured.test.ts > configured Native plugin kernel with actual canonical state and options > retains deactivate access through cleanup and rebuilds the real hook pipeline on each transition
+AssertionError: expected [ 'email:deliver', 'comment:moderate' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "email:deliver",
++   "comment:moderate",
++ ]
+
+ ❯ tests/plugin-runtime/kernel/configured.test.ts:33:102
+     31|   } }]);
+     32|   await value.setPluginStatus('configured', 'inactive');
+     33|   expect(value.manager.isActive('configured')).toBe(false); expect(val…
+       |                                                                                                      ^
+     34|   await value.setPluginStatus('configured', 'active'); expect(value.ma…
+     35|   expect(await value.createContext('configured').kv.get('cleanup')).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 5 passed (6)
+   Start at  02:49:47
+   Duration  2.32s (transform 1.08s, setup 0ms, import 1.89s, tests 191ms, environment 0ms)
+
