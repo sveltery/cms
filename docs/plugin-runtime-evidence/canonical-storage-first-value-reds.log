@@ -1,0 +1,50 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/canonical-storage.test.ts (3 tests | 2 failed) 98ms
+     × keeps a nested document list inside the actual outer transaction and rolls it back 32ms
+     × does not grant a canonical writer to an unregistered derived namespace handle 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/canonical-storage.test.ts > actual canonical plugin document storage > keeps a nested document list inside the actual outer transaction and rolls it back
+AssertionError: expected [Function] to throw error including 'outer rollback' but got 'Nested owner batch escaped transaction'
+
+Expected: "outer rollback"
+Received: "Nested owner batch escaped transaction"
+
+ ❯ tests/plugin-runtime/canonical-storage.test.ts:38:8
+     36|         throw new Error('outer rollback');
+     37|       } finally { inside = false; }
+     38|     })).rejects.toThrow('outer rollback');
+       |        ^
+     39|     expect(await database.db.selectFrom('_cms_plugin_storage').selectA…
+     40|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/plugin-runtime/canonical-storage.test.ts > actual canonical plugin document storage > does not grant a canonical writer to an unregistered derived namespace handle
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/canonical-storage.test.ts:44:81
+     42|     const { db } = await fixture();
+     43|     const derived = db.withPlugin({ transformQuery: args => args.node,…
+     44|     expect(() => new PluginStorageRepository(derived, 'plugin', 'recor…
+       |                                                                                 ^
+     45|   });
+     46| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  01:45:14
+   Duration  624ms (transform 250ms, setup 0ms, import 407ms, tests 98ms, environment 0ms)
+
