@@ -1,0 +1,220 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "baselineCodeHead": "487de3124eb8675798bab68d2a66cc0569dccfc3",
+  "sourceCausalCredit": 0,
+  "referenceNativeParityCredit": 0,
+  "nativeReachedD1ValueReds": 3,
+  "records": [
+    {
+      "name": "whole-initial",
+      "receipt": "/tmp/media-usage-maintenance-whole-baseline.log",
+      "bytes": 11993,
+      "sha256": "4b0f2e9798041de27ef8da415419312a41605d3d85c0210c8dae51435bb030f1",
+      "exitCode": 1,
+      "families": 25,
+      "registeredCallbacks": 0,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "generated-Kit prerequisite stop; zero behavioral credit"
+    },
+    {
+      "name": "whole-import",
+      "receipt": "/tmp/media-usage-maintenance-whole-baseline-import.log",
+      "bytes": 29195,
+      "sha256": "96b3211134de4f00d14cfc794414d1cb3f128118f21acee301e140265752c0c1",
+      "exitCode": 1,
+      "families": 25,
+      "registeredCallbacks": 0,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "absent Native modules and external imports; zero behavioral credit"
+    },
+    {
+      "name": "whole-literal-reference",
+      "receipt": "/tmp/media-usage-maintenance-whole-reference-closure-first.log",
+      "bytes": 6946,
+      "sha256": "dd769c3ff1753be20b4eafe9736bafefeb98c9c43cae2b3341ae9d0bd3dd2b3d",
+      "exitCode": 1,
+      "families": 28,
+      "registeredCallbacks": 230,
+      "passedCallbacks": 229,
+      "originalSkippedCallbacks": 1,
+      "note": "22 passed files, 6 import stops; literal Source reference only, zero Native parity credit"
+    },
+    {
+      "name": "native-node-phase-controls",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-node-first.log",
+      "bytes": 228,
+      "sha256": "8f52b05f639ca76748f5e5634ef4abd25d32419fca66536372a6f21a515323e4",
+      "exitCode": 0,
+      "families": 3,
+      "registeredCallbacks": 8,
+      "passedCallbacks": 8,
+      "originalSkippedCallbacks": 0,
+      "note": "actual Native canonical work/reconciliation/deletion controls; no Source causal-red credit"
+    },
+    {
+      "name": "native-d1-phase-baseline",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-first.log",
+      "bytes": 8787,
+      "sha256": "21c9862e561b202f91c59373ce90ae0a8e68670eb2d4ee6eaf9f0c304b167e77",
+      "exitCode": 1,
+      "families": 1,
+      "registeredCallbacks": 3,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "3 reached Native value reds: claimed callbacks return retry instead of progress"
+    },
+    {
+      "name": "native-d1-persisted-baseline",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-state-baseline.log",
+      "bytes": 9985,
+      "sha256": "d04a55ef4898adee5437c6763958e4dde897c46701a30aba4b9bfc5d99ede8b6",
+      "exitCode": 1,
+      "families": 1,
+      "registeredCallbacks": 3,
+      "passedCallbacks": 0,
+      "originalSkippedCallbacks": 0,
+      "note": "same 3 assertions unchanged; supplemental actual persisted checkpoint/lease/work diagnostics"
+    },
+    {
+      "name": "front-adapter-whole-test-first",
+      "receipt": "/tmp/media-usage-maintenance-front-adapter-whole-baseline.log",
+      "bytes": 1252,
+      "sha256": "3071f1e805fee732a6e8a2cf889d88226978b9f8cd88fa215173873ee7c88fcc",
+      "exitCode": 1,
+      "families": 2,
+      "registeredCallbacks": 7,
+      "passedCallbacks": 7,
+      "originalSkippedCallbacks": 0,
+      "note": "Original Source DO mock family reference-only; original collection-recreate-D1 cloudflare:test import stop, zero Native credit"
+    },
+    {
+      "name": "native-d1-phase-first-implementation",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-phase-first-implementation.log",
+      "bytes": 228,
+      "sha256": "2ff7cd33019280df0e3a7b666ab298b94f9a7e665e3f5e7e7509bede2be99b17",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 3,
+      "passedCallbacks": 3,
+      "originalSkippedCallbacks": 0,
+      "note": "Original three actual Native progress reds now green; Source D1 callback identity credit remains zero"
+    },
+    {
+      "name": "native-d1-stored-rollback-observer-first",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-stored-rollback-observers-first.log",
+      "bytes": 1502,
+      "sha256": "334604a7f1380dd0e8aa1bd6dba1ef6354c17b0a015f69e4c35b9ccc2b13dc80",
+      "exitCode": 1,
+      "families": 1,
+      "registeredCallbacks": 6,
+      "passedCallbacks": 5,
+      "originalSkippedCallbacks": 0,
+      "note": "Two real checkpoint rollback controls green; one new reached Native observer-ID red from independently observed nested fence builder"
+    },
+    {
+      "name": "native-d1-stored-rollback-observer-exact",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-stored-rollback-observers-exact.log",
+      "bytes": 228,
+      "sha256": "e57f5dab550053b958fc65c6318ae7836fa73c668b36deed7ac2a5170bf5f939",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 6,
+      "passedCallbacks": 6,
+      "originalSkippedCallbacks": 0,
+      "note": "Same observer assertion green after normal Kysely expression-builder nesting; no assertions/receipts/logs filtered"
+    },
+    {
+      "name": "native-node-after-fixed-phases",
+      "receipt": "/tmp/media-usage-maintenance-native-node-after-fixed-phases.log",
+      "bytes": 228,
+      "sha256": "0bf7238b4f2c4d7acd42b765a3f20f1949009a1070488445770a22f4480cb8df",
+      "exitCode": 0,
+      "families": 3,
+      "registeredCallbacks": 8,
+      "passedCallbacks": 8,
+      "originalSkippedCallbacks": 0,
+      "note": "Real canonical Node callback controls retained unchanged after finite D1 branch"
+    },
+    {
+      "name": "compile-review-v2",
+      "receipt": "/tmp/media-usage-maintenance-deletion-plan-compile-review-v2.log",
+      "bytes": 227,
+      "sha256": "364d48c5376a3834f8bc71fb49d2f6abac312d76f0c328c4368670fb1d7fc44d",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 1,
+      "passedCallbacks": 1,
+      "originalSkippedCallbacks": 0,
+      "note": "Compile-only review harness, zero product behavioral credit; consistent existing-cursor fixture, original packet retained exact"
+    },
+    {
+      "name": "native-d1-final-state-receipt",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-final-state-receipt.log",
+      "bytes": 228,
+      "sha256": "bc0f96f9393934d26de5364e75e83d1590735afb4b0886ef2984390b425f4039",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 6,
+      "passedCallbacks": 6,
+      "originalSkippedCallbacks": 0,
+      "note": "Same six genuine Native Workerd controls, all actual stored-state receipts persisted; Source callback identity credit zero"
+    }
+  ],
+  "d1PersistedState": [
+    {
+      "phase": "work",
+      "state": "retry",
+      "attemptCount": 1,
+      "leaseToken": null,
+      "leaseExpiresAt": null,
+      "workCursor": null,
+      "sourceKey": null,
+      "occurrenceCursor": null,
+      "lastErrorCode": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+      "remainingWorkRows": 1
+    },
+    {
+      "phase": "sources",
+      "state": "retry",
+      "attemptCount": 1,
+      "leaseToken": null,
+      "leaseExpiresAt": null,
+      "workCursor": null,
+      "sourceKey": null,
+      "occurrenceCursor": null,
+      "lastErrorCode": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+      "remainingWorkRows": 0
+    },
+    {
+      "phase": "status",
+      "state": "retry",
+      "attemptCount": 1,
+      "leaseToken": null,
+      "leaseExpiresAt": null,
+      "workCursor": null,
+      "sourceKey": null,
+      "occurrenceCursor": null,
+      "lastErrorCode": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+      "remainingWorkRows": 0
+    }
+  ],
+  "nativeObserverBaselineReds": 1,
+  "qualifiedNativeD1Phases": [
+    "work",
+    "sources",
+    "status"
+  ],
+  "remainingUnqualifiedNativePhases": [
+    "fence",
+    "registry",
+    "table",
+    "finalize"
+  ],
+  "nativeD1CurrentStoredStateReceipt": {
+    "path": "parity/emdash/media-usage-maintenance-source/native-d1-controlled-state-receipts.json",
+    "bytes": 3036,
+    "sha256": "375d70beb9c99c55384b7fc2b13ed9532894ad0afda50ca1f59a2f870eb388c9"
+  }
+}
