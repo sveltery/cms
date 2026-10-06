@@ -39,10 +39,18 @@ it('invokes the actual field-discovery error constructor in unchanged direct Nod
 
 it('preserves the complete Source error own-field order, mutable descriptors, undefined and subclass semantics', () => {
   const Original = constructor(source), Native = constructor(native);
-  for (const arguments_ of [[], ['message', undefined], ['message', 'INVALID_REPEATER_VALIDATION']]) {
+  const reference = { reference: 'actual shared JavaScript constructor argument' };
+  const cause = new Error('Unused third constructor argument');
+  for (const arguments_ of [[], ['message', undefined], ['message', 'INVALID_REPEATER_VALIDATION'], ['message', reference, { cause }]]) {
     const expected = new Original(...arguments_), actual = new Native(...arguments_);
     expect(descriptors(actual)).toEqual(descriptors(expected));
     expect(Object.keys(actual)).toEqual(Object.keys(expected));
+    expect(Object.hasOwn(actual, 'cause')).toBe(Object.hasOwn(expected, 'cause'));
+    if (arguments_[1] === reference) {
+      expect(Reflect.get(actual, 'code')).toBe(reference);
+      expect(Reflect.get(expected, 'code')).toBe(reference);
+      expect(Object.hasOwn(actual, 'cause')).toBe(false);
+    }
     actual.code = expected.code = 'UNSUPPORTED_BLOCK_DEFINITION';
     expect(descriptors(actual)).toEqual(descriptors(expected));
     class OriginalChild extends Original { child = 1; }
