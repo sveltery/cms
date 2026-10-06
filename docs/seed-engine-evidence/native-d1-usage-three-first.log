@@ -1,0 +1,52 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts (3 tests | 2 failed) 1160ms
+   × D1: returns the actual committed new source and current usage without a callback transaction 796ms
+   × D1: replaces only the expected generation and reports the real current source after a stale attempt 170ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: returns the actual committed new source and current usage without a callback transaction
+AssertionError: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts:30:25
+     28|  const f=await fixture();try{
+     29|   const outcome=await f.repo.replaceSourceIfMatching(f.source,[f.occur…
+     30|   expect(outcome.error).toBeNull();expect(outcome.receipt).toEqual({re…
+       |                         ^
+     31|   expect((await f.repo.findSource(f.source.sourceKey))?.currentGenerat…
+     32|   expect(await f.repo.findCurrentUsageByMediaId('actual-media')).toHav…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: replaces only the expected generation and reports the real current source after a stale attempt
+AssertionError: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts:50:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  22:49:22
+   Duration  2.14s (transform 514ms, setup 0ms, import 870ms, tests 1.16s, environment 0ms)
+

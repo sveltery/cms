@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/api.test.ts (14 tests | 2 failed) 2492ms
+   × Node SQLite: shared request validation exposes the original structured issue details 37ms
+   × raw workerd D1: shared request validation exposes the original structured issue details 116ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > Node SQLite: shared request validation exposes the original structured issue details
+ FAIL  tests/user-admin-native/api.test.ts > raw workerd D1: shared request validation exposes the original structured issue details
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'Invalid user list query'
+- 'Invalid request data'
+           ^
+
+
+Expected: "Invalid request data"
+Received: "Invalid user list query"
+
+ ❯ tests/user-admin-native/api.test.ts:65:52
+     63|    const query=f.context();query.url.searchParams.set('limit','0');
+     64|    const listResponse=await list(query);assert.equal(listResponse.stat…
+     65|    const listBody=await listResponse.json();assert.equal(listBody.erro…
+       |                                                    ^
+     66|    assert.equal(listBody.error.details.issues[0].path,'limit');
+     67|    const before=await f.users.findById(f.author.id);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 36 passed (38)
+   Start at  21:16:58
+   Duration  8.53s (transform 827ms, setup 0ms, import 1.98s, tests 6.15s, environment 0ms)
+

@@ -1,0 +1,145 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/disabled-atomic.test.ts (4 tests | 4 failed) 1343ms
+   × Node SQLite: rejected profile update rolls back disable and preserves all stored user/profile bytes 70ms
+   × Node SQLite: rejected profile update rolls back enable and preserves all stored user/profile bytes 22ms
+   × raw workerd D1: rejected profile update rolls back disable and preserves all stored user/profile bytes 1040ms
+   × raw workerd D1: rejected profile update rolls back enable and preserves all stored user/profile bytes 209ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/disabled-atomic.test.ts > Node SQLite: rejected profile update rolls back disable and preserves all stored user/profile bytes
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [Object: null prototype] {
++   disabled: 1,
+-   disabled: 0,
+    id: '01M47149298AFHZCA8RBEBCM1C',
+    role: 30
+  }
+
+
+- Expected
++ Received
+
+  {
+-   "disabled": 0,
++   "disabled": 1,
+    "id": "01M47149298AFHZCA8RBEBCM1C",
+    "role": 30,
+  }
+
+ ❯ tests/user-admin-native/disabled-atomic.test.ts:28:12
+     26|     await assert.rejects(()=>accountsRepository(database).setDisabled(…
+     27|     assert.deepEqual(await database.db.selectFrom('_cms_auth_profiles'…
+     28|     assert.deepEqual(await database.db.selectFrom('_cms_auth_users').s…
+       |            ^
+     29|    }finally{await database.close();await d1?.runtime.dispose();}
+     30|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/user-admin-native/disabled-atomic.test.ts > Node SQLite: rejected profile update rolls back enable and preserves all stored user/profile bytes
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [Object: null prototype] {
++   disabled: 0,
+-   disabled: 1,
+    id: '01M471493Q7CMKYSA1ECG3T5XB',
+    role: 30
+  }
+
+
+- Expected
++ Received
+
+  {
+-   "disabled": 1,
++   "disabled": 0,
+    "id": "01M471493Q7CMKYSA1ECG3T5XB",
+    "role": 30,
+  }
+
+ ❯ tests/user-admin-native/disabled-atomic.test.ts:28:12
+     26|     await assert.rejects(()=>accountsRepository(database).setDisabled(…
+     27|     assert.deepEqual(await database.db.selectFrom('_cms_auth_profiles'…
+     28|     assert.deepEqual(await database.db.selectFrom('_cms_auth_users').s…
+       |            ^
+     29|    }finally{await database.close();await d1?.runtime.dispose();}
+     30|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/user-admin-native/disabled-atomic.test.ts > raw workerd D1: rejected profile update rolls back disable and preserves all stored user/profile bytes
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
++   disabled: 1,
+-   disabled: 0,
+    id: '01M4714A1J28S4JMGQMQT8F478',
+    role: 30
+  }
+
+
+- Expected
++ Received
+
+  {
+-   "disabled": 0,
++   "disabled": 1,
+    "id": "01M4714A1J28S4JMGQMQT8F478",
+    "role": 30,
+  }
+
+ ❯ tests/user-admin-native/disabled-atomic.test.ts:28:12
+     26|     await assert.rejects(()=>accountsRepository(database).setDisabled(…
+     27|     assert.deepEqual(await database.db.selectFrom('_cms_auth_profiles'…
+     28|     assert.deepEqual(await database.db.selectFrom('_cms_auth_users').s…
+       |            ^
+     29|    }finally{await database.close();await d1?.runtime.dispose();}
+     30|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/user-admin-native/disabled-atomic.test.ts > raw workerd D1: rejected profile update rolls back enable and preserves all stored user/profile bytes
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
++   disabled: 0,
+-   disabled: 1,
+    id: '01M4714A9120QCRRANBQ24RPFT',
+    role: 30
+  }
+
+
+- Expected
++ Received
+
+  {
+-   "disabled": 1,
++   "disabled": 0,
+    "id": "01M4714A9120QCRRANBQ24RPFT",
+    "role": 30,
+  }
+
+ ❯ tests/user-admin-native/disabled-atomic.test.ts:28:12
+     26|     await assert.rejects(()=>accountsRepository(database).setDisabled(…
+     27|     assert.deepEqual(await database.db.selectFrom('_cms_auth_profiles'…
+     28|     assert.deepEqual(await database.db.selectFrom('_cms_auth_users').s…
+       |            ^
+     29|    }finally{await database.close();await d1?.runtime.dispose();}
+     30|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  4 failed | 42 passed (46)
+   Start at  21:57:03
+   Duration  10.09s (transform 770ms, setup 0ms, import 2.30s, tests 7.32s, environment 0ms)
+

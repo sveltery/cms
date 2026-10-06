@@ -1,0 +1,35 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts (5 tests | 1 failed) 1449ms
+   × D1: deletes only the matching source generation and clears real content sources 95ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: deletes only the matching source generation and clears real content sources
+AssertionError: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts:77:25
+     75|   const source=(await f.repo.findSource(f.source.sourceKey))!;
+     76|   const outcome=await f.repo.deleteSourceIfMatching(f.source.sourceKey…
+     77|   expect(outcome.error).toBeNull();expect(outcome.receipt).toEqual({de…
+       |                         ^
+     78|   expect(await f.repo.findCurrentUsageByMediaId('actual-media')).toEqu…
+     79|   await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],null);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  23:03:23
+   Duration  2.37s (transform 430ms, setup 0ms, import 802ms, tests 1.45s, environment 0ms)
+

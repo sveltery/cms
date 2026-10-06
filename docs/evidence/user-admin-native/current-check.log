@@ -1,0 +1,365 @@
+Loading svelte-check in workspace: /workspace/cms-complete-user99-backend
+Getting Svelte diagnostics...
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:7:22
+Error: Cannot find module '@emdash-cms/auth' or its corresponding type declarations. 
+
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:8:37
+Error: Cannot find module '@emdash-cms/auth/adapters/kysely' or its corresponding type declarations. 
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:9:31
+Error: Cannot find module 'astro' or its corresponding type declarations. 
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:11:51
+Error: Cannot find module '#api/error.js' or its corresponding type declarations. 
+
+import { apiError, apiSuccess, handleError } from "#api/error.js";
+import { isParseError, parseQuery } from "#api/parse.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:12:42
+Error: Cannot find module '#api/parse.js' or its corresponding type declarations. 
+import { apiError, apiSuccess, handleError } from "#api/error.js";
+import { isParseError, parseQuery } from "#api/parse.js";
+import { usersListQuery } from "#api/schemas.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:13:32
+Error: Cannot find module '#api/schemas.js' or its corresponding type declarations. 
+import { isParseError, parseQuery } from "#api/parse.js";
+import { usersListQuery } from "#api/schemas.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:17:39
+Error: Binding element 'url' implicitly has an 'any' type. 
+
+export const GET: APIRoute = async ({ url, locals }) => {
+	const { emdash, user } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:17:44
+Error: Binding element 'locals' implicitly has an 'any' type. 
+
+export const GET: APIRoute = async ({ url, locals }) => {
+	const { emdash, user } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/index.ts:44:35
+Error: Parameter 'u' implicitly has an 'any' type. 
+		// Transform dates to ISO strings for JSON serialization
+		const items = result.items.map((u) => ({
+			id: u.id,
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:8:22
+Error: Cannot find module '@emdash-cms/auth' or its corresponding type declarations. 
+
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:9:37
+Error: Cannot find module '@emdash-cms/auth/adapters/kysely' or its corresponding type declarations. 
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:10:31
+Error: Cannot find module 'astro' or its corresponding type declarations. 
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:12:51
+Error: Cannot find module '#api/error.js' or its corresponding type declarations. 
+
+import { apiError, apiSuccess, handleError } from "#api/error.js";
+import { isParseError, parseBody } from "#api/parse.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:13:41
+Error: Cannot find module '#api/parse.js' or its corresponding type declarations. 
+import { apiError, apiSuccess, handleError } from "#api/error.js";
+import { isParseError, parseBody } from "#api/parse.js";
+import { userUpdateBody } from "#api/schemas.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:14:32
+Error: Cannot find module '#api/schemas.js' or its corresponding type declarations. 
+import { isParseError, parseBody } from "#api/parse.js";
+import { userUpdateBody } from "#api/schemas.js";
+import { withTransaction } from "#db/transaction.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:15:33
+Error: Cannot find module '#db/transaction.js' or its corresponding type declarations. 
+import { userUpdateBody } from "#api/schemas.js";
+import { withTransaction } from "#db/transaction.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:19:39
+Error: Binding element 'params' implicitly has an 'any' type. 
+
+export const GET: APIRoute = async ({ params, locals }) => {
+	const { emdash, user: currentUser } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:19:47
+Error: Binding element 'locals' implicitly has an 'any' type. 
+
+export const GET: APIRoute = async ({ params, locals }) => {
+	const { emdash, user: currentUser } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:57:41
+Error: Parameter 'c' implicitly has an 'any' type. 
+			lastLogin: result.lastLogin?.toISOString() ?? null,
+			credentials: result.credentials.map((c) => ({
+				id: c.id,
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:64:45
+Error: Parameter 'a' implicitly has an 'any' type. 
+			})),
+			oauthAccounts: result.oauthAccounts.map((a) => ({
+				provider: a.provider,
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:76:39
+Error: Binding element 'params' implicitly has an 'any' type. 
+
+export const PUT: APIRoute = async ({ params, request, locals }) => {
+	const { emdash, user: currentUser } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:76:47
+Error: Binding element 'request' implicitly has an 'any' type. 
+
+export const PUT: APIRoute = async ({ params, request, locals }) => {
+	const { emdash, user: currentUser } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:76:56
+Error: Binding element 'locals' implicitly has an 'any' type. 
+
+export const PUT: APIRoute = async ({ params, request, locals }) => {
+	const { emdash, user: currentUser } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/index.ts:126:68
+Error: Parameter 'trx' implicitly has an 'any' type. 
+
+		const lastAdminBlocked = await withTransaction(emdash.db, async (trx) => {
+			const trxAdapter = createKyselyAdapter(trx);
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:7:22
+Error: Cannot find module '@emdash-cms/auth' or its corresponding type declarations. 
+
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:8:37
+Error: Cannot find module '@emdash-cms/auth/adapters/kysely' or its corresponding type declarations. 
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:9:31
+Error: Cannot find module 'astro' or its corresponding type declarations. 
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:11:51
+Error: Cannot find module '#api/error.js' or its corresponding type declarations. 
+
+import { apiError, apiSuccess, handleError } from "#api/error.js";
+import { withTransaction } from "#db/transaction.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:12:33
+Error: Cannot find module '#db/transaction.js' or its corresponding type declarations. 
+import { apiError, apiSuccess, handleError } from "#api/error.js";
+import { withTransaction } from "#db/transaction.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:16:40
+Error: Binding element 'params' implicitly has an 'any' type. 
+
+export const POST: APIRoute = async ({ params, locals }) => {
+	const { emdash, user: currentUser } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:16:48
+Error: Binding element 'locals' implicitly has an 'any' type. 
+
+export const POST: APIRoute = async ({ params, locals }) => {
+	const { emdash, user: currentUser } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:49:68
+Error: Parameter 'trx' implicitly has an 'any' type. 
+		// concurrent requests from both passing the count check.
+		const lastAdminBlocked = await withTransaction(emdash.db, async (trx) => {
+			const trxAdapter = createKyselyAdapter(trx);
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/enable.ts:7:22
+Error: Cannot find module '@emdash-cms/auth' or its corresponding type declarations. 
+
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/enable.ts:8:37
+Error: Cannot find module '@emdash-cms/auth/adapters/kysely' or its corresponding type declarations. 
+import { Role } from "@emdash-cms/auth";
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/enable.ts:9:31
+Error: Cannot find module 'astro' or its corresponding type declarations. 
+import { createKyselyAdapter } from "@emdash-cms/auth/adapters/kysely";
+import type { APIRoute } from "astro";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/enable.ts:11:51
+Error: Cannot find module '#api/error.js' or its corresponding type declarations. 
+
+import { apiError, apiSuccess, handleError } from "#api/error.js";
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/enable.ts:15:40
+Error: Binding element 'params' implicitly has an 'any' type. 
+
+export const POST: APIRoute = async ({ params, locals }) => {
+	const { emdash, user } = locals;
+
+/workspace/cms-complete-user99-backend/tests/fixtures/accounts/packages/core/src/astro/routes/api/admin/users/[id]/enable.ts:15:48
+Error: Binding element 'locals' implicitly has an 'any' type. 
+
+export const POST: APIRoute = async ({ params, locals }) => {
+	const { emdash, user } = locals;
+
+/workspace/cms-complete-user99-backend/tests/accounts-source-contract/public-users.test.ts:4:54
+Error: Cannot find module '../helpers/accounts-source-db.ts' or its corresponding type declarations. 
+import {test,expect,beforeEach,afterEach} from 'vitest';
+import {setupTestDatabase,teardownTestDatabase} from '../helpers/accounts-source-db.ts';
+import {createKyselyAdapter} from '../fixtures/accounts/packages/auth/src/adapters/kysely.ts';
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:31:57
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users">'.
+  Type '"/" | "/api" | "/api/admin" | "/api/admin/comments" | "/api/admin/comments/bulk" | "/api/admin/comments/counts" | "/api/admin/comments/settings" | "/api/admin/comments/settings/[collection]" | ... 94 more ... | null' is not assignable to type '"/api/admin/users"'.
+    Type 'null' is not assignable to type '"/api/admin/users"'. 
+ test(`${target}: JSON list and detail return actual stored profiles and private no-store responses`,async()=>{
+  const f=await fixture();try{const response=await list(f.context());assert.equal(response.status,200);assert.equal(response.headers.get('cache-control'),'private, no-store');
+   assert.deepEqual((await response.json()).data.items.map((u:any)=>u.email).sort(),['admin@example.test','author@example.test']);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:33:30
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+   assert.deepEqual((await response.json()).data.items.map((u:any)=>u.email).sort(),['admin@example.test','author@example.test']);
+   const result=await detail(f.context(f.author.id));assert.equal(result.status,200);const item=(await result.json()).data.item;
+   assert.equal(item.id,f.author.id);assert.equal(Object.hasOwn(item,'data'),false);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:38:59
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+ test(`${target}: JSON role and profile changes persist through the real canonical owner`,async()=>{
+  const f=await fixture();try{const response=await update(f.context(f.author.id,{name:'Changed',role:40}));assert.equal(response.status,200);
+   const user=await f.users.findById(f.author.id);assert.equal(user?.name,'Changed');assert.equal(user?.role,40);assert.deepEqual(user?.data,{private:'keep'});
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:40:32
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]/disable">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+   const user=await f.users.findById(f.author.id);assert.equal(user?.name,'Changed');assert.equal(user?.role,40);assert.deepEqual(user?.data,{private:'keep'});
+   assert.equal((await disable(f.context(f.author.id,{}))).status,200);assert.equal((await f.database.db.selectFrom('_cms_auth_users').select('disabled').where('id','=',f.author.id).executeTakeFirstOrThrow()).disabled,1);
+   assert.equal((await enable(f.context(f.author.id,{}))).status,200);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:41:31
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]/enable">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+   assert.equal((await disable(f.context(f.author.id,{}))).status,200);assert.equal((await f.database.db.selectFrom('_cms_auth_users').select('disabled').where('id','=',f.author.id).executeTakeFirstOrThrow()).disabled,1);
+   assert.equal((await enable(f.context(f.author.id,{}))).status,200);
+  }finally{await f.close();}
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:46:32
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+  const f=await fixture();try{await f.users.update(f.admin.id,{role:'author'});
+   const response=await update(f.context(f.author.id,{role:999}));assert.equal(response.status,403);assert.equal((await response.json()).error.code,'FORBIDDEN');
+  }finally{await f.close();}
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:51:30
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+  const f=await fixture();try{const before=await f.users.findById(f.author.id);
+   const origin=await update(f.context(f.author.id,{name:'Wrong'},f.admin,{},'https://other.example'));assert.equal(origin.status,403);assert.equal((await origin.json()).error.code,'CSRF_REJECTED');
+   const optIn=await update(f.context(f.author.id,{name:'Wrong'},f.admin,{mutationsEnabled:false}));assert.equal(optIn.status,503);assert.equal((await optIn.json()).error.code,'MUTATIONS_DISABLED');
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:52:29
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+   const origin=await update(f.context(f.author.id,{name:'Wrong'},f.admin,{},'https://other.example'));assert.equal(origin.status,403);assert.equal((await origin.json()).error.code,'CSRF_REJECTED');
+   const optIn=await update(f.context(f.author.id,{name:'Wrong'},f.admin,{mutationsEnabled:false}));assert.equal(optIn.status,503);assert.equal((await optIn.json()).error.code,'MUTATIONS_DISABLED');
+   assert.deepEqual(await f.users.findById(f.author.id),before);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:57:75
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+ test(`${target}: original missing-ID detail and update semantics are explicit`,async()=>{
+  const f=await fixture();try{for(const [response,code] of [[await detail(f.context()),'MISSING_PARAM'],[await update(f.context(undefined,{name:'Wrong'})),'MISSING_PARAM'],[await disable(f.context(undefined,{})),'VALIDATION_ERROR'],[await enable(f.context(undefined,{})),'VALIDATION_ERROR']] as const){
+   assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:57:119
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+ test(`${target}: original missing-ID detail and update semantics are explicit`,async()=>{
+  const f=await fixture();try{for(const [response,code] of [[await detail(f.context()),'MISSING_PARAM'],[await update(f.context(undefined,{name:'Wrong'})),'MISSING_PARAM'],[await disable(f.context(undefined,{})),'VALIDATION_ERROR'],[await enable(f.context(undefined,{})),'VALIDATION_ERROR']] as const){
+   assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:57:188
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]/disable">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+ test(`${target}: original missing-ID detail and update semantics are explicit`,async()=>{
+  const f=await fixture();try{for(const [response,code] of [[await detail(f.context()),'MISSING_PARAM'],[await update(f.context(undefined,{name:'Wrong'})),'MISSING_PARAM'],[await disable(f.context(undefined,{})),'VALIDATION_ERROR'],[await enable(f.context(undefined,{})),'VALIDATION_ERROR']] as const){
+   assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:57:247
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]/enable">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+ test(`${target}: original missing-ID detail and update semantics are explicit`,async()=>{
+  const f=await fixture();try{for(const [response,code] of [[await detail(f.context()),'MISSING_PARAM'],[await update(f.context(undefined,{name:'Wrong'})),'MISSING_PARAM'],[await disable(f.context(undefined,{})),'VALIDATION_ERROR'],[await enable(f.context(undefined,{})),'VALIDATION_ERROR']] as const){
+   assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
+
+/workspace/cms-complete-user99-backend/tests/user-admin-native/api.test.ts:64:33
+Error: Argument of type 'RequestEvent<{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }, "/" | ... 101 more ... | null>' is not assignable to parameter of type 'RequestEvent<RouteParams, "/api/admin/users/[id]">'.
+  Type '{ collection?: string | undefined; id?: string | undefined; slug?: string | undefined; contentId?: string | undefined; taxonomy?: string | undefined; name?: string | undefined; field?: string | undefined; }' is not assignable to type 'RouteParams'.
+    Types of property 'id' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'. 
+   for(const [body,status,code] of [[{role:41},400,'VALIDATION_ERROR'],[{email:f.admin.email},409,'EMAIL_IN_USE']] as const){
+    const response=await update(f.context(f.author.id,body));assert.equal(response.status,status);assert.equal((await response.json()).error.code,code);
+    assert.deepEqual(await f.users.findById(f.author.id),before);
+
+/workspace/cms-complete-user99-backend/tests/users-native/repository.test.ts:200:54
+Error: 'existing' is possibly 'null' or 'undefined'. 
+      assert.ok(existing);
+      await assert.rejects(() => f.repository.update(existing.id, { role: 'admin', name: 'Rejected' }), /operator profile rejection/);
+      assert.deepEqual(await readRows(f.database), before);
+
+====================================
+svelte-check found 53 errors and 0 warnings in 7 files

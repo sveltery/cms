@@ -33,13 +33,20 @@ export function registerBylineDatabase(database: CmsDatabase): Kysely<Database> 
   return db;
 }
 
+/** Trusted composition for an already hosted query handle. The caller retains
+ * its namespace/plugin order and supplies the same real canonical owner;
+ * association performs no query, plugin installation or database construction. */
+export function registerBylineDatabaseHandle(database:CmsDatabase,db:Kysely<Database>):Kysely<Database> {
+  owners.set(db,database);hosted.set(db,db);return db;
+}
+
 /**
  * Explicit reference-fixture transport. The owner must operate the genuine
  * Source namespace; no native installation calls this and no tables are added.
  */
 export function registerBylineReferenceDatabase(database: CmsDatabase): Kysely<Database> {
   const db = database.db as unknown as Kysely<Database>;
-  owners.set(db,database); hosted.set(db,db); return db;
+  return registerBylineDatabaseHandle(database,db);
 }
 export function bylineDatabase(input: BylineDatabaseInput): Kysely<Database> {
   if ('db' in input) return registerBylineDatabase(input);

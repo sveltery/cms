@@ -1,0 +1,41 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts (5 tests | 2 failed) 13085ms
+     × keeps every call near its budget, however many entries earlier calls wrote 5077ms
+     × keeps every call near its budget while it creates many terms and bylines 5097ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget, however many entries earlier calls wrote
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:185:2
+    183|  });
+    184|
+    185|  it("keeps every call near its budget, however many entries earlier ca…
+       |  ^
+    186|   const budget = 150;
+    187|   const seed = plainSeed(["pages", "posts", "events", "places"], 60);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget while it creates many terms and bylines
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:216:2
+    214|  });
+    215|
+    216|  it("keeps every call near its budget while it creates many terms and …
+       |  ^
+    217|   const budget = 150;
+    218|   const seed: SeedFile = {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 83 passed (85)
+   Start at  23:29:02
+   Duration  31.16s (transform 1.45s, setup 0ms, import 3.18s, tests 27.61s, environment 0ms)
+

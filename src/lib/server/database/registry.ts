@@ -1,4 +1,4 @@
-import { sql, type CompiledQuery } from 'kysely';
+import { sql, CompiledQuery, type Kysely, type QueryResult } from 'kysely';
 import { resetRegisteredCollectionsCache } from '../schema/collection-slugs-state.ts';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
@@ -9,8 +9,21 @@ import { collectionStandardIndexPlan, collectionIndexPrerequisiteChanged } from 
 import { bylineIndexPrerequisiteChanged, collectionPrimaryBylinePlan } from './canonical-features/byline-index-plan.ts';
 import { FIELD_TYPE_TO_COLUMN, FIELD_TYPES, REPEATER_SUB_FIELD_TYPES, isIndexableFieldType, isStoragelessField, type CollectionSource } from '../schema/types.ts';
 import { fieldEditInput } from './field-edit-validation.ts';
+import { seedSourceDatabase } from '../seed/namespace.ts';
+import { buildSeedCollectionCaptureFingerprint } from '../seed/fingerprint.ts';
+import { tableExists } from '../seed/upstream/database/dialect-helpers.ts';
+import { getMediaUsageActivationStatus, canResumeMediaUsageCollectionCapture,
+  findResumableMediaUsageCollectionCaptureId, prepareMediaUsageCollectionCapture,
+  installPreparedMediaUsageCollectionCapture, markMediaUsageCollectionCaptureReady,
+  finalizeMediaUsageCollectionCapture } from '../seed/upstream/media/usage/activation.ts';
+import { markContentMediaUsageCollectionStaleSafely } from '../blocks/upstream/media/usage/schema-invalidation.ts';
+import type { CreateCollectionInput, CreateFieldInput } from '../schema/types.ts';
+import { buildSeedCapturedCreationPlan } from './seed-capture-plan.ts';
+import * as nativeCapture from '../blocks/upstream/media/usage/activation.ts';
+
 
 export const MAX_COLLECTIONS = 100;
+/** Historical supplemental fixture width; no longer a schema or read limit. */
 export const MAX_FIELDS = 32;
 const fieldMax = (input: { type: string; validation?: { maxLength?: number } | null }) =>
   Math.min(input.validation?.maxLength ?? (input.type === 'string' ? 200 : 100_000), 100_000);
@@ -102,7 +115,7 @@ export class SchemaRegistry {
   }
   async listFields(collectionId: string): Promise<Field[]> {
     const rows = await this.database.db.selectFrom('_cms_fields').selectAll().where('collection_id', '=', collectionId)
-      .orderBy('sort_order').orderBy('id').limit(MAX_FIELDS).execute();
+      .orderBy('sort_order').orderBy('id').execute();
     return rows.map(field);
   }
   async getField(collectionSlug: unknown, fieldSlug: unknown): Promise<Field | null> {
@@ -172,11 +185,17 @@ export class SchemaRegistry {
   async createCollection(input: unknown): Promise<Collection> {
     const value = parse(collectionInput, input);
     if (reservedCollections.includes(value.slug)) throw new CmsError('RESERVED_SLUG');
-    if (await this.getCollection(value.slug)) throw new CmsError('COLLECTION_EXISTS');
+    const existing = await this.getCollection(value.slug);
+    const sourceDb = seedSourceDatabase(this.database);
+    const active = await this.captureActive(sourceDb);
+    if (existing && (!active || !await canResumeMediaUsageCollectionCapture(sourceDb,
+      {collectionId:existing.id,collectionSlug:value.slug}))) throw new CmsError('COLLECTION_EXISTS');
+    const resumableId = active ? await findResumableMediaUsageCollectionCaptureId(sourceDb,{collectionSlug:value.slug}) : null;
+    const id = existing?.id ?? resumableId ?? ulid();
     const db = this.database.db;
     const name = tableName(value.slug);
     const exists = await sql`SELECT name FROM sqlite_master WHERE type = 'table' AND name = ${name}`.execute(db);
-    if (exists.rows.length) {
+    if (exists.rows.length && !resumableId) {
       // Another creator may have committed between the registry and table preflight reads.
       if (await this.getCollection(value.slug)) throw new CmsError('COLLECTION_EXISTS');
       throw new CmsError('COLLECTION_TABLE_ORPHANED');
@@ -190,7 +209,7 @@ export class SchemaRegistry {
       sql`INSERT INTO _cms_guards(token, pass)
         SELECT ${token}, CASE WHEN (SELECT COUNT(*) FROM _cms_collections) < ${MAX_COLLECTIONS} THEN 1 ELSE 0 END`.compile(db),
       db.insertInto('_cms_collections').values({
-        id: ulid(), slug: value.slug, label: value.label, label_singular: value.labelSingular ?? null,
+        id, slug: value.slug, label: value.label, label_singular: value.labelSingular ?? null,
         description: value.description ?? null, supports: JSON.stringify(value.supports ?? ['drafts', 'revisions']),
         source: value.source ?? 'manual',
         ...(value.hasSeo === undefined && value.supports?.includes('seo') ? { has_seo: 1 } : {}),
@@ -216,7 +235,11 @@ export class SchemaRegistry {
       ...standardIndexes.indexes,
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ];
-    try { await this.batch(statements, 'LIMIT_EXCEEDED'); }
+    try {
+      if (active) await this.executeCapturedCreation({collectionId:id,collectionSlug:value.slug,
+        registeredCollectionId:existing?.id}, statements, 3, 4);
+      else await this.batch(statements, 'LIMIT_EXCEEDED');
+    }
     catch (cause) {
       // Classify only SQLite's exact registered-slug uniqueness failure after a concurrent create.
       // Other constraints, DDL and adapter failures remain unexpected server errors.
@@ -229,6 +252,92 @@ export class SchemaRegistry {
     }
     resetRegisteredCollectionsCache();
     return (await this.getCollection(value.slug))!;
+  }
+
+  /**
+   * Native physical-schema prerequisite for Source seed creation.
+   * Source registry.ts:640 bulk table/field creation adapted to atomicBatch.
+   * This does not declare media-usage capture ready. The complete Source seed
+   * provider must separately install the actual capture lifecycle before use.
+   */
+  async createSeedCollectionSchema(input: unknown, fields: readonly unknown[]): Promise<void> {
+    const value = parse(collectionInput, { ...input as object, source: 'seed' });
+    if (reservedCollections.includes(value.slug)) throw new CmsError('RESERVED_SLUG');
+    const definitions = fields.map(input => parse(fieldInput, input));
+    const slugs = new Set<string>();
+    for (const field of definitions) {
+      if (reservedFields.includes(field.slug)) throw new CmsError('RESERVED_SLUG');
+      if (slugs.has(field.slug)) throw new CmsError('FIELD_EXISTS');
+      slugs.add(field.slug);
+      if (field.indexed && !isIndexableFieldType(field.type)) throw new CmsError('FIELD_NOT_INDEXABLE');
+      const maximum = fieldMax(field), minimum = field.validation?.minLength ?? 0;
+      if (minimum > maximum || typeof field.defaultValue === 'string' &&
+        (field.defaultValue.length < minimum || field.defaultValue.length > maximum || field.defaultValue.includes('\0'))) throw new CmsError('VALIDATION_ERROR');
+    }
+    const creationFingerprint = await buildSeedCollectionCaptureFingerprint(value as CreateCollectionInput, fields as readonly CreateFieldInput[]);
+    const sourceDb = seedSourceDatabase(this.database), active = await this.captureActive(sourceDb);
+    const existing = await this.getCollection(value.slug);
+    if (existing && (!active || !await canResumeMediaUsageCollectionCapture(sourceDb,
+      {collectionId:existing.id,collectionSlug:value.slug,creationFingerprint}))) throw new CmsError('COLLECTION_EXISTS');
+    const resumableId = active ? await findResumableMediaUsageCollectionCaptureId(sourceDb,{collectionSlug:value.slug,creationFingerprint}) : null;
+    const db = this.database.db, name = tableName(value.slug), id = existing?.id ?? resumableId ?? ulid(), token = ulid();
+    const exists = await sql`SELECT name FROM sqlite_master WHERE type = 'table' AND name = ${name}`.execute(db);
+    if (exists.rows.length && !resumableId) throw new CmsError('COLLECTION_TABLE_ORPHANED');
+    const now = new Date().toISOString();
+    let maxSortOrder = -1;
+    const rows: FieldRow[] = definitions.map(field => {
+      const sortOrder = field.sortOrder ?? maxSortOrder + 1;
+      maxSortOrder = Math.max(maxSortOrder, sortOrder);
+      return { id: ulid(), collection_id: id, slug: field.slug, label: field.label, type: field.type,
+        column_type: FIELD_TYPE_TO_COLUMN[field.type], required: Number(field.required), unique: Number(field.unique),
+        default_value: field.defaultValue === undefined ? null : JSON.stringify(field.defaultValue),
+        validation: field.validation ? JSON.stringify(field.validation) : null, widget: field.widget ?? null,
+        options: field.options ? JSON.stringify(field.options) : null, sort_order: sortOrder,
+        searchable: Number(field.searchable ?? false), indexed: Number(field.indexed ?? false),
+        translatable: Number(field.translatable !== false), created_at: now };
+    });
+    const columns = definitions.filter(field => !isStoragelessField(field)).map(field =>
+      sql`${sql.ref(field.slug)} ${sql.raw(FIELD_TYPE_TO_COLUMN[field.type])} ${field.type === 'blocks' ? sql`NOT NULL DEFAULT '[]'` : field.required ?
+        sql`NOT NULL DEFAULT ${sql.raw(formatFieldDefault(field.defaultValue, field.type))}` : sql``}`);
+    const primaryByline = await collectionPrimaryBylinePlan(this.database,value.slug);
+    const standardIndexes = await collectionStandardIndexPlan(this.database,value.slug);
+    const statements: CompiledQuery[] = [
+      primaryByline.guard,standardIndexes.guard,
+      sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
+        CASE WHEN (SELECT COUNT(*) FROM _cms_collections) < ${MAX_COLLECTIONS} THEN 1 ELSE 0 END`.compile(db),
+      db.insertInto('_cms_collections').values({ id, slug: value.slug, label: value.label,
+        label_singular: value.labelSingular ?? null, description: value.description ?? null,
+        supports: JSON.stringify(value.supports ?? ['drafts', 'revisions']), source: 'seed',
+        version: 1, created_at: now, updated_at: now,
+        ...(value.hasSeo === undefined && value.supports?.includes('seo') ? { has_seo: 1 } : {}),
+        ...Object.fromEntries(Object.entries(collectionMetadataColumns).flatMap(([key,column]) => {
+          const item = value[key as keyof typeof value];
+          return item === undefined ? [] : [[column,typeof item === 'boolean' ? Number(item) : item === '' ? null : item]];
+        })), ...(value.admin === undefined ? {} : { admin_config: JSON.stringify(value.admin) }) }).compile(),
+      sql`CREATE TABLE ${sql.ref(name)} (
+        id TEXT PRIMARY KEY NOT NULL, slug TEXT, status TEXT NOT NULL DEFAULT 'draft',
+        author_id TEXT, primary_byline_id TEXT, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+        updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+        published_at TEXT, scheduled_at TEXT, deleted_at TEXT, version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),
+        live_revision_id TEXT, draft_revision_id TEXT, locale TEXT NOT NULL DEFAULT 'en', translation_group TEXT,
+        ${columns.length ? sql`${sql.join(columns)},` : sql``} UNIQUE(slug, locale)
+      )`.compile(db),
+      db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
+      trashIndexStatement(this.database, value.slug),
+      ...(primaryByline.index ? [primaryByline.index] : []),
+      ...standardIndexes.indexes
+    ];
+    // Every metadata row has 17 bindings. Five rows use85, within raw D1's100.
+    for (let offset = 0; offset < rows.length; offset += 5) statements.push(
+      (resumableId ? db.insertInto('_cms_fields').values(rows.slice(offset, offset + 5))
+        .onConflict(conflict => conflict.columns(['collection_id','slug']).doNothing()) :
+        db.insertInto('_cms_fields').values(rows.slice(offset, offset + 5))).compile());
+    for (const field of rows) if (field.indexed) statements.push(...this.fieldIndexStatements(value.slug, field.id, field.slug));
+    statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
+    if (active) await this.executeCapturedCreation({collectionId:id,collectionSlug:value.slug,
+      registeredCollectionId:existing?.id,creationFingerprint},statements,3,4);
+    else await this.batch(statements, 'LIMIT_EXCEEDED');
+    await markContentMediaUsageCollectionStaleSafely(this.database.db as unknown as Parameters<typeof markContentMediaUsageCollectionStaleSafely>[0],value.slug,'CONTENT_USAGE_STALE');
   }
 
   async createField(collectionSlug: unknown, input: unknown, expectedSchemaVersion?: number): Promise<Field> {
@@ -248,7 +357,6 @@ export class SchemaRegistry {
     const id = ulid();
     const name = tableName(definition.slug);
     const fields = await this.listFields(definition.id);
-    if (fields.length >= MAX_FIELDS) throw new CmsError('LIMIT_EXCEEDED');
     if(value.indexed && !isIndexableFieldType(value.type)) throw new CmsError('FIELD_NOT_INDEXABLE');
     const columnType = FIELD_TYPE_TO_COLUMN[value.type];
     const column = sql`ALTER TABLE ${sql.ref(name)} ADD COLUMN ${sql.ref(value.slug)} ${sql.raw(columnType)}
@@ -257,7 +365,6 @@ export class SchemaRegistry {
     const statements: CompiledQuery[] = [
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
         CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${definition.id} AND version = ${definition.version})
-        AND (SELECT COUNT(*) FROM _cms_fields WHERE collection_id = ${definition.id}) < ${MAX_FIELDS}
         THEN 1 ELSE 0 END`.compile(db),
       ...(isStoragelessField(value) ? [] : [column.compile(db)]),
       db.insertInto('_cms_fields').values({
@@ -276,6 +383,7 @@ export class SchemaRegistry {
     if(value.indexed) statements.push(...this.fieldIndexStatements(definition.slug,id,value.slug));
     statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
     await this.batch(statements, 'CONFLICT');
+    await markContentMediaUsageCollectionStaleSafely(this.database.db as unknown as Parameters<typeof markContentMediaUsageCollectionStaleSafely>[0],definition.slug,'CONTENT_USAGE_STALE');
     return (await this.getField(definition.slug, value.slug))!;
   }
   private fieldIndexStatements(slug: string, id: string, fieldSlug: string): CompiledQuery[] {
@@ -325,8 +433,80 @@ export class SchemaRegistry {
     ],'COLLECTION_NOT_EMPTY');
     resetRegisteredCollectionsCache();
   }
-  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY') {
-    try { return await this.database.atomicBatch(statements); }
+  private async captureActive(db: ReturnType<typeof seedSourceDatabase>): Promise<boolean> {
+    return await tableExists(db,'_emdash_media_usage_activation') &&
+      (await getMediaUsageActivationStatus(db)).state === 'active';
+  }
+
+  /** Source capture order executed by this schema writer on one real Node transaction. */
+  private async executeCapturedCreation(
+    input: Parameters<typeof prepareMediaUsageCollectionCapture>[1],
+    statements: CompiledQuery[], collectionOffset: number, tableOffset: number
+  ): Promise<void> {
+    if (!this.database.atomicQueryLoops) {
+      await this.batch(await buildSeedCapturedCreationPlan(this.database,input,statements,collectionOffset,tableOffset),'LIMIT_EXCEEDED');
+      return;
+    }
+    const execute = async (trx: Kysely<any>) => {
+      const owner: CmsDatabase = {...this.database,db:trx as CmsDatabase['db'],
+        async atomicBatch(plan) {
+          const results: QueryResult<unknown>[]=[];
+          for (const query of plan) results.push(await trx.executeQuery(query));
+          return results;
+        }};
+      const db=seedSourceDatabase(owner);
+      const capture=await prepareMediaUsageCollectionCapture(db,input);
+      const identity={collectionId:capture.collectionId,collectionSlug:input.collectionSlug};
+      if(capture.collectionId!==input.collectionId) throw new Error('Collection capture identity changed');
+      const retained= (query:CompiledQuery) => capture.resuming ?
+        CompiledQuery.raw(query.sql.replace(/^CREATE (UNIQUE )?INDEX /i,'CREATE $1INDEX IF NOT EXISTS ')
+          .replace(/^CREATE TABLE /i,'CREATE TABLE IF NOT EXISTS '),[...query.parameters]) : query;
+      await this.batch([...statements.slice(0,collectionOffset),retained(statements[tableOffset])],'LIMIT_EXCEEDED',owner);
+      await installPreparedMediaUsageCollectionCapture(db,identity);
+      await markMediaUsageCollectionCaptureReady(db,identity);
+      await this.batch([...(capture.registrationExists?[]:[statements[collectionOffset]]),
+        ...statements.slice(tableOffset+1).map(retained)],'LIMIT_EXCEEDED',owner);
+      await finalizeMediaUsageCollectionCapture(db,identity);
+    };
+    if(this.database.db.isTransaction) await execute(this.database.db);
+    else await this.database.db.transaction().execute(execute);
+  }
+
+  /** Existing physical tables acquire actual Source capture before publication. */
+  async registerOrphanedTable(slugInput:string,options?:{label?:string;labelSingular?:string;description?:string}):Promise<Collection> {
+    const slug=parse(identifier,slugInput);
+    // Source keeps prepare/install/ready committed if metadata publication fails.
+    // D1 uses those same existing fixed Native domains in that exact sequence.
+    const captureOwner=this.database.atomicQueryLoops?{
+      canResumeMediaUsageCollectionCapture,prepareMediaUsageCollectionCapture,
+      installPreparedMediaUsageCollectionCapture,markMediaUsageCollectionCaptureReady,
+      finalizeMediaUsageCollectionCapture
+    }:nativeCapture;
+    const db=(this.database.atomicQueryLoops?seedSourceDatabase(this.database):this.database.db) as any;
+    if(!await tableExists(db,tableName(slug))) throw new Error(`Table ${tableName(slug)} does not exist`);
+    const existing=await this.getCollection(slug);
+    if(existing&&!await captureOwner.canResumeMediaUsageCollectionCapture(db,{collectionId:existing.id,collectionSlug:slug})) throw new CmsError('COLLECTION_EXISTS');
+    const capture=await captureOwner.prepareMediaUsageCollectionCapture(db,{collectionId:existing?.id??ulid(),collectionSlug:slug,registeredCollectionId:existing?.id});
+    const identity={collectionId:capture.collectionId,collectionSlug:slug};
+    if(capture.captureRequired) {
+      await captureOwner.installPreparedMediaUsageCollectionCapture(db,identity);
+      await captureOwner.markMediaUsageCollectionCaptureReady(db,identity);
+    }
+    if(!capture.registrationExists) {
+      const now=new Date().toISOString();
+      await this.database.db.insertInto('_cms_collections').values({id:capture.collectionId,slug,
+        label:options?.label||slug.split('_').map(word=>word.charAt(0).toUpperCase()+word.slice(1)).join(' '),
+        label_singular:options?.labelSingular??null,description:options?.description??null,
+        supports:'[]',source:'discovered',version:1,created_at:now,updated_at:now}).execute();
+    }
+    if(capture.captureRequired) await captureOwner.finalizeMediaUsageCollectionCapture(db,identity);
+    await markContentMediaUsageCollectionStaleSafely(this.database.db as unknown as Parameters<typeof markContentMediaUsageCollectionStaleSafely>[0],slug,'CONTENT_USAGE_STALE');
+    resetRegisteredCollectionsCache();
+    return (await this.getCollection(slug))!;
+  }
+
+  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY', owner: CmsDatabase = this.database) {
+    try { return await owner.atomicBatch(statements); }
     catch (cause) {
       if ([bylineIndexPrerequisiteChanged,collectionIndexPrerequisiteChanged].some(reason=>sqliteErrorMessage(cause)?.includes(reason))) throw new CmsError('MIGRATION_REQUIRED');
       // Only the deliberate SQL guard's CHECK failure becomes a domain conflict.

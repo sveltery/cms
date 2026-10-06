@@ -1,0 +1,216 @@
+✖ Node failed duplicate copies preserve the original graph and write no partial copy (62.970351ms)
+Relation delete error: Error: actual cascade fixture failure
+    at Object.all (file:///workspace/cms-complete-relations-backend/src/lib/server/database/node-sqlite-compat.ts:85:38)
+    at file:///workspace/cms-complete-relations-backend/src/lib/server/database/sqlite.ts:19:66
+    at #props.executor.provideConnection.freeze.signal (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26)
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async deleteRelationWithFields (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/deletion.ts:52:18)
+    at async handleRelationDelete (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/handlers.ts:274:12)
+    at async TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-copy-cascade-native.test.ts:47:23)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+✔ Node failed relation deletion retains both bound fields and the actual graph (54.810714ms)
+✖ raw D1 failed duplicate copies preserve the original graph and write no partial copy (1294.837359ms)
+Relation delete error: Error: D1_ERROR: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async RawBindingD1Adapter.executeAtomicBatch (file:///workspace/cms-complete-relations-backend/src/lib/server/database/d1.ts:43:13)
+    at async #props.executor.provideConnection.freeze.signal (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:20)
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async deleteRelationWithFields (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/deletion.ts:52:18)
+    at async handleRelationDelete (file:///workspace/cms-complete-relations-backend/src/lib/server/relations/handlers.ts:274:12)
+    at async TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-copy-cascade-native.test.ts:47:23)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+  [cause]: Error: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:90:27
+      at async #fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4373:18)
+      at async ProxyServer.fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4277:14) {
+    [cause]: undefined
+  }
+}
+✔ raw D1 failed relation deletion retains both bound fields and the actual graph (1504.959236ms)
+✖ scoped D1 failed duplicate copies preserve the original graph and write no partial copy (1245.872025ms)
+Relation delete error: Error: D1_ERROR: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-complete-relations-backend/src/lib/server/database/coalescing-d1.ts:148:37 {
+  [cause]: Error: actual cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:90:27
+      at async #fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4373:18)
+      at async ProxyServer.fetch (file:///workspace/cms-complete-relations-backend/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4277:14) {
+    [cause]: undefined
+  }
+}
+✔ scoped D1 failed relation deletion retains both bound fields and the actual graph (1628.22593ms)
+✖ relation responses preserve pinned Source missing-collection status (31.784196ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 3
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6382.439021
+
+✖ failing tests:
+
+test at tests/relations-copy-cascade-native.test.ts:13:3
+✖ Node failed duplicate copies preserve the original graph and write no partial copy (62.970351ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'child-0',
+  +   'child-1',
+  +   'child-2',
+  +   'child-3',
+  +   'child-4',
+  +   'child-5',
+  +   'child-6',
+  +   'child-7',
+  +   'child-8',
+  +   'child-9',
+  +   'child-10',
+  +   'child-11',
+  +   'child-12',
+  +   'child-13',
+  +   'child-14',
+  +   'child-15'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-copy-cascade-native.test.ts:25:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'child-0',  'child-1',
+      'child-2',  'child-3',
+      'child-4',  'child-5',
+      'child-6',  'child-7',
+      'child-8',  'child-9',
+      'child-10', 'child-11',
+      'child-12', 'child-13',
+      'child-14', 'child-15'
+    ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/relations-copy-cascade-native.test.ts:13:3
+✖ raw D1 failed duplicate copies preserve the original graph and write no partial copy (1294.837359ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'child-0',
+  +   'child-1',
+  +   'child-2',
+  +   'child-3',
+  +   'child-4',
+  +   'child-5',
+  +   'child-6',
+  +   'child-7',
+  +   'child-8',
+  +   'child-9',
+  +   'child-10',
+  +   'child-11',
+  +   'child-12',
+  +   'child-13',
+  +   'child-14',
+  +   'child-15'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-copy-cascade-native.test.ts:25:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'child-0',  'child-1',
+      'child-2',  'child-3',
+      'child-4',  'child-5',
+      'child-6',  'child-7',
+      'child-8',  'child-9',
+      'child-10', 'child-11',
+      'child-12', 'child-13',
+      'child-14', 'child-15'
+    ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/relations-copy-cascade-native.test.ts:13:3
+✖ scoped D1 failed duplicate copies preserve the original graph and write no partial copy (1245.872025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'child-0',
+  +   'child-1',
+  +   'child-2',
+  +   'child-3',
+  +   'child-4',
+  +   'child-5',
+  +   'child-6',
+  +   'child-7',
+  +   'child-8',
+  +   'child-9',
+  +   'child-10',
+  +   'child-11',
+  +   'child-12',
+  +   'child-13',
+  +   'child-14',
+  +   'child-15'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-copy-cascade-native.test.ts:25:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'child-0',  'child-1',
+      'child-2',  'child-3',
+      'child-4',  'child-5',
+      'child-6',  'child-7',
+      'child-8',  'child-9',
+      'child-10', 'child-11',
+      'child-12', 'child-13',
+      'child-14', 'child-15'
+    ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/relations-response-native.test.ts:7:1
+✖ relation responses preserve pinned Source missing-collection status (31.784196ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 404
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-response-native.test.ts:9:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 404,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

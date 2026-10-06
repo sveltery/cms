@@ -7,9 +7,14 @@ import type { D1Binding } from '../database/d1.ts';
 import { openD1 } from '../database/d1.ts';
 import { migrateCms } from '../database/migrations.ts';
 import type { CmsDatabase } from '../database/contract.ts';
+import type { Storage } from '../general-media/upstream/storage/types.ts';
 import { resolveCmsRedirects } from '../redirects/middleware.ts';
 
 export interface RuntimePresentation {
+  /** Trusted injected provider; no default bucket or filesystem creation. */
+  storage?: Storage;
+  /** Trusted Node-only opt-in; construction stays outside the Worker graph. */
+  mediaStorage?: { kind: 'local'; directory: string };
   publicOrigin: string;
   basePath?: string;
   rpName?: string;
@@ -83,6 +88,19 @@ export function createCmsRuntime(
     return cachedAdapter(bindings, binding, () => openD1(binding));
   }
 
+  async function storageFor(config: RuntimeConfiguration): Promise<Storage | undefined> {
+    if (config.mediaStorage && config.kind !== 'sqlite') {
+      throw new Error('SVELTERY_MEDIA_DIRECTORY requires the Node SQLite runtime');
+    }
+    if (config.storage || !config.mediaStorage) return config.storage;
+    const { createRuntimeLocalStorage } = await import('./node.ts');
+    assertOpen();
+    return createRuntimeLocalStorage({
+      directory: config.mediaStorage.directory,
+      baseUrl: config.publicOrigin + (config.basePath ?? '') + '/api/media/file'
+    });
+  }
+
   const sessionHandle = createCmsHandle(async event => {
     assertOpen();
     const config = await configuration(event);
@@ -99,11 +117,12 @@ export function createCmsRuntime(
       throw new Error('CMS base path must be an absolute path without a trailing slash');
     }
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
+    const storage = await storageFor(config);
     const database = await databaseFor(config);
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     configurations.set(event, config);
-    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive };
+    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive, storage };
   });
 
   return {

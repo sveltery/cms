@@ -1,0 +1,64 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../tmp/user99-reviewer-rollback.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ ../../tmp/user99-reviewer-rollback.test.ts (4 tests | 2 failed) 142ms
+   × Native disable rollback preserves original user state 53ms
+   × Native enable rollback preserves original user state 38ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  ../../tmp/user99-reviewer-rollback.test.ts > Native disable rollback preserves original user state
+AssertionError: expected { …(3) } to deeply equal { …(3) }
+
+- Expected
++ Received
+
+  {
+-   "disabled": 0,
++   "disabled": 1,
+    "id": "01M470N6PQY4T9TPHJKCEYYVC7",
+    "role": 30,
+  }
+
+ ❯ ../../tmp/user99-reviewer-rollback.test.ts:32:124
+     30|    await expect(accountsRepository(database).setDisabled(author.id,adm…
+     31|    expect(await database.db.selectFrom('_cms_auth_profiles').selectAll…
+     32|    expect(await database.db.selectFrom('_cms_auth_users').selectAll().…
+       |                                                                                                                            ^
+     33|   }finally{await database.close();}
+     34|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  ../../tmp/user99-reviewer-rollback.test.ts > Native enable rollback preserves original user state
+AssertionError: expected { …(3) } to deeply equal { …(3) }
+
+- Expected
++ Received
+
+  {
+-   "disabled": 1,
++   "disabled": 0,
+    "id": "01M470N6RE8A9K3S65Q6QBJ7JF",
+    "role": 30,
+  }
+
+ ❯ ../../tmp/user99-reviewer-rollback.test.ts:32:124
+     30|    await expect(accountsRepository(database).setDisabled(author.id,adm…
+     31|    expect(await database.db.selectFrom('_cms_auth_profiles').selectAll…
+     32|    expect(await database.db.selectFrom('_cms_auth_users').selectAll().…
+       |                                                                                                                            ^
+     33|   }finally{await database.close();}
+     34|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  21:48:57
+   Duration  811ms (transform 333ms, setup 0ms, import 545ms, tests 142ms, environment 0ms)
+
