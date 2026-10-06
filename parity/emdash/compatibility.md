@@ -2836,3 +2836,16 @@ a bounded checker with zero errors and zero warnings. The two CI647 unknown-row
 spread diagnostics were corrected by erased test-only result annotations; the
 whole Native test reconstructs exact preceding233 when reversed. That failed
 CI remains historical; current hosted gates and final review/approval are pending.
+
+The c906 complete review also identified four remaining current-version tokens
+in the mandatory Native block-provider preservation leaf. CI649 reached the
+whole 30-callback family with 20 passing and ten genuine 18-versus-17 value
+failures; later Source commands were unreached and hosting was skipped. The
+whole failed raw job, review receipt and complete old leaf remain preserved.
+After the regular red commit, only those four latest expectations change to18.
+Their strict reverse reconstructs the entire old c906/Main41 leaf, while all
+earlier nine adapted leaves, historical fixtures, Source bodies, data and clocks
+remain unchanged. The same whole published command passes30/30 on actual Node
+and real D1; this adds no Source causal credit. The complete Source guard now
+checks ten finite Native leaves. Current successor normal/secured gates and
+independent review closure precede Root approval and the regular author merge.

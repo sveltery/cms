@@ -1,0 +1,38 @@
+✔ node finite catalogue names, bound index lookup and PRAGMA use actual block storage (43.881574ms)
+✔ d1 finite catalogue names, bound index lookup and PRAGMA use actual block storage (1469.040988ms)
+✔ Node: Comments readiness follows installed14 creation default and stays read-only (37.281365ms)
+✔ Node: Comments readiness follows installed15 creation default and stays read-only (35.714724ms)
+✔ Node: Comments readiness follows installed16 creation default and stays read-only (49.142706ms)
+✔ raw D1: Comments readiness follows installed14 creation default and stays read-only (982.939813ms)
+✔ raw D1: Comments readiness follows installed15 creation default and stays read-only (445.500004ms)
+✔ raw D1: Comments readiness follows installed16 creation default and stays read-only (142.180597ms)
+✔ ordinary node startup installs both block registry tables (35.903117ms)
+✔ ordinary node startup provides Source creation defaults and keeps explicit false (31.955136ms)
+✔ ordinary d1 startup installs both block registry tables (823.529552ms)
+✔ ordinary d1 startup provides Source creation defaults and keeps explicit false (188.1227ms)
+✔ node fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (108.322414ms)
+✔ node installed16 near-miss block or metadata defaults are refused without repair (117.289238ms)
+✔ node forward16 preserves all metadata/content values and operator objects from 8 (64.132592ms)
+✔ node forward16 preserves all metadata/content values and operator objects from 14 (76.77408ms)
+✔ node Source UTC timestamp metadata CAS remains literal and monotonic in a non-UTC host (23.217873ms)
+✔ node real omitted Source metadata creation defaults permit persisted collection and field creation (24.45932ms)
+✔ node rebuild refuses external metadata parent foreign keys before any atomic writes (75.795103ms)
+✔ node unknown partial block installation rejects without repair or row changes (24.04076ms)
+✔ node every forward rebuild DDL failure rolls back complete historical data and marker state (922.555423ms)
+✔ d1 fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (713.798417ms)
+✔ d1 installed16 near-miss block or metadata defaults are refused without repair (2037.345448ms)
+✔ d1 forward16 preserves all metadata/content values and operator objects from 8 (539.903099ms)
+✔ d1 forward16 preserves all metadata/content values and operator objects from 14 (517.84154ms)
+✔ d1 Source UTC timestamp metadata CAS remains literal and monotonic in a non-UTC host (100.087544ms)
+✔ d1 real omitted Source metadata creation defaults permit persisted collection and field creation (78.604523ms)
+✔ d1 rebuild refuses external metadata parent foreign keys before any atomic writes (1110.200286ms)
+✔ d1 unknown partial block installation rejects without repair or row changes (301.23816ms)
+✔ d1 every forward rebuild DDL failure rolls back complete historical data and marker state (10281.836142ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19878.8489

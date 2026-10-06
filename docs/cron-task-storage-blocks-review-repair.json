@@ -49,6 +49,38 @@
       "path": "docs/cron-task-storage-evidence/provider-preservation-c906-whole.ts.txt",
       "bytes": 18912,
       "sha256": "40d34fc9a12419786c315286ff612ab589f768c1794211d106260273d77b8b22"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-block30-whole-current18-fix.log",
+      "bytes": 3158,
+      "sha256": "3529865a11574be61b8ddd53f27638682e9b9fd5e770a2fe88d8bdaf1fb252b7"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-block30-whole-current18-fix.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/scoped-ci649-whitespace-four-controls.json",
+      "bytes": 1501,
+      "sha256": "d9647e01bfcd66fd47ddf038e03e0fe7895547e80dba0e7663ef99a82176f57c"
     }
-  ]
+  ],
+  "after": {
+    "registered": 30,
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 19878.8489,
+    "exit": 0,
+    "wholePublishedCommandUnchanged": true,
+    "runtime": "actual Node and real D1",
+    "completeOldLeafReverseIdentical": true,
+    "earlierNineNativeLeavesUnchanged": true,
+    "sourceBodyChanges": 0,
+    "productBodyChanges": 0,
+    "checkerDecision": "No redundant local checker: only four numeric test tokens and additive JavaScript provenance guard changed; current mandatory hosted checker remains required."
+  },
+  "redCommit": "ed1b37e0c3eecdc1cd217cc22555c8fd1ce1f970",
+  "fixCommit": "12b057b7355f366bfd7dbef5d7b9740b330308ae"
 }

@@ -103,3 +103,32 @@ whitespace, and wrong whitespace kinds on owned files, remain rejected.
 Final current-head hosted gates, independent review, manager approval and
 regular author merge remain pending. The earlier failed CI is not retried or
 counted as a pass.
+
+## Complete block-provider current-version correction
+
+The independent whole-head review of `c9060072` found one remaining Native
+current-version leaf in the mandatory block family. CI649's complete Source
+job reached all 30 callbacks: 20 passed and ten failed on actual 18-versus-17
+values across Node and real D1. Later normal Source commands were unreached,
+hosting was skipped and the aggregate failed. The complete raw job, complete
+review receipt and entire 18,912-byte old leaf are retained without rewriting
+that failed run; the regular red commit precedes the correction.
+
+Only three `CMS_MIGRATION_VERSION` expectations and one full marker-count
+expectation in `tests/blocks/provider-preservation.test.ts` change from 17
+to 18. Reversing those four tokens reproduces the complete archived c906 and
+public Main41 leaf byte for byte. The prior nine adapted Native leaves remain
+unchanged. Historical 8/14/16 fixtures and titles, genuine 17 history, provider
+SQL, defaults, sort values, data, timestamps, assertions and Source bodies
+remain literal. The source guard now checks ten complete finite Native leaves.
+
+The unchanged published whole block command then passes all 30 callbacks on
+actual Node and real D1, with zero failures or skips, in 19.879 seconds. Four
+actual Git whitespace controls cover the additional preserved CI raw format:
+its observed trailing spaces are allowed, while EOF blanks on that same file,
+unrelated EOF blanks and product trailing spaces remain rejected. The previous
+six whitespace controls remain immutable. See the complete repair ledger at
+`docs/cron-task-storage-blocks-review-repair.json`. No product or Source-body
+repair was needed. Current successor hosted gates, fresh review closure and
+Root approval remain required before the regular author merge; neither failed
+historical run is retried or counted as a pass.

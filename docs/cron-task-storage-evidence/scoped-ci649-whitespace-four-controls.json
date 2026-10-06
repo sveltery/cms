@@ -1,0 +1,40 @@
+{
+  "base": "c9060072c1139b8ab9e0ffdef4131ca4523dc37c",
+  "attributesSha256": "421f06759372fe75242261658f539f256b5e5921e9cdc465d8bff1054409b932",
+  "controls": [
+    {
+      "path": "docs/cron-task-storage-evidence/ci649-c906-complete-source-block30-first-red.log",
+      "contentHex": "6b65707420200a",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "meaning": "only observed full CI Source trailing spaces allowed",
+      "stdout": ""
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/ci649-c906-complete-source-block30-first-red.log",
+      "contentHex": "6b6570740a0a",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "meaning": "the new trailing-only raw attribute still rejects EOF blank",
+      "stdout": "docs/cron-task-storage-evidence/ci649-c906-complete-source-block30-first-red.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/unrelated-publication.log",
+      "contentHex": "6b6570740a0a",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "meaning": "unrelated EOF remains rejected",
+      "stdout": "docs/unrelated-publication.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "src/lib/server/unrelated-publication.ts",
+      "contentHex": "6b65707420200a",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "meaning": "unrelated product trailing spaces remain rejected",
+      "stdout": "src/lib/server/unrelated-publication.ts:1: trailing whitespace.\n+kept  \n"
+    }
+  ],
+  "productTestsRun": 0,
+  "sourceCausalCredit": 0
+}
