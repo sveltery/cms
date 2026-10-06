@@ -11,8 +11,8 @@ export function ensureAccountSsrBuild(): Promise<void> {
       cwd: projectRoot, stdio: ['ignore', 'pipe', 'pipe']
     });
     let output = '';
-    child.stdout.on('data', data => { output += data; });
-    child.stderr.on('data', data => { output += data; });
+    child.stdout.on('data', data => { output += data; process.stdout.write(data); });
+    child.stderr.on('data', data => { output += data; process.stderr.write(data); });
     child.on('error', reject);
     child.on('close', (code, signal) => {
       if (code === 0) resolve();

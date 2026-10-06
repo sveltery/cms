@@ -1,0 +1,55 @@
+Loading svelte-check in workspace: /workspace/cms-default-seed-setup-runtime
+Getting Svelte diagnostics...
+
+/workspace/cms-default-seed-setup-runtime/src/routes/setup/+page.svelte:13:36
+Error: Type '{ needsSetup: boolean; unavailable: boolean; reason: string; step?: undefined; seedInfo?: undefined; authMode?: undefined; } | { needsSetup: boolean; unavailable?: undefined; reason?: undefined; step?: undefined; seedInfo?: undefined; authMode?: undefined; } | { ...; } | { ...; } | { ...; }' is not assignable to type 'SetupWizardStatus'.
+  Type '{ seedInfo: { name: string; description: string; collections: number; hasContent: boolean; title: string | undefined; tagline: string | undefined; } | null; needsSetup: boolean; step: string; authMode: string; unavailable?: undefined; reason?: undefined; }' is not assignable to type 'SetupWizardStatus'.
+    Types of property 'step' are incompatible.
+      Type 'string' is not assignable to type '"admin" | "complete" | "start" | "site" | undefined'. (ts)
+  <PasskeySetup unavailable={status.unavailable} {legacyUnavailable} completed={status.data?.needsSetup === false} loginHref={resolve('/login')} />
+{:else if status.data}<SetupWizard status={status.data} loginHref={resolve('/login')} />{/if}</main>
+
+/workspace/cms-default-seed-setup-runtime/tests/default-seed-runtime-caller.test.ts:39:55
+Error: Argument of type '"_cms_media_usage_activation"' is not assignable to parameter of type 'TableExpressionOrList<CmsTables, never>'. 
+  try {
+    const rows = await fixture.database.db.selectFrom('_cms_media_usage_activation').select(['state', 'activated_at'])
+      .where('task_key', '=', 'incremental_capture').execute();
+
+/workspace/cms-default-seed-setup-runtime/tests/default-seed-runtime-caller.test.ts:39:86
+Error: This expression is not callable.
+  Each member of the union type '{ <SE extends SelectExpression<{ [x: string]: never; }, any>>(selections: readonly SE[]): SelectQueryBuilder<{ [x: string]: never; }, any, { [E in FlattenSelectExpression<SE> as ExtractAliasFromSelectExpression<...>]: SelectType<...>; }>; <const CB extends SelectCallback<...>>(callback: CB): SelectQueryBuilder<...>;...' has signatures, but none of those signatures are compatible with each other. 
+  try {
+    const rows = await fixture.database.db.selectFrom('_cms_media_usage_activation').select(['state', 'activated_at'])
+      .where('task_key', '=', 'incremental_capture').execute();
+
+/workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts:5:30
+Error: Cannot find module '@emdash-cms/blocks' or its corresponding type declarations. 
+
+import type { Element } from "@emdash-cms/blocks";
+import { i18n } from "@lingui/core";
+
+/workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts:9:51
+Error: Cannot find module '../sandboxed-editor-extensions.js' or its corresponding type declarations. 
+
+import type { EditorDraftAccessDeclaration } from "../sandboxed-editor-extensions.js";
+
+/workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts:178:26
+Error: Cannot find module './schema.js' or its corresponding type declarations. 
+					unsupportedType?: { type: string; path: string };
+					blockTypes?: import("./schema.js").BlockType[];
+					blockTypeFingerprint?: string;
+
+/workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts:225:22
+Error: Cannot find module '@emdash-cms/blocks' or its corresponding type declarations. 
+				style?: "default" | "danger";
+				confirm?: import("@emdash-cms/blocks").ConfirmDialog;
+				draft?: EditorDraftAccessDeclaration;
+
+/workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts:232:23
+Error: Cannot find module '@emdash-cms/blocks' or its corresponding type declarations. 
+				fieldTypes: string[];
+				elements?: import("@emdash-cms/blocks").Element[];
+			}>;
+
+====================================
+svelte-check found 8 errors and 0 warnings in 3 files
