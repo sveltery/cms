@@ -1,0 +1,106 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "proposedPR": 120,
+  "kind": "Separate meaningful current Native persisted canonical repository / actual READ API / one caller supplied QueryClient acceptance; no Original Source callback credit.",
+  "sourceAuthorities": [
+    {
+      "path": "packages/admin/src/components/editor/ImageNode.tsx",
+      "bytes": 13879,
+      "sha256": "ebb979f208a7ff5ecf953dd7fb4916cbae82f1a30aa582533c1a5339a21b29c1",
+      "sourceBlob": "fd78567157c74d1782cb5d8433984bafc9df41f0"
+    },
+    {
+      "path": "packages/admin/src/components/editor/GalleryNode.tsx",
+      "bytes": 8745,
+      "sha256": "66a09795ee0b6703e1311d93f9eacf9873adf942780af5e38c633741509ef2fd",
+      "sourceBlob": "4bb5cbe37e4fe64690797b4be105658871161885"
+    },
+    {
+      "path": "packages/admin/src/lib/media-utils.ts",
+      "bytes": 9205,
+      "sha256": "810e922dd92053396397fb19397585b2f4bc644334387dad02813405fd4f5efd",
+      "sourceBlob": "59068082c2e7da125dd041d6639fef6a73c29880"
+    },
+    {
+      "path": "packages/core/src/api/schemas/media.ts",
+      "bytes": 9636,
+      "sha256": "294db4b80aefe5885fb591dda63411197f975593373a9b5011fcca2feda3cd7f",
+      "sourceBlob": "a438afee97dcdbdb0742089c3df2a4f5c3b714a4"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/media/[id].ts",
+      "bytes": 5026,
+      "sha256": "4ce8a3348ba23c2a2d1990ed916d6c15db914f08d6fe3788eac288786927c2d5",
+      "sourceBlob": "10eb11226766fb429015ce2709c3d897449d83af"
+    }
+  ],
+  "testFirst": {
+    "publicCommit": "220e13f093e74b28569db782125fa5cd19eccdc5",
+    "registered": 24,
+    "passed": 19,
+    "failed": 5,
+    "newRealMissingProductionConsumerReds": 2,
+    "existingCanonicalCursorReds": 3
+  },
+  "initialFix": {
+    "registered": 24,
+    "passed": 19,
+    "failed": 5,
+    "newNativeFixtureErrors": 2,
+    "SourceFidelityCredit": 0,
+    "explanation": "The new Image fixture used an external URL while expecting a URL from GET, which returns the raw repository item. The new Gallery fixture used an external URL while expecting versioning. Pinned getMediaPreviewUrl versions only internal /_emdash/api/media/file/ URLs. These expectations were wrong; raw failures and committed test-first history remain retained."
+  },
+  "fixtureCorrection": {
+    "commit": "82f81896",
+    "changed": "Only these two newly authored Native fixtures use stored internal URLs, matching pinned editor-image-media-refresh behavior. No Original Source test/body/data/mock/clock change."
+  },
+  "currentFirstFix": {
+    "registered": 24,
+    "passed": 21,
+    "failed": 3,
+    "newNativeCacheCases": 2,
+    "newNativeCachePassed": 2,
+    "remaining": "The same three canonical cursor-class reds, assigned to sole Media113 owner; no fix/adoption here."
+  },
+  "algorithms": [
+    "Image uses local provider canonical identity, [media,id], actual fetchMediaItem AbortSignal, currentMedia.url or storedSrc fallback, internal URL hash. No document attributes written.",
+    "Gallery uses local canonical identity and same media cache key; its read stays disabled. It observes hash data obtained through the actual image read, retaining stored asset URL or Source local media file URL."
+  ],
+  "correctedPotentialBugAssessment": "The suspected GET URL/schema mismatch is disproved by exact pin: mediaResponseSchema and mediaReadResponseSchema deliberately omit url; only mediaListReadItemSchema extends url. Source GET and editor fallback agree. No verified shared bug, issue or URL/backend shim.",
+  "integrationLimits": [
+    "Standalone real lifecycle consumers only. Shared Rich/FieldHost/TipTap, document save/hydration and editor UI wiring await approved public rich graphs.",
+    "Zero copied Source callbacks, browser geometry, protected HTTP, storage mutation or complete Image/Gallery feature credit."
+  ],
+  "evidence": [
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-first-red.log",
+      "bytes": 10116,
+      "sha256": "f94b65d9cc700110a7c774fba2f51ba38e735c6c54bd08ab0c959ac22ecfb650"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-first-red.json",
+      "bytes": 12208,
+      "sha256": "a94a200e7f2521175ec3dfa8d4d3428a0c68607cc3d36e4e58bfa2c61e6727ce"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-first-fix.log",
+      "bytes": 10221,
+      "sha256": "750d37aa71e2d1377d66bb3b0ee586621bb1b44fb2d8ea10011ccacae12bc540"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-first-fix.json",
+      "bytes": 12210,
+      "sha256": "eb1dcd1d220227dfb4cf354730db2f079da8b40cd951b7e28a25ce7365db3210"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-corrected-fixture-green.log",
+      "bytes": 7944,
+      "sha256": "ff45578b74ef61a2570db228c0652eeb801e71fa29271e3862d35c29707bc9fa"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-corrected-fixture-green.json",
+      "bytes": 11001,
+      "sha256": "5839e48026752e3281f006126a1699b7c6c291d74205b43600f4cddf697f02c1"
+    }
+  ]
+}
