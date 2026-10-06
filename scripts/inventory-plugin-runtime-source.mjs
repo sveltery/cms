@@ -19,7 +19,8 @@ const testSeeds = files.filter(file => /packages\/core\/tests\/(unit\/plugins|in
   /packages\/admin\/tests\/(lib\/(plugin-context|sandboxed-editor-extensions|content-editor-panels|content-list-columns)|editor\/plugin-block-(conversion|modal))\.test\.tsx?$/.test(file));
 const sourceSeeds = files.filter(file => /^packages\/core\/src\/plugins\/.+\.ts$/.test(file) ||
   /^packages\/admin\/src\/lib\/(plugin-context|sandboxed-editor-extensions|plugin-links|content-editor-panels|content-list-columns)\.tsx?$/.test(file) ||
-  /^packages\/plugin-types\/src\/.+\.ts$/.test(file) || /^packages\/blocks\/src\/(types|server|validation|builders)\.ts$/.test(file));
+  /^packages\/plugin-types\/src\/.+\.ts$/.test(file) || /^packages\/blocks\/src\/(types|server|validation|builders)\.ts$/.test(file) ||
+  /^packages\/admin\/src\/locales\/.+\.tsx?$/.test(file));
 const allFiles = new Set(files);
 const bytes = new Map();
 function original(file) {
@@ -43,7 +44,7 @@ function resolveAlias(specifier) {
   }
   return typeof target === 'string' ? resolveRelative(corePackage, target) : undefined;
 }
-const closure = new Set([...testSeeds, ...sourceSeeds, corePackage]);
+const closure = new Set([...testSeeds, ...sourceSeeds, corePackage, 'packages/core/vitest.config.ts']);
 const unresolved = [];
 for (const file of closure) {
   const body = original(file).toString('utf8');

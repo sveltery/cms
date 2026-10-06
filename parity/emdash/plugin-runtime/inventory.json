@@ -3,9 +3,9 @@
   "sourceRepository": "https://github.com/emdash-cms/emdash",
   "license": "MIT, Copyright 2026 Cloudflare Inc.",
   "selectedTestFiles": 80,
-  "selectedImplementationFiles": 55,
-  "immutableAuthorityFiles": 659,
-  "immutableAuthorityBytes": 6323816,
+  "selectedImplementationFiles": 64,
+  "immutableAuthorityFiles": 667,
+  "immutableAuthorityBytes": 6337581,
   "testDeclarations": 1116,
   "assertionExpressions": 4926,
   "productTestsRun": 0,
@@ -707,12 +707,52 @@
       "selectedImplementation": false
     },
     {
+      "path": "packages/admin/src/locales/LocaleDirectionProvider.tsx",
+      "bytes": 914,
+      "sha256": "e631c26e85df0a268e20e4b158ece737d32ff8998ef3ae25dab0a50f02132fdd",
+      "gitBlob": "4e2f7282345fc5556da6a355dd23fbbbcacb8192",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
       "path": "packages/admin/src/locales/config.ts",
       "bytes": 4910,
       "sha256": "17a66d6430680ad9fada949e84405e408a0bdad2c35b430ee237b2196f033e84",
       "gitBlob": "58d06d1d01c212cec2d56688e77f88cbd152f6b6",
       "selectedTest": false,
-      "selectedImplementation": false
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/admin/src/locales/day-picker.ts",
+      "bytes": 691,
+      "sha256": "cd214e13b7783e0a0dbf5d9551599ba667d253663dedc1d425628cf0fe499f57",
+      "gitBlob": "c43dacdb902396c31b7e3520c67cf246483ace58",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/admin/src/locales/emails.ts",
+      "bytes": 4283,
+      "sha256": "8e8804e30b4d740912b5b6e46ddc2de64aa8b4a3eada90d042eddeec70aa4487",
+      "gitBlob": "ed1ca36d923eb41c450bbba362431940457805a9",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/admin/src/locales/index.ts",
+      "bytes": 530,
+      "sha256": "fd294772a693dd6db6fb327ddb310e045b33ca822134629628a8485b9bb974af",
+      "gitBlob": "5661d780ba005d880b70d8050de5bd44a5b65454",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/admin/src/locales/loadMessages.ts",
+      "bytes": 640,
+      "sha256": "80ff92d0f1c9db282906cdbfc3497d08e6e8978b53af209e5045e065f805bf10",
+      "gitBlob": "aa16230b533fd54a84ba5ed2c838138ddfa3e773",
+      "selectedTest": false,
+      "selectedImplementation": true
     },
     {
       "path": "packages/admin/src/locales/locales.ts",
@@ -720,7 +760,23 @@
       "sha256": "4d6d420f52f776cc92556adce7c78e8c92b047bf5428888772c52934dc74c94d",
       "gitBlob": "1b19442b41cac7fee4ef6cbaf2629f7b5f1bf4a2",
       "selectedTest": false,
-      "selectedImplementation": false
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/admin/src/locales/server.ts",
+      "bytes": 2649,
+      "sha256": "2bdbb9bf08e73e2f101b72421dea47733a992567f7c18217a19f9e0d902bad04",
+      "gitBlob": "1f4b1ae3c180fd7e67c7bb61ad2f278b4dbde568",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/admin/src/locales/useLocale.ts",
+      "bytes": 1238,
+      "sha256": "c393e4df48b24092beb52e1aee432218e3695d9b22d9740f8a244091bcc64fb0",
+      "gitBlob": "c181ef34a9bb234274dbf3d21e0d44aef7563729",
+      "selectedTest": false,
+      "selectedImplementation": true
     },
     {
       "path": "packages/admin/src/portable-text-table.ts",
@@ -5183,6 +5239,14 @@
       "bytes": 18803,
       "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
       "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "selectedTest": false,
+      "selectedImplementation": false
+    },
+    {
+      "path": "packages/core/vitest.config.ts",
+      "bytes": 2820,
+      "sha256": "cf845d55e85b84542334cfe0621925b974968f9df9cfb726df5b91b114090003",
+      "gitBlob": "c842e3571711cc32f61f0ec88799100d8c541787",
       "selectedTest": false,
       "selectedImplementation": false
     },

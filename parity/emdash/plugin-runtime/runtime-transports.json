@@ -1010,6 +1010,122 @@
       "imports": [],
       "body": "whole-source-runtime-after-import-only-substitution",
       "limits": "native-canonical-domain-bindings-not-yet-fully-qualified"
+    },
+    {
+      "source": "packages/core/src/api/handlers/plugins.ts",
+      "native": "src/lib/server/plugins/handlers.ts",
+      "sourceSha256": "26d140133f2dc10ad193e0d69cbbc6688596cd8eed9b07c3cd2e05df60acf0a2",
+      "imports": [
+        {
+          "from": "../../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../../emdash-runtime.js",
+          "to": "./runtime-types.ts"
+        },
+        {
+          "from": "../../plugins/state.js",
+          "to": "./state.ts"
+        },
+        {
+          "from": "../../plugins/types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "../types.js",
+          "to": "../comments/upstream/api/types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "canonical Native runtime and compound D1 settings qualification pending; PL2/PL3 lifecycle seams grant no sandbox/marketplace execution credit"
+    },
+    {
+      "source": "packages/core/src/api/handlers/plugin-settings.ts",
+      "native": "src/lib/server/plugins/settings-handlers.ts",
+      "sourceSha256": "d4d813093aee3eb938d674b86363b6dfbafc02ea3467eed8dc75896f81bb86b6",
+      "imports": [
+        {
+          "from": "../../config/secrets.js",
+          "to": "./configuration-secrets.ts"
+        },
+        {
+          "from": "../../database/repositories/options.js",
+          "to": "../options/repository.ts"
+        },
+        {
+          "from": "../../database/transaction.js",
+          "to": "./transaction.ts"
+        },
+        {
+          "from": "../../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../../emdash-runtime.js",
+          "to": "./runtime-types.ts"
+        },
+        {
+          "from": "../../plugins/settings.js",
+          "to": "./settings.ts"
+        },
+        {
+          "from": "../../plugins/types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "../errors.js",
+          "to": "../blocks/upstream/api/errors.ts"
+        },
+        {
+          "from": "../types.js",
+          "to": "../comments/upstream/api/types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "canonical Native runtime and compound D1 settings qualification pending; PL2/PL3 lifecycle seams grant no sandbox/marketplace execution credit"
+    },
+    {
+      "source": "packages/core/src/plugins/lifecycle.ts",
+      "native": "src/lib/server/plugins/lifecycle.ts",
+      "sourceSha256": "8d47f5a0b10d05949879e94af4d4ef46e512a469eef202bcd35d8a1cce4f2264",
+      "imports": [
+        {
+          "from": "../api/handlers/plugins.js",
+          "to": "./handlers.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../emdash-runtime.js",
+          "to": "./runtime-types.ts"
+        },
+        {
+          "from": "./cron.js",
+          "to": "./cron.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "canonical Native runtime and compound D1 settings qualification pending; PL2/PL3 lifecycle seams grant no sandbox/marketplace execution credit"
+    },
+    {
+      "source": "packages/core/src/plugins/install-finalization.ts",
+      "native": "src/lib/server/plugins/install-finalization.ts",
+      "sourceSha256": "2d7cc5711c6775fc9b5b45363dcb0cb42ee818b29ae941be110e8f2a516ef9b9",
+      "imports": [
+        {
+          "from": "../api/types.js",
+          "to": "../comments/upstream/api/types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "canonical Native runtime and compound D1 settings qualification pending; PL2/PL3 lifecycle seams grant no sandbox/marketplace execution credit"
     }
   ]
 }

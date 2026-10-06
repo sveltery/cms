@@ -2895,3 +2895,22 @@ Source templates remain unchanged. The real Native first-value red and final
 four-callback family are paired with 15 whole Source index callbacks in the
 [plugin record](../../docs/plugin-runtime-provider.md). No new canonical provider
 or arbitrary SQL rewriting is introduced; full runtime qualification is pending.
+
+### PL1 configured kernel and Source authority prerequisites
+
+The [paired record](../../docs/plugin-runtime-provider.md) distinguishes Native
+configured state/options/current-owner execution from immutable Source complete
+EmDashRuntime execution. Three actual Native kernel callbacks pass with dormant
+outside-domain imports supplied by whole Original controlled collaborators; two
+invalid initial test assumptions are withdrawn with zero causal credit. Complete
+settings handlers add 16 whole Source callbacks. The exact original virtual setup
+and whole locale configuration remove those import prerequisites, leaving actual
+`modern-tar` missing before four runtime families register callbacks. No new
+dependency or substitute runtime is used. All shared startup, canonical content/
+media/entry-lock, typed HTTP and actual product callers remain unqualified.
+
+A finite sole-host lifecycle metadata inheritance proposal is under review after
+four actual value reds; its earlier metadata-erasing draft was not implemented.
+The missing after-reader observer is infrastructure only and grants zero causal
+credit. Source mocks, prior accepted host callbacks and protected database owners
+remain unchanged at this checkpoint.

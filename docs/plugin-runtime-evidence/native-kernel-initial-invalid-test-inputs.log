@@ -1,0 +1,53 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/kernel/configured.test.ts (3 tests | 2 failed) 113ms
+     × retains deactivate access through cleanup and rebuilds the real hook pipeline on each transition 28ms
+     × resolves each context against the actual current event owner instead of the configured fallback 45ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/kernel/configured.test.ts > configured Native plugin kernel with actual canonical state and options > retains deactivate access through cleanup and rebuilds the real hook pipeline on each transition
+AssertionError: expected null to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+null
+
+ ❯ tests/plugin-runtime/kernel/configured.test.ts:35:69
+     33|   expect(value.manager.isActive('configured')).toBe(false); expect(val…
+     34|   await value.setPluginStatus('configured', 'active'); expect(value.ma…
+     35|   expect(await value.createContext('configured').kv.get('cleanup')).to…
+       |                                                                     ^
+     36|  });
+     37|  it('resolves each context against the actual current event owner inst…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/plugin-runtime/kernel/configured.test.ts > configured Native plugin kernel with actual canonical state and options > resolves each context against the actual current event owner instead of the configured fallback
+AssertionError: expected [ { …(3) }, { …(3) } ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/plugin-runtime/kernel/configured.test.ts:46:75
+     44|   });
+     45|   expect(await value.createContext('configured').kv.get('owner')).toBe…
+     46|   expect(await first.db.selectFrom('_cms_options').selectAll().execute…
+       |                                                                           ^
+     47|   expect(await second.db.selectFrom('_cms_options').selectAll().execut…
+     48|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  02:00:27
+   Duration  1.84s (transform 1.15s, setup 0ms, import 1.61s, tests 113ms, environment 0ms)
+

@@ -148,3 +148,46 @@ Native canonical storage callbacks and all 15 unchanged whole Source index
 callbacks pass. The actual test checks index tracking and orphan removal.
 This finite owner/template adaptation adds no provider, input SQL rewriting,
 whole-module byte identity or wider runtime completion.
+
+## Configured runtime kernel and complete lifecycle/settings authorities
+
+The owned configured kernel composes the complete plugin context, hooks,
+state, route, email and cron owners. Its configured registry facade preserves
+implicit active startup without install/activate hooks or state writes. Explicit
+status changes rebuild the pipeline and retain deactivate context access until
+cleanup completes. A trusted current-owner async scope resolves each context
+against the current event database; it never replaces the protected request DB.
+Three separate Native kernel callbacks pass against actual canonical SQLite
+state/options. Dormant outside-domain imports in this host still resolve whole
+Original controlled collaborators; this grants no Native media/content/lock
+qualification. The initial lifecycle handler argument and unfiltered option-row
+count assumptions were invalid tests and are withdrawn with zero causal credit.
+
+Complete Source plugin management/settings handlers, lifecycle and install
+finalization bodies are transported with finite imports. All 16 unchanged Source
+settings-handler callbacks pass. The runtime's maintenance slots require named
+canonical producers; missing maintenance throws instead of marking slots done.
+PL2/PL3 source synchronizers are explicit extension seams and unavailable sources
+fail. Actual shared startup adoption, all canonical domain bindings, typed HTTP
+dispatch, complete content action settlement and product admin callers remain
+pending; this checkpoint is not a deployable or complete PL1 claim.
+
+The census adds the complete pinned admin locale authorities/public index and
+Core original Vitest virtual-module setup: 80 families, 64 selected authorities,
+667 literal files (6,337,581 bytes), 1,116 declarations and 4,926 AST expectations.
+The Source host reuses the exact original virtual plugin, and a finite test-only
+locale export facade targets whole pinned config functions. No fabricated locale
+functions or public-index module identity are claimed. Full immutable Source
+EmDashRuntime remains the whole authority, never the Native kernel. Its four
+selected families still stop on missing `modern-tar`, a real PL3 prerequisite.
+The pin selects 0.7.5/MIT/exact SRI, independently confirmed by read-only pnpm
+metadata; no additional dependency/install or lock mutation occurred.
+
+Sole lifecycle metadata controls first expose four actual value failures across
+known ordinary views/real transactions and inherited timezone callbacks. Unknown
+derived refusal remains green. The proposed new after observer is currently a
+missing reader prerequisite with zero causal credit. Root review found that the
+initial registration proposal would erase trusted after/timezone metadata; that
+proposal was not implemented. The corrected finite proposal preserves existing
+base metadata and inherits it through only qualified owner-backed views and
+genuine transactions. Shared lifecycle host edits await exact review.
