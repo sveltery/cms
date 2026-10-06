@@ -90,3 +90,38 @@ it('D1: delegates genuinely active capture to its existing guarded projection ba
   expect((await f.repo.findSource(f.source.sourceKey))?.currentGeneration).toBeTruthy();
  }finally{vi.restoreAllMocks();await f.storage.close();}
 },30000);
+
+// Source conditional attempted-source behavior is used by content-repair496,
+// content-refresh882 and the original reconciliation-scan canonical identity
+// control. These Native value controls add no Original callback credit.
+for(const active of [false,true]){
+ it(`D1: records a real new failed-source attempt with capture active=${active}`,async()=>{
+  const f=await fixture(active);try{
+   const failed={...f.source,sourceVariant:'draft_overlay',sourceKey:f.source.sourceKey.replace(':columns',':draft_overlay'),sourceCompleteness:'failed' as const,lastErrorCode:'DRAFT_REVISION_MISMATCH'};
+   const outcome=await f.repo.markSourceAttemptedIfMatching(failed,null).then(receipt=>({receipt,error:null}),error=>({receipt:null,error}));
+   expect(outcome.error).toBeNull();expect(outcome.receipt).toEqual({attempted:true,source:null});
+   const actual=await f.repo.findSource(failed.sourceKey);
+   expect(actual).toMatchObject({sourceCompleteness:'failed',lastErrorCode:'DRAFT_REVISION_MISMATCH',collectionId:f.source.collectionId,sourceVariant:'draft_overlay'});
+   expect(actual?.currentGeneration).toBeTruthy();expect(actual?.lastAttemptedAt).toEqual(expect.any(String));
+   expect(await f.db.selectFrom('_cms_media_usage_generation_writes').select('lease_token').execute()).toEqual([]);
+   expect(await f.db.selectFrom('_cms_media_usage').select('id').execute()).toEqual([]);
+  }finally{await f.storage.close();}
+ },30000);
+ it(`D1: preserves the actual existing generation and reports a stale failed attempt with capture active=${active}`,async()=>{
+  const f=await fixture(active);try{
+   await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],null);
+   const before=(await f.repo.findSource(f.source.sourceKey))!;
+   const failed={...f.source,sourceFingerprint:undefined,sourceCompleteness:'failed' as const,lastErrorCode:'DRAFT_REVISION_MISMATCH'};
+   const outcome=await f.repo.markSourceAttemptedIfMatching(failed,before).then(receipt=>({receipt,error:null}),error=>({receipt:null,error}));
+   expect(outcome.error).toBeNull();expect(outcome.receipt).toEqual({attempted:true,source:null});
+   const current=(await f.repo.findSource(f.source.sourceKey))!;
+   expect(current.currentGeneration).toBe(before.currentGeneration);
+   expect(current.sourceFingerprint).toBe(before.sourceFingerprint);
+   expect(current.indexedAt).toBe(before.indexedAt);
+   expect(current).toMatchObject({sourceCompleteness:'failed',lastErrorCode:'DRAFT_REVISION_MISMATCH'});
+   expect(await f.repo.markSourceAttemptedIfMatching({...failed,lastErrorCode:'MISSING_DRAFT_REVISION'},before)).toEqual({attempted:false,source:current});
+   expect((await f.db.selectFrom('_cms_media_usage').select(['source_key','generation']).execute())).toEqual([{source_key:f.source.sourceKey,generation:before.currentGeneration}]);
+   expect(await f.db.selectFrom('_cms_media_usage_generation_writes').select('lease_token').execute()).toEqual([]);
+  }finally{await f.storage.close();}
+ },30000);
+}
