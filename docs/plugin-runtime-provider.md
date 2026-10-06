@@ -119,3 +119,21 @@ license bytes and SHA. The dependency guard removes exactly three additive
 blocks and reconstructs the entire approved Main82 lock byte-for-byte; all
 unrelated approved Main82 package values remain exact. No runtime/browser or
 product parity follows from installation or dependency validation.
+
+## Actual canonical document storage qualification
+
+The dedicated Native family first registered three callbacks: one passed and
+two failed on actual values. A nested `putMany` escaped its existing transaction
+through the owner batch API; an unknown derived namespace handle was accepted
+by the repository. The nested observer rejects the invalid handoff before any
+connection wait and preserves the real database/executor and all valid batches.
+The test does not execute an unsafe deadlock or protected request probe.
+
+The finite fix batches only outside an existing transaction and keeps nested
+statements on their current executor. A namespace constructor guard accepts
+registered owner/transaction views and rejects unknown derived views. Plain
+Original controlled Source databases keep their original transaction behavior.
+The intermediate incorrect Kysely accessor is retained as implementation failure;
+it adds no Source parity credit. All three final Native callbacks pass, including
+actual rollback, plugin key isolation and complete list writes. Wider compound
+context/settings and D1 integration remain pending.

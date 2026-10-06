@@ -752,11 +752,12 @@
           "to": "../database/lifecycle/upstream/database/repositories/types.ts"
         }
       ],
-      "body": "complete-source-repository-with-listed-native-canonical-batch-and-SQL-identifier-transports",
+      "body": "whole-source-with-finite-canonical-batch-transaction-and-owner-guard-transports",
       "additionalTransports": [
         "putMany actual registered owner compiles every insert before invoking its existing atomicBatch; Original unregistered controlled fixtures retain Source transaction path",
         "cursor subquery table emitted as finite sql.table identifier node; no input SQL/RawNode rewriting"
-      ]
+      ],
+      "limits": "actual registered owner atomicBatch outside transactions; existing transaction executor inside; unknown derived namespace rejected; Original plain controlled fixtures retain Source paths; no whole-module byte identity"
     },
     {
       "source": "packages/core/src/storage/types.ts",

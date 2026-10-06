@@ -40,7 +40,7 @@ import type {
 } from "./types.ts";
 import { pluginDataWriteExpr, pluginDataUpdateGuard } from "../database/lifecycle/upstream/database/dialect-helpers.ts";
 import { withTransaction } from "./transaction.ts";
-import { registeredPluginDatabaseOwner } from "./database.ts";
+import { assertRegisteredPluginNamespace, registeredPluginDatabaseOwner } from "./database.ts";
 import type { Database } from "./database-types.ts";
 import { encodeCursor, decodeCursor } from "../database/lifecycle/upstream/database/repositories/types.ts";
 
@@ -125,6 +125,7 @@ export class PluginStorageRepository<T = unknown> implements StorageCollection<T
 		private collection: string,
 		indexes: Array<string | string[]>,
 	) {
+		assertRegisteredPluginNamespace(db);
 		this.indexedFields = getIndexedFields(indexes);
 	}
 
@@ -298,7 +299,7 @@ export class PluginStorageRepository<T = unknown> implements StorageCollection<T
 
 		const now = new Date().toISOString();
 		const owner = registeredPluginDatabaseOwner(this.db);
-		if (owner) {
+		if (owner && !this.db.isTransaction) {
 			const statements = items.map(item => this.db.insertInto("_plugin_storage").values({
 				plugin_id: this.pluginId, collection: this.collection, id: item.id,
 				data: JSON.stringify(item.data), revision: crypto.randomUUID(), created_at: now, updated_at: now

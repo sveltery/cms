@@ -2877,3 +2877,14 @@ Dedicated Native atomicity qualification is pending. ProposedPR127, no specific
 framework/atomicity difference acceptance or full product qualification recorded.
 The sole existing user owner is adopted from approvedMain82 through regular
 mergef960b7b5; no additional content, media, identity or storage provider is added.
+
+### PL1 canonical document owner and transaction qualification
+
+PL1-BATCH01 now has three separate Native callbacks against actual canonical
+SQLite storage. The test-first run had two genuine value failures; the corrected
+transport uses owner atomicBatch outside a transaction, preserves the current
+transaction executor inside, and rejects unknown derived namespace repository
+handles. Plain Original controlled fixtures retain their Source paths.
+The [paired record](../../docs/plugin-runtime-provider.md) preserves the initial
+and intermediate logs and all limits. This proves this document list boundary,
+not complete context/settings compound writes, D1 support or complete runtime.

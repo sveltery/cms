@@ -32,6 +32,12 @@ export function pluginSourceDatabase(database: CmsDatabase): Kysely<Database> {
   return view;
 }
 export function registeredPluginDatabaseOwner(db: object): CmsDatabase | undefined { return owners.get(db); }
+/** Namespace views may only write through their registered current owner. */
+export function assertRegisteredPluginNamespace(db: Kysely<any>): void {
+  if (db.getExecutor().plugins.includes(namespace) && !owners.has(db)) {
+    throw new Error('Plugin domain access requires the actual registered CMS database owner');
+  }
+}
 export function pluginDatabaseOwner(db: object): CmsDatabase {
   const owner = registeredPluginDatabaseOwner(db);
   if (!owner) throw new Error('Plugin domain access requires the actual registered CMS database owner');
