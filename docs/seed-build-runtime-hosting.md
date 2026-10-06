@@ -80,3 +80,31 @@ The prior CI601 browser result is retained: all eight Source browser groups and
 the default65 pass, while the later Node workload exits124 at its unchanged
 180-second deadline. It is a failed gate, not a full secured10 success, and is
 not retried at the old head. Literal earlier failures remain unchanged.
+
+
+## Native production export inventory continuation
+
+On head `924fe286`, CI607 services, Source and calendar jobs succeed. Hosting
+job112034367405 completes its frozen install/default build, then the whole
+production suite registers274 tests:273 pass and one fails at the closed
+remote export expectation in `tests/production/remotes.test.ts`. The actual
+compiled registry includes the genuine public Byline9a `duplicateContent` and
+`permanentDeleteContent` exports; the historical expected list omits them.
+The [complete original failed job log](seed-hosting-evidence/current924-hosting-production-export-first-red.log)
+and [whole original Native file](seed-hosting-evidence/current924-production-remotes-original.ts.txt)
+remain literal evidence. Later Node/Cloudflare hosting stages are unreached.
+
+The manager authorizes only those two exact names at sorted positions. The
+[whole-file proof](seed-hosting-evidence/production-export-two-literal-preservation.json)
+reverses the two insertions to reproduce every original byte, preserving all
+assertions, boundary calls, fixtures, data, clocks and principals. The new
+closed38-name expectation matches the actual compiled names in the retained
+failed receipt. That stored-receipt comparison is not a new production run.
+No product export, implementation or protected probe is changed. This Native
+integration inventory maintenance earns zero Source causal credit.
+
+CI607's failed hosting/aggregate and browser gates remain failures. The old
+924 browser is not retried while that production failure exists. The ordinary
+successor requires all fresh current normal/secured/calendar gates, finite
+independent review and exact manager approval before author regular merge into
+the Byline branch. No local heavy checker/build/bootstrap is claimed.
