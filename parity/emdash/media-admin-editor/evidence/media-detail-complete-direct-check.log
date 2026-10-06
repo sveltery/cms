@@ -1,0 +1,240 @@
+Loading svelte-check in workspace: /workspace/cms-complete-media-detail-panel
+Getting Svelte diagnostics...
+
+/workspace/cms-complete-media-detail-panel/src/routes/media/+page.server.ts:4:29
+Error: Cannot find module '$lib/server/media/schema' or its corresponding type declarations. 
+import type {PageServerLoad} from './$types';
+import {mediaDatabase} from '$lib/server/media/schema';
+import {handleMediaList} from '$lib/server/media/source/api/handlers/media';
+
+/workspace/cms-complete-media-detail-panel/src/routes/media/+page.server.ts:5:31
+Error: Cannot find module '$lib/server/media/source/api/handlers/media' or its corresponding type declarations. 
+import {mediaDatabase} from '$lib/server/media/schema';
+import {handleMediaList} from '$lib/server/media/source/api/handlers/media';
+export const load:PageServerLoad=async({locals})=>{
+
+/workspace/cms-complete-media-detail-panel/src/routes/media/+page.server.ts:11:38
+Error: Parameter 'item' implicitly has an 'any' type. 
+ if(!result.success)error(503,'Media library is unavailable');
+ return {items:result.data.items.map(item=>({...item,url:`/_emdash/api/media/file/${item.storageKey}`})),totalCount:result.data.totalCount??0,
+  actorId:context.principal.id,permissions:context.principal.permissions};
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/FocalPointEditor.svelte:34:121
+Error: Property 'naturalWidth' does not exist on type 'EventTarget & Element'. (ts)
+  <div class="focal-image" style:width={display?`${display.width}px`:undefined} style:height={display?`${display.height}px`:undefined}>
+   {#key src}<img {src} {alt} draggable={false} onload={event=>{const image=event.currentTarget;loaded={src,width:image.naturalWidth,height:image.naturalHeight};onReadyChange?.(true);}} onerror={event=>{const image=event.currentTarget;if(fallbackSrc&&!image.dataset.thumbFallback){fallbackToOriginalThumbnail(image,fallbackSrc);return;}loaded=null;onReadyChange?.(false);}} />{/key}
+   {#if editing&&ready}<button type="button" aria-label="Focal point. Use arrow keys to move it." aria-describedby={descriptionId} {disabled} onpointerdown={pointer} onpointermove={pointer} onpointerup={pointer} onpointercancel={pointer} onlostpointercapture={pointer} onkeydown={keydown}><span aria-hidden="true" style:left={`${current.focalX*100}%`} style:top={`${current.focalY*100}%`}></span></button>{/if}
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/FocalPointEditor.svelte:34:147
+Error: Property 'naturalHeight' does not exist on type 'EventTarget & Element'. (ts)
+  <div class="focal-image" style:width={display?`${display.width}px`:undefined} style:height={display?`${display.height}px`:undefined}>
+   {#key src}<img {src} {alt} draggable={false} onload={event=>{const image=event.currentTarget;loaded={src,width:image.naturalWidth,height:image.naturalHeight};onReadyChange?.(true);}} onerror={event=>{const image=event.currentTarget;if(fallbackSrc&&!image.dataset.thumbFallback){fallbackToOriginalThumbnail(image,fallbackSrc);return;}loaded=null;onReadyChange?.(false);}} />{/key}
+   {#if editing&&ready}<button type="button" aria-label="Focal point. Use arrow keys to move it." aria-describedby={descriptionId} {disabled} onpointerdown={pointer} onpointermove={pointer} onpointerup={pointer} onpointercancel={pointer} onlostpointercapture={pointer} onkeydown={keydown}><span aria-hidden="true" style:left={`${current.focalX*100}%`} style:top={`${current.focalY*100}%`}></span></button>{/if}
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/FocalPointEditor.svelte:34:259
+Error: Property 'dataset' does not exist on type 'EventTarget & Element'. (ts)
+  <div class="focal-image" style:width={display?`${display.width}px`:undefined} style:height={display?`${display.height}px`:undefined}>
+   {#key src}<img {src} {alt} draggable={false} onload={event=>{const image=event.currentTarget;loaded={src,width:image.naturalWidth,height:image.naturalHeight};onReadyChange?.(true);}} onerror={event=>{const image=event.currentTarget;if(fallbackSrc&&!image.dataset.thumbFallback){fallbackToOriginalThumbnail(image,fallbackSrc);return;}loaded=null;onReadyChange?.(false);}} />{/key}
+   {#if editing&&ready}<button type="button" aria-label="Focal point. Use arrow keys to move it." aria-describedby={descriptionId} {disabled} onpointerdown={pointer} onpointermove={pointer} onpointerup={pointer} onpointercancel={pointer} onlostpointercapture={pointer} onkeydown={keydown}><span aria-hidden="true" style:left={`${current.focalX*100}%`} style:top={`${current.focalY*100}%`}></span></button>{/if}
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/FocalPointEditor.svelte:34:310
+Error: Argument of type 'EventTarget & Element' is not assignable to parameter of type '{ dataset: DOMStringMap; src: string; }'.
+  Type 'EventTarget & Element' is missing the following properties from type '{ dataset: DOMStringMap; src: string; }': dataset, src (ts)
+  <div class="focal-image" style:width={display?`${display.width}px`:undefined} style:height={display?`${display.height}px`:undefined}>
+   {#key src}<img {src} {alt} draggable={false} onload={event=>{const image=event.currentTarget;loaded={src,width:image.naturalWidth,height:image.naturalHeight};onReadyChange?.(true);}} onerror={event=>{const image=event.currentTarget;if(fallbackSrc&&!image.dataset.thumbFallback){fallbackToOriginalThumbnail(image,fallbackSrc);return;}loaded=null;onReadyChange?.(false);}} />{/key}
+   {#if editing&&ready}<button type="button" aria-label="Focal point. Use arrow keys to move it." aria-describedby={descriptionId} {disabled} onpointerdown={pointer} onpointermove={pointer} onpointerup={pointer} onpointercancel={pointer} onlostpointercapture={pointer} onkeydown={keydown}><span aria-hidden="true" style:left={`${current.focalX*100}%`} style:top={`${current.focalY*100}%`}></span></button>{/if}
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/FocalPointPreviews.svelte:14:161
+Error: Argument of type 'EventTarget & Element' is not assignable to parameter of type '{ dataset: DOMStringMap; src: string; }'.
+  Type 'EventTarget & Element' is missing the following properties from type '{ dataset: DOMStringMap; src: string; }': dataset, src (ts)
+  <figure><div use:previewFrame={id} class="preview-frame" style:aspect-ratio={ratio}>
+   {#key src}<img {src} alt="" data-testid={`focal-preview-${id}`} style:object-position={position} onerror={event=>{if(fallbackSrc)fallbackToOriginalThumbnail(event.currentTarget,fallbackSrc);}} />{/key}
+  </div><figcaption>{label}</figcaption></figure>
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/MediaUsedIn.svelte:32:66
+Error: Argument of type '{ enabled: boolean; staleTime?: StaleTimeFunction<MediaUsageDetailsResponse, Error, InfiniteData<MediaUsageDetailsResponse, string | undefined>, readonly [...]> | undefined; ... 28 more ...; maxPages?: number; }' is not assignable to parameter of type 'InfiniteQueryObserverOptions<MediaUsageDetailsResponse, Error, InfiniteData<MediaUsageDetailsResponse, unknown>, readonly ["media-usage", string], string | undefined>'.
+  Type '{ enabled: boolean; staleTime?: StaleTimeFunction<MediaUsageDetailsResponse, Error, InfiniteData<MediaUsageDetailsResponse, string | undefined>, readonly [...]> | undefined; ... 28 more ...; maxPages?: number | undefined; }' is missing the following properties from type 'InfiniteQueryObserverOptions<MediaUsageDetailsResponse, Error, InfiniteData<MediaUsageDetailsResponse, unknown>, readonly ["media-usage", string], string | undefined>': getNextPageParam, initialPageParam (ts)
+ });
+ $effect(()=>{const enabled=open;if(observer)observer.setOptions({...observer.options,enabled});if(manifestObserver)manifestObserver.setOptions({...manifestObserver.options,enabled});});
+ const pages=$derived(usage?.data?.pages??[]),entries=$derived(pages.flatMap(page=>page.items)),settings=$derived(pages[0]?.siteSettings??[]);
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/MediaUsedIn.svelte:66:88
+Error: Type 'string' is not assignable to type '"auto" | "rtl" | "ltr" | null | undefined'. (ts)
+    {#each entries as entry (`${entry.collection}:${entry.contentId}`)}{@const meta=metadata(entry)}
+     <li>{#snippet contents()}<span class="usage-copy"><span class="usage-title"><span dir={meta.titleDir}>{meta.title}</span>{#if entry.deletedAt}<span>In trash</span>{/if}</span><span class="usage-meta"><span dir={meta.labelDir}>{meta.label}</span><span aria-hidden="true"> · </span><span dir={meta.locationDir} translate={meta.locationDir==='ltr'?'no':undefined} title={meta.location}>{meta.location}</span>{#if meta.showLocale}<span aria-hidden="true"> · </span><span dir="ltr" translate="no">{entry.locale}</span>{/if}</span></span>{#if !entry.deletedAt}<span class="open-label">Open<svg class="rtl:-scale-x-100" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M4 4h8v8" /></svg></span>{/if}{/snippet}
+      {#if entry.deletedAt}<div class="usage-row">{@render contents()}</div>{:else}<a class="usage-row" href={`/content/${encodeURIComponent(entry.collection)}/${encodeURIComponent(entry.contentId)}${entry.locale?`?locale=${encodeURIComponent(entry.locale)}`:''}`} aria-disabled={navigationBlocked||undefined} onclick={event=>click(event,entry)} onauxclick={event=>{if(navigationBlocked)event.preventDefault();}} onkeydown={event=>{if(navigationBlocked&&event.key==='Enter')event.preventDefault();}}>{@render contents()}</a>{/if}
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/MediaUsedIn.svelte:66:212
+Error: Type 'string' is not assignable to type '"auto" | "rtl" | "ltr" | null | undefined'. (ts)
+    {#each entries as entry (`${entry.collection}:${entry.contentId}`)}{@const meta=metadata(entry)}
+     <li>{#snippet contents()}<span class="usage-copy"><span class="usage-title"><span dir={meta.titleDir}>{meta.title}</span>{#if entry.deletedAt}<span>In trash</span>{/if}</span><span class="usage-meta"><span dir={meta.labelDir}>{meta.label}</span><span aria-hidden="true"> · </span><span dir={meta.locationDir} translate={meta.locationDir==='ltr'?'no':undefined} title={meta.location}>{meta.location}</span>{#if meta.showLocale}<span aria-hidden="true"> · </span><span dir="ltr" translate="no">{entry.locale}</span>{/if}</span></span>{#if !entry.deletedAt}<span class="open-label">Open<svg class="rtl:-scale-x-100" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M4 4h8v8" /></svg></span>{/if}{/snippet}
+      {#if entry.deletedAt}<div class="usage-row">{@render contents()}</div>{:else}<a class="usage-row" href={`/content/${encodeURIComponent(entry.collection)}/${encodeURIComponent(entry.contentId)}${entry.locale?`?locale=${encodeURIComponent(entry.locale)}`:''}`} aria-disabled={navigationBlocked||undefined} onclick={event=>click(event,entry)} onauxclick={event=>{if(navigationBlocked)event.preventDefault();}} onkeydown={event=>{if(navigationBlocked&&event.key==='Enter')event.preventDefault();}}>{@render contents()}</a>{/if}
+
+/workspace/cms-complete-media-detail-panel/src/lib/media/MediaUsedIn.svelte:66:292
+Error: Type 'string' is not assignable to type '"auto" | "rtl" | "ltr" | null | undefined'. (ts)
+    {#each entries as entry (`${entry.collection}:${entry.contentId}`)}{@const meta=metadata(entry)}
+     <li>{#snippet contents()}<span class="usage-copy"><span class="usage-title"><span dir={meta.titleDir}>{meta.title}</span>{#if entry.deletedAt}<span>In trash</span>{/if}</span><span class="usage-meta"><span dir={meta.labelDir}>{meta.label}</span><span aria-hidden="true"> · </span><span dir={meta.locationDir} translate={meta.locationDir==='ltr'?'no':undefined} title={meta.location}>{meta.location}</span>{#if meta.showLocale}<span aria-hidden="true"> · </span><span dir="ltr" translate="no">{entry.locale}</span>{/if}</span></span>{#if !entry.deletedAt}<span class="open-label">Open<svg class="rtl:-scale-x-100" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M4 4h8v8" /></svg></span>{/if}{/snippet}
+      {#if entry.deletedAt}<div class="usage-row">{@render contents()}</div>{:else}<a class="usage-row" href={`/content/${encodeURIComponent(entry.collection)}/${encodeURIComponent(entry.contentId)}${entry.locale?`?locale=${encodeURIComponent(entry.locale)}`:''}`} aria-disabled={navigationBlocked||undefined} onclick={event=>click(event,entry)} onauxclick={event=>{if(navigationBlocked)event.preventDefault();}} onkeydown={event=>{if(navigationBlocked&&event.key==='Enter')event.preventDefault();}}>{@render contents()}</a>{/if}
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:9:30
+Error: Cannot find module '../src/lib/server/media/schema.ts' or its corresponding type declarations. 
+import {CMS_MIGRATIONS,migrateCms} from '../src/lib/server/database/migrations.ts';
+import {mediaMigration} from '../src/lib/server/media/schema.ts';
+import {normalizeMigrationSql} from '../src/lib/server/database/migration-provider.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:11:43
+Error: Cannot find module './helpers/metadata-upgrade.ts' or its corresponding type declarations. 
+import {normalizeMigrationSql} from '../src/lib/server/database/migration-provider.ts';
+import {installPrefix,seed,snapshot} from './helpers/metadata-upgrade.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:60:61
+Error: Expected 1 arguments, but got 2. 
+    const provider=CMS_MIGRATIONS.find(provider=>provider.version===8)!;
+    const prepared=await provider.prepare!(storage.database,7);
+    await storage.database.atomicBatch([...prepared.preconditions,...prepared.statements,
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:61:53
+Error: Property 'preconditions' does not exist on type 'PreparedCmsMigration'. 
+    const prepared=await provider.prepare!(storage.database,7);
+    await storage.database.atomicBatch([...prepared.preconditions,...prepared.statements,
+     sql`INSERT INTO _cms_migrations(version) VALUES (8)`.compile(storage.database.db)]);
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:70:36
+Error: Parameter 'value' implicitly has an 'any' type. 
+    if(table.name==='_cms_migrations')continue;
+    const actual=after.tables.find(value=>value.name===table.name);
+    assert.ok(actual,table.name);
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:72:93
+Error: Parameter 'row' implicitly has an 'any' type. 
+    assert.ok(actual,table.name);
+    assert.deepEqual(actual.rows,prefix===7&&table.name==='_cms_collections'?table.rows.map(row=>({...row,search_config:null})):table.rows,table.name);
+   }
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:74:39
+Error: Parameter 'table' implicitly has an 'any' type. 
+   }
+   assert.deepEqual(after.tables.find(table=>table.name==='media')?.rows,[]);
+   assert.deepEqual(after.tables.find(table=>table.name==='media_folders')?.rows,[]);
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:75:39
+Error: Parameter 'table' implicitly has an 'any' type. 
+   assert.deepEqual(after.tables.find(table=>table.name==='media')?.rows,[]);
+   assert.deepEqual(after.tables.find(table=>table.name==='media_folders')?.rows,[]);
+   assert.deepEqual(after.tables.find(table=>table.name==='_cms_migrations')?.rows.map(row=>row.version),CMS_MIGRATIONS.map(provider=>provider.version));
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:76:39
+Error: Parameter 'table' implicitly has an 'any' type. 
+   assert.deepEqual(after.tables.find(table=>table.name==='media_folders')?.rows,[]);
+   assert.deepEqual(after.tables.find(table=>table.name==='_cms_migrations')?.rows.map(row=>row.version),CMS_MIGRATIONS.map(provider=>provider.version));
+  } finally {await storage.close();}
+
+/workspace/cms-complete-media-detail-panel/tests/media-startup.test.ts:76:88
+Error: Parameter 'row' implicitly has an 'any' type. 
+   assert.deepEqual(after.tables.find(table=>table.name==='media_folders')?.rows,[]);
+   assert.deepEqual(after.tables.find(table=>table.name==='_cms_migrations')?.rows.map(row=>row.version),CMS_MIGRATIONS.map(provider=>provider.version));
+  } finally {await storage.close();}
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-authenticated-browser.ts:5:33
+Error: Cannot find module './full-setup-browser' or its corresponding type declarations. 
+import {addVirtualWebAuthnAuthenticator} from './virtual-authenticator';
+import {completeFullSetup} from './full-setup-browser';
+type MediaAdmin={page:Page;goToMedia:()=>Promise<unknown>;waitForLoading:()=>Promise<void>;expectPageTitle:(title:string)=>Promise<void>};
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-cache-worker.ts:3:35
+Error: Cannot find module '../../src/lib/server/settings/tables.ts' or its corresponding type declarations. 
+import type {Kysely} from 'kysely';
+import type {SettingsTables} from '../../src/lib/server/settings/tables.ts';
+import {siteCache} from '../../src/lib/server/settings/cache.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-cache-worker.ts:4:25
+Error: Cannot find module '../../src/lib/server/settings/cache.ts' or its corresponding type declarations. 
+import type {SettingsTables} from '../../src/lib/server/settings/tables.ts';
+import {siteCache} from '../../src/lib/server/settings/cache.ts';
+import {singleFlightCached} from '../../src/lib/server/settings/vendor/single-flight-cache.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-cache-worker.ts:5:34
+Error: Cannot find module '../../src/lib/server/settings/vendor/single-flight-cache.ts' or its corresponding type declarations. 
+import {siteCache} from '../../src/lib/server/settings/cache.ts';
+import {singleFlightCached} from '../../src/lib/server/settings/vendor/single-flight-cache.ts';
+import {invalidateMediaCache,mediaCacheRevision} from '../../src/lib/server/media/cache.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-cache-worker.ts:6:55
+Error: Cannot find module '../../src/lib/server/media/cache.ts' or its corresponding type declarations. 
+import {singleFlightCached} from '../../src/lib/server/settings/vendor/single-flight-cache.ts';
+import {invalidateMediaCache,mediaCacheRevision} from '../../src/lib/server/media/cache.ts';
+export default {async fetch(){
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-image-worker.ts:3:25
+Error: Cannot find module '../../src/lib/server/media/r2.ts' or its corresponding type declarations. 
+import type {R2Bucket,ImagesBinding} from '@cloudflare/workers-types';
+import {R2Storage} from '../../src/lib/server/media/r2.ts';
+import {createWorkerImageEndpoint} from '../../src/lib/server/media/image/worker-endpoint.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-image-worker.ts:4:41
+Error: Cannot find module '../../src/lib/server/media/image/worker-endpoint.ts' or its corresponding type declarations. 
+import {R2Storage} from '../../src/lib/server/media/r2.ts';
+import {createWorkerImageEndpoint} from '../../src/lib/server/media/image/worker-endpoint.ts';
+export default {fetch(request:Request,env:{BUCKET:R2Bucket;IMAGES?:ImagesBinding}){
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-panel-focal-react-bridge.ts:12:98
+Error: Argument of type 'Component<$$ComponentProps, {}, ""> | Component<$$ComponentProps, {}, "">' is not assignable to parameter of type 'ComponentType<SvelteComponent<ComponentProps<C>, any, any>> | Component<ComponentProps<C>, {}, any>'.
+  Type 'Component<$$ComponentProps, {}, "">' is not assignable to type 'ComponentType<SvelteComponent<ComponentProps<C>, any, any>> | Component<ComponentProps<C>, {}, any>'.
+    Type 'Component<$$ComponentProps, {}, "">' is not assignable to type 'Component<ComponentProps<C>, {}, any>'.
+      Types of parameters 'props' and 'props' are incompatible.
+        Type 'ComponentProps<C>' is not assignable to type '$$ComponentProps'.
+          Type '$$ComponentProps | $$ComponentProps' is not assignable to type '$$ComponentProps'.
+            Type '$$ComponentProps' is missing the following properties from type '$$ComponentProps': alt, editing, disabled, descriptionId, onChange 
+  React.useLayoutEffect(()=>{flushSync(()=>Object.assign(state.current!,props));});
+  React.useLayoutEffect(()=>{let instance:ReturnType<typeof mount>;flushSync(()=>{instance=mount(component,{target:target.current!,props:state.current as unknown as ComponentProps<C>});});return()=>{void unmount(instance!);};},[]);
+  return React.createElement('div',{ref:target});
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-source-database.ts:8:31
+Error: Cannot find module '../../src/lib/server/media/schema.ts' or its corresponding type declarations. 
+import { migrateCms } from '../../src/lib/server/database/migrations.ts';
+import { mediaDatabase } from '../../src/lib/server/media/schema.ts';
+import type { Database } from '../../src/lib/server/media/source/database/types.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-source-database.ts:9:31
+Error: Cannot find module '../../src/lib/server/media/source/database/types.ts' or its corresponding type declarations. 
+import { mediaDatabase } from '../../src/lib/server/media/schema.ts';
+import type { Database } from '../../src/lib/server/media/source/database/types.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/helpers/media-source-registry.ts:2:29
+Error: Cannot find module '../../src/lib/server/media/source/database/types.ts' or its corresponding type declarations. 
+import type {Kysely} from 'kysely';
+import type {Database} from '../../src/lib/server/media/source/database/types.ts';
+import {SchemaRegistry as NativeRegistry} from '../../src/lib/server/database/registry.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/media-picker-native/picker-detail-api.integration.ts:10:38
+Error: Expected 0-1 arguments, but got 2. 
+for(const target of ['Node','D1'] as const)it(`${target}: detail operations retain edited metadata and create a distinct image copy`,async()=>{
+ const h=await passkeyRuntime(target,{media:'local'}),browser=h.browser(),nativeFetch=globalThis.fetch;
+ try{
+
+/workspace/cms-complete-media-detail-panel/tests/media-picker-native/picker-real-api.integration.ts:9:38
+Error: Expected 0-1 arguments, but got 2. 
+it('retains actual signed user, deduplicated file metadata, folder and persisted API results',async()=>{
+ const h=await passkeyRuntime('Node',{media:true}),browser=h.browser(),nativeFetch=globalThis.fetch;
+ try{
+
+/workspace/cms-complete-media-detail-panel/tests/media-storage-native/selection.test.ts:4:35
+Error: Cannot find module '../../src/lib/server/media/storage.ts' or its corresponding type declarations. 
+import type {RequestEvent} from '@sveltejs/kit';
+import {requestMediaStorage} from '../../src/lib/server/media/storage.ts';
+import {LocalStorage} from '../../src/lib/server/media/source/storage/local.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/media-storage-native/selection.test.ts:5:28
+Error: Cannot find module '../../src/lib/server/media/source/storage/local.ts' or its corresponding type declarations. 
+import {requestMediaStorage} from '../../src/lib/server/media/storage.ts';
+import {LocalStorage} from '../../src/lib/server/media/source/storage/local.ts';
+import {S3Storage} from '../../src/lib/server/media/source/storage/s3.ts';
+
+/workspace/cms-complete-media-detail-panel/tests/media-storage-native/selection.test.ts:6:25
+Error: Cannot find module '../../src/lib/server/media/source/storage/s3.ts' or its corresponding type declarations. 
+import {LocalStorage} from '../../src/lib/server/media/source/storage/local.ts';
+import {S3Storage} from '../../src/lib/server/media/source/storage/s3.ts';
+import {env} from '../helpers/media-hosting-env.ts';
+
+====================================
+svelte-check found 38 errors and 0 warnings in 14 files

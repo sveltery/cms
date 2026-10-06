@@ -1,0 +1,228 @@
+✖ Native reset allows unchanged freeform aspect (2.455177ms)
+✖ Native reset allows unchanged square aspect (0.615216ms)
+✖ Native reset allows unchanged 4:3 aspect (0.49825ms)
+✖ Native reset is disabled when the crop source failed after a changed selection (0.610409ms)
+✖ Native exposed aspect handler preserves the complete pending crop draft (28.601975ms)
+✖ Native reset handler preserves the complete pending crop draft (7.175514ms)
+✖ Native upload formatter includes the pinned hour and minute in the actual time zone (16.444149ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 413.665699
+
+✖ failing tests:
+
+test at tests/media-panel-host/crop-review-controls.test.cjs:43:53
+✖ Native reset allows unchanged freeform aspect (2.455177ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/cms-complete-media-detail-panel/tests/media-panel-host/crop-review-controls.test.cjs:44:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/media-panel-host/crop-review-controls.test.cjs:43:53
+✖ Native reset allows unchanged square aspect (0.615216ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/cms-complete-media-detail-panel/tests/media-panel-host/crop-review-controls.test.cjs:44:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/media-panel-host/crop-review-controls.test.cjs:43:53
+✖ Native reset allows unchanged 4:3 aspect (0.49825ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/cms-complete-media-detail-panel/tests/media-panel-host/crop-review-controls.test.cjs:44:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/media-panel-host/crop-review-controls.test.cjs:46:1
+✖ Native reset is disabled when the crop source failed after a changed selection (0.610409ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/cms-complete-media-detail-panel/tests/media-panel-host/crop-review-controls.test.cjs:47:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/media-panel-host/crop-review-controls.test.cjs:49:1
+✖ Native exposed aspect handler preserves the complete pending crop draft (28.601975ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   aspectMode: 'square',
+  +   aspectOpen: false,
+  -   aspectMode: 'original',
+  -   aspectOpen: true,
+      aspects: [
+        [
+          'original',
+          'Original'
+        ],
+  ...
+      busy: 'crop',
+  +   crop: undefined,
+  -   crop: {
+  -     height: 80,
+  -     width: 80,
+  -     x: 0,
+  -     y: 0
+  -   },
+      cropChanged: false,
+      cropError: '',
+      cropFailed: false,
+  +   cropStatus: '',
+  +   pixels: null,
+  -   cropStatus: 'Creating cropped copy...',
+  -   pixels: {
+  -     height: 80,
+  -     width: 80,
+  -     x: 0,
+  -     y: 0
+  -   },
+      value: 'square'
+    }
+  
+      at TestContext.<anonymous> (/workspace/cms-complete-media-detail-panel/tests/media-panel-host/crop-review-controls.test.cjs:50:108)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { busy: 'crop', cropFailed: false, cropChanged: false, aspectMode: 'square', value: 'square', crop: undefined, pixels: null, cropStatus: '', cropError: '', aspectOpen: false, aspects: [ [Array], [Array], [Array], [Array], [Array], [Array] ] },
+    expected: { busy: 'crop', cropFailed: false, cropChanged: false, aspectMode: 'original', value: 'square', crop: { x: 0, y: 0, width: 80, height: 80 }, pixels: { x: 0, y: 0, width: 80, height: 80 }, cropStatus: 'Creating cropped copy...', cropError: '', aspectOpen: true, aspects: [ [Array], [Array], [Array], [Array], [Array], [Array] ] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/media-panel-host/crop-review-controls.test.cjs:52:1
+✖ Native reset handler preserves the complete pending crop draft (7.175514ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      aspectMode: 'original',
+      aspectOpen: true,
+      aspects: [
+        [
+  ...
+      busy: 'crop',
+  +   crop: undefined,
+  -   crop: {
+  -     height: 80,
+  -     width: 80,
+  -     x: 0,
+  -     y: 0
+  -   },
+      cropChanged: false,
+      cropError: '',
+      cropFailed: false,
+  +   cropStatus: '',
+  +   pixels: null,
+  -   cropStatus: 'Creating cropped copy...',
+  -   pixels: {
+  -     height: 80,
+  -     width: 80,
+  -     x: 0,
+  -     y: 0
+  -   },
+      value: 'square'
+    }
+  
+      at TestContext.<anonymous> (/workspace/cms-complete-media-detail-panel/tests/media-panel-host/crop-review-controls.test.cjs:53:107)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { busy: 'crop', cropFailed: false, cropChanged: false, aspectMode: 'original', value: 'square', crop: undefined, pixels: null, cropStatus: '', cropError: '', aspectOpen: true, aspects: [ [Array], [Array], [Array], [Array], [Array], [Array] ] },
+    expected: { busy: 'crop', cropFailed: false, cropChanged: false, aspectMode: 'original', value: 'square', crop: { x: 0, y: 0, width: 80, height: 80 }, pixels: { x: 0, y: 0, width: 80, height: 80 }, cropStatus: 'Creating cropped copy...', cropError: '', aspectOpen: true, aspects: [ [Array], [Array], [Array], [Array], [Array], [Array] ] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/media-panel-host/crop-review-controls.test.cjs:55:1
+✖ Native upload formatter includes the pinned hour and minute in the actual time zone (16.444149ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Jan 15, 2025'
+  - 'Jan 15, 2025, 05:30 AM'
+                 ^
+  
+      at TestContext.<anonymous> (/workspace/cms-complete-media-detail-panel/tests/media-panel-host/crop-review-controls.test.cjs:57:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Jan 15, 2025',
+    expected: 'Jan 15, 2025, 05:30 AM',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

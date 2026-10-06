@@ -1,0 +1,4187 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "scope": "whole native media detail panel, cropper, focal point, usage and contained-size widgets",
+  "files": [
+    {
+      "sourcePath": "packages/admin/tests/components/FocalPointEditor.test.tsx",
+      "path": "parity/emdash/media-admin-editor/source/packages/admin/tests/components/FocalPointEditor.test.tsx",
+      "sourceBlob": "fb2d882d8c17a1bcdcf9c59da8663c2e70900c99",
+      "sha256": "9311ffc9063f1f8aa44463006addea32be619eb09b2cfdb4cc8affafc0662ddf",
+      "bytes": 1223,
+      "test": true,
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/FocalPointEditor.test.tsx:11",
+          "line": 11,
+          "title": "\"retries the original fallback after the preview source changes\"",
+          "expression": "it",
+          "callbackSha256": "ede074b52ae85e65c3589f53ee02bc51feb90686cd5028a1cb1c7604d41414e5",
+          "declarationSha256": "6f0b981ae450dbe806ec3cda8c5fa6915640999060133399c4e5e083f8fef56e"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 18,
+          "expression": "expect(firstPreview.src)",
+          "sha256": "b897c88a02466acafd26913ca37ee0f29aeab0a9a8105861d48d7125183332e8"
+        },
+        {
+          "line": 28,
+          "expression": "expect(secondPreview.src)",
+          "sha256": "c6f4e17719351eacf68dbf8c269deea6880ac3db5832100ec3de2bb447fe04af"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/MediaDetailPanel.test.tsx",
+      "path": "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaDetailPanel.test.tsx",
+      "sourceBlob": "c3f4021e501ed5c64b41cf13c23b3919c67c178f",
+      "sha256": "09e5a30be1d31bc33b06b2da4b7a9d4b27963f6d138503b675ddd1f5c96c36e9",
+      "bytes": 82595,
+      "test": true,
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:291",
+          "line": 291,
+          "title": "\"does not render dialog contents when closed\"",
+          "expression": "it",
+          "callbackSha256": "b81ab5829d900e966373ab2d8fc94e5ed730ea55b91fc081a3690e705a7296d7",
+          "declarationSha256": "5a4313e9e32c2d4c7ed9f4e87ab5791cbbb5668c664092f15b3c817ab2378541"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:298",
+          "line": 298,
+          "title": "\"displays filename and file size\"",
+          "expression": "it",
+          "callbackSha256": "37d3d850dc89bfd69cc874914362e72cf78ee4190e88ebd05ebf3129b4d55ee4",
+          "declarationSha256": "0c201ea6488cef88bbe460514647e0e309c6e8dbaadc7c6816527ccca44f4ee9"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:308",
+          "line": 308,
+          "title": "\"displays dimensions for images\"",
+          "expression": "it",
+          "callbackSha256": "54b539206b89fcc1da057251a55356cb9776cd15621543b3fdc3510c701364b3",
+          "declarationSha256": "89e7aa8fb7467bf01dac87a4ce951cfa3a2cedd96c9b96150c53f3ae769e7c6e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:319",
+          "line": 319,
+          "title": "\"keeps the Uploaded row in the wider column when dimensions are missing\"",
+          "expression": "it",
+          "callbackSha256": "f96b8d3040eda382a6c51dcad0ed81c8d82f85d822ea6ff2f85e817a5e6d5232",
+          "declarationSha256": "ed867ed18d1753588a2dac543f1b0f75c54bdcdc549fcef83d2eed1d853e3b06"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:332",
+          "line": 332,
+          "title": "\"displays dimensions for local videos that have width and height\"",
+          "expression": "it",
+          "callbackSha256": "6bcd9f6b85981f6d0526e5a6c7a0be10e8089210c0225440d214e56f16845895",
+          "declarationSha256": "f9f773a53e33682d56d21add6d3a72a2f63df9541df4f36c785353f20a19bd1a"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:340",
+          "line": 340,
+          "title": "\"groups the preview, metadata, and actions in an accessible dialog\"",
+          "expression": "it",
+          "callbackSha256": "96dee94f3f5a81a72a87f064d5eb5af2a9f5b68676f7e52a421b21a7e55dea5d",
+          "declarationSha256": "783e33c90e2d47228f2b6bf610f2d2726a8011af4fc23d5f4f93e6c3ad529e44"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:369",
+          "line": 369,
+          "title": "\"replaces a selected image and keeps the media dialog open\"",
+          "expression": "it",
+          "callbackSha256": "7ef7e3244b87bde472cad38bb5c71452f08fc3a51d410da2044799ee1086c28d",
+          "declarationSha256": "2a8fcaaa2a72ce4e7a9704e75ae367b5e564bcaa03d89636f79e522c8d9ad3e9"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:421",
+          "line": 421,
+          "title": "\"ignores replacement inspection that finishes after the dialog closes\"",
+          "expression": "it",
+          "callbackSha256": "b242978dc44ea3c99427ddd8b441731c6f47a7dc8d8c7eec27c4920f4efebf43",
+          "declarationSha256": "be8dee95fd2270eb070360dc1a05df8193a7ff7d7a3de32feecb703cbb1d48bb"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:460",
+          "line": 460,
+          "title": "\"adapts the dialog height to each image task without clipping its actions\"",
+          "expression": "it",
+          "callbackSha256": "e312d812a1ff434bb236a2a7f3d31db38cf9ad4fa5af07768fca6d3767f2573b",
+          "declarationSha256": "d0f4bbed352efd4464274961cbc6ed88ca7bcaf217a211de79f45ab3ca3af859"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:491",
+          "line": 491,
+          "title": "\"suppresses inner scrollbars only while the dialog height expands\"",
+          "expression": "it",
+          "callbackSha256": "6e407b6ce69f0fef63a4274db314032e110090dd02210cc8c8a40c9f8b07d008",
+          "declarationSha256": "9cd65840ff5495ba2fcfce252faf2d7093084767fab88d9bd15d0541e1b124cb"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:522",
+          "line": 522,
+          "title": "\"resizes without spatial motion when reduced motion is preferred\"",
+          "expression": "it",
+          "callbackSha256": "7f9a300e6de77d7f9db59c93ae97f94f73be8ab889a1d07fcd81c0974f3473c1",
+          "declarationSha256": "7836fd52fb270e49330d3a60b4ca16c3a1c68e52f511236838c6c774f7b1d8fc"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:546",
+          "line": 546,
+          "title": "\"shows usage only in its dedicated local-image tab\"",
+          "expression": "it",
+          "callbackSha256": "03e2314bc5281b5e4a117065eee82705ddb3d6057979e2f3f43ebff2f62d4052",
+          "declarationSha256": "6e7e33def3734b5b7f5aaf3f594781d1e3de9271cd35b61a81eeb76dbafe765d"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:578",
+          "line": 578,
+          "title": "\"gives non-image local media a dedicated usage tab\"",
+          "expression": "it",
+          "callbackSha256": "706f89ef218cbf11098c4dcb9a3fa81343e8feef14a31a58c254a2abd608af7e",
+          "declarationSha256": "8f9e8fa381c34997b79ed6e5aaae57fd75a7242c0497906ef9dbf670dc25121d"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:592",
+          "line": 592,
+          "title": "\"does not offer usage for provider media\"",
+          "expression": "it",
+          "callbackSha256": "1eeadc0f63f7babcbe65a968a8a88f679be8cae8105cd40ed84e66322dbbee6f",
+          "declarationSha256": "0b2181c5ebb8db8fe672fd81c56eb80b0f64c701448c0baf96b7b17aa53db277"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:603",
+          "line": 603,
+          "title": "\"shows image preview for image mimeTypes\"",
+          "expression": "it",
+          "callbackSha256": "f517c9aad92e5c37d4a72c95b396ac8342f4d0d4b88eb15f8809cedabd55f1d0",
+          "declarationSha256": "3e65011ff6054d9a3f41f7e77ccc372655c8d2762f424c87886b809fcdaa8e65"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:611",
+          "line": 611,
+          "title": "\"separates image details from focal-point editing with tabs\"",
+          "expression": "it",
+          "callbackSha256": "1e50a64b7cf2bc78ea78613de1e1838ef38081b05a8e818303458b6381e604b2",
+          "declarationSha256": "f85676392eec05ffff6726a0888c488c27f77676f55ba435796a1238d82c11f8"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:665",
+          "line": 665,
+          "title": "\"keeps focal-point preview image bottoms aligned with the editor frame\"",
+          "expression": "it",
+          "callbackSha256": "e31e8e4bc919df7570195c005b7ab2000660322f18f1e7e4fa485cadcb128d18",
+          "declarationSha256": "561431827885e958921e8d4cef9b89abfdc68d3e6f277a7df4f23a8cfac483c2"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:720",
+          "line": 720,
+          "title": "\"aligns focal-point previews before painting the mode switch\"",
+          "expression": "it",
+          "callbackSha256": "04500b3a008ac3a455519c4d180c516cfd74dd6dd2763c82a1ea2b3f7e506056",
+          "declarationSha256": "8ec61a6d1a0fa423c384421817ba7604b6d551cfcc26e0379474bed4411622c3"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:757",
+          "line": 757,
+          "title": "\"shows crop only for ready supported local images with an allowed action\"",
+          "expression": "it",
+          "callbackSha256": "3a6d4d83d2b7f5108154ee8a511c33d83695a78de048066e7d0e163e07723eee",
+          "declarationSha256": "a20126091907289af77e89048bcfeb68435f489ef9d75fdcc3f40813abc3a7d9"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:781",
+          "line": 781,
+          "title": "\"suppresses image-editor overflow only while the mode layout settles\"",
+          "expression": "it",
+          "callbackSha256": "7f1fa7c95c3794e875f7ab2dc6ea670ecda7a297a628a090abe10d2b5c8b9aa3",
+          "declarationSha256": "4af93ec269e055c60a1f93ad4946060f2cf0322e8e9a595d7f7a3782cfa8a398"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:796",
+          "line": 796,
+          "title": "\"hides crop for a %s\"",
+          "expression": "it.each([\n\t\t[\"pending image\", makeLocalItem({ url: TEST_IMAGE_URL, status: \"pending\" })],\n\t\t[\"unsupported image\", makeLocalItem({ url: TEST_IMAGE_URL, mimeType: \"image/gif\" })],\n\t\t[\n\t\t\t\"provider image\",\n\t\t\tmakeImageItem({ url: TEST_IMAGE_URL, provider: \"cloudflare-images\", status: \"ready\" }),\n\t\t],\n\t])",
+          "callbackSha256": "b0fa71c0c9b0e7e15aea112efa01f60db8ff6abde75a4036dae535b43482f2e3",
+          "declarationSha256": "89b40774f983de71f032e192e6859484b328a3b8988a2828817c9d3c3ab2376b"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:819",
+          "line": 819,
+          "title": "\"uses a contextual crop footer with output and reset\"",
+          "expression": "it",
+          "callbackSha256": "0ac8ca60c4776d4df72a25be6569804c794899c19204015ecafeb1ce4508f99c",
+          "declarationSha256": "9e686273398c59cd8ea095d2489b0fdcb4adecc8d23c91ad38318cc997acc016"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:849",
+          "line": 849,
+          "title": "\"offers common aspect ratios and limits replacement to the original ratio\"",
+          "expression": "it",
+          "callbackSha256": "f80112606940660be3fb1226e2862ffe51973d99d089b6181b42946c0236908d",
+          "declarationSha256": "d9d2e9d0b5e20fe3e20c28e26e887db796799ab7a4767de69ff77d7328b267c0"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:875",
+          "line": 875,
+          "title": "\"blocks crop actions while metadata is dirty\"",
+          "expression": "it",
+          "callbackSha256": "19d83f40b25a9cd30eb05cba30f04508d12d6a18937fd28e9aa5f2e1afc9a6af",
+          "declarationSha256": "25d5b38790c3f3c329b183d196622384f02b22834e7525704ca7c987e6928ede"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:895",
+          "line": 895,
+          "title": "\"preserves the crop draft across Media Details tabs\"",
+          "expression": "it",
+          "callbackSha256": "7f7e7894138f45b32917fe2a130b599b59497a12946120e36cbf92908587005c",
+          "declarationSha256": "e11d17255449eeca78d3124b33c551e40581afaf0a55936d7fb16508b97eee1d"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:920",
+          "line": 920,
+          "title": "\"preserves crop and focal-point positions while switching edit modes\"",
+          "expression": "it",
+          "callbackSha256": "cf196d25a275362003bc83260638872215cf84dbe4c7e966e96b0388a1f656cc",
+          "declarationSha256": "2669398224088e3ed34abb1087cf8974da0c124b777436bb1d261a150d27618b"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:954",
+          "line": 954,
+          "title": "\"keeps the loaded focal-point image stable when returning to Details\"",
+          "expression": "it",
+          "callbackSha256": "e91a8d2b1ef6f0a684d9dfec2da1cb5d5209a51f495c48d031762ba347c9de7c",
+          "declarationSha256": "f8b96de0b384e1f98f3bc1cdce196d8b168ede9241d4bde81402385440c5db67"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:974",
+          "line": 974,
+          "title": "\"creates a distinct cropped copy and closes the source dialog after success\"",
+          "expression": "it",
+          "callbackSha256": "5582f2cb6d97d77cd02638f74649674ac359b1ad206d4f9f7329fe3b3c16a125",
+          "declarationSha256": "5814df1f2176bf7513548e4b36bf9eac07adf7ea343ac83f2646c29399810859"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1004",
+          "line": 1004,
+          "title": "\"keeps asset-management controls out of content workflows\"",
+          "expression": "it",
+          "callbackSha256": "8186b102bc9477f82f399f4b54e29fd43ccc36b0236bc64597442dcf60efd901",
+          "declarationSha256": "14dad53766ebd8445055e12fb1040168b97015eee389601ec2e8b31d5f9a07e2"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1025",
+          "line": 1025,
+          "title": "\"confirms and replaces the original while keeping the dialog open\"",
+          "expression": "it",
+          "callbackSha256": "592dbaea7bcab58296e1ba84aafd133fef1749a3a73a989e892bec2965c4171c",
+          "declarationSha256": "5d7236c245a547a75428e5600fd4fa95c259b83353499d58ea1084dd449578b0"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1088",
+          "line": 1088,
+          "title": "\"keeps a failed crop draft available for retry\"",
+          "expression": "it",
+          "callbackSha256": "2dd3a740c31b0e58fa1172f63f5915fea99822ac9a96748589589f5ca1b0e905",
+          "declarationSha256": "ffb803bbd19dcb9947dfe2084ab5c65b19ff14bbb59d7ea72814031cfd880199"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1109",
+          "line": 1109,
+          "title": "\"returns replacement failures to the crop panel with the draft intact\"",
+          "expression": "it",
+          "callbackSha256": "486085852a41114a69b6757e9089b822ce83c15e124796d7b1df94a1585bd8a8",
+          "declarationSha256": "6c1abbf6a09ec84f37f3d1edf43a79a3e77ae337b286cc8b68dd110f4331b0a1"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1129",
+          "line": 1129,
+          "title": "\"reports when the image is deleted while replacing the original\"",
+          "expression": "it",
+          "callbackSha256": "d02f0ad9ca590656dc873dafe5a40f7d3926a13f6b2bfdce11ffb0204b4273ce",
+          "declarationSha256": "554c7d02969b7c5ee84459c5ba145bb249ae37c39cc158f84febba8d5ec38dab"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1156",
+          "line": 1156,
+          "title": "\"explains that cropped WebP output is static\"",
+          "expression": "it",
+          "callbackSha256": "e3040178b6c00689eea3398762fe8b18a505b443c88efe068864739d2613d45a",
+          "declarationSha256": "8c7235c86d2ebbf54d2175c00b4a7bfc2e806795e5804f42dcb97668834da762"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1172",
+          "line": 1172,
+          "title": "\"blocks repeated actions and dialog navigation while cropping\"",
+          "expression": "it",
+          "callbackSha256": "aec3116ecd52eed0b1b9c7275bb71e800ed625c003e803627dbf030c0ce4c5f6",
+          "declarationSha256": "dc1750c14b307c453e4773da3fecb71d69029f385a5939325e804fb7a501beba"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1200",
+          "line": 1200,
+          "title": "\"falls back to the ordinary preview when the crop source cannot load\"",
+          "expression": "it",
+          "callbackSha256": "4ae8c438926718722fa342aa99df7eb46cc2208030e3d40d789dea9e18f8b9b2",
+          "declarationSha256": "ed8fcb761f91a45c49078a8b35736a48f052b1fc730b5161660a20fcd5fbb0fc"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1216",
+          "line": 1216,
+          "title": "\"preserves the focal-point draft while switching tabs\"",
+          "expression": "it",
+          "callbackSha256": "252351a442e8ac1d94d1f26eb944512d24dd5db7338ae5221b26d4f0d0702929",
+          "declarationSha256": "77953aa0b0c3537b5b08f06cdae0accabeb1c59cf18568de50e9e78b2366242c"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1232",
+          "line": 1232,
+          "title": "\"edits the focal point with the keyboard and saves only the focal pair\"",
+          "expression": "it",
+          "callbackSha256": "eeec8a4deb6abf921169faa3bab88dec47c54c8cf0f3c911c8da69c0c2bab9bb",
+          "declarationSha256": "c44c6241046e0aab30b4e08da3672c98f52437e139322ffd92f3c9c650467cfe"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1255",
+          "line": 1255,
+          "title": "\"keeps the focal draft visible when saving fails\"",
+          "expression": "it",
+          "callbackSha256": "918706e2201aac4b2efce2eeabd788a56bbb45d8b10216b8020103ba48d8032c",
+          "declarationSha256": "b827e2447b502bd1ca8fc7fec05529c40f2df4ff330cab6aecaec94ca7b5dc28"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1270",
+          "line": 1270,
+          "title": "\"keeps one active pointer and clears it after cancellation or lost capture\"",
+          "expression": "it",
+          "callbackSha256": "6d282e2ac32af67ec73d5be8777a36cf8ca8372bd205a7a89d6bdd590dcf5734",
+          "declarationSha256": "626f3f314be670125567ce3e2fa181a7b56d23cfa92675fbfb99d7c4068846a0"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1359",
+          "line": 1359,
+          "title": "\"resets a custom focal point to the centered fallback\"",
+          "expression": "it",
+          "callbackSha256": "5156e82e017eace7099d595ebf79856bd3c728e5b7ef56c188ff1b6b9a0043ce",
+          "declarationSha256": "19600e673141c1ba2b891019fa500942eace2737a3219c42339f26df8b4ab345"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1379",
+          "line": 1379,
+          "title": "\"does not create unsaved changes by opening Focal point\"",
+          "expression": "it",
+          "callbackSha256": "38d8e345f7c539ba8a76d6727c0ca059c724639b749a4d5a1538ed4201a50632",
+          "declarationSha256": "faab2ee5c8e6f11de24545cbc624873036d1b2f8094c243cd3204a045af35469"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1391",
+          "line": 1391,
+          "title": "\"does not show image preview for non-image mimeTypes\"",
+          "expression": "it",
+          "callbackSha256": "0e2a8e22d1c31676f0577630361f1f3244d934ca8b4d0137f4714f50e234a821",
+          "declarationSha256": "3a1d818d88521e45d3f8360765dc5cf695b02f3d01ea5859269f380143449696"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1399",
+          "line": 1399,
+          "title": "\"alt text input is editable\"",
+          "expression": "it",
+          "callbackSha256": "290fa342133d5e92b860b8d7f9a486233f95069c6bc76f0bcff8f40c3c65d1eb",
+          "declarationSha256": "05ef40dfe54b8f2ff024d602297d747b245c401bbb52ea3782f57089cf5faa48"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1412",
+          "line": 1412,
+          "title": "\"shows caption textarea only for images\"",
+          "expression": "it",
+          "callbackSha256": "42ebaa3e093886156fe3fc4fcd05a86ecf8be2c3fa19b90b98a51492c118e6a3",
+          "declarationSha256": "b5630de6a1187e6e0cf6da7f6d3ea56316c9c18e3fc1b2f8930eeca442d25e6e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1422",
+          "line": 1422,
+          "title": "\"hides caption textarea for non-images\"",
+          "expression": "it",
+          "callbackSha256": "b142d30274132f9e05d1f7afe5c92535cdc29e31256887d202c138c291f0a1b9",
+          "declarationSha256": "48c740ba3429222cbe594ac067859f0edb8fd900fe37e504bf71d5db3605730c"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1433",
+          "line": 1433,
+          "title": "\"filename input is disabled with tooltip help\"",
+          "expression": "it",
+          "callbackSha256": "f0a1f6495f6cc41e6003ab07c0582ab99a1724ebeb2c99fe551336a66a502ac7",
+          "declarationSha256": "1ae797ca9859df1270ca536cdb394cab1edfbd47e2f5dce52d0f6b3d5a492bae"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1443",
+          "line": 1443,
+          "title": "\"save button is disabled when no changes\"",
+          "expression": "it",
+          "callbackSha256": "95400cc5a324f61f033216ca4092da53e4e55bfe01f00b77986c7c44620e45c6",
+          "declarationSha256": "087b7e67764b0bd6c2f3915d38e13bdc423b67837ee672de990ecff2891f6605"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1450",
+          "line": 1450,
+          "title": "\"save button is enabled after changing alt text\"",
+          "expression": "it",
+          "callbackSha256": "88195c4b1fe71acab6a07bd71a22cfc608e005a2ed366eebb35fce8dbf15b833",
+          "declarationSha256": "ca32981adfc5152a3ea33726f3714da7e2d600cae0ede0063e87098d6987aefe"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1459",
+          "line": 1459,
+          "title": "\"save calls updateMedia with correct payload\"",
+          "expression": "it",
+          "callbackSha256": "a233f46388a1e5eca6f79c6c1c7d1a8704bd8eea0ee1ba165fff95fd28d36910",
+          "declarationSha256": "02274307b68d74983538ce13b075834788090cd8ae3f3f770c56f0ee3e8128ef"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1502",
+          "line": 1502,
+          "title": "\"saves empty strings when clearing alt text and caption\"",
+          "expression": "it",
+          "callbackSha256": "b77421d081c12747f240da9d8597b5edb8a626295e140733c475eaf1b7ebfce2",
+          "declarationSha256": "4181df645b7c59755a1ed7b8e87cc20c09c7a0a85568e6082eea9030c73a9a45"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1518",
+          "line": 1518,
+          "title": "\"disables editing and closing while a save is pending\"",
+          "expression": "it",
+          "callbackSha256": "aeaae255d9ef6d6deec933d569fc39426f722c39dcb9ae0216f22decd1609c69",
+          "declarationSha256": "67cc644f1d0ce23d674d69214c690c2ce8275afc8a77355ec99298ecc70acb3d"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1549",
+          "line": 1549,
+          "title": "\"saves dirty metadata with the keyboard shortcut\"",
+          "expression": "it",
+          "callbackSha256": "774a03a7eab84534a16fa094e6c8297dd72bb0b1541096c6a7ae6c1e9a99fa90",
+          "declarationSha256": "b41a3e0ecb60297b02d880409888386dd05fabf1e94bf1807ae2f42e8b2afd58"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1569",
+          "line": 1569,
+          "title": "\"loads bounded Location options only after the control opens\"",
+          "expression": "it",
+          "callbackSha256": "d2137271febf0a95866a42d0aa6b3a077df9615f0e0b2298fdb5ec4c78c71736",
+          "declarationSha256": "2acbee3fb169d4c6d2402dd35815540f85abf5d97ee9a5e4353fe323df3200e5"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1601",
+          "line": 1601,
+          "title": "\"saves image metadata and Location in one update\"",
+          "expression": "it",
+          "callbackSha256": "145beac169760221afcf9baa401dc2a918ab4ec1af30174f648b292cf50191ef",
+          "declarationSha256": "e91034d0861cc295b5fff6895e43e850418d87fd41fcd2273c62768297c8543a"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1618",
+          "line": 1618,
+          "title": "\"does not overwrite Location during a metadata-only save\"",
+          "expression": "it",
+          "callbackSha256": "e69c3502eaa97bc49cf6d9b5226597e92ea1b8c2a2e95fb4b914e17d170e85d7",
+          "declarationSha256": "44c9b619f0b864eb956524bb1630fa651a75177b410f60ad6eed37b6fb0099a9"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1631",
+          "line": 1631,
+          "title": "\"searches Location independently and resets the search after selection\"",
+          "expression": "it",
+          "callbackSha256": "4890427f412507e35e44dc1bc6fc15d474bf96e1e11f4068903223de7de6c273",
+          "declarationSha256": "c6aa2cd2d3e942a9d51d29ab9c62f78d10bb4ea407f74074b485c53636e37d11"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1654",
+          "line": 1654,
+          "title": "\"ignores duplicate Location saves while the first update is pending\"",
+          "expression": "it",
+          "callbackSha256": "d6c3246d3b4bd06e6e6d48916925d82796b586e4da2ffaecddff80cf5e122a85",
+          "declarationSha256": "87acc2f58395f60e69b7e8ffd8972a4ea2eedfa37751ff17f6dee6558e55d486"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1674",
+          "line": 1674,
+          "title": "\"moves a local %s without image metadata\"",
+          "expression": "it.each([\n\t\t[\"video\", \"video/mp4\"],\n\t\t[\"audio\", \"audio/mpeg\"],\n\t\t[\"document\", \"application/pdf\"],\n\t])",
+          "callbackSha256": "a10f4f6b6736b6355f215eb422ea699478000df565f59a48f0a503493b80ef8c",
+          "declarationSha256": "b1fa590726ae755596651171edc93f38570b43f3c940ab6346354b3a85d9d026"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1695",
+          "line": 1695,
+          "title": "\"loads one additional bounded Location page on request\"",
+          "expression": "it",
+          "callbackSha256": "85225d1dd64c45dcc64be2ec7a39cfb137835697faa094145608a5937d2a2c66",
+          "declarationSha256": "634b132cfc94d1f1915b9e6ab464c6d83d0a8a5472fbc4a23065c968ff4b7542"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1717",
+          "line": 1717,
+          "title": "\"shows a read-only Location when the user cannot move the item\"",
+          "expression": "it",
+          "callbackSha256": "5b1ab407981677715e2f7fc95e564dbeccd2ab2f2998479fc8bdf0a13add2b5c",
+          "declarationSha256": "3fa6b41ac689aa6c8e057e475c6569a476d8f9f0b0421cf4796cd94bd3c8c5bd"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1727",
+          "line": 1727,
+          "title": "\"refreshes the open item when its saved folder no longer exists\"",
+          "expression": "it",
+          "callbackSha256": "3c2130e79ea928a81eb0197712aebcc3cea4fe12885ab426717462cd381e00cd",
+          "declarationSha256": "74db69abaeeb89900d27a16bb5068dc6a8c14358691db35042f76253e5f385ce"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1754",
+          "line": 1754,
+          "title": "\"refreshes the open item when a selected folder disappears during save\"",
+          "expression": "it",
+          "callbackSha256": "27242354b47f9e0a534e972d05f8f1807f7af4e72fd8e14a07a931005d7fb7a6",
+          "declarationSha256": "125c83e0a243fd2079002064017b734df3291ec70de7f1f75264f4720daf0b7f"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1786",
+          "line": 1786,
+          "title": "\"blocks stale save retries while missing-folder recovery is pending\"",
+          "expression": "it",
+          "callbackSha256": "f46051fe80146b7862b4a16c819427f037ecfa110dfdce2d03bebd50fe1aab6f",
+          "declarationSha256": "1dd3cf6d2b4ff9438093579db5cdc38180f69cdf27873f7b4a51eef840d56a11"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1815",
+          "line": 1815,
+          "title": "\"reports when the media itself was deleted during a save\"",
+          "expression": "it",
+          "callbackSha256": "ce967d73b57aaac0ab46684eb71b4379057339cf1477b62bd566d0dc1ea8f695",
+          "declarationSha256": "314190f4938997294f796b5f987ceb19bff0b98b57a9a66f44698444cadd78fd"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1845",
+          "line": 1845,
+          "title": "\"does not blame the folder when missing-item recovery cannot confirm the state\"",
+          "expression": "it",
+          "callbackSha256": "e0712f9062f7364bdad86239fface1ded7dc2a90666f2308d8bcab9808482994",
+          "declarationSha256": "4f468bf27bc2d10b5a0d48ff9bfa7e33a9d9066e9049b92f3b2044ef73320f03"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1875",
+          "line": 1875,
+          "title": "\"does not consume the keyboard save shortcut when nothing can be saved\"",
+          "expression": "it",
+          "callbackSha256": "587f90d200bf30b5d34e3d5d01b4b8d656a2cba7049cff8c8109a91d755f6b3c",
+          "declarationSha256": "d46d7a6262c91bad55b3f6d1500c62760343d717134e2b30df3926e917a3c18c"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1889",
+          "line": 1889,
+          "title": "\"delete with confirm calls deleteMedia and onClose + onDeleted\"",
+          "expression": "it",
+          "callbackSha256": "06f0276e14ac7c1251af92cff9ff251e14d8c63e2bfcfa7ff8f975d97acc49a6",
+          "declarationSha256": "ba3234bb9ab33f6fcf9601054f9452b14be25c683fafe648783250f299f33bc7"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1919",
+          "line": 1919,
+          "title": "\"deletes provider assets through the provider API when deletion is supported\"",
+          "expression": "it",
+          "callbackSha256": "02ca05fb94397380ae704e00be1e02e89f234b8e60265ba279f3578d4ef843fc",
+          "declarationSha256": "f2241aefc345be275a1d3dd7c4820ad1639cd1a991854a6c2b40a8c226c42af6"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1944",
+          "line": 1944,
+          "title": "\"delete cancelled does not call deleteMedia\"",
+          "expression": "it",
+          "callbackSha256": "7dd2aba9312ec6062ea282ea48a0f11a9e7f4ce740bace5ceffbdd771b35c291",
+          "declarationSha256": "57965a7b083ce6ba1877c70c07a52b010291f9a577993de48bb6a92e8afbe198"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1961",
+          "line": 1961,
+          "title": "\"close button calls onClose when clean\"",
+          "expression": "it",
+          "callbackSha256": "8e66464c5e624d04e15251c5f3f942246eedcd4cdbbed03cc966d478f693c372",
+          "declarationSha256": "92f87bbf68e1146c3dbc6fc920abfc87c879c1388de0a6be5f2a11ddc6d4c106"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1971",
+          "line": 1971,
+          "title": "\"places a compact Back action in the embedded footer\"",
+          "expression": "it",
+          "callbackSha256": "8d0df46aee270e2d2677b84836e2f5c5e34ca573dae3680963cd8bc350f796f2",
+          "declarationSha256": "1e01b0b4f9cf46e90664256ab8451a772f3a8b0d111c019c5dfac4bc9a78af46"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:1989",
+          "line": 1989,
+          "title": "\"confirms dirty changes before closing an embedded workspace\"",
+          "expression": "it",
+          "callbackSha256": "b74390ffa0c294b3cca8a1dfdb18058f05c02c202208a477f90b7f74c44a51a2",
+          "declarationSha256": "6533fc66de89e0117c7d5b6f0f2e2903160cf772dfac4379e741b180d972abe9"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2007",
+          "line": 2007,
+          "title": "\"close button opens discard confirmation when dirty\"",
+          "expression": "it",
+          "callbackSha256": "0413f007cd5f7a50fe3e298c0e759a49b4b3c63d96b46080ecf3dbae3bd2df51",
+          "declarationSha256": "922444d23547f33c1a991a577049e9bfab28aac16554c096274f855488c9a331"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2022",
+          "line": 2022,
+          "title": "\"cancels the close fallback when reopened before the fallback timer fires\"",
+          "expression": "it",
+          "callbackSha256": "2a8c72f25226dc39fa92d6d1e3f820d151350491062c8f3613ee389a444ad5c4",
+          "declarationSha256": "2d4d70b9078a269b665108eea37ce689721669871e377c91dcd581643edf5c64"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2065",
+          "line": 2065,
+          "title": "\"form fields reset when item prop changes\"",
+          "expression": "it",
+          "callbackSha256": "201ae5b7d81ae1a7cfecf04e75e95d93c5e90ce2b606e3a0759ac7f99dcff69c",
+          "declarationSha256": "81452bfeb596cdcf3bad7aa8f130d4ca88964dd8c95b86a171e44363ffb3bf54"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2088",
+          "line": 2088,
+          "title": "\"shows a shortened file path while copying the absolute URL\"",
+          "expression": "it",
+          "callbackSha256": "91bf0df50ba91e6e6f410ef6932b06d93d4cf4ce79a6346235045c7043a556cd",
+          "declarationSha256": "68254759ba8c1a55b823e9d9053986d98a3871c49d2d095a7ce537d4309fb557"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2104",
+          "line": 2104,
+          "title": "\"does not expose provider preview URLs as public URLs\"",
+          "expression": "it",
+          "callbackSha256": "4c443b0de869b5ca8a501c542ff62cfcd6aca8a552682375484457d19734c510",
+          "declarationSha256": "1354f1ee37dd2a914bbe843ab546a0cb2f76a5397c1168e341f7dd5eebbfd4ba"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2117",
+          "line": 2117,
+          "title": "\"renders provider assets read-only\"",
+          "expression": "it",
+          "callbackSha256": "8ab539183322e21d2668ed5aab3a64f27da2bc1819a3d4e768156c0f877b183f",
+          "declarationSha256": "81bfa1313f530b11658af3e0271a6b78683131e623f6948562c05e2561e25531"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2142",
+          "line": 2142,
+          "title": "\"plays a streaming item's HLS/DASH sources rather than its poster URL\"",
+          "expression": "it",
+          "callbackSha256": "670995a21e7a6997bda9d638bf9cf44d60a54dddb98dae2e1b6bb74e5d102004",
+          "declarationSha256": "ab67febeffc1f514eadf8ecba929ac70fb2cc51ef3678c02002d9ba4a514d293"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2167",
+          "line": 2167,
+          "title": "\"omits the DASH source when the provider only reports HLS\"",
+          "expression": "it",
+          "callbackSha256": "c3a42413b27518ef4564dfd266eb261079f072b58e9fafab5579f34dd838f45e",
+          "declarationSha256": "af356b106749432417fcce6d3492c1dd998038ecffb45805b7a2a01764fcda8a"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanel.test.tsx:2179",
+          "line": 2179,
+          "title": "\"plays a locally stored video straight from its file URL\"",
+          "expression": "it",
+          "callbackSha256": "92ccc384fb6d2b939c6a885e27385c5fb3451541584cf791fac804df6ab3c36d",
+          "declarationSha256": "b0c1d96ff50c147cd22c507a2ddc9779723a3745b12c38a59a00fce8ad6ca20e"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 249,
+          "expression": "expect.element(surface).toBeVisible()",
+          "sha256": "d899c335fc41a6f49d8967d78ad01b721fb0aaef6f23da0d74978d8dbedd4207"
+        },
+        {
+          "line": 249,
+          "expression": "expect.element(surface)",
+          "sha256": "912939b19666d1ca464f051dbb0400ab94164d305b824d6dd9e86c24fdea526d"
+        },
+        {
+          "line": 251,
+          "expression": "expect.element(surface).toHaveFocus()",
+          "sha256": "ef1e101211e188d57b5e5c8361c1c1713997b22941097fe1d71c7fc50bfe1a31"
+        },
+        {
+          "line": 251,
+          "expression": "expect.element(surface)",
+          "sha256": "912939b19666d1ca464f051dbb0400ab94164d305b824d6dd9e86c24fdea526d"
+        },
+        {
+          "line": 258,
+          "expression": "expect.element(cropTab).toBeVisible()",
+          "sha256": "0de0fbb41dc49f4705da6fbc7926b1bfd16422cc2335bd8dcf2062d1de3d9566"
+        },
+        {
+          "line": 258,
+          "expression": "expect.element(cropTab)",
+          "sha256": "2fa6eaf9ad99282501ea5d73b9b3c7969eeb26faed706e7d606a7c07fbb2138d"
+        },
+        {
+          "line": 276,
+          "expression": "expect(output.element().textContent)",
+          "sha256": "e53ded660fe4b2fdaf3db061095fe921646d49eb0f02c5a29ff40ffb46d41104"
+        },
+        {
+          "line": 303,
+          "expression": "expect.element(filenameInput).toHaveValue(\"photo.jpg\")",
+          "sha256": "744b6cda6d3bd5455eeb977c3e1ade532407c62a1c53e2483302d69b84d0ab0f"
+        },
+        {
+          "line": 303,
+          "expression": "expect.element(filenameInput)",
+          "sha256": "b8ebad3b9402d4a971eae4940605dabfe0f82074979c098f759657d84d08aed7"
+        },
+        {
+          "line": 305,
+          "expression": "expect.element(screen.getByText(\"200 KB\")).toBeInTheDocument()",
+          "sha256": "d8e09160e01a5611fa676b361e5082ff5c8fe9022553649552607f34ed759777"
+        },
+        {
+          "line": 305,
+          "expression": "expect.element(screen.getByText(\"200 KB\"))",
+          "sha256": "e82f9a84d3746648e68373265595e6a0584596ebac70259befcce0fff732c5b2"
+        },
+        {
+          "line": 311,
+          "expression": "expect.element(screen.getByText(\"1920 \u00d7 1080\")).toBeInTheDocument()",
+          "sha256": "ef9489b007a74ca9ece1a909dac7d6e9c668bad36ca284e156b512cc982c5733"
+        },
+        {
+          "line": 311,
+          "expression": "expect.element(screen.getByText(\"1920 \u00d7 1080\"))",
+          "sha256": "1fac39acacbbfdc837a81f8dac81e8fa79e393027b6632f42e34daa795d6a72e"
+        },
+        {
+          "line": 312,
+          "expression": "expect.element(screen.getByText(\"JPEG\")).toBeInTheDocument()",
+          "sha256": "f5d6caa1a63702f54b3ad6b2780174bdf402de388181c41083b86f6f2507b984"
+        },
+        {
+          "line": 312,
+          "expression": "expect.element(screen.getByText(\"JPEG\"))",
+          "sha256": "04e67f9e2e6a6962c95f8243f6004e6a13d3749a1133dcc02146faf8230a3556"
+        },
+        {
+          "line": 313,
+          "expression": "expect.element(screen.getByText(\"Size:\")).toBeInTheDocument()",
+          "sha256": "3ab207bd4870bd0e869f2f3fedee5dea74cb07acaf630cda6d9d0e7626c29cf6"
+        },
+        {
+          "line": 313,
+          "expression": "expect.element(screen.getByText(\"Size:\"))",
+          "sha256": "904a8b4d0d54460355d4fc6403cf4af5fe0f45818089fee4100465b0a49d8782"
+        },
+        {
+          "line": 314,
+          "expression": "expect.element(screen.getByText(\"Dimensions:\")).toBeInTheDocument()",
+          "sha256": "20a5a5bf16759c847502e300b2fe9c123a0f46e6ce4f89dd92771f2c7e58a7b0"
+        },
+        {
+          "line": 314,
+          "expression": "expect.element(screen.getByText(\"Dimensions:\"))",
+          "sha256": "bbd50ad8370560611106f529d5b4c9619c132b5d0844d3ccd3b8eaf811e90a98"
+        },
+        {
+          "line": 315,
+          "expression": "expect.element(screen.getByText(\"Uploaded:\")).toBeInTheDocument()",
+          "sha256": "f1eab74d95b8fcadd69162af638359633be3f33ffc8d5e6791fa4a95de224a63"
+        },
+        {
+          "line": 315,
+          "expression": "expect.element(screen.getByText(\"Uploaded:\"))",
+          "sha256": "5b5c580fe4bc27bf108ba2c3622813e6b9913d9a7239f8d5ecf35a69606511d5"
+        },
+        {
+          "line": 316,
+          "expression": "expect.element(screen.getByText(\"Format:\")).toBeInTheDocument()",
+          "sha256": "99b5957f799a55be92016dbb59d11a5273dc4aca76359dbbb51b2079d1a311e3"
+        },
+        {
+          "line": 316,
+          "expression": "expect.element(screen.getByText(\"Format:\"))",
+          "sha256": "d4420e645647a3b8f7197f5ffea48a21a09c616d402d77221adcca271e6df1b5"
+        },
+        {
+          "line": 326,
+          "expression": "expect.element(screen.getByText(\"Uploaded:\")).toBeInTheDocument()",
+          "sha256": "f1eab74d95b8fcadd69162af638359633be3f33ffc8d5e6791fa4a95de224a63"
+        },
+        {
+          "line": 326,
+          "expression": "expect.element(screen.getByText(\"Uploaded:\"))",
+          "sha256": "5b5c580fe4bc27bf108ba2c3622813e6b9913d9a7239f8d5ecf35a69606511d5"
+        },
+        {
+          "line": 327,
+          "expression": "expect(getComputedStyle(factByLabel(\"Size:\")).gridColumnStart)",
+          "sha256": "7abd0ec037586c16aaf7968100a36573d4d5ea4d57ba5d144f6daac128943a2d"
+        },
+        {
+          "line": 328,
+          "expression": "expect(getComputedStyle(factByLabel(\"Uploaded:\")).gridColumnStart)",
+          "sha256": "1945bbb5db8df177e499816221f0b08dc4c8664877ed3c1dc80b60e64c8e35bb"
+        },
+        {
+          "line": 329,
+          "expression": "expect(getComputedStyle(factByLabel(\"Format:\")).gridColumnStart)",
+          "sha256": "3419fa37341cc46037167bff72fd4b1d285e9f9587a86e02d4c3ca8eb430672d"
+        },
+        {
+          "line": 335,
+          "expression": "expect.element(screen.getByText(\"1920 \u00d7 1080\")).toBeInTheDocument()",
+          "sha256": "ef9489b007a74ca9ece1a909dac7d6e9c668bad36ca284e156b512cc982c5733"
+        },
+        {
+          "line": 335,
+          "expression": "expect.element(screen.getByText(\"1920 \u00d7 1080\"))",
+          "sha256": "1fac39acacbbfdc837a81f8dac81e8fa79e393027b6632f42e34daa795d6a72e"
+        },
+        {
+          "line": 336,
+          "expression": "expect.element(screen.getByText(\"MP4\", { exact: true })).toBeInTheDocument()",
+          "sha256": "78e6be3041db35da20694327eda27a6b982dfda96d1572fe3e4a1d3670dcf056"
+        },
+        {
+          "line": 336,
+          "expression": "expect.element(screen.getByText(\"MP4\", { exact: true }))",
+          "sha256": "b3145872cc7a5dd6ae9c0a376e1ab1df34b55a82c382e143c4bc23efcd2dd0cc"
+        },
+        {
+          "line": 337,
+          "expression": "expect.element(screen.getByText(\"Dimensions:\")).toBeInTheDocument()",
+          "sha256": "20a5a5bf16759c847502e300b2fe9c123a0f46e6ce4f89dd92771f2c7e58a7b0"
+        },
+        {
+          "line": 337,
+          "expression": "expect.element(screen.getByText(\"Dimensions:\"))",
+          "sha256": "bbd50ad8370560611106f529d5b4c9619c132b5d0844d3ccd3b8eaf811e90a98"
+        },
+        {
+          "line": 362,
+          "expression": "expect.element(locator).toBeVisible()",
+          "sha256": "de0db4ac83999cc5784400c1d9e010997b2c65e29415c10989ec93249b02630e"
+        },
+        {
+          "line": 362,
+          "expression": "expect.element(locator)",
+          "sha256": "fe1bcf15c03efb95634a96ec96d83797c0f2f4fdf89773d6ea50664a949bfef8"
+        },
+        {
+          "line": 363,
+          "expression": "expect(dialog)",
+          "sha256": "c0a08fe294e44133c8bfd090ef48f828c6dd987a2a7e21e085af14a50af2d2cf"
+        },
+        {
+          "line": 365,
+          "expression": "expect.element(screen.getByText(\"200 KB\")).toBeVisible()",
+          "sha256": "92a90c11e55d763d4895c8fff8934771819219f13c3a17015c66a1f9b04292d4"
+        },
+        {
+          "line": 365,
+          "expression": "expect.element(screen.getByText(\"200 KB\"))",
+          "sha256": "e82f9a84d3746648e68373265595e6a0584596ebac70259befcce0fff732c5b2"
+        },
+        {
+          "line": 366,
+          "expression": "expect.element(screen.getByText(\"1920 \u00d7 1080\")).toBeVisible()",
+          "sha256": "370d888baf25a8749f750bce282c26d7567a428355564186aca6626d069032c9"
+        },
+        {
+          "line": 366,
+          "expression": "expect.element(screen.getByText(\"1920 \u00d7 1080\"))",
+          "sha256": "1fac39acacbbfdc837a81f8dac81e8fa79e393027b6632f42e34daa795d6a72e"
+        },
+        {
+          "line": 398,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace image\" })).toBeVisible()",
+          "sha256": "605fc9e8b5efb0f4cfb573e2c18cbde72bc954a479b6cbb32698c084c016ae97"
+        },
+        {
+          "line": 398,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace image\" }))",
+          "sha256": "9842a9be1e3d3018206f3af9281a9868bea608b0ff8baeb73b741964f9a3e624"
+        },
+        {
+          "line": 402,
+          "expression": "expect.element(confirmation).toBeVisible()",
+          "sha256": "81cecdd9998cc3ebc23306f88c710fd51c9034a613d7fafa6d14d993b380fa87"
+        },
+        {
+          "line": 402,
+          "expression": "expect.element(confirmation)",
+          "sha256": "400354b9499e90c9a69f6aa2b5b6fca0db47d775afcef9df61521b19ed8374e9"
+        },
+        {
+          "line": 409,
+          "expression": "expect(replaceMediaImage)",
+          "sha256": "1d929636ac51d9c662067147027a33339e5d8471fa2453d9959e60a3b04e43c8"
+        },
+        {
+          "line": 413,
+          "expression": "expect(onItemRefreshed)",
+          "sha256": "e3004796e708f756ba2c8bb7f46f92fdd460cbe0dd2522f781fa58eadeb615c3"
+        },
+        {
+          "line": 414,
+          "expression": "expect(onUpdated)",
+          "sha256": "3290df25355323ef109762035405b614055c837bd23d5e5431bc1b57de185588"
+        },
+        {
+          "line": 416,
+          "expression": "expect.element(screen.getByText(\"Image replaced.\")).toBeInTheDocument()",
+          "sha256": "c60d502223ff74366ad07453f2a6d764381a1b9be7046e4c3d80f3952e5b6cd2"
+        },
+        {
+          "line": 416,
+          "expression": "expect.element(screen.getByText(\"Image replaced.\"))",
+          "sha256": "c79d0b3bbb3502b8f9c48b12defb6c87d88caef665971db06310ab2b947d9ecb"
+        },
+        {
+          "line": 417,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 418,
+          "expression": "expect.element(screen.getByRole(\"dialog\", { name: \"Media details\" })).toBeVisible()",
+          "sha256": "bcc9d942441c587e16b0725d03a4ad097ab7eab17caa9850ee7a5691fc5494b1"
+        },
+        {
+          "line": 418,
+          "expression": "expect.element(screen.getByRole(\"dialog\", { name: \"Media details\" }))",
+          "sha256": "246b00013d0c658caa1e6842ad5e8deb87d595a96cfb47c73fd2867b78693fdc"
+        },
+        {
+          "line": 448,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 452,
+          "expression": "expect(\n\t\t\t\tscreen.getByRole(\"alertdialog\", { name: \"Replace original image?\" }).query(),\n\t\t\t)",
+          "sha256": "15b83debcd0718b6e5b7a1e76da485d41dbc057833857abd6b3dc5fc9a40e2a4"
+        },
+        {
+          "line": 469,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\")).toBeInTheDocument()",
+          "sha256": "b76366f8450dcc539ccdeb6daf85485b59ff24ec5886dec5569ce0be5988653a"
+        },
+        {
+          "line": 469,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\"))",
+          "sha256": "b514eb25f6b8a419b44c720db3e13c9c4fade18e7f53e7c3e6c655f7596ad9bf"
+        },
+        {
+          "line": 471,
+          "expression": "expect(dialog.getBoundingClientRect().height)",
+          "sha256": "1a203c121778d882a9abaa39ba5b2c0b28ac6077bcc984af440230426f924e4d"
+        },
+        {
+          "line": 483,
+          "expression": "expect.element(screen.getByTestId(\"focal-preview-square\")).toBeVisible()",
+          "sha256": "39bb0382ac4f2912e1ec674c87251971b152121e526c284371f01f811c2f30b8"
+        },
+        {
+          "line": 483,
+          "expression": "expect.element(screen.getByTestId(\"focal-preview-square\"))",
+          "sha256": "aa6907189056142df3df0baa402706a3b0545896d6123ee49bbd86c313539b7d"
+        },
+        {
+          "line": 486,
+          "expression": "expect(dialog.getBoundingClientRect().height)",
+          "sha256": "1a203c121778d882a9abaa39ba5b2c0b28ac6077bcc984af440230426f924e4d"
+        },
+        {
+          "line": 488,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Cancel\" })).toBeVisible()",
+          "sha256": "ff88bf391b01c3b31c1ee0d67e4ab3bc227b8d614d38a81a75a31dc3c6293d91"
+        },
+        {
+          "line": 488,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Cancel\" }))",
+          "sha256": "57e5774fd15428ed70bc145692ca58e6dd964fc59cbc55b8e69a2bb009be0998"
+        },
+        {
+          "line": 503,
+          "expression": "expect(dialog.style.height)",
+          "sha256": "b49c0b63ad6eb631e5367963ed1dba7dd9942463bd79ec2de0eeab7fba3b9773"
+        },
+        {
+          "line": 504,
+          "expression": "expect(body.style.overflowY)",
+          "sha256": "1845a34a7cc60f93d66e90a570c87cfee71d2c2dfbcb55aea17f317ade13d25a"
+        },
+        {
+          "line": 505,
+          "expression": "expect(previewPane.style.overflowY)",
+          "sha256": "82aa015ecc6d2139a61936abe22478c65481c7ce74b549bf2da18b5e7587a28d"
+        },
+        {
+          "line": 506,
+          "expression": "expect(detailsPane.style.overflowY)",
+          "sha256": "f82f4d69b9dcd8b152194734660d27e366fedeb56d78ee35fe64657ec984c24e"
+        },
+        {
+          "line": 510,
+          "expression": "expect(body.style.overflowY)",
+          "sha256": "1845a34a7cc60f93d66e90a570c87cfee71d2c2dfbcb55aea17f317ade13d25a"
+        },
+        {
+          "line": 511,
+          "expression": "expect(previewPane.style.overflowY)",
+          "sha256": "82aa015ecc6d2139a61936abe22478c65481c7ce74b549bf2da18b5e7587a28d"
+        },
+        {
+          "line": 512,
+          "expression": "expect(detailsPane.style.overflowY)",
+          "sha256": "f82f4d69b9dcd8b152194734660d27e366fedeb56d78ee35fe64657ec984c24e"
+        },
+        {
+          "line": 515,
+          "expression": "expect(dialog.style.height)",
+          "sha256": "b49c0b63ad6eb631e5367963ed1dba7dd9942463bd79ec2de0eeab7fba3b9773"
+        },
+        {
+          "line": 516,
+          "expression": "expect(body.style.overflowY)",
+          "sha256": "1845a34a7cc60f93d66e90a570c87cfee71d2c2dfbcb55aea17f317ade13d25a"
+        },
+        {
+          "line": 517,
+          "expression": "expect(previewPane.style.overflowY)",
+          "sha256": "82aa015ecc6d2139a61936abe22478c65481c7ce74b549bf2da18b5e7587a28d"
+        },
+        {
+          "line": 518,
+          "expression": "expect(detailsPane.style.overflowY)",
+          "sha256": "f82f4d69b9dcd8b152194734660d27e366fedeb56d78ee35fe64657ec984c24e"
+        },
+        {
+          "line": 541,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\")).toBeInTheDocument()",
+          "sha256": "b76366f8450dcc539ccdeb6daf85485b59ff24ec5886dec5569ce0be5988653a"
+        },
+        {
+          "line": 541,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\"))",
+          "sha256": "b514eb25f6b8a419b44c720db3e13c9c4fade18e7f53e7c3e6c655f7596ad9bf"
+        },
+        {
+          "line": 542,
+          "expression": "expect(dialog.getBoundingClientRect().height)",
+          "sha256": "1a203c121778d882a9abaa39ba5b2c0b28ac6077bcc984af440230426f924e4d"
+        },
+        {
+          "line": 549,
+          "expression": "expect(Array.from(dialog.querySelectorAll('[role=\"tab\"]'), (tab) => tab.textContent))",
+          "sha256": "d6d9d56cf0b25074d1bf3e85e4f46600316ee080643a8a3c3c8126f6d4830e75"
+        },
+        {
+          "line": 564,
+          "expression": "expect.element(screen.getByRole(\"tabpanel\", { name: \"Used in\" })).toBeInTheDocument()",
+          "sha256": "b499d763a8e3e65c911bdc19f0dec0e147f9c3d0f9a4cc32fd0f225e9ad60636"
+        },
+        {
+          "line": 564,
+          "expression": "expect.element(screen.getByRole(\"tabpanel\", { name: \"Used in\" }))",
+          "sha256": "6803c5f4b994f77092a49c9fcfc3f876ef46019017483b586593f83ee7ae79a5"
+        },
+        {
+          "line": 570,
+          "expression": "expect(screen.getByRole(\"button\", { name: \"Save\" }).query())",
+          "sha256": "5587ba459dd2233ddfdf89b1ed86131061291c5dffef2311c9dacb54433cd713"
+        },
+        {
+          "line": 574,
+          "expression": "expect.element(screen.getByAltText(\"A nice photo\")).not.toBeVisible()",
+          "sha256": "cb79de73347962666f50a171a1dea5c6116b526f467fbeb7e9027d1280848d63"
+        },
+        {
+          "line": 574,
+          "expression": "expect.element(screen.getByAltText(\"A nice photo\"))",
+          "sha256": "079c7c2e7d0d7f3dcbee23e9ba5ea2d05fd156ea59b5150335e831c2338aec8c"
+        },
+        {
+          "line": 575,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\")).not.toBeVisible()",
+          "sha256": "661d9fd9a713615a7643c363b40bdaf64d8cc57d51243f6b660335f790b65bbc"
+        },
+        {
+          "line": 575,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\"))",
+          "sha256": "928f25099726931c12da1b941cd7eb48a37336082b62d0949fb35be5a7606fd8"
+        },
+        {
+          "line": 581,
+          "expression": "expect(Array.from(dialog.querySelectorAll('[role=\"tab\"]'), (tab) => tab.textContent))",
+          "sha256": "d6d9d56cf0b25074d1bf3e85e4f46600316ee080643a8a3c3c8126f6d4830e75"
+        },
+        {
+          "line": 585,
+          "expression": "expect.element(screen.getByText(\"application/pdf\")).toBeVisible()",
+          "sha256": "c1d43e96ae35813d7a369e3340c98bbfdf0280389c52ff53165e164ea4ad8757"
+        },
+        {
+          "line": 585,
+          "expression": "expect.element(screen.getByText(\"application/pdf\"))",
+          "sha256": "164fc2dd7a57e06c0ae074f39a7b59c22659ac07eef8633b66ee0f4c3179c778"
+        },
+        {
+          "line": 588,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\")).toBeInTheDocument()",
+          "sha256": "b76366f8450dcc539ccdeb6daf85485b59ff24ec5886dec5569ce0be5988653a"
+        },
+        {
+          "line": 588,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\"))",
+          "sha256": "b514eb25f6b8a419b44c720db3e13c9c4fade18e7f53e7c3e6c655f7596ad9bf"
+        },
+        {
+          "line": 589,
+          "expression": "expect.element(screen.getByText(\"application/pdf\")).not.toBeVisible()",
+          "sha256": "ec6cfbce17221675f75b748d5ea13a9a66b9b96a1f4c0558f9f333bfe211de51"
+        },
+        {
+          "line": 589,
+          "expression": "expect.element(screen.getByText(\"application/pdf\"))",
+          "sha256": "164fc2dd7a57e06c0ae074f39a7b59c22659ac07eef8633b66ee0f4c3179c778"
+        },
+        {
+          "line": 597,
+          "expression": "expect(screen.getByRole(\"tab\", { name: \"Used in\" }).query())",
+          "sha256": "d5ed8fc3b52747a0d186f140bb7389fb32a2f6ea3c3d20bd355dce3f9ddd2d30"
+        },
+        {
+          "line": 607,
+          "expression": "expect.element(img).toBeInTheDocument()",
+          "sha256": "1a26ab792b2bdafebc2169d97f4867f1e1f512db0b896ab6f4b4c8c786d60270"
+        },
+        {
+          "line": 607,
+          "expression": "expect.element(img)",
+          "sha256": "20171dca0d892f461587227e319e6382ebf04aaa892e25ed6bd6c6fc37db5865"
+        },
+        {
+          "line": 608,
+          "expression": "expect.element(img).toHaveAttribute(\"src\", item.url)",
+          "sha256": "4868542fcdff85ede01252ac317b9e97f84677a950e3bd9e1e70c0cd8fd7df62"
+        },
+        {
+          "line": 608,
+          "expression": "expect.element(img)",
+          "sha256": "20171dca0d892f461587227e319e6382ebf04aaa892e25ed6bd6c6fc37db5865"
+        },
+        {
+          "line": 620,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\")).toBeVisible()",
+          "sha256": "50d1abe2840d40a92cc20527d3ec38467ce51f49990d9ebc73cc1403885fbcd9"
+        },
+        {
+          "line": 620,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\"))",
+          "sha256": "928f25099726931c12da1b941cd7eb48a37336082b62d0949fb35be5a7606fd8"
+        },
+        {
+          "line": 624,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").query())",
+          "sha256": "1238acb74b1602ab7a97462e270c44027c5d140882d9bac9b52f4150e78cfd9e"
+        },
+        {
+          "line": 630,
+          "expression": "expect.element(editTab).toHaveFocus()",
+          "sha256": "e4fc41e4f070f62ec7cfb588927630687c81acc5925e3fd081b2e27475c8a468"
+        },
+        {
+          "line": 630,
+          "expression": "expect.element(editTab)",
+          "sha256": "a8c383a8f9a82ba50e233557a75e2a1e7200aabf8afb7f4a70caa92836e5c615"
+        },
+        {
+          "line": 637,
+          "expression": "expect(focalDescription)",
+          "sha256": "ccdcafd14f7e452377af433ff48c5e308fdac286631ef1c585a796b87a654cf4"
+        },
+        {
+          "line": 638,
+          "expression": "expect(\n\t\t\tscreen.getByRole(\"button\", { name: \"Focal point. Use arrow keys to move it.\" }).element(),\n\t\t)",
+          "sha256": "c2a79fbc30a6b78225afb3ceff9757f4f8ca3898759280c75641d82924d71923"
+        },
+        {
+          "line": 641,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"About focal point\" })).toBeVisible()",
+          "sha256": "c47f0512ff16e9b9b4e6c9c788982abd7c6b178830f52290ef72f16238b780b0"
+        },
+        {
+          "line": 641,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"About focal point\" }))",
+          "sha256": "23940c86cb961c8e29c3bbfd511e0dc35c890873355847066291dfbb905cbebd"
+        },
+        {
+          "line": 642,
+          "expression": "expect.element(screen.getByRole(\"heading\", { name: \"Preview\" })).toBeVisible()",
+          "sha256": "0c17af0ce07d608dfcd4d30ac009e833dd780e9fcf0d008fc32c61c2cb85f62e"
+        },
+        {
+          "line": 642,
+          "expression": "expect.element(screen.getByRole(\"heading\", { name: \"Preview\" }))",
+          "sha256": "1ea42aec4d21a3f43e97b90c2659c3a50372b2120bc0b5566c2c1a6da02c262b"
+        },
+        {
+          "line": 647,
+          "expression": "expect.element(squarePreview).toBeVisible()",
+          "sha256": "3ff1590194dfe9421f852b9365c246ac669d8a8109aa792f7ad25eb73167cb2f"
+        },
+        {
+          "line": 647,
+          "expression": "expect.element(squarePreview)",
+          "sha256": "ab88e0d0b8eb7eb4ab6c5bc440fd5f896f06139617aa8003bcba94fd225782e6"
+        },
+        {
+          "line": 648,
+          "expression": "expect(\n\t\t\tArray.from(previewGroup.querySelectorAll(\"figcaption\"), (caption) => caption.textContent),\n\t\t)",
+          "sha256": "d83658873f457aa2df5f66f7b6339b2373acb8dc4589daf86cc890a4467df373"
+        },
+        {
+          "line": 651,
+          "expression": "expect.element(portraitPreview).toBeVisible()",
+          "sha256": "68e5fcfadc66a267dcb9c7abe605a2f61cf362fcbd31e516eb1bfbeec70e3478"
+        },
+        {
+          "line": 651,
+          "expression": "expect.element(portraitPreview)",
+          "sha256": "f49e3bed580b90fa4a1942b251372ff461744b5f9f7bf4a19a9bfc9c5a70f4fa"
+        },
+        {
+          "line": 652,
+          "expression": "expect.element(landscapePreview).toBeVisible()",
+          "sha256": "d3bf8ebb04837474f2287479c28bfd320711e63827322937ab96acfa31b2208c"
+        },
+        {
+          "line": 652,
+          "expression": "expect.element(landscapePreview)",
+          "sha256": "86e266d5f3acfa9dc525bb3cd8b77e58caabc3bd50c9fbd6d00070cc79dfc5dc"
+        },
+        {
+          "line": 653,
+          "expression": "expect(\n\t\t\tscreen.getByTestId(\"media-detail-dialog-details-column\").element().contains(squarePreview),\n\t\t)",
+          "sha256": "8b2aad14981f1f5cbb20ee47221e6abf027254ed9e4f4a6e75ac0daa3b10e241"
+        },
+        {
+          "line": 656,
+          "expression": "expect(\n\t\t\tscreen.getByTestId(\"media-detail-dialog-preview-column\").element().contains(squarePreview),\n\t\t)",
+          "sha256": "9679cc8279137fa57e832cdf5e7f2dc4a835eea068070554e024868fe6beda80"
+        },
+        {
+          "line": 659,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\")).not.toBeVisible()",
+          "sha256": "661d9fd9a713615a7643c363b40bdaf64d8cc57d51243f6b660335f790b65bbc"
+        },
+        {
+          "line": 659,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\"))",
+          "sha256": "928f25099726931c12da1b941cd7eb48a37336082b62d0949fb35be5a7606fd8"
+        },
+        {
+          "line": 662,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\")).toBeVisible()",
+          "sha256": "50d1abe2840d40a92cc20527d3ec38467ce51f49990d9ebc73cc1403885fbcd9"
+        },
+        {
+          "line": 662,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\"))",
+          "sha256": "928f25099726931c12da1b941cd7eb48a37336082b62d0949fb35be5a7606fd8"
+        },
+        {
+          "line": 703,
+          "expression": "expect(previewSection.style.transform)",
+          "sha256": "c4589e8aa20dfad32c9b93274741771b8221c3388c973c11ef4b52e6b0611374"
+        },
+        {
+          "line": 704,
+          "expression": "expect(previewFrame.getBoundingClientRect().bottom)",
+          "sha256": "7b40d635491b30f183bb022c392bf9f91de76aeb5bb67330255422f0d67cd798"
+        },
+        {
+          "line": 711,
+          "expression": "expect(previewSection.style.transform)",
+          "sha256": "c4589e8aa20dfad32c9b93274741771b8221c3388c973c11ef4b52e6b0611374"
+        },
+        {
+          "line": 743,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Crop\" })).toBeVisible()",
+          "sha256": "f21b221ea8e29b7e4014a07e8776e742cc8570d996ddef55c4a2a0216c8ba1e8"
+        },
+        {
+          "line": 743,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Crop\" }))",
+          "sha256": "09d3afa0996082a8b1c91c45012f864d954e5b15199396cd100d964cdb7cbc1e"
+        },
+        {
+          "line": 751,
+          "expression": "expect(previewSection.style.transform)",
+          "sha256": "c4589e8aa20dfad32c9b93274741771b8221c3388c973c11ef4b52e6b0611374"
+        },
+        {
+          "line": 765,
+          "expression": "expect(\n\t\t\tArray.from(editModeTabs.element().querySelectorAll('[role=\"tab\"]'), (tab) => tab.textContent),\n\t\t)",
+          "sha256": "e560fe8287f990ae73b06ab4f9913cbfc784e169436110cf7de8c416c8987c1e"
+        },
+        {
+          "line": 771,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Crop\" })).toBeVisible()",
+          "sha256": "f21b221ea8e29b7e4014a07e8776e742cc8570d996ddef55c4a2a0216c8ba1e8"
+        },
+        {
+          "line": 771,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Crop\" }))",
+          "sha256": "09d3afa0996082a8b1c91c45012f864d954e5b15199396cd100d964cdb7cbc1e"
+        },
+        {
+          "line": 777,
+          "expression": "expect(image)",
+          "sha256": "aa4042127a606dae422d62c8e2012e8c55d2d113f3d90614a14389ffe319e2db"
+        },
+        {
+          "line": 789,
+          "expression": "expect(getComputedStyle(editPane).overflowY)",
+          "sha256": "b59ba40dde1933104b6c8696a3106e8ca6312c0f191ac097594d3d8db14988d4"
+        },
+        {
+          "line": 792,
+          "expression": "expect(getComputedStyle(editPane).overflowY)",
+          "sha256": "b59ba40dde1933104b6c8696a3106e8ca6312c0f191ac097594d3d8db14988d4"
+        },
+        {
+          "line": 793,
+          "expression": "expect(getComputedStyle(editPane).overflowY)",
+          "sha256": "b59ba40dde1933104b6c8696a3106e8ca6312c0f191ac097594d3d8db14988d4"
+        },
+        {
+          "line": 816,
+          "expression": "expect(screen.getByRole(\"tab\", { name: \"Crop\" }).query())",
+          "sha256": "b7f7a7b50abbf6d0794fe6c1efd95a7251d8c38076a8c682614cb69b93733d75"
+        },
+        {
+          "line": 830,
+          "expression": "expect(footer)",
+          "sha256": "6a22bac3bc69a8aafcdec6e137ba90eb29d4b640d1a8505d49a14c5fa395a797"
+        },
+        {
+          "line": 831,
+          "expression": "expect(footer)",
+          "sha256": "6a22bac3bc69a8aafcdec6e137ba90eb29d4b640d1a8505d49a14c5fa395a797"
+        },
+        {
+          "line": 832,
+          "expression": "expect(screen.getByRole(\"button\", { name: \"Save\" }).query())",
+          "sha256": "5587ba459dd2233ddfdf89b1ed86131061291c5dffef2311c9dacb54433cd713"
+        },
+        {
+          "line": 836,
+          "expression": "expect(screen.getByText(\"Adjust the crop to continue.\").query())",
+          "sha256": "ad872853307414bbfbd7acd122bcbb30f5aa626a628cb0c7fcdb6ebf94382a36"
+        },
+        {
+          "line": 837,
+          "expression": "expect.element(createCopy).toBeDisabled()",
+          "sha256": "dfaa845ae25eb0d2da58293edc8c87caea2397a54085724104b6c7e7aa9ea349"
+        },
+        {
+          "line": 837,
+          "expression": "expect.element(createCopy)",
+          "sha256": "535f8147d911a8bf5badfafd220966d3ac4f8785b6ce085bc844fb3eb11b18bf"
+        },
+        {
+          "line": 838,
+          "expression": "expect.element(replaceOriginal).toBeDisabled()",
+          "sha256": "5493b262716e8e6eb24eda3eb0b375a1ca4a838ada0e0cddc8fa5fa265acb7f1"
+        },
+        {
+          "line": 838,
+          "expression": "expect.element(replaceOriginal)",
+          "sha256": "a1f2d6479e66f761ea68a85a4aa5bd7021af95be19b9e131b02161f735ee83d8"
+        },
+        {
+          "line": 840,
+          "expression": "expect.element(createCopy).toBeEnabled()",
+          "sha256": "4dc249e723d624f4a8bdf26d07562fd501e0f5735fef6aa2e11ce031742f6ca3"
+        },
+        {
+          "line": 840,
+          "expression": "expect.element(createCopy)",
+          "sha256": "535f8147d911a8bf5badfafd220966d3ac4f8785b6ce085bc844fb3eb11b18bf"
+        },
+        {
+          "line": 841,
+          "expression": "expect.element(replaceOriginal).toBeEnabled()",
+          "sha256": "bda6cae59460396399db01506ec078b7004837c664e26006f7071dad0dd2cf75"
+        },
+        {
+          "line": 841,
+          "expression": "expect.element(replaceOriginal)",
+          "sha256": "a1f2d6479e66f761ea68a85a4aa5bd7021af95be19b9e131b02161f735ee83d8"
+        },
+        {
+          "line": 843,
+          "expression": "expect.element(resetCrop).toBeEnabled()",
+          "sha256": "6752fa266d9b6d3123612f3c31ef02a02d09a4904034599eaa904c88a7d83809"
+        },
+        {
+          "line": 843,
+          "expression": "expect.element(resetCrop)",
+          "sha256": "54edca8c1da06539aed816e04a9bca55c1b09513d8c5de2ced8203d225f2842c"
+        },
+        {
+          "line": 845,
+          "expression": "expect.element(createCopy).toBeDisabled()",
+          "sha256": "dfaa845ae25eb0d2da58293edc8c87caea2397a54085724104b6c7e7aa9ea349"
+        },
+        {
+          "line": 845,
+          "expression": "expect.element(createCopy)",
+          "sha256": "535f8147d911a8bf5badfafd220966d3ac4f8785b6ce085bc844fb3eb11b18bf"
+        },
+        {
+          "line": 846,
+          "expression": "expect.element(replaceOriginal).toBeDisabled()",
+          "sha256": "5493b262716e8e6eb24eda3eb0b375a1ca4a838ada0e0cddc8fa5fa265acb7f1"
+        },
+        {
+          "line": 846,
+          "expression": "expect.element(replaceOriginal)",
+          "sha256": "a1f2d6479e66f761ea68a85a4aa5bd7021af95be19b9e131b02161f735ee83d8"
+        },
+        {
+          "line": 859,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: option })).toBeVisible()",
+          "sha256": "c5bf2a3353495789d686f0dd29700b753886962356cd66644fd2b24353b81d4b"
+        },
+        {
+          "line": 859,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: option }))",
+          "sha256": "6efe125e0f80ae6fe2c6de10700f8c6307c57c51e0296942de6858b8254d3f24"
+        },
+        {
+          "line": 867,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Create cropped copy\" })).toBeEnabled()",
+          "sha256": "83bc7f5e5335e0f8499bf6f0d17052b0dbd347a6decdff99e5e20764d2ca9d60"
+        },
+        {
+          "line": 867,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Create cropped copy\" }))",
+          "sha256": "bfa6286863387ba2a826b532b180e44669e278c6624d0766f4f5093b695dd5f5"
+        },
+        {
+          "line": 868,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace original\" })).toBeDisabled()",
+          "sha256": "a430669cb32ba5439daca2b4556c97bb8a93e340d20472d32d9cd1c6bc92843a"
+        },
+        {
+          "line": 868,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace original\" }))",
+          "sha256": "e0fa96fdba45760fb6c3d43e5057aaffd886da76c3eb3d8f157893adf388722e"
+        },
+        {
+          "line": 869,
+          "expression": "expect(screen.getByText(\"Choose Original to replace the existing image.\").query())",
+          "sha256": "ccea044492b420fb9f0dca17761a3a2500d8e16b317494ebc098651edf86b813"
+        },
+        {
+          "line": 882,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace image\" })).toBeDisabled()",
+          "sha256": "2d8da5ec1d2345dcdd7f9c9eec4ee60c783534b54b825bdd8adb4bc276ca46aa"
+        },
+        {
+          "line": 882,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace image\" }))",
+          "sha256": "9842a9be1e3d3018206f3af9281a9868bea608b0ff8baeb73b741964f9a3e624"
+        },
+        {
+          "line": 892,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace original\" })).toBeDisabled()",
+          "sha256": "a430669cb32ba5439daca2b4556c97bb8a93e340d20472d32d9cd1c6bc92843a"
+        },
+        {
+          "line": 892,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Replace original\" }))",
+          "sha256": "e0fa96fdba45760fb6c3d43e5057aaffd886da76c3eb3d8f157893adf388722e"
+        },
+        {
+          "line": 906,
+          "expression": "expect.element(usedInTab).toHaveAttribute(\"aria-selected\", \"true\")",
+          "sha256": "29c02155c1ce259a4861dd25d88bac21746ad93682b45d42f261dc282c9629ea"
+        },
+        {
+          "line": 906,
+          "expression": "expect.element(usedInTab)",
+          "sha256": "52a0ddd69896fbe548b909c12e4db22084e81dd36b72215b1a65dd1376ced7a7"
+        },
+        {
+          "line": 907,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\")).toBeInTheDocument()",
+          "sha256": "b76366f8450dcc539ccdeb6daf85485b59ff24ec5886dec5569ce0be5988653a"
+        },
+        {
+          "line": 907,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\"))",
+          "sha256": "b514eb25f6b8a419b44c720db3e13c9c4fade18e7f53e7c3e6c655f7596ad9bf"
+        },
+        {
+          "line": 933,
+          "expression": "expect.element(focalSurface).toBeVisible()",
+          "sha256": "eaf0f9a9108fff91dcc1f795a4296d2c94dda55ffd36b9bee5c82ea2b0a2648b"
+        },
+        {
+          "line": 933,
+          "expression": "expect.element(focalSurface)",
+          "sha256": "238ac41c2de4c79cace2d401d1f3a4abfe455f5f02ad4d45ffa5b8882f2773af"
+        },
+        {
+          "line": 936,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 946,
+          "expression": "expect(cropSelectionStyle(screen))",
+          "sha256": "1bcbe3eab43981235e3c3eae5b8f2bb1b552581cc247db397156e731ca37cae1"
+        },
+        {
+          "line": 948,
+          "expression": "expect.element(screen.getByTestId(\"focal-preview-square\")).toBeVisible()",
+          "sha256": "39bb0382ac4f2912e1ec674c87251971b152121e526c284371f01f811c2f30b8"
+        },
+        {
+          "line": 948,
+          "expression": "expect.element(screen.getByTestId(\"focal-preview-square\"))",
+          "sha256": "aa6907189056142df3df0baa402706a3b0545896d6123ee49bbd86c313539b7d"
+        },
+        {
+          "line": 949,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 963,
+          "expression": "expect.element(focalImage).toBeVisible()",
+          "sha256": "bdf8fe7b844f545ee9456cddfae6d81a33087e4d8f2dbf264eff6c9f30815d49"
+        },
+        {
+          "line": 963,
+          "expression": "expect.element(focalImage)",
+          "sha256": "8b4c56cb7728935be99d35b0fd2be5a0283841b948e4c0f9f8d63739dcaef74f"
+        },
+        {
+          "line": 969,
+          "expression": "expect.element(detailsImage).toBeVisible()",
+          "sha256": "71f873b1a0844fab64f6188a7631cef0ec0a776fe2705e42d8b685cb82cc8935"
+        },
+        {
+          "line": 969,
+          "expression": "expect.element(detailsImage)",
+          "sha256": "ca6e70565386622dd09a91689ff700daa009dc21e412cf99a9b009e59d937d7c"
+        },
+        {
+          "line": 970,
+          "expression": "expect(detailsImage.element())",
+          "sha256": "9652e91cfc36d074fd19b3a6a37d788904be4f8f50f9339a43e8715f59ec168f"
+        },
+        {
+          "line": 971,
+          "expression": "expect(detailsImage.element().src)",
+          "sha256": "e271418fc258b0260e63197684de73d86021da22a9a7450ea93a71098cd685a5"
+        },
+        {
+          "line": 993,
+          "expression": "expect(uploadMedia)",
+          "sha256": "538f5c4a5aa71687656915e333eca6e27e037350b4c2b3a93255132f8e419d65"
+        },
+        {
+          "line": 994,
+          "expression": "expect.objectContaining({ name: \"photo-80x80.jpg\", type: \"image/jpeg\" })",
+          "sha256": "5c5d428ddf2e060883be72b6e86aa3f6c9307de1900fba4bfd6095328e99830d"
+        },
+        {
+          "line": 997,
+          "expression": "expect(onCroppedCopyCreated)",
+          "sha256": "5efc328414f4fd15e3c8192c1db416335aec95ad7119df7952638bde08f714bc"
+        },
+        {
+          "line": 999,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1000,
+          "expression": "expect(replaceMediaImage)",
+          "sha256": "1d929636ac51d9c662067147027a33339e5d8471fa2453d9959e60a3b04e43c8"
+        },
+        {
+          "line": 1001,
+          "expression": "expect(onItemRefreshed)",
+          "sha256": "e3004796e708f756ba2c8bb7f46f92fdd460cbe0dd2522f781fa58eadeb615c3"
+        },
+        {
+          "line": 1014,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Details\" })).toBeVisible()",
+          "sha256": "389c0c7b54f448281bccfb3234b96cb1c3d5f98d97a8d091686ff3ca02761b06"
+        },
+        {
+          "line": 1014,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Details\" }))",
+          "sha256": "1e54d65d1525bd2a43aafbc1c2c520e2c8e1057dff0ecdc45012812798ab1d50"
+        },
+        {
+          "line": 1015,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Edit image\" })).toBeVisible()",
+          "sha256": "af03e1ab44eeecb54ee0014cd85fe48805483c3305c14205247fdba9ad9a0589"
+        },
+        {
+          "line": 1015,
+          "expression": "expect.element(screen.getByRole(\"tab\", { name: \"Edit image\" }))",
+          "sha256": "0d6093805ea9683242d67ad38920447298311a7021600fa3d0504e43afbe525f"
+        },
+        {
+          "line": 1016,
+          "expression": "expect(screen.getByRole(\"tab\", { name: \"Used in\" }).query())",
+          "sha256": "d5ed8fc3b52747a0d186f140bb7389fb32a2f6ea3c3d20bd355dce3f9ddd2d30"
+        },
+        {
+          "line": 1017,
+          "expression": "expect(screen.getByRole(\"button\", { name: \"Delete\" }).query())",
+          "sha256": "252d0c72ca837834686a8ed1180e8b840c995a66bd28200cbe93c7f3d57133ff"
+        },
+        {
+          "line": 1018,
+          "expression": "expect(screen.getByRole(\"combobox\", { name: \"Location\" }).query())",
+          "sha256": "678819e8020849f3381e5a61ea640747397502ac14e61cbf322a1611b6f4517d"
+        },
+        {
+          "line": 1022,
+          "expression": "expect.element(screen.getByRole(\"textbox\", { name: \"Location\" })).toBeDisabled()",
+          "sha256": "511c3695dcf69c09eb0c78e853fb0f7a104856f5934976f06135775c2fd0e7a0"
+        },
+        {
+          "line": 1022,
+          "expression": "expect.element(screen.getByRole(\"textbox\", { name: \"Location\" }))",
+          "sha256": "4166252eac3be54a27b4537055e0a49ffce4ee855b290839875f5016d65060b5"
+        },
+        {
+          "line": 1058,
+          "expression": "expect.element(irreversibleWarning).toHaveTextContent(\"This cannot be undone\")",
+          "sha256": "e04ea61fafb34a1cfe3e3d43cc4ae6c139f2346a42e19b2cd0a96e151a9e9684"
+        },
+        {
+          "line": 1058,
+          "expression": "expect.element(irreversibleWarning)",
+          "sha256": "dedd92c901db1d50fa1bab6139a273057c267a1d9836cf99f224ed60ca3d6f06"
+        },
+        {
+          "line": 1062,
+          "expression": "expect(replaceMediaImage)",
+          "sha256": "1d929636ac51d9c662067147027a33339e5d8471fa2453d9959e60a3b04e43c8"
+        },
+        {
+          "line": 1066,
+          "expression": "expect(replaceMediaImage)",
+          "sha256": "1d929636ac51d9c662067147027a33339e5d8471fa2453d9959e60a3b04e43c8"
+        },
+        {
+          "line": 1068,
+          "expression": "expect.objectContaining({ name: \"photo.jpg\", type: \"image/jpeg\" })",
+          "sha256": "94c510073db67c548ed331ecdcdd5479141fd55dcc65fd57765630a8edd638c6"
+        },
+        {
+          "line": 1069,
+          "expression": "expect.objectContaining({ width: expect.any(Number), height: expect.any(Number) })",
+          "sha256": "5fc5db6285905f0b48a4a3a83ac3479abf8e171351a325aa542b21c92af189b2"
+        },
+        {
+          "line": 1069,
+          "expression": "expect.any(Number)",
+          "sha256": "f29068af151686a727961c54371f0cd2007c006631a3cf5d7a57ae1313a4a19a"
+        },
+        {
+          "line": 1069,
+          "expression": "expect.any(Number)",
+          "sha256": "f29068af151686a727961c54371f0cd2007c006631a3cf5d7a57ae1313a4a19a"
+        },
+        {
+          "line": 1071,
+          "expression": "expect(onItemRefreshed)",
+          "sha256": "e3004796e708f756ba2c8bb7f46f92fdd460cbe0dd2522f781fa58eadeb615c3"
+        },
+        {
+          "line": 1074,
+          "expression": "expect.element(status).toBeInTheDocument()",
+          "sha256": "47b03748ea9ea590f699c39d20ecf786451d91d038a324768b00db02d78e865c"
+        },
+        {
+          "line": 1074,
+          "expression": "expect.element(status)",
+          "sha256": "b86416f00c26e9c8b0eb51c713e7fac68029708cd9fbff87c72576a1bfde592c"
+        },
+        {
+          "line": 1075,
+          "expression": "expect(screen.getByRole(\"dialog\", { name: \"Media details\" }).element())",
+          "sha256": "4ab0b9f5718b4ec31b6c60ebb46610824e2ac0c86c5241c775d56c77235de8af"
+        },
+        {
+          "line": 1078,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1084,
+          "expression": "expect(previewAfter)",
+          "sha256": "b4502f7fe737d0171134265044260e8ee48da0a6f9beda82542a6a96e4252488"
+        },
+        {
+          "line": 1101,
+          "expression": "expect.element(screen.getByText(\"The cropped image could not be created.\")).toBeVisible()",
+          "sha256": "fe019c055133cb7d3fd99774303e5801d9cb72f9faf36a074f0094ef2938d376"
+        },
+        {
+          "line": 1101,
+          "expression": "expect.element(screen.getByText(\"The cropped image could not be created.\"))",
+          "sha256": "007599f770b46ae47e3b99976bc7055686c2679d99934a75d14b2214fa5d7197"
+        },
+        {
+          "line": 1102,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1103,
+          "expression": "expect(cropSelectionStyle(screen))",
+          "sha256": "1bcbe3eab43981235e3c3eae5b8f2bb1b552581cc247db397156e731ca37cae1"
+        },
+        {
+          "line": 1105,
+          "expression": "expect(uploadMedia)",
+          "sha256": "538f5c4a5aa71687656915e333eca6e27e037350b4c2b3a93255132f8e419d65"
+        },
+        {
+          "line": 1106,
+          "expression": "expect(createCroppedImageFile)",
+          "sha256": "d18c0d45eb468f0cfba4b2363ed2d37379ca25cd3eb29ce2bd9589eef58f679d"
+        },
+        {
+          "line": 1121,
+          "expression": "expect.element(confirmation).toBeVisible()",
+          "sha256": "81cecdd9998cc3ebc23306f88c710fd51c9034a613d7fafa6d14d993b380fa87"
+        },
+        {
+          "line": 1121,
+          "expression": "expect.element(confirmation)",
+          "sha256": "400354b9499e90c9a69f6aa2b5b6fca0db47d775afcef9df61521b19ed8374e9"
+        },
+        {
+          "line": 1124,
+          "expression": "expect.element(screen.getByText(\"Replace failed\")).toBeVisible()",
+          "sha256": "c66425879f6a1f832644c82e3f48d2013f427868131459a14994aba5e3998e86"
+        },
+        {
+          "line": 1124,
+          "expression": "expect.element(screen.getByText(\"Replace failed\"))",
+          "sha256": "2f16fc730d122d408afd979ce723ed7aaabb058f4f3f012473ff84cab7ea9df6"
+        },
+        {
+          "line": 1125,
+          "expression": "expect.element(confirmation).not.toBeInTheDocument()",
+          "sha256": "0be1a243228c09bdcf712048c758483c2cad7455a2f96f9cf05acd032e18f517"
+        },
+        {
+          "line": 1125,
+          "expression": "expect.element(confirmation)",
+          "sha256": "400354b9499e90c9a69f6aa2b5b6fca0db47d775afcef9df61521b19ed8374e9"
+        },
+        {
+          "line": 1126,
+          "expression": "expect(cropSelectionStyle(screen))",
+          "sha256": "1bcbe3eab43981235e3c3eae5b8f2bb1b552581cc247db397156e731ca37cae1"
+        },
+        {
+          "line": 1147,
+          "expression": "expect.element(confirmation).toBeVisible()",
+          "sha256": "81cecdd9998cc3ebc23306f88c710fd51c9034a613d7fafa6d14d993b380fa87"
+        },
+        {
+          "line": 1147,
+          "expression": "expect.element(confirmation)",
+          "sha256": "400354b9499e90c9a69f6aa2b5b6fca0db47d775afcef9df61521b19ed8374e9"
+        },
+        {
+          "line": 1151,
+          "expression": "expect(fetchMediaItem)",
+          "sha256": "a764953ca7db1c16999963a1bb38c8ca680ed070d297f31a4b2960cbc87cc658"
+        },
+        {
+          "line": 1152,
+          "expression": "expect(onUnavailable)",
+          "sha256": "d5bb010efd2c7c5839d5842d12452a9ba8b43661ecc4485ca3d7c3b30d544ff0"
+        },
+        {
+          "line": 1189,
+          "expression": "expect(uploadMedia)",
+          "sha256": "538f5c4a5aa71687656915e333eca6e27e037350b4c2b3a93255132f8e419d65"
+        },
+        {
+          "line": 1190,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Close\" })).toBeDisabled()",
+          "sha256": "9666962f0f618c0a5db651897d5078eda6802adb536b1cc17de1830e5a4c918a"
+        },
+        {
+          "line": 1190,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Close\" }))",
+          "sha256": "949364c1e0f9392f13a36c1d4425619a83e18893ca104d0b6f037e212e6c46b0"
+        },
+        {
+          "line": 1191,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Cancel\" })).toBeDisabled()",
+          "sha256": "47789649f0787589a158bd3400d4876bb08462784397cff62a7004aa6ba5af19"
+        },
+        {
+          "line": 1191,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Cancel\" }))",
+          "sha256": "57e5774fd15428ed70bc145692ca58e6dd964fc59cbc55b8e69a2bb009be0998"
+        },
+        {
+          "line": 1193,
+          "expression": "expect.element(screen.getByRole(\"tabpanel\", { name: \"Edit image\" })).toBeInTheDocument()",
+          "sha256": "49506520dbd4fe3e71a8682fdf667911c769d7b7a9cc950f62cd1be305ced291"
+        },
+        {
+          "line": 1193,
+          "expression": "expect.element(screen.getByRole(\"tabpanel\", { name: \"Edit image\" }))",
+          "sha256": "a1897a2725a4bccbcd0729f4656a24b5c78764867cb1096de3958df7e394cfe7"
+        },
+        {
+          "line": 1194,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1197,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1207,
+          "expression": "expect.element(cropTab).toBeVisible()",
+          "sha256": "0de0fbb41dc49f4705da6fbc7926b1bfd16422cc2335bd8dcf2062d1de3d9566"
+        },
+        {
+          "line": 1207,
+          "expression": "expect.element(cropTab)",
+          "sha256": "2fa6eaf9ad99282501ea5d73b9b3c7969eeb26faed706e7d606a7c07fbb2138d"
+        },
+        {
+          "line": 1213,
+          "expression": "expect.element(screen.getByAltText(\"A nice photo\")).toBeInTheDocument()",
+          "sha256": "8e96bf804a0587d78d87e3885da3c191235060814040f27e91ad09e626561b47"
+        },
+        {
+          "line": 1213,
+          "expression": "expect.element(screen.getByAltText(\"A nice photo\"))",
+          "sha256": "079c7c2e7d0d7f3dcbee23e9ba5ea2d05fd156ea59b5150335e831c2338aec8c"
+        },
+        {
+          "line": 1224,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\")).toBeInTheDocument()",
+          "sha256": "b76366f8450dcc539ccdeb6daf85485b59ff24ec5886dec5569ce0be5988653a"
+        },
+        {
+          "line": 1224,
+          "expression": "expect.element(screen.getByTestId(\"media-used-in\"))",
+          "sha256": "b514eb25f6b8a419b44c720db3e13c9c4fade18e7f53e7c3e6c655f7596ad9bf"
+        },
+        {
+          "line": 1228,
+          "expression": "expect.element(squarePreview).toBeVisible()",
+          "sha256": "3ff1590194dfe9421f852b9365c246ac669d8a8109aa792f7ad25eb73167cb2f"
+        },
+        {
+          "line": 1228,
+          "expression": "expect.element(squarePreview)",
+          "sha256": "ab88e0d0b8eb7eb4ab6c5bc440fd5f896f06139617aa8003bcba94fd225782e6"
+        },
+        {
+          "line": 1229,
+          "expression": "expect(squarePreview.element().style.objectPosition)",
+          "sha256": "a66dd45d7d9cec14c3551cf73ba53b1b0f8f7909e6e79f254d5c720e168cedd2"
+        },
+        {
+          "line": 1240,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Reset\" })).toBeEnabled()",
+          "sha256": "e08da5d6fbcf12d3372deb77e89fadd845392f9bd73aa44ec86a8d924d03dd13"
+        },
+        {
+          "line": 1240,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Reset\" }))",
+          "sha256": "cdb96115e3da10579bbae650eb4e004f08854dbf6aed2ed158130f0c1e43eef9"
+        },
+        {
+          "line": 1243,
+          "expression": "expect(squarePreview.style.objectPosition)",
+          "sha256": "2443d759f523d4fac643f399d003d56b910b33b50a15d106e6187f9ecf239bc9"
+        },
+        {
+          "line": 1244,
+          "expression": "expect.element(screen.getByText(\"Horizontal 51%, vertical 55%\")).toBeInTheDocument()",
+          "sha256": "4f0806be359c731d0c7b672c03a225a6b80cdeb4a96fe8295442ce34bd2fed81"
+        },
+        {
+          "line": 1244,
+          "expression": "expect.element(screen.getByText(\"Horizontal 51%, vertical 55%\"))",
+          "sha256": "9753da31b776221a6cd11e19126918448b830a245e94824b7b873b745deb6e26"
+        },
+        {
+          "line": 1248,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1261,
+          "expression": "expect.element(saveButton).toBeEnabled()",
+          "sha256": "0ac05d04c91b24445cbf0fd96ce396f61ca81c1788f2a53e2fb383c6b1a5d45d"
+        },
+        {
+          "line": 1261,
+          "expression": "expect.element(saveButton)",
+          "sha256": "b5937e034481a8d88e6dd29c2619a15b79cd9899326c8471b5e72e8fc1d46388"
+        },
+        {
+          "line": 1264,
+          "expression": "expect.element(screen.getByText(\"Update failed\")).toBeVisible()",
+          "sha256": "196ad98404888902edae6d6748341bf82d3299fa0685903a7e31dc09efe62685"
+        },
+        {
+          "line": 1264,
+          "expression": "expect.element(screen.getByText(\"Update failed\"))",
+          "sha256": "988d7132a0a4f9faed0e8e6baaca4f858bf5adee4c481aa059af08b4c4ec1176"
+        },
+        {
+          "line": 1265,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 1298,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 1312,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 1326,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 1339,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 1353,
+          "expression": "expect(screen.getByTestId(\"focal-preview-square\").element().style.objectPosition)",
+          "sha256": "773ee9cddc3d4504a13d9396df3d9e690fc3b786bcf8e44acecf47e19407a790"
+        },
+        {
+          "line": 1356,
+          "expression": "expect(release)",
+          "sha256": "63c05bbe507666497b2a7f2b801af99b0c2b62b412139c129a70e12f8478cc83"
+        },
+        {
+          "line": 1365,
+          "expression": "expect.element(resetButton).toBeVisible()",
+          "sha256": "b8b9786cde39bc5aae95661816b72b2b18af7c5d3570ca3d5295372b02e24f55"
+        },
+        {
+          "line": 1365,
+          "expression": "expect.element(resetButton)",
+          "sha256": "936ebe902fd5ea84c7e50a82734e2ec6663c1941fffac3a00212eb9dee91dfee"
+        },
+        {
+          "line": 1368,
+          "expression": "expect.element(saveButton).toBeEnabled()",
+          "sha256": "0ac05d04c91b24445cbf0fd96ce396f61ca81c1788f2a53e2fb383c6b1a5d45d"
+        },
+        {
+          "line": 1368,
+          "expression": "expect.element(saveButton)",
+          "sha256": "b5937e034481a8d88e6dd29c2619a15b79cd9899326c8471b5e72e8fc1d46388"
+        },
+        {
+          "line": 1372,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1385,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1395,
+          "expression": "expect.element(screen.getByText(\"application/pdf\")).toBeInTheDocument()",
+          "sha256": "4a4e7dde8592b8fd112a798f108204c748626c30fa9ee66dfbe081728ef55434"
+        },
+        {
+          "line": 1395,
+          "expression": "expect.element(screen.getByText(\"application/pdf\"))",
+          "sha256": "164fc2dd7a57e06c0ae074f39a7b59c22659ac07eef8633b66ee0f4c3179c778"
+        },
+        {
+          "line": 1396,
+          "expression": "expect(screen.getByText(\"Focal point\").query())",
+          "sha256": "697c76cdfd4fee88a7d5f810cf4d588a13d68a04261018cb1b468ab40428e962"
+        },
+        {
+          "line": 1403,
+          "expression": "expect.element(altInput).toBeInTheDocument()",
+          "sha256": "8b5cb18bc02331fcf46b71eab105f2bad79cfb91a0e78d846b795fefa35e05cc"
+        },
+        {
+          "line": 1403,
+          "expression": "expect.element(altInput)",
+          "sha256": "6a6ab0cd0976c12182a9e6c13b9d1b2445d9566f4a1a82e90536f295c76bd24c"
+        },
+        {
+          "line": 1404,
+          "expression": "expect.element(altInput).toHaveAttribute(\"rows\", \"2\")",
+          "sha256": "436b72f7e38a96ae27643ef198823002cf5b97202e15682891bc3403232a36f8"
+        },
+        {
+          "line": 1404,
+          "expression": "expect.element(altInput)",
+          "sha256": "6a6ab0cd0976c12182a9e6c13b9d1b2445d9566f4a1a82e90536f295c76bd24c"
+        },
+        {
+          "line": 1409,
+          "expression": "expect.element(altInput).toHaveValue(\"New alt text\")",
+          "sha256": "011b644e4300761ae4f607702b40ea1c35f76defdf4dd6a3302c2d5af1f5b17d"
+        },
+        {
+          "line": 1409,
+          "expression": "expect.element(altInput)",
+          "sha256": "6a6ab0cd0976c12182a9e6c13b9d1b2445d9566f4a1a82e90536f295c76bd24c"
+        },
+        {
+          "line": 1417,
+          "expression": "expect.element(captionArea).toBeInTheDocument()",
+          "sha256": "28af000e3c8e5cfcc235f0f9fdb57cdd170dbf204d56abe0b6d12912383bfcb6"
+        },
+        {
+          "line": 1417,
+          "expression": "expect.element(captionArea)",
+          "sha256": "8c0e46e71b486bdef5580fed69fc902cfdf5f082896d8d90fd7a8d1a3e62637b"
+        },
+        {
+          "line": 1418,
+          "expression": "expect.element(captionArea).toHaveAttribute(\"rows\", \"4\")",
+          "sha256": "e2b8c0b4f72cca93caa6a14e5bf01111fd05eacbf7ec4514b0231406dee2a402"
+        },
+        {
+          "line": 1418,
+          "expression": "expect.element(captionArea)",
+          "sha256": "8c0e46e71b486bdef5580fed69fc902cfdf5f082896d8d90fd7a8d1a3e62637b"
+        },
+        {
+          "line": 1419,
+          "expression": "expect.element(captionArea).toHaveValue(\"Photo caption\")",
+          "sha256": "085862ca791b5a04a6fc6a9b4bd6e9604736884d3a645b495d4ff2c196c385a0"
+        },
+        {
+          "line": 1419,
+          "expression": "expect.element(captionArea)",
+          "sha256": "8c0e46e71b486bdef5580fed69fc902cfdf5f082896d8d90fd7a8d1a3e62637b"
+        },
+        {
+          "line": 1437,
+          "expression": "expect.element(filenameInput).toBeDisabled()",
+          "sha256": "10b2e44fc57c2da5c3693be5bdf64d71e49b7255335844c5be756d2808ef08bc"
+        },
+        {
+          "line": 1437,
+          "expression": "expect.element(filenameInput)",
+          "sha256": "b8ebad3b9402d4a971eae4940605dabfe0f82074979c098f759657d84d08aed7"
+        },
+        {
+          "line": 1447,
+          "expression": "expect.element(saveBtn).toBeDisabled()",
+          "sha256": "388c7ef646e89a399d8b53ed76e5d03dc619e750282f4d1b4ac31131f1549823"
+        },
+        {
+          "line": 1447,
+          "expression": "expect.element(saveBtn)",
+          "sha256": "7a89cdc2d5d8338dfba96338976b51f30cddee586d1acea2db1cf5cefded9e15"
+        },
+        {
+          "line": 1456,
+          "expression": "expect.element(saveBtn).toBeEnabled()",
+          "sha256": "31e0481b55999759107697d254c0353b61261bd107e461f3a3e7fef3d43dc793"
+        },
+        {
+          "line": 1456,
+          "expression": "expect.element(saveBtn)",
+          "sha256": "7a89cdc2d5d8338dfba96338976b51f30cddee586d1acea2db1cf5cefded9e15"
+        },
+        {
+          "line": 1488,
+          "expression": "expect.element(saveBtn).toBeEnabled()",
+          "sha256": "31e0481b55999759107697d254c0353b61261bd107e461f3a3e7fef3d43dc793"
+        },
+        {
+          "line": 1488,
+          "expression": "expect.element(saveBtn)",
+          "sha256": "7a89cdc2d5d8338dfba96338976b51f30cddee586d1acea2db1cf5cefded9e15"
+        },
+        {
+          "line": 1492,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1496,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1497,
+          "expression": "expect.element(screen.getByRole(\"dialog\", { name: \"Media details\" })).toBeVisible()",
+          "sha256": "bcc9d942441c587e16b0725d03a4ad097ab7eab17caa9850ee7a5691fc5494b1"
+        },
+        {
+          "line": 1497,
+          "expression": "expect.element(screen.getByRole(\"dialog\", { name: \"Media details\" }))",
+          "sha256": "246b00013d0c658caa1e6842ad5e8deb87d595a96cfb47c73fd2867b78693fdc"
+        },
+        {
+          "line": 1498,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeDisabled()",
+          "sha256": "cccc237bea5fbeee8fa97c0d5a9daa670ed52201b08da6a55f53a0acf519be83"
+        },
+        {
+          "line": 1498,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1499,
+          "expression": "expect.element(screen.getByAltText(\"New alt\")).toHaveAttribute(\"src\", item.url)",
+          "sha256": "a3d345837f973cd086d254cbc123f4e098ca4503e9409fe011398a1c6e369a91"
+        },
+        {
+          "line": 1499,
+          "expression": "expect.element(screen.getByAltText(\"New alt\"))",
+          "sha256": "dc97dcc540323dc95a30d6f7b71ec177bca5e0a5a22b3dca57f3b305b1fb04b3"
+        },
+        {
+          "line": 1511,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1532,
+          "expression": "expect.element(altInput).toBeDisabled()",
+          "sha256": "d1f1d169337d149b9ed268f87d12f6277200ec8a83c31ec547e5dd3cca4a3b5f"
+        },
+        {
+          "line": 1532,
+          "expression": "expect.element(altInput)",
+          "sha256": "6a6ab0cd0976c12182a9e6c13b9d1b2445d9566f4a1a82e90536f295c76bd24c"
+        },
+        {
+          "line": 1533,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Saving...\" })).toBeDisabled()",
+          "sha256": "b3c39d2a818018f88db5ddb0a8ef4340c18e385ef3290a2c49619255511b1be9"
+        },
+        {
+          "line": 1533,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Saving...\" }))",
+          "sha256": "f3be199cc19086505feaf39e3c99110334d932c9e549446cc18ef1404e0a1b37"
+        },
+        {
+          "line": 1534,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Close\" })).toBeDisabled()",
+          "sha256": "9666962f0f618c0a5db651897d5078eda6802adb536b1cc17de1830e5a4c918a"
+        },
+        {
+          "line": 1534,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Close\" }))",
+          "sha256": "949364c1e0f9392f13a36c1d4425619a83e18893ca104d0b6f037e212e6c46b0"
+        },
+        {
+          "line": 1535,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Cancel\" })).toBeDisabled()",
+          "sha256": "47789649f0787589a158bd3400d4876bb08462784397cff62a7004aa6ba5af19"
+        },
+        {
+          "line": 1535,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Cancel\" }))",
+          "sha256": "57e5774fd15428ed70bc145692ca58e6dd964fc59cbc55b8e69a2bb009be0998"
+        },
+        {
+          "line": 1538,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1543,
+          "expression": "expect(onItemRefreshed)",
+          "sha256": "e3004796e708f756ba2c8bb7f46f92fdd460cbe0dd2522f781fa58eadeb615c3"
+        },
+        {
+          "line": 1545,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1546,
+          "expression": "expect.element(altInput).toBeEnabled()",
+          "sha256": "d8cf699599d0fc16032b0198ad3e5f05e577c32d1f3fcda585e7280555563601"
+        },
+        {
+          "line": 1546,
+          "expression": "expect.element(altInput)",
+          "sha256": "6a6ab0cd0976c12182a9e6c13b9d1b2445d9566f4a1a82e90536f295c76bd24c"
+        },
+        {
+          "line": 1561,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1564,
+          "expression": "expect(onItemRefreshed)",
+          "sha256": "e3004796e708f756ba2c8bb7f46f92fdd460cbe0dd2522f781fa58eadeb615c3"
+        },
+        {
+          "line": 1566,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1572,
+          "expression": "expect(fetchMediaFolders)",
+          "sha256": "11a448c27111541ae42bdd33df3fae34eaed765bed8dd64c667d14c4f7c2bc48"
+        },
+        {
+          "line": 1574,
+          "expression": "expect.element(location).toHaveTextContent(\"Product photos\")",
+          "sha256": "dcbe0c09fc29695063d443da797089e3614fca48169a8aaafad53f96ac10529c"
+        },
+        {
+          "line": 1574,
+          "expression": "expect.element(location)",
+          "sha256": "e05083455a036f6e4519127c184b02e802ee5a817448486b2f2b760865bb52b2"
+        },
+        {
+          "line": 1575,
+          "expression": "expect(location.element().querySelector('[dir=\"auto\"]'))",
+          "sha256": "1c7a102d3d34dd62d2ae2f84cd178a3f259cefc6ca12a0508ca78b0ba6bcf40b"
+        },
+        {
+          "line": 1576,
+          "expression": "expect(location.element().querySelector('[data-testid=\"media-location-icon\"]'))",
+          "sha256": "13acdf72c49cab99a28861c15d324b0d21a49d2a8e0bfa6a80605e1920e13b9b"
+        },
+        {
+          "line": 1581,
+          "expression": "expect(fetchMediaFolders)",
+          "sha256": "11a448c27111541ae42bdd33df3fae34eaed765bed8dd64c667d14c4f7c2bc48"
+        },
+        {
+          "line": 1589,
+          "expression": "expect.element(mainLibraryOption).toBeInTheDocument()",
+          "sha256": "de5f796e17c2b236237af78a7108a6eda0917e3a5c58d3e1035d93264b362629"
+        },
+        {
+          "line": 1589,
+          "expression": "expect.element(mainLibraryOption)",
+          "sha256": "e301bb96290755f980c60a936620bf8a890b6ccb29f400334bce679d44011eb1"
+        },
+        {
+          "line": 1590,
+          "expression": "expect.element(folderOption).toBeInTheDocument()",
+          "sha256": "4c2ff6351868d6ba8a2db6d0c5345bca25e446564234bd517a78385d2968ac16"
+        },
+        {
+          "line": 1590,
+          "expression": "expect.element(folderOption)",
+          "sha256": "80232276702dd82ce230e305a978a3151aff5417040edc4964e565f3c4b5b129"
+        },
+        {
+          "line": 1591,
+          "expression": "expect(\n\t\t\tmainLibraryOption.element().querySelector('[data-testid=\"media-location-icon\"]'),\n\t\t)",
+          "sha256": "89a28cfd7b8621c03e1f212b0038ffd87f4ca71948ae794f655d3363874dca0d"
+        },
+        {
+          "line": 1594,
+          "expression": "expect(\n\t\t\tfolderOption.element().querySelector('[data-testid=\"media-location-icon\"]'),\n\t\t)",
+          "sha256": "db62581eda117f25286f169968b24e8f35775cad91cf0283b8f93b3a5a47fc47"
+        },
+        {
+          "line": 1597,
+          "expression": "expect(folderOption.element().querySelector('[dir=\"auto\"]'))",
+          "sha256": "7cd2230f2f65f14c372a94b95e0b5fc5ce6b8c60c71f18d44549542407096a48"
+        },
+        {
+          "line": 1598,
+          "expression": "expect.element(screen.getByText(\"1 folder loaded\")).toBeInTheDocument()",
+          "sha256": "d2104d7328c7abc071c7f78c1a519062fc3e5ebc690a30b060e18d2168cbbf8d"
+        },
+        {
+          "line": 1598,
+          "expression": "expect.element(screen.getByText(\"1 folder loaded\"))",
+          "sha256": "6bfcf957332454541e5417d3103d12706b7d7946b754c642f44ab86611005898"
+        },
+        {
+          "line": 1605,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" })).toBeInTheDocument()",
+          "sha256": "12c255eb948be2463ea7a433d4eec512cf09a1a0975ffaf3f998d16c8d13150b"
+        },
+        {
+          "line": 1605,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" }))",
+          "sha256": "2a2359bfa0e260051325b5588d50fc4008bac534371ee36485dd2c91f5a78281"
+        },
+        {
+          "line": 1611,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1625,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1640,
+          "expression": "expect(fetchMediaFolders)",
+          "sha256": "11a448c27111541ae42bdd33df3fae34eaed765bed8dd64c667d14c4f7c2bc48"
+        },
+        {
+          "line": 1646,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" })).toBeInTheDocument()",
+          "sha256": "12c255eb948be2463ea7a433d4eec512cf09a1a0975ffaf3f998d16c8d13150b"
+        },
+        {
+          "line": 1646,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" }))",
+          "sha256": "2a2359bfa0e260051325b5588d50fc4008bac534371ee36485dd2c91f5a78281"
+        },
+        {
+          "line": 1648,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" })).not.toBeInTheDocument()",
+          "sha256": "3dccaf52eb545e4f7c1e18e0bd05bd29dab64ef8831d3a06281d69e8a8ae897a"
+        },
+        {
+          "line": 1648,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" }))",
+          "sha256": "2a2359bfa0e260051325b5588d50fc4008bac534371ee36485dd2c91f5a78281"
+        },
+        {
+          "line": 1651,
+          "expression": "expect.element(screen.getByPlaceholder(\"Search folders\")).toHaveValue(\"\")",
+          "sha256": "6bdfdf060c8b75c59cb3caf879a0a9bee8128d6290aadb27f564219a64efcfd5"
+        },
+        {
+          "line": 1651,
+          "expression": "expect.element(screen.getByPlaceholder(\"Search folders\"))",
+          "sha256": "e19202baa1522f8f9727584ec0cd19e6fe7162745a742f10f991f2ee75469337"
+        },
+        {
+          "line": 1663,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" })).toBeInTheDocument()",
+          "sha256": "12c255eb948be2463ea7a433d4eec512cf09a1a0975ffaf3f998d16c8d13150b"
+        },
+        {
+          "line": 1663,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Press\" }))",
+          "sha256": "2a2359bfa0e260051325b5588d50fc4008bac534371ee36485dd2c91f5a78281"
+        },
+        {
+          "line": 1665,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeEnabled()",
+          "sha256": "226a795ea6394bd07bc85651cafc3bf0d82b4e811e136d98442c678697e4b250"
+        },
+        {
+          "line": 1665,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1670,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1685,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" })).toBeInTheDocument()",
+          "sha256": "4c67c69c7fd6d9aa3667d2b11b57d56d589cf8f2d4ceb08035cec16f508a549c"
+        },
+        {
+          "line": 1685,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" }))",
+          "sha256": "1f7d31db595b9754f0785e608f7ecb00f177e8c044d9fcf78c010280263f22f2"
+        },
+        {
+          "line": 1687,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeEnabled()",
+          "sha256": "226a795ea6394bd07bc85651cafc3bf0d82b4e811e136d98442c678697e4b250"
+        },
+        {
+          "line": 1687,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1691,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1709,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Archive\" })).toBeInTheDocument()",
+          "sha256": "dc41872f5724db5d3e31276a3541e80f7b62b1b6d08b52785ba9bf877d821e04"
+        },
+        {
+          "line": 1709,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Archive\" }))",
+          "sha256": "9f54d9bd2f66ba3a2104cddb6ebbe7c62d5f6cd00c12584f38be931cb229e3ce"
+        },
+        {
+          "line": 1710,
+          "expression": "expect(fetchMediaFolders)",
+          "sha256": "11a448c27111541ae42bdd33df3fae34eaed765bed8dd64c667d14c4f7c2bc48"
+        },
+        {
+          "line": 1721,
+          "expression": "expect.element(currentLocation).toHaveValue(\"Product photos\")",
+          "sha256": "b0189db020df2dc3428c7da4ac4f3eb9e09e2185d9b67dc2c9e4078e2bb3678e"
+        },
+        {
+          "line": 1721,
+          "expression": "expect.element(currentLocation)",
+          "sha256": "0582e92b023f9b5b39cf19d9684c69f5a5f81555aca2c1e0a05fdb12ceb72d54"
+        },
+        {
+          "line": 1722,
+          "expression": "expect.element(currentLocation).toBeDisabled()",
+          "sha256": "6cfc6158e9d9013bb64521eab186b32f4dd24c2de974a3cda91ff3264339800b"
+        },
+        {
+          "line": 1722,
+          "expression": "expect.element(currentLocation)",
+          "sha256": "0582e92b023f9b5b39cf19d9684c69f5a5f81555aca2c1e0a05fdb12ceb72d54"
+        },
+        {
+          "line": 1723,
+          "expression": "expect(screen.getByRole(\"combobox\", { name: \"Location\" }).query())",
+          "sha256": "678819e8020849f3381e5a61ea640747397502ac14e61cbf322a1611b6f4517d"
+        },
+        {
+          "line": 1724,
+          "expression": "expect(fetchMediaFolders)",
+          "sha256": "11a448c27111541ae42bdd33df3fae34eaed765bed8dd64c667d14c4f7c2bc48"
+        },
+        {
+          "line": 1744,
+          "expression": "expect(fetchMediaItem)",
+          "sha256": "a764953ca7db1c16999963a1bb38c8ca680ed070d297f31a4b2960cbc87cc658"
+        },
+        {
+          "line": 1750,
+          "expression": "expect(onItemRefreshed)",
+          "sha256": "e3004796e708f756ba2c8bb7f46f92fdd460cbe0dd2522f781fa58eadeb615c3"
+        },
+        {
+          "line": 1768,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" })).toBeInTheDocument()",
+          "sha256": "4c67c69c7fd6d9aa3667d2b11b57d56d589cf8f2d4ceb08035cec16f508a549c"
+        },
+        {
+          "line": 1768,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" }))",
+          "sha256": "1f7d31db595b9754f0785e608f7ecb00f177e8c044d9fcf78c010280263f22f2"
+        },
+        {
+          "line": 1770,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeEnabled()",
+          "sha256": "226a795ea6394bd07bc85651cafc3bf0d82b4e811e136d98442c678697e4b250"
+        },
+        {
+          "line": 1770,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1774,
+          "expression": "expect(fetchMediaItem)",
+          "sha256": "a764953ca7db1c16999963a1bb38c8ca680ed070d297f31a4b2960cbc87cc658"
+        },
+        {
+          "line": 1775,
+          "expression": "expect(onItemRefreshed)",
+          "sha256": "e3004796e708f756ba2c8bb7f46f92fdd460cbe0dd2522f781fa58eadeb615c3"
+        },
+        {
+          "line": 1798,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" })).toBeInTheDocument()",
+          "sha256": "4c67c69c7fd6d9aa3667d2b11b57d56d589cf8f2d4ceb08035cec16f508a549c"
+        },
+        {
+          "line": 1798,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" }))",
+          "sha256": "1f7d31db595b9754f0785e608f7ecb00f177e8c044d9fcf78c010280263f22f2"
+        },
+        {
+          "line": 1800,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeEnabled()",
+          "sha256": "226a795ea6394bd07bc85651cafc3bf0d82b4e811e136d98442c678697e4b250"
+        },
+        {
+          "line": 1800,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1804,
+          "expression": "expect(fetchMediaItem)",
+          "sha256": "a764953ca7db1c16999963a1bb38c8ca680ed070d297f31a4b2960cbc87cc658"
+        },
+        {
+          "line": 1805,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeDisabled()",
+          "sha256": "cccc237bea5fbeee8fa97c0d5a9daa670ed52201b08da6a55f53a0acf519be83"
+        },
+        {
+          "line": 1805,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1808,
+          "expression": "expect(shortcut.defaultPrevented)",
+          "sha256": "e701f1ed2d8243ea5a298bec40f06941615aa5ca97cfaa3f5d05575100547e25"
+        },
+        {
+          "line": 1810,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1812,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeEnabled()",
+          "sha256": "226a795ea6394bd07bc85651cafc3bf0d82b4e811e136d98442c678697e4b250"
+        },
+        {
+          "line": 1812,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1830,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" })).toBeInTheDocument()",
+          "sha256": "4c67c69c7fd6d9aa3667d2b11b57d56d589cf8f2d4ceb08035cec16f508a549c"
+        },
+        {
+          "line": 1830,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" }))",
+          "sha256": "1f7d31db595b9754f0785e608f7ecb00f177e8c044d9fcf78c010280263f22f2"
+        },
+        {
+          "line": 1832,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeEnabled()",
+          "sha256": "226a795ea6394bd07bc85651cafc3bf0d82b4e811e136d98442c678697e4b250"
+        },
+        {
+          "line": 1832,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1835,
+          "expression": "expect.element(screen.getByText(\"This media item no longer exists.\")).toBeInTheDocument()",
+          "sha256": "db04b56046e2061244345fd0030420006cc6f7721eba9448001033a3e1caaac5"
+        },
+        {
+          "line": 1835,
+          "expression": "expect.element(screen.getByText(\"This media item no longer exists.\"))",
+          "sha256": "26f24f71dabe3734ef873d2bdf919992faaa9d8792f2a1d84ec5f9e8f0bd8716"
+        },
+        {
+          "line": 1836,
+          "expression": "expect(\n\t\t\tscreen\n\t\t\t\t.getByText(\"The selected folder no longer exists. Choose another location and save again.\")\n\t\t\t\t.query(),\n\t\t)",
+          "sha256": "ebbc434fce76ba653efff13bc034a1eb130eae6dc6e3e387fb784b505d14615f"
+        },
+        {
+          "line": 1841,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" })).toBeDisabled()",
+          "sha256": "cccc237bea5fbeee8fa97c0d5a9daa670ed52201b08da6a55f53a0acf519be83"
+        },
+        {
+          "line": 1841,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Save\" }))",
+          "sha256": "7e7b6e15cb39c534f9d4ed2935e9f488ff43f8970f5f72e5a5a0c6c9addeda4f"
+        },
+        {
+          "line": 1842,
+          "expression": "expect(onUnavailable)",
+          "sha256": "d5bb010efd2c7c5839d5842d12452a9ba8b43661ecc4485ca3d7c3b30d544ff0"
+        },
+        {
+          "line": 1855,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" })).toBeInTheDocument()",
+          "sha256": "4c67c69c7fd6d9aa3667d2b11b57d56d589cf8f2d4ceb08035cec16f508a549c"
+        },
+        {
+          "line": 1855,
+          "expression": "expect.element(screen.getByRole(\"option\", { name: \"Main library\" }))",
+          "sha256": "1f7d31db595b9754f0785e608f7ecb00f177e8c044d9fcf78c010280263f22f2"
+        },
+        {
+          "line": 1858,
+          "expression": "expect.element(save).toBeEnabled()",
+          "sha256": "777e4d0ab6a6ee8f3a35aac51350a454cca6226cca900e83977442693e3fe694"
+        },
+        {
+          "line": 1858,
+          "expression": "expect.element(save)",
+          "sha256": "cb8d500447d9be27ff179588f8faa91b58c808e68b6988d1b99d1f6a40ac6cbe"
+        },
+        {
+          "line": 1868,
+          "expression": "expect(\n\t\t\tscreen\n\t\t\t\t.getByText(\"The selected folder no longer exists. Choose another location and save again.\")\n\t\t\t\t.query(),\n\t\t)",
+          "sha256": "ebbc434fce76ba653efff13bc034a1eb130eae6dc6e3e387fb784b505d14615f"
+        },
+        {
+          "line": 1880,
+          "expression": "expect(screen.getByText(\"Focal point\").query())",
+          "sha256": "697c76cdfd4fee88a7d5f810cf4d588a13d68a04261018cb1b468ab40428e962"
+        },
+        {
+          "line": 1885,
+          "expression": "expect(event.defaultPrevented)",
+          "sha256": "ec621fa1bb19f955207bd28a08aff46d05e70e16004ba01422cc4f4dd46ef33a"
+        },
+        {
+          "line": 1886,
+          "expression": "expect(updateMedia)",
+          "sha256": "d61eb8129c7bb672b5b112787641643de2cfb822313ea22e9b123d254b20ade6"
+        },
+        {
+          "line": 1899,
+          "expression": "expect.element(confirmation).toBeInTheDocument()",
+          "sha256": "10a846819d4c03b749a56f76879241f6afd02e2b0576c279ce7edef33b1a3ab8"
+        },
+        {
+          "line": 1899,
+          "expression": "expect.element(confirmation)",
+          "sha256": "400354b9499e90c9a69f6aa2b5b6fca0db47d775afcef9df61521b19ed8374e9"
+        },
+        {
+          "line": 1913,
+          "expression": "expect(deleteMedia)",
+          "sha256": "bc2c8745231e11f64448ac1bfd646523417cdfae0d1218a2f951744a666859bd"
+        },
+        {
+          "line": 1914,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1915,
+          "expression": "expect(onDeleted)",
+          "sha256": "0c2b8277714a63b09747ff199457f2856509d8977087c77502e18b5b9ded6cc8"
+        },
+        {
+          "line": 1930,
+          "expression": "expect.element(confirmation).toBeInTheDocument()",
+          "sha256": "10a846819d4c03b749a56f76879241f6afd02e2b0576c279ce7edef33b1a3ab8"
+        },
+        {
+          "line": 1930,
+          "expression": "expect.element(confirmation)",
+          "sha256": "400354b9499e90c9a69f6aa2b5b6fca0db47d775afcef9df61521b19ed8374e9"
+        },
+        {
+          "line": 1934,
+          "expression": "expect(confirmation.getByText(\"This cannot be undone\").query())",
+          "sha256": "a31c447bb794a80aacc88a3a973b76bb61be9e3037a6d1a85857c9379e2a48ac"
+        },
+        {
+          "line": 1938,
+          "expression": "expect(deleteFromProvider)",
+          "sha256": "e8d9c0e07e80d259e80392856fba1e02f957ce085789b3fc6cb76df12babed10"
+        },
+        {
+          "line": 1939,
+          "expression": "expect(deleteMedia)",
+          "sha256": "bc2c8745231e11f64448ac1bfd646523417cdfae0d1218a2f951744a666859bd"
+        },
+        {
+          "line": 1940,
+          "expression": "expect(onDeleted)",
+          "sha256": "0c2b8277714a63b09747ff199457f2856509d8977087c77502e18b5b9ded6cc8"
+        },
+        {
+          "line": 1958,
+          "expression": "expect(deleteMedia)",
+          "sha256": "bc2c8745231e11f64448ac1bfd646523417cdfae0d1218a2f951744a666859bd"
+        },
+        {
+          "line": 1968,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1979,
+          "expression": "expect(header)",
+          "sha256": "affdbb415a6a400949b93c2233be0744fcb1bf276cc987189e7ae274db0cd8fa"
+        },
+        {
+          "line": 1980,
+          "expression": "expect(footer)",
+          "sha256": "6a22bac3bc69a8aafcdec6e137ba90eb29d4b640d1a8505d49a14c5fa395a797"
+        },
+        {
+          "line": 1981,
+          "expression": "expect(screen.getByRole(\"button\", { name: \"Cancel\" }).query())",
+          "sha256": "c17e001fec07e4a7b963f6a591eeb14d92c419a4cd40eb72656b1a360e83d666"
+        },
+        {
+          "line": 1984,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 1985,
+          "expression": "expect(onExit)",
+          "sha256": "25d6ed66f7ad75c485c41a83b7b275531b7ba8cb3db09c62fc482b74ce1151c6"
+        },
+        {
+          "line": 1986,
+          "expression": "expect(document.querySelectorAll('[role=\"dialog\"]'))",
+          "sha256": "a93c37176c355322544c86f127ddc6aa9775539decbebf87dc20d5f5b5b28493"
+        },
+        {
+          "line": 1998,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\")).toBeInTheDocument()",
+          "sha256": "23d0cef2b00b297666a2407975d3f73f484ad884b19d4083a271a09e8ec6619c"
+        },
+        {
+          "line": 1998,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\"))",
+          "sha256": "ec57c0d8c2f7f83bb7e68017fc984e1b063e5b046aa5534e3dad96ef0a2a1761"
+        },
+        {
+          "line": 1999,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 2000,
+          "expression": "expect(onExit)",
+          "sha256": "25d6ed66f7ad75c485c41a83b7b275531b7ba8cb3db09c62fc482b74ce1151c6"
+        },
+        {
+          "line": 2003,
+          "expression": "expect(onExit)",
+          "sha256": "25d6ed66f7ad75c485c41a83b7b275531b7ba8cb3db09c62fc482b74ce1151c6"
+        },
+        {
+          "line": 2004,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 2015,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\")).toBeInTheDocument()",
+          "sha256": "23d0cef2b00b297666a2407975d3f73f484ad884b19d4083a271a09e8ec6619c"
+        },
+        {
+          "line": 2015,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\"))",
+          "sha256": "ec57c0d8c2f7f83bb7e68017fc984e1b063e5b046aa5534e3dad96ef0a2a1761"
+        },
+        {
+          "line": 2016,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 2019,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 2043,
+          "expression": "expect(onClose)",
+          "sha256": "05420e8b296cdea7a0e579283315079c94fbe0dc49e5df665eef27c0c15e9c67"
+        },
+        {
+          "line": 2058,
+          "expression": "expect(onClosed)",
+          "sha256": "8d0363a05a5548f4f4bff1af5dff3839d63f963dd807f373a175a93bcb281280"
+        },
+        {
+          "line": 2059,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\")).toHaveValue(\"second.jpg\")",
+          "sha256": "60998b8a3074132ee2d3c3c59ed4e831640f35547b671823813ad0924ff36916"
+        },
+        {
+          "line": 2059,
+          "expression": "expect.element(screen.getByLabelText(\"Filename\"))",
+          "sha256": "928f25099726931c12da1b941cd7eb48a37336082b62d0949fb35be5a7606fd8"
+        },
+        {
+          "line": 2073,
+          "expression": "expect.element(altInput).toHaveValue(\"Alt one\")",
+          "sha256": "549666d0da62f5f78e9fa833af717674eb6295f84e859594164464ca6a0c10f8"
+        },
+        {
+          "line": 2073,
+          "expression": "expect.element(altInput)",
+          "sha256": "6a6ab0cd0976c12182a9e6c13b9d1b2445d9566f4a1a82e90536f295c76bd24c"
+        },
+        {
+          "line": 2083,
+          "expression": "expect.element(screen.getByLabelText(\"Alt Text\")).toHaveValue(\"Alt two\")",
+          "sha256": "5c7c21d0b7ba2d8c850a452337524da5d307d1b76ce3634ed53e2cb33dd5c2fc"
+        },
+        {
+          "line": 2083,
+          "expression": "expect.element(screen.getByLabelText(\"Alt Text\"))",
+          "sha256": "38f66aa29b8aeb4bc57d352e14666ef4634bb3c4260d95a70a6a52091fbc3a69"
+        },
+        {
+          "line": 2096,
+          "expression": "expect(displayedPath.textContent)",
+          "sha256": "b3c0de21dda90520092c5aeac326e24ea875da789176c24916f29b1facd48a30"
+        },
+        {
+          "line": 2097,
+          "expression": "expect(displayedPath.textContent)",
+          "sha256": "b3c0de21dda90520092c5aeac326e24ea875da789176c24916f29b1facd48a30"
+        },
+        {
+          "line": 2099,
+          "expression": "expect.element(copyButton).toBeVisible()",
+          "sha256": "7e6e3cb1a00442141901f928aaecbbe254a4ef4337112cf24fd5fd2be464cdb1"
+        },
+        {
+          "line": 2099,
+          "expression": "expect.element(copyButton)",
+          "sha256": "0930129a8ef2c2709962987791f6c20855198e6f6b14657c2ded1cd9a468c5db"
+        },
+        {
+          "line": 2101,
+          "expression": "expect(clipboardWrite)",
+          "sha256": "326a8130c49a9e68bb76e7cf0fe7b63e57cc768c8d988d5c9587a1d9a0aba64b"
+        },
+        {
+          "line": 2110,
+          "expression": "expect.element(screen.getByText(\"Managed by Cloudflare Images\")).toBeVisible()",
+          "sha256": "8f643e878a1e7d87e24993d27848cc4ec1a81ea934bf012b439ba077f50392cd"
+        },
+        {
+          "line": 2110,
+          "expression": "expect.element(screen.getByText(\"Managed by Cloudflare Images\"))",
+          "sha256": "a5be8d3f721ad2ab46a5f4077a5dc6275331ff32341b80c4064289fa9eda2d0b"
+        },
+        {
+          "line": 2111,
+          "expression": "expect.element(screen.getByText(\"No public URL available\")).toBeVisible()",
+          "sha256": "3c34308a72f77c5cdd144b1eb004b583175f383a7976f53aa9352e8242183095"
+        },
+        {
+          "line": 2111,
+          "expression": "expect.element(screen.getByText(\"No public URL available\"))",
+          "sha256": "1bab7dbc8b9d55ddd19dee24f8a45d0eaa72b271fec83056fc374ec013904d0e"
+        },
+        {
+          "line": 2132,
+          "expression": "expect.element(screen.getByText(\"Uploaded:\"), { timeout: 100 }).not.toBeInTheDocument()",
+          "sha256": "4360c9b12884d0f9f564c1ef33adb7bcfa463acc42b42d8c255a408e92257641"
+        },
+        {
+          "line": 2132,
+          "expression": "expect.element(screen.getByText(\"Uploaded:\"), { timeout: 100 })",
+          "sha256": "3dad7c1afb163efc561b2b853c8ab0d0cabb80bff68f0efa559e8779d95244d7"
+        },
+        {
+          "line": 2133,
+          "expression": "expect.element(screen.getByText(\"Location\"), { timeout: 100 }).not.toBeInTheDocument()",
+          "sha256": "718143435d0fe2214d46184e41377ca3af0c06c4e1bb5eb17af96ad3b04992b4"
+        },
+        {
+          "line": 2133,
+          "expression": "expect.element(screen.getByText(\"Location\"), { timeout: 100 })",
+          "sha256": "541afd183bdecade42003d294f651a1a1cc29d90d2525bcd2d87e8812b2d03a4"
+        },
+        {
+          "line": 2134,
+          "expression": "expect(fetchMediaFolder)",
+          "sha256": "8e265cd9501c8cd01787062deaac3b8cd6be1c5e7f4a497e535905c68e481894"
+        },
+        {
+          "line": 2135,
+          "expression": "expect(fetchMediaFolders)",
+          "sha256": "11a448c27111541ae42bdd33df3fae34eaed765bed8dd64c667d14c4f7c2bc48"
+        },
+        {
+          "line": 2147,
+          "expression": "expect.element(screen.getByText(\"Media details\")).toBeInTheDocument()",
+          "sha256": "c704b23b95a5f2b56198e81d4422939a0f0ab44c93e4ca946df20d204eb2ff2b"
+        },
+        {
+          "line": 2147,
+          "expression": "expect.element(screen.getByText(\"Media details\"))",
+          "sha256": "16510f53ea33abd40dbdc098a790a42275068c95346d028733650716ac976604"
+        },
+        {
+          "line": 2150,
+          "expression": "expect(video)",
+          "sha256": "f44a7abc5801a2a15cf3970424444d3f3268c96e28361850730ae7afb51b352c"
+        },
+        {
+          "line": 2154,
+          "expression": "expect(video?.getAttribute(\"src\"))",
+          "sha256": "61355e08c3e033c4dfe2372130f590d0f1e251c9376efa4fc2b0544236117818"
+        },
+        {
+          "line": 2155,
+          "expression": "expect(video?.getAttribute(\"poster\"))",
+          "sha256": "9f04494ab3f46ebb886dc8f4ae09a2a3f516d489a7100a2132140951af64d3f0"
+        },
+        {
+          "line": 2161,
+          "expression": "expect(sources)",
+          "sha256": "8235a5e6906850a77caac756b8f1d401819112eb1962e2ecb26d116d7d7d813b"
+        },
+        {
+          "line": 2172,
+          "expression": "expect.element(screen.getByText(\"Media details\")).toBeInTheDocument()",
+          "sha256": "c704b23b95a5f2b56198e81d4422939a0f0ab44c93e4ca946df20d204eb2ff2b"
+        },
+        {
+          "line": 2172,
+          "expression": "expect.element(screen.getByText(\"Media details\"))",
+          "sha256": "16510f53ea33abd40dbdc098a790a42275068c95346d028733650716ac976604"
+        },
+        {
+          "line": 2175,
+          "expression": "expect(sources)",
+          "sha256": "8235a5e6906850a77caac756b8f1d401819112eb1962e2ecb26d116d7d7d813b"
+        },
+        {
+          "line": 2176,
+          "expression": "expect(sources[0]?.getAttribute(\"type\"))",
+          "sha256": "38925018707d3d1ff8e1d13f1bda1831a500e18e5955e0765ccf28b3a2633d86"
+        },
+        {
+          "line": 2182,
+          "expression": "expect.element(screen.getByText(\"Media details\")).toBeInTheDocument()",
+          "sha256": "c704b23b95a5f2b56198e81d4422939a0f0ab44c93e4ca946df20d204eb2ff2b"
+        },
+        {
+          "line": 2182,
+          "expression": "expect.element(screen.getByText(\"Media details\"))",
+          "sha256": "16510f53ea33abd40dbdc098a790a42275068c95346d028733650716ac976604"
+        },
+        {
+          "line": 2185,
+          "expression": "expect(video?.getAttribute(\"src\"))",
+          "sha256": "61355e08c3e033c4dfe2372130f590d0f1e251c9376efa4fc2b0544236117818"
+        },
+        {
+          "line": 2187,
+          "expression": "expect(document.querySelectorAll(\"video source\"))",
+          "sha256": "9906145808e033ed9862c3c7772f0fd92507a71c31d2160ba14b800714f34767"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx",
+      "path": "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx",
+      "sourceBlob": "7753f437ac881538ca0ba3cc4ac092eea08d1a0f",
+      "sha256": "faaab82bdb226052a9db1e8958bc99ecad97743fb41ae49fcbb45678a5af168b",
+      "bytes": 8200,
+      "test": true,
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx:126",
+          "line": 126,
+          "title": "\"requests and navigates from local media without a usage summary\"",
+          "expression": "it",
+          "callbackSha256": "75aeb35930c3d998fab003caa605a179faf3e46cdde3e471a94c1aa610597d67",
+          "declarationSha256": "dfeb4f2ba88d420e1b623aae026a4a4d24a2e5a04443ed3cdca39f6f3ef1fe92"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx:139",
+          "line": 139,
+          "title": "\"keeps the Used in height stable when loading results appear\"",
+          "expression": "it",
+          "callbackSha256": "ccb58c7ebd18042178fa3060972c6ac7468008b4d62f5fcef2526d4b542ddb1d",
+          "declarationSha256": "31a290f9a9c34336c1f6c244a394a0dc824cf24f66270e690a39f2baa842d4d3"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx:162",
+          "line": 162,
+          "title": "\"makes no usage request for provider media\"",
+          "expression": "it",
+          "callbackSha256": "d03501860b3abd04194de039f5eda5cd7cba84c640340f1947ce74169c946678",
+          "declarationSha256": "4ffe25905654bb669c8a34da9ca8512fe7da6a963421349bf19aa7029bbee061"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx:170",
+          "line": 170,
+          "title": "\"preserves modified links and lets dirty same-tab navigation be cancelled\"",
+          "expression": "it",
+          "callbackSha256": "019070caa99ff4b04f5671868631fc836cdb8ce016fbde81474a1c7ae72a2395",
+          "declarationSha256": "291a4939add94676f78942daf0a29cd3d30631498389bc7386740e6dbf612dd2"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx:203",
+          "line": 203,
+          "title": "\"navigates after dirty same-tab navigation is discarded\"",
+          "expression": "it",
+          "callbackSha256": "81648a8f0da220c4e9f85a89723cb2e8a33e2ef61726e9e608945b78cee6776b",
+          "declarationSha256": "6e4471e2a3a5dd57aa6677a77421d4766449ddce9d41fa07d2459d62a0a6cfb2"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx:218",
+          "line": 218,
+          "title": "\"blocks primary, modified, auxiliary, and keyboard activation while saving\"",
+          "expression": "it",
+          "callbackSha256": "3e73a6e71fa893e26c5e46a1cb373c3d10b08b435bfb5d5c7e1393b474364176",
+          "declarationSha256": "1b9751b9dedf1c1e86228a3357031de8dbdc04f9ebbfc7e67e8c08f86ea1598c"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 114,
+          "expression": "expect.element(link).toBeVisible()",
+          "sha256": "cd19f04b0724305dcfba39ebe45c695989b7569cbb58cc9216c40774a4b737e7"
+        },
+        {
+          "line": 114,
+          "expression": "expect.element(link)",
+          "sha256": "ae15fe960e2fd7f12befeaede0023e6e4689b861cae6a5a871723674bcbba9bf"
+        },
+        {
+          "line": 129,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 134,
+          "expression": "expect(router.state.location.pathname)",
+          "sha256": "8c04756ff48e6494f9073ac8cd714a881e9fa526cb346fbea63f49fa6708ef33"
+        },
+        {
+          "line": 135,
+          "expression": "expect(router.state.location.search)",
+          "sha256": "16a112ab819bfd25c56776d6f3da24c1e9160331035d459d6cb04b77ef2fdcf1"
+        },
+        {
+          "line": 150,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 152,
+          "expression": "expect(dialog.style.height)",
+          "sha256": "b49c0b63ad6eb631e5367963ed1dba7dd9942463bd79ec2de0eeab7fba3b9773"
+        },
+        {
+          "line": 153,
+          "expression": "expect(screen.getByTestId(\"media-detail-dialog-body\").element().style.overflowY)",
+          "sha256": "0ceab87e1922fbe976eb59bec6fc872c164a4ced10c5608cbfccbb3e249c0225"
+        },
+        {
+          "line": 158,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: /Launch notes/ })).toBeVisible()",
+          "sha256": "e3e4e8a6be6f41ce3e1b26629ba3d4b29fbc2d90853921e83833a4cb6753ef33"
+        },
+        {
+          "line": 158,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: /Launch notes/ }))",
+          "sha256": "7ce56e46e7fedfebd01b3f94b90ab307035547f6526e5ad1c12f5b04a4ad8155"
+        },
+        {
+          "line": 159,
+          "expression": "expect(dialog.offsetHeight)",
+          "sha256": "e25016615f4b3f2bccd337ab05f1d6abe19d0211fa2e92c1236956a7c4c45b74"
+        },
+        {
+          "line": 165,
+          "expression": "expect.element(screen.getByText(\"Managed by an external media provider\")).toBeVisible()",
+          "sha256": "1f7859adef481aeda4c3d49ceb9c893d283cf4a74c389157f2c0e42c9755416b"
+        },
+        {
+          "line": 165,
+          "expression": "expect.element(screen.getByText(\"Managed by an external media provider\"))",
+          "sha256": "db8de77b82bd909c439dc05291b3f64881aae132a1b147d479b734c9635627b9"
+        },
+        {
+          "line": 166,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 167,
+          "expression": "expect(fetchManifest)",
+          "sha256": "9ffbb0b1a2ade20e12e38c8cff5650b35b93b2f7602a2821f8e045b856a2cb90"
+        },
+        {
+          "line": 188,
+          "expression": "expect(preventedBeforeNavigationGuard)",
+          "sha256": "2c75d24c074f462670851e0146c4e9e52d804e7005dd0073cf6d0dfa5aa8fb99"
+        },
+        {
+          "line": 194,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\")).toBeVisible()",
+          "sha256": "36839e286d47d72204832257c6dc866786c569290597b3ae7b655fe436ad36e5"
+        },
+        {
+          "line": 194,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\"))",
+          "sha256": "ec57c0d8c2f7f83bb7e68017fc984e1b063e5b046aa5534e3dad96ef0a2a1761"
+        },
+        {
+          "line": 196,
+          "expression": "expect.element(screen.getByLabelText(\"Alt Text\")).toHaveValue(\"Changed\")",
+          "sha256": "2677c247ef16d9d42306c7d90037b530a1376f980150b7bfa796f33a45a5e35c"
+        },
+        {
+          "line": 196,
+          "expression": "expect.element(screen.getByLabelText(\"Alt Text\"))",
+          "sha256": "38f66aa29b8aeb4bc57d352e14666ef4634bb3c4260d95a70a6a52091fbc3a69"
+        },
+        {
+          "line": 200,
+          "expression": "expect(router.state.location.pathname)",
+          "sha256": "8c04756ff48e6494f9073ac8cd714a881e9fa526cb346fbea63f49fa6708ef33"
+        },
+        {
+          "line": 209,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\")).toBeVisible()",
+          "sha256": "36839e286d47d72204832257c6dc866786c569290597b3ae7b655fe436ad36e5"
+        },
+        {
+          "line": 209,
+          "expression": "expect.element(screen.getByText(\"Discard changes?\"))",
+          "sha256": "ec57c0d8c2f7f83bb7e68017fc984e1b063e5b046aa5534e3dad96ef0a2a1761"
+        },
+        {
+          "line": 213,
+          "expression": "expect(router.state.location.pathname)",
+          "sha256": "8c04756ff48e6494f9073ac8cd714a881e9fa526cb346fbea63f49fa6708ef33"
+        },
+        {
+          "line": 214,
+          "expression": "expect(router.state.location.search)",
+          "sha256": "16a112ab819bfd25c56776d6f3da24c1e9160331035d459d6cb04b77ef2fdcf1"
+        },
+        {
+          "line": 225,
+          "expression": "expect.element(link).toHaveAttribute(\"aria-disabled\", \"true\")",
+          "sha256": "973037f2195d33c171a325a73db354c1a48771998fd9b63e8addbe02bed63f87"
+        },
+        {
+          "line": 225,
+          "expression": "expect.element(link)",
+          "sha256": "ae15fe960e2fd7f12befeaede0023e6e4689b861cae6a5a871723674bcbba9bf"
+        },
+        {
+          "line": 238,
+          "expression": "expect(primaryAllowed)",
+          "sha256": "5b39b97a34b2d0c5192783cd801efebbe964f2816f35f540ce6cda1b4e2ad5b0"
+        },
+        {
+          "line": 239,
+          "expression": "expect(modifiedAllowed)",
+          "sha256": "65cffcc57bd7cead2b2ee8bc445fe496618dd19b913e4d154494f2b3c06b2359"
+        },
+        {
+          "line": 240,
+          "expression": "expect(auxiliaryAllowed)",
+          "sha256": "145e49e594ac22f97ee2e41273c6c0289fb8210f94183f0bcb517f4d2886e1b0"
+        },
+        {
+          "line": 241,
+          "expression": "expect(router.state.location.pathname)",
+          "sha256": "8c04756ff48e6494f9073ac8cd714a881e9fa526cb346fbea63f49fa6708ef33"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/MediaImageCropper.test.tsx",
+      "path": "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImageCropper.test.tsx",
+      "sourceBlob": "30d8de3abd728409cc475290bcd836d1b5bae368",
+      "sha256": "8a81697c52d948f773a275037376f237b416cc329a9df957aeb828b7437da0b4",
+      "bytes": 13046,
+      "test": true,
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:73",
+          "line": 73,
+          "title": "\"does not emit crop pixels before the image loads\"",
+          "expression": "it",
+          "callbackSha256": "cfedff0fcf13acf041cb542f870c2f0e1d1fab7a4ad45e59fa2bf18e14b873a3",
+          "declarationSha256": "ba035048a3cabef6f3c45e0fca55e2054a342c11c8d6db34bb9b4ed385594194"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:89",
+          "line": 89,
+          "title": "\"loads the source without injecting runtime styles\"",
+          "expression": "it",
+          "callbackSha256": "2b7dbe8d26e978fe534fabbf113736db9cf41a103d4b7f55055ad7834377b7f6",
+          "declarationSha256": "4e36827f0081904efec05934376357039a0a19a2672c45f3748d555ed9b3c575"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:103",
+          "line": 103,
+          "title": "\"shows eight resize handles and a persistent rule-of-thirds grid\"",
+          "expression": "it",
+          "callbackSha256": "f2941c584d3d36876b7aba1dc7a29f20ef08faf0485c230a4a136eefccbcb175",
+          "declarationSha256": "f66cfa4e6e150fa05ead255e51969cd6fa6498f8c6de07ef7e7c938bf99aa51a"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:145",
+          "line": 145,
+          "title": "\"uses only corner resize handles for a fixed aspect ratio\"",
+          "expression": "it",
+          "callbackSha256": "86e573fe64ab86876a24ade3b3b2cc9853c871bf2b239c41ed47026358788c79",
+          "declarationSha256": "21bb051649540f5f9de4fa8bdc572495e2ba3279929ded7cee19e1b9089b9e4e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:162",
+          "line": 162,
+          "title": "\"keeps a small fixed-ratio corner drag proportional\"",
+          "expression": "it",
+          "callbackSha256": "2156eed73adc6b57c6874b029a8295672c4e60971d496daa700eb2885dd079a5",
+          "declarationSha256": "97f43a3f1b0842741da930edade73ce9cfd5a0c65a0b4611636eb24fa868f594"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:209",
+          "line": 209,
+          "title": "\"updates crop pixels while a handle is moving\"",
+          "expression": "it",
+          "callbackSha256": "61dcbc5345172fd9bac16e74c4f9c1a8842a38492265b67379c7026dd027d774",
+          "declarationSha256": "8adfab28f6ea4844f67a3bb127cb4aa39701b2dc4a7a28c35193998657a7c26e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:250",
+          "line": 250,
+          "title": "\"upscales a tiny source so all eight handles remain distinct\"",
+          "expression": "it",
+          "callbackSha256": "6d42dde4df9a17c5c1677bfd19d67e9c6fec5a3a3ed57d38c41f866e67374368",
+          "declarationSha256": "2ae12a46fb89a5bc6a52fc17193cd606fe1fe25a2088c370f0965076dd74b71e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:294",
+          "line": 294,
+          "title": "\"moves the crop frame with the keyboard\"",
+          "expression": "it",
+          "callbackSha256": "44edef15d3b368109ad2a347bd0e0a370d41c8733dc4890cae5ccd73d6f331ea",
+          "declarationSha256": "d566165fd6826d33de90bb08d1c912f019f189edf7b0c7b5556bb66715f4a153"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:316",
+          "line": 316,
+          "title": "\"preserves a fixed aspect ratio while resizing a small source\"",
+          "expression": "it",
+          "callbackSha256": "d1d2b0722edc8f0af13d1844bb866f0ec98d2e14738dc1c7d1e682b653f538bb",
+          "declarationSha256": "1ff6b8d398631ff06a73a2294fad4bd4abd0d0db3d88da0f22371afa948635a7"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:336",
+          "line": 336,
+          "title": "\"resizes both dimensions from a freeform corner\"",
+          "expression": "it",
+          "callbackSha256": "e1eb8ba1630facab8a42e4dffe32096a2489dc5c80b571977c07944b7b983cf9",
+          "declarationSha256": "8a02dc4ea42831931a8e6b24349a8776a962e0a64d09a96f7cf83d31c8bfd9ed"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:351",
+          "line": 351,
+          "title": "\"resizes one dimension from a freeform edge\"",
+          "expression": "it",
+          "callbackSha256": "713d3ad2d08bdcacbe5fcdfefe86be2e3b8be1bc4fc4f8828577d0451d7f097f",
+          "declarationSha256": "cac4356ca929543888fd54a4b57c2572b5204e2af232c2f0dd11cd22c4f0c1f1"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaImageCropper.test.tsx:366",
+          "line": 366,
+          "title": "\"removes disabled crop handles from keyboard interaction\"",
+          "expression": "it",
+          "callbackSha256": "e0402e470910d46e30b019540adc5c245966fb71811a3ddf25e20a3945bbaaf2",
+          "declarationSha256": "bafd1a3d1bedb34570083c465adcfaabd8d6ccc20c80933a35a4958b810071b8"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 86,
+          "expression": "expect(onCropComplete)",
+          "sha256": "f18c1e670fda1cbea428c42f9348c248e7f8c7220e285e02324ffd77ade4362c"
+        },
+        {
+          "line": 94,
+          "expression": "expect(onSourceReady)",
+          "sha256": "8f08ca6414750de4dd2499699f7004fcc8be1bf0d9f218a3370795a879a6cfb3"
+        },
+        {
+          "line": 95,
+          "expression": "expect(document.head.querySelectorAll(\"style\"))",
+          "sha256": "41728f44f150c1530137eb2a07580de918856e17bf972e3942d0bdc4311f2910"
+        },
+        {
+          "line": 129,
+          "expression": "expect(bounds.left)",
+          "sha256": "051a0a7e2fa4682de628d948e568a8f72e50f9b253c4327036f66774b4c36b56"
+        },
+        {
+          "line": 130,
+          "expression": "expect(bounds.top)",
+          "sha256": "3f1fcb3ba615179c450b7d66d0392a5d90ef5d531f4fda9e554e73456cf56fc8"
+        },
+        {
+          "line": 131,
+          "expression": "expect(bounds.right)",
+          "sha256": "3625aa6d1e13d0b931f39da4cb8d2e64200e1d87497247d37041ad92d727cdda"
+        },
+        {
+          "line": 132,
+          "expression": "expect(bounds.bottom)",
+          "sha256": "c055ddc8808babec9961854253dea76a72cebaf65c7c5770aeeeaef2ce55d623"
+        },
+        {
+          "line": 134,
+          "expression": "expect(\n\t\t\tgetComputedStyle(\n\t\t\t\tscreen\n\t\t\t\t\t.getByRole(\"group\", { name: \"Crop selection. Use the Arrow keys to move it.\" })\n\t\t\t\t\t.element(),\n\t\t\t).animationName,\n\t\t)",
+          "sha256": "a102a013ed6826509241133260ad869a6b30d870439ebc5a7dd0c38f9d658899"
+        },
+        {
+          "line": 142,
+          "expression": "expect(getComputedStyle(verticalGrid, \"::before\").borderLeftStyle)",
+          "sha256": "750a8697054183d75ad0a3d56674805cf572f02e8108a7273e0cd1a31ec2dea4"
+        },
+        {
+          "line": 158,
+          "expression": "expect(screen.getByRole(\"button\", { name: `Resize crop from ${edge}` }).query())",
+          "sha256": "7282fe3a26fa6e4c33e46d0b2d7d66c4b89f44c2d9efacb31f3cbb42b8e1c542"
+        },
+        {
+          "line": 165,
+          "expression": "expect(readCropPixels(cropPixels.element()).width)",
+          "sha256": "6372a52b0ef4647221d43ff44f641901a25f7b7165cabd5f0b1322ed4ed65201"
+        },
+        {
+          "line": 203,
+          "expression": "expect(resized.width)",
+          "sha256": "4370321209f124ca370cd857a23460bccbc80e4e1996b406cf6e21a2b29af40b"
+        },
+        {
+          "line": 204,
+          "expression": "expect(resized.width)",
+          "sha256": "4370321209f124ca370cd857a23460bccbc80e4e1996b406cf6e21a2b29af40b"
+        },
+        {
+          "line": 205,
+          "expression": "expect(Math.abs(resized.width - resized.height * 2))",
+          "sha256": "7635dad53dc1bf489a6d8b285e0aae77bcc9c17998643a8b3add7b97c8770b21"
+        },
+        {
+          "line": 212,
+          "expression": "expect(readCropPixels(cropPixels.element()).width)",
+          "sha256": "6372a52b0ef4647221d43ff44f641901a25f7b7165cabd5f0b1322ed4ed65201"
+        },
+        {
+          "line": 239,
+          "expression": "expect(readCropPixels(cropPixels.element()).width)",
+          "sha256": "6372a52b0ef4647221d43ff44f641901a25f7b7165cabd5f0b1322ed4ed65201"
+        },
+        {
+          "line": 256,
+          "expression": "expect(image.getBoundingClientRect().width)",
+          "sha256": "4ff9fd8f770f4f0c77516d4ae79db853b637a6af472cb8fa7d0eccd7854923ae"
+        },
+        {
+          "line": 289,
+          "expression": "expect(overlaps)",
+          "sha256": "8cdad4ed42ab4d944d78f24dbaf2d9508462fa995e36a6358676d848d5ec4c64"
+        },
+        {
+          "line": 297,
+          "expression": "expect(image.draggable)",
+          "sha256": "ca0410dd6007b264bf6df836a93919149784a3fcbc0f46e08b5b4b4e0081f3fb"
+        },
+        {
+          "line": 300,
+          "expression": "expect.element(selection).not.toHaveTextContent(\"pending\")",
+          "sha256": "9b7491ea6cf07812f2b4901aaf27031b8303f46f4c4ab91ec647af03bc50c644"
+        },
+        {
+          "line": 300,
+          "expression": "expect.element(selection)",
+          "sha256": "b8acccdd6006963a6a75530294503075af532e41bc6c79b18c64d4264d3c9478"
+        },
+        {
+          "line": 308,
+          "expression": "expect(Number(selection.element().textContent!.split(\",\")[0]))",
+          "sha256": "d5a4863698573d2004ec6476a227a0a58326b71decccfd6e5bcfa6c9fb484fb3"
+        },
+        {
+          "line": 311,
+          "expression": "expect(imageBoundsAfter.x)",
+          "sha256": "75d8062ab61553aa0afb716b7141be348a73895102e0ebde9b6b189db07b5719"
+        },
+        {
+          "line": 312,
+          "expression": "expect(imageBoundsAfter.y)",
+          "sha256": "22521dbe92499368d1a998cf93711d25105b2a5596bbb234041cbf4388a5d931"
+        },
+        {
+          "line": 313,
+          "expression": "expect(getComputedStyle(image).transform)",
+          "sha256": "31a71e2636f011ed2b9c4ca6a4694c163ec23ee7160c277e67afd5a9799c67f1"
+        },
+        {
+          "line": 322,
+          "expression": "expect(image.getBoundingClientRect().width)",
+          "sha256": "4ff9fd8f770f4f0c77516d4ae79db853b637a6af472cb8fa7d0eccd7854923ae"
+        },
+        {
+          "line": 324,
+          "expression": "expect(readCropPixels(cropPixels.element()).width)",
+          "sha256": "6372a52b0ef4647221d43ff44f641901a25f7b7165cabd5f0b1322ed4ed65201"
+        },
+        {
+          "line": 331,
+          "expression": "expect(resized.width)",
+          "sha256": "4370321209f124ca370cd857a23460bccbc80e4e1996b406cf6e21a2b29af40b"
+        },
+        {
+          "line": 332,
+          "expression": "expect(Math.abs(resized.width - resized.height * 2))",
+          "sha256": "7635dad53dc1bf489a6d8b285e0aae77bcc9c17998643a8b3add7b97c8770b21"
+        },
+        {
+          "line": 339,
+          "expression": "expect(readCropPixels(cropPixels.element()).width)",
+          "sha256": "6372a52b0ef4647221d43ff44f641901a25f7b7165cabd5f0b1322ed4ed65201"
+        },
+        {
+          "line": 346,
+          "expression": "expect(resized.width)",
+          "sha256": "4370321209f124ca370cd857a23460bccbc80e4e1996b406cf6e21a2b29af40b"
+        },
+        {
+          "line": 347,
+          "expression": "expect(resized.height)",
+          "sha256": "dfce0acd875630f2f53657c5e036e2ef3f46633b9ff5cf60d2e1d0f5bbad8ee9"
+        },
+        {
+          "line": 354,
+          "expression": "expect(readCropPixels(cropPixels.element()).width)",
+          "sha256": "6372a52b0ef4647221d43ff44f641901a25f7b7165cabd5f0b1322ed4ed65201"
+        },
+        {
+          "line": 361,
+          "expression": "expect(resized.width)",
+          "sha256": "4370321209f124ca370cd857a23460bccbc80e4e1996b406cf6e21a2b29af40b"
+        },
+        {
+          "line": 362,
+          "expression": "expect(resized.height)",
+          "sha256": "dfce0acd875630f2f53657c5e036e2ef3f46633b9ff5cf60d2e1d0f5bbad8ee9"
+        },
+        {
+          "line": 371,
+          "expression": "expect(screen.getByRole(\"button\", { name: \"Resize crop from top edge\" }).query())",
+          "sha256": "75569efe34db830c9526af7c63fc10afc4182610a2f0a3daa285d5e67da6a3c7"
+        },
+        {
+          "line": 372,
+          "expression": "expect.element(screen.getByTestId(\"media-image-cropper-frame\")).toHaveAttribute(\"inert\")",
+          "sha256": "2d8093bbc24616b2732cfd68137ced81713592bfa59b411fb4eda1bbb0315d34"
+        },
+        {
+          "line": 372,
+          "expression": "expect.element(screen.getByTestId(\"media-image-cropper-frame\"))",
+          "sha256": "1eb68110f0685a216f512ebfeb3b92236edcf4fe48368fa27a4d50e5f27c3eef"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/MediaUsedIn.test.tsx",
+      "path": "parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUsedIn.test.tsx",
+      "sourceBlob": "bd3c96ba270d7758b82aff18bdad7cbea1a69f39",
+      "sha256": "e992b83eb7f24486b3e4d6142fffe9b5f9d07285b6e148cbe93697b99f2c9048",
+      "bytes": 16087,
+      "test": true,
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:106",
+          "line": 106,
+          "title": "\"does not request usage while closed\"",
+          "expression": "it",
+          "callbackSha256": "25414ce780813670501a597893c763e6870fbe516298c7c921dad3bfb3ae92e9",
+          "declarationSha256": "40551502f0b6b82ccb4268cad6b660be76a05409706bfd34d2ebd6694a6bbb4b"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:113",
+          "line": 113,
+          "title": "\"keeps the heading visible and marks initial loading as busy\"",
+          "expression": "it",
+          "callbackSha256": "4508f7a4f0897289f1d91b0e0ee6c08ff4681b6dd70bda97c2d8546a05e15aba",
+          "declarationSha256": "8e701c4a8c94a1e2c0a848fe6f9ef25f05967c5d6c5b41558c610f47a5d3b3b3"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:126",
+          "line": 126,
+          "title": "\"shows active references as links and trashed references as static rows\"",
+          "expression": "it",
+          "callbackSha256": "70a76345ed96c6803306cb427c6951d42266cd999df6598224034702481521f3",
+          "declarationSha256": "e5010d9125b4f57d7540ced35f15063bfe00474d893df768b99e1480ede57b54"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:167",
+          "line": 167,
+          "title": "\"lists site settings that use the file as a static row\"",
+          "expression": "it",
+          "callbackSha256": "7688ac75ee2ce3efe53b89a3acd26573fa6a725ec28e1984f950639de7cb524c",
+          "declarationSha256": "7def179a2f47dca6dc881aca017d2911c613e9193b1337235f7e63bdfd260651"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:185",
+          "line": 185,
+          "title": "\"leaves enough scroll clearance for the first usage card ring\"",
+          "expression": "it",
+          "callbackSha256": "0aecc46f93e76e9073c6b3999e1ec8c199a65bc4baf5e90d16af853a5a276751",
+          "declarationSha256": "bfc2dfa0a5a1518afc5ee707f03a2b2ec7068509af0bb4a93db5e8c753764e07"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:195",
+          "line": 195,
+          "title": "\"mirrors the Open icon in right-to-left layouts\"",
+          "expression": "it",
+          "callbackSha256": "3b4f759d5892230c75acc909128027f5eb7c064a5b370848f3348c40f98d04b7",
+          "declarationSha256": "3315b4dc5cf85cb85682beb9b24998bae71d46c64049c490079e9f83af9ee720"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:213",
+          "line": 213,
+          "title": "\"keeps known references visible when coverage is %s\"",
+          "expression": "it.each<[MediaUsageCoverageStatus, string]>([\n\t\t[\"never\", \"Usage indexing hasn\u2019t started.\"],\n\t\t[\"running\", \"Usage is updating. Some content may not appear here yet.\"],\n\t\t[\"partial\", \"Some content may not appear here yet.\"],\n\t\t[\"failed\", \"Usage indexing couldn\u2019t finish.\"],\n\t\t[\"stale\", \"Usage may be out of date.\"],\n\t\t[\"unknown\", \"Usage completeness couldn\u2019t be verified.\"],\n\t])",
+          "callbackSha256": "44cc047e09008b97c3f1c5c0cbe808f66fc7df238b7b0a9615562315abe615e3",
+          "declarationSha256": "bb9a7e2bbe92f2d0d48695f8bdcd8eb18a8be3695c95a4a35878f09503ba46fd"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:233",
+          "line": 233,
+          "title": "\"explains incomplete coverage from an accessible icon tooltip\"",
+          "expression": "it",
+          "callbackSha256": "e5020dd4ff41a7ba9b34b8c694e9b2d186ce73609063bcd53c57825462827e10",
+          "declarationSha256": "31aa8657b342bf61ed2666b0bd77de260b857a233d6fdc91cd69b12158249fe3"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:254",
+          "line": 254,
+          "title": "\"distinguishes trustworthy and incomplete empty results\"",
+          "expression": "it",
+          "callbackSha256": "62f155f978cbbba124a9c5041d15f09ce9cae443f26adde9883b792459d8481c",
+          "declarationSha256": "fd55c5bea3da65dd6442b4f4563a1a31ae2ece002cab3b8a2a7f45bb591c8590"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:300",
+          "line": 300,
+          "title": "\"renders access denial without retrying or exposing the error\"",
+          "expression": "it",
+          "callbackSha256": "8cba1c0158fec5a89713758696fff2d851263339d188c9e8246a17e656e434be",
+          "declarationSha256": "007b06919594f5072c9bc9939aa97d9a202a024564a68796e9d68130129cbdf7"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:314",
+          "line": 314,
+          "title": "\"hides cached references when a reopen loses access\"",
+          "expression": "it",
+          "callbackSha256": "135fa2fdb42149706e5966f6957f1f1fdf9ba51ee82bba2deb492fe694dd243c",
+          "declarationSha256": "b4392c846b3696c5287a9e3ded47e30326b8ad4480a0ec34e99b6aea8a9586ec"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:332",
+          "line": 332,
+          "title": "\"keeps cached references visibly qualified after a refresh error\"",
+          "expression": "it",
+          "callbackSha256": "923455ce841efbd2333eb2b379d2a5c0a25fc8592b5f0288692d026c259865b2",
+          "declarationSha256": "5c2b3dc9d6ef2588a5c4492c220a62c0948eb891dbd27ad389cf889cde997d81"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:346",
+          "line": 346,
+          "title": "\"shows an actionable initial error and retries only after a click\"",
+          "expression": "it",
+          "callbackSha256": "571a463564d80915d8fbf686648c0cb7ff87a6e63a90d47b0ed373c94d24d69f",
+          "declarationSha256": "d015e24bf825106e92cad82dc41ea8343066c465f96b92a7d19d9de3e3d3ef14"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:360",
+          "line": 360,
+          "title": "\"retains earlier groups and retries a failed next page\"",
+          "expression": "it",
+          "callbackSha256": "b8115ab7fbe92047702cb4dd34f8df5be67e26c72e6d45db30ebdd68cd74e0d7",
+          "declarationSha256": "e27c2bd7b86d67303d97d3b84f31608e670fedfe57eecf717c95c4aafdbb41bd"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:389",
+          "line": 389,
+          "title": "\"retains the most conservative coverage across pages\"",
+          "expression": "it",
+          "callbackSha256": "1ed8a0abbe3b634897555beb001ca6dc1c8135227d5a70b9407f0648a2dd2c8b",
+          "declarationSha256": "9cbc5464319e0247a6027e2cdf066153bc344c02a1cb1808242e5f9390d64160"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:410",
+          "line": 410,
+          "title": "\"sets explicit direction for authored labels and technical identifiers\"",
+          "expression": "it",
+          "callbackSha256": "6bd1f28a320e1db286646bf8b735e653d601b5a33aabdaacfa0f361a85a4b174",
+          "declarationSha256": "0b766d69aee4ba1c8c15118dcfdb49d416b09ab8fdc740e9a0f1757990bef098"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:421",
+          "line": 421,
+          "title": "\"uses safe metadata fallbacks when the manifest is unavailable\"",
+          "expression": "it",
+          "callbackSha256": "32627914a46a080c332788141846c99b1415b53a63410ce8459201e0748fb8b5",
+          "declarationSha256": "20638a5dd64751f2efaa2726c3138c599a258b25afb3a092f0395242ad56ef25"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/MediaUsedIn.test.tsx:446",
+          "line": 446,
+          "title": "\"blocks every link activation while navigation is unavailable\"",
+          "expression": "it",
+          "callbackSha256": "1ec2c5d77676039986014e14a2791d09c4f7f7d9bd9f4f64ab70205bf8f390ae",
+          "declarationSha256": "7112da06ffb138fe8ed52870ab3db757dfc7f3022a1ebcae967cce97d044170d"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 109,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 110,
+          "expression": "expect(fetchManifest)",
+          "sha256": "9ffbb0b1a2ade20e12e38c8cff5650b35b93b2f7602a2821f8e045b856a2cb90"
+        },
+        {
+          "line": 118,
+          "expression": "expect.element(screen.getByRole(\"heading\", { name: \"Used in\" })).toBeVisible()",
+          "sha256": "6f76825a08ed6c8655efbf93037226fd8a8a6fdef38e4d1bea64958310b897e5"
+        },
+        {
+          "line": 118,
+          "expression": "expect.element(screen.getByRole(\"heading\", { name: \"Used in\" }))",
+          "sha256": "c8636ac8a0aca486f2d19b205e25283b2fab7582d3eb4f2dbe38e0fd5f7a1ded"
+        },
+        {
+          "line": 119,
+          "expression": "expect.element(screen.getByText(\"See where this file is used.\")).toBeVisible()",
+          "sha256": "b1fa2b46cae69d231de1d51429c981289c7b1afeed4d653657e1b2b79c0deeff"
+        },
+        {
+          "line": 119,
+          "expression": "expect.element(screen.getByText(\"See where this file is used.\"))",
+          "sha256": "11b0d380486bb9cd28999ff5abab615ef25809a483239289943a59646006084d"
+        },
+        {
+          "line": 123,
+          "expression": "expect.element(screen.getByRole(\"status\")).toHaveTextContent(\"Loading usage\")",
+          "sha256": "0e6a45b644d3af6c29547af46e5f0a79266a7f4fb76981e0ca71ca6e82106015"
+        },
+        {
+          "line": 123,
+          "expression": "expect.element(screen.getByRole(\"status\"))",
+          "sha256": "bd6b63fa400f0e6360770328738b1f1c1e8f24f6353712bf16f4fddc87a36850"
+        },
+        {
+          "line": 158,
+          "expression": "expect.element(activeLink).toHaveAttribute(\"href\", \"/content/posts/entry-1?locale=fr\")",
+          "sha256": "b991910d457d8a1c70b19a3204ea52ff59b5e045473d5266f5756e55ba52a650"
+        },
+        {
+          "line": 158,
+          "expression": "expect.element(activeLink)",
+          "sha256": "03b717d8990d1d455397559264f984544f1dd9ab1acdfa6195f32e5055d0f7af"
+        },
+        {
+          "line": 159,
+          "expression": "expect.element(activeLink.getByText(\"Posts\", { exact: true })).toBeVisible()",
+          "sha256": "54d3388ebadd98df73289c8b37473a65f7189b9deee1289ed5186bcead049ee4"
+        },
+        {
+          "line": 159,
+          "expression": "expect.element(activeLink.getByText(\"Posts\", { exact: true }))",
+          "sha256": "45857b3abb42560830fb6a20675cc41fb701e6e9ea134e8bd09e1225a659ddea"
+        },
+        {
+          "line": 160,
+          "expression": "expect.element(activeLink.getByText(\"Featured image\", { exact: true })).toBeVisible()",
+          "sha256": "67c9506023e2de2eb75ac8a520f91bbdad0f4df57de06df849cc72b37996d877"
+        },
+        {
+          "line": 160,
+          "expression": "expect.element(activeLink.getByText(\"Featured image\", { exact: true }))",
+          "sha256": "a5fd547926abfe921ad40a264932dd1241fb86359fc4e926e22d0526ebe27dfb"
+        },
+        {
+          "line": 161,
+          "expression": "expect.element(activeLink.getByText(\"fr\", { exact: true })).toBeVisible()",
+          "sha256": "70b70e75f85f200004d2ca555e8df4db6375c7cbbb58f1a49efedce9d9007ea2"
+        },
+        {
+          "line": 161,
+          "expression": "expect.element(activeLink.getByText(\"fr\", { exact: true }))",
+          "sha256": "37020b74c9cae3d74ed6c6ddb3ab81f6710193c77c60f7e6c9a75c1bffc18030"
+        },
+        {
+          "line": 162,
+          "expression": "expect.element(activeLink.getByText(\"Open\", { exact: true })).toBeVisible()",
+          "sha256": "88961f8ae301e4bbaf84230bdad9ab52754b1b3b496d94eee1de985140bf9d2a"
+        },
+        {
+          "line": 162,
+          "expression": "expect.element(activeLink.getByText(\"Open\", { exact: true }))",
+          "sha256": "eed7bd36cde73718799366a09dd8bf7a265f9c177dcb80ced130c32169fd3f35"
+        },
+        {
+          "line": 163,
+          "expression": "expect.element(screen.getByText(\"In trash\")).toBeVisible()",
+          "sha256": "6ccaff9f83eb1b0e8157141d1ec9f299a9d96d15d5e0654418da9e8946fabfdb"
+        },
+        {
+          "line": 163,
+          "expression": "expect.element(screen.getByText(\"In trash\"))",
+          "sha256": "f489c23a29af772dd6db9659e1f347379cb29910f684fa06d31027522f1ac4cc"
+        },
+        {
+          "line": 164,
+          "expression": "expect(screen.getByText(\"Archived notes\").element().closest(\"a\"))",
+          "sha256": "170d3f29154fdb5291cfd323154ed80f61d1d1779e746db376ac507fb542127e"
+        },
+        {
+          "line": 177,
+          "expression": "expect.element(row).toBeVisible()",
+          "sha256": "ad016a458faefe10ca623ec724ba68e11773f8153609c261c80920d648c5a690"
+        },
+        {
+          "line": 177,
+          "expression": "expect.element(row)",
+          "sha256": "7e79fb20c24a84a72d1c6e25e3eb75908e2e6041e94c28965e0edad1810ee1f7"
+        },
+        {
+          "line": 178,
+          "expression": "expect.element(row.getByText(\"Favicon & Default Social Image\")).toBeVisible()",
+          "sha256": "195d0ce306419336a67b9110977745017d2d1448f63374268d728849f930a9f0"
+        },
+        {
+          "line": 178,
+          "expression": "expect.element(row.getByText(\"Favicon & Default Social Image\"))",
+          "sha256": "7b825827239f3ee26528384f8cd5798ffe270c1a027f2139d55f017457486507"
+        },
+        {
+          "line": 179,
+          "expression": "expect(row.element().querySelector(\"a\"))",
+          "sha256": "e91531ca02fb896e481d03c754d369deb323fcee5d52693b3a3040b2197a6291"
+        },
+        {
+          "line": 190,
+          "expression": "expect.element(list.getByRole(\"link\")).toBeVisible()",
+          "sha256": "eebebfa7bf027e682c193310ce41750c47bc2447a456d049d989cc7d8569ce33"
+        },
+        {
+          "line": 190,
+          "expression": "expect.element(list.getByRole(\"link\"))",
+          "sha256": "ac05a553b5838a15057f59a70abf5187dd08d6199d30c74403b10ab1ddfb1646"
+        },
+        {
+          "line": 192,
+          "expression": "expect(list.element())",
+          "sha256": "51144b0667c3641ab54a335dab4a5836b5c8412f5b6a65d4edfcda1fadabe6b4"
+        },
+        {
+          "line": 203,
+          "expression": "expect.element(openLabel).toBeVisible()",
+          "sha256": "c75118dff1d2d49f9b735a77801a1e3ef7f7c5984f04960aae4f0ec080a80a7c"
+        },
+        {
+          "line": 203,
+          "expression": "expect.element(openLabel)",
+          "sha256": "27b854d4cff91f75d5688cbc84f1e4cab625e25cbc60e8a0ee00a5608998d881"
+        },
+        {
+          "line": 206,
+          "expression": "expect(openIcon)",
+          "sha256": "222faf7d94c37b2713f805a2a23e30d411592507428b8b7ac117de9eb415aa8a"
+        },
+        {
+          "line": 207,
+          "expression": "expect(openIcon)",
+          "sha256": "222faf7d94c37b2713f805a2a23e30d411592507428b8b7ac117de9eb415aa8a"
+        },
+        {
+          "line": 229,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 229,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 230,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: message })).toBeVisible()",
+          "sha256": "83ad3c1196f5f88d5c6768ae6d37f7142f3f1a3d092d694199fd68a469cd605d"
+        },
+        {
+          "line": 230,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: message }))",
+          "sha256": "a29eb51adcd9c76478ced255eb41658db3de3264fc9b092a57854c5683d7ed13"
+        },
+        {
+          "line": 244,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 244,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 311,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 319,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 319,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 337,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 337,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 342,
+          "expression": "expect.element(screen.getByText(\"Couldn\u2019t load usage.\")).toBeVisible()",
+          "sha256": "2ac37f87790c82ff2e434dbf9a5f540774641a943eb64a3336927f48d9f998ea"
+        },
+        {
+          "line": 342,
+          "expression": "expect.element(screen.getByText(\"Couldn\u2019t load usage.\"))",
+          "sha256": "5467a4c23a25b09e34799079243a18bdcec89db187abe104d860a3b764aa1322"
+        },
+        {
+          "line": 343,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 343,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 353,
+          "expression": "expect.element(screen.getByText(\"Couldn\u2019t load usage.\")).toBeVisible()",
+          "sha256": "2ac37f87790c82ff2e434dbf9a5f540774641a943eb64a3336927f48d9f998ea"
+        },
+        {
+          "line": 353,
+          "expression": "expect.element(screen.getByText(\"Couldn\u2019t load usage.\"))",
+          "sha256": "5467a4c23a25b09e34799079243a18bdcec89db187abe104d860a3b764aa1322"
+        },
+        {
+          "line": 354,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 356,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 356,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 357,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 371,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 371,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 374,
+          "expression": "expect.element(screen.getByText(\"Couldn\u2019t load more usage.\")).toBeVisible()",
+          "sha256": "45ba8b1b437911ffff294676dcdabdfe38231385414e85afa3a471b428b21e28"
+        },
+        {
+          "line": 374,
+          "expression": "expect.element(screen.getByText(\"Couldn\u2019t load more usage.\"))",
+          "sha256": "4b0226897fecb32916094f444007bbca0f36b126afc400ccb527a35ec7c055d4"
+        },
+        {
+          "line": 375,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 375,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 377,
+          "expression": "expect.element(screen.getByText(\"Second entry\")).toBeVisible()",
+          "sha256": "419bb33fa8d024d815142c910ae7e3683df02d9bcdcce3bb16b8260d6dd6e244"
+        },
+        {
+          "line": 377,
+          "expression": "expect.element(screen.getByText(\"Second entry\"))",
+          "sha256": "1b354e270d69ef1652083772ffd8d50bf08e1f24641b58c212b5cfbc17c6155e"
+        },
+        {
+          "line": 378,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toBeVisible()",
+          "sha256": "92de5ae6ff63ea1a6af6428738ea28f030ef70ee2dd19e9632486bcb7d9ad8f6"
+        },
+        {
+          "line": 378,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 379,
+          "expression": "expect(fetchMediaUsageDetails)",
+          "sha256": "f0a37780b8803503eda9e02484e2601c4c118c0cc148214eaa88632ec5afe7c3"
+        },
+        {
+          "line": 381,
+          "expression": "expect.objectContaining({\n\t\t\t\tcursor: \"next-page\",\n\t\t\t\tlimit: 50,\n\t\t\t\tsignal: expect.any(AbortSignal),\n\t\t\t})",
+          "sha256": "f718ffa8c15962a6775755880f81bfd030c7a1c42b0528599c8468c8db4e1027"
+        },
+        {
+          "line": 384,
+          "expression": "expect.any(AbortSignal)",
+          "sha256": "6a9bad09c18e8b4f79410bebb3fd5b1adf80472344c6a7c12fd3119b19df7040"
+        },
+        {
+          "line": 404,
+          "expression": "expect.element(screen.getByText(\"Second entry\")).toBeVisible()",
+          "sha256": "419bb33fa8d024d815142c910ae7e3683df02d9bcdcce3bb16b8260d6dd6e244"
+        },
+        {
+          "line": 404,
+          "expression": "expect.element(screen.getByText(\"Second entry\"))",
+          "sha256": "1b354e270d69ef1652083772ffd8d50bf08e1f24641b58c212b5cfbc17c6155e"
+        },
+        {
+          "line": 415,
+          "expression": "expect.element(screen.getByText(\"Launch notes\")).toHaveAttribute(\"dir\", \"auto\")",
+          "sha256": "05a4603802df037c722acc8c099306c4283329b6f75e6bc68de68ce1c587c245"
+        },
+        {
+          "line": 415,
+          "expression": "expect.element(screen.getByText(\"Launch notes\"))",
+          "sha256": "b580b26c3d81d21aa63458ee26822d040ed5be5374a0d16aa1e08edce7723f7e"
+        },
+        {
+          "line": 416,
+          "expression": "expect.element(screen.getByText(\"Posts\")).toHaveAttribute(\"dir\", \"auto\")",
+          "sha256": "6378a30d3baa400c1043d6f415e7cabb1e1e2881a2f20136d53cc27192752a1a"
+        },
+        {
+          "line": 416,
+          "expression": "expect.element(screen.getByText(\"Posts\"))",
+          "sha256": "9274bab5cbaa7e4b3019fc6468a860b712537c722a8658095dbe0726b4e39370"
+        },
+        {
+          "line": 417,
+          "expression": "expect.element(screen.getByText(\"launch-notes\")).toHaveAttribute(\"dir\", \"ltr\")",
+          "sha256": "0cffa662c83103f149c243661ff611288d5b249f567f0988e71964198dd3470b"
+        },
+        {
+          "line": 417,
+          "expression": "expect.element(screen.getByText(\"launch-notes\"))",
+          "sha256": "0912ca96f80d7b231844a14e47dca35e51539cf0f096e3d8d1a4c77918a7efda"
+        },
+        {
+          "line": 418,
+          "expression": "expect.element(screen.getByText(\"fr\", { exact: true })).toHaveAttribute(\"dir\", \"ltr\")",
+          "sha256": "af1df8e2665ead462ca2200bb23aa11e2a9170e21f87f98567c9dc7a54be0a41"
+        },
+        {
+          "line": 418,
+          "expression": "expect.element(screen.getByText(\"fr\", { exact: true }))",
+          "sha256": "795f1a30758324748d98649bef77b183d440d5d66b19704538a937317b66a447"
+        },
+        {
+          "line": 437,
+          "expression": "expect.element(screen.getByText(\"Untitled\", { exact: true })).toBeVisible()",
+          "sha256": "5dba2ddeccc52221d8d371c5e38c808e70d46a6999fced74621257a93e919fe3"
+        },
+        {
+          "line": 437,
+          "expression": "expect.element(screen.getByText(\"Untitled\", { exact: true }))",
+          "sha256": "aa40dbb41a34504f8827d44218b01ee48b5df86bc8f99ae5c46cf00889e895db"
+        },
+        {
+          "line": 452,
+          "expression": "expect.element(link).toHaveAttribute(\"aria-disabled\", \"true\")",
+          "sha256": "973037f2195d33c171a325a73db354c1a48771998fd9b63e8addbe02bed63f87"
+        },
+        {
+          "line": 452,
+          "expression": "expect.element(link)",
+          "sha256": "ae15fe960e2fd7f12befeaede0023e6e4689b861cae6a5a871723674bcbba9bf"
+        },
+        {
+          "line": 455,
+          "expression": "expect(link.element().dispatchEvent(click))",
+          "sha256": "f25e5043b20d974171fe7182aa2ef0f1eb61b85c4f3d248672f460d689f672be"
+        },
+        {
+          "line": 456,
+          "expression": "expect(link.element().dispatchEvent(auxiliary))",
+          "sha256": "59c440b582ca3656104046c6121bf57690eaf303fb69dba9a1dae0f01c8e7664"
+        },
+        {
+          "line": 457,
+          "expression": "expect(onEntryClick)",
+          "sha256": "c485c15b0acf5b158db96d0c6973050c4c4a8360d60f59d2f29ad4e744772cf6"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/useContainedMediaSize.test.tsx",
+      "path": "parity/emdash/media-admin-editor/source/packages/admin/tests/components/useContainedMediaSize.test.tsx",
+      "sourceBlob": "62c26d6cc884d1d03a7c9be07513a366b18b0108",
+      "sha256": "3dd55f1e8a201056ebbafdb7528a730876658c07dd83c77d7890d4a159f82600",
+      "bytes": 895,
+      "test": true,
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/useContainedMediaSize.test.tsx:23",
+          "line": 23,
+          "title": "\"uses the frame layout size while an ancestor is transformed\"",
+          "expression": "it",
+          "callbackSha256": "aee30de715723171c75343e208a07112b128f4a86a9319a20136cfb1b37a60ea",
+          "declarationSha256": "a180d840af1dd37d813d3411c3835c09bde6cd69ca055b330e9b64180158f828"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 26,
+          "expression": "expect.element(screen.getByLabelText(\"Contained size\")).toHaveTextContent(\"400 \u00d7 200\")",
+          "sha256": "4e13facac4384ada5dc749846c95a53923f65f4325ca41251a5d4c33ff4ad429"
+        },
+        {
+          "line": 26,
+          "expression": "expect.element(screen.getByLabelText(\"Contained size\"))",
+          "sha256": "b0f79f94fd1fa3e8eb0f2ed57f668e50eb7a5a4f118a9ab6ff11fdae546ff046"
+        }
+      ]
+    }
+  ],
+  "expandedCallbacks": 130,
+  "initialPublicHead": "c73698dcba0f938d26e6fa1d60457dcfa2609fac",
+  "initialHostedRun": 37385528464,
+  "initialHostedPanelJob": 112017739421,
+  "initialSourceResults": "in progress; no new executed Source or causal credit",
+  "transportPolicy": "Original file bytes, callback bodies, data, clocks and supplied mocks remain immutable. Native widgets mount through finite framework bridges. Geometry, focus, observers and dialog behavior remain actual browser behavior.",
+  "runtimeInventoryCorrection": {
+    "priorEstimatedExpandedCallbacks": 130,
+    "actualExpandedCallbacks": 129,
+    "reason": "MediaUsedIn has18 declarations and one six-row it.each, therefore23 expanded callbacks rather than24. Whole original file and all original bodies remain unchanged.",
+    "actualFamilies": {
+      "FocalPointEditor.test.tsx": {
+        "registered": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "MediaDetailPanel.test.tsx": {
+        "registered": 86,
+        "passed": 75,
+        "failed": 11
+      },
+      "MediaDetailPanelNavigation.test.tsx": {
+        "registered": 6,
+        "passed": 5,
+        "failed": 1
+      },
+      "MediaImageCropper.test.tsx": {
+        "registered": 12,
+        "passed": 12,
+        "failed": 0
+      },
+      "MediaUsedIn.test.tsx": {
+        "registered": 23,
+        "passed": 22,
+        "failed": 1
+      },
+      "useContainedMediaSize.test.tsx": {
+        "registered": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "evidenceRunId": 37388591225
+  }
+}

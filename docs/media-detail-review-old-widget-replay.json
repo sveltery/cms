@@ -1,0 +1,24 @@
+{
+  "purpose": "Diagnostic test-only full-family replay; never merge or adopt this branch",
+  "basePublicHead": "563b3fb36a43265336e34c4610cd6e2306195a8a",
+  "parentPublicHead": "d8989c402af17e329be09c0f17773fa33e36d7a9",
+  "oldPublicHead": "7f2e0d2893154849e4a5e120a5e41656ad075083",
+  "oldWidgetPath": "src/lib/media/MediaDetails.svelte",
+  "oldWidgetBlob": "66f76a32c4fbd92e21d881bb8603c4c9a74f1a44",
+  "fixturePath": "src/lib/media/MediaDetails.pre-review-fixture.svelte",
+  "bytes": 39214,
+  "sha256": "f4e34b40b9d42310abefe618117111f4d5cb2326867703cbd97c54198aaeaed2",
+  "sourceCallbacks": 129,
+  "oldSupplementalNativeCallbacks": 2,
+  "newSupplementalNativeCallbacks": 5,
+  "browserCallbacks": 136,
+  "unchanged": [
+    "All six whole Source files/bodies/data/mocks/clocks",
+    "Both old Current Native row controls",
+    "All five new Current Native assertions/data",
+    "Original deadlines, viewport, timezone, secured Chromium policy",
+    "Production current MediaDetails and all canonical API/query owners"
+  ],
+  "transport": "Only bridge module resolves to exact old widget fixture; fixture relative imports resolve using original Native importer identity",
+  "expectedCredit": "A failed expectation can establish a finite old-widget value red only after its actual prerequisites execute. No backend/provider/auth/storage credit."
+}

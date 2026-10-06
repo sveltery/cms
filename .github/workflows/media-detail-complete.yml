@@ -1,0 +1,31 @@
+name: Complete media detail Source callbacks
+on:
+  pull_request:
+    branches: [main, feat/complete-media-admin-editor]
+  workflow_dispatch:
+jobs:
+  media-detail-source:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run all six unchanged whole detail Source families in secured Chromium
+        run: pnpm exec vitest run --config vitest.media-detail-old-widget-replay-browser.config.ts --reporter=default --reporter=json --outputFile=media-detail-source-results.json
+        env:
+          DEBUG: pw:browser
+      - name: Run supplemental Native crop-state value controls
+        run: TZ=America/New_York node --test tests/media-panel-host/crop-review-controls.test.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: media-detail-source-results
+          path: media-detail-source-results.json
+          retention-days: 14
