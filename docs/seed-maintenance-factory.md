@@ -26,11 +26,11 @@ the original owner, stored lease/checkpoint, one actual batch, actual query IDs,
 both caller plugins in order and each real result hook once. No data, query
 counts or results are synthesized.
 
-Direct Node24 factory invocation still reaches the actual maintenance Source
+At the preceding 296 checkpoint, direct Node24 factory invocation reaches the actual maintenance Source
 `MediaUsageCollectionDeletionRepository` parameter-property constructor at
 `media-usage/upstream/media/usage/collection-deletion.ts:74`. The resulting
 **eight passes/one import prerequisite** is retained literally; lazy index import
-green does not establish actual factory hosting. The sole maintenance author
+green does not establish actual factory hosting at that checkpoint. The sole maintenance author
 owns that finite constructor transport and its complete Reference controls.
 An earlier candidate run registered zero tests because package metadata was
 updated while Vite read it; that raw setup-only receipt is retained separately,
@@ -44,3 +44,15 @@ C-07 platform difference, with zero Source D1 body identity. Result-hook errors
 propagate after commit and cannot imply Source callback rollback. Complete
 maintenance/source families, actual Node factory hosting, current combined
 checker/gates, fresh review and final approval remain separate requirements.
+
+The qualified public constructor successor
+`64100198c72c69c625643355a1cccf8058b66a68`, tree
+`4d600373006153960c33c9f57939b7bfffa8988b`, is ordinarily adopted by
+`8f9520e6`. All 5,577 public/native blob vectors match. The unchanged nine
+Native controls now pass, including actual direct Node24 factory invocation;
+the eight/one predecessor and all zero-credit prerequisites remain archived.
+This validates the finite same-owner named association and its actual host,
+with no Source whole-module identity claim. The maintenance author's complete
+constructor/reference descriptor controls, full feature families, current
+combined mandatory gates and final review remain separate requirements. Front
+fence, registry, table and finalization execution remain held in this lane.
