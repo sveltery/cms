@@ -22,11 +22,16 @@ jobs:
         run: timeout --kill-after=30s 360s pnpm exec vitest run --config vitest.default-seed-setup-wizard.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-source-results.json
         env:
           DEBUG: pw:browser
+      - name: Run Native presentation lifecycle controls in sandboxed Chromium
+        run: timeout --kill-after=30s 360s pnpm exec vitest run --config vitest.default-seed-setup-wizard-native.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-native-results.json
+        env:
+          DEBUG: pw:browser
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: default-seed-setup-source-results
           path: |
             setup-source-results.json
+            setup-native-results.json
             test-results/
           retention-days: 7
