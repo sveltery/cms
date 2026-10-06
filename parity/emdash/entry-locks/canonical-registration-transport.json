@@ -1,0 +1,296 @@
+{
+  "base": "ab2a68d8b24cc89fe088b2d478248ba25b5b7ea5",
+  "qualifiedDependency": "f3bd029afd2e0f54dae14a7d6bd6b8f797f1d829",
+  "limits": "Only canonical provider19 registration/type seam and exact current latest18\u219219/future19\u219220 controls. Historical fixture/version/provider bodies1\u201318 and Source tests/data/clocks are unchanged. Every finite span reverses to complete qualified18 Native leaf. Cron guard composes this strict complete-leaf reversal before its unchanged prior18 reversal.",
+  "changedLeaves": [
+    {
+      "path": "src/lib/server/database/migrations.ts",
+      "baseBytes": 22246,
+      "baseSha256": "ad5f2f54e16f066a32ade7ad50f3f4507efde257090ed45da0671e440af84556",
+      "baseBlob": "bbe30c1bf35ef268dd301fd45b40655346699fe1",
+      "afterBytes": 22353,
+      "afterSha256": "5aa5992f6fb61d2f0b0b1461f0840023c5c0cad94a0efba6b5aff3dcd0ed7c9c",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/src/lib/server/database/migrations.ts.txt",
+      "edits": [
+        {
+          "before": "import { cronTaskStorageMigration } from '../cron/storage-provider.ts';",
+          "after": "import { cronTaskStorageMigration } from '../cron/storage-provider.ts';\nimport { entryLockStorageMigration } from '../entry-locks/storage-provider.ts';",
+          "count": 1
+        },
+        {
+          "before": "  seoStorageMigration, cronTaskStorageMigration\n",
+          "after": "  seoStorageMigration, cronTaskStorageMigration, entryLockStorageMigration\n",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "src/lib/server/database/contract.ts",
+      "baseBytes": 5668,
+      "baseSha256": "486c5d939927cbee605cdf6eccb4ebfaba6078d5e4f852e60efe383a94bb2d2c",
+      "baseBlob": "f4f191a17c16984b06e779a13557004b4c9f5ab3",
+      "afterBytes": 5767,
+      "afterSha256": "a3f6e0e4836418d4a1b7c0b8eed2fff7a9f363fba5288905b7a0cbbed9c74981",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/src/lib/server/database/contract.ts.txt",
+      "edits": [
+        {
+          "before": "import type { ContentValidationIssue } from '../schema/validate-content.ts';",
+          "after": "import type { ContentValidationIssue } from '../schema/validate-content.ts';\nimport type { EntryLockTable } from '../entry-locks/types.ts';",
+          "count": 1
+        },
+        {
+          "before": "export interface CmsTables extends AuthTables, AuthIdentityTables {",
+          "after": "export interface CmsTables extends AuthTables, AuthIdentityTables {\n  _cms_entry_locks: EntryLockTable;",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "src/lib/server/database/collection-indexes.ts",
+      "baseBytes": 3531,
+      "baseSha256": "05967581d3092e52f9d19e3fd538afee064bdb940437a9de2ecba584c9444a60",
+      "baseBlob": "1ce5d757081b8897abbdf7c9658be1ff9e2d4299",
+      "afterBytes": 3531,
+      "afterSha256": "4669aebdb3308187127f7ae6bd0659897f8ab7b839957a882a74119dcc0acdab",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/src/lib/server/database/collection-indexes.ts.txt",
+      "edits": [
+        {
+          "before": "versions.length>18",
+          "after": "versions.length>19",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-installation.test.ts",
+      "baseBytes": 4382,
+      "baseSha256": "7f1e2b2c25dbf0d1661cfb6648eee9306a92786684aca7cb29889989e87cbf03",
+      "baseBlob": "f5a9a5e2a636f695a48edc6e2cef6419c914141b",
+      "afterBytes": 4385,
+      "afterSha256": "15fb165d030dda6e9435e91c0f240c06ff668f153b3e1b3f93f86b75ae8570c4",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/canonical-installation.test.ts.txt",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-installation-values.test.ts",
+      "baseBytes": 13564,
+      "baseSha256": "2a96f566993a41823fdb0962564c7b9a96fbe1d27bcbb3d67c8d16d2ecce79d0",
+      "baseBlob": "4b4a34fa89ab2f475c8d5e6f22f94cc78ad000d7",
+      "afterBytes": 13567,
+      "afterSha256": "08f5085831d92fade905608d096f6ecf9c44214201deae6f9c0bc5aae01c094d",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/canonical-installation-values.test.ts.txt",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/lifecycle-canonical-storage.test.ts",
+      "baseBytes": 4971,
+      "baseSha256": "ae2f772d963d288b746e37dfa1458988fe5e73ab24aa6c8a23b8b5beb346fef0",
+      "baseBlob": "db8d9a3820c37af36fead90dd438159546f7592b",
+      "afterBytes": 4974,
+      "afterSha256": "759f4137285fe36d50e6d7a088217325c99f9608ccbfcb5d96a34781981ef733",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/lifecycle-canonical-storage.test.ts.txt",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/lifecycle-startup-upgrade.test.ts",
+      "baseBytes": 16914,
+      "baseSha256": "b20f4870587492175d670eeb3c48cd4af14542048265e535e011426cddc5085d",
+      "baseBlob": "78f3aa04b5ef2756d8c262607bbe03f38002f430",
+      "afterBytes": 16923,
+      "afterSha256": "2a1e658bce710489fabc4132ac055a4b52def894f647d0f0f76eeaca100aa143",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/lifecycle-startup-upgrade.test.ts.txt",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]",
+          "count": 3
+        },
+        {
+          "before": ")).rows[0].version,18);",
+          "after": ")).rows[0].version,19);",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/blocks/provider-preservation.test.ts",
+      "baseBytes": 18912,
+      "baseSha256": "953ccbb2ed4e104a2fdef0455f1a50028568481b5e050197c5aec31796b17c49",
+      "baseBlob": "3a8977512f5251983a93808edf417108cc1c0a78",
+      "afterBytes": 18912,
+      "afterSha256": "51942b7fa77d2bd3812afcc62816071f42c32be745fc8a85629128eae6d6c644",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/blocks/provider-preservation.test.ts.txt",
+      "edits": [
+        {
+          "before": "CMS_MIGRATION_VERSION,18",
+          "after": "CMS_MIGRATION_VERSION,19",
+          "count": 3
+        },
+        {
+          "before": "selectAll().execute()).length,18",
+          "after": "selectAll().execute()).length,19",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-feature-storage-original.test.ts",
+      "baseBytes": 4277,
+      "baseSha256": "6c717888d0eec3677151f7085b9e756e023229f0fac424d795ae337f47fc35af",
+      "baseBlob": "73eff63659d979a986cecc4ff7e75002405ae00c",
+      "afterBytes": 4277,
+      "afterSha256": "fcb919a439091a2dcfff8355b7a4bda4344be5ab4992de659e73afd69f17bac1",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/canonical-feature-storage-original.test.ts.txt",
+      "edits": [
+        {
+          "before": "actual contiguous providers through 18",
+          "after": "actual contiguous providers through 19",
+          "count": 1
+        },
+        {
+          "before": "Array.from({ length: 18 }",
+          "after": "Array.from({ length: 19 }",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-feature-atomicity-original.test.ts",
+      "baseBytes": 7266,
+      "baseSha256": "3b9f4ee574695d517814bcb10523471c70c9b06d485f6a199862dd7097c51958",
+      "baseBlob": "a7f7ed802d0dc426ff033b995bb2fb3dcc4af544",
+      "afterBytes": 7266,
+      "afterSha256": "bbcf60f35beb7efe50a1a55cb6244e352ce3b643e7d9819944b82bf956a26724",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/canonical-feature-atomicity-original.test.ts.txt",
+      "edits": [
+        {
+          "before": "latestMarkers18",
+          "after": "latestMarkers19",
+          "count": 4
+        },
+        {
+          "before": "Array.from({ length: 18 }",
+          "after": "Array.from({ length: 19 }",
+          "count": 1
+        },
+        {
+          "before": "persisted v18 reopen",
+          "after": "persisted v19 reopen",
+          "count": 1
+        },
+        {
+          "before": "\u219218 installation",
+          "after": "\u219219 installation",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/seo-storage-native/canonical.test.ts",
+      "baseBytes": 4398,
+      "baseSha256": "9814b3eef8f882d29693e4127e13ecdc6bcc4104694210c785a6cb0671af3029",
+      "baseBlob": "a9b020a453de63171d63fe92f5df482fe92212ee",
+      "afterBytes": 4398,
+      "afterSha256": "466de767d6bf75c0b6268b23933ea636a1062aa6608b655bfebe146e73248cbb",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/seo-storage-native/canonical.test.ts.txt",
+      "edits": [
+        {
+          "before": "Array.from({length:18}",
+          "after": "Array.from({length:19}",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "src/lib/server/cron/readiness.ts",
+      "baseBytes": 1699,
+      "baseSha256": "6612c4edab932649f8818929c276dbbbe98b8461578d1f0338db69080227129a",
+      "baseBlob": "bd393272e4190f213f9dea2caedb28eeb2574c7d",
+      "afterBytes": 1699,
+      "afterSha256": "a9807a7928ff3cb45aff9cc45fe6f61d6121968219b82e7f82d53c923589b3bd",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/src/lib/server/cron/readiness.ts.txt",
+      "edits": [
+        {
+          "before": "complete canonical1\u201318 installation",
+          "after": "complete canonical1\u201319 installation",
+          "count": 1
+        },
+        {
+          "before": "markers.length !== 18",
+          "after": "markers.length !== 19",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/cron-task-readiness.test.ts",
+      "baseBytes": 8137,
+      "baseSha256": "56ffbdd25b87813aca0a04e0a69d42a5bae4059e94a6e10ee70401515e164112",
+      "baseBlob": "bf04ab99992fc5ad53dec194938fc2ae023e8dfb",
+      "afterBytes": 8137,
+      "afterSha256": "09be3728bbd4259f9a67240959f1c055a1e76363bb04b29a2451605f543d1664",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/tests/cron-task-readiness.test.ts.txt",
+      "edits": [
+        {
+          "before": "creation supports actual18",
+          "after": "creation supports actual19",
+          "count": 1
+        },
+        {
+          "before": "VALUES(19)",
+          "after": "VALUES(20)",
+          "count": 2
+        },
+        {
+          "before": "version=19 OR version=17",
+          "after": "version=20 OR version=17",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "scripts/check-cron-task-storage-source.mjs",
+      "baseBytes": 3240,
+      "baseSha256": "45cebeadebab6ddf212d79c3e5d6de1a40aca3a78dda81b6f4adf3b25588b37f",
+      "baseBlob": "4f870df4e6038c0f7ca4889d3aaa0b40e952bb05",
+      "afterBytes": 3330,
+      "afterSha256": "3b44549b773319ef4d0eda4bd166806d67019576fd196de1d775f40dacf96bf5",
+      "archive": "parity/emdash/entry-locks/native-canonical18-original/scripts/check-cron-task-storage-source.mjs.txt",
+      "edits": [
+        {
+          "before": "import { readFileSync } from 'node:fs';",
+          "after": "import { readFileSync } from 'node:fs';\nimport { readEntryLockPriorNative } from './entry-locks-canonical-transport.mjs';",
+          "count": 1
+        },
+        {
+          "before": "let body = readFileSync(leaf.path, 'utf8');",
+          "after": "let body = readEntryLockPriorNative(leaf.path);",
+          "count": 1
+        },
+        {
+          "before": "const nativeTest = readFileSync(transport.path, 'utf8');",
+          "after": "const nativeTest = readEntryLockPriorNative(transport.path);",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

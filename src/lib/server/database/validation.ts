@@ -103,7 +103,7 @@ export const updateDraftInput = v.strictObject({
   data, slug: v.optional(v.nullable(v.pipe(v.string(), v.maxLength(200)))),
   locale: v.optional(localeInput, 'en')
 });
-export const deleteDraftInput = v.strictObject({ type: identifier, id: entryId, expected: revisionInput, locale: v.optional(localeInput, 'en') });
+export const deleteDraftInput = v.strictObject({ type: identifier, id: entryId, expected: revisionInput, locale: v.optional(localeInput, 'en'), overrideLock: v.optional(v.boolean()) });
 export const getDraftInput = v.strictObject({ type: identifier, id: entryId, locale: v.optional(localeInput, 'en') });
 // Trash reads deliberately leave locale absent: omission includes every locale.
 export const getTrashedDraftInput = v.strictObject({ type: identifier, id: entryId, locale: v.optional(localeInput) });

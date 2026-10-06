@@ -1,0 +1,40 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "baseline": "82e3dd7b673f774ca8c3eceaafa28234641bd6b1",
+  "sourceMigration": "packages/core/src/database/migrations/075_entry_edit_locks.ts",
+  "sharedEditsHeld": true,
+  "schema": {
+    "proposedVersion": "19 ONLY after independently approved public Cron129 provider18 union; no parallel provider18 or reservation",
+    "name": "entry-edit-lock-storage",
+    "table": "_cms_entry_locks",
+    "columns": [
+      { "name": "collection", "type": "TEXT", "notNull": true, "default": null },
+      { "name": "entry_id", "type": "TEXT", "notNull": true, "default": null },
+      { "name": "user_id", "type": "TEXT", "notNull": true, "default": null, "references": "_cms_auth_users(id)", "onDelete": "CASCADE" },
+      { "name": "token", "type": "TEXT", "notNull": true, "default": null },
+      { "name": "acquired_at", "type": "TEXT", "notNull": true, "default": null },
+      { "name": "expires_at", "type": "TEXT", "notNull": true, "default": null }
+    ],
+    "primaryKey": { "name": "pk_cms_entry_locks", "columns": ["collection", "entry_id"] },
+    "index": { "name": "idx_cms_entry_locks_user_id", "columns": ["user_id"] },
+    "alreadySatisfiedSourceAlter": "_cms_collections.edit_locking already has INTEGER NOT NULL DEFAULT 1 through provider8; do not alter it or historical provider bodies",
+    "installation": "Append one provider through ordinary migrateCms known-object/prerequisite validation and atomicBatch; reject unknown/partially installed lock layout before any write, never adopt an unowned pre-provider table",
+    "collectionCreatorAdmission": "Current latest-version bound changes from qualified Cron18 to19 only after full old Native families have run unchanged; paired strict reverse guards retain all old assertion/clock/data bytes. Historical 17 and18 expectations remain historical.",
+    "immutable": "Providers1–17 and sole Cron18 statements/order/schema/normalization are byte-identical; bootstrap, secured shared CI, Source pin, dependencies, lock and security unchanged"
+  },
+  "repository": {
+    "nativePath": "src/lib/server/entry-locks/repository.ts",
+    "constructor": "EntryLockRepository(CmsDatabase)",
+    "methods": ["acquire", "refreshHeld", "findLive", "findEnforceable", "release", "releaseEntry"],
+    "sourceBehavior": "Same two claim attempts, single SQL INSERT ON CONFLICT guarded database-clock lease claim with returningAll, explicit takeover, same-account original acquisition preservation, latest token release, no writer implicit acquire, absent/expired locks invisible; no added race consequence probes",
+    "finiteTransportSpans": [
+      "Imports and constructor use actual CmsDatabase.db typed finite EntryLockTables; explicit private field + assignment preserves Source mutable db and initialization semantics.",
+      "Known table namespace strings _emdash_entry_locks/_emdash_collections become _cms_entry_locks/_cms_collections; no raw SQL or input text rewrite.",
+      "Source users leftJoin/read name sites become actual _cms_auth_users LEFT JOIN _cms_auth_profiles via stable identity id/user_id, so existing identities without profiles and removed identities return Source null name; FK targets canonical identity.",
+      "Dialect detection uses actual Kysely PostgresAdapter identity as Source; current Native Node/D1 remain SQLite, no invented PostgreSQL capability."
+    ],
+    "ownership": "Sole actual repository; Plugin127 wraps the constructor through its genuine registered owner and delegates releaseEntry; no second repository/writer/view/trigger or ghost producer."
+  },
+  "referenceEvidence": "Whole immutable Source physical fixture runs complete Original package families where dependencies resolve; genuine Native supplemented separately on canonical actual migrated Node/D1. Full MCP/credential E2E remains held or unimplemented until actual owning producers; import/fixture stops earn zero causal/parity credit.",
+  "next": "Port whole Source tests and complete closure; record actual first stops and focused Native genuine lease consequences before implementation, strict reverse proof every finite Source transport span, full stationary native/public vectors, independent final review and all6 current normal gates before Root approval and author expected-head regular merge."
+}

@@ -1,0 +1,84 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "wholeReversal": [
+    {
+      "source": "parity/emdash/entry-locks/source/packages/core/src/api/handlers/entry-lock.ts",
+      "native": "src/lib/server/entry-locks/handlers.ts",
+      "sourceSha256": "ac481bb309eb60787c7e604dea185f180ae030c8e2e7db4acf6a002d91c20c60",
+      "header": "// Complete EmDash 1.1.0 entry-lock handlers. Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.\n// Native transport: actual CmsDatabase owner and canonical collection namespace.\n",
+      "finiteSpans": [
+        {
+          "name": "real owner/import boundaries",
+          "original": "import type { Kysely } from \"kysely\";\nimport { ulid } from \"ulidx\";\n\nimport { EntryLockRepository, type EntryLock } from \"../../database/repositories/entry-locks.js\";\nimport type { Database } from \"../../database/types.js\";\nimport { ErrorCode } from \"../errors.js\";\nimport type { ApiResult } from \"../types.js\";",
+          "native": "import { ulid } from \"ulidx\";\n\nimport { EntryLockRepository, type EntryLock } from \"./repository.ts\";\nimport type { CmsDatabase } from \"../database/contract.ts\";\nimport { ErrorCode } from \"./error-codes.ts\";\nimport type { ApiResult } from \"./result.ts\";"
+        },
+        {
+          "name": "same native canonical database argument at all five signatures",
+          "original": "db: Kysely<Database>",
+          "native": "db: CmsDatabase",
+          "occurrences": 5
+        },
+        {
+          "name": "actual canonical query executor",
+          "original": "const row = await db\n",
+          "native": "const row = await db.db\n"
+        }
+      ],
+      "namespace": {
+        "_emdash_collections": "_cms_collections"
+      }
+    },
+    {
+      "source": "parity/emdash/entry-locks/source/packages/admin/src/lib/api/entry-lock.ts",
+      "native": "src/lib/entry-locks/client.ts",
+      "sourceSha256": "82ffc6b7ba511ca595d6c3be76879030aced846dc90b523f6f20f19527e5332b",
+      "header": "// Complete EmDash 1.1.0 entry-lock API functions. Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.\n// Native URL/error/localization host uses the existing actual browser client.\n",
+      "finiteSpans": [
+        {
+          "name": "existing Native catalog owner",
+          "original": "import { i18n } from \"@lingui/core\";\nimport { msg } from \"@lingui/core/macro\";",
+          "native": "import { translateEntryLock } from \"./messages.ts\";"
+        },
+        {
+          "name": "existing Native API owner",
+          "original": "import { API_BASE, apiFetch, parseApiResponse, ApiResponseError } from \"./client.js\";",
+          "native": "import { API_BASE, apiFetch, parseApiResponse, ApiResponseError } from \"../sections-widgets/client.ts\";"
+        },
+        {
+          "name": "lock failure descriptor",
+          "original": "i18n._(msg`Failed to lock the entry`)",
+          "native": "translateEntryLock(\"Failed to lock the entry\")"
+        },
+        {
+          "name": "release failure descriptor",
+          "original": "i18n._(msg`Failed to release the entry lock`)",
+          "native": "translateEntryLock(\"Failed to release the entry lock\")"
+        }
+      ],
+      "namespace": {}
+    },
+    {
+      "source": "parity/emdash/entry-locks/source/packages/core/src/api/schemas/entry-lock.ts",
+      "native": "src/lib/server/entry-locks/schema.ts",
+      "sourceSha256": "bcc6000f59e0f820b92795a21f38a4ee36190d2e7ad9719896410490db5f4548",
+      "header": "// EmDash 1.1.0 complete entry-lock schemas. Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.\n",
+      "finiteSpans": [],
+      "namespace": {}
+    },
+    {
+      "source": "parity/emdash/entry-locks/source/packages/core/src/api/types.ts",
+      "native": "src/lib/server/entry-locks/result.ts",
+      "sourceSha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
+      "slice": {
+        "start": 2683,
+        "end": 2872,
+        "sha256": "35d0eb1f8d38815c13668ac9c3568062f1b99e30e812b711a62cca1300ff5fd0"
+      },
+      "header": "// Complete Source ApiResult type; MIT Copyright 2026 Cloudflare Inc.\n",
+      "finiteSpans": [],
+      "namespace": {},
+      "claim": "Complete Source type declaration, not complete source module identity."
+    }
+  ],
+  "claims": "Exact finite import/typed owner/catalog transport only; Source clock, token, error, schema, acquire/refresh/release functions unchanged. Complete Source errors are owned by the accepted sections-widgets module and re-exported without a second enum. Real Native storage/provider19 and actual protected transport remain held. Native controller/Svelte notice are framework transpositions, not byte reversals."
+}

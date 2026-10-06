@@ -4,7 +4,7 @@ import { entryId } from '../database/validation.ts';
 import { CmsError, type DraftEntry } from '../database/contract.ts';
 import type { ContentItem } from '../database/lifecycle/upstream/database/repositories/types.ts';
 
-export const lifecycleMutation=v.strictObject({...contentKey.entries,_rev:revisionToken});
+export const lifecycleMutation=v.strictObject({...contentKey.entries,_rev:revisionToken,overrideLock:v.optional(v.boolean())});
 export const publishInput=v.strictObject({...lifecycleMutation.entries,
   publishedAt:v.optional(v.pipe(v.string(),v.minLength(1),v.maxLength(128)))});
 export const revisionList=v.strictObject({...contentKey.entries,

@@ -1,0 +1,8 @@
+{
+  "status": "Three Native supplemental controller cases cannot import the absent controller module; zero callbacks and zero causal credit. Whole immutable Original hook/browser families were ported earlier; no stub implementation or passing parity is claimed.",
+  "raw": {
+    "bytes": 1126,
+    "sha256": "3f5ceb7046baa1d8b3d380c01f2f23452f54f89468e2708112023f1bdcd0e164",
+    "utf8": "\n RUN  v4.1.10 /workspace/cms-canonical-entry-locks\n\n \u276f tests/entry-locks-native/controller.test.ts (0 test)\n\n\u23af\u23af\u23af\u23af\u23af\u23af Failed Suites 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/entry-locks-native/controller.test.ts [ tests/entry-locks-native/controller.test.ts ]\nError: Cannot find module '../../src/lib/entry-locks/controller.ts' imported from /workspace/cms-canonical-entry-locks/tests/entry-locks-native/controller.test.ts\n \u276f tests/entry-locks-native/controller.test.ts:4:1\n      2| // Source clocks and case data remain in the original whole browser fa\u2026\n      3| import { afterEach,beforeEach,expect,test,vi } from 'vitest';\n      4| import { createEntryLockController,ENTRY_LOCK_HEARTBEAT_MS } from '../\u2026\n       | ^\n      5| const ada={userId:'ada',userName:'Ada',acquiredAt:'2026-09-04T10:00:00\u2026\n      6| const granted={enabled:true,heldByCaller:true,holder:ada};\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  02:06:06\n   Duration  149ms (transform 19ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)\n\n"
+  }
+}

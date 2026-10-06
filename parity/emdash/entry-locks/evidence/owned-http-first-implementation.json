@@ -1,0 +1,54 @@
+{
+  "baseline": "540470e9",
+  "classification": "Actual sole Native controlled Request/principal/context producer9; no protected HTTP/session/storage/security or Original Source25 lock-route claim. WholeSource lock route reverses exactly7 finite import/type spans.",
+  "nativeCallbacks": 9,
+  "nativePass": 9,
+  "files": [
+    {
+      "path": "src/lib/server/entry-locks/route.ts",
+      "bytes": 4143,
+      "sha256": "56fdff337c2b1fed2de013d931979d473504cb36b47435d8a879e3a064aa5513"
+    },
+    {
+      "path": "src/lib/server/entry-locks/http.ts",
+      "bytes": 2434,
+      "sha256": "20f5bd5cd4061c9c6076c70ddbee3c1d97c41662079ec6626253f6419212a482"
+    },
+    {
+      "path": "src/lib/server/entry-locks/authorize.ts",
+      "bytes": 597,
+      "sha256": "0eef60a474532ee23085362a62628c707ef8293289de18089ae93c3d0d6bf03b"
+    },
+    {
+      "path": "src/lib/server/entry-locks/route-types.ts",
+      "bytes": 499,
+      "sha256": "877d0089ec4f6bf43e180df7eadf770fce3ed4fcf36f803f8e08428f5b0fbabb"
+    },
+    {
+      "path": "src/routes/api/content/[collection]/[id]/lock/+server.ts",
+      "bytes": 353,
+      "sha256": "2ac5c13a66cedc160371f9bf11a749bc4febf6ce4d996096d38478c20bb94f50"
+    },
+    {
+      "path": "src/routes/_emdash/api/content/[collection]/[id]/lock/+server.ts",
+      "bytes": 353,
+      "sha256": "2ac5c13a66cedc160371f9bf11a749bc4febf6ce4d996096d38478c20bb94f50"
+    }
+  ],
+  "logs": [
+    {
+      "command": "node node_modules/vitest/vitest.mjs run --config vitest.entry-locks-http-native.config.ts",
+      "exitCode": 0,
+      "bytes": 220,
+      "sha256": "72297171ef75aec50077411e3271690602a1681886bf8440b4113a2abddfa5a3",
+      "fullLog": "\n RUN  v4.1.10 /workspace/cms-canonical-entry-locks\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  03:05:58\n   Duration  430ms (transform 108ms, setup 0ms, import 274ms, tests 37ms, environment 0ms)\n\n"
+    },
+    {
+      "command": "node scripts/check-entry-locks-source.mjs",
+      "exitCode": 0,
+      "bytes": 362,
+      "sha256": "a061d2e8892e3837c2e5dd8b69bf026547f943c1362a0c994d8c1892cabb3c76",
+      "fullLog": "{\"pin\":\"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e\",\"wholeSourceFiles\":785,\"wholeSourceBytes\":7921851,\"families\":7,\"repositoryFiniteSpans\":5,\"wholeRepositoryReversed\":true,\"productTestsRun\":0}\n{\"wholeNativeLeaves\":14,\"finiteSpans\":27,\"productCallbacks\":0}\n{\"wholeEditorSharedReversals\":2,\"productCallbacks\":0}\n{\"wholeWriterSharedReversals\":9,\"productCallbacks\":0}\n"
+    }
+  ]
+}

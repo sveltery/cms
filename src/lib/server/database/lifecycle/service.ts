@@ -1,4 +1,5 @@
 import { sql, type CompiledQuery } from 'kysely';
+import {assertEntryLockWrite} from '../../entry-locks/write.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type RevisionPrecondition } from '../contract.ts';
 import type { ServerPrincipal } from '../service.ts';
@@ -30,10 +31,10 @@ import type {Database as SeoDatabase} from '../../seo/types.ts';
 // EmDashRuntime.handleContentUpdate:3538,hydrateDraftData:3257 and revision
 // restore:4974 at immutable913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
-const DRAFT_ONLY_UPDATE_KEYS = new Set(['data','slug','locale','skipRevision','taxonomies','references','actor','migrateBlocks','replaceBlocks']);
+const DRAFT_ONLY_UPDATE_KEYS = new Set(['data','slug','locale','skipRevision','taxonomies','references','actor','migrateBlocks','replaceBlocks','overrideLock']);
 const UNSUPPORTED = ['references','bylines','actor','migrateBlocks','replaceBlocks','translationOf','inheritFields'];
 export interface ContentKey {type:string;id:string;locale?:string}
-export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition}
+export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition;overrideLock?:boolean}
 export interface ContentUpdate extends ContentMutation {
   data?:Record<string,unknown>;taxonomies?:Record<string,string[]>;seo?:ContentSeoInput;slug?:string|null;skipRevision?:boolean;publishedAt?:string|null;
 }
@@ -62,6 +63,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     if(value.taxonomies!==undefined&&(value.taxonomies===null||typeof value.taxonomies!=='object'||Array.isArray(value.taxonomies)))throw new CmsError('VALIDATION_ERROR','taxonomies must be a map of term slugs');
     if(value.seo!==undefined)value={...value,seo:parse(contentSeoInput,value.seo)};
     if(value.skipRevision!==undefined)parse(v.boolean(),value.skipRevision);
+    if(value.overrideLock!==undefined)parse(v.boolean(),value.overrideLock);
     if(value.status!==undefined)parse(v.string(),value.status);
     return value;
   }
@@ -240,8 +242,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     async updateContent(input:unknown):Promise<ContentReceipt> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);
-      let existing=(await stored(value)).item;owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
+      let existing=(await stored(value)).item;owner(existing,actor,'content:edit_any');
       publicationDatePermission(value);
+      await assertEntryLockWrite(database,value.type,existing.id,actor.id,value.overrideLock);
+      precondition(value.expected,existing);
       const collection=await definition(value.type);checkSeoCollection(value.type,value.seo,collection.hasSeo);const fields=new Set(collection.fields.map(field=>field.slug));
       let data=value.data===undefined?undefined:normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       if(data){
@@ -330,8 +334,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     async publish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
-      owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
-      publicationDatePermission(value);
+      owner(item,actor,'content:publish_any');publicationDatePermission(value);
+      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);
+      precondition(value.expected,item);const collection=await definition(value.type);
       let redirectCreated=false;
       const executePublication=publicationStatementExecutor(database,{id:collection.id,slug:value.type,version:collection.version,urlPattern:collection.urlPattern??null},candidate=>{redirectCreated=candidate;});
       const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,
@@ -342,7 +347,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     /** Calendar administration delegates to the existing published repository. */
     async schedule(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const {item}=await stored(value);
-      owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      owner(item,actor,'content:publish_any');
+      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);
+      precondition(value.expected,item);
       // Pinned handleContentSchedule checks the existing routable slug before
       // delegating to the repository, including rescheduling a cleared draft.
       const collection=await definition(value.type);
@@ -352,12 +359,16 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     async unschedule(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const {item}=await stored(value);
-      owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      owner(item,actor,'content:publish_any');
+      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);
+      precondition(value.expected,item);
       return translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
     },
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
-      owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      owner(item,actor,'content:publish_any');
+      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);
+      precondition(value.expected,item);
       const unpublished=await translate(()=>content.unpublish(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
       // Source cleanup consumes the actual queued boundary, including work
       // already pending for an existing draft. This host binds that consumer
@@ -376,7 +387,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     async discardDraft(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
-      owner(item,actor,'content:edit_any');precondition(value.expected,item);
+      owner(item,actor,'content:edit_any');
+      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);
+      precondition(value.expected,item);
       return hydrateContentSeo(database,value.type,await translate(()=>content.discardDraft(value.type,value.id,{version:item.version,updatedAt:item.updatedAt})),persisted.hasSeo);
     },
     async listRevisions(input:unknown):Promise<Revision[]> {
@@ -388,7 +401,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const revision=await revisions.findById(parse(entryId,value.revisionId));if(!revision)throw new CmsError('NOT_FOUND');
       if(value.type!==undefined&&value.type!==revision.collection||value.id!==undefined&&value.id!==revision.entryId)throw new CmsError('NOT_FOUND');
       const contentKey={type:revision.collection,id:revision.entryId,locale:parse(localeInput,value.locale??'en')};const item=(await stored(contentKey)).item;
-      owner(item,actor,'content:edit_any');precondition(value.expected,item);const collection=await definition(revision.collection);
+      owner(item,actor,'content:edit_any');
+      await assertEntryLockWrite(database,revision.collection,item.id,actor.id,value.overrideLock);
+      precondition(value.expected,item);const collection=await definition(revision.collection);
       const restored={...revision.data};delete restored._referencesBaseline;
       return translate(async()=>{
         if(collection.supports.includes('revisions')){

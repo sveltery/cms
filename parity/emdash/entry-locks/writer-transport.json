@@ -1,0 +1,269 @@
+{
+  "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+  "sharedDrafts": [
+    {
+      "path": "src/lib/server/database/lifecycle/service.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 31654,
+      "oldSha256": "c25791651afb955fc94681a4f94e62f396a107a5192fed59221a4b2051fcd2b0",
+      "draftBytes": 32525,
+      "draftSha256": "1898723e515f698b57a897127efe73abb7aaac8049ec99433ff8212f3bb9686f",
+      "finiteSpans": [
+        {
+          "name": "sole actual Native lock writer import",
+          "original": "import { sql, type CompiledQuery } from 'kysely';",
+          "native": "import { sql, type CompiledQuery } from 'kysely';\nimport {assertEntryLockWrite} from '../../entry-locks/write.ts';",
+          "occurrences": 1
+        },
+        {
+          "name": "optout stays a draft transport key, never live metadata",
+          "original": "'migrateBlocks','replaceBlocks']);",
+          "native": "'migrateBlocks','replaceBlocks','overrideLock']);",
+          "occurrences": 1
+        },
+        {
+          "name": "optional exact boolean mutation interface",
+          "original": "export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition}",
+          "native": "export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition;overrideLock?:boolean}",
+          "occurrences": 1
+        },
+        {
+          "name": "all actual lifecycle objects validate explicit boolean optout",
+          "original": "if(value.skipRevision!==undefined)parse(v.boolean(),value.skipRevision);",
+          "native": "if(value.skipRevision!==undefined)parse(v.boolean(),value.skipRevision);\n    if(value.overrideLock!==undefined)parse(v.boolean(),value.overrideLock);",
+          "occurrences": 1
+        },
+        {
+          "name": "update actual owner/date permissions before refusal before CAS",
+          "original": "let existing=(await stored(value)).item;owner(existing,actor,'content:edit_any');precondition(value.expected,existing);\n      publicationDatePermission(value);",
+          "native": "let existing=(await stored(value)).item;owner(existing,actor,'content:edit_any');\n      publicationDatePermission(value);\n      await assertEntryLockWrite(database,value.type,existing.id,actor.id,value.overrideLock);\n      precondition(value.expected,existing);",
+          "occurrences": 1
+        },
+        {
+          "name": "publish actual owner/date permissions before refusal before CAS",
+          "original": "owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);\n      publicationDatePermission(value);",
+          "native": "owner(item,actor,'content:publish_any');publicationDatePermission(value);\n      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);\n      precondition(value.expected,item);const collection=await definition(value.type);",
+          "occurrences": 1
+        },
+        {
+          "name": "schedule unschedule unpublish exact three refusal boundaries",
+          "original": "owner(item,actor,'content:publish_any');precondition(value.expected,item);",
+          "native": "owner(item,actor,'content:publish_any');\n      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);\n      precondition(value.expected,item);",
+          "occurrences": 3
+        },
+        {
+          "name": "discardDraft exact refusal boundary",
+          "original": "owner(item,actor,'content:edit_any');precondition(value.expected,item);\n      return hydrateContentSeo(database,value.type,await translate(()=>content.discardDraft",
+          "native": "owner(item,actor,'content:edit_any');\n      await assertEntryLockWrite(database,value.type,item.id,actor.id,value.overrideLock);\n      precondition(value.expected,item);\n      return hydrateContentSeo(database,value.type,await translate(()=>content.discardDraft",
+          "occurrences": 1
+        },
+        {
+          "name": "restoreRevision actual discovered identity/owner before refusal before CAS",
+          "original": "owner(item,actor,'content:edit_any');precondition(value.expected,item);const collection=await definition(revision.collection);",
+          "native": "owner(item,actor,'content:edit_any');\n      await assertEntryLockWrite(database,revision.collection,item.id,actor.id,value.overrideLock);\n      precondition(value.expected,item);const collection=await definition(revision.collection);",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/database/lifecycle/service.ts.txt"
+    },
+    {
+      "path": "src/lib/server/database/content-service.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 12072,
+      "oldSha256": "75604a64b08c0b4956dcd624dde73655dc3173fdd4dff2d7118fb491ce9f13e1",
+      "draftBytes": 12677,
+      "draftSha256": "e9bfef250c08d51aefaa4e9f0a385482a17dd7aad2373e23120cde5fcf5ca306",
+      "finiteSpans": [
+        {
+          "name": "sole actual lock writer import",
+          "original": "import {sql,type CompiledQuery} from 'kysely';",
+          "native": "import {sql,type CompiledQuery} from 'kysely';\nimport {assertEntryLockWrite} from '../entry-locks/write.ts';",
+          "occurrences": 1
+        },
+        {
+          "name": "optional actual fixed-batch success tail",
+          "original": "async function guarded(collection:{id:string;version:number},query:CompiledQuery){",
+          "native": "async function guarded(collection:{id:string;version:number},query:CompiledQuery,afterSuccess:readonly CompiledQuery[]=[]){",
+          "occurrences": 1
+        },
+        {
+          "name": "immediate actual UPDATE changes success guard before release",
+          "original": "query,sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)",
+          "native": "query,\n   ...(afterSuccess.length?[\n    sql`INSERT INTO _cms_guards(token,pass) SELECT ${token+'-entry-lock-delete'},CASE WHEN changes()=1 THEN 1 ELSE 0 END`.compile(database.db),\n    ...afterSuccess,sql`DELETE FROM _cms_guards WHERE token=${token+'-entry-lock-delete'}`.compile(database.db)\n   ]:[]),\n   sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)",
+          "occurrences": 1
+        },
+        {
+          "name": "delete actual permission/owner before assertion before actual write",
+          "original": "const item=(await includingTrashed(value.type,value.id,value.locale)).item;if(item.deletedAt)throw new CmsError('NOT_FOUND');owner(item,'content:delete_any');",
+          "native": "const item=(await includingTrashed(value.type,value.id,value.locale)).item;if(item.deletedAt)throw new CmsError('NOT_FOUND');owner(item,'content:delete_any');\n   await assertEntryLockWrite(database,value.type,item.id,identity.id,value.overrideLock);",
+          "occurrences": 1
+        },
+        {
+          "name": "only successful actual delete releases within same genuine batch",
+          "original": "const results=await guarded(collection,query);if(!results[1]?.rows.length)throw new CmsError('CONFLICT');",
+          "native": "const results=await guarded(collection,query,[sql`DELETE FROM _cms_entry_locks WHERE collection=${value.type} AND entry_id=${item.id}`.compile(database.db)]);if(!results[1]?.rows.length)throw new CmsError('CONFLICT');",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/database/content-service.ts.txt"
+    },
+    {
+      "path": "src/lib/server/database/content-validation.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 2091,
+      "oldSha256": "b3b0ccb0b3f74299a645464c7c6d6847318e43ec948ba639a8cd41f87faebf4d",
+      "draftBytes": 2128,
+      "draftSha256": "abd77d0741be50ccd7bb90e684b2ecee7330a7d4d45217c071f838e50d1bb3f7",
+      "finiteSpans": [
+        {
+          "name": "actual generic update boolean optout",
+          "original": "seo:v.optional(contentSeoInput)});",
+          "native": "seo:v.optional(contentSeoInput),overrideLock:v.optional(v.boolean())});",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/database/content-validation.ts.txt"
+    },
+    {
+      "path": "src/lib/server/database/validation.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 8075,
+      "oldSha256": "9c77d0c75f1e9e19be217e3b7ac6951b4db91c94746f594cd81cb8c8847b96e5",
+      "draftBytes": 8114,
+      "draftSha256": "07be3a358013ed755bb604a1641c5c1bac32a738e995e88edc26ec404c36b07c",
+      "finiteSpans": [
+        {
+          "name": "actual delete optional boolean",
+          "original": "export const deleteDraftInput = v.strictObject({ type: identifier, id: entryId, expected: revisionInput, locale: v.optional(localeInput, 'en') });",
+          "native": "export const deleteDraftInput = v.strictObject({ type: identifier, id: entryId, expected: revisionInput, locale: v.optional(localeInput, 'en'), overrideLock: v.optional(v.boolean()) });",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/database/validation.ts.txt"
+    },
+    {
+      "path": "src/lib/server/content/request.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 2535,
+      "oldSha256": "e53d8374bc1cc173ab15b948cefb926fdebf0dc321defd0dfe06038d7d7d67f0",
+      "draftBytes": 2825,
+      "draftSha256": "901e4020557d7bf6f23d0e820ecf60a5c569fd6e0cfb27e7d7ad043f781d5e57",
+      "finiteSpans": [
+        {
+          "name": "actual error owner import",
+          "original": "import { CmsError } from '../database/contract';",
+          "native": "import { CmsError } from '../database/contract';\nimport {EntryLockRefusalError} from '../entry-locks/write.ts';",
+          "occurrences": 1
+        },
+        {
+          "name": "lock holder exact envelope before existing generic errors",
+          "original": "catch (cause) {\n    if (cause instanceof InvalidCursorError)",
+          "native": "catch (cause) {\n    if (cause instanceof EntryLockRefusalError) {\n      const {userId,userName,acquiredAt,expiresAt}=cause.details;\n      error(409,{message:cause.message,code:cause.code,details:{userId,userName,acquiredAt,expiresAt}});\n    }\n    if (cause instanceof InvalidCursorError)",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/content/request.ts.txt"
+    },
+    {
+      "path": "src/lib/server/content/schema.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 6308,
+      "oldSha256": "362f89ee6f6a3180f59009151e14f7b9c6847c7ab0ea02332e015ab412741a49",
+      "draftBytes": 6386,
+      "draftSha256": "ebc5317b3db18b6df61541cbf53ce84339e0fc37748e727d53918c90be8a8123",
+      "finiteSpans": [
+        {
+          "name": "existing update form exact boolean optout",
+          "original": "...contentEntries, data: v.optional(contentData) }),",
+          "native": "...contentEntries, data: v.optional(contentData), overrideLock: v.optional(v.boolean()) }),",
+          "occurrences": 1
+        },
+        {
+          "name": "existing trash form exact boolean optout",
+          "original": "export const trashInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });",
+          "native": "export const trashInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken, overrideLock: v.optional(v.boolean()) });",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/content/schema.ts.txt"
+    },
+    {
+      "path": "src/lib/server/lifecycle/schema.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 1179,
+      "oldSha256": "0c4db8b36750d56011a53562e685611e2faf5d77fdfbcd10294581cb4def55f6",
+      "draftBytes": 1216,
+      "draftSha256": "a01f3f7076b7954cdba17147cf287eaecdef554ee77fef1eae5f8099edae7951",
+      "finiteSpans": [
+        {
+          "name": "existing lifecycle form exact boolean optout",
+          "original": "export const lifecycleMutation=v.strictObject({...contentKey.entries,_rev:revisionToken});",
+          "native": "export const lifecycleMutation=v.strictObject({...contentKey.entries,_rev:revisionToken,overrideLock:v.optional(v.boolean())});",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/lifecycle/schema.ts.txt"
+    },
+    {
+      "path": "src/lib/server/calendar/mutation.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 663,
+      "oldSha256": "189cdb05dcd65d01b1f5b6b1600fe9d76d4ace30330b95f456b654d82a93d93f",
+      "draftBytes": 774,
+      "draftSha256": "ec5ad719cbb475a16413a633c6ae2382260e20e6774d8dd023ae57ca32583554",
+      "finiteSpans": [
+        {
+          "name": "all three Calendar boolean optout forms",
+          "original": "_rev:v.optional(revisionToken)",
+          "native": "_rev:v.optional(revisionToken),overrideLock:v.optional(v.boolean())",
+          "occurrences": 3
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/calendar/mutation.ts.txt"
+    },
+    {
+      "path": "src/lib/server/calendar/admin-http.ts",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 5363,
+      "oldSha256": "12a5cbeac7b6d961a18975c1ef28d8ec7bb4058e3a576fb1dbe087bcd3bd86b0",
+      "draftBytes": 5703,
+      "draftSha256": "9425c79a2008552bccc5ce2b95c2f0f99803d2f5d0a037198816a75effa8f198",
+      "finiteSpans": [
+        {
+          "name": "actual error owner import",
+          "original": "import { CmsError } from '../database/contract.ts';",
+          "native": "import { CmsError } from '../database/contract.ts';\nimport {EntryLockRefusalError} from '../entry-locks/write.ts';",
+          "occurrences": 1
+        },
+        {
+          "name": "exact Source refusal response before generic Calendar errors",
+          "original": "function failure(cause:unknown):Response {\n  if(cause instanceof CmsError){",
+          "native": "function failure(cause:unknown):Response {\n  if(cause instanceof EntryLockRefusalError){\n    const {userId,userName,acquiredAt,expiresAt}=cause.details;\n    return apiError(cause.code,cause.message,409,{userId,userName,acquiredAt,expiresAt});\n  }\n  if(cause instanceof CmsError){",
+          "occurrences": 1
+        },
+        {
+          "name": "actual Calendar carries optout into actual lifecycle writer",
+          "original": "const input={...key,...(value._rev===undefined?{}:",
+          "native": "const input={...key,...(value.overrideLock===undefined?{}:{overrideLock:value.overrideLock}),...(value._rev===undefined?{}:",
+          "occurrences": 1
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-writer-original/src/lib/server/calendar/admin-http.ts.txt"
+    }
+  ],
+  "ownedWriteHelper": {
+    "path": "src/lib/server/entry-locks/write.ts",
+    "bytes": 894,
+    "sha256": "757719611ace8a68e056b5a299f772c85d1945838e2d866e2e90f49710e50318"
+  },
+  "claim": "Exact Root-reviewed shared29 finite spans applied after all24 Native Node/D1 callbacks reached genuine test-first outcomes. Eight after-authorization/owner and before-CAS boundaries use sole Source claim decision; C07 lease cleanup guarded immediately after actual delete success in existing atomic batch. No protected HTTP/session/race credit."
+}

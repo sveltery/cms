@@ -1,0 +1,75 @@
+{
+  "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+  "sharedDrafts": [
+    {
+      "path": "src/lib/editor/EditorForm.svelte",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 9074,
+      "oldSha256": "670cc6b8b4bebfff348d8c72f4cf8764d5535162fd088b50601ed389c71ff53f",
+      "draftBytes": 9388,
+      "draftSha256": "e3f6e253f9ee41c4b02a9e4d7418a44fb89c3534d52465844c77ce774b2c99c3",
+      "finiteSpans": [
+        {
+          "name": "optional Native refusal callback prop",
+          "original": "let { collection, definition, entry, canWrite, canTrash = false, isNew = false }: {",
+          "native": "let { collection, definition, entry, canWrite, canTrash = false, isNew = false, onWriteError }: {"
+        },
+        {
+          "name": "optional Native callback type",
+          "original": "canWrite: boolean; canTrash?: boolean; isNew?: boolean;",
+          "native": "canWrite: boolean; canTrash?: boolean; isNew?: boolean;\n    onWriteError?: (cause: unknown, writtenEntryId: string) => boolean;"
+        },
+        {
+          "name": "actual save target before await",
+          "original": "async function saved(submit: () => Promise<boolean>, form: SaveForm, autosave: boolean) {\n    const success",
+          "native": "async function saved(submit: () => Promise<boolean>, form: SaveForm, autosave: boolean) {\n    const writtenEntryId = session.entry.id;\n    const success"
+        },
+        {
+          "name": "actual rejected submit callback preserving session rethrow",
+          "original": "const accepted = await submit();",
+          "native": "let accepted: boolean;\n      try { accepted = await submit(); }\n      catch (cause) { onWriteError?.(cause, writtenEntryId); throw cause; }"
+        },
+        {
+          "name": "actual trash target before await",
+          "original": "if (!canTrash || trashPending || pending) return;\n    trashPending",
+          "native": "if (!canTrash || trashPending || pending) return;\n    const writtenEntryId = entry.id;\n    trashPending"
+        },
+        {
+          "name": "actual trash refusal before existing presentation",
+          "original": "} catch (cause) { trashError = editorError(cause).message; }",
+          "native": "} catch (cause) { onWriteError?.(cause, writtenEntryId); trashError = editorError(cause).message; }"
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-editor-original/src/lib/editor/EditorForm.svelte.txt"
+    },
+    {
+      "path": "src/routes/content/[collection]/[id]/+page.svelte",
+      "base": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+      "oldBytes": 2840,
+      "oldSha256": "80186ef5cf332dd3b55ec0664e25f3f9321b93afe0037017bb203b6cfd92b698",
+      "draftBytes": 2850,
+      "draftSha256": "0c4f3447bf7865857798ebfba2a0ae3e9b79700edd04d03a67920c6dc1e7239c",
+      "finiteSpans": [
+        {
+          "name": "sole actual detail editor import",
+          "original": "import EditorForm from '$lib/editor/EditorForm.svelte';",
+          "native": "import EditorForm from '$lib/entry-locks/EntryLockEditor.svelte';"
+        }
+      ],
+      "fullReversal": true,
+      "archive": "parity/emdash/entry-locks/native-editor-original/src/routes/content/[collection]/[id]/+page.svelte.txt"
+    }
+  ],
+  "ownedWrapper": {
+    "path": "src/lib/entry-locks/EntryLockEditor.svelte",
+    "bytes": 1840,
+    "sha256": "abfc382f251335255706e8274f1c7fa3270b7bb2c96904554063718d0c765360"
+  },
+  "actualExistingNativeErrorAdapter": {
+    "path": "src/lib/entry-locks/editor-error.ts",
+    "bytes": 489,
+    "sha256": "26a70e6ef3297584d69b51dfb02f3b76c9fcc5c2f87a3a42f74ff89aba6161b0"
+  },
+  "claim": "Authorized exact finite integration applied after actual test-first mounted family import stop. No full Source toast suppression claim; current Native session/error presenters unchanged. Whole mounted Native4 and Source UI21 gates remain separately classified."
+}

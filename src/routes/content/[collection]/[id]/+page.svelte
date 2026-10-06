@@ -2,7 +2,7 @@
   import { page } from '$app/state';
   import { resolve } from '$app/paths';
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
-  import EditorForm from '$lib/editor/EditorForm.svelte';
+  import EditorForm from '$lib/entry-locks/EntryLockEditor.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
   import { previewFields } from '$lib/ui/preview-fields';
   import { getEditorManifest, getContent, updateContent, deleteContent } from '$lib/content.remote';

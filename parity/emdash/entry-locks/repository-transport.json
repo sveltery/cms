@@ -1,0 +1,39 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "parity/emdash/entry-locks/source/packages/core/src/database/repositories/entry-locks.ts",
+  "native": "src/lib/server/entry-locks/repository.ts",
+  "header": "// Complete EmDash 1.1.0 entry-lock repository, immutable pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.\n// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.\n// Native transport: canonical table names, actual identity/profile joins, explicit mutable database reference.\n",
+  "namespace": {
+    "_emdash_entry_locks": "_cms_entry_locks",
+    "_emdash_collections": "_cms_collections"
+  },
+  "finiteSpans": [
+    {
+      "name": "typed native imports",
+      "original": "import { isPostgres } from \"../dialect-helpers.js\";\nimport type { Database } from \"../types.js\";",
+      "native": "import { isPostgres } from \"../database/lifecycle/upstream/database/dialect-helpers.ts\";\nimport type { CmsDatabase } from \"../database/contract.ts\";\nimport type { EntryLockTables } from \"./types.ts\";"
+    },
+    {
+      "name": "same mutable database reference constructor",
+      "original": "\tconstructor(private db: Kysely<Database>) {}",
+      "native": "\tprivate db: Kysely<EntryLockTables>;\n\tconstructor(database: CmsDatabase) {\n\t\tthis.db = database.db as unknown as Kysely<EntryLockTables>;\n\t}"
+    },
+    {
+      "name": "actual identity and profile holder joins",
+      "original": "\t\t\t.leftJoin(\"users\", \"users.id\", \"_emdash_entry_locks.user_id\")",
+      "native": "\t\t\t.leftJoin(\"_cms_auth_users\", \"_cms_auth_users.id\", \"_emdash_entry_locks.user_id\")\n\t\t\t.leftJoin(\"_cms_auth_profiles\", \"_cms_auth_profiles.user_id\", \"_cms_auth_users.id\")"
+    },
+    {
+      "name": "actual profile name projection",
+      "original": "\t\t\t\t\"users.name as user_name\",",
+      "native": "\t\t\t\t\"_cms_auth_profiles.name as user_name\","
+    },
+    {
+      "name": "actual identity and profile acquired holder lookup",
+      "original": "\t\t\t.selectFrom(\"users\")\n\t\t\t.select(\"name\")\n\t\t\t.where(\"id\", \"=\", row.user_id)",
+      "native": "\t\t\t.selectFrom(\"_cms_auth_users\")\n\t\t\t.leftJoin(\"_cms_auth_profiles\", \"_cms_auth_profiles.user_id\", \"_cms_auth_users.id\")\n\t\t\t.select(\"_cms_auth_profiles.name as name\")\n\t\t\t.where(\"_cms_auth_users.id\", \"=\", row.user_id)"
+    }
+  ],
+  "sourceSha256": "3e4185405aacb5df4fd18c71f7dbfb3c090306850dbf86d045c268234326e83b",
+  "claim": "No whole Source module identity; reverse transport spans and namespaces reconstruct the complete Source bytes. Actual Native installation/execution remains held on provider19 until qualified Cron18 union. The interim unknown cast is a type-only same-reference bridge while provider19/CmsTables remain held; it does not create an executor, table or runtime readiness."
+}

@@ -1,0 +1,2291 @@
+{
+  "formatVersion": 1,
+  "upstream": "https://github.com/emdash-cms/emdash",
+  "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "tag": "emdash@1.1.0",
+  "kind": "inventory-only",
+  "files": [
+    {
+      "path": "e2e/tests/entry-lock.spec.ts",
+      "category": "entry-locks",
+      "stage": "whole-feature",
+      "sourceBlob": "abccfe3857f86c00ce25cb0ba95fe17a2493e100",
+      "sourceSha256": "ea83f5489fd37b57c57f379a9c0c096cec6002865c2e86869be317c47d9749c1",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:e2e/tests/entry-lock.spec.ts:80",
+          "title": "opening an entry takes the lock and leaving hands it back",
+          "suites": [
+            "Entry edit lock"
+          ],
+          "line": 80,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L80",
+          "registration": "test",
+          "registrationSha256": "9152c2d21bd679ff463debcd9ed369207445032249ee7a714ba8d4af85952db1",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 81,
+              "expression": "expect(await readLock()).toMatchObject({ enabled: true, holder: null })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L81"
+            },
+            {
+              "line": 85,
+              "expression": "await expect(admin.page.locator(\"#field-title\")).toHaveValue(\"Original\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L85"
+            },
+            {
+              "line": 96,
+              "expression": "await expect.poll(async () => (await readLock()).holder, { timeout: 10000 }).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L96"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:e2e/tests/entry-lock.spec.ts:99",
+          "title": "autosaving extends the lease instead of dropping it",
+          "suites": [
+            "Entry edit lock"
+          ],
+          "line": 99,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L99",
+          "registration": "test",
+          "registrationSha256": "5e8832aa3a8ad69b6987c6805d8294d281519e15fa6d1ff802aa7a09007e4140",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 105,
+              "expression": "await expect(titleInput).toHaveValue(\"Original\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L105"
+            },
+            {
+              "line": 120,
+              "expression": "expect(after.holder).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L120"
+            },
+            {
+              "line": 121,
+              "expression": "expect(after.holder!.expiresAt > before).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L121"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:e2e/tests/entry-lock.spec.ts:124",
+          "title": "takes no lock on a collection with locking switched off",
+          "suites": [
+            "Entry edit lock"
+          ],
+          "line": 124,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L124",
+          "registration": "test",
+          "registrationSha256": "91e5c1061de72267eb6485ce0a214361a562eeb5435e6947a0dc027da4ee2788",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 133,
+              "expression": "await expect(admin.page.locator(\"#field-title\")).toHaveValue(\"Original\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L133"
+            },
+            {
+              "line": 136,
+              "expression": "expect(status.enabled).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L136"
+            },
+            {
+              "line": 137,
+              "expression": "expect(status.holder).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/entry-lock.spec.ts#L137"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/admin/tests/components/EntryLockNotice.test.tsx",
+      "category": "entry-locks",
+      "stage": "whole-feature",
+      "sourceBlob": "5f7f1e594acd460156f20a36dd05fe4bf342f342",
+      "sourceSha256": "0b0433d3249ab7a8975254ef01648cef62e8f472927866814f572ec87d0e6f9e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/EntryLockNotice.test.tsx:19",
+          "title": "names the holder and offers both ways forward",
+          "suites": [
+            "EntryLockNotice"
+          ],
+          "line": 19,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L19",
+          "registration": "it",
+          "registrationSha256": "18ff71335c999f91a08b8a7f76d4daa24ca5eec96d20769897ad1fea275ca236",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 31,
+              "expression": "await expect.element(screen.getByText(\"Ada\", { exact: false })).toBeInTheDocument()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L31"
+            },
+            {
+              "line": 37,
+              "expression": "expect(onReadInstead).toHaveBeenCalledTimes(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L37"
+            },
+            {
+              "line": 39,
+              "expression": "expect(onTakeOver).not.toHaveBeenCalled()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L39"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/EntryLockNotice.test.tsx:42",
+          "title": "falls back to a neutral label when the holder has no display name",
+          "suites": [
+            "EntryLockNotice"
+          ],
+          "line": 42,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L42",
+          "registration": "it",
+          "registrationSha256": "af17b72fc690659d887cdf946f3744d8d73d79c5fe882ed0f7ff5186c0bbbbb4",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 52,
+              "expression": "await expect.element(screen.getByText(\"Another editor\", { exact: false })).toBeInTheDocument()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L52"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/EntryLockNotice.test.tsx:55",
+          "title": "tells the previous holder their edits stopped being saved",
+          "suites": [
+            "EntryLockNotice"
+          ],
+          "line": 55,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L55",
+          "registration": "it",
+          "registrationSha256": "a98a4a6d1699e9ba789fcf9a75487116a953dda82fdd6dbe0c2b2f912bc7778e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 66,
+              "expression": "await expect.element(screen.getByText(\"You no longer hold this entry\")).toBeInTheDocument()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L66"
+            },
+            {
+              "line": 68,
+              "expression": "expect(onTakeOver).toHaveBeenCalledTimes(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L68"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/EntryLockNotice.test.tsx:71",
+          "title": "renders nothing while this session holds the entry",
+          "suites": [
+            "EntryLockNotice"
+          ],
+          "line": 71,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L71",
+          "registration": "it",
+          "registrationSha256": "41d32e7079078a5f5944c73a9dbc930bed4ee52d2b3e74156595467b249ee8fb",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 81,
+              "expression": "expect(screen.container.textContent).toBe(\"\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L81"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/EntryLockNotice.test.tsx:86",
+          "title": "reads the holder out of a refused write",
+          "suites": [
+            "entryLockRefusal"
+          ],
+          "line": 86,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L86",
+          "registration": "it",
+          "registrationSha256": "d2b6574e9e1c8ed33e2c6b1a54b53414821ebc47fce0a0a21c6e428b9b835058",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 94,
+              "expression": "expect(entryLockRefusal(error)).toEqual(holder())",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L94"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/EntryLockNotice.test.tsx:97",
+          "title": "ignores every other failure",
+          "suites": [
+            "entryLockRefusal"
+          ],
+          "line": 97,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L97",
+          "registration": "it",
+          "registrationSha256": "6dd5f13e4fe9eb475877efeb809633292f8da855fe7594d3126e34cb0de9bf3d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 98,
+              "expression": "expect(entryLockRefusal(new ApiResponseError(409, \"CONFLICT\", \"Version conflict\"))).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L98"
+            },
+            {
+              "line": 99,
+              "expression": "expect(entryLockRefusal(new Error(\"network\"))).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L99"
+            },
+            {
+              "line": 100,
+              "expression": "expect(entryLockRefusal(undefined)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/EntryLockNotice.test.tsx#L100"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/admin/tests/lib/useEntryLock.test.tsx",
+      "category": "entry-locks",
+      "stage": "whole-feature",
+      "sourceBlob": "b3491fa029918be56f1274fb677df3357b22385c",
+      "sourceSha256": "935735639d7165b49f5afacfdc09bd5cdec3ccccb6a43538eebca81577f69ef0",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:110",
+          "title": "holds the entry when the lock is granted",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 110,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L110",
+          "registration": "it",
+          "registrationSha256": "658dc0de5d425c4052564808582bd82d50575443a30119d1b95e5a95dcc5bd89",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 115,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L115"
+            },
+            {
+              "line": 116,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"false\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L116"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:119",
+          "title": "identifies its session with one token on acquire and release",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 119,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L119",
+          "registration": "it",
+          "registrationSha256": "d081d8ed4ff49d8a5105bd8d49106307d8ffc6e9d4f93618be8b3ee0488d99cc",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 123,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L123"
+            },
+            {
+              "line": 125,
+              "expression": "expect(token).toEqual(expect.any(String))",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L125"
+            },
+            {
+              "line": 126,
+              "expression": "expect(token).not.toBe(\"\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L126"
+            },
+            {
+              "line": 131,
+              "expression": "expect(releaseEntryLock).toHaveBeenCalledWith(\n\t\t\t\t\"posts\",\n\t\t\t\t\"entry-1\",\n\t\t\t\texpect.objectContaining({ token }),\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L131"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:139",
+          "title": "blocks the editor when someone else holds it, until they choose to read",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 139,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L139",
+          "registration": "it",
+          "registrationSha256": "291c792d8577a8a0e0dd95ba82781615216556dd555cefb22d53aa7277b81576",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 144,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"blocked\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L144"
+            },
+            {
+              "line": 145,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"true\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L145"
+            },
+            {
+              "line": 148,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"reading\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L148"
+            },
+            {
+              "line": 149,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"true\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L149"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:152",
+          "title": "asks for a take-over explicitly",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 152,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L152",
+          "registration": "it",
+          "registrationSha256": "a9c0a3d88d5b5e626a1ac80d1d66400ca5d40c736b47a4fd5b3fc900a55a4272",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 161,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"blocked\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L161"
+            },
+            {
+              "line": 165,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L165"
+            },
+            {
+              "line": 166,
+              "expression": "expect(acquireEntryLock).toHaveBeenLastCalledWith(\n\t\t\t\"posts\",\n\t\t\t\"entry-1\",\n\t\t\texpect.objectContaining({ takeover: true }),\n\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L166"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:173",
+          "title": "switches to read-only when a save is refused by someone else's lock",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 173,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L173",
+          "registration": "it",
+          "registrationSha256": "2d97177996e74b9fb0c89bf15fee9865901c609bc1e4c11b7f55b12341c88aa6",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 177,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L177"
+            },
+            {
+              "line": 181,
+              "expression": "await expect.element(screen.getByTestId(\"last-report\")).toHaveTextContent(\"true\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L181"
+            },
+            {
+              "line": 182,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"taken\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L182"
+            },
+            {
+              "line": 183,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"true\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L183"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:186",
+          "title": "leaves every other failure to the caller's own error handling",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 186,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L186",
+          "registration": "it",
+          "registrationSha256": "69eb4fbee0da4a45f3395ba695966d9e9a1722b27556dfe52d6bb57bca26f844",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 190,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L190"
+            },
+            {
+              "line": 194,
+              "expression": "await expect.element(screen.getByTestId(\"last-report\")).toHaveTextContent(\"false\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L194"
+            },
+            {
+              "line": 195,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L195"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:198",
+          "title": "leaves a refusal for another entry to the caller as well",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 198,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L198",
+          "registration": "it",
+          "registrationSha256": "92dcacb19ca2eefe00d384d55d8a33e62cf0ffc044cae7901b399bf5b9c3593b",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 202,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L202"
+            },
+            {
+              "line": 206,
+              "expression": "await expect.element(screen.getByTestId(\"last-report\")).toHaveTextContent(\"false\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L206"
+            },
+            {
+              "line": 207,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L207"
+            },
+            {
+              "line": 208,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"false\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L208"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:211",
+          "title": "takes no lock and stays editable when the collection has locking off",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 211,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L211",
+          "registration": "it",
+          "registrationSha256": "cc0c8e61480f97098b0ba11f8bcff01e79a57f17dceb0d6aca26a50b6b01ecc3",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 216,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"disabled\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L216"
+            },
+            {
+              "line": 217,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"false\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L217"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:220",
+          "title": "hands the lock back on unmount, but only when it held one",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 220,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L220",
+          "registration": "it",
+          "registrationSha256": "299d2b5ee4f4a435f6681346c12439d33085abe25e0411efbbee39b4691a6df8",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 223,
+              "expression": "await expect.element(held.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L223"
+            },
+            {
+              "line": 226,
+              "expression": "expect(releaseEntryLock).toHaveBeenCalledTimes(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L226"
+            },
+            {
+              "line": 232,
+              "expression": "await expect.element(blocked.getByTestId(\"status\")).toHaveTextContent(\"blocked\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L232"
+            },
+            {
+              "line": 235,
+              "expression": "expect(releaseEntryLock).not.toHaveBeenCalled()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L235"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:238",
+          "title": "hands back a lock that was granted after the editor had already moved on",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 238,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L238",
+          "registration": "it",
+          "registrationSha256": "ae59f99457f1dc6792a2bbf7684fc1d0a07fcf792decf6548db9d634c14d3b65",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 247,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"pending\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L247"
+            },
+            {
+              "line": 250,
+              "expression": "expect(releaseEntryLock).not.toHaveBeenCalled()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L250"
+            },
+            {
+              "line": 255,
+              "expression": "expect(releaseEntryLock).toHaveBeenCalledWith(\n\t\t\t\t\"posts\",\n\t\t\t\t\"entry-1\",\n\t\t\t\texpect.objectContaining({ token }),\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L255"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:263",
+          "title": "re-asserts the lease on a heartbeat and notices when it was lost",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 263,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L263",
+          "registration": "it",
+          "registrationSha256": "c9d14dd7c578ba0477c4ee5ce8aa77b242cfa1c9c55f47538574755ebcdf2893",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 268,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L268"
+            },
+            {
+              "line": 269,
+              "expression": "expect(acquireEntryLock).toHaveBeenCalledTimes(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L269"
+            },
+            {
+              "line": 272,
+              "expression": "expect(acquireEntryLock).toHaveBeenCalledTimes(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L272"
+            },
+            {
+              "line": 273,
+              "expression": "expect(tokenOf(acquireEntryLock.mock.calls[1])).toBe(tokenOf(acquireEntryLock.mock.calls[0]))",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L273"
+            },
+            {
+              "line": 274,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L274"
+            },
+            {
+              "line": 279,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"taken\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L279"
+            },
+            {
+              "line": 280,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"true\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L280"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:283",
+          "title": "opens the entry for editing once the holder has left",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 283,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L283",
+          "registration": "it",
+          "registrationSha256": "e49808ad15c1c51001c21c1b69d7d384fa87c6b24654b081670cf4683a2a8f3c",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 288,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"blocked\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L288"
+            },
+            {
+              "line": 290,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"reading\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L290"
+            },
+            {
+              "line": 295,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L295"
+            },
+            {
+              "line": 296,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"false\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L296"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:299",
+          "title": "re-checks the lease as soon as the tab is looked at again",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 299,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L299",
+          "registration": "it",
+          "registrationSha256": "7b377afd6f360d15f0fb70ba02a99ae359f6a0581f427d8277cbb27e6575c966",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 303,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L303"
+            },
+            {
+              "line": 304,
+              "expression": "expect(acquireEntryLock).toHaveBeenCalledTimes(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L304"
+            },
+            {
+              "line": 310,
+              "expression": "expect(acquireEntryLock).toHaveBeenCalledTimes(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L310"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:318",
+          "title": "hands the lock back with keepalive when the page is unloaded",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 318,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L318",
+          "registration": "it",
+          "registrationSha256": "96fc2578ce4032a568be32363a93e72b0eca9db6200d5e1af7f5c2534f54c82c",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 322,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L322"
+            },
+            {
+              "line": 328,
+              "expression": "expect(releaseEntryLock).toHaveBeenCalledWith(\n\t\t\t\t\"posts\",\n\t\t\t\t\"entry-1\",\n\t\t\t\texpect.objectContaining({ token, keepalive: true }),\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L328"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/useEntryLock.test.tsx:336",
+          "title": "keeps the editor open and keeps trying when the lock cannot be reached",
+          "suites": [
+            "useEntryLock"
+          ],
+          "line": 336,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L336",
+          "registration": "it",
+          "registrationSha256": "7a7e3e0257dc10fd583e0484395d40f4d2d1982557398e0eb9a25ffffa206098",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 342,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"unreachable\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L342"
+            },
+            {
+              "line": 343,
+              "expression": "await expect.element(screen.getByTestId(\"read-only\")).toHaveTextContent(\"false\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L343"
+            },
+            {
+              "line": 347,
+              "expression": "await expect.element(screen.getByTestId(\"status\")).toHaveTextContent(\"holding\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/lib/useEntryLock.test.tsx#L347"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/integration/content/entry-lock.test.ts",
+      "category": "entry-locks",
+      "stage": "whole-feature",
+      "sourceBlob": "b4cd02c360b3bd389965d57a753abaf96c9b940e",
+      "sourceSha256": "baaa8fd9145a9a13a7e6271aedfab58cbc267d48df7f6f8564f8913eba926b7e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:61",
+          "title": "reports the caller as the holder after acquiring",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 61,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L61",
+          "registration": "it",
+          "registrationSha256": "ba70b0453a3afe9820b11d2dde93258c985142a26bc28f6c9fd702fb4dec4083",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 64,
+              "expression": "expect(result).toMatchObject({\n\t\t\tsuccess: true,\n\t\t\tdata: {\n\t\t\t\tenabled: true,\n\t\t\t\theldByCaller: true,\n\t\t\t\tholder: { userId: ADA, userName: \"Ada\" },\n\t\t\t},\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L64"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:74",
+          "title": "names the current holder to the second editor without granting the lock",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 74,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L74",
+          "registration": "it",
+          "registrationSha256": "dbd94bab535508fbf12fbb976ca913343ebcea06634264542e93cd62b9703a2d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 79,
+              "expression": "expect(result).toMatchObject({\n\t\t\tsuccess: true,\n\t\t\tdata: { enabled: true, heldByCaller: false, holder: { userId: ADA, userName: \"Ada\" } },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L79"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:85",
+          "title": "hands the lock to the second editor on an explicit take-over",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 85,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L85",
+          "registration": "it",
+          "registrationSha256": "ff8f95b713e565b71b9b552a34ba698c755aad3ace7f42dca71d3528312e066f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 90,
+              "expression": "expect(result).toMatchObject({\n\t\t\tsuccess: true,\n\t\t\tdata: { heldByCaller: true, holder: { userId: LINUS } },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L90"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:96",
+          "title": "takes no lock for a collection with locking switched off",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 96,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L96",
+          "registration": "it",
+          "registrationSha256": "70f934a4ed978f08047c18982591ac66ba324898815236cad28c30f15a1d3f36",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 101,
+              "expression": "expect(result).toMatchObject({\n\t\t\tsuccess: true,\n\t\t\tdata: { enabled: false, holder: null, heldByCaller: false },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L101"
+            },
+            {
+              "line": 105,
+              "expression": "expect(await new EntryLockRepository(db).findLive(\"post\", entryId)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L105"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:108",
+          "title": "reports an unknown collection rather than locking nothing",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 108,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L108",
+          "registration": "it",
+          "registrationSha256": "b0c0f12baf0c2be218c06bb91bd327d75e96ef6e5975ce5ce5bbcac50998b958",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 111,
+              "expression": "expect(result).toMatchObject({\n\t\t\tsuccess: false,\n\t\t\terror: { code: \"COLLECTION_NOT_FOUND\" },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L111"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:117",
+          "title": "reads back the holder without changing the lease",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 117,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L117",
+          "registration": "it",
+          "registrationSha256": "8e6cfb05da396c996e6cd59109335cac7eee0fc4c243f64b40d956ef089bb5b0",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 123,
+              "expression": "expect(read).toMatchObject({\n\t\t\tsuccess: true,\n\t\t\tdata: { enabled: true, heldByCaller: false, holder: { userId: ADA, expiresAt } },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L123"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:129",
+          "title": "frees the entry for the next editor on release",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 129,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L129",
+          "registration": "it",
+          "registrationSha256": "002d4bca7c3993cfc79546f3f126c7dcad8901a2acb0e84710dc4fa72a712324",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 132,
+              "expression": "expect(await handleEntryLockRelease(db, \"post\", entryId, ADA)).toMatchObject({\n\t\t\tsuccess: true,\n\t\t\tdata: { released: true },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L132"
+            },
+            {
+              "line": 138,
+              "expression": "expect(result).toMatchObject({ success: true, data: { heldByCaller: true } })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L138"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:141",
+          "title": "ignores a release from someone who is not the holder",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 141,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L141",
+          "registration": "it",
+          "registrationSha256": "a8f7c6ed2548855724fa1d0ab639b5a757f789bd29946b2a14490bbd8a5cbccc",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 144,
+              "expression": "expect(await handleEntryLockRelease(db, \"post\", entryId, LINUS)).toMatchObject({\n\t\t\tsuccess: true,\n\t\t\tdata: { released: false },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L144"
+            },
+            {
+              "line": 148,
+              "expression": "expect(await new EntryLockRepository(db).findLive(\"post\", entryId)).toMatchObject({\n\t\t\tuserId: ADA,\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L148"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:153",
+          "title": "releases only for the session that last claimed the lock, when a token is given",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 153,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L153",
+          "registration": "it",
+          "registrationSha256": "71efc94e88bebf2c9cdcc287f803a44e03bf4f7257a8308494f6de68c498d282",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 156,
+              "expression": "expect(\n\t\t\tawait handleEntryLockRelease(db, \"post\", entryId, ADA, { token: \"tab-2\" }),\n\t\t).toMatchObject({ success: true, data: { released: false } })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L156"
+            },
+            {
+              "line": 159,
+              "expression": "expect(\n\t\t\tawait handleEntryLockRelease(db, \"post\", entryId, ADA, { token: \"tab-1\" }),\n\t\t).toMatchObject({ success: true, data: { released: true } })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L159"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:165",
+          "title": "allows a write against an entry nobody has opened",
+          "suites": [
+            "entry edit lock",
+            "write path"
+          ],
+          "line": 165,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L165",
+          "registration": "it",
+          "registrationSha256": "128206b0492302c7776f3119a5cae171f51fad252b579a6e0c1c6589c25b8c22",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 166,
+              "expression": "expect(await claimEntryLockForWrite(db, \"post\", entryId, ADA)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L166"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:169",
+          "title": "never takes a lock on behalf of a writer",
+          "suites": [
+            "entry edit lock",
+            "write path"
+          ],
+          "line": 169,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L169",
+          "registration": "it",
+          "registrationSha256": "c5ce979e7dc8d2961ff8189dd8496502718ecae935cd17d365bdfa77c388cfa8",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 172,
+              "expression": "expect(await new EntryLockRepository(db).findLive(\"post\", entryId)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L172"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:175",
+          "title": "extends the holder's own lease so a save keeps the entry open",
+          "suites": [
+            "entry edit lock",
+            "write path"
+          ],
+          "line": 175,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L175",
+          "registration": "it",
+          "registrationSha256": "adf3d0c191ae808bd6f9cde74133fad94a1e6a00b407dc89592c6d08146ae662",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 184,
+              "expression": "expect(await claimEntryLockForWrite(db, \"post\", entryId, ADA)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L184"
+            },
+            {
+              "line": 187,
+              "expression": "expect(after!.expiresAt > nearlyExpired).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L187"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:190",
+          "title": "refuses a write against another editor's live lock",
+          "suites": [
+            "entry edit lock",
+            "write path"
+          ],
+          "line": 190,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L190",
+          "registration": "it",
+          "registrationSha256": "09b8578b2f00827403021c0d40a1847cd95f927da1dc7c3c87a80b9e2b914bef",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 195,
+              "expression": "expect(refusal).toMatchObject({\n\t\t\t\tcode: \"ENTRY_LOCKED\",\n\t\t\t\tmessage: \"Ada is holding this entry\",\n\t\t\t\tdetails: { userId: ADA, userName: \"Ada\" },\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L195"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:202",
+          "title": "lets a caller that opts out write through another editor's lock",
+          "suites": [
+            "entry edit lock",
+            "write path"
+          ],
+          "line": 202,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L202",
+          "registration": "it",
+          "registrationSha256": "d27a854ea3fb2aa1ba4470d97c02a9a0bccb365c2fa8820c297fb5c2e043fc35",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 205,
+              "expression": "expect(\n\t\t\t\tawait claimEntryLockForWrite(db, \"post\", entryId, LINUS, { override: true }),\n\t\t\t).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L205"
+            },
+            {
+              "line": 208,
+              "expression": "expect(await new EntryLockRepository(db).findLive(\"post\", entryId)).toMatchObject({\n\t\t\t\tuserId: ADA,\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L208"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:213",
+          "title": "stops refusing writes once the collection switches locking off",
+          "suites": [
+            "entry edit lock",
+            "write path"
+          ],
+          "line": 213,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L213",
+          "registration": "it",
+          "registrationSha256": "219498d0b058063c56b1e4ec6188589b3e67fd81d27b1ecb0d60555cc236b106",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 215,
+              "expression": "expect(await claimEntryLockForWrite(db, \"post\", entryId, LINUS)).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L215"
+            },
+            {
+              "line": 219,
+              "expression": "expect(await claimEntryLockForWrite(db, \"post\", entryId, LINUS)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L219"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:222",
+          "title": "stops refusing writes once the lease has expired",
+          "suites": [
+            "entry edit lock",
+            "write path"
+          ],
+          "line": 222,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L222",
+          "registration": "it",
+          "registrationSha256": "4996b2e3a47c5401185a7ef2063a099904db9b60b0a0c99ca8147f370a1865e2",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 230,
+              "expression": "expect(await claimEntryLockForWrite(db, \"post\", entryId, LINUS)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L230"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:234",
+          "title": "drops the lock when the entry is moved to the trash",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 234,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L234",
+          "registration": "it",
+          "registrationSha256": "dfb8edc1f6e9e0d2cabcb043f5f0b918559cec33f273a612ac409b61b4f62524",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 237,
+              "expression": "expect(await handleContentDelete(db, \"post\", entryId)).toMatchObject({ success: true })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L237"
+            },
+            {
+              "line": 238,
+              "expression": "expect(\n\t\t\tawait db\n\t\t\t\t.selectFrom(\"_emdash_entry_locks\")\n\t\t\t\t.selectAll()\n\t\t\t\t.where(\"entry_id\", \"=\", entryId)\n\t\t\t\t.execute(),\n\t\t).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L238"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:247",
+          "title": "drops the lock when a plugin trashes the entry",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 247,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L247",
+          "registration": "it",
+          "registrationSha256": "5ee0d117c978840acbdbc577f57be9a343f37f4a7fd7a0c53cbe1bab18b18ff5",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 250,
+              "expression": "expect(await createContentAccessWithWrite(db).delete(\"post\", entryId)).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L250"
+            },
+            {
+              "line": 251,
+              "expression": "expect(\n\t\t\tawait db\n\t\t\t\t.selectFrom(\"_emdash_entry_locks\")\n\t\t\t\t.selectAll()\n\t\t\t\t.where(\"entry_id\", \"=\", entryId)\n\t\t\t\t.execute(),\n\t\t).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L251"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/entry-lock.test.ts:260",
+          "title": "drops the lock when the entry is permanently deleted",
+          "suites": [
+            "entry edit lock"
+          ],
+          "line": 260,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L260",
+          "registration": "it",
+          "registrationSha256": "5120cc88e684734cedc9488a31bcc65698ab2c3a989f0c0c53ef1ba80eff9ad0",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 264,
+              "expression": "expect(await handleContentPermanentDelete(db, \"post\", entryId)).toMatchObject({\n\t\t\tsuccess: true,\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L264"
+            },
+            {
+              "line": 267,
+              "expression": "expect(\n\t\t\tawait db\n\t\t\t\t.selectFrom(\"_emdash_entry_locks\")\n\t\t\t\t.selectAll()\n\t\t\t\t.where(\"entry_id\", \"=\", entryId)\n\t\t\t\t.execute(),\n\t\t).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/entry-lock.test.ts#L267"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/integration/database/entry-locks.test.ts",
+      "category": "entry-locks",
+      "stage": "whole-feature",
+      "sourceBlob": "20417598161b55879ce59297411ed72791301f04",
+      "sourceSha256": "89b99858f8b543c2865e4d30f230a8d8da6930eb19e46f19ebc751d37a819730",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:64",
+          "title": "acquires a lock for a free entry and reports the holder",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 64,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L64",
+          "registration": "it",
+          "registrationSha256": "7fe2c1278b0cc46ba842e662fceaf060d22edfc52506af2b07d603fbc93c008a",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 67,
+              "expression": "expect(claim.outcome).toBe(\"acquired\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L67"
+            },
+            {
+              "line": 68,
+              "expression": "expect(claim.lock.userId).toBe(\"user-ada\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L68"
+            },
+            {
+              "line": 69,
+              "expression": "expect(claim.lock.userName).toBe(\"Ada\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L69"
+            },
+            {
+              "line": 70,
+              "expression": "expect(claim.lock.expiresAt > claim.lock.acquiredAt).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L70"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:73",
+          "title": "refuses a second holder while the lease is live",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 73,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L73",
+          "registration": "it",
+          "registrationSha256": "69852b4109e5c5da6573b60b2aeae319bf6ec04016dcc0c9aa918f9ec2f99c0b",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 78,
+              "expression": "expect(claim.outcome).toBe(\"held\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L78"
+            },
+            {
+              "line": 79,
+              "expression": "expect(claim.lock.userId).toBe(\"user-ada\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L79"
+            },
+            {
+              "line": 80,
+              "expression": "expect(claim.lock.userName).toBe(\"Ada\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L80"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:83",
+          "title": "reports a null name for a holder who has not set one",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 83,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L83",
+          "registration": "it",
+          "registrationSha256": "b20c28b47343c016cf8089cbd2a164ff51a071556ab26a47c3dc30610b006783",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 88,
+              "expression": "expect(claim.outcome).toBe(\"held\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L88"
+            },
+            {
+              "line": 89,
+              "expression": "expect(claim.lock.userName).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L89"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:92",
+          "title": "lets another holder acquire once the lease has expired",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 92,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L92",
+          "registration": "it",
+          "registrationSha256": "d231ebbdf3f4847312d1a7061cc580f44aa67a997de0ec5ce15b6334867bc985",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 98,
+              "expression": "expect(claim.outcome).toBe(\"acquired\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L98"
+            },
+            {
+              "line": 99,
+              "expression": "expect(claim.lock.userId).toBe(\"user-linus\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L99"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:102",
+          "title": "takes over a live lease only when asked to",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 102,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L102",
+          "registration": "it",
+          "registrationSha256": "81081f90db4fc8ccf079c9d5abdb5e3851b23d211476c813c3e1d6ac3ff7f504",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 107,
+              "expression": "expect(claim.outcome).toBe(\"acquired\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L107"
+            },
+            {
+              "line": 108,
+              "expression": "expect(claim.lock.userId).toBe(\"user-linus\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L108"
+            },
+            {
+              "line": 109,
+              "expression": "expect(claim.lock.acquiredAt >= first.lock.acquiredAt).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L109"
+            },
+            {
+              "line": 110,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toMatchObject({ userId: \"user-linus\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L110"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:113",
+          "title": "keeps the original acquisition time when the holder re-acquires",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 113,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L113",
+          "registration": "it",
+          "registrationSha256": "9c4911e6eb0bbe9f309464f51ccd0147e81443633a0915926286678bb30c0c0a",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 118,
+              "expression": "expect(second.outcome).toBe(\"acquired\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L118"
+            },
+            {
+              "line": 119,
+              "expression": "expect(second.lock.acquiredAt).toBe(first.lock.acquiredAt)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L119"
+            },
+            {
+              "line": 120,
+              "expression": "expect(second.lock.expiresAt > first.lock.expiresAt).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L120"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:123",
+          "title": "extends only the caller's own live lease on refresh",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 123,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L123",
+          "registration": "it",
+          "registrationSha256": "52e03e9e8ea0ec38d605b8479e4e065414059d773272abf23cb457c85573e04e",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 126,
+              "expression": "expect(\n\t\t\tawait repo.refreshHeld({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-linus\",\n\t\t\t\tleaseSeconds: LEASE_SECONDS * 2,\n\t\t\t}),\n\t\t).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L126"
+            },
+            {
+              "line": 134,
+              "expression": "expect((await repo.findLive(\"posts\", ENTRY_ID))!.expiresAt).toBe(first.lock.expiresAt)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L134"
+            },
+            {
+              "line": 136,
+              "expression": "expect(\n\t\t\tawait repo.refreshHeld({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-ada\",\n\t\t\t\tleaseSeconds: LEASE_SECONDS * 2,\n\t\t\t}),\n\t\t).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L136"
+            },
+            {
+              "line": 144,
+              "expression": "expect((await repo.findLive(\"posts\", ENTRY_ID))!.expiresAt > first.lock.expiresAt).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L144"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:147",
+          "title": "does not resurrect an expired lease on refresh",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 147,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L147",
+          "registration": "it",
+          "registrationSha256": "ded5c45e48a93c8ba595fcb47839d17d27a7bf85e3b9456b8e52dbf21143daf6",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 151,
+              "expression": "expect(\n\t\t\tawait repo.refreshHeld({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-ada\",\n\t\t\t\tleaseSeconds: LEASE_SECONDS,\n\t\t\t}),\n\t\t).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L151"
+            },
+            {
+              "line": 159,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L159"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:162",
+          "title": "hides an expired lease from findLive",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 162,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L162",
+          "registration": "it",
+          "registrationSha256": "be6b2f6e2654ece441427231bd8f695e61b2f745c950972bb4d90e91cded53b8",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 164,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L164"
+            },
+            {
+              "line": 167,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L167"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:170",
+          "title": "releases only the caller's own lock",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 170,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L170",
+          "registration": "it",
+          "registrationSha256": "deb67fd1335e682db9526b6e1b025f48286fdaf4d2e10f3efe48d66b8be1c282",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 173,
+              "expression": "expect(\n\t\t\tawait repo.release({ collection: \"posts\", entryId: ENTRY_ID, userId: \"user-linus\" }),\n\t\t).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L173"
+            },
+            {
+              "line": 176,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L176"
+            },
+            {
+              "line": 178,
+              "expression": "expect(await repo.release({ collection: \"posts\", entryId: ENTRY_ID, userId: \"user-ada\" })).toBe(\n\t\t\ttrue,\n\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L178"
+            },
+            {
+              "line": 181,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L181"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:184",
+          "title": "releases only for the session token that last claimed the lock",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 184,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L184",
+          "registration": "it",
+          "registrationSha256": "662114a99089ca1bd2e198a3b0a39460036ea9bb20be7c1cc28314bc94660245",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 187,
+              "expression": "expect(\n\t\t\tawait repo.release({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-ada\",\n\t\t\t\ttoken: \"tab-2\",\n\t\t\t}),\n\t\t).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L187"
+            },
+            {
+              "line": 195,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L195"
+            },
+            {
+              "line": 197,
+              "expression": "expect(\n\t\t\tawait repo.release({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-ada\",\n\t\t\t\ttoken: \"tab-1\",\n\t\t\t}),\n\t\t).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L197"
+            },
+            {
+              "line": 205,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L205"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:208",
+          "title": "lets a second tab of one account share the entry without the first tab dropping it",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 208,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L208",
+          "registration": "it",
+          "registrationSha256": "bd2eef89be68e8a05ec5b6dc5225572f1f07fb314328ee5deee273e030e9fd72",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 212,
+              "expression": "expect(second.outcome).toBe(\"acquired\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L212"
+            },
+            {
+              "line": 214,
+              "expression": "expect(\n\t\t\tawait repo.release({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-ada\",\n\t\t\t\ttoken: \"tab-1\",\n\t\t\t}),\n\t\t).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L214"
+            },
+            {
+              "line": 222,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toMatchObject({ userId: \"user-ada\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L222"
+            },
+            {
+              "line": 224,
+              "expression": "expect(\n\t\t\tawait repo.release({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-ada\",\n\t\t\t\ttoken: \"tab-2\",\n\t\t\t}),\n\t\t).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L224"
+            },
+            {
+              "line": 232,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L232"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:235",
+          "title": "stops reporting an enforceable lock once the collection switches locking off",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 235,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L235",
+          "registration": "it",
+          "registrationSha256": "c0252e6012773a9d907a87ee2b90955e3c44b05874d75c5eda4d63f679bd7d1f",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 240,
+              "expression": "expect(await repo.findEnforceable(\"posts\", ENTRY_ID)).toMatchObject({ userId: \"user-ada\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L240"
+            },
+            {
+              "line": 248,
+              "expression": "expect(await repo.findEnforceable(\"posts\", ENTRY_ID)).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L248"
+            },
+            {
+              "line": 249,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L249"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:252",
+          "title": "keeps locks on different entries independent",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 252,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L252",
+          "registration": "it",
+          "registrationSha256": "b7513f1391ca0a19cc12291ac150487ed34bd3b3b28876c78a61f45ee3191355",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 258,
+              "expression": "expect(claim.outcome).toBe(\"acquired\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L258"
+            },
+            {
+              "line": 259,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toMatchObject({ userId: \"user-ada\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L259"
+            },
+            {
+              "line": 260,
+              "expression": "expect(await repo.findLive(\"posts\", other)).toMatchObject({ userId: \"user-linus\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L260"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/entry-locks.test.ts:263",
+          "title": "keeps locks on different collections with the same entry id apart",
+          "suites": [
+            "entry lock repository"
+          ],
+          "line": 263,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L263",
+          "registration": "it",
+          "registrationSha256": "ad5e4568004354c83000170902b704c66e6ddeffacbb89d0923bbb3fe9af589c",
+          "expansion": [
+            {
+              "line": 15,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 268,
+              "expression": "expect(claim.outcome).toBe(\"acquired\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L268"
+            },
+            {
+              "line": 269,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toMatchObject({ userId: \"user-ada\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L269"
+            },
+            {
+              "line": 270,
+              "expression": "expect(await repo.findLive(\"pages\", ENTRY_ID)).toMatchObject({ userId: \"user-linus\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L270"
+            },
+            {
+              "line": 272,
+              "expression": "expect(\n\t\t\tawait repo.refreshHeld({\n\t\t\t\tcollection: \"pages\",\n\t\t\t\tentryId: ENTRY_ID,\n\t\t\t\tuserId: \"user-ada\",\n\t\t\t\tleaseSeconds: LEASE_SECONDS,\n\t\t\t}),\n\t\t).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L272"
+            },
+            {
+              "line": 280,
+              "expression": "expect(await repo.release({ collection: \"pages\", entryId: ENTRY_ID, userId: \"user-ada\" })).toBe(\n\t\t\tfalse,\n\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L280"
+            },
+            {
+              "line": 283,
+              "expression": "expect(await repo.findLive(\"posts\", ENTRY_ID)).toMatchObject({ userId: \"user-ada\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L283"
+            },
+            {
+              "line": 284,
+              "expression": "expect(await repo.findLive(\"pages\", ENTRY_ID)).toMatchObject({ userId: \"user-linus\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/entry-locks.test.ts#L284"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/integration/mcp/entry-lock.test.ts",
+      "category": "entry-locks",
+      "stage": "whole-feature",
+      "sourceBlob": "ac8392f89f63f450da385dcd4451b7c30a1cba87",
+      "sourceSha256": "db7f986c2f7b0de8e152f5533c956061a8197486f9fb75d681d3053c85acd093",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/entry-lock.test.ts:189",
+          "title": "is refused while another user holds the entry, naming them",
+          "suites": [
+            "MCP content writes against an entry edit lock",
+            "$label"
+          ],
+          "line": 189,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L189",
+          "registration": "it",
+          "registrationSha256": "b2f5d4919b791b53f6dfc66c5b7208acf3f9136ac9cc46db39bee65d225fc0e6",
+          "expansion": [
+            {
+              "line": 188,
+              "registration": "describe.each(cases)",
+              "dataset": "describe.each(cases)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 195,
+              "expression": "expect(result.isError).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L195"
+            },
+            {
+              "line": 196,
+              "expression": "expect(extractText(result)).toBe(\"[ENTRY_LOCKED] Ada is holding this entry\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L196"
+            },
+            {
+              "line": 197,
+              "expression": "expect(result._meta).toMatchObject({\n\t\t\t\tcode: \"ENTRY_LOCKED\",\n\t\t\t\tdetails: { userId: ADA, userName: \"Ada\" },\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L197"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/entry-lock.test.ts:204",
+          "title": "goes through with overrideLock",
+          "suites": [
+            "MCP content writes against an entry edit lock",
+            "$label"
+          ],
+          "line": 204,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L204",
+          "registration": "it",
+          "registrationSha256": "1980e89ab430a5c1810d172df090a5a477a14dabd210e3b0dc3efb37afe7806a",
+          "expansion": [
+            {
+              "line": 188,
+              "registration": "describe.each(cases)",
+              "dataset": "describe.each(cases)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 210,
+              "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L210"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/entry-lock.test.ts:214",
+          "title": "lets the caller write to an entry they hold the lock on",
+          "suites": [
+            "MCP content writes against an entry edit lock"
+          ],
+          "line": 214,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L214",
+          "registration": "it",
+          "registrationSha256": "739d85efec5c1231601a339c972c272f59ebd8abc1c4d1b834536e257b133d06",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 220,
+              "expression": "expect((await read(id)).data.title).toBe(\"Own edit\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L220"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/entry-lock.test.ts:223",
+          "title": "reports a missing permission before the lock, so the holder is not named",
+          "suites": [
+            "MCP content writes against an entry edit lock"
+          ],
+          "line": 223,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L223",
+          "registration": "it",
+          "registrationSha256": "df2e7697816f44f7bd182c2c1ff249731b99ce9ada0e520f6a402069c87a34c5",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 234,
+              "expression": "expect(result.isError).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L234"
+            },
+            {
+              "line": 235,
+              "expression": "expect(result._meta).toMatchObject({ code: \"INSUFFICIENT_PERMISSIONS\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L235"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [
+        {
+          "line": 70,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L70"
+        },
+        {
+          "line": 114,
+          "expression": "expect(item.data.title).toBe(\"Draft\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L114"
+        },
+        {
+          "line": 127,
+          "expression": "expect(item).toMatchObject({ status: \"draft\", data: { title: \"Draft\" } })",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L127"
+        },
+        {
+          "line": 134,
+          "expression": "expect(item.status).toBe(\"draft\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L134"
+        },
+        {
+          "line": 141,
+          "expression": "expect(item.status).toBe(\"draft\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L141"
+        },
+        {
+          "line": 148,
+          "expression": "expect(item.status).toBe(\"published\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L148"
+        },
+        {
+          "line": 155,
+          "expression": "expect(item.scheduledAt).toBeFalsy()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L155"
+        },
+        {
+          "line": 166,
+          "expression": "expect(item.scheduledAt).toBeTruthy()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L166"
+        },
+        {
+          "line": 177,
+          "expression": "expect(item.data.title).toBe(\"Pending\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L177"
+        },
+        {
+          "line": 184,
+          "expression": "expect(item.data.title).toBe(\"Draft\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/entry-lock.test.ts#L184"
+        }
+      ],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/unit/astro/content-route-entry-lock.test.ts",
+      "category": "entry-locks",
+      "stage": "whole-feature",
+      "sourceBlob": "e7e1fb2fa445ef2e1fb110e8f6f05fa7821f0cd0",
+      "sourceSha256": "35d49d187ee50a11ed52b21f07194500e7104ce50739792ce1bcaafcc78b731f",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/content-route-entry-lock.test.ts:154",
+          "title": "`${route.name} refuses a write against another editor's lock`",
+          "suites": [
+            "content write routes — entry edit lock"
+          ],
+          "line": 154,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L154",
+          "registration": "it",
+          "registrationSha256": "dca69171f9638c8b27b15ce8833a6f4e5e642aa1e74150c28a6ab485dd186bdf",
+          "expansion": [],
+          "loopContexts": [
+            {
+              "line": 153,
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L153",
+              "header": "for (const route of ROUTES)"
+            }
+          ],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 159,
+              "expression": "expect(response.status).toBe(409)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L159"
+            },
+            {
+              "line": 160,
+              "expression": "expect(await response.json()).toMatchObject({\n\t\t\t\tsuccess: false,\n\t\t\t\terror: {\n\t\t\t\t\tcode: \"ENTRY_LOCKED\",\n\t\t\t\t\tmessage: \"Ada is holding this entry\",\n\t\t\t\t\tdetails: { userId: HOLDER, userName: \"Ada\" },\n\t\t\t\t},\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L160"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/content-route-entry-lock.test.ts:170",
+          "title": "`${route.name} writes through the lock when the caller opts out`",
+          "suites": [
+            "content write routes — entry edit lock"
+          ],
+          "line": 170,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L170",
+          "registration": "it",
+          "registrationSha256": "f299c05e3d20a09c83b1d37e7de121de0217b6f3a7202c03382203868c01b367",
+          "expansion": [],
+          "loopContexts": [
+            {
+              "line": 153,
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L153",
+              "header": "for (const route of ROUTES)"
+            }
+          ],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 175,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L175"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/content-route-entry-lock.test.ts:178",
+          "title": "`${route.name} writes freely when nobody holds the entry`",
+          "suites": [
+            "content write routes — entry edit lock"
+          ],
+          "line": 178,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L178",
+          "registration": "it",
+          "registrationSha256": "25d65376752d6f84cabc66521e39cfa04eac67eb57d18de03fa3b56c37a8b400",
+          "expansion": [],
+          "loopContexts": [
+            {
+              "line": 153,
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L153",
+              "header": "for (const route of ROUTES)"
+            }
+          ],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 181,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L181"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/content-route-entry-lock.test.ts:185",
+          "title": "keeps the writer's own lease alive across a save",
+          "suites": [
+            "content write routes — entry edit lock"
+          ],
+          "line": 185,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L185",
+          "registration": "it",
+          "registrationSha256": "675cd13fea80d18b297afcd1b864b8b4d4e73b4a2ae244eea07d6870ab76a7af",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 197,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L197"
+            },
+            {
+              "line": 199,
+              "expression": "expect(after!.expiresAt > before).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/content-route-entry-lock.test.ts#L199"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    }
+  ]
+}

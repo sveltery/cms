@@ -1,0 +1,25 @@
+{
+  "baseline": "82e3dd7b673f774ca8c3eceaafa28234641bd6b1",
+  "oldBytes": 17461,
+  "oldSha256": "e39fc7bb3fbed08d37908c738e59317900b86ffed504e7fbc449ee85ba72d97f",
+  "append": "\nparity/emdash/entry-locks/source/packages/core/src/database/migrations/013_scheduled_publishing.ts -whitespace\nparity/emdash/entry-locks/source/packages/core/src/database/migrations/015_indexes.ts -whitespace\nparity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts -whitespace\n",
+  "paths": [
+    {
+      "path": "parity/emdash/entry-locks/source/packages/core/src/database/migrations/013_scheduled_publishing.ts",
+      "sha256": "706ad2ed59dca8ed24de443ba3e2703bbe3a2d8cfa8ab44641a317a31a2e71f8"
+    },
+    {
+      "path": "parity/emdash/entry-locks/source/packages/core/src/database/migrations/015_indexes.ts",
+      "sha256": "ef39bef9497e644cc7214af4ba6f492a007d53a52b12bf83383044a6afb2ac76"
+    },
+    {
+      "path": "parity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts",
+      "sha256": "62133443d7e51e2ede2e78fee98f1f06052eeaa496f31e19dfac2aaf28c9adee"
+    }
+  ],
+  "raw": {
+    "bytes": 1767,
+    "sha256": "46ff07808893bdb981583f1d95046d48262a2c253e23914648082e28e59e1b40",
+    "utf8": "parity/emdash/entry-locks/source/packages/core/src/database/migrations/013_scheduled_publishing.ts:21: trailing whitespace.\n+\t\t\tALTER TABLE ${sql.ref(table.name)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/013_scheduled_publishing.ts:27: trailing whitespace.\n+\t\t\tCREATE INDEX ${sql.ref(`idx_${table.name}_scheduled`)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/013_scheduled_publishing.ts:47: trailing whitespace.\n+\t\t\tALTER TABLE ${sql.ref(table.name)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/015_indexes.ts:54: trailing whitespace.\n+\t\t\tCREATE INDEX ${sql.ref(`idx_${table.name}_author`)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/015_indexes.ts:59: trailing whitespace.\n+\t\t\tCREATE INDEX ${sql.ref(`idx_${table.name}_updated`)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts:273: trailing whitespace.\n+\t\t\t\t\t\tSELECT sql FROM sqlite_master \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts:373: trailing whitespace.\n+\t\t\t\tCREATE INDEX ${sql.ref(`idx_${t}_slug`)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts:378: trailing whitespace.\n+\t\t\t\tCREATE INDEX ${sql.ref(`idx_${t}_locale`)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts:383: trailing whitespace.\n+\t\t\t\tCREATE INDEX ${sql.ref(`idx_${t}_translation_group`)} \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts:397: trailing whitespace.\n+\t\t\tALTER TABLE _emdash_fields \nparity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts:487: trailing whitespace.\n+\t\t\t\t\t\tSELECT sql FROM sqlite_master \n"
+  }
+}

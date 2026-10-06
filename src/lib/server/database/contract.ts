@@ -1,4 +1,5 @@
 import type { ContentValidationIssue } from '../schema/validate-content.ts';
+import type { EntryLockTable } from '../entry-locks/types.ts';
 import type { FieldType, ColumnType, FieldValidation, CollectionSupport, CollectionSource, CollectionAdminConfig, FieldWidgetOptions } from '../schema/types.ts';
 import type { AuthIdentityTables } from '../auth/identity-migrations.ts';
 import type { AuthTables } from '../auth/schema.ts';
@@ -24,6 +25,7 @@ export interface FieldRow {
   widget?: string | null; options?: string | null; searchable?: number; indexed?: number; translatable?: number;
 }
 export interface CmsTables extends AuthTables, AuthIdentityTables {
+  _cms_entry_locks: EntryLockTable;
   _cms_collections: CollectionRow;
   _cms_fields: FieldRow;
   _cms_migrations: { version: number };

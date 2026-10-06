@@ -1,0 +1,175 @@
+{
+  "scope": "Exact Root-reviewed29 finite writer spans after complete24 Node/D1 test-first; no OriginalSource or protected HTTP/session/race credit",
+  "current19WholeFamilies": [
+    {
+      "path": "tests/entry-locks-native/write-boundaries.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=^D1:",
+        "tests/entry-locks-native/write-boundaries.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-0.log",
+      "exitCode": 0,
+      "seconds": 7.099,
+      "bytes": 1205,
+      "sha256": "16c4d1a06228402bcc1fe7fc242fae4fab8b7fbb4cb54b2b2200505f2a8516d0",
+      "fullLog": "\u2714 D1: updateContent refuses the other live holder before stale CAS (1277.833365ms)\n\u2714 D1: publish refuses the other live holder before stale CAS (546.339654ms)\n\u2714 D1: schedule refuses the other live holder before stale CAS (523.381921ms)\n\u2714 D1: unschedule refuses the other live holder before stale CAS (524.040134ms)\n\u2714 D1: unpublish refuses the other live holder before stale CAS (483.712827ms)\n\u2714 D1: discardDraft refuses the other live holder before stale CAS (563.496514ms)\n\u2714 D1: restoreRevision refuses the other live holder before stale CAS (550.245645ms)\n\u2714 D1: deleteContent refuses the other live holder before stale CAS (546.649323ms)\n\u2714 D1: permission and ownership denials occur before holder disclosure, including override (180.418694ms)\n\u2714 D1: only exact boolean override bypasses the lease and it does not become live metadata (267.800262ms)\n\u2714 D1: successful authorized deletion clears the actual other-holder lease in the existing batch (181.592393ms)\n\u2714 D1: a genuine failed delete CAS retains content and lease and rolls back both guards (511.516097ms)\n\u2139 tests 12\n\u2139 suites 0\n\u2139 pass 12\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 7061.641821\n"
+    },
+    {
+      "path": "tests/canonical-installation.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/canonical-installation.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-1.log",
+      "exitCode": 0,
+      "seconds": 7.206,
+      "bytes": 979,
+      "sha256": "cdb9f3e34c814abf31bedf5f0934b46f9358d4abe29bda95550ba77c8111271d",
+      "fullLog": "\u2714 Node SQLite: normal installer applies real contiguous providers through eight (63.620272ms)\n\u2714 Node SQLite: normal installation enables actual settings and taxonomy storage (20.354616ms)\n\u2714 Node SQLite: normal metadata upgrade enables the Source collection field cascade (19.540062ms)\n\u2714 raw D1: normal installer applies real contiguous providers through eight (1216.976434ms)\n\u2714 raw D1: normal installation enables actual settings and taxonomy storage (1044.353067ms)\n\u2714 raw D1: normal metadata upgrade enables the Source collection field cascade (1030.798297ms)\n\u2714 scoped D1: normal installer applies real contiguous providers through eight (1114.529219ms)\n\u2714 scoped D1: normal installation enables actual settings and taxonomy storage (1104.162034ms)\n\u2714 scoped D1: normal metadata upgrade enables the Source collection field cascade (1122.45885ms)\n\u2139 tests 9\n\u2139 suites 0\n\u2139 pass 9\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 7172.708088\n"
+    },
+    {
+      "path": "tests/canonical-installation-values.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/canonical-installation-values.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-2.log",
+      "exitCode": 0,
+      "seconds": 15.948,
+      "bytes": 2078,
+      "sha256": "ac964f9349d8796cae1e50346d6c477f435aa26cef25b64227fb26914a2359fa",
+      "fullLog": "(node:3466686) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\u2714 Node SQLite: ordinary options persist across normal installation and reopen (82.55724ms)\n\u2714 Node SQLite: real taxonomy seeds defaults indexes and group pivot semantics (24.976885ms)\n\u2714 Node SQLite: normal v5 upgrade preserves every field and exact operator SQL (56.459761ms)\n\u2714 Node SQLite: failed normal metadata upgrade rolls back all providers and preserves v5 values (24.002551ms)\n\u2714 Node SQLite: external metadata foreign keys refuse the normal upgrade before writes (12.284246ms)\n\u2714 Node SQLite: missing or changed owned trigger refuses normal readiness without writes (45.733958ms)\n\u2714 raw D1: ordinary options persist across normal installation and reopen (1310.417179ms)\n\u2714 raw D1: real taxonomy seeds defaults indexes and group pivot semantics (1171.641312ms)\n\u2714 raw D1: normal v5 upgrade preserves every field and exact operator SQL (1746.919674ms)\n\u2714 raw D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (1525.962333ms)\n\u2714 raw D1: external metadata foreign keys refuse the normal upgrade before writes (524.805885ms)\n\u2714 raw D1: missing or changed owned trigger refuses normal readiness without writes (1274.640139ms)\n\u2714 scoped D1: ordinary options persist across normal installation and reopen (1279.428533ms)\n\u2714 scoped D1: real taxonomy seeds defaults indexes and group pivot semantics (1195.368779ms)\n\u2714 scoped D1: normal v5 upgrade preserves every field and exact operator SQL (1801.527032ms)\n\u2714 scoped D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (1603.98879ms)\n\u2714 scoped D1: external metadata foreign keys refuse the normal upgrade before writes (553.92936ms)\n\u2714 scoped D1: missing or changed owned trigger refuses normal readiness without writes (1187.987849ms)\n\u2139 tests 18\n\u2139 suites 0\n\u2139 pass 18\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 15911.941332\n"
+    },
+    {
+      "path": "tests/lifecycle-canonical-storage.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/lifecycle-canonical-storage.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-3.log",
+      "exitCode": 0,
+      "seconds": 2.457,
+      "bytes": 540,
+      "sha256": "8683476d943dfb0f537af4056607c974b14a7344f96cb5a97e79f959249219a1",
+      "fullLog": "\u2714 Node: fresh canonical startup publishes, stages, rolls back and retains history on reopen (139.67994ms)\n\u2714 Node: v4 canonical startup publishes, stages, rolls back and retains history on reopen (89.446664ms)\n\u2714 D1: fresh canonical startup publishes, stages, rolls back and retains history on reopen (809.250845ms)\n\u2714 D1: v4 canonical startup publishes, stages, rolls back and retains history on reopen (804.473829ms)\n\u2139 tests 4\n\u2139 suites 0\n\u2139 pass 4\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 2419.773936\n"
+    },
+    {
+      "path": "tests/lifecycle-startup-upgrade.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/lifecycle-startup-upgrade.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-4.log",
+      "exitCode": 0,
+      "seconds": 12.551,
+      "bytes": 1905,
+      "sha256": "979c69003d2d74c54aa328bf067d337fab4105f7906a41baf924b56626717042",
+      "fullLog": "\u2714 Node: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (84.964661ms)\n\u2714 Node: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (104.519557ms)\n\u2714 Node: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (79.846447ms)\n\u2714 Node: unsupported legacy and partially installed layouts reject with no writes (122.258462ms)\n\u2714 Node: latest layouts validate required content columns and every static lifecycle object without repair (227.8765ms)\n\u2714 Node: failure after each lifecycle rebuild stage rolls back DDL, markers and rows (313.520324ms)\n\u2714 Node: fresh and legacy concurrent startup share one complete migration winner (119.307967ms)\n\u2714 Node: a content schema write between preflight and batch cannot be overwritten (43.412889ms)\n\u2714 D1: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (821.280408ms)\n\u2714 D1: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (537.594012ms)\n\u2714 D1: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (758.440025ms)\n\u2714 D1: unsupported legacy and partially installed layouts reject with no writes (1974.353413ms)\n\u2714 D1: latest layouts validate required content columns and every static lifecycle object without repair (2150.89697ms)\n\u2714 D1: failure after each lifecycle rebuild stage rolls back DDL, markers and rows (2794.88295ms)\n\u2714 D1: fresh and legacy concurrent startup share one complete migration winner (602.210216ms)\n\u2714 D1: a content schema write between preflight and batch cannot be overwritten (962.665113ms)\n\u2139 tests 16\n\u2139 suites 0\n\u2139 pass 16\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 12510.680858\n"
+    },
+    {
+      "path": "tests/blocks/provider-preservation.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/blocks/provider-preservation.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-5.log",
+      "exitCode": 0,
+      "seconds": 20.61,
+      "bytes": 2004,
+      "sha256": "63ad7ba275cfd30f5a1206a373a3608f97d050c100f38e0e6ef503272d588618",
+      "fullLog": "\u2714 node fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (89.374688ms)\n\u2714 node installed16 near-miss block or metadata defaults are refused without repair (115.409258ms)\n\u2714 node forward16 preserves all metadata/content values and operator objects from 8 (59.069053ms)\n\u2714 node forward16 preserves all metadata/content values and operator objects from 14 (63.571695ms)\n\u2714 node Source UTC timestamp metadata CAS remains literal and monotonic in a non-UTC host (22.24572ms)\n\u2714 node real omitted Source metadata creation defaults permit persisted collection and field creation (19.213145ms)\n\u2714 node rebuild refuses external metadata parent foreign keys before any atomic writes (71.850159ms)\n\u2714 node unknown partial block installation rejects without repair or row changes (23.742678ms)\n\u2714 node every forward rebuild DDL failure rolls back complete historical data and marker state (981.718494ms)\n\u2714 d1 fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (697.25735ms)\n\u2714 d1 installed16 near-miss block or metadata defaults are refused without repair (2057.431661ms)\n\u2714 d1 forward16 preserves all metadata/content values and operator objects from 8 (425.698613ms)\n\u2714 d1 forward16 preserves all metadata/content values and operator objects from 14 (592.325868ms)\n\u2714 d1 Source UTC timestamp metadata CAS remains literal and monotonic in a non-UTC host (151.078036ms)\n\u2714 d1 real omitted Source metadata creation defaults permit persisted collection and field creation (116.362627ms)\n\u2714 d1 rebuild refuses external metadata parent foreign keys before any atomic writes (1636.683132ms)\n\u2714 d1 unknown partial block installation rejects without repair or row changes (586.009164ms)\n\u2714 d1 every forward rebuild DDL failure rolls back complete historical data and marker state (12119.479184ms)\n\u2139 tests 18\n\u2139 suites 0\n\u2139 pass 18\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 20572.145286\n"
+    },
+    {
+      "path": "tests/canonical-feature-storage-original.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/canonical-feature-storage-original.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-6.log",
+      "exitCode": 0,
+      "seconds": 21.177,
+      "bytes": 2129,
+      "sha256": "1d2a17f9cea3953f7735fd7d565f0a8f1ad39cfbb27a73e20c606cf45bd9d745",
+      "fullLog": "\u2714 Node: ordinary canonical startup installs actual contiguous providers through 19 (33.179791ms)\n\u2714 Node: fresh ordinary startup makes media and byline prerequisites storage available (50.751097ms)\n\u2714 Node: fresh ordinary startup makes directed content links storage available (35.18248ms)\n\u2714 Node: fresh ordinary startup makes menus storage available (29.47303ms)\n\u2714 Node: fresh ordinary startup makes sections and site widgets storage available (28.332186ms)\n\u2714 Node: fresh ordinary startup makes comments and moderation storage available (32.403285ms)\n\u2714 Node: fresh ordinary startup makes redirects storage available (27.621097ms)\n\u2714 raw D1: ordinary canonical startup installs actual contiguous providers through 19 (1549.787115ms)\n\u2714 raw D1: fresh ordinary startup makes media and byline prerequisites storage available (1529.961296ms)\n\u2714 raw D1: fresh ordinary startup makes directed content links storage available (1502.179721ms)\n\u2714 raw D1: fresh ordinary startup makes menus storage available (1595.680348ms)\n\u2714 raw D1: fresh ordinary startup makes sections and site widgets storage available (1344.018558ms)\n\u2714 raw D1: fresh ordinary startup makes comments and moderation storage available (1238.804912ms)\n\u2714 raw D1: fresh ordinary startup makes redirects storage available (1753.878595ms)\n\u2714 scoped D1: ordinary canonical startup installs actual contiguous providers through 19 (1217.441146ms)\n\u2714 scoped D1: fresh ordinary startup makes media and byline prerequisites storage available (1331.835091ms)\n\u2714 scoped D1: fresh ordinary startup makes directed content links storage available (1362.758309ms)\n\u2714 scoped D1: fresh ordinary startup makes menus storage available (1443.826863ms)\n\u2714 scoped D1: fresh ordinary startup makes sections and site widgets storage available (1743.511361ms)\n\u2714 scoped D1: fresh ordinary startup makes comments and moderation storage available (1444.414725ms)\n\u2714 scoped D1: fresh ordinary startup makes redirects storage available (1365.614781ms)\n\u2139 tests 21\n\u2139 suites 0\n\u2139 pass 21\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 21133.353337\n"
+    },
+    {
+      "path": "tests/canonical-feature-atomicity-original.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/canonical-feature-atomicity-original.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-7.log",
+      "exitCode": 0,
+      "seconds": 17.702,
+      "bytes": 1388,
+      "sha256": "986203bc699cb2b7fce639d7471717fead1a12f84b70dc17498577d69d12dace",
+      "fullLog": "\u2714 Node: genuine v5 upgrade and persisted v19 reopen preserve content and operator objects (124.531348ms)\n\u2714 Node: a future Source-named trigger collision is refused before any startup write (24.042331ms)\n\u2714 Node: a real late-batch SQLite failure rolls back the complete v0\u219219 installation (74.775194ms)\n\u2714 Node: a real late-batch SQLite failure rolls back the complete v4\u219219 installation (54.815348ms)\n\u2714 raw D1: genuine v5 upgrade and persisted v19 reopen preserve content and operator objects (2318.696713ms)\n\u2714 raw D1: a future Source-named trigger collision is refused before any startup write (845.61293ms)\n\u2714 raw D1: a real late-batch SQLite failure rolls back the complete v0\u219219 installation (2535.316445ms)\n\u2714 raw D1: a real late-batch SQLite failure rolls back the complete v4\u219219 installation (3188.63814ms)\n\u2714 scoped D1: genuine v5 upgrade and persisted v19 reopen preserve content and operator objects (2151.18118ms)\n\u2714 scoped D1: a future Source-named trigger collision is refused before any startup write (927.17715ms)\n\u2714 scoped D1: a real late-batch SQLite failure rolls back the complete v0\u219219 installation (2235.314558ms)\n\u2714 scoped D1: a real late-batch SQLite failure rolls back the complete v4\u219219 installation (2658.508916ms)\n\u2139 tests 12\n\u2139 suites 0\n\u2139 pass 12\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 17667.635358\n"
+    },
+    {
+      "path": "tests/cron-task-readiness.test.ts",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/cron-task-readiness.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-8.log",
+      "exitCode": 0,
+      "seconds": 6.57,
+      "bytes": 1468,
+      "sha256": "a56169a0eaf3a65b673f5e4484a1ee29eb77e085dd56157bd8c3fb387bfb96c6",
+      "fullLog": "\u2714 Node: readiness never installs missing storage or grants an unmarked descriptor (9.421019ms)\n\u2714 Node: canonical readiness preserves every Source026 nullable field/default and due index (33.16277ms)\n\u2714 Node: readiness refuses changed index columns and preserves the actual wrong layout (41.217727ms)\n\u2714 Node: read-only readiness rejects a future/gapped marker sequence with unchanged storage (39.501648ms)\n\u2714 Node: creation supports actual19 while future/gapped canonical admission remains refused (38.880254ms)\n\u2714 D1: readiness never installs missing storage or grants an unmarked descriptor (710.029466ms)\n\u2714 D1: canonical readiness preserves every Source026 nullable field/default and due index (115.294237ms)\n\u2714 D1: readiness refuses changed index columns and preserves the actual wrong layout (473.633349ms)\n\u2714 D1: read-only readiness rejects a future/gapped marker sequence with unchanged storage (696.174217ms)\n\u2714 D1: creation supports actual19 while future/gapped canonical admission remains refused (743.01134ms)\n\u2714 Node: actual persisted Cron rows and readiness survive canonical reopen/idempotence (44.969355ms)\n\u2714 raw D1: actual persisted Cron rows and readiness survive canonical reopen/idempotence (1498.240739ms)\n\u2714 scoped D1: actual persisted Cron rows and readiness survive canonical reopen/idempotence (1549.273273ms)\n\u2139 tests 13\n\u2139 suites 0\n\u2139 pass 13\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 6527.11202\n"
+    },
+    {
+      "path": "tests/seo-storage-native/canonical.test.ts",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "vitest.seo-storage-native.config.ts",
+        "tests/seo-storage-native/canonical.test.ts"
+      ],
+      "logPath": "/tmp/entry-locks-current19-full-family-9.log",
+      "exitCode": 0,
+      "seconds": 6.398,
+      "bytes": 221,
+      "sha256": "4be77bb6b942b08c91101361f42418b85909a063c61826c87c841afc55f6077c",
+      "fullLog": "\n RUN  v4.1.10 /workspace/cms-canonical-entry-locks\n\n\n Test Files  1 passed (1)\n      Tests  6 passed (6)\n   Start at  02:58:24\n   Duration  6.10s (transform 350ms, setup 0ms, import 753ms, tests 5.23s, environment 0ms)\n\n"
+    }
+  ],
+  "native12Node": {
+    "exitCode": 0,
+    "bytes": 1215,
+    "sha256": "161f75326bb6785445f7030a0a221456fcdaf917d04e88f048916564a780e028",
+    "fullLog": "\u2714 Node: updateContent refuses the other live holder before stale CAS (64.722225ms)\n\u2714 Node: publish refuses the other live holder before stale CAS (41.87385ms)\n\u2714 Node: schedule refuses the other live holder before stale CAS (54.741628ms)\n\u2714 Node: unschedule refuses the other live holder before stale CAS (57.620015ms)\n\u2714 Node: unpublish refuses the other live holder before stale CAS (37.468306ms)\n\u2714 Node: discardDraft refuses the other live holder before stale CAS (41.741982ms)\n\u2714 Node: restoreRevision refuses the other live holder before stale CAS (47.023393ms)\n\u2714 Node: deleteContent refuses the other live holder before stale CAS (31.870389ms)\n\u2714 Node: permission and ownership denials occur before holder disclosure, including override (31.155465ms)\n\u2714 Node: only exact boolean override bypasses the lease and it does not become live metadata (30.077824ms)\n\u2714 Node: successful authorized deletion clears the actual other-holder lease in the existing batch (31.162395ms)\n\u2714 Node: a genuine failed delete CAS retains content and lease and rolls back both guards (35.653808ms)\n\u2139 tests 12\n\u2139 suites 0\n\u2139 pass 12\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 1121.651253\n"
+  },
+  "currentWholeControls": {
+    "exitCode": 0,
+    "bytes": 219,
+    "sha256": "9105e942d0dda273552c4da1df0d6af608a7e04a3679316a357c0e60afc52335",
+    "fullLog": "\n RUN  v4.1.10 /workspace/cms-canonical-entry-locks\n\n\n Test Files  2 passed (2)\n      Tests  2 passed (2)\n   Start at  03:01:14\n   Duration  897ms (transform 25ms, setup 0ms, import 55ms, tests 589ms, environment 0ms)\n\n"
+  },
+  "wholeGuard": {
+    "exitCode": 0,
+    "bytes": 362,
+    "sha256": "a061d2e8892e3837c2e5dd8b69bf026547f943c1362a0c994d8c1892cabb3c76",
+    "fullLog": "{\"pin\":\"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e\",\"wholeSourceFiles\":785,\"wholeSourceBytes\":7921851,\"families\":7,\"repositoryFiniteSpans\":5,\"wholeRepositoryReversed\":true,\"productTestsRun\":0}\n{\"wholeNativeLeaves\":14,\"finiteSpans\":27,\"productCallbacks\":0}\n{\"wholeEditorSharedReversals\":2,\"productCallbacks\":0}\n{\"wholeWriterSharedReversals\":9,\"productCallbacks\":0}\n"
+  }
+}
