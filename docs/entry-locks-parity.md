@@ -1,0 +1,3 @@
+
+
+The lock development branch now adopts the complete qualified public Cron18 commit `f3bd029afd2e0f54dae14a7d6bd6b8f797f1d829` through an ordinary merge. All 4,254 incoming leaves retain their whole bytes and modes; the two shared append conflicts preserve the complete incoming prefix and exact former owned tail with full reversal receipts. The 13 protected writer/editor leaves and 14 prepared Native API leaves remain sealed. The immutable whole Source guard and the three positive/four negative whitespace controls pass. Cron18 Main gates remain pending; this is development adoption. Provider19 storage is still absent at this union baseline, and protected probes remain held. See `parity/emdash/entry-locks/evidence/cron18-development-union.json`.

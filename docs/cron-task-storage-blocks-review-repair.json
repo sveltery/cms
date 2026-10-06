@@ -1,0 +1,86 @@
+{
+  "reviewedHead": "c9060072c1139b8ab9e0ffdef4131ca4523dc37c",
+  "reviewedTree": "56e8626d8df73cfaa4c4ba1cd9abb714424e16b2",
+  "sourceRun": 37399662219,
+  "sourceJob": 112067735450,
+  "wholeMandatoryCommand": "TZ=America/New_York node --test tests/blocks/provider-defaults-original.test.ts tests/blocks/catalogue-fixture.test.ts tests/blocks/provider-preservation.test.ts tests/blocks/comments-readiness-defaults-original.test.ts",
+  "before": {
+    "registered": 30,
+    "passed": 20,
+    "failed": 10,
+    "skipped": 0,
+    "failureClass": "genuine current18-versus17 value assertions; five expanded callbacks per real Node/D1 runtime",
+    "sourceBodyChanges": 0,
+    "laterNormalSourceCommands": "unreached",
+    "hosting": "skipped"
+  },
+  "wholeOldLeaf": {
+    "path": "tests/blocks/provider-preservation.test.ts",
+    "archive": "docs/cron-task-storage-evidence/provider-preservation-c906-whole.ts.txt",
+    "bytes": 18912,
+    "sha256": "40d34fc9a12419786c315286ff612ab589f768c1794211d106260273d77b8b22",
+    "blob": "236200633e0b65f5149900b47e2f1a023aba54a6"
+  },
+  "finiteAuthorizedEdits": [
+    {
+      "before": "assert.equal(CMS_MIGRATION_VERSION,17)",
+      "after": "assert.equal(CMS_MIGRATION_VERSION,18)",
+      "count": 3
+    },
+    {
+      "before": "selectAll().execute()).length,17)",
+      "after": "selectAll().execute()).length,18)",
+      "count": 1
+    }
+  ],
+  "limits": "Only four current-latest tokens are authorized. Every other byte, historical8/14/16/genuine17 fixture, Source body, data/default/sort/clock/assertion, old nine Native adaptation leaves and every product body remain unchanged. This is the real hosted red baseline, not a selected local recreation. No retry of c906 CI649.",
+  "receipts": [
+    {
+      "path": "docs/cron-task-storage-evidence/ci649-c906-complete-source-block30-first-red.log",
+      "bytes": 177483,
+      "sha256": "9874f4072a5a091b0181c2aa7231a7ac66c41814f5ea8cae04ed45086bc18391"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/c906-independent-complete-review-request-changes.json",
+      "bytes": 33290,
+      "sha256": "89c88e5b06435ae75f2654489605450b908a171c70c42ec1c063b1faa442b0d6"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/provider-preservation-c906-whole.ts.txt",
+      "bytes": 18912,
+      "sha256": "40d34fc9a12419786c315286ff612ab589f768c1794211d106260273d77b8b22"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-block30-whole-current18-fix.log",
+      "bytes": 3158,
+      "sha256": "3529865a11574be61b8ddd53f27638682e9b9fd5e770a2fe88d8bdaf1fb252b7"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native-block30-whole-current18-fix.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/scoped-ci649-whitespace-four-controls.json",
+      "bytes": 1501,
+      "sha256": "d9647e01bfcd66fd47ddf038e03e0fe7895547e80dba0e7663ef99a82176f57c"
+    }
+  ],
+  "after": {
+    "registered": 30,
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 19878.8489,
+    "exit": 0,
+    "wholePublishedCommandUnchanged": true,
+    "runtime": "actual Node and real D1",
+    "completeOldLeafReverseIdentical": true,
+    "earlierNineNativeLeavesUnchanged": true,
+    "sourceBodyChanges": 0,
+    "productBodyChanges": 0,
+    "checkerDecision": "No redundant local checker: only four numeric test tokens and additive JavaScript provenance guard changed; current mandatory hosted checker remains required."
+  },
+  "redCommit": "ed1b37e0c3eecdc1cd217cc22555c8fd1ce1f970",
+  "fixCommit": "12b057b7355f366bfd7dbef5d7b9740b330308ae"
+}

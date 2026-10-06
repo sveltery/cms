@@ -244,6 +244,17 @@ docs/evidence/user-admin-native/rollback-current-admin-inputs-reference48.log -w
 # Preserve literal Node error-constructor runner EOF formatting only.
 docs/node-error-constructor-evidence/*.log whitespace=-blank-at-eof
 
+# Preserve only the literal original Cron diagnostic whitespace.
+docs/cron-task-storage-evidence/native9-canonical-first-red.log whitespace=-blank-at-eol
+docs/cron-task-storage-evidence/source4-explicit-reference-first.log whitespace=-blank-at-eof
+docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log whitespace=-blank-at-eof
+docs/cron-task-storage-evidence/native-affected-whole-latest17-first-red.log whitespace=-blank-at-eol
+docs/cron-task-storage-evidence/native-seo-whole-latest17-first-red.log whitespace=-blank-at-eof
+docs/cron-task-storage-evidence/native-seo-whole-current18-fix.log whitespace=-blank-at-eof
+docs/cron-task-storage-evidence/source2-whole-node-current.log whitespace=-blank-at-eof
+docs/cron-task-storage-evidence/ci647-current233-checker-two-own-errors.log whitespace=-blank-at-eol
+docs/cron-task-storage-evidence/ci649-c906-complete-source-block30-first-red.log whitespace=-blank-at-eol
+
 parity/emdash/entry-locks/source/packages/core/src/database/migrations/013_scheduled_publishing.ts -whitespace
 parity/emdash/entry-locks/source/packages/core/src/database/migrations/015_indexes.ts -whitespace
 parity/emdash/entry-locks/source/packages/core/src/database/migrations/019_i18n.ts -whitespace

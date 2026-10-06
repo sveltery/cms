@@ -3108,6 +3108,49 @@ Media/auth/UI/usage-producer/hosting omissions remain incomplete.
 
 [Paired feature scope and evidence](../../docs/general-media-backend.md).
 
+## Proposed canonical Cron storage prerequisite
+
+Source: EmDash 1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+complete migrations 026/088, complete database types and whole two-callback UTC
+migration family. See [the feature record](../../docs/cron-task-storage.md),
+[whole Source ledger](../../docs/cron-task-storage-ports.json) and
+[finite Native adaptation ledger](../../docs/cron-task-storage-native-adaptations.json).
+
+| ID | Observable Source and Native behavior | Evidence and decision status |
+| --- | --- | --- |
+| CRON-STORAGE-01: canonical namespace and chronology | Source026 creates `_emdash_cron_tasks`; Native provider18 creates `_cms_cron_tasks` after unchanged providers1–17, preserving all columns, nullable/default behavior, unique constraint and scheduler indexes. Source088 converts existing one-shot UTC values. Legitimate Native1–17 has noCron rows/table, so empty creation satisfies088; unknown pre18Cron objects are refused rather than adopted. | Root explicitly authorized this forward Cron provider18 for development. Native9 genuine canonical reds→green; complete affected80 first48pass/32fail→80green and SEO6 first4pass/2fail→6green. All allowed existing-file edits reconstruct exact publicMain41. Exact-head review/gates/manager approval/regular author merge and final acceptance remain pending; landing alone is not acceptance. |
+| CRON-STORAGE-02: Source fixture/runtime limits | The complete original088 family passes two callbacks on explicit physicalSource NodeSQLite. Supplemental realD1 passes one and stops the105-row callback during the unchanged20×9-binding insert before088. Native readiness inspects contiguous markers1–18 and exact objects with no writes. | Original wholeSource bodies/data/clocks remain exact; fixture/setup stops earn0causal/product credit. The additive D1 reference command retains its failure and is not a fake-green normal gate. Existing C-07 atomic fixed-batch substitution remains unchanged. PostgreSQL, full named migration locks/runner, scheduler/plugin behavior and deployed support remain incomplete scope. |
+
+Current local successor retains the complete Source088 SQLite family (2/2),
+all 13 Native readiness/schema/reopen callbacks across Node/raw/scoped D1, and
+a bounded checker with zero errors and zero warnings. The two CI647 unknown-row
+spread diagnostics were corrected by erased test-only result annotations; the
+whole Native test reconstructs exact preceding233 when reversed. That failed
+CI remains historical; current hosted gates and final review/approval are pending.
+
+The c906 complete review also identified four remaining current-version tokens
+in the mandatory Native block-provider preservation leaf. CI649 reached the
+whole 30-callback family with 20 passing and ten genuine 18-versus-17 value
+failures; later Source commands were unreached and hosting was skipped. The
+whole failed raw job, review receipt and complete old leaf remain preserved.
+After the regular red commit, only those four latest expectations change to18.
+Their strict reverse reconstructs the entire old c906/Main41 leaf, while all
+earlier nine adapted leaves, historical fixtures, Source bodies, data and clocks
+remain unchanged. The same whole published command passes30/30 on actual Node
+and real D1; this adds no Source causal credit. The complete Source guard now
+checks ten finite Native leaves. Current successor normal/secured gates and
+independent review closure precede Root approval and the regular author merge.
+
+The ordinary accepted Media Main `c4c885e0` development union retains the full
+incoming attribute and compatibility prefixes before the whole earlier Cron
+tails, plus every incoming package command before the unchanged Cron append.
+All three conflict resolutions reconstruct their complete authorities under
+the dedicated C4 union ledger. Source bodies, providers1–17, Cron18 and all
+owned tests/raw history remain unchanged; this introduces no provider or
+dependency adjustment. Prior ae515 hosted all-six success remains historical.
+Current successor gates and finite union review precede exact Root approval,
+regular author merge and the downstream provider18 prerequisite handoff.
+
 ### Entry edit locking: proposed complete feature
 
 Source authority: EmDash 1.1.0 immutable pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete Source075 migration, EntryLockRepository, entry-lock handlers, controlled write routes, admin notice and hook. The [feature record](../../docs/entry-locks.md), [whole authority inventory](entry-locks/inventory.json) and [literal first-run packet](entry-locks/evidence/initial-test-first-receipts.json) distinguish full Source reference execution from Native supplements.
@@ -3131,3 +3174,6 @@ Entry-lock Native notice framework follow-up: actual single-component syntax com
 Entry-lock Native editor-envelope adapter preparation (PR #130): the whole Source API class guard is unchanged. An owned boundary converts the existing actual Kit/EditorResponseError envelope into the accepted actual ApiResponseError identity only for ENTRY_LOCKED; ordinary concurrency/network failures retain existing handling. Three meaningful Native envelope cases plus controller3 pass (six total). The actual initial missing-module stop has zero new callback/causal credit. Both literal receipts remain retained. Shared EditorForm, EditorSession, writers and current request/session/origin composition remain unchanged; actual mounted wiring and complete browser/backend enforcement remain pending. This is a Native transport difference, with no complete Source/module identity or protected HTTP parity claim.
 
 Entry-lock PR #130 ordinary Media development union adopts qualified public Mainc4c885e0/tree3b9a862c with both regular parents intact. Complete incoming `.gitattributes` and compatibility prefixes precede this branch's exact old owned tails; finite conflict reversal proof and full prepared Native API vector are retained in `entry-locks/evidence/media-c4-development-union.json`. All thirteen read-only writer/editor leaf bytes remain exact, package/runtime/Media/source additions adopt the full incoming tree, and unchanged 785-file Source/full repository/runtime reversal guards pass. Actual three positive/four negative Git whitespace controls pass on the union. No provider18/19 is adopted or executed here, no shared writer edit or new protected/session/credential probe occurs, and complete current-head hosted/normal qualification remains pending.
+
+
+The lock development branch now adopts the complete qualified public Cron18 commit `f3bd029afd2e0f54dae14a7d6bd6b8f797f1d829` through an ordinary merge. All 4,254 incoming leaves retain their whole bytes and modes; the two shared append conflicts preserve the complete incoming prefix and exact former owned tail with full reversal receipts. The 13 protected writer/editor leaves and 14 prepared Native API leaves remain sealed. The immutable whole Source guard and the three positive/four negative whitespace controls pass. Cron18 Main gates remain pending; this is development adoption. Provider19 storage is still absent at this union baseline, and protected probes remain held. See `parity/emdash/entry-locks/evidence/cron18-development-union.json`.

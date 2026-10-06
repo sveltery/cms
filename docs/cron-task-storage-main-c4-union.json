@@ -1,0 +1,129 @@
+{
+  "commonMain82": "82e3dd7b673f774ca8c3eceaafa28234641bd6b1",
+  "acceptedIncomingMain": "c4c885e0e68f6b9f542ec532205fefad4aaedd26",
+  "acceptedIncomingTree": "3b9a862cee9055838a46f505b9ac69d9f5a9c592",
+  "acceptedIncomingOrderedParents": [
+    "82e3dd7b673f774ca8c3eceaafa28234641bd6b1",
+    "b9a3a826fe28e5916b47cf0ae408265499b315b1"
+  ],
+  "ownPriorHead": "ae51583f12769c91893346fdd926be1ed35eec92",
+  "ownPriorTree": "77f080ff7359151738644b4077ec3c18acee394a",
+  "expectedRegularUnionOrderedParents": [
+    "ae51583f12769c91893346fdd926be1ed35eec92",
+    "c4c885e0e68f6b9f542ec532205fefad4aaedd26"
+  ],
+  "conflictPathsExactly": [
+    ".gitattributes",
+    "package.json",
+    "parity/emdash/compatibility.md"
+  ],
+  "resolutions": [
+    {
+      "path": ".gitattributes",
+      "base": {
+        "bytes": 17461,
+        "sha256": "e39fc7bb3fbed08d37908c738e59317900b86ffed504e7fbc449ee85ba72d97f",
+        "blob": "574d35ef02508b3be3083cd3164aef8ebda46d44"
+      },
+      "ours": {
+        "bytes": 18395,
+        "sha256": "421f06759372fe75242261658f539f256b5e5921e9cdc465d8bff1054409b932",
+        "blob": "2f9452902d168f17088e49be1bcb05457073328e"
+      },
+      "incoming": {
+        "bytes": 17599,
+        "sha256": "d34e203986c26935f034dd934da471161422e1b33c7b82246d4da99182118cb1",
+        "blob": "e2b0131882fadbb058e63d9c9e045c8d82c21839"
+      },
+      "ownedTail": {
+        "bytes": 934,
+        "sha256": "fa87e5e21d08194f61633f35207f4833bff6bd0296c3e4433547b1abbf9cde6e",
+        "blob": "4ce7931e29732fb308b15891e7e06fd3dfb4f621"
+      },
+      "resolved": {
+        "bytes": 18533,
+        "sha256": "db4f68408eee49cdcdb571473a7d8885b3bb1595429d24301c208ac80f4da1cd",
+        "blob": "dc7fd5ecde0b6afb5013df03ad87cb9f850c92c5"
+      },
+      "rule": "entire incoming Main bytes followed by entire unchanged owned tail after exact common Main82 prefix",
+      "incomingFullPrefixExact": true,
+      "ownedTailExact": true
+    },
+    {
+      "path": "parity/emdash/compatibility.md",
+      "base": {
+        "bytes": 640066,
+        "sha256": "2e3826ba102dfd7035d4de7d78a1ff8625e1a632b15554c1c185bbe0779edcff",
+        "blob": "590cb2151d55e4685b0e54d176aa861321c983f7"
+      },
+      "ours": {
+        "bytes": 643582,
+        "sha256": "679a5a48e63a1c16cf92aa405e77d66e82b7db45afe35fdefced949ca0215be5",
+        "blob": "c4966aeeade2fd670081b9fe3aa365bb17a592f2"
+      },
+      "incoming": {
+        "bytes": 663868,
+        "sha256": "2ce83a9c09fb30e2fd15d9921a16766c51aa1024469dd8238d780cf10caf6b69",
+        "blob": "f6de267181002d048d724fb7e86c5d75e45627c2"
+      },
+      "ownedTail": {
+        "bytes": 3516,
+        "sha256": "6b6a93740f5ab02a2c0778e1f85cda53ccaafd9074b7221a5c753176b7f42eed",
+        "blob": "130c6242dde79dbfc23d2625b8ecbfddd4944a3d"
+      },
+      "resolved": {
+        "bytes": 667384,
+        "sha256": "a8a9b9d05babda385c85463251a7115a061257f58a25b07e92ba59477c0dc5a4",
+        "blob": "1798ccc492dff8c7aec7802dfb63e4e872f6cca5"
+      },
+      "rule": "entire incoming Main bytes followed by entire unchanged owned tail after exact common Main82 prefix",
+      "incomingFullPrefixExact": true,
+      "ownedTailExact": true,
+      "currentFinalResolved": {
+        "bytes": 668072,
+        "sha256": "508ce9245988193df533080b47035c83ee47c5ec9189f2a68399b4d44adfdba2",
+        "blob": "770bd8d8a0c6e0e8e5ba03c6df7a2c2f7f34068e"
+      },
+      "freshOwnedUnionExplanationAfterCompletePriorTail": true
+    },
+    {
+      "path": "package.json",
+      "base": {
+        "bytes": 13226,
+        "sha256": "155876b3261dfadc21ff00d58476c20404f86d2ade9c426b479aefb951c668ed",
+        "blob": "5abdc9916efd136a1a8bf8aa1ff289069a6a128c"
+      },
+      "ours": {
+        "bytes": 13572,
+        "sha256": "95fcd11c7bfb504dd927673e0e38aaab5da8c7e10f7112d6fd0162713286d460",
+        "blob": "30e55e3f39fde5daaf60173ac754a7ed58611f37"
+      },
+      "incoming": {
+        "bytes": 13713,
+        "sha256": "b354875345ce9d62354c32ab1860d5d10eac3753235fe69cebc162e039fb3f42",
+        "blob": "f80d5e16e6058bf09d15d2b0198df70b670007f4"
+      },
+      "resolved": {
+        "bytes": 14059,
+        "sha256": "1e44c816362493038f5b1d46f07fb381b1f1eeb6c101efc409235b318502a68b",
+        "blob": "70b9b81cf5c9a444679313ecc892c3806e103553"
+      },
+      "rule": "entire incoming Main package plus ONLY full incoming Source command Cron suffix and two exact unchanged owned scripts",
+      "edits": [
+        {
+          "before": "\"node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy && pnpm test:schema-admin-source && pnpm test:schema-admin-response-native && pnpm test:schema-admin-index-native && pnpm test:byline-source && pnpm test:byline-native && pnpm test:calendar-source && pnpm test:scheduled-sweep-native && pnpm test:schema-admin-ui-source && pnpm test:schema-admin-ui-native && pnpm test:calendar-admin-native && pnpm test:calendar-locales-source && pnpm test:calendar-admin-fidelity && pnpm test:seo-storage-source && pnpm test:seo-storage-native && pnpm test:user-repository-roles && pnpm test:user-admin && pnpm test:user-source-gate && pnpm test:general-media-source && pnpm test:general-media-r2-source && pnpm test:general-media-native\"",
+          "after": "\"node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy && pnpm test:schema-admin-source && pnpm test:schema-admin-response-native && pnpm test:schema-admin-index-native && pnpm test:byline-source && pnpm test:byline-native && pnpm test:calendar-source && pnpm test:scheduled-sweep-native && pnpm test:schema-admin-ui-source && pnpm test:schema-admin-ui-native && pnpm test:calendar-admin-native && pnpm test:calendar-locales-source && pnpm test:calendar-admin-fidelity && pnpm test:seo-storage-source && pnpm test:seo-storage-native && pnpm test:user-repository-roles && pnpm test:user-admin && pnpm test:user-source-gate && pnpm test:general-media-source && pnpm test:general-media-r2-source && pnpm test:general-media-native && pnpm test:cron-task-storage-source\"",
+          "count": 1
+        },
+        {
+          "before": "    \"test:general-media-native\": \"vitest run --config vitest.general-media-native.config.ts\"\n",
+          "after": "    \"test:general-media-native\": \"vitest run --config vitest.general-media-native.config.ts\",\n    \"test:cron-task-storage-source\": \"node scripts/check-cron-task-storage-source.mjs && vitest run --config vitest.cron-storage-source.config.ts\",\n    \"test:cron-task-storage-d1-reference\": \"node scripts/check-cron-task-storage-source.mjs && vitest run --config vitest.cron-storage-d1-reference.config.ts\"\n",
+          "count": 1
+        }
+      ],
+      "completeReverseIncomingByteIdentity": true,
+      "allOtherMainScriptsDependenciesAndConfigurationExact": true
+    }
+  ],
+  "scope": "Only ordinary accepted public Main union and conflict transport. Providers1\u201317, Cron provider18, all Source/product/test bodies and owned raw histories preserve their original bytes; no new dependency/provider/CI/security/auth/bootstrap edits. Previous ae515 all6 current gates passed before this union and remain historical qualification; current successor full gates/review/Root exact approval are required."
+}

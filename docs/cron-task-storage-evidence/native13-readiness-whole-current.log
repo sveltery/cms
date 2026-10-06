@@ -1,0 +1,21 @@
+✔ Node: readiness never installs missing storage or grants an unmarked descriptor (10.176747ms)
+✔ Node: canonical readiness preserves every Source026 nullable field/default and due index (34.898548ms)
+✔ Node: readiness refuses changed index columns and preserves the actual wrong layout (48.476618ms)
+✔ Node: read-only readiness rejects a future/gapped marker sequence with unchanged storage (43.367319ms)
+✔ Node: creation supports actual18 while future/gapped canonical admission remains refused (42.38732ms)
+✔ D1: readiness never installs missing storage or grants an unmarked descriptor (664.784799ms)
+✔ D1: canonical readiness preserves every Source026 nullable field/default and due index (104.394578ms)
+✔ D1: readiness refuses changed index columns and preserves the actual wrong layout (442.725547ms)
+✔ D1: read-only readiness rejects a future/gapped marker sequence with unchanged storage (798.45973ms)
+✔ D1: creation supports actual18 while future/gapped canonical admission remains refused (801.428383ms)
+✔ Node: actual persisted Cron rows and readiness survive canonical reopen/idempotence (56.46452ms)
+✔ raw D1: actual persisted Cron rows and readiness survive canonical reopen/idempotence (1669.912283ms)
+✔ scoped D1: actual persisted Cron rows and readiness survive canonical reopen/idempotence (1525.651369ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6800.104681
