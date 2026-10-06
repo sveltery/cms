@@ -4,7 +4,7 @@ import type { CmsDatabase } from '../database/contract.ts';
 import { apiError, apiSuccess, handleError } from '../comments/upstream/api/error.ts';
 import { isParseError, parseBody } from '../comments/upstream/api/parse.ts';
 import { OptionsRepository } from '../comments/upstream/database/repositories/options.ts';
-import { applySetupSeedWithinBudget, type SetupSeedParameters } from '../seed/index.ts';
+import { applySetupSeedWithinBudget, SetupSeedApplyError, type SetupSeedParameters } from '../seed/index.ts';
 import { registeredSeedDatabaseOwner, seedSourceDatabase } from '../seed/namespace.ts';
 import { setupBody } from './schemas.ts';
 
@@ -44,7 +44,10 @@ export async function applySetupSite(context: SetupSiteContext): Promise<Respons
     let outcome;
     try {
       outcome = await applySetupSeedWithinBudget(db, { ...body, storage: context.storage });
-    } catch (error) { return handleError(error, 'Failed to apply seed', 'SEED_ERROR'); }
+    } catch (error) {
+      if (error instanceof SetupSeedApplyError) return handleError(error.cause, 'Failed to apply seed', 'SEED_ERROR');
+      throw error; // Pinned load/override/validation failures belong to the outer catch.
+    }
     if (!outcome.validation.valid) return apiError('INVALID_SEED', `Invalid seed file: ${outcome.validation.errors.join(', ')}`, 400);
     if (!outcome.seeded) throw new Error('Valid seed application produced no result');
     const { result, complete: seedComplete, progress: seedProgress } = outcome.seeded;

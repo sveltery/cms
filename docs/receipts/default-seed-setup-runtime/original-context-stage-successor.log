@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts (0 test)
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts:6:1
+      4| import { afterEach, describe, expect, it, vi } from "vitest";
+      5|
+      6| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+      7|
+      8| vi.mock(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts:6:1
+      4| import { afterEach, describe, expect, it, vi } from "vitest";
+      5|
+      6| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+      7|
+      8| vi.mock("virtual:emdash/seed", () => ({ seed: { version: "unsupported"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  9 passed (9)
+   Start at  01:07:20
+   Duration  3.57s (transform 1.19s, setup 0ms, import 1.94s, tests 864ms, environment 0ms)
+
