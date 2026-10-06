@@ -1,0 +1,62 @@
+{
+  "package": "modern-tar",
+  "version": "0.7.5",
+  "tarballBytes": 22504,
+  "tarballSRI": "sha512-YTefgdpKKFgoTDbEUqXqgUJct2OG6/4hs4XWLsxcHkDLj/x/V8WmKIRppPnXP5feQ7d1vuYWSp3qKkxfwaFaxA==",
+  "tarballSha256": "696daaf03555da118a9e8d04932fcd14632788bc36d21b0023e4b888fe2b6d32",
+  "wholeFiles": [
+    {
+      "path": "package/LICENSE",
+      "bytes": 1064,
+      "sha256": "dbcbef54fa7e111b69b12a9787051f31f5378b40711b6c57c5a82d99dc8a9e0d"
+    },
+    {
+      "path": "package/dist/fs/index.js",
+      "bytes": 23247,
+      "sha256": "616523965cab36b7e2a85e35c0abaa8c4efb4c016e4fb6ea3b23d1b4b17ad0f3"
+    },
+    {
+      "path": "package/dist/web/index.js",
+      "bytes": 5612,
+      "sha256": "b0003252f286a6b7d365ab63dba1e8270e2197b51a8ae6619ba7d45ea5dc7b1c"
+    },
+    {
+      "path": "package/dist/unpacker-Dcww6JeE.js",
+      "bytes": 23610,
+      "sha256": "85da5bfaa85ebe8a56c09271ce155e10d81181ec9d9fa5dc561532fa288886d1"
+    },
+    {
+      "path": "package/package.json",
+      "bytes": 1406,
+      "sha256": "e21417ca3563de1b37e3ba26cf768c82755955ef8e16adf81d0a9919761348a8"
+    },
+    {
+      "path": "package/README.md",
+      "bytes": 8926,
+      "sha256": "cd25e07a183cea3e81cacd68bdbcb1c44f3d7baae1adba6ee3259b41ccb301f4"
+    },
+    {
+      "path": "package/dist/fs/index.d.ts",
+      "bytes": 7258,
+      "sha256": "3cea1c34443e2e0e9e2e59671f8e49fc776ec6670d31c30bd439156256f14d26"
+    },
+    {
+      "path": "package/dist/web/index.d.ts",
+      "bytes": 11157,
+      "sha256": "c4defecbd08ad2ef1de8aa5271b35c9ead4ca4ab885fefb61e67cd5b5c9da571"
+    },
+    {
+      "path": "package/dist/types-Te8MHQn3.d.ts",
+      "bytes": 2759,
+      "sha256": "2146f17e38f6e2724db75096f42d47b74d7a15ef64ce3e4aefd918487eb99ccf"
+    }
+  ],
+  "licenseBytes": 1064,
+  "licenseSha256": "dbcbef54fa7e111b69b12a9787051f31f5378b40711b6c57c5a82d99dc8a9e0d",
+  "licenseWholeText": "MIT License\n\nCopyright (c) 2025 Ayuhito\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+  "packageWholeText": "{\n\t\"name\": \"modern-tar\",\n\t\"version\": \"0.7.5\",\n\t\"description\": \"Zero dependency streaming tar parser and writer for JavaScript.\",\n\t\"author\": \"Ayuhito <hello@ayuhito.com>\",\n\t\"license\": \"MIT\",\n\t\"type\": \"module\",\n\t\"sideEffects\": false,\n\t\"main\": \"./dist/web/index.js\",\n\t\"module\": \"./dist/web/index.js\",\n\t\"types\": \"./dist/web/index.d.ts\",\n\t\"exports\": {\n\t\t\"./package.json\": \"./package.json\",\n\t\t\".\": \"./dist/web/index.js\",\n\t\t\"./fs\": \"./dist/fs/index.js\"\n\t},\n\t\"typesVersions\": {\n\t\t\"*\": {\n\t\t\t\"fs\": [\n\t\t\t\t\"dist/fs/index.d.ts\"\n\t\t\t],\n\t\t\t\"*\": [\n\t\t\t\t\"dist/web/index.d.ts\"\n\t\t\t]\n\t\t}\n\t},\n\t\"devDependencies\": {\n\t\t\"@biomejs/biome\": \"2.3.8\",\n\t\t\"@types/node\": \"^25.0.2\",\n\t\t\"@vitest/browser-playwright\": \"4.0.15\",\n\t\t\"@vitest/coverage-v8\": \"4.0.15\",\n\t\t\"tsdown\": \"^0.18.0\",\n\t\t\"typescript\": \"^5.9.3\",\n\t\t\"vitest\": \"4.0.15\"\n\t},\n\t\"scripts\": {\n\t\t\"build\": \"tsdown\",\n\t\t\"dev\": \"tsdown --watch\",\n\t\t\"test\": \"vitest\",\n\t\t\"coverage\": \"vitest run --coverage\",\n\t\t\"check\": \"biome check --write\",\n\t\t\"typecheck\": \"tsc --noEmit\",\n\t\t\"test:browser\": \"vitest --config=vitest.browser.config.ts --browser\"\n\t},\n\t\"files\": [\n\t\t\"dist\",\n\t\t\"README.md\"\n\t],\n\t\"homepage\": \"https://github.com/ayuhito/modern-tar\",\n\t\"bugs\": {\n\t\t\"url\": \"https://github.com/ayuhito/modern-tar/issues\"\n\t},\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"git+https://github.com/ayuhito/modern-tar.git\"\n\t},\n\t\"publishConfig\": {\n\t\t\"access\": \"public\"\n\t},\n\t\"engines\": {\n\t\t\"node\": \">=18.0.0\"\n\t}\n}\n",
+  "transitiveRuntimeDependencies": [],
+  "executableInstallScripts": [],
+  "referenceOnly": true,
+  "nativePL3Credit": 0
+}

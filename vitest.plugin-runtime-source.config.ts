@@ -15,10 +15,16 @@ export default defineConfig({
         if (sourcePrefixes[prefix]) return path.join(frozen, 'src', sourcePrefixes[prefix], rest.replace(/\.js$/, '.ts'));
       }
       if (id === '#node-sqlite') return path.join(root, 'src/lib/server/database/node-sqlite-compat.ts');
+      // Genuine complete Reference dependency acquired with ignore-scripts and
+      // verified against the immutable Source lock SRI; never a product import.
+      if (id === 'modern-tar' && importer?.startsWith(frozen)) return path.join(process.env.PLUGIN_REFERENCE_MODERN_TAR ?? '/tmp/plugin127-source-reference-modern-tar/package', 'dist/web/index.js');
+      // Preserve the complete pinned package public entry, including imports.
+      if (id === 'emdash') return path.join(frozen, 'src/index.ts');
       if (id === '@emdash-cms/plugin-types') return path.join(product, 'contracts/index.ts');
       if (id === '@emdash-cms/blocks/server') return path.join(product, 'contracts/block-server.ts');
       if (id === '@emdash-cms/blocks') return path.join(product, 'contracts/block-types.ts');
       if (id === '@emdash-cms/auth') return path.join(root, 'src/lib/server/auth/permissions.ts');
+      if (id === '@emdash-cms/auth/adapters/kysely') return path.join(root, 'parity/emdash/plugin-runtime/source/packages/auth/src/adapters/kysely.ts');
       // A finite test-only package export facade points at the complete pinned
       // config authority; no fabricated locale functions or public-index identity.
       if (id === '@emdash-cms/admin/locales') return path.join(root, 'parity/emdash/plugin-runtime/source/packages/admin/src/locales/config.ts');
@@ -32,6 +38,16 @@ export default defineConfig({
           'native-schema.ts': 'schema/registry.ts', 'native-users.ts': 'database/repositories/user.ts',
           'native-media.ts': 'database/repositories/media.ts', 'native-comments.ts': 'database/repositories/comment.ts',
           'native-taxonomies.ts': 'database/repositories/taxonomy.ts',
+          '../database/lifecycle/upstream/database/repositories/content.ts': 'database/repositories/content.ts',
+          '../database/lifecycle/upstream/database/repositories/revision.ts': 'database/repositories/revision.ts',
+          '../seo/repository.ts': 'database/repositories/seo.ts',
+          '../redirects/handlers.ts': 'api/handlers/redirects.ts',
+          '../redirects/repository.ts': 'database/repositories/redirect.ts',
+          '../redirects/schemas.ts': 'api/schemas/redirects.ts',
+          '../taxonomies/definitions.ts': 'database/repositories/taxonomy-def.ts',
+          '../bylines/credits.ts': 'bylines/credits.ts',
+          '../menus/i18n-config.ts': 'i18n/config.ts',
+          '../menus/i18n-resolve.ts': 'i18n/resolve.ts',
           'native-media-handlers.ts': 'api/handlers/media.ts', 'native-taxonomy-handlers.ts': 'api/handlers/taxonomies.ts',
           'content-usage-refresh.ts': 'media/usage/content-refresh.ts',
           '../entry-locks/repository.ts': 'database/repositories/entry-locks.ts',
@@ -46,7 +62,7 @@ export default defineConfig({
       if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
       const target = path.resolve(path.dirname(importer), id);
       const relative = path.relative(frozen, target).replaceAll(path.sep, '/');
-      const originalControlledExtensions = new Set(['src/plugins/sandbox/proxy.js', 'src/plugins/sandbox/types.js', 'src/plugins/sandbox/runner-options.js', 'src/plugins/sandbox/index.js', 'src/plugins/sandbox/noop.js', 'src/plugins/adapt-sandbox-entry.js', 'src/plugins/marketplace.js']);
+      const originalControlledExtensions = new Set(['src/plugins/index.js', 'src/plugins/sandbox/proxy.js', 'src/plugins/sandbox/types.js', 'src/plugins/sandbox/runner-options.js', 'src/plugins/sandbox/index.js', 'src/plugins/sandbox/noop.js', 'src/plugins/adapt-sandbox-entry.js', 'src/plugins/marketplace.js']);
       if (originalControlledExtensions.has(relative)) return path.join(frozen, relative.replace(/\.js$/, '.ts'));
       if (relative.startsWith('src/plugins/')) return path.join(product, relative.slice('src/plugins/'.length).replace(/\.js$/, '.ts'));
       const native: Record<string, string> = {
@@ -60,8 +76,10 @@ export default defineConfig({
       if (native[relative]) return path.join(root, native[relative]);
     }
   }],
-  test: { environment: 'node', fileParallelism: false, include: [
+  test: { globals: true, environment: 'node', fileParallelism: false, include: [
     'parity/emdash/plugin-runtime/source/packages/core/tests/unit/api/plugin-settings-handlers.test.ts',
+    'parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/*.test.ts',
+    'parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-*.test.ts',
     'parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/{define-plugin,capability-normalization,content-policy,hooks,exclusive-hooks,pipeline-rebuild,manager,state,settings,storage-query,storage-indexes,plugin-storage,cron-schedule,node-cron-scheduler,field-widgets,email-pipeline,editor-draft,route-wire,routes,request-meta,standard-format,page-context,page-contribution-sandbox,page-fragments,page-hooks-execution,page-metadata,page-seo,restore-hooks,schedule-hooks,unpublish-hooks,publication-policy-effective-draft,kv-access-list,plugin-storage-pagination,redirect-types,storage-update,save-rejection}.test.ts'
   ] }
 });

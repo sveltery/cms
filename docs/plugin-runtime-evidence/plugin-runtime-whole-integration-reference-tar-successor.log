@@ -1,0 +1,60 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 12 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts ]
+Error: Cannot find package '@atcute/lexicons/syntax' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/registry/config.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/registry/config.ts:10:1
+      8|  */
+      9|
+     10| import { isDid } from "@atcute/lexicons/syntax";
+       | ^
+     11|
+     12| import type { RegistryConfig, RegistryConfigInput, RegistryConfigOptio…
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/api/handlers/update-check.ts:15:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts ]
+Error: Cannot find package '@emdash-cms/auth/adapters/kysely' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/cleanup.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/cleanup.ts:12:1
+     10|  */
+     11|
+     12| import { createKyselyAdapter, type AuthTables } from "@emdash-cms/auth…
+       | ^
+     13| import type { Kysely } from "kysely";
+     14|
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:203:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+
+ Test Files  12 failed | 15 passed (27)
+      Tests  275 passed (275)
+   Start at  02:19:04
+   Duration  50.65s (transform 2.71s, setup 0ms, import 7.19s, tests 31.84s, environment 2ms)
+
