@@ -11,7 +11,8 @@ const MANAGEMENT_ITEMS = [
   { route: 'menus', label: 'Menus', permission: 'menus:manage' },
   { route: 'redirects', label: 'Redirects', permission: 'redirects:manage' },
   { route: 'widgets', label: 'Widgets', permission: 'widgets:manage' },
-  { route: 'sections', label: 'Sections', permission: 'sections:manage' }
+  { route: 'sections', label: 'Sections', permission: 'sections:manage' },
+  { route: 'users', label: 'Users', permission: 'users:manage' }
 ] as const;
 
 export function installedManagementNavigation(permissions: readonly string[], homeHref: string) {
