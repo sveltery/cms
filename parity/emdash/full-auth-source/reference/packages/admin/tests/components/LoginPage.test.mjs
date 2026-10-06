@@ -1,0 +1,112 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import * as React from "react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { AdminBrandingProvider } from "../../src/lib/admin-branding-context";
+import { render } from "../utils/render.tsx";
+// Mock router
+vi.mock("@tanstack/react-router", async () => {
+    const actual = await vi.importActual("@tanstack/react-router");
+    return {
+        ...actual,
+        Link: ({ children, to, ...props }) => (_jsx("a", { href: to, ...props, children: children })),
+        useNavigate: () => vi.fn(),
+    };
+});
+// Mock API — keep a reference so tests can override fetchAuthMode
+const mockFetchAuthMode = vi.fn().mockResolvedValue({
+    authMode: "passkey",
+});
+vi.mock("../../src/lib/api", async () => {
+    const actual = await vi.importActual("../../src/lib/api");
+    return {
+        ...actual,
+        fetchAuthMode: (...args) => mockFetchAuthMode(...args),
+        apiFetch: vi
+            .fn()
+            .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 200 })),
+    };
+});
+// Mock WebAuthn APIs so PasskeyLogin doesn't bail out
+Object.defineProperty(window, "PublicKeyCredential", {
+    value: function PublicKeyCredential() { },
+    writable: true,
+});
+// Import after mocks
+const { LoginPage } = await import("../../src/components/LoginPage");
+function QueryWrapper({ children }) {
+    const qc = new QueryClient({
+        defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
+    });
+    return _jsx(QueryClientProvider, { client: qc, children: children });
+}
+describe("LoginPage", () => {
+    beforeEach(() => {
+        // Clean URL params
+        window.history.replaceState({}, "", window.location.pathname);
+    });
+    it("shows passkey login button when authMode is passkey", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        await expect.element(screen.getByText("Sign in with Passkey")).toBeInTheDocument();
+    });
+    it("shows 'Sign in with email link' button", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        await expect.element(screen.getByText("Sign in with email link")).toBeInTheDocument();
+    });
+    it("clicking email link button switches to magic link form", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        const emailButton = screen.getByText("Sign in with email link");
+        await emailButton.click();
+        // Heading should change
+        await expect.element(screen.getByText("Sign in with email")).toBeInTheDocument();
+    });
+    it("magic link form has email input and submit button", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        // Switch to magic link
+        await screen.getByText("Sign in with email link").click();
+        // Check for email input (by placeholder)
+        await expect.element(screen.getByPlaceholder("you@example.com")).toBeInTheDocument();
+        // Check for submit button
+        await expect.element(screen.getByText("Send magic link")).toBeInTheDocument();
+    });
+    it("'Back to login' from magic link returns to passkey view", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        // Switch to magic link
+        await screen.getByText("Sign in with email link").click();
+        await expect.element(screen.getByText("Sign in with email")).toBeInTheDocument();
+        // Click back
+        await screen.getByText("Back to login").click();
+        // Should see passkey button again
+        await expect.element(screen.getByText("Sign in with Passkey")).toBeInTheDocument();
+    });
+    it("hides sign up link when signup is not enabled", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        // Wait for manifest to load (passkey button appears)
+        await expect.element(screen.getByText("Sign in with Passkey")).toBeInTheDocument();
+        // Sign up link should NOT be present
+        expect(screen.getByText("Sign up").query()).toBeNull();
+    });
+    it("shows sign up link when signup is enabled", async () => {
+        mockFetchAuthMode.mockResolvedValueOnce({
+            authMode: "passkey",
+            signupEnabled: true,
+        });
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        await expect.element(screen.getByText("Sign up")).toBeInTheDocument();
+    });
+    // Regression test for #639 / PR #705: the login page must reflect the
+    // configured admin.logo/siteName (white-label branding), not the stock
+    // hardcoded EmDash mark — same as the Sidebar and SetupWizard already do.
+    it("renders the configured admin logo and site name instead of the stock EmDash mark", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(AdminBrandingProvider, { adminBranding: { logo: "https://example.com/logo.png", siteName: "Acme CMS" }, children: _jsx(LoginPage, {}) }) }));
+        const logoImg = screen.getByRole("img", { name: "Acme CMS" });
+        await expect.element(logoImg).toBeInTheDocument();
+        expect(logoImg.element().getAttribute("src")).toBe("https://example.com/logo.png");
+        // The stock lockup must not also be rendered
+        expect(screen.getByRole("img", { name: "EmDash" }).query()).toBeNull();
+    });
+    it("falls back to the stock EmDash mark when no admin branding is configured", async () => {
+        const screen = await render(_jsx(QueryWrapper, { children: _jsx(LoginPage, {}) }));
+        await expect.element(screen.getByRole("img", { name: "EmDash" })).toBeInTheDocument();
+    });
+});

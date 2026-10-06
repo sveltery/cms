@@ -1,0 +1,165 @@
+/**
+ * Invite system for new users
+ */
+import { generateTokenWithHash, hashToken } from "./tokens.js";
+/** Escape HTML special characters to prevent injection in email templates */
+export function escapeHtml(s) {
+    return s
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+}
+/**
+ * RTL primary language subtags (BCP 47). Mirrors the admin's
+ * `getLocaleDir` without @emdash-cms/auth depending on the admin package.
+ */
+const RTL_SUBTAGS = new Set(["ar", "fa", "he", "ur", "ps", "sd", "ug", "yi", "ckb", "dv"]);
+const SUBTAG_SPLIT_RE = /[-_]/;
+/** Text direction for a BCP 47 locale code ("ltr" unless the primary subtag is RTL). */
+export function localeDir(locale) {
+    const primary = locale.toLowerCase().split(SUBTAG_SPLIT_RE)[0] ?? "";
+    return RTL_SUBTAGS.has(primary) ? "rtl" : "ltr";
+}
+const TOKEN_EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+/**
+ * Create an invite token and URL without sending email.
+ *
+ * Validates the user doesn't already exist, generates a token, stores it,
+ * and returns the invite URL. Callers decide whether to send email or
+ * display the URL as a copy-link fallback.
+ */
+export async function createInviteToken(config, adapter, email, role, invitedBy) {
+    // Check if user already exists
+    const existing = await adapter.getUserByEmail(email);
+    if (existing) {
+        throw new InviteError("user_exists", "A user with this email already exists");
+    }
+    // Generate token
+    const { token, hash } = generateTokenWithHash();
+    // Store token
+    await adapter.createToken({
+        hash,
+        email,
+        type: "invite",
+        role,
+        invitedBy,
+        expiresAt: new Date(Date.now() + TOKEN_EXPIRY_MS),
+    });
+    // Build invite URL pointing to the admin UI page (not the API endpoint).
+    // The admin SPA handles token validation and passkey registration.
+    const url = new URL(`${config.baseUrl}/admin/invite/accept`);
+    url.searchParams.set("token", token);
+    return { url: url.toString(), email };
+}
+/** English fallback copy for the invite email. */
+function defaultInviteEmailStrings(siteName) {
+    return {
+        subject: `You've been invited to ${siteName}`,
+        textIntro: `You've been invited to join ${siteName}.`,
+        textLinkInstruction: "Click this link to create your account:",
+        htmlInstruction: "Click the button below to create your account:",
+        buttonLabel: "Accept Invite",
+        expiryNote: "This link expires in 7 days.",
+    };
+}
+/**
+ * Build the invite email message.
+ *
+ * Exported for tests and for callers that render the message without
+ * sending (localized copy is injected via `strings`).
+ */
+export function buildInviteEmail(inviteUrl, email, siteName, strings, locale) {
+    const s = strings ?? defaultInviteEmailStrings(siteName);
+    // Localized copy may be RTL — set lang/dir on the root so RTL text renders
+    // correctly. Defaults to ltr when no locale is threaded through.
+    const langAttr = locale ? ` lang="${escapeHtml(locale)}" dir="${localeDir(locale)}"` : "";
+    return {
+        to: email,
+        subject: s.subject,
+        text: `${s.textIntro}\n\n${s.textLinkInstruction}\n${inviteUrl}\n\n${s.expiryNote}`,
+        html: `
+<!DOCTYPE html>
+<html${langAttr}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.5; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <h1 style="font-size: 24px; margin-bottom: 20px;">${escapeHtml(s.subject)}</h1>
+  <p>${escapeHtml(s.htmlInstruction)}</p>
+  <p style="margin: 30px 0;">
+    <a href="${inviteUrl}" style="background-color: #0066cc; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">${escapeHtml(s.buttonLabel)}</a>
+  </p>
+  <p style="color: #666; font-size: 14px;">${escapeHtml(s.expiryNote)}</p>
+</body>
+</html>`,
+    };
+}
+/**
+ * Create and send an invite to a new user.
+ *
+ * When `config.email` is provided, sends the invite email.
+ * When omitted, creates the token and returns the invite URL
+ * without sending (for the copy-link fallback).
+ */
+export async function createInvite(config, adapter, email, role, invitedBy) {
+    const result = await createInviteToken(config, adapter, email, role, invitedBy);
+    // Send email if a sender is configured
+    if (config.email) {
+        const message = buildInviteEmail(result.url, email, config.siteName, config.emailStrings, config.emailLocale);
+        await config.email(message);
+    }
+    return result;
+}
+/**
+ * Validate an invite token and return the invite data
+ */
+export async function validateInvite(adapter, token) {
+    const hash = hashToken(token);
+    const authToken = await adapter.getToken(hash, "invite");
+    if (!authToken) {
+        throw new InviteError("invalid_token", "Invalid or expired invite link");
+    }
+    if (authToken.expiresAt < new Date()) {
+        await adapter.deleteToken(hash);
+        throw new InviteError("token_expired", "This invite has expired");
+    }
+    if (!authToken.email || authToken.role === null) {
+        throw new InviteError("invalid_token", "Invalid invite data");
+    }
+    return {
+        email: authToken.email,
+        role: authToken.role,
+    };
+}
+/**
+ * Complete the invite process (after passkey registration)
+ */
+export async function completeInvite(adapter, token, userData) {
+    const hash = hashToken(token);
+    const authToken = await adapter.consumeToken(hash, "invite");
+    if (!authToken || authToken.expiresAt < new Date()) {
+        throw new InviteError("invalid_token", "Invalid or expired invite");
+    }
+    if (!authToken.email || authToken.role === null) {
+        throw new InviteError("invalid_token", "Invalid invite data");
+    }
+    // Create user
+    const user = await adapter.createUser({
+        email: authToken.email,
+        name: userData.name,
+        avatarUrl: userData.avatarUrl,
+        role: authToken.role,
+        emailVerified: true, // Email verified by accepting invite
+    });
+    return user;
+}
+export class InviteError extends Error {
+    code;
+    constructor(code, message) {
+        super(message);
+        this.code = code;
+        this.name = "InviteError";
+    }
+}

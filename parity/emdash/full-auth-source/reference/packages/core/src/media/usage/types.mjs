@@ -1,0 +1,1 @@
+export const CONTENT_SOURCE_SCHEMA_VERSION = 2;
