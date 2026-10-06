@@ -44,7 +44,7 @@ export async function collectionStandardIndexPlan(database:CmsDatabase, slug:str
   const query=sql<{snapshot:string}>`SELECT json_group_array(version) AS snapshot FROM (SELECT version FROM _cms_migrations ORDER BY version)`;
   const receipt=(await query.execute(database.db)).rows[0].snapshot;
   const versions:unknown=JSON.parse(receipt);
-  if (!Array.isArray(versions) || !versions.length || versions.length>17 ||
+  if (!Array.isArray(versions) || !versions.length || versions.length>18 ||
     versions.some((version,index)=>version!==index+1)) throw new CmsError('MIGRATION_REQUIRED');
   return {guard:sql`SELECT json_extract('[]', CASE WHEN (${query})=${receipt}
     THEN '$' ELSE ${collectionIndexPrerequisiteChanged} END)`.compile(database.db),

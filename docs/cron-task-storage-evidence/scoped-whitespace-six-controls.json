@@ -1,0 +1,54 @@
+{
+  "head": "233837b585897623a99be659f57b35c106fe411c",
+  "controls": [
+    {
+      "path": "docs/cron-task-storage-evidence/native9-canonical-first-red.log",
+      "contentHex": "6b65707420200a",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "meaning": "owned observed trailing SQL/error spaces allowed",
+      "stdout": ""
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/native9-canonical-first-red.log",
+      "contentHex": "6b6570740a0a",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "meaning": "owned trailing-only attr still rejects new EOF blank",
+      "stdout": "docs/cron-task-storage-evidence/native9-canonical-first-red.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log",
+      "contentHex": "6b6570740a0a",
+      "expectedExit": 0,
+      "actualExit": 0,
+      "meaning": "owned observed Vitest EOF allowed",
+      "stdout": ""
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log",
+      "contentHex": "6b65707420200a",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "meaning": "owned EOF-only attr still rejects trailing spaces",
+      "stdout": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log:1: trailing whitespace.\n+kept  \n"
+    },
+    {
+      "path": "docs/unrelated-publication.log",
+      "contentHex": "6b6570740a0a",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "meaning": "unrelated EOF still rejected",
+      "stdout": "docs/unrelated-publication.log:2: new blank line at EOF.\n"
+    },
+    {
+      "path": "src/lib/server/unrelated-publication.ts",
+      "contentHex": "6b65707420200a",
+      "expectedExit": 2,
+      "actualExit": 2,
+      "meaning": "unrelated product trailing spaces still rejected",
+      "stdout": "src/lib/server/unrelated-publication.ts:1: trailing whitespace.\n+kept  \n"
+    }
+  ],
+  "productTestsRun": 0
+}

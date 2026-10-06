@@ -1,0 +1,340 @@
+﻿2026-10-06T01:22:36.4149545Z Current runner version: '2.337.0'
+2026-10-06T01:22:36.4175219Z ##[group]Runner Image Provisioner
+2026-10-06T01:22:36.4176277Z Hosted Compute Agent
+2026-10-06T01:22:36.4177165Z Version: 20260901.588
+2026-10-06T01:22:36.4177881Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-06T01:22:36.4178778Z Build Date: 2026-09-01T19:56:44Z
+2026-10-06T01:22:36.4179598Z Worker ID: {10c045ba-3031-4e0b-836e-0c1a88e19055}
+2026-10-06T01:22:36.4180408Z Azure Region: centralus
+2026-10-06T01:22:36.4181152Z ##[endgroup]
+2026-10-06T01:22:36.4182811Z ##[group]Operating System
+2026-10-06T01:22:36.4183550Z Ubuntu
+2026-10-06T01:22:36.4184211Z 24.04.5
+2026-10-06T01:22:36.4184754Z LTS
+2026-10-06T01:22:36.4185386Z ##[endgroup]
+2026-10-06T01:22:36.4186007Z ##[group]Runner Image
+2026-10-06T01:22:36.4186965Z Image: ubuntu-24.04
+2026-10-06T01:22:36.4187710Z Version: 20260927.320.1
+2026-10-06T01:22:36.4189282Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-06T01:22:36.4191098Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-06T01:22:36.4192227Z ##[endgroup]
+2026-10-06T01:22:36.4193560Z ##[group]GITHUB_TOKEN Permissions
+2026-10-06T01:22:36.4195847Z Contents: read
+2026-10-06T01:22:36.4196782Z Metadata: read
+2026-10-06T01:22:36.4197450Z ##[endgroup]
+2026-10-06T01:22:36.4199999Z Secret source: Actions
+2026-10-06T01:22:36.4201075Z Cache mode: write
+2026-10-06T01:22:36.4201940Z Prepare workflow directory
+2026-10-06T01:22:36.4579194Z Prepare all required actions
+2026-10-06T01:22:36.4621830Z Getting action download info
+2026-10-06T01:22:36.7162874Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-06T01:22:36.8098331Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-10-06T01:22:37.2873139Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-06T01:22:37.4853882Z Complete job name: validate-services
+2026-10-06T01:22:37.5450692Z ##[group]Run actions/checkout@v4
+2026-10-06T01:22:37.5451449Z with:
+2026-10-06T01:22:37.5451940Z   repository: sveltery/cms
+2026-10-06T01:22:37.5455711Z   token: ***
+2026-10-06T01:22:37.5456183Z   ssh-strict: true
+2026-10-06T01:22:37.5456937Z   ssh-user: git
+2026-10-06T01:22:37.5457472Z   persist-credentials: true
+2026-10-06T01:22:37.5458007Z   clean: true
+2026-10-06T01:22:37.5458525Z   sparse-checkout-cone-mode: true
+2026-10-06T01:22:37.5459080Z   fetch-depth: 1
+2026-10-06T01:22:37.5459567Z   fetch-tags: false
+2026-10-06T01:22:37.5460042Z   show-progress: true
+2026-10-06T01:22:37.5460510Z   lfs: false
+2026-10-06T01:22:37.5461011Z   submodules: false
+2026-10-06T01:22:37.5461490Z   set-safe-directory: true
+2026-10-06T01:22:37.5462024Z   allow-unsafe-pr-checkout: false
+2026-10-06T01:22:37.5462759Z ##[endgroup]
+2026-10-06T01:22:37.6325297Z Syncing repository: sveltery/cms
+2026-10-06T01:22:37.6327324Z ##[group]Getting Git version info
+2026-10-06T01:22:37.6328191Z Working directory is '/home/runner/work/cms/cms'
+2026-10-06T01:22:37.6329576Z [command]/usr/bin/git version
+2026-10-06T01:22:37.6384052Z git version 2.55.0
+2026-10-06T01:22:37.6407653Z ##[endgroup]
+2026-10-06T01:22:37.6415138Z Temporarily overriding HOME='/home/runner/work/_temp/1ed40e48-a596-4b48-a2fb-97f1d4c6cadc' before making global git config changes
+2026-10-06T01:22:37.6417422Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T01:22:37.6419101Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T01:22:37.6459725Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-06T01:22:37.6462751Z ##[group]Initializing the repository
+2026-10-06T01:22:37.6465470Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-06T01:22:37.6549540Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-06T01:22:37.6550688Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-06T01:22:37.6551876Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-06T01:22:37.6552770Z hint: call:
+2026-10-06T01:22:37.6553251Z hint:
+2026-10-06T01:22:37.6553854Z hint: 	git config --global init.defaultBranch <name>
+2026-10-06T01:22:37.6554534Z hint:
+2026-10-06T01:22:37.6555137Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-06T01:22:37.6556053Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-06T01:22:37.6556998Z hint:
+2026-10-06T01:22:37.6557493Z hint: 	git branch -m <name>
+2026-10-06T01:22:37.6558010Z hint:
+2026-10-06T01:22:37.6558670Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-06T01:22:37.6563061Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-06T01:22:37.6571975Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-06T01:22:37.6615132Z ##[endgroup]
+2026-10-06T01:22:37.6616442Z ##[group]Disabling automatic garbage collection
+2026-10-06T01:22:37.6617837Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-06T01:22:37.6641478Z ##[endgroup]
+2026-10-06T01:22:37.6642638Z ##[group]Setting up auth
+2026-10-06T01:22:37.6648169Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T01:22:37.6674240Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T01:22:37.6980454Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T01:22:37.7008994Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T01:22:37.7176153Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T01:22:37.7201774Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T01:22:37.7353717Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-06T01:22:37.7383261Z ##[endgroup]
+2026-10-06T01:22:37.7384304Z ##[group]Fetching the repository
+2026-10-06T01:22:37.7391572Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8a647ca0a6dc8849d945ecfbe8ed53c4c33d11f0:refs/remotes/pull/129/merge
+2026-10-06T01:22:39.0434358Z From https://github.com/sveltery/cms
+2026-10-06T01:22:39.0435143Z  * [new ref]         8a647ca0a6dc8849d945ecfbe8ed53c4c33d11f0 -> pull/129/merge
+2026-10-06T01:22:39.0437837Z ##[endgroup]
+2026-10-06T01:22:39.0438427Z ##[group]Determining the checkout info
+2026-10-06T01:22:39.0440972Z ##[endgroup]
+2026-10-06T01:22:39.0446398Z [command]/usr/bin/git sparse-checkout disable
+2026-10-06T01:22:39.0488772Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-06T01:22:39.0546334Z ##[group]Checking out the ref
+2026-10-06T01:22:39.0549635Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/129/merge
+2026-10-06T01:22:39.3207011Z Note: switching to 'refs/remotes/pull/129/merge'.
+2026-10-06T01:22:39.3207412Z 
+2026-10-06T01:22:39.3207799Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-06T01:22:39.3208554Z changes and commit them, and you can discard any commits you make in this
+2026-10-06T01:22:39.3209317Z state without impacting any branches by switching back to a branch.
+2026-10-06T01:22:39.3209706Z 
+2026-10-06T01:22:39.3210012Z If you want to create a new branch to retain commits you create, you may
+2026-10-06T01:22:39.3210639Z do so (now or later) by using -c with the switch command. Example:
+2026-10-06T01:22:39.3210971Z 
+2026-10-06T01:22:39.3211164Z   git switch -c <new-branch-name>
+2026-10-06T01:22:39.3211754Z 
+2026-10-06T01:22:39.3211942Z Or undo this operation with:
+2026-10-06T01:22:39.3212160Z 
+2026-10-06T01:22:39.3212304Z   git switch -
+2026-10-06T01:22:39.3212526Z 
+2026-10-06T01:22:39.3212848Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-06T01:22:39.3213244Z 
+2026-10-06T01:22:39.3213718Z HEAD is now at 8a647ca Merge 233837b585897623a99be659f57b35c106fe411c into 82e3dd7b673f774ca8c3eceaafa28234641bd6b1
+2026-10-06T01:22:39.3222029Z ##[endgroup]
+2026-10-06T01:22:39.3256451Z [command]/usr/bin/git log -1 --format=%H
+2026-10-06T01:22:39.3276697Z 8a647ca0a6dc8849d945ecfbe8ed53c4c33d11f0
+2026-10-06T01:22:39.3466656Z ##[group]Run pnpm/action-setup@v4
+2026-10-06T01:22:39.3467030Z with:
+2026-10-06T01:22:39.3467265Z   version: 12.6.0
+2026-10-06T01:22:39.3467500Z   dest: ~/setup-pnpm
+2026-10-06T01:22:39.3467735Z   run_install: null
+2026-10-06T01:22:39.3467960Z   cache: false
+2026-10-06T01:22:39.3468203Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-06T01:22:39.3468545Z   package_json_file: package.json
+2026-10-06T01:22:39.3468802Z   standalone: false
+2026-10-06T01:22:39.3469029Z ##[endgroup]
+2026-10-06T01:22:39.4627830Z ##[group]Running self-installer...
+2026-10-06T01:22:39.7979388Z (node:2108) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:22:39.7980646Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:22:39.9777634Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-06T01:22:40.2002557Z Packages: +3
+2026-10-06T01:22:40.2037650Z +++
+2026-10-06T01:22:40.9781557Z Progress: resolved 15, reused 0, downloaded 2, added 2
+2026-10-06T01:22:41.0837399Z Progress: resolved 15, reused 0, downloaded 3, added 3, done
+2026-10-06T01:22:41.1006915Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall$ node install.js
+2026-10-06T01:22:41.6082878Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall: Done
+2026-10-06T01:22:41.6088069Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall$ node install.js
+2026-10-06T01:22:41.6502489Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall: Done
+2026-10-06T01:22:42.8956102Z 
+2026-10-06T01:22:42.8956729Z dependencies:
+2026-10-06T01:22:42.8957084Z + pnpm 12.6.0 (12.9.1 is available)
+2026-10-06T01:22:42.8957332Z 
+2026-10-06T01:22:42.8982256Z Done in 3.2s
+2026-10-06T01:22:42.9298081Z ##[endgroup]
+2026-10-06T01:22:42.9298640Z Installation Completed!
+2026-10-06T01:22:42.9490361Z ##[group]Run actions/setup-node@v4
+2026-10-06T01:22:42.9490601Z with:
+2026-10-06T01:22:42.9490784Z   node-version: 24
+2026-10-06T01:22:42.9490973Z   cache: pnpm
+2026-10-06T01:22:42.9491147Z   always-auth: false
+2026-10-06T01:22:42.9491331Z   check-latest: false
+2026-10-06T01:22:42.9493362Z   token: ***
+2026-10-06T01:22:42.9493534Z env:
+2026-10-06T01:22:42.9493755Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:22:42.9494016Z ##[endgroup]
+2026-10-06T01:22:43.0709456Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-06T01:22:43.0712178Z (node:2140) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T01:22:43.0713058Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:22:43.0714441Z ##[group]Environment details
+2026-10-06T01:22:46.3887871Z node: v24.21.0
+2026-10-06T01:22:46.3888110Z npm: 11.19.0
+2026-10-06T01:22:46.3888288Z yarn: 1.22.22
+2026-10-06T01:22:46.3889364Z ##[endgroup]
+2026-10-06T01:22:46.3906803Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-06T01:22:46.4031987Z /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:22:46.5542976Z Cache hit for: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:22:46.5620945Z (node:2140) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:22:47.6914226Z Received 117440512 of 174062786 (67.5%), 111.9 MBs/sec
+2026-10-06T01:22:48.0333399Z Received 174062786 of 174062786 (100.0%), 123.6 MBs/sec
+2026-10-06T01:22:48.0334004Z Cache Size: ~166 MB (174062786 B)
+2026-10-06T01:22:48.0359701Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f5908476-e28d-4028-a55d-8071e5454987/cache.tzst -P -C /home/runner/work/cms/cms --use-compress-program unzstd
+2026-10-06T01:22:48.9908018Z Cache restored successfully
+2026-10-06T01:22:48.9971944Z Cache restored from key: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:22:49.0100581Z ##[group]Run node --test tests/ci/normal-validation.test.mjs
+2026-10-06T01:22:49.0101073Z [36;1mnode --test tests/ci/normal-validation.test.mjs[0m
+2026-10-06T01:22:49.0332942Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:22:49.0333184Z env:
+2026-10-06T01:22:49.0333441Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:22:49.0333714Z ##[endgroup]
+2026-10-06T01:22:49.7863488Z ✔ normal work uses separate sequential bounded jobs at the same reviewed checkout (2.120353ms)
+2026-10-06T01:22:49.7864923Z ✔ required validate runs after every outcome and forwards every mandatory result (0.333697ms)
+2026-10-06T01:22:49.7867911Z ✔ local bootstrap and the entire secured browser job remain byte-exact (0.727426ms)
+2026-10-06T01:22:49.7869050Z ✔ services executes its complete original command boundary and frozen prerequisite (8.95825ms)
+2026-10-06T01:22:49.7870263Z ✔ services stops at pnpm install --frozen-lockfile and preserves its failure status (5.305284ms)
+2026-10-06T01:22:49.7871294Z ✔ services stops at pnpm check and preserves its failure status (6.067061ms)
+2026-10-06T01:22:49.7872088Z ✔ services stops at pnpm test and preserves its failure status (6.891717ms)
+2026-10-06T01:22:49.7873065Z ✔ source executes its complete original command boundary and frozen prerequisite (9.011714ms)
+2026-10-06T01:22:49.7873956Z ✔ source stops at pnpm install --frozen-lockfile and preserves its failure status (5.160135ms)
+2026-10-06T01:22:49.7874534Z ✔ source stops at pnpm test:source-ports and preserves its failure status (6.910168ms)
+2026-10-06T01:22:49.7875313Z ✔ source stops at node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json and preserves its failure status (7.015514ms)
+2026-10-06T01:22:49.7876000Z ✔ source stops at pnpm test:ui-source and preserves its failure status (7.760984ms)
+2026-10-06T01:22:49.7876759Z ✔ source stops at pnpm test:date-time and preserves its failure status (8.513173ms)
+2026-10-06T01:22:49.7877649Z ✔ hosting executes its complete original command boundary and frozen prerequisite (10.176058ms)
+2026-10-06T01:22:49.7878421Z ✔ hosting stops at pnpm install --frozen-lockfile and preserves its failure status (5.04661ms)
+2026-10-06T01:22:49.7879513Z ✔ hosting stops at pnpm build and preserves its failure status (6.211099ms)
+2026-10-06T01:22:49.7880394Z ✔ hosting stops at pnpm test:production and preserves its failure status (6.863269ms)
+2026-10-06T01:22:49.7881344Z ✔ hosting stops at pnpm package:node and preserves its failure status (7.883515ms)
+2026-10-06T01:22:49.7882190Z ✔ hosting stops at pnpm test:node and preserves its failure status (8.397496ms)
+2026-10-06T01:22:49.7885523Z ✔ hosting stops at pnpm build:cloudflare and preserves its failure status (9.418539ms)
+2026-10-06T01:22:49.7887122Z ✔ hosting stops at pnpm test:cloudflare and preserves its failure status (10.450938ms)
+2026-10-06T01:22:49.7888511Z ✔ ordered phases execute all thirteen original commands exactly once plus two isolated frozen installs (25.470897ms)
+2026-10-06T01:22:49.7898039Z ✔ unknown or missing phase rejects before executing any prerequisite or workload (2.941723ms)
+2026-10-06T01:22:49.7899346Z ✔ required aggregate succeeds only after all three normal jobs succeed (24.825948ms)
+2026-10-06T01:22:49.7900795Z ✔ required aggregate fails closed for failure, cancellation, skipping, empty and unknown results in each job (341.118638ms)
+2026-10-06T01:22:49.7902298Z ✔ missing or extra mandatory aggregate results are rejected (92.425023ms)
+2026-10-06T01:22:49.7987460Z ℹ tests 26
+2026-10-06T01:22:49.7987878Z ℹ suites 0
+2026-10-06T01:22:49.7988075Z ℹ pass 26
+2026-10-06T01:22:49.7988271Z ℹ fail 0
+2026-10-06T01:22:49.7988469Z ℹ cancelled 0
+2026-10-06T01:22:49.7988670Z ℹ skipped 0
+2026-10-06T01:22:49.7988856Z ℹ todo 0
+2026-10-06T01:22:49.7989072Z ℹ duration_ms 710.868024
+2026-10-06T01:22:49.8051144Z ##[group]Run sh scripts/ci-validation-phase.sh services
+2026-10-06T01:22:49.8051507Z [36;1msh scripts/ci-validation-phase.sh services[0m
+2026-10-06T01:22:49.8087344Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:22:49.8087586Z env:
+2026-10-06T01:22:49.8087823Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:22:49.8088099Z ##[endgroup]
+2026-10-06T01:22:49.8471693Z 
+2026-10-06T01:22:49.8472082Z [validate] start: frozen dependency install
+2026-10-06T01:22:49.8789252Z ? Verifying lockfile against supply-chain policies (534 entries)...
+2026-10-06T01:22:50.0046051Z Packages are hard linked from the content-addressable store to the virtual store.
+2026-10-06T01:22:50.0046970Z   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:22:50.0047637Z   Virtual store is at:             node_modules/.pnpm
+2026-10-06T01:22:52.0112936Z ✓ Lockfile passes supply-chain policies (534 entries in 2.1s)
+2026-10-06T01:22:52.0113687Z Lockfile is up to date, resolution step is skipped
+2026-10-06T01:22:52.0178996Z Packages: +403
+2026-10-06T01:22:52.0179372Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-06T01:22:52.2644951Z Progress: resolved 403, reused 403, downloaded 0, added 403, done
+2026-10-06T01:22:52.4574640Z . prepare$ svelte-kit sync
+2026-10-06T01:22:53.3527302Z . prepare: Done
+2026-10-06T01:22:53.3534043Z 
+2026-10-06T01:22:53.3534536Z dependencies:
+2026-10-06T01:22:53.3535059Z + @oslojs/crypto 1.0.1
+2026-10-06T01:22:53.3535544Z + @oslojs/encoding 1.1.0
+2026-10-06T01:22:53.3536073Z + @oslojs/webauthn 1.0.0
+2026-10-06T01:22:53.3536815Z + @wordpress/block-serialization-default-parser 5.38.0
+2026-10-06T01:22:53.3537395Z + blurhash 2.0.5
+2026-10-06T01:22:53.3537747Z + cn 0.2.2
+2026-10-06T01:22:53.3538092Z + date-fns 4.1.0
+2026-10-06T01:22:53.3538451Z + image-size 2.0.2
+2026-10-06T01:22:53.3538793Z + jpeg-js 0.4.4
+2026-10-06T01:22:53.3539160Z + jsonc-parser 3.3.1
+2026-10-06T01:22:53.3539523Z + kysely 0.29.2
+2026-10-06T01:22:53.3539855Z + mime 4.1.0
+2026-10-06T01:22:53.3540183Z + parse5 7.3.0
+2026-10-06T01:22:53.3540552Z + smol-toml 1.6.0
+2026-10-06T01:22:53.3540883Z + ulidx 2.4.1
+2026-10-06T01:22:53.3541192Z + upng-js 2.1.0
+2026-10-06T01:22:53.3541523Z + valibot 1.5.0
+2026-10-06T01:22:53.3541873Z + zod 4.5.4
+2026-10-06T01:22:53.3542207Z 
+2026-10-06T01:22:53.3542585Z devDependencies:
+2026-10-06T01:22:53.3542985Z + @babel/core 7.29.7
+2026-10-06T01:22:53.3543408Z + @cloudflare/kumo 2.6.0
+2026-10-06T01:22:53.3543857Z + @cloudflare/workers-types 4.20260507.1
+2026-10-06T01:22:53.3544289Z + @floating-ui/dom 1.8.0
+2026-10-06T01:22:53.3544740Z + @lingui/babel-plugin-lingui-macro 5.9.5
+2026-10-06T01:22:53.3545184Z + @lingui/conf 5.9.5
+2026-10-06T01:22:53.3545541Z + @lingui/core 5.9.5
+2026-10-06T01:22:53.3545908Z + @lingui/react 5.9.5
+2026-10-06T01:22:53.3546398Z + @playwright/test 1.63.0
+2026-10-06T01:22:53.3547053Z + @sveltejs/adapter-auto 7.0.1
+2026-10-06T01:22:53.3547614Z + @sveltejs/adapter-cloudflare 7.2.9
+2026-10-06T01:22:53.3548153Z + @sveltejs/adapter-node 5.5.7
+2026-10-06T01:22:53.3548602Z + @sveltejs/kit 2.70.3
+2026-10-06T01:22:53.3549034Z + @sveltejs/vite-plugin-svelte 7.3.1
+2026-10-06T01:22:53.3549561Z + @tanstack/react-query 5.90.21
+2026-10-06T01:22:53.3550097Z + @tanstack/react-router 1.163.2
+2026-10-06T01:22:53.3550640Z + @testing-library/react 16.3.2
+2026-10-06T01:22:53.3551080Z + @types/jsdom 30.0.0
+2026-10-06T01:22:53.3551524Z + @types/node 24.19.0
+2026-10-06T01:22:53.3551959Z + @types/react 19.3.0
+2026-10-06T01:22:53.3552529Z + @types/react-dom 19.3.0
+2026-10-06T01:22:53.3552857Z + @vitest/browser-playwright 4.1.10
+2026-10-06T01:22:53.3553140Z + devalue 5.9.4
+2026-10-06T01:22:53.3553375Z + jsdom 30.1.1
+2026-10-06T01:22:53.3553639Z + miniflare 4.20260507.1
+2026-10-06T01:22:53.3553906Z + pg 8.18.0
+2026-10-06T01:22:53.3554134Z + react 19.3.0
+2026-10-06T01:22:53.3554396Z + react-day-picker 9.14.0
+2026-10-06T01:22:53.3554683Z + react-dom 19.3.0
+2026-10-06T01:22:53.3554919Z + svelte 5.57.1
+2026-10-06T01:22:53.3555326Z + svelte-check 4.7.6
+2026-10-06T01:22:53.3555608Z + typescript 6.0.3
+2026-10-06T01:22:53.3555855Z + vite 8.3.2
+2026-10-06T01:22:53.3556096Z + vitest 4.1.10
+2026-10-06T01:22:53.3556365Z + vitest-browser-react 2.2.0
+2026-10-06T01:22:53.3557272Z + wrangler 4.99.0
+2026-10-06T01:22:53.3557441Z 
+2026-10-06T01:22:53.3557610Z Done in 3.5s using pnpm v12.6.0
+2026-10-06T01:22:53.3688047Z [validate] finished: frozen dependency install
+2026-10-06T01:22:53.3688375Z 
+2026-10-06T01:22:53.3688583Z [validate] start: type and Svelte checks
+2026-10-06T01:22:53.3815530Z $ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+2026-10-06T01:23:16.2830327Z Loading svelte-check in workspace: /home/runner/work/cms/cms
+2026-10-06T01:23:16.2830935Z Getting Svelte diagnostics...
+2026-10-06T01:23:16.2831167Z 
+2026-10-06T01:23:16.2893677Z /home/runner/work/cms/cms/[32mtests/cron-task-readiness.test.ts[39m:94:113
+2026-10-06T01:23:16.2896706Z [31mError[39m: Spread types may only be created from object types. 
+2026-10-06T01:23:16.2899014Z [36m      await sql`INSERT INTO _cms_cron_tasks(id,plugin_id,task_name,schedule,is_oneshot,data,next_run_at,locked_at,status) VALUES('stored','plugin','stored','2030-01-02T03:04:05+02:00',1,'{"preserve":"  literal"}','2030-01-02T01:04:05.000Z','2030-01-02T00:01:00.000Z','running')`.execute(fixture.database.db);
+2026-10-06T01:23:16.2900965Z       const before = (await sql`SELECT * FROM _cms_cron_tasks`.execute(fixture.database.db)).rows.map(row => ({ [35m...row[36m }));
+2026-10-06T01:23:16.2902221Z       await fixture.reopen(); await migrateCms(fixture.database); await requireCronTaskStorage(fixture.database);[39m
+2026-10-06T01:23:16.2902797Z 
+2026-10-06T01:23:16.2903278Z /home/runner/work/cms/cms/[32mtests/cron-task-readiness.test.ts[39m:96:115
+2026-10-06T01:23:16.2904213Z [31mError[39m: Spread types may only be created from object types. 
+2026-10-06T01:23:16.2905390Z [36m      await fixture.reopen(); await migrateCms(fixture.database); await requireCronTaskStorage(fixture.database);
+2026-10-06T01:23:16.2907007Z       assert.deepEqual((await sql`SELECT * FROM _cms_cron_tasks`.execute(fixture.database.db)).rows.map(row => ({ [35m...row[36m })), before);
+2026-10-06T01:23:16.2907907Z     } finally { await fixture.close(); }[39m
+2026-10-06T01:23:16.2908183Z 
+2026-10-06T01:23:16.2924070Z ====================================
+2026-10-06T01:23:16.2924822Z [31msvelte-check found 2 errors and 0 warnings in 1 file
+2026-10-06T01:23:16.3631868Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-06T01:23:16.3641058Z [39m
+2026-10-06T01:23:16.3653465Z ##[error]Process completed with exit code 1.
+2026-10-06T01:23:16.3754577Z Post job cleanup.
+2026-10-06T01:23:16.4892177Z Pruning is unnecessary.
+2026-10-06T01:23:16.5003655Z Post job cleanup.
+2026-10-06T01:23:16.5719893Z [command]/usr/bin/git version
+2026-10-06T01:23:16.5755165Z git version 2.55.0
+2026-10-06T01:23:16.5789799Z Temporarily overriding HOME='/home/runner/work/_temp/7b82c062-a5de-452c-86d1-4a60db6f28ba' before making global git config changes
+2026-10-06T01:23:16.5790527Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T01:23:16.5795344Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T01:23:16.5827672Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T01:23:16.5855146Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T01:23:16.6042124Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T01:23:16.6067330Z http.https://github.com/.extraheader
+2026-10-06T01:23:16.6075723Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-06T01:23:16.6101644Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T01:23:16.6285416Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T01:23:16.6310690Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T01:23:16.6620607Z Cleaning up orphan processes
+2026-10-06T01:23:16.6824838Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

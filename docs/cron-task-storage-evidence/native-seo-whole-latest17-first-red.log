@@ -1,0 +1,43 @@
+
+ RUN  v4.1.10 /workspace/cms-canonical-cron-task-storage
+
+ ❯ tests/seo-storage-native/canonical.test.ts (6 tests | 2 failed) 4915ms
+   × Node: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch 54ms
+   × raw D1: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch 1576ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/canonical.test.ts > Node: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch
+CmsError: MIGRATION_REQUIRED
+ ❯ collectionStandardIndexPlan src/lib/server/database/collection-indexes.ts:48:62
+     46|   const versions:unknown=JSON.parse(receipt);
+     47|   if (!Array.isArray(versions) || !versions.length || versions.length>…
+     48|     versions.some((version,index)=>version!==index+1)) throw new CmsEr…
+       |                                                              ^
+     49|   return {guard:sql`SELECT json_extract('[]', CASE WHEN (${query})=${r…
+     50|     THEN '$' ELSE ${collectionIndexPrerequisiteChanged} END)`.compile(…
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:185:29
+ ❯ tests/seo-storage-native/canonical.test.ts:18:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/seo-storage-native/canonical.test.ts > raw D1: canonical SEO survives real reopen, partial clearing and more than a D1 bind batch
+CmsError: MIGRATION_REQUIRED
+ ❯ collectionStandardIndexPlan src/lib/server/database/collection-indexes.ts:48:62
+     46|   const versions:unknown=JSON.parse(receipt);
+     47|   if (!Array.isArray(versions) || !versions.length || versions.length>…
+     48|     versions.some((version,index)=>version!==index+1)) throw new CmsEr…
+       |                                                              ^
+     49|   return {guard:sql`SELECT json_extract('[]', CASE WHEN (${query})=${r…
+     50|     THEN '$' ELSE ${collectionIndexPrerequisiteChanged} END)`.compile(…
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:185:29
+ ❯ tests/seo-storage-native/canonical.test.ts:18:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  01:09:09
+   Duration  6.01s (transform 459ms, setup 0ms, import 937ms, tests 4.92s, environment 0ms)
+
