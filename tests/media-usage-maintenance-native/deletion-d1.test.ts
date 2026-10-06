@@ -1,4 +1,5 @@
 import { afterAll, afterEach, beforeAll, beforeEach, expect, it,vi } from 'vitest';
+import { writeFileSync } from 'node:fs';
 import { sql,type Kysely } from 'kysely';
 import { openD1 } from '../../src/lib/server/database/d1.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
@@ -12,6 +13,7 @@ import { processDueMediaUsageCollectionDeletions } from '../../src/lib/server/me
 // callbacks and clocks. One actual existing Workerd runtime serves this family.
 let storage: Awaited<ReturnType<typeof asyncD1Storage>>;
 let owner: CmsDatabase;
+const persistedReceipts:unknown[]=[];
 beforeAll(async () => {
   storage = await asyncD1Storage(); owner = openD1(storage.binding);
   await migrateCms(owner); registerBlockDatabaseHost(owner);
@@ -24,8 +26,7 @@ beforeEach(async () => {
   await owner.db.deleteFrom('_cms_media_usage' as never).execute();
 });
 afterAll(async () => { await owner?.close(); await storage?.runtime.dispose(); });
-afterEach(async () => {
-  if (process.env.MEDIA_USAGE_PHASE_RECEIPTS !== '1') return;
+afterEach(async (context) => {
   const row = await owner.db.selectFrom('_cms_media_usage_collection_deletions' as never)
     .selectAll().executeTakeFirstOrThrow() as unknown as {
       phase:string;state:string;attempt_count:number;lease_token:string|null;
@@ -33,13 +34,21 @@ afterEach(async () => {
       occurrence_cursor:string|null;last_error_code:string|null;
     };
   const work = await owner.db.selectFrom('_cms_media_usage_work' as never).selectAll().execute();
-  console.info('Native controlled phase receipt', JSON.stringify({
+  const receipt={
+    test:context.task.name,
     phase:row.phase,state:row.state,attemptCount:row.attempt_count,
     leaseToken:row.lease_token,leaseExpiresAt:row.lease_expires_at,
     workCursor:row.work_cursor,sourceKey:row.source_key,
     occurrenceCursor:row.occurrence_cursor,lastErrorCode:row.last_error_code,
     remainingWorkRows:work.length,
-  }));
+    remainingSources:(await owner.db.selectFrom('_cms_media_usage_sources' as never).selectAll().execute()).length,
+    remainingOccurrences:(await owner.db.selectFrom('_cms_media_usage' as never).selectAll().execute()).length,
+    remainingGuards:(await owner.db.selectFrom('_cms_guards').selectAll().execute()).length,
+  };
+  persistedReceipts.push(receipt);
+  writeFileSync('/tmp/media-usage-maintenance-d1-controlled-state-receipts.json',JSON.stringify({actualWorkerdBinding:true,
+    actualCanonicalSchema:true,actualStoredRows:true,receipts:persistedReceipts},null,2)+'\n');
+  console.info('Native controlled phase receipt', JSON.stringify(receipt));
 });
 
 async function expectReleased(phase:string) {

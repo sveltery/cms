@@ -1,0 +1,128 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "publicImplementationHead": [
+    "863fc8cf8dd0a71a913f23677f9aea6740145f68",
+    "f6831ed79549e26ce68fb7846eda46412b3f201d",
+    "a50bb50adfcf715683deaf1cad73b66dba21a53d"
+  ],
+  "ordinarySeedUnionHead": [
+    "b480278c11aff86e2f44902b8b074d2a2b7e0721",
+    "86ef8c4a88d09d2a8ae34f723887f770d6791ffe",
+    "6f870023b06a272eeb2e1a2670b91ba03d7a42db 85f1a630706487d41a16a8fb2e0c69a10c2a33c2"
+  ],
+  "adoptedPublicSeedHead": [
+    "85f1a630706487d41a16a8fb2e0c69a10c2a33c2",
+    "453db211001790378db597045af9f2a762aaee2e",
+    "3899e193621cae3def0707dcb91ea307fa2e783b"
+  ],
+  "unadoptedPublicSeedSuccessor": "ab941d8cbb56cb6b4295bebd58e5e9d354ef4ec5",
+  "executedPhases": [
+    "work",
+    "sources",
+    "status"
+  ],
+  "heldPhases": [
+    "fence",
+    "registry",
+    "table",
+    "finalize"
+  ],
+  "actualOriginalWorkerdBinding": true,
+  "sourceD1CallbackIdentityCredit": 0,
+  "nativeAdaptation": "C-07 fixed canonical atomic batch, extra read-page fences and in-batch missed-checkpoint guards",
+  "files": [
+    {
+      "path": "src/lib/server/media-usage/deletion-plan.ts",
+      "bytes": 16295,
+      "sha256": "1ef488705e3f3d0ef61808877783f2a54090820bb619ca781d3902e3a178665a"
+    },
+    {
+      "path": "src/lib/server/media-usage/collection-deletion-phases.ts",
+      "bytes": 4287,
+      "sha256": "e8ab49274d70c64346c6e988abaa4e3f1924971f4f284d16523a3f1de8058332"
+    },
+    {
+      "path": "src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts",
+      "bytes": 13829,
+      "sha256": "555040898f00fce3045032c2a00a1b0d16e400d3e946c71965aa93c94da56aea"
+    },
+    {
+      "path": "src/lib/server/seed/namespace.ts",
+      "bytes": 43801,
+      "sha256": "8e0f584ec38db0f39046981e9efb3689a0f9d41e05fbd3a87c1183c9d17052b2"
+    },
+    {
+      "path": "src/lib/server/database/d1.ts",
+      "bytes": 5359,
+      "sha256": "1aa54a9ecf48f60bcd7a35d50d634dc47b0634ab348bbf712a0ed03e65c3c0a0"
+    },
+    {
+      "path": "src/lib/server/database/contract.ts",
+      "bytes": 5853,
+      "sha256": "a5c9dfeeff136e706a089074c8c780514b1862933e9bd2c869ae038c80eefeae"
+    },
+    {
+      "path": "src/lib/server/database/atomic-query-loop.ts",
+      "bytes": 2138,
+      "sha256": "48fed2efcc57fb7c3ff9ce694faf1ee127899456c5dcb65287afa72b8945c083"
+    },
+    {
+      "path": "src/lib/server/database/migrations.ts",
+      "bytes": 22676,
+      "sha256": "021565b5c8c6cca044191d0237ca9b8e76836af1e295680dbc2fde9bdbc2f8c4"
+    },
+    {
+      "path": "tests/helpers/async-d1-storage.ts",
+      "bytes": 7914,
+      "sha256": "6adbc23937e0a81c59517a297997b57b3f156a37e43afbb437d9ee9ffa7bde2e"
+    },
+    {
+      "path": "tests/media-usage-maintenance-native/deletion-d1.test.ts",
+      "bytes": 10138,
+      "sha256": "7977e59cbe254e181aa931f61f0c479bb6f1c961c7d5d6b0a7db50abfab98c3e"
+    },
+    {
+      "path": "vitest.media-usage-maintenance-d1.config.ts",
+      "bytes": 207,
+      "sha256": "d48b11042c1e6f691a104ee744f9e4f529e83804140be4912ed690eb5768a47e"
+    }
+  ],
+  "rawSixControls": {
+    "path": "/tmp/media-usage-maintenance-native-deletion-d1-final-state-receipt.log",
+    "bytes": 228,
+    "sha256": "bc0f96f9393934d26de5364e75e83d1590735afb4b0886ef2984390b425f4039"
+  },
+  "actualStoredState": {
+    "path": "parity/emdash/media-usage-maintenance-source/native-d1-controlled-state-receipts.json",
+    "bytes": 3036,
+    "sha256": "375d70beb9c99c55384b7fc2b13ed9532894ad0afda50ca1f59a2f870eb388c9"
+  },
+  "originalCompiledPacket": {
+    "path": "parity/emdash/media-usage-maintenance-source/deletion-compiled-plan-review.json",
+    "bytes": 424435,
+    "sha256": "8eeff7461f85b23705a3ccc778ed3954ebdd0d9bbe9156d2180005f44a71738a"
+  },
+  "correctedCompiledPacket": {
+    "path": "parity/emdash/media-usage-maintenance-source/deletion-compiled-plan-review-v2.json",
+    "bytes": 425977,
+    "sha256": "fc6a0b22af7b5f40e52492dce1fe14323b4d15661e11d5604f88cd7a0e7df018"
+  },
+  "association": {
+    "constructor": "NativeMediaUsageCollectionDeletionPhases(database: CmsDatabase, registeredView?: Kysely<Database>)",
+    "module": "src/lib/server/media-usage/collection-deletion-phases.ts",
+    "requiredOwner": "exact private Seed views.get(registeredView).owner; constructor verifies seedDatabaseOwner(view) === database",
+    "compiler": "seedDomainPlanCompiler(view) = compilationOnly(context.atomicLogical.withPlugin(namespace)); no mutation execution descriptor",
+    "reads": "registered guarded view executeQuery on actually compiled read plans; Source namespace and caller plugins preserve actual queryID and result",
+    "execution": "exact original context.owner.atomicBatch(plan.statements); never already transformed hosted owner",
+    "resultHooks": "compiler executor plugins transform each actual receipt once in actual statement order with that statement queryId, after commit",
+    "genericSeedExecutor": "unchanged; rejects raw guards and _cms_guards; not used by these finite Root-qualified phases",
+    "privateFactory": "Seed owner alone may add named constructor association after Root qualification; no arbitrary factory callback or exported descriptor"
+  },
+  "semanticNotes": [
+    "Source updateDeletion predicates only collection_id/state=leased/lease_token/live expiry; no phase or slug predicates added",
+    "Work/sources/status immediate changes()=1 CHECK(pass=1) checkpoint guard + same-batch guard cleanup; registry returns false on zero and has no rollback guard",
+    "processStatus status_present is the exact unused Source diagnostic; work_present/source_present alone cause cleanup refusal",
+    "Result-hook error after real atomic commit propagates and cannot roll back; this Native C-07 difference is explicit",
+    "Original unsupported Source D1 callbacks and all Original clocks/tests remain unchanged; compile-only fixtures are not observed reads"
+  ]
+}

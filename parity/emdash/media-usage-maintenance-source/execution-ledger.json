@@ -148,6 +148,18 @@
       "passedCallbacks": 1,
       "originalSkippedCallbacks": 0,
       "note": "Compile-only review harness, zero product behavioral credit; consistent existing-cursor fixture, original packet retained exact"
+    },
+    {
+      "name": "native-d1-final-state-receipt",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-final-state-receipt.log",
+      "bytes": 228,
+      "sha256": "bc0f96f9393934d26de5364e75e83d1590735afb4b0886ef2984390b425f4039",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 6,
+      "passedCallbacks": 6,
+      "originalSkippedCallbacks": 0,
+      "note": "Same six genuine Native Workerd controls, all actual stored-state receipts persisted; Source callback identity credit zero"
     }
   ],
   "d1PersistedState": [
@@ -199,5 +211,10 @@
     "registry",
     "table",
     "finalize"
-  ]
+  ],
+  "nativeD1CurrentStoredStateReceipt": {
+    "path": "parity/emdash/media-usage-maintenance-source/native-d1-controlled-state-receipts.json",
+    "bytes": 3036,
+    "sha256": "375d70beb9c99c55384b7fc2b13ed9532894ad0afda50ca1f59a2f870eb388c9"
+  }
 }
