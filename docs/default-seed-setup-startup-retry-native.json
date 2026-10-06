@@ -26,5 +26,21 @@
         "sha256": "6e4e1175305e63f93f2c20c371860d07c06a8cb330f5d435b655742f3ce12542"
       }
     }
+  },
+  "firstCausalExecution": {
+    "head": "7faf72f4754d86d43d68275bb2000f4736f2d8f0",
+    "command": "node node_modules/vitest/vitest.mjs run --config vitest.default-seed-setup-caller.config.ts",
+    "exitCode": 1,
+    "nativePass": 7,
+    "nativeRetryValueRed": 1,
+    "prerequisiteStops": 0,
+    "skip": 0,
+    "literal": "Actual same migrated adapter remained with [] collections on the second request; expected actual default pages/posts.",
+    "raw": {
+      "path": "docs/receipts/default-seed-setup-runtime/native-eight-seed-retry-value-red.log",
+      "bytes": 1348,
+      "sha256": "e129840cfdeb65ba0eb2f6499461af9ff189ce616d99cd9adb06fdc399d85529"
+    },
+    "counter": "Genuine Native retry value-red, zero Source/security/fullfactory credit; real actual Source load first throws then should delegate real producer; no fake success results."
   }
 }
