@@ -1,0 +1,56 @@
+✖ ordinary node installation provides persisted SEO storage (317.516704ms)
+✖ ordinary d1 installation provides persisted SEO storage (3699.484129ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6874.213956
+
+✖ failing tests:
+
+test at tests/seo-storage-installation.test.ts:11:3
+✖ ordinary node installation provides persisted SEO storage (317.516704ms)
+  Error: near "(": syntax error
+      at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/node-sqlite-compat.ts:82:36)
+      at execute (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/sqlite.ts:20:38)
+      at executeAtomicQueryLoop (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/atomic-query-loop.ts:32:19)
+      at file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/sqlite.ts:27:56
+      at #props.executor.provideConnection.freeze.signal (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26)
+      at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+      at async migrateCms (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/migrations.ts:315:9)
+      at async TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/seo-storage-installation.test.ts:15:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 1,
+    errstr: 'SQL logic error'
+  }
+
+test at tests/seo-storage-installation.test.ts:11:3
+✖ ordinary d1 installation provides persisted SEO storage (3699.484129ms)
+  Error: D1_ERROR: near "(": syntax error at offset 240: SQLITE_ERROR
+      at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      ... 3 lines matching cause stack trace ...
+      at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18)
+      at async RawBindingD1Adapter.executeAtomicBatch (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/d1.ts:45:13)
+      at async #props.executor.provideConnection.freeze.signal (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:20) {
+    [cause]: Error: near "(": syntax error at offset 240: SQLITE_ERROR
+        at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+        at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+        at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+        at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+        at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+        at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+        at parse (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+        at file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:51:21
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18) {
+      [cause]: undefined
+    }
+  }

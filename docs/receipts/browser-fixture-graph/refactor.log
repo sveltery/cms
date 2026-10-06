@@ -1,0 +1,16 @@
+▶ isolated count and restore builds retain their real root/remote graph and independent cleanup
+  ✔ count / compiles only its generated root route (1.34281ms)
+  ✔ count / keeps actual canonical remotes and source assets (2.882686ms)
+  ✔ count /cms compiles only its generated root route (0.355024ms)
+  ✔ count /cms keeps actual canonical remotes and source assets (2.17135ms)
+  ✔ restore compiles only its generated root route (0.4786ms)
+  ✔ restore keeps the real registry, independent data and unchanged source assets (2.52678ms)
+✔ isolated count and restore builds retain their real root/remote graph and independent cleanup (9534.900538ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9904.885238
