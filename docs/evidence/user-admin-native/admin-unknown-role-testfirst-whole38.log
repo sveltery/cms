@@ -1,0 +1,64 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/api.test.ts (14 tests | 2 failed) 1663ms
+   × Node SQLite: unknown stored roles retain the pinned subscriber fallback for administrator checks 28ms
+   × raw workerd D1: unknown stored roles retain the pinned subscriber fallback for administrator checks 105ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > Node SQLite: unknown stored roles retain the pinned subscriber fallback for administrator checks
+Error: CHECK constraint failed: role IN (10, 20, 30, 40, 50)
+ ❯ Object.run src/lib/server/database/node-sqlite-compat.ts:87:38
+     85|    all: (...parameters) => statement.all(...toBindings(normalizeParame…
+     86|    get: (...parameters) => statement.get(...toBindings(normalizeParame…
+     87|    run: (...parameters) => statement.run(...toBindings(normalizeParame…
+       |                                      ^
+     88|    iterate: (...parameters) => statement.iterate(...toBindings(normali…
+     89|   };
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:64:51
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:455:24
+ ❯ tests/user-admin-native/api.test.ts:50:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > raw workerd D1: unknown stored roles retain the pinned subscriber fallback for administrator checks
+Error: D1_ERROR: CHECK constraint failed: role IN (10, 20, 30, 40, 50): SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_CHECK)
+ ❯ Error tests/helpers/async-d1-storage.ts:41:19
+     39|   const owned = new WeakMap<D1Statement, Query>();
+     40|   const revivers = { Error(value: { name: string; message: string; cau…
+     41|     const error = new Error(value.message, { cause: value.cause });
+       |                   ^
+     42|     error.name = value.name;
+     43|     return error;
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ unflatten ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9
+ ❯ parse ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9
+ ❯ tests/helpers/async-d1-storage.ts:51:21
+ ❯ execute tests/helpers/async-d1-storage.ts:56:18
+ ❯ D1Connection.executeQuery src/lib/server/database/d1.ts:55:29
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+
+Caused by: Error: CHECK constraint failed: role IN (10, 20, 30, 40, 50): SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_CHECK)
+ ❯ Error tests/helpers/async-d1-storage.ts:41:19
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ unflatten ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9
+ ❯ parse ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9
+ ❯ tests/helpers/async-d1-storage.ts:51:21
+ ❯ execute tests/helpers/async-d1-storage.ts:56:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 36 passed (38)
+   Start at  21:05:03
+   Duration  5.49s (transform 393ms, setup 0ms, import 1.21s, tests 4.03s, environment 0ms)
+

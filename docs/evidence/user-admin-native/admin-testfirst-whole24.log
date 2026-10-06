@@ -1,0 +1,313 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/repository.test.ts (24 tests | 24 failed) 1916ms
+   × Node SQLite: lists real joined users with safe profile and stored credential summaries 51ms
+   × Node SQLite: searches email and name and filters exact numeric stored roles 28ms
+   × Node SQLite: creation-time cursors use original stored timestamp bytes 23ms
+   × Node SQLite: detail returns persisted metadata without private profile JSON or key material 20ms
+   × Node SQLite: profileless historical rows remain unchanged and counted as unavailable profiles 22ms
+   × Node SQLite: updates stored name email and role while preserving custom JSON 23ms
+   × Node SQLite: rejects self-role changes and duplicate email without writes 22ms
+   × Node SQLite: last administrator demotion is rejected using actual enabled stored rows 23ms
+   × Node SQLite: operator rejection rolls back the complete profile and role update 21ms
+   × Node SQLite: disable and enable modify the actual stored account 22ms
+   × Node SQLite: refuses self disable and disabling the final enabled administrator 19ms
+   × Node SQLite: missing profile mutations return the Source not-found error 21ms
+   × raw workerd D1: lists real joined users with safe profile and stored credential summaries 738ms
+   × raw workerd D1: searches email and name and filters exact numeric stored roles 87ms
+   × raw workerd D1: creation-time cursors use original stored timestamp bytes 73ms
+   × raw workerd D1: detail returns persisted metadata without private profile JSON or key material 81ms
+   × raw workerd D1: profileless historical rows remain unchanged and counted as unavailable profiles 84ms
+   × raw workerd D1: updates stored name email and role while preserving custom JSON 88ms
+   × raw workerd D1: rejects self-role changes and duplicate email without writes 74ms
+   × raw workerd D1: last administrator demotion is rejected using actual enabled stored rows 102ms
+   × raw workerd D1: operator rejection rolls back the complete profile and role update 83ms
+   × raw workerd D1: disable and enable modify the actual stored account 70ms
+   × raw workerd D1: refuses self disable and disabling the final enabled administrator 70ms
+   × raw workerd D1: missing profile mutations return the Source not-found error 71ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 24 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: lists real joined users with safe profile and stored credential summaries
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: lists real joined users with safe profile and stored credential summaries
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:36:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: searches email and name and filters exact numeric stored roles
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: searches email and name and filters exact numeric stored roles
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:43:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: creation-time cursors use original stored timestamp bytes
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: creation-time cursors use original stored timestamp bytes
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:50:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: detail returns persisted metadata without private profile JSON or key material
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: detail returns persisted metadata without private profile JSON or key material
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:59:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: profileless historical rows remain unchanged and counted as unavailable profiles
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: profileless historical rows remain unchanged and counted as unavailable profiles
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:66:48
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: updates stored name email and role while preserving custom JSON
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: updates stored name email and role while preserving custom JSON
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:73:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: rejects self-role changes and duplicate email without writes
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: rejects self-role changes and duplicate email without writes
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:79:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: last administrator demotion is rejected using actual enabled stored rows
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: last administrator demotion is rejected using actual enabled stored rows
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:86:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: operator rejection rolls back the complete profile and role update
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: operator rejection rolls back the complete profile and role update
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:93:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: disable and enable modify the actual stored account
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: disable and enable modify the actual stored account
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:100:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: refuses self disable and disabling the final enabled administrator
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: refuses self disable and disabling the final enabled administrator
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:106:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/24]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: missing profile mutations return the Source not-found error
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: missing profile mutations return the Source not-found error
+AssertionError: actual stored-user administrator owner is available
++ actual - expected
+
++ 'undefined'
+- 'function'
+
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ administration tests/user-admin-native/repository.test.ts:18:9
+     16| async function administration(database:CmsDatabase):Promise<Administra…
+     17|  const module=await import('../../src/lib/server/accounts/repository.t…
+     18|  assert.equal(typeof (module as any).accountsRepository,'function','ac…
+       |         ^
+     19|  return (module as any).accountsRepository(database);
+     20| }
+ ❯ tests/user-admin-native/repository.test.ts:113:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/24]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  24 failed (24)
+   Start at  20:45:31
+   Duration  2.69s (transform 272ms, setup 0ms, import 652ms, tests 1.92s, environment 0ms)
+
