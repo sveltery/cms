@@ -4,12 +4,14 @@ import { fileURLToPath } from 'node:url';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig } from 'vite';
+import { sourceSeedPlugin } from './scripts/source-seed-vite.ts';
 
 const cloudflare = process.env.SVELTERY_ADAPTER === 'cloudflare' ?
   (await import('@sveltejs/adapter-cloudflare')).default : undefined;
 
 export default defineConfig({
   plugins: [
+    sourceSeedPlugin(),
     ...(process.env.SVELTERY_ADAPTER === 'cloudflare' ? [{
       name: 'sveltery-cloudflare-storage', enforce: 'pre' as const,
       resolveId(source: string, importer?: string) {

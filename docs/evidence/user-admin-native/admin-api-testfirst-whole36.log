@@ -1,0 +1,59 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/api.test.ts (12 tests | 2 failed) 1326ms
+   × Node SQLite: original missing-ID detail and update semantics are explicit 32ms
+   × raw workerd D1: original missing-ID detail and update semantics are explicit 77ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > Node SQLite: original missing-ID detail and update semantics are explicit
+AssertionError: Expected values to be strictly equal:
+
+404 !== 400
+
+
+- Expected
++ Received
+
+- 400
++ 404
+
+ ❯ tests/user-admin-native/api.test.ts:58:11
+     56|  test(`${target}: original missing-ID detail and update semantics are …
+     57|   const f=await fixture();try{for(const response of [await detail(f.co…
+     58|    assert.equal(response.status,400);assert.equal((await response.json…
+       |           ^
+     59|   }}finally{await f.close();}
+     60|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > raw workerd D1: original missing-ID detail and update semantics are explicit
+AssertionError: Expected values to be strictly equal:
+
+500 !== 400
+
+
+- Expected
++ Received
+
+- 400
++ 500
+
+ ❯ tests/user-admin-native/api.test.ts:58:11
+     56|  test(`${target}: original missing-ID detail and update semantics are …
+     57|   const f=await fixture();try{for(const response of [await detail(f.co…
+     58|    assert.equal(response.status,400);assert.equal((await response.json…
+       |           ^
+     59|   }}finally{await f.close();}
+     60|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 34 passed (36)
+   Start at  20:48:42
+   Duration  4.88s (transform 381ms, setup 0ms, import 1.17s, tests 3.45s, environment 0ms)
+

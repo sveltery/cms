@@ -89,7 +89,7 @@ export const schemaData = v.custom<Record<string, unknown>>(value => {
   try {
     if (!value || typeof value !== 'object' || Array.isArray(value) || !isJsonValue(value)) return false;
     const keys = Object.keys(value);
-    return keys.length <= 32 && keys.every(key => v.safeParse(identifier, key).success)
+    return keys.every(key => v.safeParse(identifier, key).success)
       && JSON.stringify(value).length <= 200_000;
   } catch { return false; }
 });

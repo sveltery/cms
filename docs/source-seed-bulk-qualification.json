@@ -1,0 +1,61 @@
+{
+  "scope": "Five finite development files for physical seed schema prerequisite; full seed and startup still unfinished",
+  "publicBase": "aa6d942a9a5167a0bb656750880fdeeee134a218",
+  "files": [
+    {
+      "path": "src/lib/server/content/manifest.ts",
+      "beforeBytes": 8144,
+      "beforeSHA256": "ac92abbc700255c9a0abd075d56b155d652dc30b8caf4f9f89216a1bcb9446ca",
+      "afterBytes": 7714,
+      "afterSHA256": "d97c11e13cd79898102069e681ef50fce21176e1518c8342953cb2e97aa69ba2"
+    },
+    {
+      "path": "src/lib/server/database/registry.ts",
+      "beforeBytes": 25390,
+      "beforeSHA256": "1aeb0ebea8627466abe8005d88b720b5b8bb18428f1fd6209a7a0b31ddfdd46f",
+      "afterBytes": 30782,
+      "afterSHA256": "1f7873c57c0546fa39801ad3579c3385eaa46436abe99d83354cddcd266bf5f9"
+    },
+    {
+      "path": "src/lib/server/database/validation.ts",
+      "beforeBytes": 7490,
+      "beforeSHA256": "322f72a6adce3ea6c68673904b78a1371898a852b1f6bf921b599d4866a84f40",
+      "afterBytes": 7469,
+      "afterSHA256": "74d3ecd89cf893ffcf80cd1d8d4bb0a5ce7f59973d85a043f8d2c65df7d2db54"
+    },
+    {
+      "path": "tests/database.test.ts",
+      "beforeBytes": 28644,
+      "beforeSHA256": "90b48e0f035e26bbdebab583bb87675b988982178330638cc3ba97e72351d5f8",
+      "afterBytes": 28635,
+      "afterSHA256": "27e6d241a1cc4c6cc0f17d65e63c212fadb7c3d771018365ab671570340ea538"
+    },
+    {
+      "path": "tests/editor-manifest-batching.test.ts",
+      "beforeBytes": 14164,
+      "beforeSHA256": "153d39191c25e78ba30ce324be8cf9c7eafc62492c2b20ebd9170483b180552e",
+      "afterBytes": 14481,
+      "afterSHA256": "8028c075dba6c84ab043f2ac93f250bfd472272bf88127f4950cc8028c0ca665"
+    }
+  ],
+  "independentFreshReview": "/root/seed_bulk_schema_review_fresh complete fivefile/code/source/beforebytes and original evidence review; explicit assertion finding corrected by Root inverse inspection",
+  "all118NativeDatabaseAssertionsRetained": true,
+  "formerCapWholeSuites": {
+    "database": 19,
+    "editorManifestBatching": 11,
+    "total": 30,
+    "failCancelSkipTodo": 0
+  },
+  "NativeMatchedRealDatabaseRequirements": {
+    "beforeFails": 8,
+    "afterPass": 8,
+    "scope": "Node/rawD1 74fields/<50SQLqueries/<=100bindings/midchunk atomicrollback/globalreads"
+  },
+  "SourceUnchangedFirstThreeFamilies": {
+    "pass": 88,
+    "causalCredit": 0
+  },
+  "RootDecision": "Approve physicalschema-only createSeedCollectionSchema/oneatomicBatch and all-field registry+manifest+validation reads; explicitNative>32 expectations migrate to Source uncapped behavior. Supersede earlier field-cap C-05/MB-01 descriptions with paired documentation. No full schema/seed/capture/startup acceptance.",
+  "unchanged": "Source complete assertions; source pin; frozen historical1\u20138; package/lock/CI/bootstrap; inherited100collection bound and metadata semantics",
+  "knownRemaining": "Real lifecycle reopen still rejects>32 via frozen provider5; separately proposed current-layout guard required. Active capture/resume/plugin/media/blocktype and whole Source apply unexecuted; no fake success provider."
+}

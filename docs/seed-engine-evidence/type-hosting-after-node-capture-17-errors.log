@@ -1,0 +1,104 @@
+Loading svelte-check in workspace: /workspace/cms-full-seed-engine
+Getting Svelte diagnostics...
+
+/workspace/cms-full-seed-engine/src/lib/server/database/registry.ts:453:69
+Error: Argument of type 'readonly unknown[]' is not assignable to parameter of type 'unknown[]'.
+  The type 'readonly unknown[]' is 'readonly' and cannot be assigned to the mutable type 'unknown[]'. 
+        CompiledQuery.raw(query.sql.replace(/^CREATE (UNIQUE )?INDEX /i,'CREATE $1INDEX IF NOT EXISTS ')
+          .replace(/^CREATE TABLE /i,'CREATE TABLE IF NOT EXISTS '),query.parameters) : query;
+      await this.batch([...statements.slice(0,collectionOffset),retained(statements[tableOffset])],'LIMIT_EXCEEDED',owner);
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/registry.ts:380:26
+Error: Property 'getTableName' does not exist on type 'SchemaRegistry'. 
+	): Promise<boolean> {
+		const tableName = this.getTableName(slug);
+		try {
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/apply.ts:1645:12
+Error: 'TaxonomyRepository' refers to a value, but is being used as a type here. Did you mean 'typeof TaxonomyRepository'? 
+async function applyHierarchicalTerms(
+	termRepo: TaxonomyRepository,
+	taxonomyName: string,
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/apply.ts:1734:14
+Error: 'BylineRepository' refers to a value, but is being used as a type here. Did you mean 'typeof BylineRepository'? 
+async function applyContentBylines(
+	bylineRepo: BylineRepository,
+	collectionSlug: string,
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-snapshots.ts:7:2
+Error: Module '"../../../providers.ts"' has no exported member 'MediaUsageOccurrenceInput'. 
+import type {
+	MediaUsageOccurrenceInput,
+	MediaUsageSourceInput,
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-snapshots.ts:8:2
+Error: '"../../../providers.ts"' has no exported member named 'MediaUsageSourceInput'. Did you mean 'MediaUsageSource'? 
+	MediaUsageOccurrenceInput,
+	MediaUsageSourceInput,
+} from "../../../providers.ts";
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:128:8
+Error: 'MediaUsageRepository' refers to a value, but is being used as a type here. Did you mean 'typeof MediaUsageRepository'? 
+export async function planContentMediaUsageProjectionAdmission(
+	repo: MediaUsageRepository,
+	snapshots: readonly ContentMediaUsageSnapshot[],
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:913:8
+Error: 'MediaUsageRepository' refers to a value, but is being used as a type here. Did you mean 'typeof MediaUsageRepository'? 
+async function deleteCanonicalContentSourcesIfAbsent(
+	repo: MediaUsageRepository,
+	observedSources: readonly MediaUsageSource[],
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/+server.ts:1:35
+Error: Cannot find module './$types' or its corresponding type declarations. 
+import type {RequestHandler} from './$types';
+import {accountsApi,requestAccounts,usersListQuery} from '$lib/server/accounts/request';
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/+server.ts:4:33
+Error: Parameter 'event' implicitly has an 'any' type. 
+import {AccountError} from '$lib/server/accounts/repository';
+export const GET:RequestHandler=event=>accountsApi('USER_LIST_ERROR',async()=>{
+ const {repository}=await requestAccounts(event);const query=usersListQuery.safeParse(Object.fromEntries(event.url.searchParams));
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/[id]/+server.ts:1:35
+Error: Cannot find module './$types' or its corresponding type declarations. 
+import type {RequestHandler} from './$types';
+import {accountsApi,requestAccounts,accountBody,requiredUserId} from '$lib/server/accounts/request';
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/[id]/+server.ts:4:33
+Error: Parameter 'event' implicitly has an 'any' type. 
+import {AccountError} from '$lib/server/accounts/repository';
+export const GET:RequestHandler=event=>accountsApi('USER_DETAIL_ERROR',async()=>{
+ const {repository}=await requestAccounts(event);const item=await repository.detail(requiredUserId(event.params.id));
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/[id]/+server.ts:8:33
+Error: Parameter 'event' implicitly has an 'any' type. 
+});
+export const PUT:RequestHandler=event=>accountsApi('USER_UPDATE_ERROR',async()=>{
+ const {repository,actorId}=await requestAccounts(event,true);const id=requiredUserId(event.params.id);await repository.requireProfile(id);
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/[id]/disable/+server.ts:1:35
+Error: Cannot find module './$types' or its corresponding type declarations. 
+import type {RequestHandler} from './$types';
+import {accountsApi,requestAccounts,requiredUserId} from '$lib/server/accounts/request';
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/[id]/disable/+server.ts:3:34
+Error: Parameter 'event' implicitly has an 'any' type. 
+import {accountsApi,requestAccounts,requiredUserId} from '$lib/server/accounts/request';
+export const POST:RequestHandler=event=>accountsApi('USER_DISABLE_ERROR',async()=>{
+ const {repository,actorId}=await requestAccounts(event,true);await repository.setDisabled(requiredUserId(event.params.id,'VALIDATION_ERROR'),actorId,true);return {success:true};
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/[id]/enable/+server.ts:1:35
+Error: Cannot find module './$types' or its corresponding type declarations. 
+import type {RequestHandler} from './$types';
+import {accountsApi,requestAccounts,requiredUserId} from '$lib/server/accounts/request';
+
+/workspace/cms-full-seed-engine/src/routes/api/admin/users/[id]/enable/+server.ts:3:34
+Error: Parameter 'event' implicitly has an 'any' type. 
+import {accountsApi,requestAccounts,requiredUserId} from '$lib/server/accounts/request';
+export const POST:RequestHandler=event=>accountsApi('USER_ENABLE_ERROR',async()=>{
+ const {repository,actorId}=await requestAccounts(event,true);await repository.setDisabled(requiredUserId(event.params.id,'VALIDATION_ERROR'),actorId,false);return {success:true};
+
+====================================
+svelte-check found 17 errors and 0 warnings in 9 files

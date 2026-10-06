@@ -1,0 +1,64 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/api.test.ts (16 tests | 2 failed) 2109ms
+   × Node SQLite: update returns exactly the original stored-profile mutation projection 31ms
+   × raw workerd D1: update returns exactly the original stored-profile mutation projection 140ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > Node SQLite: update returns exactly the original stored-profile mutation projection
+ FAIL  tests/user-admin-native/api.test.ts > raw workerd D1: update returns exactly the original stored-profile mutation projection
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    'avatarUrl',
+    'createdAt',
++   'credentialCount',
++   'credentials',
+    'disabled',
+    'email',
+    'emailVerified',
+    'id',
++   'lastLogin',
+    'name',
+    'role',
+    'updatedAt'
+  ]
+
+
+- Expected
++ Received
+
+  [
+    "avatarUrl",
+    "createdAt",
++   "credentialCount",
++   "credentials",
+    "disabled",
+    "email",
+    "emailVerified",
+    "id",
++   "lastLogin",
+    "name",
+    "role",
+    "updatedAt",
+  ]
+
+ ❯ tests/user-admin-native/api.test.ts:65:11
+     63|    const response=await update(f.context(f.author.id,{name:'Changed'})…
+     64|    const item=(await response.json()).data.item;
+     65|    assert.deepEqual(Object.keys(item).sort(),['id','email','name','ava…
+       |           ^
+     66|    assert.equal(item.name,'Changed');assert.equal(item.id,f.author.id);
+     67|   }finally{await f.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 38 passed (40)
+   Start at  21:19:11
+   Duration  6.94s (transform 607ms, setup 0ms, import 1.52s, tests 5.17s, environment 0ms)
+

@@ -1,0 +1,2671 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "publicDraftSHA": "dd80fe3f942aef2e44d3df92c28a818b5a45897c",
+  "scope": "Read-only public contract inspection using two real in-memory SQLite databases. Whole pinned migration bodies execute with import-only pure helper substitution. Not an original Source test family or production provider installation; zero Source case credit. No auth/session/network/concurrent probes.",
+  "sourceAuthorities": [
+    {
+      "path": "packages/core/src/database/migrations/001_initial.ts",
+      "bytes": 5374,
+      "sha256": "3c91298a957d40f5b576dfd5012e3ce66480db95516add28d45a5669e651fee9"
+    },
+    {
+      "path": "packages/core/src/database/migrations/003_schema_registry.ts",
+      "bytes": 3098,
+      "sha256": "ad355793aefcdb02e2d69f8f932d5452a8b89b66d3b180840d7aff278f481863"
+    },
+    {
+      "path": "packages/core/src/database/migrations/027_comments.ts",
+      "bytes": 2833,
+      "sha256": "ba8dea6c3f64f1ea6c96ea8dc7e58a974fa4e1064de2756ec451e2fa1f9f3438"
+    },
+    {
+      "path": "packages/core/src/database/migrations/031_bylines.ts",
+      "bytes": 3118,
+      "sha256": "48b9e8875b47ace4dbbdb75cb0be236793e31d324b0cc80b968da71b06d41de3"
+    },
+    {
+      "path": "packages/core/src/database/migrations/040_byline_i18n.ts",
+      "bytes": 20297,
+      "sha256": "61c08479f877f914e77a0f8a3bd86dae76a5b1c814a19cac25ab7d15a5dde275"
+    },
+    {
+      "path": "packages/core/src/database/migrations/042_byline_fields.ts",
+      "bytes": 6794,
+      "sha256": "8b1c1447608a62e0e4d4862d5f60abe8fc7312a8eff15afe3161d8efa8403025"
+    },
+    {
+      "path": "packages/core/src/database/migrations/043_content_references.ts",
+      "bytes": 4548,
+      "sha256": "53bd16531be0cb5557b24862980fdfe2530b96b80342b99b9a50c1205541ef16"
+    },
+    {
+      "path": "packages/core/src/database/migrations/071_restore_content_bylines_table.ts",
+      "bytes": 1399,
+      "sha256": "edc7e61355692995724c424ced8caef99010224378e9454491c6fe417ef1eb47"
+    },
+    {
+      "path": "packages/core/src/database/migrations/083_block_types.ts",
+      "bytes": 2252,
+      "sha256": "6429246b2209c7da892ede761de84f6c7c765a5855c237d113414891b933bd37"
+    },
+    {
+      "path": "packages/core/src/database/migrations/086_relations_structural.ts",
+      "bytes": 7455,
+      "sha256": "1531a8adf50bb35d19bccb5b42698066a6a22407ad2ea6285a3e3db3d54ca81b"
+    }
+  ],
+  "tables": [
+    {
+      "logical": "_emdash_bylines",
+      "physical": "_cms_bylines",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "display_name",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "bio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "avatar_media_id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "website_url",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "user_id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "is_guest",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "locale",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": "'en'",
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "translation_group",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "_cms_auth_users",
+            "from": "user_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "SET NULL",
+            "match": "NONE"
+          },
+          {
+            "table": "_cms_media",
+            "from": "avatar_media_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "SET NULL",
+            "match": "NONE"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "display_name"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "locale"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug",
+              "locale"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "translation_group",
+              "locale"
+            ],
+            "unique": 1,
+            "partial": 1,
+            "predicate": "translation_group IS NOT NULL\n\t"
+          },
+          {
+            "columns": [
+              "translation_group"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "user_id",
+              "locale"
+            ],
+            "unique": 1,
+            "partial": 1,
+            "predicate": "user_id IS NOT NULL\n\t"
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_bylines\" (\"id\" text primary key, \"slug\" text not null, \"display_name\" text not null, \"bio\" text, \"avatar_media_id\" text references \"media\" (\"id\") on delete set null, \"website_url\" text, \"user_id\" text references \"users\" (\"id\") on delete set null, \"is_guest\" integer default 0 not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), \"locale\" text default 'en' not null, \"translation_group\" text, constraint \"_emdash_bylines_slug_locale_unique\" unique (\"slug\", \"locale\"))",
+      "publicDescriptor": {
+        "name": "_cms_bylines",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_bylines\" (\"id\" text primary key, \"slug\" text not null, \"display_name\" text not null, \"bio\" text, \"avatar_media_id\" text references \"_cms_media\" (\"id\") on delete set null, \"website_url\" text, \"user_id\" text references \"_cms_auth_users\" (\"id\") on delete set null, \"is_guest\" integer default 0 not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), \"locale\" text default 'en' not null, \"translation_group\" text, constraint \"_cms_bylines_slug_locale_unique\" unique (\"slug\", \"locale\"))"
+      },
+      "nativeLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "display_name",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "bio",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "avatar_media_id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "website_url",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "user_id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "is_guest",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "locale",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": "'en'",
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "translation_group",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "_cms_auth_users",
+            "from": "user_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "SET NULL",
+            "match": "NONE"
+          },
+          {
+            "table": "_cms_media",
+            "from": "avatar_media_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "SET NULL",
+            "match": "NONE"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "display_name"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "locale"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug",
+              "locale"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "translation_group",
+              "locale"
+            ],
+            "unique": 1,
+            "partial": 1,
+            "predicate": "translation_group IS NOT NULL\n\t"
+          },
+          {
+            "columns": [
+              "translation_group"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "user_id",
+              "locale"
+            ],
+            "unique": 1,
+            "partial": 1,
+            "predicate": "user_id IS NOT NULL\n\t"
+          }
+        ]
+      },
+      "semanticLayoutEqual": true
+    },
+    {
+      "logical": "_emdash_content_bylines",
+      "physical": "_cms_content_bylines",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "collection_slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "content_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "byline_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "sort_order",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "role_label",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "byline_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "collection_slug",
+              "content_id",
+              "byline_id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "collection_slug",
+              "content_id",
+              "sort_order"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_content_bylines\" (\"id\" text primary key, \"collection_slug\" text not null, \"content_id\" text not null, \"byline_id\" text not null, \"sort_order\" integer default 0 not null, \"role_label\" text, \"created_at\" text default (datetime('now')), constraint \"content_bylines_unique\" unique (\"collection_slug\", \"content_id\", \"byline_id\"))",
+      "publicDescriptor": {
+        "name": "_cms_content_bylines",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_content_bylines\" (\"id\" text primary key, \"collection_slug\" text not null, \"content_id\" text not null, \"byline_id\" text not null, \"sort_order\" integer default 0 not null, \"role_label\" text, \"created_at\" text default (datetime('now')), constraint \"content_bylines_unique\" unique (\"collection_slug\", \"content_id\", \"byline_id\"))"
+      },
+      "nativeLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "collection_slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "content_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "byline_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "sort_order",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "role_label",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "byline_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "collection_slug",
+              "content_id",
+              "byline_id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "collection_slug",
+              "content_id",
+              "sort_order"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "semanticLayoutEqual": true
+    },
+    {
+      "logical": "_emdash_byline_fields",
+      "physical": "_cms_byline_fields",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "label",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "type",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "required",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "translatable",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "1",
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "validation",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "sort_order",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "sort_order"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_byline_fields\" (\"id\" text primary key, \"slug\" text not null unique, \"label\" text not null, \"type\" text not null, \"required\" integer default 0 not null, \"translatable\" integer default 1 not null, \"validation\" text, \"sort_order\" integer default 0 not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')))",
+      "publicDescriptor": {
+        "name": "_cms_byline_fields",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_byline_fields\" (\"id\" text primary key, \"slug\" text not null unique, \"label\" text not null, \"type\" text not null, \"required\" integer default 0 not null, \"translatable\" integer default 1 not null, \"validation\" text, \"sort_order\" integer default 0 not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')))"
+      },
+      "nativeLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "label",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "type",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "required",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "translatable",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "1",
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "validation",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "sort_order",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "sort_order"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "semanticLayoutEqual": true
+    },
+    {
+      "logical": "_emdash_byline_field_values",
+      "physical": "_cms_byline_field_values",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "byline_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "field_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "value",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "_cms_byline_fields",
+            "from": "field_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          },
+          {
+            "table": "_cms_bylines",
+            "from": "byline_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "byline_id",
+              "field_id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "byline_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "field_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_byline_field_values\" (\"byline_id\" text not null references \"_emdash_bylines\" (\"id\") on delete cascade, \"field_id\" text not null references \"_emdash_byline_fields\" (\"id\") on delete cascade, \"value\" text, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_emdash_byline_field_values_pk\" primary key (\"byline_id\", \"field_id\"))",
+      "publicDescriptor": {
+        "name": "_cms_byline_field_values",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_byline_field_values\" (\"byline_id\" text not null references \"_cms_bylines\" (\"id\") on delete cascade, \"field_id\" text not null references \"_cms_byline_fields\" (\"id\") on delete cascade, \"value\" text, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_cms_byline_field_values_pk\" primary key (\"byline_id\", \"field_id\"))"
+      },
+      "nativeLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "byline_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "field_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "value",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "_cms_byline_fields",
+            "from": "field_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          },
+          {
+            "table": "_cms_bylines",
+            "from": "byline_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "byline_id",
+              "field_id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "byline_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "field_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "semanticLayoutEqual": true
+    },
+    {
+      "logical": "_emdash_byline_field_group_values",
+      "physical": "_cms_byline_field_group_values",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "translation_group",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "field_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "value",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "_cms_byline_fields",
+            "from": "field_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "field_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "translation_group",
+              "field_id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "translation_group"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_byline_field_group_values\" (\"translation_group\" text not null, \"field_id\" text not null references \"_emdash_byline_fields\" (\"id\") on delete cascade, \"value\" text, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_emdash_byline_field_group_values_pk\" primary key (\"translation_group\", \"field_id\"))",
+      "publicDescriptor": {
+        "name": "_cms_byline_field_group_values",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_byline_field_group_values\" (\"translation_group\" text not null, \"field_id\" text not null references \"_cms_byline_fields\" (\"id\") on delete cascade, \"value\" text, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_cms_byline_field_group_values_pk\" primary key (\"translation_group\", \"field_id\"))"
+      },
+      "nativeLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "translation_group",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "field_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "value",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "_cms_byline_fields",
+            "from": "field_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "field_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "translation_group",
+              "field_id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "translation_group"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "semanticLayoutEqual": true
+    },
+    {
+      "logical": "_emdash_relations",
+      "physical": "_cms_relations",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "parent_collection",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "child_collection",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "parent_label",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "child_label",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "parent_label_singular",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "child_label_singular",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "max_children_per_parent",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "max_parents_per_child",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "child_collection"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "parent_collection"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_relations\" (\"id\" text primary key, \"slug\" text not null, \"parent_collection\" text not null, \"child_collection\" text not null, \"parent_label\" text not null, \"child_label\" text not null, \"parent_label_singular\" text, \"child_label_singular\" text, \"max_children_per_parent\" integer, \"max_parents_per_child\" integer, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_emdash_relations_slug_unique\" unique (\"slug\"))",
+      "publicDescriptor": {
+        "name": "_cms_relations",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_relations\" (\"id\" text primary key, \"slug\" text not null, \"parent_collection\" text not null, \"child_collection\" text not null, \"parent_label\" text not null, \"child_label\" text not null, \"parent_label_singular\" text, \"child_label_singular\" text, \"max_children_per_parent\" integer, \"max_parents_per_child\" integer, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_cms_relations_slug_unique\" unique (\"slug\"))"
+      },
+      "nativeLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "parent_collection",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "child_collection",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "parent_label",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "child_label",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "parent_label_singular",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "child_label_singular",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "max_children_per_parent",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "max_parents_per_child",
+            "type": "INTEGER",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 10,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 11,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "child_collection"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "parent_collection"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "semanticLayoutEqual": true
+    },
+    {
+      "logical": "_emdash_content_references",
+      "physical": "_cms_content_references",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "relation_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "parent_group",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "child_group",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "sort_order",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "child_group",
+              "relation_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "parent_group",
+              "relation_id",
+              "sort_order"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "relation_id",
+              "parent_group",
+              "child_group"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "relation_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_content_references\" (\"id\" text primary key, \"relation_id\" text not null, \"parent_group\" text not null, \"child_group\" text not null, \"sort_order\" integer default 0 not null, \"created_at\" text default (datetime('now')), constraint \"content_references_unique\" unique (\"relation_id\", \"parent_group\", \"child_group\"))",
+      "publicDescriptor": {
+        "name": "_cms_content_references",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_content_references\" (\"id\" text primary key, \"relation_id\" text not null, \"parent_group\" text not null, \"child_group\" text not null, \"sort_order\" integer default 0 not null, \"created_at\" text default (datetime('now')), constraint \"content_references_unique\" unique (\"relation_id\", \"parent_group\", \"child_group\"))"
+      },
+      "nativeLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "relation_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "parent_group",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "child_group",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "sort_order",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "0",
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "child_group",
+              "relation_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "parent_group",
+              "relation_id",
+              "sort_order"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "relation_id",
+              "parent_group",
+              "child_group"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "relation_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "semanticLayoutEqual": true
+    },
+    {
+      "logical": "_emdash_block_types",
+      "physical": "_cms_block_types",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "slug",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "label",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "description",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "icon",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "category",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "current_version",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": "1",
+            "pk": 0
+          },
+          {
+            "cid": 7,
+            "name": "source",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": "'user'",
+            "pk": 0
+          },
+          {
+            "cid": 8,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 9,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_block_types\" (\"id\" text primary key, \"slug\" text not null unique, \"label\" text not null, \"description\" text, \"icon\" text, \"category\" text, \"current_version\" integer default 1 not null, \"source\" text default 'user' not null, \"created_at\" text default (datetime('now')) not null, \"updated_at\" text default (datetime('now')) not null)",
+      "publicDescriptor": null,
+      "semanticLayoutEqual": null
+    },
+    {
+      "logical": "_emdash_block_type_versions",
+      "physical": "_cms_block_type_versions",
+      "sourceLayout": {
+        "columns": [
+          {
+            "cid": 0,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "block_type_id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 2,
+            "name": "version",
+            "type": "INTEGER",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "fields",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 4,
+            "name": "fingerprint",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 5,
+            "name": "created_at",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          },
+          {
+            "cid": 6,
+            "name": "updated_at",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": "datetime('now')",
+            "pk": 0
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "_cms_block_types",
+            "from": "block_type_id",
+            "to": "id",
+            "on_update": "NO ACTION",
+            "on_delete": "CASCADE",
+            "match": "NONE"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "block_type_id",
+              "version"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "block_type_id"
+            ],
+            "unique": 0,
+            "partial": 0,
+            "predicate": null
+          },
+          {
+            "columns": [
+              "id"
+            ],
+            "unique": 1,
+            "partial": 0,
+            "predicate": null
+          }
+        ]
+      },
+      "sourcePhysicalDDL": "CREATE TABLE \"_emdash_block_type_versions\" (\"id\" text primary key, \"block_type_id\" text not null, \"version\" integer not null, \"fields\" text not null, \"fingerprint\" text not null, \"created_at\" text default (datetime('now')) not null, \"updated_at\" text default (datetime('now')) not null, constraint \"block_type_versions_type_fk\" foreign key (\"block_type_id\") references \"_emdash_block_types\" (\"id\") on delete cascade)",
+      "publicDescriptor": null,
+      "semanticLayoutEqual": null
+    }
+  ],
+  "present": 7,
+  "missing": 2,
+  "creationDefaults": {
+    "sourceCollections": {
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "slug",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "label",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "label_singular",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "description",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "icon",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "supports",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "datetime('now')",
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "updated_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "datetime('now')",
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "comments_enabled",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "comments_moderation",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "'first_time'",
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "comments_closed_after_days",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "90",
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "comments_auto_approve_users",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "1",
+          "pk": 0
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "columns": [
+            "id"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        },
+        {
+          "columns": [
+            "slug"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        }
+      ]
+    },
+    "sourceFields": {
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "collection_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "slug",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "label",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "type",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "column_type",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "required",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "unique",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "default_value",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "validation",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "widget",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "options",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "sort_order",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "datetime('now')",
+          "pk": 0
+        }
+      ],
+      "foreignKeys": [
+        {
+          "table": "_cms_collections",
+          "from": "collection_id",
+          "to": "id",
+          "on_update": "NO ACTION",
+          "on_delete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "columns": [
+            "collection_id",
+            "slug"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        },
+        {
+          "columns": [
+            "collection_id",
+            "sort_order"
+          ],
+          "unique": 0,
+          "partial": 0,
+          "predicate": null
+        },
+        {
+          "columns": [
+            "collection_id"
+          ],
+          "unique": 0,
+          "partial": 0,
+          "predicate": null
+        },
+        {
+          "columns": [
+            "id"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        }
+      ]
+    },
+    "nativeCollections": {
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "slug",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "label",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "label_singular",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "description",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "supports",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'manual'",
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "version",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "updated_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "icon",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "admin_config",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "has_seo",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "title_field",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "name": "date_field",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 15,
+          "name": "url_pattern",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 16,
+          "name": "routable",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 17,
+          "name": "hidden",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 18,
+          "name": "sort_order",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 19,
+          "name": "nav_group",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 20,
+          "name": "comments_enabled",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 21,
+          "name": "comments_moderation",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'first_time'",
+          "pk": 0
+        },
+        {
+          "cid": 22,
+          "name": "comments_closed_after_days",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "90",
+          "pk": 0
+        },
+        {
+          "cid": 23,
+          "name": "comments_auto_approve_users",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 24,
+          "name": "edit_locking",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 25,
+          "name": "search_config",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "columns": [
+            "id"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        },
+        {
+          "columns": [
+            "slug"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        }
+      ]
+    },
+    "nativeFields": {
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "collection_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "slug",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "label",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "type",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "column_type",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "required",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "unique",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "default_value",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "validation",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "sort_order",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "widget",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "options",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "name": "searchable",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 15,
+          "name": "indexed",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 16,
+          "name": "translatable",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "1",
+          "pk": 0
+        }
+      ],
+      "foreignKeys": [
+        {
+          "table": "_cms_collections",
+          "from": "collection_id",
+          "to": "id",
+          "on_update": "NO ACTION",
+          "on_delete": "CASCADE",
+          "match": "NONE"
+        }
+      ],
+      "indexes": [
+        {
+          "columns": [
+            "collection_id",
+            "slug"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        },
+        {
+          "columns": [
+            "collection_id",
+            "sort_order"
+          ],
+          "unique": 0,
+          "partial": 0,
+          "predicate": null
+        },
+        {
+          "columns": [
+            "id"
+          ],
+          "unique": 1,
+          "partial": 0,
+          "predicate": null
+        }
+      ]
+    },
+    "nativeMetadataAuthority": "Current author branch Root-qualified startup framework; frozen metadata provider3 remains public aa6/Main135 byte exact; Source pin003/027 comparison, not provider15 installation."
+  },
+  "bylineVersionOption": {
+    "source": {
+      "value": "0"
+    },
+    "publicDescriptorStatement": "INSERT INTO _cms_options(name,value) VALUES ('byline_fields_version','0') ON CONFLICT(name) DO NOTHING"
+  }
+}

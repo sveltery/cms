@@ -1,0 +1,103 @@
+
+ RUN  v4.1.10 /workspace/cms-node-error-constructor-hosting
+
+ ❯ tests/general-media/node-strip-error-constructors.test.ts (4 tests | 2 failed) 206ms
+   × imports actual EmDashValidationError using unchanged Node strip mode 81ms
+   × imports actual EmDashStorageError using unchanged Node strip mode 64ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/general-media/node-strip-error-constructors.test.ts > imports actual EmDashValidationError using unchanged Node strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-node-error-constructor-hosting/src/lib/server/bylines/repository-types.ts:363
+        message: string,
+        public details?: unknown,
+               ^^^^^^^^^^^^^^^^^
+    ) {
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/general-media/node-strip-error-constructors.test.ts:45:42
+     43|       console.log(JSON.stringify({message:error.message,name:error.nam…
+     44|     `], { cwd: root, encoding: 'utf8' });
+     45|     expect(result.status, result.stderr).toBe(0);
+       |                                          ^
+     46|     expect(JSON.parse(result.stdout)).toEqual({ message: 'strip-mode',…
+     47|       ...(row.name === 'EmDashStorageError' ? { code: 'CODE', cause: '…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/general-media/node-strip-error-constructors.test.ts > imports actual EmDashStorageError using unchanged Node strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-node-error-constructor-hosting/src/lib/server/general-media/upstream/storage/types.ts:216
+        message: string,
+        public code: string,
+               ^^^^^^^^^^^^
+        public override cause?: unknown,
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/general-media/node-strip-error-constructors.test.ts:45:42
+     43|       console.log(JSON.stringify({message:error.message,name:error.nam…
+     44|     `], { cwd: root, encoding: 'utf8' });
+     45|     expect(result.status, result.stderr).toBe(0);
+       |                                          ^
+     46|     expect(JSON.parse(result.stdout)).toEqual({ message: 'strip-mode',…
+     47|       ...(row.name === 'EmDashStorageError' ? { code: 'CODE', cause: '…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  23:53:14
+   Duration  627ms (transform 89ms, setup 0ms, import 307ms, tests 206ms, environment 0ms)
+

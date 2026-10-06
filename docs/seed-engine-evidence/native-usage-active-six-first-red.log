@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts (6 tests | 1 failed) 1666ms
+   × D1: delegates genuinely active capture to its existing guarded projection batch 161ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/usage-d1-native.test.ts > D1: delegates genuinely active capture to its existing guarded projection batch
+AssertionError: expected "replaceNewSourcesBatch" to be called 1 times, but got 0 times
+ ❯ tests/source-seed-backend/usage-d1-native.test.ts:89:17
+     87|   const batch=vi.spyOn(f.repo,'replaceNewSourcesBatch');
+     88|   expect(await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],…
+     89|   expect(batch).toHaveBeenCalledTimes(1);
+       |                 ^
+     90|   expect((await f.repo.findSource(f.source.sourceKey))?.currentGenerat…
+     91|  }finally{vi.restoreAllMocks();await f.storage.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  23:43:13
+   Duration  3.30s (transform 921ms, setup 0ms, import 1.51s, tests 1.67s, environment 0ms)
+

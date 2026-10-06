@@ -1,0 +1,626 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 20 failed) 887ms
+     × activates durable capture for collections created after global activation 48ms
+     × activates durable capture for seed collections created after global activation 44ms
+     × rejects seed writes until field metadata and capture publication are complete 39ms
+     × activates durable capture when registering an orphan after global activation 44ms
+     × rejects orphan writes until collection publication is active and resumes registration 57ms
+     × resumes collection capture after the content table commits before registration 45ms
+     × resumes collection publication after verified capture reaches ready 33ms
+     × resumes collection capture after registration commits before finalization 48ms
+     × resumes seed capture and restores missing field metadata before finalization 33ms
+     × rejects a conflicting seed definition while capture installation is incomplete 26ms
+     × does not resume a cursorless collection lifecycle as seed creation 43ms
+     × does not resume a fingerprinted seed lifecycle as ordinary collection creation 31ms
+     × distinguishes an omitted seed default from an explicit null default 36ms
+     × resumes orphan registration after publication commits before finalization 28ms
+     × activates one bounded collection per call and captures writes only after each exact lifecycle 24ms
+     × conservatively invalidates trusted coverage before activating capture 20ms
+     × fails closed with durable diagnostics when trigger installation cannot finish 25ms
+     × rejects an excessive owned trigger set before changing trigger DDL 21ms
+     × cannot finalize after losing its exact lease during collection activation 20ms
+     × cannot downgrade an active collection after its activation lease is taken over 29ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts (16 tests | 16 failed) 449ms
+     × builds a columns snapshot from stored content fields 65ms
+     × returns a typed not-found result for missing content 24ms
+     × keeps JSON-looking stored display strings as strings 30ms
+     × builds columns and draft overlay snapshots for a pending draft revision 24ms
+     × merges draft overlays over columns when the draft changes unrelated fields 29ms
+     × preserves column display fields when a draft changes only media 35ms
+     × keeps JSON-looking revision display strings as strings 21ms
+     × honors draft nulls that clear media fields 34ms
+     × keeps block media in independent live and draft projections 30ms
+     × fails when draft_revision_id belongs to another content row 19ms
+     × fails with a columns snapshot when draft_revision_id is missing 20ms
+     × fails when draft revision data is invalid JSON 19ms
+     × adds stable source schema versions and fingerprints to snapshots 29ms
+     × changes fingerprints when V1-visible source metadata changes 24ms
+     × changes fingerprints when extraction-relevant values or fields change 24ms
+     × keeps fingerprints stable for non-extraction schema metadata changes 20ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts (11 tests | 11 failed) 348ms
+     × refreshes a columns source and replaces its current usage 49ms
+     × does not create another generation when the full projection is unchanged 26ms
+     × refreshes columns and draft overlay sources when a draft exists 33ms
+     × deletes a stale draft overlay source after a successful columns-only refresh 28ms
+     × marks coverage stale instead of clobbering a newer source generation 35ms
+     × retries a replace generation conflict before marking coverage stale 32ms
+     × retries a draft overlay delete after a concurrent source change 31ms
+     × deletes every source for a content item 30ms
+     × removes the old projection when its collection registry row disappears 35ms
+     × marks draft snapshot failures without replacing current usage 28ms
+     × marks collection coverage stale while preserving existing status metadata 19ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts (9 tests | 9 failed) 313ms
+     × coalesces insert, update, and delete into one newest pending job 72ms
+     × rejects writes unless the exact registry and lifecycle identity is active 34ms
+     × rejects a status identity mismatch while the registry identity remains current 31ms
+     × is behaviorally idempotent when installed repeatedly 26ms
+     × replaces stale triggers from an interrupted earlier collection identity 38ms
+     × repairs a same-named disabled or incorrect trigger while fenced 46ms
+     × rolls back every row, job, and epoch when one row cannot be captured 24ms
+     × removes the capture boundary explicitly 20ms
+     × refuses rollback after capture is active and leaves writes protected 20ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts (7 tests | 7 failed) 220ms
+     × discovers V1 extraction fields and display fields separately 52ms
+     × filters unsupported repeater subfields and excludes repeaters without images 22ms
+     × fails closed on malformed repeater validation 23ms
+     × discovers every retained block version and fingerprints contract changes 24ms
+     × fails closed when a configured block type cannot be resolved 32ms
+     × rejects supported fields with invalid slugs before they can become column refs 32ms
+     × fingerprints exact extraction and display-field definitions independent of row order 33ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 63 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for collections created after global activation
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:102:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for seed collections created after global activation
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:124:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects seed writes until field metadata and capture publication are complete
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:148:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture when registering an orphan after global activation
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.registerOrphanedTable src/lib/server/seed/registry.ts:408:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:195:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects orphan writes until collection publication is active and resumes registration
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.registerOrphanedTable src/lib/server/seed/registry.ts:408:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:244:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after the content table commits before registration
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:262:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection publication after verified capture reaches ready
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:289:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after registration commits before finalization
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:308:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes seed capture and restores missing field metadata before finalization
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:329:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects a conflicting seed definition while capture installation is incomplete
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:361:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a cursorless collection lifecycle as seed creation
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:387:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a fingerprinted seed lifecycle as ordinary collection creation
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:411:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > distinguishes an omitted seed default from an explicit null default
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:448:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes orphan registration after publication commits before finalization
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.registerOrphanedTable src/lib/server/seed/registry.ts:408:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:481:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates one bounded collection per call and captures writes only after each exact lifecycle
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:498:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > conservatively invalidates trusted coverage before activating capture
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:540:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > fails closed with durable diagnostics when trigger installation cannot finish
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:603:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects an excessive owned trigger set before changing trigger DDL
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:629:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > cannot finalize after losing its exact lease during collection activation
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:677:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > cannot downgrade an active collection after its activation lease is taken over
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:706:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > coalesces insert, update, and delete into one newest pending job
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:30:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rejects writes unless the exact registry and lifecycle identity is active
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:110:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rejects a status identity mismatch while the registry identity remains current
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:138:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > is behaviorally idempotent when installed repeatedly
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:151:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > replaces stale triggers from an interrupted earlier collection identity
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:173:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > repairs a same-named disabled or incorrect trigger while fenced
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:205:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rolls back every row, job, and epoch when one row cannot be captured
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:227:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > removes the capture boundary explicitly
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:252:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > refuses rollback after capture is active and leaves writes protected
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:282:2
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:269:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > discovers V1 extraction fields and display fields separately
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > filters unsupported repeater subfields and excludes repeaters without images
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fails closed on malformed repeater validation
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > discovers every retained block version and fingerprints contract changes
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fails closed when a configured block type cannot be resolved
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > rejects supported fields with invalid slugs before they can become column refs
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fingerprints exact extraction and display-field definitions independent of row order
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:25:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes a columns source and replaces its current usage
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > does not create another generation when the full projection is unchanged
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes columns and draft overlay sources when a draft exists
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes a stale draft overlay source after a successful columns-only refresh
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks coverage stale instead of clobbering a newer source generation
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a replace generation conflict before marking coverage stale
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes every source for a content item
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > removes the old projection when its collection registry row disappears
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks draft snapshot failures without replacing current usage
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks collection coverage stale while preserving existing status metadata
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:35:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/63]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > builds a columns snapshot from stored content fields
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > returns a typed not-found result for missing content
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps JSON-looking stored display strings as strings
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > builds columns and draft overlay snapshots for a pending draft revision
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > merges draft overlays over columns when the draft changes unrelated fields
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > preserves column display fields when a draft changes only media
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps JSON-looking revision display strings as strings
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > honors draft nulls that clear media fields
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps block media in independent live and draft projections
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails when draft_revision_id belongs to another content row
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails with a columns snapshot when draft_revision_id is missing
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails when draft revision data is invalid JSON
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > adds stable source schema versions and fingerprints to snapshots
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > changes fingerprints when V1-visible source metadata changes
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > changes fingerprints when extraction-relevant values or fields change
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps fingerprints stable for non-extraction schema metadata changes
+ReferenceError: isCollectionSupport is not defined
+ ❯ parseSupports src/lib/server/seed/registry.ts:64:23
+     62|  const parsed: unknown = JSON.parse(raw);
+     63|  if (!Array.isArray(parsed)) return [];
+     64|  return parsed.filter(isCollectionSupport);
+       |                       ^
+     65| }
+     66|
+ ❯ SchemaRegistry.mapCollectionRow src/lib/server/seed/registry.ts:150:14
+ ❯ SchemaRegistry.getCollection src/lib/server/seed/registry.ts:102:21
+ ❯ SchemaRegistry.createCollection src/lib/server/seed/registry.ts:386:13
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:30:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/63]⎯
+
+
+ Test Files  5 failed (5)
+      Tests  63 failed | 6 passed (69)
+   Start at  21:50:31
+   Duration  5.38s (transform 973ms, setup 0ms, import 2.45s, tests 2.22s, environment 0ms)
+

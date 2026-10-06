@@ -1,3 +1,4 @@
+import {isStoragelessField} from '../schema/types.ts';
 import { validateContentData } from '../schema/validate-content.ts';
 import { serializeValue, deserializeValue } from './field-value.ts';
 import { sql, type CompiledQuery } from 'kysely';
@@ -8,7 +9,7 @@ import { SchemaRegistry, fieldMax } from './registry.ts';
 import { countTrashedDraftInput, createDraftInput, entryId, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, tableName, updateDraftInput, deleteDraftInput } from './validation.ts';
 
 interface EntryRow {
-  id: string; slug: string | null; status: 'draft'; author_id: string | null;
+  id: string; slug: string | null; status: string; author_id: string | null;
   locale: string; version: number; created_at: string; updated_at: string;
   deleted_at?: string | null;
   [key: string]: unknown;
@@ -36,6 +37,7 @@ function validateData(fields: Field[], data: Record<string, unknown>, partial: b
     }
   }
   if (!partial) for (const field of fields) {
+    if(isStoragelessField({...field,validation:field.validation??undefined}))continue;
     if (field.required && !Object.hasOwn(data, field.slug) && field.defaultValue === undefined) throw new CmsError('VALIDATION_ERROR');
   }
 }
@@ -53,6 +55,10 @@ function cursorDecode(input: unknown, type: string, locale: string): { createdAt
 }
 
 /** Internal storage API. Request callers must use cmsService for authorization. */
+export interface DraftTranslationSource {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:readonly string[]}
+export interface DraftCreationMetadata {id?:string;createdAt?:string;updatedAt?:string;publishedAt?:string|null;authorId?:string|null;primaryBylineId?:string|null;status?:string;validateData?:boolean}
+export interface DraftCreationSidePlan {before:readonly CompiledQuery[];after:readonly CompiledQuery[];cleanup:readonly CompiledQuery[]}
+type DraftCreationSides=(entry:{id:string;translationGroup:string;locale:string})=>DraftCreationSidePlan|Promise<DraftCreationSidePlan>;
 export class DraftRepository {
   private readonly registry: SchemaRegistry;
   private readonly database: CmsDatabase;
@@ -63,24 +69,53 @@ export class DraftRepository {
     if (!definition) throw new CmsError('NOT_FOUND');
     return definition;
   }
-  async create(input: unknown, authorId: string, postInsert?: (entry: {id:string;translationGroup:string;locale:string}) => {before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]}): Promise<DraftEntry> {
-    const value = parse(createDraftInput, input);
+  async create(input: unknown, authorId: string, postInsert?:DraftCreationSides, translation?: DraftTranslationSource, dates?:DraftCreationMetadata): Promise<DraftEntry> {
     if (!authorId || authorId.length > 128) throw new CmsError('VALIDATION_ERROR');
+    const result=await this.insert(input,authorId,postInsert,translation,dates);
+    return entry(result.type,result.row,result.fields);
+  }
+  /** Trusted importer storage capability. No request principal is fabricated.
+   * Returns the actual INSERT receipt after its complete schema/side-write batch. */
+  async createSeed(input:unknown,postInsert:DraftCreationSides,translation:DraftTranslationSource|undefined,dates:DraftCreationMetadata):Promise<Record<string,unknown>> {
+    return (await this.insert(input,null,postInsert,translation,{...dates,validateData:false})).row;
+  }
+  private async insert(input:unknown,authorId:string|null,postInsert?:DraftCreationSides,translation?:DraftTranslationSource,dates?:DraftCreationMetadata) {
+    const value = parse(createDraftInput, input);
     const definition = await this.definition(value.type);
+    if(dates?.validateData!==false){
     const checked = await validateContentData(this.database,value.type,value.data);
     if(!checked.ok) throw new CmsError(checked.error.code==='COLLECTION_NOT_FOUND'?'NOT_FOUND':checked.error.code,checked.error.message,checked.error.details);
     validateData(definition.fields, value.data, false);
-    const id = ulid();
+    }
+    const id = dates?.id===undefined?ulid():parse(entryId,dates.id);
     const now = new Date().toISOString();
     const columns = ['id', 'slug', 'status', 'author_id', 'created_at', 'updated_at', 'version', 'locale', 'translation_group', ...Object.keys(value.data)];
-    const values = [id, value.slug || null, 'draft', authorId, now, now, 1, value.locale, id, ...Object.values(value.data).map(serializeValue)];
+    const values = [id, value.slug || null, dates?.status??'draft', dates?.authorId===undefined?authorId:dates.authorId, dates?.createdAt??now, dates?.updatedAt??now, 1, value.locale, translation?.translationGroup??id, ...Object.values(value.data).map(serializeValue)];
+    if(dates?.publishedAt!==undefined){columns.push('published_at');values.push(dates.publishedAt);}
+    if(dates?.primaryBylineId!==undefined){columns.push('primary_byline_id');values.push(dates.primaryBylineId);}
     const db = this.database.db;
-    const query = sql<EntryRow>`INSERT INTO ${sql.ref(tableName(value.type))}
-      (${sql.join(columns.map(column => sql.ref(column)))})
-      VALUES (${sql.join(values.map(item => sql`${item}`))}) RETURNING *`.compile(db);
-    const plan=postInsert?.({id,translationGroup:id,locale:value.locale});
+    const inherited=new Set(translation?.inheritFields??[]);
+    for(const field of inherited)if(!columns.includes(field)){columns.push(field);values.push(null);}
+    const placeholders=values.map((item,index)=>inherited.has(columns[index])?sql.ref(`translation_source.${columns[index]}`):sql`${item}`);
+    const query = translation?sql<EntryRow>`INSERT INTO ${sql.ref(tableName(value.type))}
+      (${sql.join(columns.map(column=>sql.ref(column)))}) SELECT ${sql.join(placeholders)}
+      FROM ${sql.ref(tableName(value.type))} AS translation_source WHERE translation_source.id=${translation.id}
+      AND translation_source.deleted_at IS NULL AND translation_source.version=${translation.version}
+      AND translation_source.updated_at=${translation.updatedAt} RETURNING *`.compile(db)
+      :sql<EntryRow>`INSERT INTO ${sql.ref(tableName(value.type))}
+      (${sql.join(columns.map(column => sql.ref(column)))}) VALUES (${sql.join(values.map(item => sql`${item}`))}) RETURNING *`.compile(db);
+    let plan=await postInsert?.({id,translationGroup:translation?.translationGroup??id,locale:value.locale});
+    if(translation){
+      const token=ulid();const table=sql.ref(tableName(value.type));
+      const before=sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(
+        SELECT 1 FROM ${table} WHERE id=${translation.id} AND deleted_at IS NULL AND version=${translation.version}
+        AND updated_at=${translation.updatedAt}) AND NOT EXISTS(
+        SELECT 1 FROM ${table} WHERE translation_group=${translation.translationGroup} AND lower(locale)=lower(${value.locale})
+        AND deleted_at IS NULL) THEN 1 ELSE 0 END`.compile(db);
+      plan={before:[before,...(plan?.before??[])],after:plan?.after??[],cleanup:[...(plan?.cleanup??[]),sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)]};
+    }
     const result = await this.withSchemaGuard(definition.id, definition.version, query, plan);
-    return entry(value.type, result[1+(plan?.before.length??0)].rows[0] as EntryRow, definition.fields);
+    return {type:value.type,row:result[1+(plan?.before.length??0)].rows[0] as EntryRow,fields:definition.fields};
   }
   async findById(typeInput: unknown, idInput: unknown, locale = 'en'): Promise<DraftEntry | null> {
     const type = parse(identifier, typeInput); const id = parse(entryId, idInput);
