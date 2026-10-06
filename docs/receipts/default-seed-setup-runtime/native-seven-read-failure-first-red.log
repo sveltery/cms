@@ -1,0 +1,29 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+ ❯ tests/default-seed-setup/startup-read-caller.test.ts (1 test | 1 failed) 37ms
+   × unreadable existing account completion metadata conservatively skips default seed without failing startup 36ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/default-seed-setup/startup-read-caller.test.ts > unreadable existing account completion metadata conservatively skips default seed without failing startup
+AssertionError: promise rejected "Error: actual caller completion query una…" instead of resolving
+ ❯ tests/default-seed-setup/startup-read-caller.test.ts:21:116
+     19|       async transformResult({ result }) { return result; }
+     20|     }) };
+     21|     await expect(initializeConfiguredDefaultSeed(guarded, { kind: 'sql…
+       |                                                                                                                    ^
+     22|     expect(accountReads).toBe(1);
+     23|     expect(await database.db.selectFrom('_cms_collections').selectAll(…
+
+Caused by: Error: actual caller completion query unavailable
+ ❯ tests/default-seed-setup/startup-read-caller.test.ts:12:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 6 passed (7)
+   Start at  02:25:44
+   Duration  3.08s (transform 1.30s, setup 0ms, import 2.49s, tests 238ms, environment 0ms)
+
