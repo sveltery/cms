@@ -1,0 +1,52 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/node-budget-constructor.test.ts (3 tests | 1 failed) 571ms
+   × loads the actual public Seed domain exports in unchanged Node24 strip mode 404ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/node-budget-constructor.test.ts > loads the actual public Seed domain exports in unchanged Node24 strip mode
+AssertionError: node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/repositories/relation.ts:128
+export class RelationRepository {
+    constructor(private db: Kysely<Database>) {}
+                        ^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/source-seed-backend/node-budget-constructor.test.ts:18:36
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  00:26:43
+   Duration  1.04s (transform 94ms, setup 0ms, import 323ms, tests 571ms, environment 0ms)
+
