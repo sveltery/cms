@@ -340,6 +340,30 @@
       "passedCallbacks": 0,
       "originalSkippedCallbacks": 0,
       "note": "Actual complete maintenance facade imports in unchanged direct Node24 after complete Root-qualified public c133 union; import prerequisite only, no behavioral credit."
+    },
+    {
+      "name": "native-transaction-observer-first",
+      "receipt": "/tmp/media-usage-maintenance-native-transaction-observers-first-state.log",
+      "bytes": 1561,
+      "sha256": "8b55969ca7a738e51511186f0b2fa1624daf14568e2c740575c6282f2634710a",
+      "exitCode": 1,
+      "registeredCallbacks": 2,
+      "passedCallbacks": 1,
+      "failedCallbacks": 1,
+      "sourceCallbackIdentityCredit": 0,
+      "note": "Distinct actual same-owner Node callback transaction controls; real query/result receipts and rollback. Original whole Source tests untouched."
+    },
+    {
+      "name": "native-transaction-observer-fixed",
+      "receipt": "/tmp/media-usage-maintenance-native-transaction-observers-fixed.log",
+      "bytes": 227,
+      "sha256": "aef984eafa369137755441e3200a28bf50d8ee1abe52770cb22e19d7b7f0fd2c",
+      "exitCode": 0,
+      "registeredCallbacks": 2,
+      "passedCallbacks": 2,
+      "failedCallbacks": 0,
+      "sourceCallbackIdentityCredit": 0,
+      "note": "Distinct actual same-owner Node callback transaction controls; real query/result receipts and rollback. Original whole Source tests untouched."
     }
   ],
   "d1PersistedState": [
@@ -397,5 +421,6 @@
     "bytes": 3036,
     "sha256": "375d70beb9c99c55384b7fc2b13ed9532894ad0afda50ca1f59a2f870eb388c9"
   },
-  "nativeReachedCallerValueReds": 1
+  "nativeReachedCallerValueReds": 1,
+  "nativeTransactionObserverReachedReds": 1
 }

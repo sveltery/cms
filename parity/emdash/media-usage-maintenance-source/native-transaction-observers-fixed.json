@@ -1,0 +1,105 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "rootQualifiedProposal": "c47b4edc937cbdade8f8576887a838fab2573f239ab35bf7e613c33fcbe9b41c",
+  "actualQualifiedClassSha256": "3ee8101b40233b439b1fba885e22a00aed6376e27a66114a1a3efe5487895326",
+  "testFirstCommit": "849ca9763156d186e1f29afa6e9bef2146361f0a",
+  "nativeControls": {
+    "passed": 2,
+    "failed": 0,
+    "queryCount": 7,
+    "eachCallerHookCount": 7,
+    "realWorkDeletionAndCheckpoint": true,
+    "genuineObserverRejectedCheckpointRollback": true
+  },
+  "state": {
+    "sourceTestsUnchanged": true,
+    "sourceIdentityCredit": 0,
+    "checkpoint": [
+      {
+        "phase": "sources",
+        "state": "leased",
+        "lease_token": "01M47EJ05G027JS3EQ43846EXF"
+      }
+    ],
+    "remainingWork": [],
+    "guards": [],
+    "queryCount": 7,
+    "firstResultCount": 7,
+    "secondResultCount": 7,
+    "firstResultQueryIndexes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "secondResultQueryIndexes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "actualReceipts": [
+      {
+        "rows": [
+          {
+            "content_id": "actual-work"
+          }
+        ]
+      },
+      {
+        "insertId": "1",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "1",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "rows": [
+          {
+            "collection_id": "native-transaction-deletion"
+          }
+        ]
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "path": "/tmp/media-usage-maintenance-native-transaction-observers-fixed.log",
+      "bytes": 227,
+      "sha256": "aef984eafa369137755441e3200a28bf50d8ee1abe52770cb22e19d7b7f0fd2c"
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-native-transaction-observer-state.json",
+      "bytes": 1128,
+      "sha256": "4a43147028bf942d5b77620aad7c653e56c042e2f45819df41011ef6edf0f68c"
+    }
+  ],
+  "sourceOriginalsUnchanged": true,
+  "sourceCallbackIdentityCredit": 0,
+  "fixedBatchD1": "Earlier6 actual controls retained; current postbranch D1 successor held pending scheduled window. Ordinary fixedbatch result hooks still occur after commit, unlike actual Node transaction rollback on hook rejection.",
+  "remaining": "Full maintenance graph/front4/callers/whole Source and Native gates/checker/review/merge not completed."
+}

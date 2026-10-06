@@ -50,8 +50,11 @@ export class NativeMediaUsageCollectionDeletionPhases {
     const receipts=await this.#database.atomicBatch(plan.statements);
     // This is the exact same observer protocol as the public Seed typed plan:
     // actual receipt and query ID, once, in statement order after fixed commit.
-    const plugins=seedDomainPlanCompiler(this.#view).getExecutor().plugins;
     const transformed:QueryResult<unknown>[]=[];
+    // The exact registered Node transaction owner executes each statement with
+    // trx.executeQuery, which already runs the real caller result hooks once.
+    // Ordinary fixed batches return untransformed receipts after their commit.
+    const plugins=this.#database.db.isTransaction?[]:seedDomainPlanCompiler(this.#view).getExecutor().plugins;
     for(let index=0;index<receipts.length;index++){
       let result=receipts[index];
       for(const plugin of plugins)result=await plugin.transformResult({result:result as QueryResult<import('kysely').UnknownRow>,queryId:plan.statements[index].queryId});
