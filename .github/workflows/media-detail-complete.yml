@@ -21,6 +21,8 @@ jobs:
         run: pnpm exec vitest run --config vitest.media-detail-complete-browser.config.ts --reporter=default --reporter=json --outputFile=media-detail-source-results.json
         env:
           DEBUG: pw:browser
+      - name: Run supplemental Native crop-state value controls
+        run: TZ=America/New_York node --test tests/media-panel-host/crop-review-controls.test.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
