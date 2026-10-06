@@ -53,7 +53,8 @@
   async function registerPasskey() {
     failure = ''; pending = true;
     try {
-      if (!beginSetup.result) throw new Error('Account setup is not prepared');
+      // Source requests fresh options for each registration attempt, including retry.
+      if (!await beginSetup.submit() || !beginSetup.result) throw new Error('Account setup is not prepared');
       const credential = await createPasskey(beginSetup.result.options);
       credentialJSON = JSON.stringify(credential);
       await tick();
@@ -65,7 +66,15 @@
     finally { pending = false; }
   }
 
-  function back(destination: 'site' | 'admin') { failure = ''; step = destination; }
+  function back(destination: 'site' | 'admin') {
+    failure = ''; titleError = ''; emailError = ''; activeProvider = null; credentialJSON = '';
+    // Source conditionally remounts each step, resetting its own local fields.
+    if (destination === 'site') {
+      title = status.seedInfo?.title ?? ''; tagline = status.seedInfo?.tagline ?? '';
+      startWith = status.seedInfo?.hasContent ? 'sample' : 'empty';
+    }
+    email = ''; name = ''; step = destination;
+  }
 </script>
 
 <div class="wizard">
@@ -139,6 +148,12 @@
       {#if failure}<p role="alert">{failure}</p>{/if}
     {/if}
   </section>
+  {#if step === 'passkey'}
+    <form {...beginSetup} hidden aria-hidden="true">
+      <input {...beginSetup.fields.email.as('hidden', email)} />
+      <input {...beginSetup.fields.name.as('hidden', name)} />
+    </form>
+  {/if}
   <form {...completeSetup} hidden aria-hidden="true"><input {...completeSetup.fields.credential.as('hidden', credentialJSON)} /></form>
   {#each beginSetup.fields.allIssues() ?? [] as issue}<p role="alert">{issue.message}</p>{/each}
 </div>
