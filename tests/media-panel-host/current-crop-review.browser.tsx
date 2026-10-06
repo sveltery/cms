@@ -32,7 +32,7 @@ async function openCrop(screen:Awaited<ReturnType<typeof renderNativeCrop>>['scr
  await expect.element(screen.getByRole('status',{name:'Crop output dimensions'})).toHaveTextContent('100 × 100');
 }
 
-it.each(['Freeform','Square'])('CURRENT Native resets unchanged %s aspect to Original',async label=>{
+it.each(['Freeform','Square (1:1)'])('CURRENT Native resets unchanged %s aspect to Original',async label=>{
  const {screen}=await renderNativeCrop();await openCrop(screen);
  screen.getByRole('combobox',{name:'Aspect ratio'}).element().click();
  screen.getByRole('option',{name:label,exact:true}).element().click();
@@ -64,7 +64,7 @@ it('CURRENT Native keeps exposed aspect options and crop draft stable while a re
  handle.element().focus();await userEvent.keyboard('{ArrowRight}');
  const output=screen.getByRole('status',{name:'Crop output dimensions'}),draft=output.element().textContent;
  screen.getByRole('combobox',{name:'Aspect ratio'}).element().click();
- const exposedOption=screen.getByRole('option',{name:'Square',exact:true});
+ const exposedOption=screen.getByRole('option',{name:'Square (1:1)',exact:true});
  screen.getByRole('button',{name:'Create cropped copy',exact:true}).element().click();
  await vi.waitFor(()=>expect(uploadMedia).toHaveBeenCalledTimes(1));
  try{
