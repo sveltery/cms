@@ -21,6 +21,7 @@ import {FTSManager} from '../content-picker/fts-manager.ts';
 import {BlockTypeRegistry} from '../blocks/upstream/schema/block-type-registry.ts';
 import {MediaUsageRepository} from './d1-media-usage.ts';
 import {markContentMediaUsageCollectionStale,markContentMediaUsageCollectionStaleSafely} from '../blocks/upstream/media/usage/schema-invalidation.ts';
+import {activateMediaUsageCapture} from '../blocks/upstream/media/usage/activation.ts';
 
 // Contracts inspected at public Draft14 dd80fe3f; table installation is a separate prerequisite.
 const names: Readonly<Record<string, string>> = {
@@ -574,6 +575,9 @@ export function seedNativeRedirects(db:Kysely<any>){return new RedirectRepositor
 export function seedNativeFts(db:Kysely<any>){return new FTSManager(nativeHostedOwner(db,false).db as unknown as ConstructorParameters<typeof FTSManager>[0]);}
 export function seedNativeBlocks(db:Kysely<any>){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return new BlockTypeRegistry(owner.db as unknown as ConstructorParameters<typeof BlockTypeRegistry>[0]);}
 export function seedNativeSchemaRegistry(db:Kysely<any>){return new NativeSchemaRegistry(nativeHostedOwner(db,false));}
+/** Fresh-site default initialization calls the existing capture producer before
+ * creating schema. Its actual registered owner and caller observers remain. */
+export function seedNativeActivateMediaUsageCapture(db:Kysely<any>){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return activateMediaUsageCapture(owner.db as unknown as Parameters<typeof activateMediaUsageCapture>[0],{writersDrained:true});}
 export function seedNativeMediaUsage(db:Kysely<any>){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return new MediaUsageRepository(owner.db as unknown as ConstructorParameters<typeof MediaUsageRepository>[0]);}
 export function seedNativeMarkMediaStale(db:Kysely<any>,...args:Parameters<typeof markContentMediaUsageCollectionStale> extends [unknown,...infer A]?A:never){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return markContentMediaUsageCollectionStale(owner.db as unknown as Parameters<typeof markContentMediaUsageCollectionStale>[0],...args);}
 export function seedNativeMarkMediaStaleSafely(db:Kysely<any>,...args:Parameters<typeof markContentMediaUsageCollectionStaleSafely> extends [unknown,...infer A]?A:never){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return markContentMediaUsageCollectionStaleSafely(owner.db as unknown as Parameters<typeof markContentMediaUsageCollectionStaleSafely>[0],...args);}
@@ -629,7 +633,8 @@ function assertAtomicPlan(query: RootOperationNode): void {
   if (query.kind === 'CreateIndexNode' && /^ec_[a-z][a-z0-9_]{0,63}$/.test(tableName(query.table) ?? '')) return;
   throw new Error('Seed atomic plan requires a qualified typed domain mutation; raw capture DDL is incomplete');
 }
-/** Proposal only: Source observers run once during compilation; the existing host commits the complete list. */
+/** Real query observers run during compilation; the existing host commits the
+ * complete fixed list, then real receipt observers run once in their order. */
 export async function seedAtomicBatch(
   database: CmsDatabase,
   db: Kysely<any>,
@@ -638,11 +643,18 @@ export async function seedAtomicBatch(
   const context = views.get(db);
   if (!context || context.owner !== database) throw new Error('Seed atomic plans require the exact real owner');
   if (db.isTransaction) throw new Error('Nested native atomic batches are not qualified');
-  const planning = compilationOnly(context.atomicLogical.withPlugin(namespace));
+  const target=context.atomicLogical.withPlugin(namespace);
+  const planning = compilationOnly(target);
   const statements = build(planning).map(query => 'isRawBuilder' in query ? query.compile(planning) : query.compile());
   for (const statement of statements) {
     assertAtomicPlan(statement.query);
     if (statement.parameters.length > 100) throw new Error('Seed atomic statement exceeds the 100-binding D1 limit');
   }
-  return database.atomicBatch(statements);
+  const receipts=await database.atomicBatch(statements),results:QueryResult<unknown>[]=[];
+  for(let index=0;index<receipts.length;index++){
+    let result=receipts[index];
+    for(const plugin of target.getExecutor().plugins)result=await plugin.transformResult({result:result as QueryResult<import('kysely').UnknownRow>,queryId:statements[index].queryId});
+    results.push(result);
+  }
+  return results;
 }
