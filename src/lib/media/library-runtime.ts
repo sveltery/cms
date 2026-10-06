@@ -18,25 +18,34 @@ export interface MediaLibraryRuntimeOptions {
 /** Owns queries and callbacks for the real page; widgets receive controlled data. */
 export function createMediaLibraryRuntime(queryClient:QueryClient,options:MediaLibraryRuntimeOptions={}) {
   let search='',mimeFilter:string|string[]|undefined,folderId=options.folderId;
-  let page=1,perPage=35,retainedTotalCount=0,activeProvider='local',started=false,disposed=false;
+  let page=1,perPage=35,retainedTotalCount=options.initialTotal??0,activeProvider='local',started=false,disposed=false;
   let recoveredFolder:string|undefined,folderWarning=false;
   const listeners=new Set<()=>void>();const stops:Array<()=>void>=[];
-  const mediaOptions=()=>({
-    queryKey:['media',{search,mime:Array.isArray(mimeFilter)?mimeFilter.join(','):mimeFilter??'',folder:folderId??'main',page,perPage}],
-    queryFn:()=>fetchMediaList({page,limit:perPage,search:search||undefined,mimeType:mimeFilter,folderId:search?undefined:folderId??null}),
-    placeholderData:keepPreviousData,enabled:started,
-  });
-  const folderOptions=()=>({
-    queryKey:['media-folders','page',{search}],
-    queryFn:({pageParam}:{pageParam:string|undefined})=>fetchMediaFolders({limit:100,cursor:pageParam,search:search||undefined}),
-    initialPageParam:undefined as string|undefined,
-    getNextPageParam:(lastPage:MediaFolderListResult)=>lastPage.nextCursor,
-    enabled:started&&activeProvider==='local'&&page===1&&mimeFilter===undefined&&(folderId===undefined||search!==''),
-  });
-  const currentFolderOptions=()=>({
-    queryKey:['media-folder',folderId],queryFn:()=>fetchMediaFolder(folderId!),enabled:started&&folderId!==undefined,
-    retry:(failureCount:number,error:Error)=>!(error instanceof ApiResponseError&&error.code==='NOT_FOUND')&&failureCount<2,
-  });
+  const mediaOptions=()=>{
+    // Match the Source render closure: a query reads the state in its own key.
+    const request={page,limit:perPage,search:search||undefined,mimeType:mimeFilter,folderId:search?undefined:folderId??null};
+    return {
+      queryKey:['media',{search,mime:Array.isArray(mimeFilter)?mimeFilter.join(','):mimeFilter??'',folder:folderId??'main',page,perPage}],
+      queryFn:()=>fetchMediaList(request),placeholderData:keepPreviousData,enabled:started,
+    };
+  };
+  const folderOptions=()=>{
+    const folderSearch=search||undefined;
+    return {
+      queryKey:['media-folders','page',{search}],
+      queryFn:({pageParam}:{pageParam:string|undefined})=>fetchMediaFolders({limit:100,cursor:pageParam,search:folderSearch}),
+      initialPageParam:undefined as string|undefined,
+      getNextPageParam:(lastPage:MediaFolderListResult)=>lastPage.nextCursor,
+      enabled:started&&activeProvider==='local'&&page===1&&mimeFilter===undefined&&(folderId===undefined||search!==''),
+    };
+  };
+  const currentFolderOptions=()=>{
+    const requestedFolderId=folderId;
+    return {
+      queryKey:['media-folder',requestedFolderId],queryFn:()=>fetchMediaFolder(requestedFolderId!),enabled:started&&requestedFolderId!==undefined,
+      retry:(failureCount:number,error:Error)=>!(error instanceof ApiResponseError&&error.code==='NOT_FOUND')&&failureCount<2,
+    };
+  };
   const media=new QueryObserver<MediaListResult>(queryClient,mediaOptions());
   const folders=new InfiniteQueryObserver<MediaFolderListResult,Error,InfiniteData<MediaFolderListResult>,MediaFolderListResult,readonly unknown[],string|undefined>(queryClient,folderOptions());
   const currentFolder=new QueryObserver<MediaFolder>(queryClient,currentFolderOptions());

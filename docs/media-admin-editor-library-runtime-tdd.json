@@ -48,5 +48,28 @@
       "bytes": 9149,
       "sha256": "fb24d0437c50d99e4e9d91949617b216e2667e3743fb61e7395c5a85e202e8ac"
     }
-  ]
+  ],
+  "refactor": {
+    "registered": 20,
+    "passed": 17,
+    "failed": 3,
+    "newNative": {
+      "registered": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "change": "Capture media/folder/current-folder request state in each query option closure, matching the pinned React render closure; initialize retained total from supplied SSR count. No API/query key/result/producer substitution.",
+    "evidence": [
+      {
+        "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-runtime-refactor.log",
+        "bytes": 7777,
+        "sha256": "c013fd9c9adfa77af34746853b2d885b9c7d7b6a6f6c3a3a4eeb46be58211453"
+      },
+      {
+        "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-runtime-refactor.json",
+        "bytes": 9158,
+        "sha256": "12773c22ef3825c7ad70e31df01ece6cdea1125787d9324ee3fae739b97f73c7"
+      }
+    ]
+  }
 }
