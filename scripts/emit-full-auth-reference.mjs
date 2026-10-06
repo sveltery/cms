@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import ts from 'typescript';
 
 const root = resolve(import.meta.dirname, '..');
-const inventory = JSON.parse(readFileSync(resolve(root, 'docs/full-auth-users-source-inventory.json')));
+const inventory = JSON.parse(readFileSync(resolve(root, process.argv.includes('--successor') ? 'docs/full-auth-users-source-inventory-v2.json' : 'docs/full-auth-users-source-inventory.json')));
 assert.equal(inventory.pin, '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e');
 const write = process.argv.includes('--write');
 let modules = 0;

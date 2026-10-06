@@ -1,0 +1,136 @@
+import * as v from "@atcute/lexicons/validations";
+import * as ComAtprotoLabelDefs from "@atcute/atproto/types/label/defs";
+const _packageViewSchema = /*#__PURE__*/ v.object({
+    $type: /*#__PURE__*/ v.optional(
+    /*#__PURE__*/ v.literal("com.emdashcms.experimental.aggregator.defs#packageView")),
+    /**
+     * CID of the profile record content the aggregator indexed. Lets clients confirm they're working with the same bytes the aggregator did.
+     */
+    cid: /*#__PURE__*/ v.cidString(),
+    /**
+     * Publisher DID. Denormalised convenience; equivalent to the DID portion of `uri`.
+     */
+    did: /*#__PURE__*/ v.didString(),
+    /**
+     * Publisher's current handle, if known. Best-effort: handles are mutable and may be stale at the moment of read.
+     */
+    handle: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.handleString()),
+    /**
+     * Number of package release versions retained in the aggregator's history, including releases the publisher later deleted.
+     * @minimum 0
+     */
+    historicalReleaseCount: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.integer()),
+    /**
+     * When the aggregator first indexed this package.
+     */
+    indexedAt: /*#__PURE__*/ v.datetimeString(),
+    /**
+     * Hydrated trusted label state attached by the aggregator's configured policy.
+     * @maxLength 64
+     */
+    get labels() {
+        return /*#__PURE__*/ v.optional(
+        /*#__PURE__*/ v.constrain(
+        /*#__PURE__*/ v.array(ComAtprotoLabelDefs.labelSchema), [/*#__PURE__*/ v.arrayLength(0, 64)]));
+    },
+    /**
+     * Convenience: the highest semver version among non-tombstoned, non-yanked releases the aggregator has indexed for this package. Clients SHOULD verify this against their own selection from listReleases when the difference matters.
+     * @maxLength 64
+     */
+    latestVersion: /*#__PURE__*/ v.optional(
+    /*#__PURE__*/ v.constrain(/*#__PURE__*/ v.string(), [
+        /*#__PURE__*/ v.stringLength(0, 64),
+    ])),
+    /**
+     * The signed profile record verbatim, passed through from the publisher's repo (carrying its $type, all required fields, etc.).
+     */
+    profile: /*#__PURE__*/ v.unknown(),
+    /**
+     * Whether the aggregator continuously observed this package from its first live profile creation. When false or absent, clients must not infer that historicalReleaseCount represents the package's complete registry history.
+     */
+    releaseHistoryComplete: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.boolean()),
+    /**
+     * Package slug (the rkey of the profile record). Denormalised convenience.
+     * @minLength 1
+     * @maxLength 64
+     */
+    slug: /*#__PURE__*/ v.constrain(/*#__PURE__*/ v.string(), [
+        /*#__PURE__*/ v.stringLength(1, 64),
+    ]),
+    /**
+     * AT URI of the profile record the aggregator indexed. Pins exactly which record version this view describes.
+     */
+    uri: /*#__PURE__*/ v.resourceUriString(),
+});
+const _recordScopedBlobCacheSchema = /*#__PURE__*/ v.object({
+    $type: /*#__PURE__*/ v.optional(
+    /*#__PURE__*/ v.literal("com.emdashcms.experimental.aggregator.defs#recordScopedBlobCache")),
+    /**
+     * HTTPS origin of the record-scoped blob cache.
+     * @maxLength 2048
+     */
+    serviceEndpoint: /*#__PURE__*/ v.constrain(
+    /*#__PURE__*/ v.genericUriString(), [/*#__PURE__*/ v.stringLength(0, 2048)]),
+});
+const _releaseViewSchema = /*#__PURE__*/ v.object({
+    $type: /*#__PURE__*/ v.optional(
+    /*#__PURE__*/ v.literal("com.emdashcms.experimental.aggregator.defs#releaseView")),
+    /**
+     * Blob cache services the aggregator advertises for this release. Clients ignore unrecognised service variants and derive artifact URLs only for public blob refs.
+     * @maxLength 4
+     */
+    get artifactCaches() {
+        return /*#__PURE__*/ v.optional(
+        /*#__PURE__*/ v.constrain(
+        /*#__PURE__*/ v.array(
+        /*#__PURE__*/ v.variant([recordScopedBlobCacheSchema])), [/*#__PURE__*/ v.arrayLength(0, 4)]));
+    },
+    /**
+     * CID of the release record content the aggregator indexed.
+     */
+    cid: /*#__PURE__*/ v.cidString(),
+    /**
+     * Publisher DID. Denormalised convenience; equivalent to the DID portion of `uri`.
+     */
+    did: /*#__PURE__*/ v.didString(),
+    /**
+     * When the aggregator first indexed this release.
+     */
+    indexedAt: /*#__PURE__*/ v.datetimeString(),
+    /**
+     * Hydrated trusted label state attached by the aggregator's configured policy.
+     * @maxLength 64
+     */
+    get labels() {
+        return /*#__PURE__*/ v.optional(
+        /*#__PURE__*/ v.constrain(
+        /*#__PURE__*/ v.array(ComAtprotoLabelDefs.labelSchema), [/*#__PURE__*/ v.arrayLength(0, 64)]));
+    },
+    /**
+     * Parent package slug. Denormalised convenience.
+     * @minLength 1
+     * @maxLength 64
+     */
+    package: /*#__PURE__*/ v.constrain(/*#__PURE__*/ v.string(), [
+        /*#__PURE__*/ v.stringLength(1, 64),
+    ]),
+    /**
+     * The signed release record verbatim from the publisher's repo (carrying its $type and all fields).
+     */
+    release: /*#__PURE__*/ v.unknown(),
+    /**
+     * AT URI of the release record the aggregator indexed. Pins exactly which record version this view describes.
+     */
+    uri: /*#__PURE__*/ v.resourceUriString(),
+    /**
+     * Release version, matching the post-':' portion of the rkey.
+     * @minLength 1
+     * @maxLength 64
+     */
+    version: /*#__PURE__*/ v.constrain(/*#__PURE__*/ v.string(), [
+        /*#__PURE__*/ v.stringLength(1, 64),
+    ]),
+});
+export const packageViewSchema = _packageViewSchema;
+export const recordScopedBlobCacheSchema = _recordScopedBlobCacheSchema;
+export const releaseViewSchema = _releaseViewSchema;
