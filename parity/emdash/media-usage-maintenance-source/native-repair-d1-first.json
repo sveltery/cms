@@ -1,0 +1,110 @@
+{
+  "nativeControls": 3,
+  "registered": 3,
+  "passed": 0,
+  "failed": 3,
+  "runSeconds": 3.08,
+  "sourceOriginalsUnchanged": true,
+  "sourceIdentityCredit": 0,
+  "causalAttemptedProjectionCredit": 0,
+  "classification": "Actual controlled canonical Native repair API value assertions reach failed/zeroindexed/zerofailed/CONTENT_USAGE_REPAIR_ERROR due prerequisite read descriptor refusal before projections/attempted-source consumers. Genuine Source WITH requested SELECT is not qualified on public Source D1 view. No duplicated writer/globalWITH widening/helpercopy permitted.",
+  "raw": {
+    "path": "/tmp/media-usage-maintenance-native-repair-d1-first.log",
+    "bytes": 10370,
+    "sha256": "27e99ec082174d12a56df99108cc9a08367886f95a0c8379708f85f30ee73c3b"
+  },
+  "actualStateFile": {
+    "path": "/tmp/media-usage-maintenance-native-repair-d1-first-state.json",
+    "bytes": 2877,
+    "sha256": "6de4bae2379f45316ae8fd6bd53765314f4ffe5203f104e2f24f2037373cbf9b"
+  },
+  "actualState": {
+    "sourceWholeFamilyUnchanged": true,
+    "sourceBodyIdentityCredit": 0,
+    "actualWorkerd": true,
+    "receipts": [
+      {
+        "test": "indexes valid columns and records the actual mismatched draft failure on canonical D1",
+        "actualNativePhysicalOwner": true,
+        "sources": [],
+        "occurrences": [],
+        "statuses": [
+          {
+            "adapter_id": "content-media",
+            "scope_type": "collection",
+            "scope_key": "posts",
+            "status": "failed",
+            "schema_version": 2,
+            "started_at": "2026-10-06T01:55:27.312Z",
+            "completed_at": "2026-10-06T01:55:27.361Z",
+            "cursor": null,
+            "indexed_source_count": 0,
+            "failed_source_count": 0,
+            "last_error_code": "CONTENT_USAGE_REPAIR_ERROR",
+            "updated_at": "2026-10-06T01:55:27.361Z",
+            "collection_id": null,
+            "change_epoch": 0,
+            "reconciliation_required": 0,
+            "last_incremental_success_at": null,
+            "capture_state": null
+          }
+        ]
+      },
+      {
+        "test": "indexes valid columns and records the actual missing draft failure on canonical D1",
+        "actualNativePhysicalOwner": true,
+        "sources": [],
+        "occurrences": [],
+        "statuses": [
+          {
+            "adapter_id": "content-media",
+            "scope_type": "collection",
+            "scope_key": "posts",
+            "status": "failed",
+            "schema_version": 2,
+            "started_at": "2026-10-06T01:55:27.422Z",
+            "completed_at": "2026-10-06T01:55:27.449Z",
+            "cursor": null,
+            "indexed_source_count": 0,
+            "failed_source_count": 0,
+            "last_error_code": "CONTENT_USAGE_REPAIR_ERROR",
+            "updated_at": "2026-10-06T01:55:27.449Z",
+            "collection_id": null,
+            "change_epoch": 0,
+            "reconciliation_required": 0,
+            "last_incremental_success_at": null,
+            "capture_state": null
+          }
+        ]
+      },
+      {
+        "test": "keeps failed coverage when a real concurrent trigger installs a fresher columns source",
+        "actualNativePhysicalOwner": true,
+        "sources": [],
+        "occurrences": [],
+        "statuses": [
+          {
+            "adapter_id": "content-media",
+            "scope_type": "collection",
+            "scope_key": "posts",
+            "status": "failed",
+            "schema_version": 2,
+            "started_at": "2026-10-06T01:55:27.507Z",
+            "completed_at": "2026-10-06T01:55:27.533Z",
+            "cursor": null,
+            "indexed_source_count": 0,
+            "failed_source_count": 0,
+            "last_error_code": "CONTENT_USAGE_REPAIR_ERROR",
+            "updated_at": "2026-10-06T01:55:27.533Z",
+            "collection_id": null,
+            "change_epoch": 0,
+            "reconciliation_required": 0,
+            "last_incremental_success_at": null,
+            "capture_state": null
+          }
+        ]
+      }
+    ]
+  },
+  "remaining": "Seed finite NAMED snapshots read association through actual same-owner private read view; then unchanged Native3 baseline must reach conditional attempted-source/projection before two constructor association is implemented."
+}
