@@ -1,0 +1,1093 @@
+✖ Node: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (82.934077ms)
+✔ Node: a future Source-named trigger collision is refused before any startup write (76.520877ms)
+✖ Node: a real late-batch SQLite failure rolls back the complete v0→17 installation (44.712562ms)
+✖ Node: a real late-batch SQLite failure rolls back the complete v4→17 installation (53.681755ms)
+✖ raw D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (2033.064968ms)
+✔ raw D1: a future Source-named trigger collision is refused before any startup write (827.893444ms)
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (2048.986804ms)
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (2507.410217ms)
+✖ scoped D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (1559.011086ms)
+✔ scoped D1: a future Source-named trigger collision is refused before any startup write (727.207116ms)
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (1779.65451ms)
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (2240.430283ms)
+✖ Node: ordinary canonical startup installs actual contiguous providers through 17 (34.004977ms)
+✔ Node: fresh ordinary startup makes media and byline prerequisites storage available (49.968666ms)
+✔ Node: fresh ordinary startup makes directed content links storage available (34.235011ms)
+✔ Node: fresh ordinary startup makes menus storage available (33.139043ms)
+✔ Node: fresh ordinary startup makes sections and site widgets storage available (29.219706ms)
+✔ Node: fresh ordinary startup makes comments and moderation storage available (27.702032ms)
+✔ Node: fresh ordinary startup makes redirects storage available (27.161199ms)
+✖ raw D1: ordinary canonical startup installs actual contiguous providers through 17 (1179.606965ms)
+✔ raw D1: fresh ordinary startup makes media and byline prerequisites storage available (1235.099817ms)
+✔ raw D1: fresh ordinary startup makes directed content links storage available (1105.636119ms)
+✔ raw D1: fresh ordinary startup makes menus storage available (1108.34785ms)
+✔ raw D1: fresh ordinary startup makes sections and site widgets storage available (1060.058303ms)
+✔ raw D1: fresh ordinary startup makes comments and moderation storage available (1169.077468ms)
+✔ raw D1: fresh ordinary startup makes redirects storage available (1155.642017ms)
+✖ scoped D1: ordinary canonical startup installs actual contiguous providers through 17 (1064.741209ms)
+✔ scoped D1: fresh ordinary startup makes media and byline prerequisites storage available (1093.778273ms)
+✔ scoped D1: fresh ordinary startup makes directed content links storage available (1148.908675ms)
+✔ scoped D1: fresh ordinary startup makes menus storage available (1119.947717ms)
+✔ scoped D1: fresh ordinary startup makes sections and site widgets storage available (1217.838496ms)
+✔ scoped D1: fresh ordinary startup makes comments and moderation storage available (1215.717663ms)
+✔ scoped D1: fresh ordinary startup makes redirects storage available (1095.235715ms)
+(node:3255289) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ Node SQLite: ordinary options persist across normal installation and reopen (51.555338ms)
+✔ Node SQLite: real taxonomy seeds defaults indexes and group pivot semantics (25.462284ms)
+✔ Node SQLite: normal v5 upgrade preserves every field and exact operator SQL (63.134972ms)
+✔ Node SQLite: failed normal metadata upgrade rolls back all providers and preserves v5 values (20.129155ms)
+✔ Node SQLite: external metadata foreign keys refuse the normal upgrade before writes (9.600734ms)
+✔ Node SQLite: missing or changed owned trigger refuses normal readiness without writes (42.213863ms)
+✖ raw D1: ordinary options persist across normal installation and reopen (1174.449183ms)
+✔ raw D1: real taxonomy seeds defaults indexes and group pivot semantics (1272.68914ms)
+✔ raw D1: normal v5 upgrade preserves every field and exact operator SQL (1832.562898ms)
+✔ raw D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (1408.982247ms)
+✔ raw D1: external metadata foreign keys refuse the normal upgrade before writes (530.00797ms)
+✔ raw D1: missing or changed owned trigger refuses normal readiness without writes (1218.677329ms)
+✖ scoped D1: ordinary options persist across normal installation and reopen (1197.969372ms)
+✔ scoped D1: real taxonomy seeds defaults indexes and group pivot semantics (1474.481787ms)
+✔ scoped D1: normal v5 upgrade preserves every field and exact operator SQL (1941.605164ms)
+✔ scoped D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (1523.266975ms)
+✔ scoped D1: external metadata foreign keys refuse the normal upgrade before writes (527.550136ms)
+✔ scoped D1: missing or changed owned trigger refuses normal readiness without writes (1170.962374ms)
+✖ Node SQLite: normal installer applies real contiguous providers through eight (37.474857ms)
+✔ Node SQLite: normal installation enables actual settings and taxonomy storage (23.321004ms)
+✔ Node SQLite: normal metadata upgrade enables the Source collection field cascade (20.911308ms)
+✖ raw D1: normal installer applies real contiguous providers through eight (1219.450782ms)
+✔ raw D1: normal installation enables actual settings and taxonomy storage (1003.863398ms)
+✔ raw D1: normal metadata upgrade enables the Source collection field cascade (1023.703857ms)
+✖ scoped D1: normal installer applies real contiguous providers through eight (979.978811ms)
+✔ scoped D1: normal installation enables actual settings and taxonomy storage (1008.057896ms)
+✔ scoped D1: normal metadata upgrade enables the Source collection field cascade (1020.804709ms)
+✖ Node: fresh canonical startup publishes, stages, rolls back and retains history on reopen (44.704713ms)
+✖ Node: v4 canonical startup publishes, stages, rolls back and retains history on reopen (84.439504ms)
+✖ D1: fresh canonical startup publishes, stages, rolls back and retains history on reopen (228.581552ms)
+✖ D1: v4 canonical startup publishes, stages, rolls back and retains history on reopen (664.690595ms)
+✖ Node: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (35.194863ms)
+✖ Node: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (73.55801ms)
+✖ Node: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (77.394579ms)
+✔ Node: unsupported legacy and partially installed layouts reject with no writes (123.793544ms)
+✖ Node: latest layouts validate required content columns and every static lifecycle object without repair (19.602467ms)
+✔ Node: failure after each lifecycle rebuild stage rolls back DDL, markers and rows (325.609971ms)
+✖ Node: fresh and legacy concurrent startup share one complete migration winner (48.219549ms)
+✔ Node: a content schema write between preflight and batch cannot be overwritten (35.572571ms)
+✖ D1: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (703.140954ms)
+✖ D1: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (281.776637ms)
+✖ D1: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (616.729268ms)
+✔ D1: unsupported legacy and partially installed layouts reject with no writes (2348.661778ms)
+✖ D1: latest layouts validate required content columns and every static lifecycle object without repair (72.526865ms)
+✔ D1: failure after each lifecycle rebuild stage rolls back DDL, markers and rows (3011.161269ms)
+✖ D1: fresh and legacy concurrent startup share one complete migration winner (243.599185ms)
+✔ D1: a content schema write between preflight and batch cannot be overwritten (356.44165ms)
+ℹ tests 80
+ℹ suites 0
+ℹ pass 48
+ℹ fail 32
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64574.60032
+
+✖ failing tests:
+
+test at tests/canonical-feature-atomicity-original.test.ts:24:3
+✖ Node: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (82.934077ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:40:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ Node: a real late-batch SQLite failure rolls back the complete v0→17 installation (44.712562ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ Node: a real late-batch SQLite failure rolls back the complete v4→17 installation (53.681755ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:24:3
+✖ raw D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (2033.064968ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:40:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (2048.986804ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (2507.410217ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:24:3
+✖ scoped D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (1559.011086ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:40:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (1779.65451ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (2240.430283ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-storage-original.test.ts:51:3
+✖ Node: ordinary canonical startup installs actual contiguous providers through 17 (34.004977ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-storage-original.test.ts:57:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-storage-original.test.ts:51:3
+✖ raw D1: ordinary canonical startup installs actual contiguous providers through 17 (1179.606965ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-storage-original.test.ts:57:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-storage-original.test.ts:51:3
+✖ scoped D1: ordinary canonical startup installs actual contiguous providers through 17 (1064.741209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-feature-storage-original.test.ts:57:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation-values.test.ts:45:3
+✖ Node SQLite: ordinary options persist across normal installation and reopen (51.555338ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-installation-values.test.ts:51:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation-values.test.ts:45:3
+✖ raw D1: ordinary options persist across normal installation and reopen (1174.449183ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-installation-values.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation-values.test.ts:45:3
+✖ scoped D1: ordinary options persist across normal installation and reopen (1197.969372ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-installation-values.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation.test.ts:45:3
+✖ Node SQLite: normal installer applies real contiguous providers through eight (37.474857ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-installation.test.ts:51:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation.test.ts:45:3
+✖ raw D1: normal installer applies real contiguous providers through eight (1219.450782ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-installation.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation.test.ts:45:3
+✖ scoped D1: normal installer applies real contiguous providers through eight (979.978811ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/canonical-installation.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ Node: fresh canonical startup publishes, stages, rolls back and retains history on reopen (44.704713ms)
+  Error [CmsError]: MIGRATION_REQUIRED
+      at collectionStandardIndexPlan (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/collection-indexes.ts:48:62)
+      at async SchemaRegistry.createCollection (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/registry.ts:185:29)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-canonical-storage.test.ts:33:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'MIGRATION_REQUIRED',
+    details: undefined
+  }
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ Node: v4 canonical startup publishes, stages, rolls back and retains history on reopen (84.439504ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-canonical-storage.test.ts:61:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ D1: fresh canonical startup publishes, stages, rolls back and retains history on reopen (228.581552ms)
+  Error [CmsError]: MIGRATION_REQUIRED
+      at collectionStandardIndexPlan (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/collection-indexes.ts:48:62)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async SchemaRegistry.createCollection (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/registry.ts:185:29)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-canonical-storage.test.ts:33:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'MIGRATION_REQUIRED',
+    details: undefined
+  }
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ D1: v4 canonical startup publishes, stages, rolls back and retains history on reopen (664.690595ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-canonical-storage.test.ts:61:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:15:3
+✖ Node: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (35.194863ms)
+  Error [CmsError]: MIGRATION_REQUIRED
+      at collectionStandardIndexPlan (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/collection-indexes.ts:48:62)
+      at async SchemaRegistry.createCollection (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/registry.ts:185:29)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:19:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'MIGRATION_REQUIRED',
+    details: undefined
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:37:3
+✖ Node: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (73.55801ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:51:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:59:3
+✖ Node: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (77.394579ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:97:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:136:3
+✖ Node: latest layouts validate required content columns and every static lifecycle object without repair (19.602467ms)
+  Error [CmsError]: MIGRATION_REQUIRED
+      at collectionStandardIndexPlan (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/collection-indexes.ts:48:62)
+      at async SchemaRegistry.createCollection (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/registry.ts:185:29)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:141:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'MIGRATION_REQUIRED',
+    details: undefined
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:179:3
+✖ Node: fresh and legacy concurrent startup share one complete migration winner (48.219549ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:191:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:15:3
+✖ D1: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (703.140954ms)
+  Error [CmsError]: MIGRATION_REQUIRED
+      at collectionStandardIndexPlan (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/collection-indexes.ts:48:62)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async SchemaRegistry.createCollection (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/registry.ts:185:29)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:19:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'MIGRATION_REQUIRED',
+    details: undefined
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:37:3
+✖ D1: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (281.776637ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:51:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:59:3
+✖ D1: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (616.729268ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:97:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:136:3
+✖ D1: latest layouts validate required content columns and every static lifecycle object without repair (72.526865ms)
+  Error [CmsError]: MIGRATION_REQUIRED
+      at collectionStandardIndexPlan (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/collection-indexes.ts:48:62)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async SchemaRegistry.createCollection (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/registry.ts:185:29)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:141:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'MIGRATION_REQUIRED',
+    details: undefined
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:179:3
+✖ D1: fresh and legacy concurrent startup share one complete migration winner (243.599185ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  +   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/lifecycle-startup-upgrade.test.ts:191:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

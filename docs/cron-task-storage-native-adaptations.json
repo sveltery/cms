@@ -1,0 +1,172 @@
+{
+  "base": "41ee48fe781db307174079837387f4565814456c",
+  "limits": "Full existing leaves reconstruct byte-exact after ONLYlisted finite provider18/latest marker edits;historicalSource/datasets/clocks/assertions remain exact outside those currentNative markers. All providers1\u201317 preserved.",
+  "changedLeaves": [
+    {
+      "path": "src/lib/server/database/collection-indexes.ts",
+      "baseBytes": 3531,
+      "baseSha256": "32f842a29358974de9adb5a0cc17bad56167b780d6034aca47cc7186d06dae9c",
+      "baseBlob": "c851b4d5a7936652476c0e60595aeedfcd21df8f",
+      "edits": [
+        {
+          "before": "versions.length>17",
+          "after": "versions.length>18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "src/lib/server/database/migrations.ts",
+      "baseBytes": 22148,
+      "baseSha256": "79f02857d9d46ba33d6e3757178c25ba58e4154e85b38315a76287c104cc0db5",
+      "baseBlob": "e6dd64a6e404432f05669e8cac0b3da14db5f5d2",
+      "edits": [
+        {
+          "before": "import { seoStorageMigration } from '../seo/storage-provider.ts';",
+          "after": "import { seoStorageMigration } from '../seo/storage-provider.ts';\nimport { cronTaskStorageMigration } from '../cron/storage-provider.ts';",
+          "count": 1
+        },
+        {
+          "before": "  seoStorageMigration\n",
+          "after": "  seoStorageMigration, cronTaskStorageMigration\n",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-feature-atomicity-original.test.ts",
+      "baseBytes": 7242,
+      "baseSha256": "c70e54f741f95873e5ceca252cbff4e2ba3262ebde7d409a42d842d1f9f497d6",
+      "baseBlob": "3459b18d52fe924a88f64cc96a9f3405a7bc72ca",
+      "edits": [
+        {
+          "before": "markers17",
+          "after": "latestMarkers18",
+          "count": 4
+        },
+        {
+          "before": "length: 17",
+          "after": "length: 18",
+          "count": 1
+        },
+        {
+          "before": "persisted v17 reopen",
+          "after": "persisted v18 reopen",
+          "count": 1
+        },
+        {
+          "before": "\u219217 installation",
+          "after": "\u219218 installation",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/lifecycle-startup-upgrade.test.ts",
+      "baseBytes": 16905,
+      "baseSha256": "447122e648d205ba82e5618a6a48bf3c20e5b9cfae8b52089a97265ffe5c1a8b",
+      "baseBlob": "45845fab47b3431504fe8934da0bc2d7df793909",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "count": 3
+        },
+        {
+          "before": "rows[0].version,17)",
+          "after": "rows[0].version,18)",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-installation-values.test.ts",
+      "baseBytes": 13561,
+      "baseSha256": "024a6523d74dd8b0b9568d5f24bbd91714589f363aee013a02cdd786f29ecc10",
+      "baseBlob": "90e404beac272c8abb398b405fb0ab7a211148c8",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/lifecycle-canonical-storage.test.ts",
+      "baseBytes": 4968,
+      "baseSha256": "470122f807739e2d4868477053cdedee25d0340ddbbfb79aa865abb8e5e3caf5",
+      "baseBlob": "33df844437f1d43e3802059e0cdb59ccc73220d1",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-installation.test.ts",
+      "baseBytes": 4379,
+      "baseSha256": "210d8f6c8433e0b826382f76bf622224777642c4f15ec20a40d02c260d73cded",
+      "baseBlob": "0da0534876ebf6d0857400eb666cbcf939288141",
+      "edits": [
+        {
+          "before": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]",
+          "after": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/canonical-feature-storage-original.test.ts",
+      "baseBytes": 4277,
+      "baseSha256": "c0402639ef7b70d467075abfc0f46e9ef0b13c191fe2aaa3ca9432da70a15bc3",
+      "baseBlob": "8a4fd00e9a3ff095fe50c0a777f77954c277c210",
+      "edits": [
+        {
+          "before": "through 17`",
+          "after": "through 18`",
+          "count": 1
+        },
+        {
+          "before": "length: 17",
+          "after": "length: 18",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/seo-storage-native/canonical.test.ts",
+      "baseBytes": 4398,
+      "baseSha256": "b1756e46796b27615b2e2dd6f50c8e19e41342b853d47b6b839db61701cf3449",
+      "baseBlob": "2d283611f261951a862ae5a3835290495f3a827a",
+      "edits": [
+        {
+          "before": "Array.from({length:17}",
+          "after": "Array.from({length:18}",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "tests/blocks/provider-preservation.test.ts",
+      "baseBytes": 18912,
+      "baseSha256": "40d34fc9a12419786c315286ff612ab589f768c1794211d106260273d77b8b22",
+      "baseBlob": "236200633e0b65f5149900b47e2f1a023aba54a6",
+      "archive": "docs/cron-task-storage-evidence/provider-preservation-c906-whole.ts.txt",
+      "edits": [
+        {
+          "before": "assert.equal(CMS_MIGRATION_VERSION,17)",
+          "after": "assert.equal(CMS_MIGRATION_VERSION,18)",
+          "count": 3
+        },
+        {
+          "before": "selectAll().execute()).length,17)",
+          "after": "selectAll().execute()).length,18)",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,747 @@
+{
+  "reviewer": "/root/canonical_cron129_full_independent_final_reviewer",
+  "timestampUTC": "2026-10-06 01:53 UTC",
+  "decision": "REQUEST_CHANGES",
+  "findings": [
+    {
+      "priority": "P1",
+      "title": "Update the remaining current-migration assertions for Provider18",
+      "path": "tests/blocks/provider-preservation.test.ts",
+      "line": 85,
+      "allAffectedAssertionLines": [
+        85,
+        94,
+        122,
+        215
+      ],
+      "currentWholeLeafBytes": 18912,
+      "currentWholeLeafSha256": "40d34fc9a12419786c315286ff612ab589f768c1794211d106260273d77b8b22",
+      "currentWholeLeafBlob": "236200633e0b65f5149900b47e2f1a023aba54a6",
+      "body": "Provider18 correctly makes CMS_MIGRATION_VERSION and complete current startup markers equal18, but this unchanged mandatory Native block family still expects17 at three version assertions and one complete marker-count assertion. CI649 Source job112067735450 reaches all30 block callbacks:20PASS/10genuineVALUEFAIL/0SKIP (five failing controls in each Node/D1 runtime), then exits1 before later normal Source commands. Adapt only these four current-latest expectations under a Root-authorized complete oldleaf reverse guard. Preserve historical8/14/16 providers, all data/defaults/sort/clocks and every other assertion. Retain this whole failed baseline and require complete successful family/current mandatory gates before merge. No product or original Source-body repair is indicated by these failures."
+    }
+  ],
+  "pr": "https://github.com/sveltery/cms/pull/129",
+  "head": "c9060072c1139b8ab9e0ffdef4131ca4523dc37c",
+  "tree": "56e8626d8df73cfaa4c4ba1cd9abb714424e16b2",
+  "base": "82e3dd7b673f774ca8c3eceaafa28234641bd6b1",
+  "publicSyntheticMerge": {
+    "sha": "b5151d39a030cdd789a330ac45f5a11c39fcb06d",
+    "tree": "56e8626d8df73cfaa4c4ba1cd9abb714424e16b2",
+    "parents": [
+      "82e3dd7b673f774ca8c3eceaafa28234641bd6b1",
+      "c9060072c1139b8ab9e0ffdef4131ca4523dc37c"
+    ]
+  },
+  "wholePublicNativeCoverage": {
+    "blobs": 3907,
+    "apiEntries": 5175,
+    "apiTruncated": false,
+    "protectedMainWholeBlobs": 3845,
+    "overlays": 12,
+    "adds": 50,
+    "deletes": 0,
+    "all62ChangedLeaves": [
+      {
+        "path": ".gitattributes",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "85ed1ca74bb907d157d07b72a2fbd7c6e33f3f5e",
+        "bytes": 18289,
+        "sha256": "0e00e3c0ed42f297a2da7cd700eb916d57cd1723870d21fbf793fba664f04e51"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/ci647-current233-checker-two-own-errors.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cbe8f6f54f0f42d17f61d5bdfd98d6e3f5c6d69b",
+        "bytes": 25951,
+        "sha256": "c2c47662faf909fdecb1d3daed4c8d78fe6cc893c5d97894b5599208d4834a47"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-affected-whole-current18-fix.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-affected-whole-current18-fix.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4e8b6014a630266f484bfcfcf336eefd27a38995",
+        "bytes": 8434,
+        "sha256": "8cc969afc24287e0a7ef2b5c86de810137e35f824eab708e8d9df45849dfdfa3"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-affected-whole-latest17-first-red.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-affected-whole-latest17-first-red.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d74efbd8a4182737c68cc6a688c90a759882ac19",
+        "bytes": 40485,
+        "sha256": "e688f24a0f0e73a2681375267b9ce8a301d8df011969967d3a4fbe42ebbafff1"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-current-2048-checker.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-current-2048-checker.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c2f0a2054d8b793a936b1689d866085373fbe2bd",
+        "bytes": 213,
+        "sha256": "ec8451176f12fbd96f99ec433ddef240c9f94b95b4c19f7e45165bfcca9fc93d"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-readiness-node-first.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-readiness-node-first.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "581dea633efd8d90b626a368c54d344050d53583",
+        "bytes": 737,
+        "sha256": "ec269a1a4aa7e6ff0e2d9e7cd504e17cf77170c2d39bb82d4757a3cf3e20b963"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-seo-whole-current18-fix.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-seo-whole-current18-fix.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4a80407023a3a0525de54bbdd92ac2e6e0ca2e56",
+        "bytes": 227,
+        "sha256": "9e719e3902a19dfd4ecf0447033b8113736854aa5351e88d7a22aa9e216e1066"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-seo-whole-latest17-first-red.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native-seo-whole-latest17-first-red.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4019d72c5068766e0628c6fccece8fc8848bdc74",
+        "bytes": 2441,
+        "sha256": "f601d58217c82fb8db433fbf219cef66ab3478b0a49d51049ae7a475665e4ce2"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native13-readiness-whole-current.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native13-readiness-whole-current.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "dadd98deb557383bb6a48e085f5c28f4846a2fc6",
+        "bytes": 1469,
+        "sha256": "588226909774c2493350a2210dc0cc3f69f2625c69423ff12982f98df6b36224"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native9-canonical-first-fix.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native9-canonical-first-fix.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "928a6cf68d4dab3abeca691cd8f7ca37f15fd32b",
+        "bytes": 951,
+        "sha256": "91eedcf2dfca2348649b2b9560703c61d12a42e754f34c81d48ce353910c9894"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native9-canonical-first-red.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/native9-canonical-first-red.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "725888781748e472975bf33c27f23919d7052c21",
+        "bytes": 10692,
+        "sha256": "978e5efea6958a001c77cd169eb4d939a031254b300cd9500bb8e872882cf1af"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/scoped-whitespace-six-controls.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "603f5a7c6ad6ee4f200e8b7234e0c9c2ca31dba9",
+        "bytes": 1967,
+        "sha256": "3754196f8ef20bc95e302d022417568be97810eed668558b54fd64f690ed34f4"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/source2-whole-node-current.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/source2-whole-node-current.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1a04c5bf0dc7fac8c21702e114e0f2d5dcd97ce4",
+        "bytes": 226,
+        "sha256": "aaa66558a2e9948c616f3c99bf876f6e3bfeee7f6f7f4a4ad6f417b0c2b806a1"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5e706768a1c082a0556f56b2932510917ab89c27",
+        "bytes": 2596,
+        "sha256": "c4c8896367ea7841f3335d4c098ca053e374e84b3cec313ce248a4e6c76fd27a"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/source4-explicit-reference-first.exit",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      {
+        "path": "docs/cron-task-storage-evidence/source4-explicit-reference-first.log",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2367892ac6ed8c15bb435773b65090595a8b6c35",
+        "bytes": 1701,
+        "sha256": "3cd45bf3aae0e715e7fdaa8f18eae4b2b392ff5a0a66a0eddee330535f1dd253"
+      },
+      {
+        "path": "docs/cron-task-storage-migration-census.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "11ed5f5e70faf633bf7741fab594165046997332",
+        "bytes": 3557,
+        "sha256": "c98ac1174cf71ec2f901ee19b5ba8e92ccce6753cec6a20b02ba7e8bb01069d8"
+      },
+      {
+        "path": "docs/cron-task-storage-native-adaptations.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bae0cc44d8954479eaf3e2ce0253e784af04d9a0",
+        "bytes": 5030,
+        "sha256": "d2fee64185a1222f0f4a9d58dd335eea3ac53af36870ec2592cedf4c547da8e3"
+      },
+      {
+        "path": "docs/cron-task-storage-ports.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "060481f0a5245dc3435beca9e2a3a3aefbdebafe",
+        "bytes": 15146,
+        "sha256": "a8dd4ee03fcd321b23d0b75cbce0d6589021c016bf7a521877158dd06d7ce3d6"
+      },
+      {
+        "path": "docs/cron-task-storage.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5f4a4a9944c8356a8e50fa113489691cc86cb45f",
+        "bytes": 6870,
+        "sha256": "a79b9be8b2358c9d689f1bd2024bfab5b4ecc18c664677526a48e9d14d43c22b"
+      },
+      {
+        "path": "package.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "30e55e3f39fde5daaf60173ac754a7ed58611f37",
+        "bytes": 13572,
+        "sha256": "95fcd11c7bfb504dd927673e0e38aaab5da8c7e10f7112d6fd0162713286d460"
+      },
+      {
+        "path": "parity/emdash/compatibility.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b54f1637e49debd9d321dfec9e4cae33e3c9ef9e",
+        "bytes": 642649,
+        "sha256": "c66d263d6f2d933ff4ea35a32793aa89658d17955363a43e6866b489a8b118f4"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/LICENSE",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+        "bytes": 1079,
+        "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/dialect-helpers.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+        "bytes": 18242,
+        "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/migrations/026_cron_tasks.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "67f705793bafb8b5121486a7baf0e487ebf6ab5a",
+        "bytes": 1872,
+        "sha256": "6e867622e8e05b921482053ff4d532123c4492ee26deb50553e0f0c12d3e9876"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "da3036406f934bda4f7ac4f333b56a28a5f91331",
+        "bytes": 1220,
+        "sha256": "f992b5fc5da55c1118d77fd29274d5349111f17d48fafa41bd4db9d3525e58fe"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/types.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+        "bytes": 31530,
+        "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/validate.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "73d3b303764b473d4238e0cb17f1a904998671f8",
+        "bytes": 5766,
+        "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/src/db/adapters.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1f98d07ec556ee5897796cefb1f250a7a50b1272",
+        "bytes": 6397,
+        "sha256": "98c0bc2bd8aacc1a65c0f2679459bdc9b2bff428d38dc70498cbace71dbee9de"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/src/plugins/cron.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "922823cc8bbda5e8bd7eee865800dc0967ad2ccf",
+        "bytes": 14101,
+        "sha256": "e95270d9738871b514e08315784a4396ccf81fbc870261ebbbda080ef5c96e6c"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "02e57c6cbbde284c919bb73681ba374d73f25032",
+        "bytes": 3258,
+        "sha256": "183715834d5cc467efc29827e5c6fe72aa632425c27ec73709f02295c7ee1073"
+      },
+      {
+        "path": "parity/emdash/cron-storage-source/upstream/packages/core/tests/utils/test-db.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+        "bytes": 18803,
+        "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0"
+      },
+      {
+        "path": "scripts/check-cron-task-storage-source.mjs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2acbdf788465c42ad53c91c3d2786ea05b0f52f3",
+        "bytes": 3034,
+        "sha256": "89428edb9080dbd5a46d88c20943e489a7eee44ef717a5823fdfa992fc6faba6"
+      },
+      {
+        "path": "src/lib/server/cron/readiness.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bd393272e4190f213f9dea2caedb28eeb2574c7d",
+        "bytes": 1699,
+        "sha256": "6612c4edab932649f8818929c276dbbbe98b8461578d1f0338db69080227129a"
+      },
+      {
+        "path": "src/lib/server/cron/storage-provider.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "10b40fbf236def7999c65bd74989a960b47bf035",
+        "bytes": 2404,
+        "sha256": "6a726f557e3e9bb43905c73bc0bd6f8f0819423e98c56647ea8af513108df0f3"
+      },
+      {
+        "path": "src/lib/server/cron/types.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9918ccff1eaa9b73f52f9e590e7502f113a75b6f",
+        "bytes": 600,
+        "sha256": "a9a63e12429ab14a6627a1ff637fd516cea0cbe128cbe5126d6c9f3b3b25eda6"
+      },
+      {
+        "path": "src/lib/server/database/collection-indexes.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1ce5d757081b8897abbdf7c9658be1ff9e2d4299",
+        "bytes": 3531,
+        "sha256": "05967581d3092e52f9d19e3fd538afee064bdb940437a9de2ecba584c9444a60"
+      },
+      {
+        "path": "src/lib/server/database/migrations.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bbe30c1bf35ef268dd301fd45b40655346699fe1",
+        "bytes": 22246,
+        "sha256": "ad5f2f54e16f066a32ade7ad50f3f4507efde257090ed45da0671e440af84556"
+      },
+      {
+        "path": "tests/canonical-feature-atomicity-original.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a7f7ed802d0dc426ff033b995bb2fb3dcc4af544",
+        "bytes": 7266,
+        "sha256": "3b9f4ee574695d517814bcb10523471c70c9b06d485f6a199862dd7097c51958"
+      },
+      {
+        "path": "tests/canonical-feature-storage-original.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "73eff63659d979a986cecc4ff7e75002405ae00c",
+        "bytes": 4277,
+        "sha256": "6c717888d0eec3677151f7085b9e756e023229f0fac424d795ae337f47fc35af"
+      },
+      {
+        "path": "tests/canonical-installation-values.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4b4a34fa89ab2f475c8d5e6f22f94cc78ad000d7",
+        "bytes": 13564,
+        "sha256": "2a96f566993a41823fdb0962564c7b9a96fbe1d27bcbb3d67c8d16d2ecce79d0"
+      },
+      {
+        "path": "tests/canonical-installation.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f5a9a5e2a636f695a48edc6e2cef6419c914141b",
+        "bytes": 4382,
+        "sha256": "7f1e2b2c25dbf0d1661cfb6648eee9306a92786684aca7cb29889989e87cbf03"
+      },
+      {
+        "path": "tests/cron-task-readiness.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bf04ab99992fc5ad53dec194938fc2ae023e8dfb",
+        "bytes": 8137,
+        "sha256": "56ffbdd25b87813aca0a04e0a69d42a5bae4059e94a6e10ee70401515e164112"
+      },
+      {
+        "path": "tests/cron-task-storage.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "603bde46fd27a92b4a51d4f58772075084301a23",
+        "bytes": 4046,
+        "sha256": "4eebe8136b9b2911ae9221586e32a853d75c9b524550d8a35ca40dd968c56a78"
+      },
+      {
+        "path": "tests/helpers/cron-storage/historical17.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "533dbae51a3a0d2e30a0da39d83fb178c0572c21",
+        "bytes": 1171,
+        "sha256": "26156283f31b8f891039b073d3f8f4f1c246160395d8de726abd62a896834f7f"
+      },
+      {
+        "path": "tests/helpers/cron-storage/source-db.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c9ee0e442348be42c5193dc5c1a5af3760fd39be",
+        "bytes": 1619,
+        "sha256": "3a8c4e485f922b93a3d56a0e3c7f20b4052a6dd28fee9f811991d4d2c22b0e9d"
+      },
+      {
+        "path": "tests/lifecycle-canonical-storage.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "db8d9a3820c37af36fead90dd438159546f7592b",
+        "bytes": 4971,
+        "sha256": "ae2f772d963d288b746e37dfa1458988fe5e73ab24aa6c8a23b8b5beb346fef0"
+      },
+      {
+        "path": "tests/lifecycle-startup-upgrade.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "78f3aa04b5ef2756d8c262607bbe03f38002f430",
+        "bytes": 16914,
+        "sha256": "b20f4870587492175d670eeb3c48cd4af14542048265e535e011426cddc5085d"
+      },
+      {
+        "path": "tests/seo-storage-native/canonical.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a9b020a453de63171d63fe92f5df482fe92212ee",
+        "bytes": 4398,
+        "sha256": "9814b3eef8f882d29693e4127e13ecdc6bcc4104694210c785a6cb0671af3029"
+      },
+      {
+        "path": "vitest.cron-storage-d1-reference.config.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e632dc14109c4ef76f2c7d73584b5253c2c2f15b",
+        "bytes": 391,
+        "sha256": "7e988ecf77d649809fb67e5423fcf293346e6995edd99e784f8f7e059902613d"
+      },
+      {
+        "path": "vitest.cron-storage-source.config.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "94ed2c678c44b1310971f907f7ed8903106859df",
+        "bytes": 930,
+        "sha256": "6898a86cff9edc2e516aabb06d04bf2db672a376aab08e010f2506088b2c8a7e"
+      }
+    ],
+    "completeVectorReceipt": {
+      "path": "/tmp/cron129-review-complete-vector-verification.json",
+      "bytes": 1188607,
+      "sha256": "bf62c954087458728640e8ebc65f16ff52cc029e0bb3e214ce7da9ab04576842"
+    },
+    "sourceRaw233Immutable": 30
+  },
+  "wholeSourceAuthorities": [
+    {
+      "path": "packages/core/src/database/migrations/026_cron_tasks.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/migrations/026_cron_tasks.ts",
+      "bytes": 1872,
+      "sha256": "6e867622e8e05b921482053ff4d532123c4492ee26deb50553e0f0c12d3e9876",
+      "blob": "67f705793bafb8b5121486a7baf0e487ebf6ab5a",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+      "bytes": 1220,
+      "sha256": "f992b5fc5da55c1118d77fd29274d5349111f17d48fafa41bd4db9d3525e58fe",
+      "blob": "da3036406f934bda4f7ac4f333b56a28a5f91331",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/dialect-helpers.ts",
+      "bytes": 18242,
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/validate.ts",
+      "bytes": 5766,
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/types.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/types.ts",
+      "bytes": 31530,
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts",
+      "bytes": 3258,
+      "sha256": "183715834d5cc467efc29827e5c6fe72aa632425c27ec73709f02295c7ee1073",
+      "blob": "02e57c6cbbde284c919bb73681ba374d73f25032",
+      "role": "whole-test"
+    },
+    {
+      "path": "packages/core/tests/utils/test-db.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/tests/utils/test-db.ts",
+      "bytes": 18803,
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "blob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/plugins/cron.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/plugins/cron.ts",
+      "bytes": 14101,
+      "sha256": "e95270d9738871b514e08315784a4396ccf81fbc870261ebbbda080ef5c96e6c",
+      "blob": "922823cc8bbda5e8bd7eee865800dc0967ad2ccf",
+      "role": "authority"
+    },
+    {
+      "path": "LICENSE",
+      "local": "parity/emdash/cron-storage-source/upstream/LICENSE",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "blob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/db/adapters.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/db/adapters.ts",
+      "bytes": 6397,
+      "sha256": "98c0bc2bd8aacc1a65c0f2679459bdc9b2bff428d38dc70498cbace71dbee9de",
+      "blob": "1f98d07ec556ee5897796cefb1f250a7a50b1272",
+      "role": "authority"
+    }
+  ],
+  "migrationCensusReceipt": {
+    "path": "/tmp/cron129-review-complete-migration-census-verification.json",
+    "bytes": 18665,
+    "sha256": "f7ad853d9cd83ef8765ba196b0f65883997a4748b8af8bd2ec0e91fe66ae2524"
+  },
+  "publicOrderedCommitsReceipt": {
+    "path": "/tmp/cron129-review-actual-ordered-commits.json",
+    "bytes": 10255,
+    "sha256": "3033f80199a148367a6e0643b00ace7c6e3dbbd980d1a3b1ab8177e14048aeed"
+  },
+  "actualCurrentCommitReceipt": {
+    "path": "/tmp/cron129-review-actual-api-2.json",
+    "bytes": 1281,
+    "sha256": "a2045668f831d1880e4118c6e5c29a18177b24bdf3aa2c84a2cd20649ca7f596"
+  },
+  "actualPublicFinalMetadataReceipt": {
+    "path": "/tmp/cron129-review-final-public-metadata.json",
+    "bytes": 49285,
+    "sha256": "de05dcab9bfadb9f9d24577d075798c9677651c0228a1930e25218e502d86ad2"
+  },
+  "semanticCoverage": {
+    "provider18": "Complete Source026 twelve-column SQLite/D1 descriptor: nullable id/created_at and all other nullability/defaults preserved; plugin/task unique constraint and due/plugin indexes match; sole existing migrateCms registry append, no oldprovider/body/recognition/order edits.",
+    "startup": "Reviewed existing full ownership/trigger/future-name probe and atomic runner in context. New complete descriptor enters normal guarded fixed batch, future unknown Cron collisions refused before writes, late genuine unique violation rolls back all startup objects/markers/rows. No legacy table adoption or second normalization/runtime writer.",
+    "readiness": "Complete read-only contiguous1–18 marker and exact ownedobject SQL recognition check; missing/unmarked/wrongindex/future/gapped states rejected without writes; normal collection admission finite max17→18 preserves full rest and guards.",
+    "types": "Whole pinned CronTaskTable interface exact, no narrowing nullable SQLite behaviors. Native canonical namespace substitution explicit. PostgreSQL not claimed.",
+    "nativeControls": "Read all22 new Native callback bodies and fixture helpers; Native9 original test-first wholebody/historical17 helper exactly preserved fromf943; actualNode/rawD1/scopedD1 fixtures and canonical owners, no fake SQL/races/credentials. Initial late-uniqueness two reds arise from absent compiledCron table guard, not reached unique violation; later ninegreen actual lateunique tests exercise realrollback.",
+    "finiteOldLeaves": "All nine complete files independently reverse to actualMain41 bytes/blobs/hashes; providers1–17 and historical test states/data/defaults/sort17 immutable. Two final erased SQL result generics reverse exact entire233 Native test; runtime SQL/assertions unchanged. Whole affected existing Native test bodies and current version substitutions read.",
+    "sourceFamily": "Whole immutable088 test2decl/4expects with Original105rows/20rowchunks/TZAmericaNewYork unchanged. Source-only physical_emdash table installed by actualwhole026, helpers redirect only Originaltest-db import to real ownedNode/D1 binding; no SQL namespace rewrite. SourceNode2 green Reference only0Nativecausal. D1first callbackPASS;105rowcallback fails180bindings>100 duringOriginalfixture before088,0D1migrationcredit, no upstreambugclaim.",
+    "sourceAuthorities": "All10 complete Source authority bytes/blob/length/SHA256 independently match exact pin. Complete92-file migration census independently read/hash verified; only026/088 referenceCron physicaltable. Unchanged unused Source authority internals grant provenance, no Native executable/fullmoduleidentity claim.",
+    "metadata": "FullMain.gitattributes/compatibility prefixes exact; attrs appended finiteformat exemptions onlyownedrawpaths, six positive/negative receipts read. No blanket new exemption or raw normalization. Package wholeJSON strictsame except preserved completeSourcechain +oneCronappend +two new Source scripts. Dependencies/lock/CI/bootstrap/browser/auth all protected wholeMainblobs.",
+    "receipts": "All owned raw receipts wholeUTF8 bytes/hashes verified; genuineNative9first0/9→9/9, affected80 first48/32→80/0 (all32 failedblocks exhaustively classified26 latest-marker values +6 current18 admission), SEO6 first4/2→6/0; Native13 13/0; own2048checker0errors0warnings; initialSource0registration and previous233CI2erasedfixtureerrors retain0causal credit. Counts overlap and are not parity percentages.",
+    "currentGates": "Actual stationary c906/Main82 and same-tree signed synthetic verified viaGitHubAPI. Current649services/calendar/browserPASS, SourceFAIL/aggregateFAIL/hostingskipped. FullfailedSource decodedBOM retained, alltenfailures same uncovered currentmarkerleaf. Configured quota comment6007492638 is not verdict; reviews empty, standingexception documented; no new request/approval/merge/rerun performed."
+  },
+  "allOld32FailureClassificationReceipt": {
+    "path": "/tmp/cron129-review-all32-affected-first-failure-classification.json",
+    "bytes": 36932,
+    "sha256": "11edf6380f9bcc9ca448fd5f6efc9781feae21fcb6c901786273f710faef9bb7"
+  },
+  "currentCI": {
+    "run": 37399662219,
+    "jobs": [
+      {
+        "id": 112063776555,
+        "name": "validate-services",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 112063776736,
+        "name": "calendar-admin-source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 112063776752,
+        "name": "browser",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 112067735450,
+        "name": "validate-source",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 112068401967,
+        "name": "validate",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 112068402728,
+        "name": "validate-hosting",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ],
+    "fullFailedSourceDecodedReceipt": {
+      "path": "/tmp/cron129-review-ci649-complete-failed-source-decoded.log",
+      "bytes": 177483,
+      "sha256": "9874f4072a5a091b0181c2aa7231a7ac66c41814f5ea8cae04ed45086bc18391"
+    },
+    "blockWhole": {
+      "registered": 30,
+      "pass": 20,
+      "fail": 10,
+      "skip": 0
+    }
+  },
+  "independentlyExecutedChecks": [
+    {
+      "command": "node scripts/check-cron-task-storage-source.mjs /tmp/cms-emdash-full",
+      "exit": 0,
+      "wholeAuthorities": 10,
+      "wholeFamilies": 1,
+      "exactFiniteExistingLeaves": 9,
+      "productTestsRun": 0,
+      "sourceCausalCredit": 0
+    },
+    {
+      "command": "git diff --check 82e3dd7b673f774ca8c3eceaafa28234641bd6b1 HEAD",
+      "exit": 0
+    },
+    {
+      "command": "complete public GitHub API↔Native/worktree blob mode/size/SHA/SHA256 census +actualorderedcommit checks",
+      "exit": 0
+    }
+  ],
+  "readOnlyCurrent17Audit": "Only uncovered latest marker leaf is tests/blocks/provider-preservation.test.ts four assertions. Historical17 fixture remains17. Other17 exits/testcasecounts/pagination chunks/source IDs are unrelated and unchanged.",
+  "limits": [
+    "No heavyweight Workerd/checker/build or browser run during independent review; all current authored runs independently raw-inspected, Source guard rerun read-only.",
+    "SourceReference test execution provides0Nativeproductcausalparity; D1failed105rowfixture provides0migration088 credit.",
+    "C07 fixed atomicbatch remains stronger than unsupportedSourceD1callbacktransactions; no callbackfallback/emulation.",
+    "FullCron scheduler/API/pluginruntime belongsPR127; no legacy088 secondwriter normalization ordeployed/Postgres/fullSourcemigrationrunner/locks/authclaims.",
+    "Current mandatory gates failed; no mergeapproval. Sameauthor finite currentmarkerrepair/newstationaryseal and finite independentdelta +all current hostedgates required."
+  ]
+}

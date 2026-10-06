@@ -1,0 +1,1600 @@
+﻿2026-10-06T01:48:19.2281440Z Current runner version: '2.337.0'
+2026-10-06T01:48:19.2316180Z ##[group]Runner Image Provisioner
+2026-10-06T01:48:19.2317570Z Hosted Compute Agent
+2026-10-06T01:48:19.2318521Z Version: 20260901.588
+2026-10-06T01:48:19.2319582Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-06T01:48:19.2320902Z Build Date: 2026-09-01T19:56:44Z
+2026-10-06T01:48:19.2322030Z Worker ID: {7c545e53-fa4b-4c45-9f9d-7804e2d85aae}
+2026-10-06T01:48:19.2323298Z Azure Region: eastus
+2026-10-06T01:48:19.2324239Z ##[endgroup]
+2026-10-06T01:48:19.2326861Z ##[group]Operating System
+2026-10-06T01:48:19.2327977Z Ubuntu
+2026-10-06T01:48:19.2328827Z 24.04.5
+2026-10-06T01:48:19.2329693Z LTS
+2026-10-06T01:48:19.2330555Z ##[endgroup]
+2026-10-06T01:48:19.2331425Z ##[group]Runner Image
+2026-10-06T01:48:19.2332552Z Image: ubuntu-24.04
+2026-10-06T01:48:19.2333565Z Version: 20260927.320.1
+2026-10-06T01:48:19.2335676Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-06T01:48:19.2338676Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-06T01:48:19.2340373Z ##[endgroup]
+2026-10-06T01:48:19.2342259Z ##[group]GITHUB_TOKEN Permissions
+2026-10-06T01:48:19.2344792Z Contents: read
+2026-10-06T01:48:19.2345767Z Metadata: read
+2026-10-06T01:48:19.2347025Z ##[endgroup]
+2026-10-06T01:48:19.2349943Z Secret source: Actions
+2026-10-06T01:48:19.2351567Z Cache mode: write
+2026-10-06T01:48:19.2352647Z Prepare workflow directory
+2026-10-06T01:48:19.2822101Z Prepare all required actions
+2026-10-06T01:48:19.2892302Z Getting action download info
+2026-10-06T01:48:19.5065642Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-06T01:48:19.6029949Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-10-06T01:48:19.8087945Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-06T01:48:19.9983069Z Complete job name: validate-source
+2026-10-06T01:48:20.0835793Z ##[group]Run actions/checkout@v4
+2026-10-06T01:48:20.0836933Z with:
+2026-10-06T01:48:20.0837380Z   repository: sveltery/cms
+2026-10-06T01:48:20.0840932Z   token: ***
+2026-10-06T01:48:20.0841366Z   ssh-strict: true
+2026-10-06T01:48:20.0841820Z   ssh-user: git
+2026-10-06T01:48:20.0842269Z   persist-credentials: true
+2026-10-06T01:48:20.0842749Z   clean: true
+2026-10-06T01:48:20.0843192Z   sparse-checkout-cone-mode: true
+2026-10-06T01:48:20.0843730Z   fetch-depth: 1
+2026-10-06T01:48:20.0844155Z   fetch-tags: false
+2026-10-06T01:48:20.0844602Z   show-progress: true
+2026-10-06T01:48:20.0845040Z   lfs: false
+2026-10-06T01:48:20.0845452Z   submodules: false
+2026-10-06T01:48:20.0846114Z   set-safe-directory: true
+2026-10-06T01:48:20.0846632Z   allow-unsafe-pr-checkout: false
+2026-10-06T01:48:20.0847496Z ##[endgroup]
+2026-10-06T01:48:20.1890789Z Syncing repository: sveltery/cms
+2026-10-06T01:48:20.1893224Z ##[group]Getting Git version info
+2026-10-06T01:48:20.1894690Z Working directory is '/home/runner/work/cms/cms'
+2026-10-06T01:48:20.1896989Z [command]/usr/bin/git version
+2026-10-06T01:48:20.2017982Z git version 2.55.0
+2026-10-06T01:48:20.2040729Z ##[endgroup]
+2026-10-06T01:48:20.2056253Z Temporarily overriding HOME='/home/runner/work/_temp/83a9d26d-bab6-4e2e-854c-1f4245b80166' before making global git config changes
+2026-10-06T01:48:20.2058768Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T01:48:20.2061764Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T01:48:20.2114974Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-06T01:48:20.2124437Z ##[group]Initializing the repository
+2026-10-06T01:48:20.2126272Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-06T01:48:20.2234489Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-06T01:48:20.2236934Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-06T01:48:20.2239565Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-06T01:48:20.2242381Z hint: call:
+2026-10-06T01:48:20.2243698Z hint:
+2026-10-06T01:48:20.2245170Z hint: 	git config --global init.defaultBranch <name>
+2026-10-06T01:48:20.2247013Z hint:
+2026-10-06T01:48:20.2248490Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-06T01:48:20.2250449Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-06T01:48:20.2252447Z hint:
+2026-10-06T01:48:20.2253788Z hint: 	git branch -m <name>
+2026-10-06T01:48:20.2255042Z hint:
+2026-10-06T01:48:20.2257038Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-06T01:48:20.2259183Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-06T01:48:20.2262891Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-06T01:48:20.2307514Z ##[endgroup]
+2026-10-06T01:48:20.2309461Z ##[group]Disabling automatic garbage collection
+2026-10-06T01:48:20.2311634Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-06T01:48:20.2347379Z ##[endgroup]
+2026-10-06T01:48:20.2349440Z ##[group]Setting up auth
+2026-10-06T01:48:20.2355005Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T01:48:20.2397868Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T01:48:20.2872070Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T01:48:20.2926601Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T01:48:20.3187071Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T01:48:20.3216516Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T01:48:20.3445824Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-06T01:48:20.3487800Z ##[endgroup]
+2026-10-06T01:48:20.3488913Z ##[group]Fetching the repository
+2026-10-06T01:48:20.3497364Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b5151d39a030cdd789a330ac45f5a11c39fcb06d:refs/remotes/pull/129/merge
+2026-10-06T01:48:21.3726199Z From https://github.com/sveltery/cms
+2026-10-06T01:48:21.3728458Z  * [new ref]         b5151d39a030cdd789a330ac45f5a11c39fcb06d -> pull/129/merge
+2026-10-06T01:48:21.3771323Z ##[endgroup]
+2026-10-06T01:48:21.3773924Z ##[group]Determining the checkout info
+2026-10-06T01:48:21.3776691Z ##[endgroup]
+2026-10-06T01:48:21.3778610Z [command]/usr/bin/git sparse-checkout disable
+2026-10-06T01:48:21.3817598Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-06T01:48:21.3857710Z ##[group]Checking out the ref
+2026-10-06T01:48:21.3862849Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/129/merge
+2026-10-06T01:48:21.7615422Z Note: switching to 'refs/remotes/pull/129/merge'.
+2026-10-06T01:48:21.7616623Z 
+2026-10-06T01:48:21.7617226Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-06T01:48:21.7618775Z changes and commit them, and you can discard any commits you make in this
+2026-10-06T01:48:21.7620816Z state without impacting any branches by switching back to a branch.
+2026-10-06T01:48:21.7621501Z 
+2026-10-06T01:48:21.7622040Z If you want to create a new branch to retain commits you create, you may
+2026-10-06T01:48:21.7623388Z do so (now or later) by using -c with the switch command. Example:
+2026-10-06T01:48:21.7624048Z 
+2026-10-06T01:48:21.7624349Z   git switch -c <new-branch-name>
+2026-10-06T01:48:21.7625258Z 
+2026-10-06T01:48:21.7625732Z Or undo this operation with:
+2026-10-06T01:48:21.7626648Z 
+2026-10-06T01:48:21.7627023Z   git switch -
+2026-10-06T01:48:21.7627475Z 
+2026-10-06T01:48:21.7628051Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-06T01:48:21.7628939Z 
+2026-10-06T01:48:21.7629812Z HEAD is now at b5151d3 Merge c9060072c1139b8ab9e0ffdef4131ca4523dc37c into 82e3dd7b673f774ca8c3eceaafa28234641bd6b1
+2026-10-06T01:48:21.7632742Z ##[endgroup]
+2026-10-06T01:48:21.7676675Z [command]/usr/bin/git log -1 --format=%H
+2026-10-06T01:48:21.7705581Z b5151d39a030cdd789a330ac45f5a11c39fcb06d
+2026-10-06T01:48:21.8029286Z ##[group]Run pnpm/action-setup@v4
+2026-10-06T01:48:21.8029701Z with:
+2026-10-06T01:48:21.8029982Z   version: 12.6.0
+2026-10-06T01:48:21.8030280Z   dest: ~/setup-pnpm
+2026-10-06T01:48:21.8030582Z   run_install: null
+2026-10-06T01:48:21.8030865Z   cache: false
+2026-10-06T01:48:21.8031176Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-06T01:48:21.8031602Z   package_json_file: package.json
+2026-10-06T01:48:21.8031964Z   standalone: false
+2026-10-06T01:48:21.8032251Z ##[endgroup]
+2026-10-06T01:48:21.9496999Z ##[group]Running self-installer...
+2026-10-06T01:48:22.3915538Z (node:2311) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:48:22.3917541Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:48:22.5445021Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-06T01:48:22.6933158Z Packages: +3
+2026-10-06T01:48:22.6933943Z +++
+2026-10-06T01:48:23.3329022Z Progress: resolved 15, reused 0, downloaded 3, added 3, done
+2026-10-06T01:48:23.3514523Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall$ node install.js
+2026-10-06T01:48:23.5917893Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall: Done
+2026-10-06T01:48:23.5922776Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall$ node install.js
+2026-10-06T01:48:23.6341761Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall: Done
+2026-10-06T01:48:24.9007505Z 
+2026-10-06T01:48:24.9007987Z dependencies:
+2026-10-06T01:48:24.9008671Z + pnpm 12.6.0 (12.9.1 is available)
+2026-10-06T01:48:24.9009034Z 
+2026-10-06T01:48:24.9033170Z Done in 2.7s
+2026-10-06T01:48:24.9409767Z ##[endgroup]
+2026-10-06T01:48:24.9410242Z Installation Completed!
+2026-10-06T01:48:24.9620633Z ##[group]Run actions/setup-node@v4
+2026-10-06T01:48:24.9620931Z with:
+2026-10-06T01:48:24.9621130Z   node-version: 24
+2026-10-06T01:48:24.9621341Z   cache: pnpm
+2026-10-06T01:48:24.9621541Z   always-auth: false
+2026-10-06T01:48:24.9621771Z   check-latest: false
+2026-10-06T01:48:24.9624220Z   token: ***
+2026-10-06T01:48:24.9624425Z env:
+2026-10-06T01:48:24.9624687Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:48:24.9625004Z ##[endgroup]
+2026-10-06T01:48:25.1038366Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-06T01:48:25.1043182Z (node:2342) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T01:48:25.1044023Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:48:25.1046063Z ##[group]Environment details
+2026-10-06T01:48:25.5321908Z node: v24.21.0
+2026-10-06T01:48:25.5322317Z npm: 11.19.0
+2026-10-06T01:48:25.5322644Z yarn: 1.22.22
+2026-10-06T01:48:25.5323313Z ##[endgroup]
+2026-10-06T01:48:25.5345703Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-06T01:48:25.5504521Z /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:48:25.6267928Z Cache hit for: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:48:25.6375304Z (node:2342) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:48:26.5040058Z Received 174062786 of 174062786 (100.0%), 200.5 MBs/sec
+2026-10-06T01:48:26.5041321Z Cache Size: ~166 MB (174062786 B)
+2026-10-06T01:48:26.5078598Z [command]/usr/bin/tar -xf /home/runner/work/_temp/db496685-c10b-48dc-acb0-399067cce1b4/cache.tzst -P -C /home/runner/work/cms/cms --use-compress-program unzstd
+2026-10-06T01:48:28.4576947Z Cache restored successfully
+2026-10-06T01:48:28.4658618Z Cache restored from key: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:48:28.4857426Z ##[group]Run sh scripts/ci-validation-phase.sh source
+2026-10-06T01:48:28.4857885Z [36;1msh scripts/ci-validation-phase.sh source[0m
+2026-10-06T01:48:28.5162731Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:48:28.5163041Z env:
+2026-10-06T01:48:28.5163343Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:48:28.5163704Z ##[endgroup]
+2026-10-06T01:48:28.5682901Z 
+2026-10-06T01:48:28.5688825Z [validate] start: frozen dependency install
+2026-10-06T01:48:28.6079627Z ? Verifying lockfile against supply-chain policies (534 entries)...
+2026-10-06T01:48:28.8215378Z Packages are hard linked from the content-addressable store to the virtual store.
+2026-10-06T01:48:28.8237231Z   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:48:28.8266855Z   Virtual store is at:             node_modules/.pnpm
+2026-10-06T01:48:30.9354861Z ✓ Lockfile passes supply-chain policies (534 entries in 2.3s)
+2026-10-06T01:48:30.9355510Z Lockfile is up to date, resolution step is skipped
+2026-10-06T01:48:30.9415539Z Packages: +403
+2026-10-06T01:48:30.9416426Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-06T01:48:31.0062492Z Progress: resolved 403, reused 403, downloaded 0, added 403, done
+2026-10-06T01:48:31.1027900Z . prepare$ svelte-kit sync
+2026-10-06T01:48:32.0864868Z . prepare: Done
+2026-10-06T01:48:32.0873636Z 
+2026-10-06T01:48:32.0873808Z dependencies:
+2026-10-06T01:48:32.0874121Z + @oslojs/crypto 1.0.1
+2026-10-06T01:48:32.0874409Z + @oslojs/encoding 1.1.0
+2026-10-06T01:48:32.0874682Z + @oslojs/webauthn 1.0.0
+2026-10-06T01:48:32.0875071Z + @wordpress/block-serialization-default-parser 5.38.0
+2026-10-06T01:48:32.0875419Z + blurhash 2.0.5
+2026-10-06T01:48:32.0875648Z + cn 0.2.2
+2026-10-06T01:48:32.0876773Z + date-fns 4.1.0
+2026-10-06T01:48:32.0877241Z + image-size 2.0.2
+2026-10-06T01:48:32.0877614Z + jpeg-js 0.4.4
+2026-10-06T01:48:32.0877916Z + jsonc-parser 3.3.1
+2026-10-06T01:48:32.0878163Z + kysely 0.29.2
+2026-10-06T01:48:32.0878364Z + mime 4.1.0
+2026-10-06T01:48:32.0878573Z + parse5 7.3.0
+2026-10-06T01:48:32.0878826Z + smol-toml 1.6.0
+2026-10-06T01:48:32.0879036Z + ulidx 2.4.1
+2026-10-06T01:48:32.0879245Z + upng-js 2.1.0
+2026-10-06T01:48:32.0879454Z + valibot 1.5.0
+2026-10-06T01:48:32.0879654Z + zod 4.5.4
+2026-10-06T01:48:32.0879769Z 
+2026-10-06T01:48:32.0879868Z devDependencies:
+2026-10-06T01:48:32.0880103Z + @babel/core 7.29.7
+2026-10-06T01:48:32.0880359Z + @cloudflare/kumo 2.6.0
+2026-10-06T01:48:32.0880718Z + @cloudflare/workers-types 4.20260507.1
+2026-10-06T01:48:32.0881021Z + @floating-ui/dom 1.8.0
+2026-10-06T01:48:32.0881328Z + @lingui/babel-plugin-lingui-macro 5.9.5
+2026-10-06T01:48:32.0881628Z + @lingui/conf 5.9.5
+2026-10-06T01:48:32.0881859Z + @lingui/core 5.9.5
+2026-10-06T01:48:32.0882082Z + @lingui/react 5.9.5
+2026-10-06T01:48:32.0882336Z + @playwright/test 1.63.0
+2026-10-06T01:48:32.0882664Z + @sveltejs/adapter-auto 7.0.1
+2026-10-06T01:48:32.0882982Z + @sveltejs/adapter-cloudflare 7.2.9
+2026-10-06T01:48:32.0883310Z + @sveltejs/adapter-node 5.5.7
+2026-10-06T01:48:32.0883577Z + @sveltejs/kit 2.70.3
+2026-10-06T01:48:32.0883863Z + @sveltejs/vite-plugin-svelte 7.3.1
+2026-10-06T01:48:32.0884178Z + @tanstack/react-query 5.90.21
+2026-10-06T01:48:32.0884476Z + @tanstack/react-router 1.163.2
+2026-10-06T01:48:32.0884782Z + @testing-library/react 16.3.2
+2026-10-06T01:48:32.0885049Z + @types/jsdom 30.0.0
+2026-10-06T01:48:32.0885288Z + @types/node 24.19.0
+2026-10-06T01:48:32.0885763Z + @types/react 19.3.0
+2026-10-06T01:48:32.0886403Z + @types/react-dom 19.3.0
+2026-10-06T01:48:32.0886953Z + @vitest/browser-playwright 4.1.10
+2026-10-06T01:48:32.0887392Z + devalue 5.9.4
+2026-10-06T01:48:32.0887607Z + jsdom 30.1.1
+2026-10-06T01:48:32.0887826Z + miniflare 4.20260507.1
+2026-10-06T01:48:32.0888051Z + pg 8.18.0
+2026-10-06T01:48:32.0888247Z + react 19.3.0
+2026-10-06T01:48:32.0888473Z + react-day-picker 9.14.0
+2026-10-06T01:48:32.0888715Z + react-dom 19.3.0
+2026-10-06T01:48:32.0889088Z + svelte 5.57.1
+2026-10-06T01:48:32.0889715Z + svelte-check 4.7.6
+2026-10-06T01:48:32.0890176Z + typescript 6.0.3
+2026-10-06T01:48:32.0890557Z + vite 8.3.2
+2026-10-06T01:48:32.0890882Z + vitest 4.1.10
+2026-10-06T01:48:32.0891272Z + vitest-browser-react 2.2.0
+2026-10-06T01:48:32.0891757Z + wrangler 4.99.0
+2026-10-06T01:48:32.0891991Z 
+2026-10-06T01:48:32.0895382Z Done in 3.5s using pnpm v12.6.0
+2026-10-06T01:48:32.1121104Z [validate] finished: frozen dependency install
+2026-10-06T01:48:32.1121552Z 
+2026-10-06T01:48:32.1121850Z [validate] start: auth source assertions
+2026-10-06T01:48:32.1287089Z $ node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy && pnpm test:schema-admin-source && pnpm test:schema-admin-response-native && pnpm test:schema-admin-index-native && pnpm test:byline-source && pnpm test:byline-native && pnpm test:calendar-source && pnpm test:scheduled-sweep-native && pnpm test:schema-admin-ui-source && pnpm test:schema-admin-ui-native && pnpm test:calendar-admin-native && pnpm test:calendar-locales-source && pnpm test:calendar-admin-fidelity && pnpm test:seo-storage-source && pnpm test:seo-storage-native && pnpm test:user-repository-roles && pnpm test:user-admin && pnpm test:user-source-gate && pnpm test:cron-task-storage-source
+2026-10-06T01:48:32.4161695Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","sourceFiles":14,"declarations":14,"expects":25,"elements":29,"productTestsRun":0}
+2026-10-06T01:48:32.8140795Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeAuthorities":30,"wholeSourceFiles":9,"inventoryDeclarations":169,"inventoryExpectExpressions":351,"copiedDeclarations":72,"copiedExpectExpressions":110,"productTestsRun":0}
+2026-10-06T01:48:33.1286867Z 
+2026-10-06T01:48:33.1288535Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:33.1289158Z 
+2026-10-06T01:48:33.4485489Z [90mstderr[2m | tests/source-port/seo/page-metadata.test.ts[2m > [22m[2mresolvePageMetadata[2m > [22m[2mrejects non-HTTP link href (javascript:, data:, blob:)
+2026-10-06T01:48:33.4488437Z [22m[39m[page:metadata] Rejected link contribution with unsafe href scheme: javascript:alert(1)
+2026-10-06T01:48:33.4490384Z [page:metadata] Rejected link contribution with unsafe href scheme: data:text/html,<h1>hi</h1>
+2026-10-06T01:48:33.4492259Z [page:metadata] Rejected link contribution with unsafe href scheme: blob:https://example.com/abc
+2026-10-06T01:48:33.4493420Z 
+2026-10-06T01:48:33.4713919Z  [32m✓[39m tests/source-port/seo/page-metadata.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+2026-10-06T01:48:33.6108494Z  [32m✓[39m tests/source-port/passkey/register.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+2026-10-06T01:48:33.6308300Z  [32m✓[39m tests/source-port/passkey/authenticate.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 126[2mms[22m[39m
+2026-10-06T01:48:33.7621940Z  [32m✓[39m tests/source-port/seo/seo-contributions.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+2026-10-06T01:48:33.8382359Z  [32m✓[39m tests/source-port/passkey/challenge-context.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+2026-10-06T01:48:33.8478013Z  [32m✓[39m tests/source-port/seo/page-seo.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+2026-10-06T01:48:33.9816999Z  [32m✓[39m tests/source-port/seo/get-seo-meta.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+2026-10-06T01:48:34.0142367Z  [32m✓[39m tests/source-port/admin/sidebar-groups.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+2026-10-06T01:48:34.0390370Z  [32m✓[39m tests/source-port/admin/admin-version.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+2026-10-06T01:48:34.0418854Z 
+2026-10-06T01:48:34.0423694Z [2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+2026-10-06T01:48:34.0424428Z [2m      Tests [22m [1m[32m115 passed[39m[22m[90m (115)[39m
+2026-10-06T01:48:34.0425311Z [2m   Start at [22m 01:48:33
+2026-10-06T01:48:34.0426986Z [2m   Duration [22m 906ms[2m (transform 351ms, setup 0ms, import 724ms, tests 311ms, environment 1ms)[22m
+2026-10-06T01:48:34.0428934Z 
+2026-10-06T01:48:34.4598034Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeSourceFiles":15,"wholeAuthorities":53,"declarations":211,"expectExpressions":484,"productTestsRun":0}
+2026-10-06T01:48:34.7785192Z 
+2026-10-06T01:48:34.7789095Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:34.7789711Z 
+2026-10-06T01:48:35.5247989Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/redirect-repository.test.ts [2m([22m[2m57 tests[22m[2m)[22m[33m 315[2mms[22m[39m
+2026-10-06T01:48:36.1307987Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/unit/astro/middleware-redirect.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 251[2mms[22m[39m
+2026-10-06T01:48:36.7997649Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/redirect-artifacts.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 382[2mms[22m[39m
+2026-10-06T01:48:37.3538899Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/log404-bounded.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 277[2mms[22m[39m
+2026-10-06T01:48:37.5051670Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/unit/redirects/patterns.test.ts [2m([22m[2m41 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+2026-10-06T01:48:37.7175530Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/unit/redirects/cache.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+2026-10-06T01:48:37.8687413Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/unit/redirects/loops.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-06T01:48:38.1624387Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/unit/database/migrations/081_redirect_write_guards.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+2026-10-06T01:48:38.4691656Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/redirect-pattern-precedence.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+2026-10-06T01:48:38.7583937Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/integration/database/redirect-enable-loop-guard-migration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+2026-10-06T01:48:38.9045390Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/unit/api/redirect.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-06T01:48:39.1132199Z  [32m✓[39m parity/emdash/redirect-source/upstream/packages/core/tests/unit/schemas/redirects.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-06T01:48:39.1157103Z 
+2026-10-06T01:48:39.1163154Z [2m Test Files [22m [1m[32m12 passed[39m[22m[90m (12)[39m
+2026-10-06T01:48:39.1163800Z [2m      Tests [22m [1m[32m203 passed[39m[22m[90m (203)[39m
+2026-10-06T01:48:39.1164306Z [2m   Start at [22m 01:48:34
+2026-10-06T01:48:39.1166582Z [2m   Duration [22m 4.32s[2m (transform 302ms, setup 0ms, import 1.45s, tests 1.41s, environment 1ms)[22m
+2026-10-06T01:48:39.1168598Z 
+2026-10-06T01:48:39.1708525Z $ vitest run --config vitest.bulk-taxonomy-native.config.ts
+2026-10-06T01:48:39.9444469Z 
+2026-10-06T01:48:39.9448930Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:39.9449564Z 
+2026-10-06T01:48:41.5927427Z  [32m✓[39m tests/bulk-taxonomy-native/dialog.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 179[2mms[22m[39m
+2026-10-06T01:48:41.5947784Z 
+2026-10-06T01:48:41.5952226Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-06T01:48:41.5953453Z [2m      Tests [22m [1m[32m14 passed[39m[22m[90m (14)[39m
+2026-10-06T01:48:41.5954066Z [2m   Start at [22m 01:48:39
+2026-10-06T01:48:41.5955117Z [2m   Duration [22m 1.65s[2m (transform 616ms, setup 0ms, import 736ms, tests 179ms, environment 602ms)[22m
+2026-10-06T01:48:41.5958035Z 
+2026-10-06T01:48:41.6537080Z $ node scripts/check-menu-source.mjs && vitest run --config vitest.menu-source.config.ts
+2026-10-06T01:48:42.0458692Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","authorities":51,"wholeTests":12,"testDeclarations":204,"expectExpressions":495,"productTestsRun":0}
+2026-10-06T01:48:42.3639192Z 
+2026-10-06T01:48:42.3643420Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:42.3644061Z 
+2026-10-06T01:48:43.2197769Z [90mstderr[2m | parity/emdash/menu-source/upstream/packages/core/tests/unit/menus/menus.test.ts[2m > [22m[2mNavigation Menus[2m > [22m[2mgetMenu[2m > [22m[2mshould skip items with deleted content references
+2026-10-06T01:48:43.2200120Z [22m[39mFailed to resolve content URLs for pages: Error: no such table: ec_pages
+2026-10-06T01:48:43.2201993Z     at NodeSqliteCompatDatabase.prepare [90m(/home/runner/work/cms/cms/[39msrc/lib/server/database/node-sqlite-compat.ts:82:36[90m)[39m
+2026-10-06T01:48:43.2204756Z     at SqliteConnection.executeQuery [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/dialect/sqlite/sqlite-driver.js:58:31[90m)[39m
+2026-10-06T01:48:43.2207809Z     at [90mfile:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-executor/query-executor-base.js:39:41
+2026-10-06T01:48:43.2210872Z     at DefaultConnectionProvider.provideConnection [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/driver/default-connection-provider.js:10:26[90m)[39m
+2026-10-06T01:48:43.2213301Z [90m    at processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
+2026-10-06T01:48:43.2215724Z     at DefaultQueryExecutor.executeQuery [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-executor/query-executor-base.js:38:28[90m)[39m
+2026-10-06T01:48:43.2218130Z     at [90m/home/runner/work/cms/cms/[39msrc/lib/server/menus/index.ts:393:21
+2026-10-06T01:48:43.2218953Z     at async Promise.all (index 0)
+2026-10-06T01:48:43.2220274Z     at resolveContentReferences [90m(/home/runner/work/cms/cms/[39msrc/lib/server/menus/index.ts:386:18[90m)[39m
+2026-10-06T01:48:43.2221820Z     at async Promise.all (index 1) {
+2026-10-06T01:48:43.2222542Z   code: [32m'ERR_SQLITE_ERROR'[39m,
+2026-10-06T01:48:43.2223161Z   errcode: [33m1[39m,
+2026-10-06T01:48:43.2223754Z   errstr: [32m'SQL logic error'[39m
+2026-10-06T01:48:43.2224244Z }
+2026-10-06T01:48:43.2224442Z 
+2026-10-06T01:48:43.4356243Z  [32m✓[39m parity/emdash/menu-source/upstream/packages/core/tests/unit/menus/menus.test.ts [2m([22m[2m50 tests[22m[2m)[22m[33m 311[2mms[22m[39m
+2026-10-06T01:48:43.8071162Z  [32m✓[39m parity/emdash/menu-source/upstream/packages/core/tests/unit/object-cache.test.ts [2m([22m[2m35 tests[22m[2m)[22m[32m 199[2mms[22m[39m
+2026-10-06T01:48:44.3348865Z  [32m✓[39m parity/emdash/menu-source/upstream/packages/core/tests/integration/database/menu-repository.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 169[2mms[22m[39m
+2026-10-06T01:48:44.8002213Z  [32m✓[39m parity/emdash/menu-source/upstream/packages/core/tests/integration/api/menus-handlers.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 93[2mms[22m[39m
+2026-10-06T01:48:45.2183433Z  [32m✓[39m parity/emdash/menu-source/upstream/packages/core/tests/unit/menus/menu-batch-resolution.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+2026-10-06T01:48:45.7302185Z  [32m✓[39m parity/emdash/menu-source/upstream/packages/core/tests/unit/menus/menu-request-cache.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 78[2mms[22m[39m
+2026-10-06T01:48:45.7323281Z 
+2026-10-06T01:48:45.7327971Z [2m Test Files [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+2026-10-06T01:48:45.7329096Z [2m      Tests [22m [1m[32m128 passed[39m[22m[90m (128)[39m
+2026-10-06T01:48:45.7329955Z [2m   Start at [22m 01:48:42
+2026-10-06T01:48:45.7331583Z [2m   Duration [22m 3.36s[2m (transform 535ms, setup 0ms, import 1.71s, tests 908ms, environment 1ms)[22m
+2026-10-06T01:48:45.7333786Z 
+2026-10-06T01:48:45.7784336Z $ vitest run --config vitest.menu-native-ui.config.ts
+2026-10-06T01:48:46.3284569Z 
+2026-10-06T01:48:46.3289101Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:46.3289738Z 
+2026-10-06T01:48:48.0222685Z  [32m✓[39m tests/menu-native-ui/menu.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 121[2mms[22m[39m
+2026-10-06T01:48:48.0246416Z 
+2026-10-06T01:48:48.0251032Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-06T01:48:48.0252047Z [2m      Tests [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+2026-10-06T01:48:48.0252867Z [2m   Start at [22m 01:48:46
+2026-10-06T01:48:48.0253835Z [2m   Duration [22m 1.69s[2m (transform 707ms, setup 0ms, import 858ms, tests 121ms, environment 587ms)[22m
+2026-10-06T01:48:48.0256542Z 
+2026-10-06T01:48:48.3731843Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeSourceFiles":7,"wholeAuthorities":29,"declarations":18,"expectExpressions":42,"elementExpressions":9,"typeExpressions":1,"productTestsRun":0}
+2026-10-06T01:48:48.6916704Z 
+2026-10-06T01:48:48.6918236Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:48.6918869Z 
+2026-10-06T01:48:49.2596664Z [90mstderr[2m | parity/emdash/redirect-integration-source/upstream/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts[2m > [22m[2mplugin redirect optimistic concurrency [native Node SQLite fixture][2m > [22m[2mguards configuration writes without conflicting on hit tracking
+2026-10-06T01:48:49.2599695Z [22m[39mFailed to update redirect loop cache: Error: no such table: options
+2026-10-06T01:48:49.2601526Z     at NodeSqliteCompatDatabase.prepare [90m(/home/runner/work/cms/cms/[39msrc/lib/server/database/node-sqlite-compat.ts:82:36[90m)[39m
+2026-10-06T01:48:49.2604270Z     at SqliteConnection.executeQuery [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/dialect/sqlite/sqlite-driver.js:58:31[90m)[39m
+2026-10-06T01:48:49.2607754Z     at [90mfile:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-executor/query-executor-base.js:39:41
+2026-10-06T01:48:49.2610824Z     at DefaultConnectionProvider.provideConnection [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/driver/default-connection-provider.js:10:26[90m)[39m
+2026-10-06T01:48:49.2614646Z     at DefaultQueryExecutor.executeQuery [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-executor/query-executor-base.js:38:28[90m)[39m
+2026-10-06T01:48:49.2618132Z     at InsertQueryBuilder.execute [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-builder/insert-query-builder.js:1101:24[90m)[39m
+2026-10-06T01:48:49.2620616Z     at OptionsRepository.setVersioned [90m(/home/runner/work/cms/cms/[39msrc/lib/server/redirects/options.ts:70:3[90m)[39m
+2026-10-06T01:48:49.2622594Z     at OptionsRepository.set [90m(/home/runner/work/cms/cms/[39msrc/lib/server/redirects/options.ts:58:3[90m)[39m
+2026-10-06T01:48:49.2624348Z     at updateLoopCache [90m(/home/runner/work/cms/cms/[39msrc/lib/server/redirects/handlers.ts:455:3[90m)[39m
+2026-10-06T01:48:49.2626132Z     at [90m/home/runner/work/cms/cms/[39msrc/lib/server/redirects/handlers.ts:353:4 {
+2026-10-06T01:48:49.2627142Z   code: [32m'ERR_SQLITE_ERROR'[39m,
+2026-10-06T01:48:49.2627726Z   errcode: [33m1[39m,
+2026-10-06T01:48:49.2628324Z   errstr: [32m'SQL logic error'[39m
+2026-10-06T01:48:49.2628824Z }
+2026-10-06T01:48:49.2629018Z 
+2026-10-06T01:48:49.3099631Z [90mstderr[2m | parity/emdash/redirect-integration-source/upstream/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts[2m > [22m[2mplugin redirect optimistic concurrency [native Node SQLite fixture][2m > [22m[2mserializes concurrent updates to different rows
+2026-10-06T01:48:49.3102565Z [22m[39mFailed to update redirect loop cache: Error: no such table: options
+2026-10-06T01:48:49.3104389Z     at NodeSqliteCompatDatabase.prepare [90m(/home/runner/work/cms/cms/[39msrc/lib/server/database/node-sqlite-compat.ts:82:36[90m)[39m
+2026-10-06T01:48:49.3107445Z     at SqliteConnection.executeQuery [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/dialect/sqlite/sqlite-driver.js:58:31[90m)[39m
+2026-10-06T01:48:49.3110218Z     at [90mfile:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-executor/query-executor-base.js:39:41
+2026-10-06T01:48:49.3112108Z     at DefaultConnectionProvider.provideConnection [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/driver/default-connection-provider.js:10:26[90m)[39m
+2026-10-06T01:48:49.3113837Z     at DefaultQueryExecutor.executeQuery [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-executor/query-executor-base.js:38:28[90m)[39m
+2026-10-06T01:48:49.3115497Z     at InsertQueryBuilder.execute [90m(file:///home/runner/work/cms/cms/[39mnode_modules/[4m.pnpm[24m/kysely@0.29.2/node_modules/[4mkysely[24m/dist/query-builder/insert-query-builder.js:1101:24[90m)[39m
+2026-10-06T01:48:49.3117120Z     at OptionsRepository.setVersioned [90m(/home/runner/work/cms/cms/[39msrc/lib/server/redirects/options.ts:70:3[90m)[39m
+2026-10-06T01:48:49.3118073Z     at OptionsRepository.set [90m(/home/runner/work/cms/cms/[39msrc/lib/server/redirects/options.ts:58:3[90m)[39m
+2026-10-06T01:48:49.3118942Z     at updateLoopCache [90m(/home/runner/work/cms/cms/[39msrc/lib/server/redirects/handlers.ts:455:3[90m)[39m
+2026-10-06T01:48:49.3119681Z     at [90m/home/runner/work/cms/cms/[39msrc/lib/server/redirects/handlers.ts:353:4 {
+2026-10-06T01:48:49.3120177Z   code: [32m'ERR_SQLITE_ERROR'[39m,
+2026-10-06T01:48:49.3120795Z   errcode: [33m1[39m,
+2026-10-06T01:48:49.3121092Z   errstr: [32m'SQL logic error'[39m
+2026-10-06T01:48:49.3121360Z }
+2026-10-06T01:48:49.3121459Z 
+2026-10-06T01:48:49.3433417Z  [32m✓[39m parity/emdash/redirect-integration-source/upstream/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 118[2mms[22m[39m
+2026-10-06T01:48:50.1131781Z  [32m✓[39m parity/emdash/redirect-integration-source/upstream/packages/core/tests/unit/database/migrations/035_bounded_404_log.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 505[2mms[22m[39m
+2026-10-06T01:48:50.1162469Z      [33m[2m✓[22m[39m deduplicates a large log without timing out [33m 493[2mms[22m[39m
+2026-10-06T01:48:51.0065517Z  [32m✓[39m parity/emdash/redirect-integration-source/upstream/packages/core/tests/integration/content/atomic-publication.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 134[2mms[22m[39m
+2026-10-06T01:48:51.1428334Z  [32m✓[39m parity/emdash/redirect-integration-source/upstream/packages/core/tests/unit/plugins/redirect-types.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+2026-10-06T01:48:51.1450192Z 
+2026-10-06T01:48:51.1454876Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-06T01:48:51.1456015Z [2m      Tests [22m [1m[32m12 passed[39m[22m[90m (12)[39m
+2026-10-06T01:48:51.1456756Z [2m   Start at [22m 01:48:48
+2026-10-06T01:48:51.1457860Z [2m   Duration [22m 2.44s[2m (transform 556ms, setup 0ms, import 1.19s, tests 760ms, environment 0ms)[22m
+2026-10-06T01:48:51.1458818Z 
+2026-10-06T01:48:51.7551950Z 
+2026-10-06T01:48:51.7556498Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:51.7557144Z 
+2026-10-06T01:48:53.4418161Z  [32m✓[39m tests/ui-redirects/filter-loading.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 122[2mms[22m[39m
+2026-10-06T01:48:53.7579608Z  [32m✓[39m tests/ui-redirects/redirects.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 440[2mms[22m[39m
+2026-10-06T01:48:53.7608615Z 
+2026-10-06T01:48:53.7627254Z [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2026-10-06T01:48:53.7628407Z [2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-06T01:48:53.7629131Z [2m   Start at [22m 01:48:51
+2026-10-06T01:48:53.7630014Z [2m   Duration [22m 2.00s[2m (transform 1.25s, setup 0ms, import 1.56s, tests 563ms, environment 1.29s)[22m
+2026-10-06T01:48:53.7630416Z 
+2026-10-06T01:48:53.8182223Z $ node scripts/check-sections-widgets-source.mjs && vitest run --config vitest.sections-widgets-core.config.ts
+2026-10-06T01:48:53.8557988Z {"sourcePin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","exactAuthorities":77,"selectedWholeTestFiles":8,"selectedExpandedCallbacks":73,"executedCallbacks":0}
+2026-10-06T01:48:54.1703799Z 
+2026-10-06T01:48:54.1707349Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:54.1708069Z 
+2026-10-06T01:48:54.5827232Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/widgets.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 64[2mms[22m[39m
+2026-10-06T01:48:54.9660769Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/import/sections.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+2026-10-06T01:48:55.2838632Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/widget-request-cache.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+2026-10-06T01:48:55.4656795Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/archives.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+2026-10-06T01:48:55.4678569Z 
+2026-10-06T01:48:55.4683101Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-06T01:48:55.4684243Z [2m      Tests [22m [1m[32m38 passed[39m[22m[90m (38)[39m
+2026-10-06T01:48:55.4685334Z [2m   Start at [22m 01:48:54
+2026-10-06T01:48:55.4687023Z [2m   Duration [22m 1.29s[2m (transform 173ms, setup 0ms, import 626ms, tests 178ms, environment 0ms)[22m
+2026-10-06T01:48:55.4689259Z 
+2026-10-06T01:48:55.5069575Z $ node scripts/check-sections-widgets-converter-source.mjs && vitest run --config vitest.sections-widgets-converter.config.ts
+2026-10-06T01:48:55.5387582Z {"sourcePin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","separateWholeDependencyTests":2,"callbacks":140,"executedCallbacks":0}
+2026-10-06T01:48:55.8479452Z 
+2026-10-06T01:48:55.8483305Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:55.8483936Z 
+2026-10-06T01:48:56.1669475Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/gutenberg-to-portable-text/tests/inline.test.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+2026-10-06T01:48:56.2375061Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/gutenberg-to-portable-text/tests/converter.test.ts [2m([22m[2m95 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+2026-10-06T01:48:56.2401750Z 
+2026-10-06T01:48:56.2407819Z [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2026-10-06T01:48:56.2408949Z [2m      Tests [22m [1m[32m140 passed[39m[22m[90m (140)[39m
+2026-10-06T01:48:56.2409874Z [2m   Start at [22m 01:48:55
+2026-10-06T01:48:56.2411842Z [2m   Duration [22m 384ms[2m (transform 198ms, setup 0ms, import 320ms, tests 77ms, environment 0ms)[22m
+2026-10-06T01:48:56.2413470Z 
+2026-10-06T01:48:56.2762127Z $ vitest run --config vitest.sections-widgets-transport.config.ts
+2026-10-06T01:48:57.0465908Z 
+2026-10-06T01:48:57.0470140Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:57.0470741Z 
+2026-10-06T01:48:57.6328325Z  [32m✓[39m tests/sections-widgets/base-path.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+2026-10-06T01:48:57.6351232Z 
+2026-10-06T01:48:57.6355708Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-06T01:48:57.6356897Z [2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+2026-10-06T01:48:57.6357602Z [2m   Start at [22m 01:48:57
+2026-10-06T01:48:57.6359412Z [2m   Duration [22m 584ms[2m (transform 355ms, setup 0ms, import 429ms, tests 28ms, environment 0ms)[22m
+2026-10-06T01:48:57.6361486Z 
+2026-10-06T01:48:57.6878798Z $ node scripts/check-sections-widgets-source.mjs && vitest run --config vitest.sections-widgets-d1.config.ts
+2026-10-06T01:48:57.7262634Z {"sourcePin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","exactAuthorities":77,"selectedWholeTestFiles":8,"selectedExpandedCallbacks":73,"executedCallbacks":0}
+2026-10-06T01:48:58.0418647Z 
+2026-10-06T01:48:58.0422871Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:48:58.0423439Z 
+2026-10-06T01:49:05.6834311Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/widgets.test.ts [2m([22m[2m20 tests[22m[2m)[22m[33m 7045[2mms[22m[39m
+2026-10-06T01:49:05.6836422Z        [33m[2m✓[22m[39m should create _emdash_widget_areas table [33m 734[2mms[22m[39m
+2026-10-06T01:49:05.6837623Z        [33m[2m✓[22m[39m should create _emdash_widgets table [33m 1013[2mms[22m[39m
+2026-10-06T01:49:05.6838865Z        [33m[2m✓[22m[39m should cascade delete widgets when area is deleted [33m 305[2mms[22m[39m
+2026-10-06T01:49:05.6840137Z          [33m[2m✓[22m[39m should update sort_order for reordering [33m 316[2mms[22m[39m
+2026-10-06T01:49:05.6841255Z          [33m[2m✓[22m[39m should update widget properties [33m 306[2mms[22m[39m
+2026-10-06T01:49:05.6842252Z          [33m[2m✓[22m[39m should delete a widget [33m 303[2mms[22m[39m
+2026-10-06T01:49:05.8591647Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/archives.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+2026-10-06T01:49:08.2183455Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/import/sections.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 1780[2mms[22m[39m
+2026-10-06T01:49:08.2186250Z      [33m[2m✓[22m[39m should import wp_block posts as sections [33m 480[2mms[22m[39m
+2026-10-06T01:49:08.2187691Z      [33m[2m✓[22m[39m should skip existing sections by slug [33m 352[2mms[22m[39m
+2026-10-06T01:49:08.2189071Z      [33m[2m✓[22m[39m should return empty result when no wp_block posts [33m 304[2mms[22m[39m
+2026-10-06T01:49:08.2191124Z      [33m[2m✓[22m[39m should convert Gutenberg content to Portable Text [33m 316[2mms[22m[39m
+2026-10-06T01:49:08.2193325Z      [33m[2m✓[22m[39m should generate slug from title if postName is missing [33m 327[2mms[22m[39m
+2026-10-06T01:49:10.7642056Z  [32m✓[39m parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/widget-request-cache.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 2032[2mms[22m[39m
+2026-10-06T01:49:10.7644622Z      [33m[2m✓[22m[39m shares in-flight prefetch with concurrent named reads, including missing areas [33m 470[2mms[22m[39m
+2026-10-06T01:49:10.7646461Z      [33m[2m✓[22m[39m shares the bulk load between repeated prefetch calls [33m 320[2mms[22m[39m
+2026-10-06T01:49:10.7647912Z      [33m[2m✓[22m[39m serves completed prefetch results without further queries [33m 310[2mms[22m[39m
+2026-10-06T01:49:10.7649480Z      [33m[2m✓[22m[39m falls back to a named read when the optional bulk load fails [33m 305[2mms[22m[39m
+2026-10-06T01:49:10.7650851Z      [33m[2m✓[22m[39m does not reuse prefetched data across requests [33m 329[2mms[22m[39m
+2026-10-06T01:49:10.7670027Z 
+2026-10-06T01:49:10.7674918Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-06T01:49:10.7676175Z [2m      Tests [22m [1m[32m38 passed[39m[22m[90m (38)[39m
+2026-10-06T01:49:10.7676936Z [2m   Start at [22m 01:48:58
+2026-10-06T01:49:10.7678136Z [2m   Duration [22m 12.72s[2m (transform 211ms, setup 0ms, import 1.32s, tests 10.88s, environment 0ms)[22m
+2026-10-06T01:49:10.7679271Z 
+2026-10-06T01:49:10.8136942Z $ node scripts/check-comments-source.mjs && vitest run --config vitest.comments-source.config.ts
+2026-10-06T01:49:11.2616451Z {
+2026-10-06T01:49:11.2617116Z   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+2026-10-06T01:49:11.2617469Z   "authorities": 85,
+2026-10-06T01:49:11.2617710Z   "wholeProducts": 32,
+2026-10-06T01:49:11.2617936Z   "wholeFiles": 8,
+2026-10-06T01:49:11.2618187Z   "declarations": 109,
+2026-10-06T01:49:11.2618413Z   "expects": 245,
+2026-10-06T01:49:11.2618619Z   "elements": 6,
+2026-10-06T01:49:11.2618829Z   "executed": 0,
+2026-10-06T01:49:11.2619023Z   "counts": [
+2026-10-06T01:49:11.2619224Z     {
+2026-10-06T01:49:11.2619579Z       "source": "packages/admin/tests/components/CommentInbox.test.tsx",
+2026-10-06T01:49:11.2619977Z       "declarations": 4,
+2026-10-06T01:49:11.2620211Z       "expects": 4,
+2026-10-06T01:49:11.2620431Z       "elements": 6,
+2026-10-06T01:49:11.2620658Z       "callbackSha256": [
+2026-10-06T01:49:11.2621052Z         "917a47a84ea4959c6af3b8ee020663e1be97c591d67fc3d3d55d6af9c4ed35e8",
+2026-10-06T01:49:11.2621579Z         "e46be065bab3573b31ee29160dcf7036711c97995868a4145e6ad6938110de87",
+2026-10-06T01:49:11.2622101Z         "04ac39278bc866c77b623ab9952f072924dabfa12cfd23ce6b4608ea0017237b",
+2026-10-06T01:49:11.2622625Z         "bc529120b8475391a6324f4414b20c49cce18d6eff001327cf56abded417a77a"
+2026-10-06T01:49:11.2622991Z       ]
+2026-10-06T01:49:11.2623185Z     },
+2026-10-06T01:49:11.2623366Z     {
+2026-10-06T01:49:11.2623703Z       "source": "packages/core/tests/integration/comments/hooks.test.ts",
+2026-10-06T01:49:11.2624082Z       "declarations": 19,
+2026-10-06T01:49:11.2624316Z       "expects": 45,
+2026-10-06T01:49:11.2624533Z       "elements": 0,
+2026-10-06T01:49:11.2624747Z       "callbackSha256": [
+2026-10-06T01:49:11.2625141Z         "9da58b220c2d9b8193badde7b59eb096a0f48086e0781be57fa16e03f0e67900",
+2026-10-06T01:49:11.2626416Z         "35fe25131ee8328e006817c1ad2ca03fcb8506eecba91c64fb12a3a8d6f01deb",
+2026-10-06T01:49:11.2627440Z         "a8ea0c0c452390da7e0f195b39323a44f2d5c1562773b8bda52842dbe88350f9",
+2026-10-06T01:49:11.2628423Z         "0131b0c4570805a6535bfb03b2ea9e34338ee878bcda0f74ccc816c8ce06fbbb",
+2026-10-06T01:49:11.2629443Z         "fc2c37ed1d6efdd3803af14b5efd9ec2029e5e4b55b858757b7d9a7cd9566d4b",
+2026-10-06T01:49:11.2630435Z         "f757aa3f669a689c33a38e550b2954bb5ebffe8a7c81f48133b2c7c4276c98f6",
+2026-10-06T01:49:11.2631302Z         "b9d48b7390291a7ddcd5a5774cedcbd77eb9b5871738dc8193c06a76acddb87e",
+2026-10-06T01:49:11.2631833Z         "a69e70b117a68f9c9da761b15d79463263b95bfd3dbc23af93f88aaafb720795",
+2026-10-06T01:49:11.2632348Z         "ff1093bb106e5a0301f3c68feb60eaeb6bf00507181343349a6885ab708b4e89",
+2026-10-06T01:49:11.2632892Z         "dc96d4a54960330762643da7be3e8f846736f508189eafffafe2dcbaf7c37ac0",
+2026-10-06T01:49:11.2633402Z         "92bdeb0519cdd69cd6c099288746dcb412e1416e26c8bde44f3b8bd4604d3f0e",
+2026-10-06T01:49:11.2633910Z         "b0291f3d3f331a8512eb66f119922a737c27e8be9248912ff560d66c2d00c5fc",
+2026-10-06T01:49:11.2634405Z         "1463ab571f956b7f6e1d830620c6b90172f06829297972d044534e972d515f07",
+2026-10-06T01:49:11.2634897Z         "cc52ff5a5ef6810c2908c36c2e930a0548b30dc609eb39227634cde9418a22a2",
+2026-10-06T01:49:11.2635395Z         "e5219f9b2899d4810adc4002d97704d49ae0a53087199454fc7d5bd52fb2df20",
+2026-10-06T01:49:11.2636219Z         "a80970e65860f6885b6fd512ebd06726b8a7113b3d24da2e278095387243585a",
+2026-10-06T01:49:11.2636762Z         "ab6599da9ccb3cbfc6a411e2f9e83d5773cb4527898498e4523142da69c8a33d",
+2026-10-06T01:49:11.2637267Z         "0547886a915ab9958f7d7ea1b8011d63af7a98083b02c34960ba7d36c161c89b",
+2026-10-06T01:49:11.2638310Z         "26adf43cf714274916462efc6a4a6a16ccb72ed7ca0d94029944c422a04540ea"
+2026-10-06T01:49:11.2639032Z       ]
+2026-10-06T01:49:11.2639374Z     },
+2026-10-06T01:49:11.2640368Z     {
+2026-10-06T01:49:11.2641052Z       "source": "packages/core/tests/integration/comments/notifications.test.ts",
+2026-10-06T01:49:11.2641798Z       "declarations": 16,
+2026-10-06T01:49:11.2642213Z       "expects": 42,
+2026-10-06T01:49:11.2642585Z       "elements": 0,
+2026-10-06T01:49:11.2642961Z       "callbackSha256": [
+2026-10-06T01:49:11.2643581Z         "8b7dedb2c1082d1ba2790f94bf1e826656f9136a049e442db25f95bc670145a6",
+2026-10-06T01:49:11.2644121Z         "a991502b7360b744dc940b41add67c6f768581e3ac3e53fa21f856e648ef19bd",
+2026-10-06T01:49:11.2644642Z         "086c5320e170c86623db990116b7935bbed14059d8502bd310b3c7824ad10bdf",
+2026-10-06T01:49:11.2645162Z         "327d89d822b45a3b605a4f933532a29723eb881d1a3db5c4557aa3cf8da16aaa",
+2026-10-06T01:49:11.2645690Z         "48dab2467ff3973021754e4b808bf2b73ed03893ec829ab3787fa25cc36e50ac",
+2026-10-06T01:49:11.2647018Z         "7e47c0e375de7d7284196eea32dc134b9eaf921c3845ed79c5b682945493a569",
+2026-10-06T01:49:11.2648005Z         "c125b2ee1a364d8d19d5904afe9366f14a436cb97c4d13f76ac328ee65698790",
+2026-10-06T01:49:11.2648985Z         "0c31bb2c7afc948aaf67cb7fc1bb765e533dc585640dae93f4e5fb5d769a7e13",
+2026-10-06T01:49:11.2649942Z         "9a63e69e93b29002e6555885c64a143a7946ef1eb8f5f2623344bff9fcc111bf",
+2026-10-06T01:49:11.2650745Z         "b8dd93a2c14e840155ab4d4537180e63e30914ede7cdc61320ce4fb83c2e4304",
+2026-10-06T01:49:11.2651280Z         "d6f3ae4ffe9f532687b366bb39ca5b853332f906a422b3817c6e66651e64832e",
+2026-10-06T01:49:11.2651906Z         "cc7125186cba9d852fdf2c8c9e1cfd88a2a03d5d29273f64cf8c2a58da135cc7",
+2026-10-06T01:49:11.2652430Z         "bfe9d24ef54eb8196589913b0677eab31ab32e12d8ec6bcd5994f36e109fe4f3",
+2026-10-06T01:49:11.2652944Z         "6beb1371707bdbfa26cc53765cda3b66632212eda21eb8691f45d140c0a8ab39",
+2026-10-06T01:49:11.2653462Z         "9e47dfce5cd6e6234be0ad1041fcbe61866b25118ab6778a44e7cd95f021ae93",
+2026-10-06T01:49:11.2653997Z         "47c203d83cf9c2feff47d4fceb671f5e4ac4859ed80c185df467634d4300f645"
+2026-10-06T01:49:11.2654373Z       ]
+2026-10-06T01:49:11.2654566Z     },
+2026-10-06T01:49:11.2654936Z     {
+2026-10-06T01:49:11.2655299Z       "source": "packages/core/tests/integration/comments/reactions.test.ts",
+2026-10-06T01:49:11.2655701Z       "declarations": 12,
+2026-10-06T01:49:11.2656242Z       "expects": 24,
+2026-10-06T01:49:11.2656473Z       "elements": 0,
+2026-10-06T01:49:11.2656706Z       "callbackSha256": [
+2026-10-06T01:49:11.2657104Z         "be5555fd932cf013282dae83114f92f73e1efc33c23fd507fbee18b2ca4731b2",
+2026-10-06T01:49:11.2657755Z         "1fec9e9f88c6796b86af7d2389edc863a8be911ab73687f580e648389a31dda7",
+2026-10-06T01:49:11.2658429Z         "f5ed3f857a9c033b47ce32530447714740afebafa7ee48cdc28e940f94dd61eb",
+2026-10-06T01:49:11.2658971Z         "a1d6f7def605e1674d422b0d20eddd2aca465755ce3fe761f1cffcf8d63e9ca3",
+2026-10-06T01:49:11.2659484Z         "c453b17849de93167aa835d084d7ff66166dd5c5b2db63854f3edaf2072665da",
+2026-10-06T01:49:11.2659995Z         "41c423528d1386eb73a0130c26c377f54a872bbd0e7d313c92a4fd5ff1dd6008",
+2026-10-06T01:49:11.2660505Z         "14be4a97cc5905a26f3089b085d1bedb7c15bea3caa49fd74d39e05fd12f8dc1",
+2026-10-06T01:49:11.2661024Z         "584d5b016cf0fa606e66b53efb5b2d7de6a21b776e8ac621c465140097c17576",
+2026-10-06T01:49:11.2661540Z         "e92ba7892113d4ed1ce719f37b400bf340265b92e12a53baca771636986d2a87",
+2026-10-06T01:49:11.2662047Z         "b14868353cc3da78e4ae6688c0b406d5ab572dfc813fcc6ad3117926bea24d59",
+2026-10-06T01:49:11.2662548Z         "5032708773a0c9551bb6c99ac767724da25ab5a801035947e3d5200d5c786402",
+2026-10-06T01:49:11.2663060Z         "cb61c72ee8e5b554de2316b43356e92a2e778cf4dd106fcf2badd99693995b8b"
+2026-10-06T01:49:11.2663429Z       ]
+2026-10-06T01:49:11.2663609Z     },
+2026-10-06T01:49:11.2663793Z     {
+2026-10-06T01:49:11.2664147Z       "source": "packages/core/tests/integration/comments/repository.test.ts",
+2026-10-06T01:49:11.2664546Z       "declarations": 32,
+2026-10-06T01:49:11.2664782Z       "expects": 88,
+2026-10-06T01:49:11.2665003Z       "elements": 0,
+2026-10-06T01:49:11.2665222Z       "callbackSha256": [
+2026-10-06T01:49:11.2665599Z         "7f515c8401b5d39cd4d73e0a502f870d701521cf36022990d2c6ad1f51868fb6",
+2026-10-06T01:49:11.2666400Z         "5c839c76b879d95ff94a7f29a649bcd976b62ec27d1d2fa577f5b18426c2bd88",
+2026-10-06T01:49:11.2666929Z         "9ec3e701c50f238246aac08c0d3288fb8d59e0c7a164a77cd4d306e7e1502c05",
+2026-10-06T01:49:11.2667441Z         "af5fd3f72ca9b56bba5cd85309e06408a791980d084e9d8730fa6322f3c999fb",
+2026-10-06T01:49:11.2667951Z         "20640a8c8265df14170626073091ee6b7299ac0618f85364d4de8433b11669a2",
+2026-10-06T01:49:11.2668461Z         "c461a440b78d4ba62371148492b860ea6639fe44bfcf4fd2af2d5d7c6bea7791",
+2026-10-06T01:49:11.2668970Z         "445812ccf1ac99b42b561d7891aa9091ebe4f4dad743af1297d53f874660ca94",
+2026-10-06T01:49:11.2669478Z         "1a43d5e71caf85bdc13cd804dc1999a66cd94f500317877176714e7fba106e7f",
+2026-10-06T01:49:11.2669996Z         "fde9f4363b1fa93aaee0047ad084f2eb0f8c417423a6313e55b177195e74837b",
+2026-10-06T01:49:11.2670515Z         "a2cae246439eafb3d956b498630cc912c52dae9755c9aa7b065f75bece25a75e",
+2026-10-06T01:49:11.2671041Z         "5feb42ea5a619cafb892ac2a53ccd6da4ba21e14904ed1958dd73cdb38099f12",
+2026-10-06T01:49:11.2671569Z         "b2bd108340f8dde3e1a9140e05beef305e24b0febfc69fa68347fd23cf76e7ed",
+2026-10-06T01:49:11.2672130Z         "f6f57e3ad920d34026ebacf0f4ab691c33e494e674b509e21c26cfe269c3ec82",
+2026-10-06T01:49:11.2672647Z         "60d5e656518c020365f2dff61a008fb6bc8add951fbd869f2a49e2b20136bfd6",
+2026-10-06T01:49:11.2673165Z         "e4e75e3faba8fcaae234b305e080a035fb4efd8eb3a59f2b39cc19d998f32701",
+2026-10-06T01:49:11.2673714Z         "04d4ba095f119df931da72eaac2afb673222f366d84c10f54216360db8b07485",
+2026-10-06T01:49:11.2674230Z         "977852c0a1c9b3e7187c2a58aac55c44c395a124452ce9a14089f4fb64ed3649",
+2026-10-06T01:49:11.2674733Z         "90c648031c0d4a0d03d96f75c5cb857150d8c5499abc6b8d18f489384e3a9b82",
+2026-10-06T01:49:11.2675232Z         "450ee62d33c0c16579fa1048ad9594975085fcec5790f036f6e3e70173776000",
+2026-10-06T01:49:11.2675747Z         "19e14cdf9ace273cbb5f6b5969a1eb591ddbe5301914349a133a112c7321e254",
+2026-10-06T01:49:11.2676769Z         "6a1af0604e321f6a6c02c08ab60e2d9f53a5cd40eb096efb8d03d0cd8ba016e5",
+2026-10-06T01:49:11.2677299Z         "971a556d013740a6e4e9972f6988ae931fd3531cf7a7447d5ab6db2509251017",
+2026-10-06T01:49:11.2677853Z         "715059ba9e3d79f3bc9b950c77eb00f717141b35e486e22a3c608de45b7874b3",
+2026-10-06T01:49:11.2678415Z         "4ab2787ffa1c873b04230cbace289498c3c7d3e89496971d937693bed9c601ae",
+2026-10-06T01:49:11.2678962Z         "0bf669f94e348bea9842c1d0d7c5bc2be0e417b56b68c2556ebdb9c75c47d111",
+2026-10-06T01:49:11.2679632Z         "270ac04b6871f9f3a75ad38f0eaee1a50ac8c2b2ac006dcd74e39a7be5f3afda",
+2026-10-06T01:49:11.2680205Z         "1ea68a1d55596bded7255ddbfeb8f105577f5809ff2dc554ce81aac59e6d0a75",
+2026-10-06T01:49:11.2680818Z         "832d65a992b736348c7279d21e5d0117059bde0fc56faf8a50e741be249ba831",
+2026-10-06T01:49:11.2681431Z         "d425f93948065e16a0642e3cb61b10153634aedd0ec073ba9ccc85fef456ceae",
+2026-10-06T01:49:11.2681984Z         "80b3b1b22fd7becd894b8d3535449278dc9a222ac4627d5b19ba7c01098f804f",
+2026-10-06T01:49:11.2682545Z         "5cf54347fa6e3799f72e56bc9edbf1f6b1ac3bec6597b472d521da4521bfdade",
+2026-10-06T01:49:11.2683119Z         "bc6238f2087a6a1f61cab7b80c2c7a1db57b00cf58daa3801d8bf92353111496"
+2026-10-06T01:49:11.2683511Z       ]
+2026-10-06T01:49:11.2683710Z     },
+2026-10-06T01:49:11.2683897Z     {
+2026-10-06T01:49:11.2684261Z       "source": "packages/core/tests/unit/comments/ranking.test.ts",
+2026-10-06T01:49:11.2684624Z       "declarations": 8,
+2026-10-06T01:49:11.2684895Z       "expects": 14,
+2026-10-06T01:49:11.2685136Z       "elements": 0,
+2026-10-06T01:49:11.2685397Z       "callbackSha256": [
+2026-10-06T01:49:11.2685825Z         "3bbe9c689a18bc080c750c203e0e741cef9b2c9949dd9253751273bf39ccb8c7",
+2026-10-06T01:49:11.2686633Z         "5b85122f289bd637ceb7bd4b7323b70bc6a3f5d1c1a7064d84b175669a7b9333",
+2026-10-06T01:49:11.2687149Z         "4c780ac86d604b40565022ed85ad750b3b1915cdbd35b9c8d9361e38ef567e1a",
+2026-10-06T01:49:11.2687706Z         "30009ade89fd200a7e00d7f5fe658a042291b492a885f5998375889102e60961",
+2026-10-06T01:49:11.2688244Z         "6b76c9c17695c7066a080f96703708a9099160da574884c4d38c25ef6f506d5f",
+2026-10-06T01:49:11.2688789Z         "2a8fe02c809a1895cf2ffc2fa5ec6e6949af36a02135c3af6f6611595e0385fb",
+2026-10-06T01:49:11.2689358Z         "5d3a2a8d14760c46def49d1731d1ab8edf97994c6c8e053b7834a7b566af22c7",
+2026-10-06T01:49:11.2689921Z         "72078f3b746adcbb194a0e6f413d7e4370827423a4fccb2d366dda47faa10e4d"
+2026-10-06T01:49:11.2690307Z       ]
+2026-10-06T01:49:11.2690516Z     },
+2026-10-06T01:49:11.2690722Z     {
+2026-10-06T01:49:11.2691067Z       "source": "packages/core/tests/unit/comments/turnstile.test.ts",
+2026-10-06T01:49:11.2691480Z       "declarations": 1,
+2026-10-06T01:49:11.2691736Z       "expects": 3,
+2026-10-06T01:49:11.2691949Z       "elements": 0,
+2026-10-06T01:49:11.2692195Z       "callbackSha256": [
+2026-10-06T01:49:11.2692637Z         "4d972e8fc5abfd1010b9eeb4ae5c3369a16ae6a769edabf57f831cf4c41c76a0"
+2026-10-06T01:49:11.2693067Z       ]
+2026-10-06T01:49:11.2693250Z     },
+2026-10-06T01:49:11.2693455Z     {
+2026-10-06T01:49:11.2693766Z       "source": "packages/core/tests/unit/api/csrf.test.ts",
+2026-10-06T01:49:11.2694156Z       "declarations": 17,
+2026-10-06T01:49:11.2694427Z       "expects": 25,
+2026-10-06T01:49:11.2694647Z       "elements": 0,
+2026-10-06T01:49:11.2694889Z       "callbackSha256": [
+2026-10-06T01:49:11.2695305Z         "17383e7001416411c23116b6913f77c7d022432503f6064e3639304504b78d7c",
+2026-10-06T01:49:11.2696062Z         "a7693d9465e9afb288f8d766fa162628b59f1f74b0236e4123d2638d53172cb9",
+2026-10-06T01:49:11.2696641Z         "d0c9fbb247b10828af5b3775d6c4d2b274b99618aae8017afc4af9d525989857",
+2026-10-06T01:49:11.2697221Z         "7c4b404412dcce14e3d630a8c5d542e0e38b5866dfb42de1b1ef71e2e557013a",
+2026-10-06T01:49:11.2697794Z         "25a5d5f36506200295c916dd7b5f8b28ad420684603724abb9e01ee02a066c46",
+2026-10-06T01:49:11.2698344Z         "d1e645fe8b3b0c80421eb077b60bb59e9d897dfb9e188a19a45e276ca139e291",
+2026-10-06T01:49:11.2699063Z         "a3f50633837fb063e2f982b7500312cf83d65f25ab50f627e0cfe5608167afb2",
+2026-10-06T01:49:11.2699621Z         "026798f7203ecb4ad84f37359e1e3b3438ae7bb2dd7a260af81eb3bdcc6d57a8",
+2026-10-06T01:49:11.2700182Z         "ea3096ee0faca24142c89f27a0ea0e8979742b4e6f79e8cff4a18c47f099f537",
+2026-10-06T01:49:11.2700748Z         "d13e951fd6b65d4aee5eb492cc53b211e8e289f55f1e869bc25ed5b1faab178d",
+2026-10-06T01:49:11.2701326Z         "b256a3879b1bc7f6ac8c7825b946b01bf9b40fabb12f42298a2a30123997447c",
+2026-10-06T01:49:11.2701981Z         "96b6842a048a15570a3156a9d0e3184eb495a8e5919888befe7f779970b25f07",
+2026-10-06T01:49:11.2702533Z         "f691e663df54558107f096131026662eead28298028399cfaf917bd9161ee99a",
+2026-10-06T01:49:11.2703077Z         "039428031cbf3c3a6ac801812b1e241a3fd2b4828c989afa941a7577966bd4de",
+2026-10-06T01:49:11.2703628Z         "111973d312f31dc6c2286dba1be1549c45d36fbbd866cc43ea6937f31af58d6f",
+2026-10-06T01:49:11.2704192Z         "ce67559c173653ac6feb92a372ec1f3cc58bce78a88a8b5e68bc7e9bb78b5538",
+2026-10-06T01:49:11.2704763Z         "62892c7e293a0fd7de52cb5c7c8550576ab9c8fc25050ec88230cc85bef5ff59"
+2026-10-06T01:49:11.2705166Z       ]
+2026-10-06T01:49:11.2705352Z     }
+2026-10-06T01:49:11.2705550Z   ]
+2026-10-06T01:49:11.2705749Z }
+2026-10-06T01:49:11.5945803Z 
+2026-10-06T01:49:11.5950013Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:49:11.5950605Z 
+2026-10-06T01:49:12.4491259Z  [32m✓[39m tests/comments-source/packages/core/tests/integration/comments/repository.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 183[2mms[22m[39m
+2026-10-06T01:49:12.9119529Z  [32m✓[39m tests/comments-source/packages/core/tests/integration/comments/hooks.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+2026-10-06T01:49:13.3627703Z  [32m✓[39m tests/comments-source/packages/core/tests/integration/comments/notifications.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 89[2mms[22m[39m
+2026-10-06T01:49:13.8232083Z  [32m✓[39m tests/comments-source/packages/core/tests/integration/comments/reactions.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+2026-10-06T01:49:14.0710574Z  [32m✓[39m tests/comments-source/packages/core/tests/unit/api/csrf.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+2026-10-06T01:49:14.3849622Z  [32m✓[39m tests/comments-source/packages/core/tests/unit/comments/turnstile.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 54[2mms[22m[39m
+2026-10-06T01:49:14.5294121Z  [32m✓[39m tests/comments-source/packages/core/tests/unit/comments/ranking.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-06T01:49:14.5319122Z 
+2026-10-06T01:49:14.5323395Z [2m Test Files [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+2026-10-06T01:49:14.5324479Z [2m      Tests [22m [1m[32m105 passed[39m[22m[90m (105)[39m
+2026-10-06T01:49:14.5325435Z [2m   Start at [22m 01:49:11
+2026-10-06T01:49:14.5326710Z [2m   Duration [22m 2.93s[2m (transform 398ms, setup 98ms, import 1.42s, tests 542ms, environment 1ms)[22m
+2026-10-06T01:49:14.5328517Z 
+2026-10-06T01:49:14.5981568Z $ vitest run --config vitest.comments-native.config.ts
+2026-10-06T01:49:15.3723221Z 
+2026-10-06T01:49:15.3727710Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:49:15.3728349Z 
+2026-10-06T01:49:16.9895405Z  [32m✓[39m tests/comments-native/settings.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 237[2mms[22m[39m
+2026-10-06T01:49:18.0613775Z  [32m✓[39m tests/comments-native/public.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 154[2mms[22m[39m
+2026-10-06T01:49:19.1190699Z  [32m✓[39m tests/comments-native/inbox.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 135[2mms[22m[39m
+2026-10-06T01:49:19.1212868Z 
+2026-10-06T01:49:19.1217109Z [2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+2026-10-06T01:49:19.1218248Z [2m      Tests [22m [1m[32m14 passed[39m[22m[90m (14)[39m
+2026-10-06T01:49:19.1219438Z [2m   Start at [22m 01:49:15
+2026-10-06T01:49:19.1220990Z [2m   Duration [22m 3.74s[2m (transform 702ms, setup 0ms, import 1.07s, tests 526ms, environment 1.78s)[22m
+2026-10-06T01:49:19.1223263Z 
+2026-10-06T01:49:19.1808192Z $ node scripts/check-canonical-installation-source.mjs && vitest run --config vitest.canonical-installation.config.ts
+2026-10-06T01:49:19.5038747Z Canonical source guard:38 whole pinned authorities and MIT exact;3 whole import-adapted runtime bodies and2 whole finite Native atomic-adapted taxonomy bodies verified. Only the whole pagination2-callback/6-expression family selected. Protected whole families remain unexecuted. This byte check grants zero product/test parity credit.
+2026-10-06T01:49:19.8233096Z 
+2026-10-06T01:49:19.8237242Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:49:19.8237897Z 
+2026-10-06T01:49:20.5076357Z  [32m✓[39m parity/emdash/canonical-installation/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 76[2mms[22m[39m
+2026-10-06T01:49:20.5116229Z 
+2026-10-06T01:49:20.5120858Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-06T01:49:20.5122012Z [2m      Tests [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2026-10-06T01:49:20.5122933Z [2m   Start at [22m 01:49:19
+2026-10-06T01:49:20.5124265Z [2m   Duration [22m 682ms[2m (transform 281ms, setup 0ms, import 474ms, tests 76ms, environment 0ms)[22m
+2026-10-06T01:49:20.5125426Z 
+2026-10-06T01:49:20.5494740Z $ node scripts/check-content-picker-source.mjs && vitest run --config vitest.content-picker-source.config.ts
+2026-10-06T01:49:20.8479913Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","authorities":31,"wholeTests":4,"testDeclarations":22,"expectExpressions":25,"productTestsRun":0}
+2026-10-06T01:49:21.1595770Z 
+2026-10-06T01:49:21.1599701Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:49:21.1600400Z 
+2026-10-06T01:49:23.0288606Z  [32m✓[39m parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/content-list-search-fts.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 937[2mms[22m[39m
+2026-10-06T01:49:24.2498544Z  [32m✓[39m parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/content-list-search.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 804[2mms[22m[39m
+2026-10-06T01:49:24.9656692Z  [32m✓[39m parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/content-list-search-title-field.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 300[2mms[22m[39m
+2026-10-06T01:49:25.5150919Z  [32m✓[39m tests/content-picker-native-backend/query.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 143[2mms[22m[39m
+2026-10-06T01:49:25.5173979Z 
+2026-10-06T01:49:25.5179103Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-06T01:49:25.5180179Z [2m      Tests [22m [1m[32m22 passed[39m[22m[90m (22)[39m
+2026-10-06T01:49:25.5187033Z [2m   Start at [22m 01:49:21
+2026-10-06T01:49:25.5188080Z [2m   Duration [22m 4.35s[2m (transform 522ms, setup 0ms, import 1.66s, tests 2.19s, environment 0ms)[22m
+2026-10-06T01:49:25.5188832Z 
+2026-10-06T01:49:25.5669946Z $ vitest run --config vitest.content-picker-native-ui.config.ts
+2026-10-06T01:49:26.1306092Z 
+2026-10-06T01:49:26.1310613Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:49:26.1311243Z 
+2026-10-06T01:49:27.8113173Z  [32m✓[39m tests/content-picker-native-ui/picker.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 186[2mms[22m[39m
+2026-10-06T01:49:28.8013796Z  [32m✓[39m tests/content-picker-native-ui/standalone-client.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 112[2mms[22m[39m
+2026-10-06T01:49:29.8513618Z  [32m✓[39m tests/content-picker-native-ui/menu-picker.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 92[2mms[22m[39m
+2026-10-06T01:49:30.8072083Z  [32m✓[39m tests/content-picker-native-ui/production-query.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+2026-10-06T01:49:31.5508759Z  [32m✓[39m tests/content-picker-native-ui/client.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+2026-10-06T01:49:31.5530158Z 
+2026-10-06T01:49:31.5535215Z [2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+2026-10-06T01:49:31.5536799Z [2m      Tests [22m [1m[32m29 passed[39m[22m[90m (29)[39m
+2026-10-06T01:49:31.5537971Z [2m   Start at [22m 01:49:26
+2026-10-06T01:49:31.5547736Z [2m   Duration [22m 5.42s[2m (transform 725ms, setup 0ms, import 1.34s, tests 485ms, environment 2.96s)[22m
+2026-10-06T01:49:31.5548451Z 
+2026-10-06T01:49:31.6232803Z $ node scripts/check-writable-editor-source.mjs && vitest run --config vitest.writable-editor-source.config.ts
+2026-10-06T01:49:32.0734092Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeAuthorities":15,"sourceDeclarations":227,"sourceExpectExpressions":578,"executedWholeFamilies":1,"executedUniqueSourceCallbacks":7,"limitations":"Whole editor/list and e2e families remain unexecuted; no extra Source credit from this guard."}
+2026-10-06T01:49:32.4064042Z 
+2026-10-06T01:49:32.4068569Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:49:32.4069215Z 
+2026-10-06T01:49:32.5961064Z  [32m✓[39m parity/emdash/writable-editor-source/packages/admin/tests/lib/content-validation-errors.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+2026-10-06T01:49:32.5983131Z 
+2026-10-06T01:49:32.5988064Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-06T01:49:32.5989183Z [2m      Tests [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+2026-10-06T01:49:32.5990015Z [2m   Start at [22m 01:49:32
+2026-10-06T01:49:32.5991377Z [2m   Duration [22m 186ms[2m (transform 28ms, setup 0ms, import 41ms, tests 19ms, environment 0ms)[22m
+2026-10-06T01:49:32.5993113Z 
+2026-10-06T01:49:32.6477313Z $ pnpm build && vitest run --config vitest.writable-editor-native.config.ts
+2026-10-06T01:49:32.6641222Z $ vite build
+2026-10-06T01:49:33.6205097Z [36mvite v8.3.2 [32mbuilding ssr environment for production...[36m[39m
+2026-10-06T01:49:33.6387126Z transforming...
+2026-10-06T01:49:34.9020650Z ✓ 772 modules transformed.
+2026-10-06T01:49:35.0790492Z rendering chunks...
+2026-10-06T01:49:36.4425426Z [36mvite v8.3.2 [32mbuilding client environment for production...[36m[39m
+2026-10-06T01:49:36.4503334Z transforming...
+2026-10-06T01:49:37.8929644Z ✓ 1836 modules transformed.
+2026-10-06T01:49:38.0428922Z rendering chunks...
+2026-10-06T01:49:38.2417115Z computing gzip size...
+2026-10-06T01:49:38.2770538Z .svelte-kit/output/client/_app/version.json                                       0.02 kB │ gzip:  0.04 kB
+2026-10-06T01:49:38.2772102Z .svelte-kit/output/client/.vite/manifest.json                                    26.93 kB │ gzip:  2.88 kB
+2026-10-06T01:49:38.2773154Z .svelte-kit/output/client/_app/immutable/assets/25.DrcXZYa3.css                   0.17 kB │ gzip:  0.13 kB
+2026-10-06T01:49:38.2774104Z .svelte-kit/output/client/_app/immutable/assets/MenuDialog.CSb6g0e0.css           0.20 kB │ gzip:  0.17 kB
+2026-10-06T01:49:38.2775023Z .svelte-kit/output/client/_app/immutable/assets/7.Dcp-D_B2.css                    0.22 kB │ gzip:  0.15 kB
+2026-10-06T01:49:38.2776090Z .svelte-kit/output/client/_app/immutable/assets/26.gKqYElxg.css                   0.36 kB │ gzip:  0.22 kB
+2026-10-06T01:49:38.2777028Z .svelte-kit/output/client/_app/immutable/assets/EditorForm.BHWZld0R.css           0.44 kB │ gzip:  0.23 kB
+2026-10-06T01:49:38.2777923Z .svelte-kit/output/client/_app/immutable/assets/DraftPreview.fwW3PV90.css         0.48 kB │ gzip:  0.25 kB
+2026-10-06T01:49:38.2778794Z .svelte-kit/output/client/_app/immutable/assets/20.CyTVIvfE.css                   0.54 kB │ gzip:  0.26 kB
+2026-10-06T01:49:38.2779648Z .svelte-kit/output/client/_app/immutable/assets/10.CVJ5M564.css                   0.57 kB │ gzip:  0.29 kB
+2026-10-06T01:49:38.2780809Z .svelte-kit/output/client/_app/immutable/assets/18.B4jjrLtW.css                   0.68 kB │ gzip:  0.31 kB
+2026-10-06T01:49:38.2781657Z .svelte-kit/output/client/_app/immutable/assets/15.CccxuyKJ.css                   0.70 kB │ gzip:  0.35 kB
+2026-10-06T01:49:38.2782538Z .svelte-kit/output/client/_app/immutable/assets/ContentTypeEditor.BP8dJX1x.css    1.57 kB │ gzip:  0.55 kB
+2026-10-06T01:49:38.2783415Z .svelte-kit/output/client/_app/immutable/assets/19.DYOooGE9.css                   1.60 kB │ gzip:  0.40 kB
+2026-10-06T01:49:38.2784506Z .svelte-kit/output/client/_app/immutable/assets/16.C1Ra8cmf.css                   2.18 kB │ gzip:  0.68 kB
+2026-10-06T01:49:38.2785394Z .svelte-kit/output/client/_app/immutable/assets/17.CvGkr_1p.css                   2.27 kB │ gzip:  0.85 kB
+2026-10-06T01:49:38.2786679Z .svelte-kit/output/client/_app/immutable/assets/admin.CSBm7Oz-.css                2.57 kB │ gzip:  0.88 kB
+2026-10-06T01:49:38.2788103Z .svelte-kit/output/client/_app/immutable/assets/9.D2HNaFcR.css                    3.13 kB │ gzip:  0.93 kB
+2026-10-06T01:49:38.2789667Z .svelte-kit/output/client/_app/immutable/assets/8.ZjhzejkS.css                   12.10 kB │ gzip:  2.88 kB
+2026-10-06T01:49:38.2791291Z .svelte-kit/output/client/_app/immutable/assets/WorkspaceShell.CG4u5kwz.css      37.08 kB │ gzip:  5.01 kB
+2026-10-06T01:49:38.2792344Z .svelte-kit/output/client/_app/immutable/chunks/DVPp153c.js                       0.02 kB │ gzip:  0.04 kB
+2026-10-06T01:49:38.2793203Z .svelte-kit/output/client/_app/immutable/nodes/0.DxX5y2os.js                      0.06 kB │ gzip:  0.08 kB
+2026-10-06T01:49:38.2794049Z .svelte-kit/output/client/_app/immutable/nodes/2.DxX5y2os.js                      0.06 kB │ gzip:  0.08 kB
+2026-10-06T01:49:38.2794926Z .svelte-kit/output/client/_app/immutable/nodes/3.DxX5y2os.js                      0.06 kB │ gzip:  0.08 kB
+2026-10-06T01:49:38.2795776Z .svelte-kit/output/client/_app/immutable/nodes/4.DxX5y2os.js                      0.06 kB │ gzip:  0.08 kB
+2026-10-06T01:49:38.2796821Z .svelte-kit/output/client/_app/immutable/nodes/6.DxX5y2os.js                      0.06 kB │ gzip:  0.08 kB
+2026-10-06T01:49:38.2797678Z .svelte-kit/output/client/_app/immutable/entry/start.8-EXhKe4.js                  0.08 kB │ gzip:  0.09 kB
+2026-10-06T01:49:38.2799115Z .svelte-kit/output/client/_app/immutable/chunks/37fP6F8H.js                       0.10 kB │ gzip:  0.11 kB
+2026-10-06T01:49:38.2800509Z .svelte-kit/output/client/_app/immutable/chunks/Bx0M5yVh.js                       0.15 kB │ gzip:  0.15 kB
+2026-10-06T01:49:38.2801984Z .svelte-kit/output/client/_app/immutable/chunks/CDr4Dcpc.js                       0.15 kB │ gzip:  0.14 kB
+2026-10-06T01:49:38.2803565Z .svelte-kit/output/client/_app/immutable/chunks/BeMOnYEs.js                       0.25 kB │ gzip:  0.19 kB
+2026-10-06T01:49:38.2805071Z .svelte-kit/output/client/_app/immutable/chunks/DcgDEApC.js                       0.29 kB │ gzip:  0.16 kB
+2026-10-06T01:49:38.2806383Z .svelte-kit/output/client/_app/immutable/chunks/DndEuPid.js                       0.34 kB │ gzip:  0.19 kB
+2026-10-06T01:49:38.2808136Z .svelte-kit/output/client/_app/immutable/nodes/1.Ncy-a-56.js                      0.35 kB │ gzip:  0.25 kB
+2026-10-06T01:49:38.2809586Z .svelte-kit/output/client/_app/immutable/chunks/DBbYcqdk.js                       0.44 kB │ gzip:  0.21 kB
+2026-10-06T01:49:38.2810749Z .svelte-kit/output/client/_app/immutable/nodes/5.C2wO9dNo.js                      0.47 kB │ gzip:  0.30 kB
+2026-10-06T01:49:38.2811961Z .svelte-kit/output/client/_app/immutable/chunks/CVxkVKuJ.js                       0.66 kB │ gzip:  0.44 kB
+2026-10-06T01:49:38.2812942Z .svelte-kit/output/client/_app/immutable/nodes/22.Dg4Dgo3z.js                     1.12 kB │ gzip:  0.69 kB
+2026-10-06T01:49:38.2814628Z .svelte-kit/output/client/_app/immutable/chunks/zUw0pKpl.js                       1.24 kB │ gzip:  0.64 kB
+2026-10-06T01:49:38.2816448Z .svelte-kit/output/client/_app/immutable/chunks/Bjy-W4x2.js                       1.36 kB │ gzip:  0.65 kB
+2026-10-06T01:49:38.2817998Z .svelte-kit/output/client/_app/immutable/chunks/BaNbYf_w.js                       1.39 kB │ gzip:  0.75 kB
+2026-10-06T01:49:38.2819659Z .svelte-kit/output/client/_app/immutable/chunks/BZv1fowZ.js                       1.51 kB │ gzip:  0.77 kB
+2026-10-06T01:49:38.2820587Z .svelte-kit/output/client/_app/immutable/nodes/7.C-2n-N_y.js                      1.87 kB │ gzip:  1.04 kB
+2026-10-06T01:49:38.2821435Z .svelte-kit/output/client/_app/immutable/nodes/21.BMwm2l5-.js                     1.90 kB │ gzip:  0.99 kB
+2026-10-06T01:49:38.2822473Z .svelte-kit/output/client/_app/immutable/chunks/a6xspmgQ.js                       1.97 kB │ gzip:  0.76 kB
+2026-10-06T01:49:38.2823342Z .svelte-kit/output/client/_app/immutable/chunks/C-VuWvGk.js                       2.82 kB │ gzip:  1.24 kB
+2026-10-06T01:49:38.2824190Z .svelte-kit/output/client/_app/immutable/chunks/7TA6ESnH.js                       2.85 kB │ gzip:  0.73 kB
+2026-10-06T01:49:38.2825034Z .svelte-kit/output/client/_app/immutable/nodes/12.C39FTDBk.js                     3.00 kB │ gzip:  1.37 kB
+2026-10-06T01:49:38.2826056Z .svelte-kit/output/client/_app/immutable/nodes/25.C6Hs2MCx.js                     3.07 kB │ gzip:  1.52 kB
+2026-10-06T01:49:38.2826921Z .svelte-kit/output/client/_app/immutable/chunks/vP9c6ILN.js                       3.17 kB │ gzip:  1.31 kB
+2026-10-06T01:49:38.2827776Z .svelte-kit/output/client/_app/immutable/nodes/14.DjCKQDwu.js                     3.42 kB │ gzip:  1.63 kB
+2026-10-06T01:49:38.2828860Z .svelte-kit/output/client/_app/immutable/chunks/Cx2EVvqI.js                       3.51 kB │ gzip:  1.20 kB
+2026-10-06T01:49:38.2830493Z .svelte-kit/output/client/_app/immutable/nodes/10.CzQe5dyQ.js                     4.32 kB │ gzip:  1.95 kB
+2026-10-06T01:49:38.2832198Z .svelte-kit/output/client/_app/immutable/nodes/18.DeBCn1GP.js                     5.34 kB │ gzip:  2.17 kB
+2026-10-06T01:49:38.2833941Z .svelte-kit/output/client/_app/immutable/nodes/24.DPSskwcs.js                     5.90 kB │ gzip:  2.63 kB
+2026-10-06T01:49:38.2835628Z .svelte-kit/output/client/_app/immutable/nodes/13.BDTYuyDl.js                     5.91 kB │ gzip:  1.98 kB
+2026-10-06T01:49:38.2837578Z .svelte-kit/output/client/_app/immutable/nodes/15.CG9OHY7p.js                     6.03 kB │ gzip:  2.50 kB
+2026-10-06T01:49:38.2839239Z .svelte-kit/output/client/_app/immutable/nodes/11.BIrXFcOf.js                     6.14 kB │ gzip:  2.19 kB
+2026-10-06T01:49:38.2840621Z .svelte-kit/output/client/_app/immutable/nodes/26.CCZXO7Wb.js                     6.48 kB │ gzip:  2.65 kB
+2026-10-06T01:49:38.2841509Z .svelte-kit/output/client/_app/immutable/nodes/20.BGonjlVX.js                     7.85 kB │ gzip:  3.25 kB
+2026-10-06T01:49:38.2842366Z .svelte-kit/output/client/_app/immutable/nodes/23.DoBJtXXD.js                     8.09 kB │ gzip:  3.34 kB
+2026-10-06T01:49:38.2843240Z .svelte-kit/output/client/_app/immutable/entry/app.CwyGpJQd.js                    9.74 kB │ gzip:  3.13 kB
+2026-10-06T01:49:38.2844132Z .svelte-kit/output/client/_app/immutable/nodes/27.4OdhBUJT.js                    13.95 kB │ gzip:  5.14 kB
+2026-10-06T01:49:38.2845000Z .svelte-kit/output/client/_app/immutable/chunks/ClNRUMt8.js                      14.34 kB │ gzip:  5.41 kB
+2026-10-06T01:49:38.2845853Z .svelte-kit/output/client/_app/immutable/nodes/17.C-l771h5.js                    14.47 kB │ gzip:  5.04 kB
+2026-10-06T01:49:38.2846939Z .svelte-kit/output/client/_app/immutable/nodes/9.CAe8d2pb.js                     15.61 kB │ gzip:  5.37 kB
+2026-10-06T01:49:38.2847800Z .svelte-kit/output/client/_app/immutable/chunks/Bgxtt0LX.js                      16.72 kB │ gzip:  6.38 kB
+2026-10-06T01:49:38.2848651Z .svelte-kit/output/client/_app/immutable/nodes/19.BSbuZ1di.js                    17.87 kB │ gzip:  4.94 kB
+2026-10-06T01:49:38.2849495Z .svelte-kit/output/client/_app/immutable/nodes/16.yUdFZHGE.js                    20.27 kB │ gzip:  7.16 kB
+2026-10-06T01:49:38.2850341Z .svelte-kit/output/client/_app/immutable/chunks/DCII3v4p.js                      30.55 kB │ gzip:  8.99 kB
+2026-10-06T01:49:38.2851384Z .svelte-kit/output/client/_app/immutable/chunks/n_5Q5lA5.js                      33.30 kB │ gzip: 13.39 kB
+2026-10-06T01:49:38.2852225Z .svelte-kit/output/client/_app/immutable/chunks/BgzX-bxa.js                      39.95 kB │ gzip: 12.05 kB
+2026-10-06T01:49:38.2853069Z .svelte-kit/output/client/_app/immutable/chunks/DoUPn5HM.js                      43.62 kB │ gzip: 15.98 kB
+2026-10-06T01:49:38.2853907Z .svelte-kit/output/client/_app/immutable/chunks/ye5Gyn9G.js                      56.95 kB │ gzip: 21.60 kB
+2026-10-06T01:49:38.2854868Z .svelte-kit/output/client/_app/immutable/chunks/BPiqbJwC.js                     136.11 kB │ gzip: 58.52 kB
+2026-10-06T01:49:38.2856370Z .svelte-kit/output/client/_app/immutable/chunks/DM28qpZo.js                     137.61 kB │ gzip: 53.21 kB
+2026-10-06T01:49:38.2857903Z .svelte-kit/output/client/_app/immutable/chunks/T1EVtKhW.js                     137.61 kB │ gzip: 53.19 kB
+2026-10-06T01:49:38.2858792Z .svelte-kit/output/client/_app/immutable/chunks/anOUEGqZ.js                     137.61 kB │ gzip: 53.19 kB
+2026-10-06T01:49:38.2859659Z .svelte-kit/output/client/_app/immutable/chunks/C_sCllSl.js                     138.07 kB │ gzip: 54.17 kB
+2026-10-06T01:49:38.2860544Z .svelte-kit/output/client/_app/immutable/chunks/CRSp0bTA.js                     138.93 kB │ gzip: 59.24 kB
+2026-10-06T01:49:38.2861401Z .svelte-kit/output/client/_app/immutable/chunks/Blw2Y7lB.js                     142.15 kB │ gzip: 56.86 kB
+2026-10-06T01:49:38.2862282Z .svelte-kit/output/client/_app/immutable/chunks/BpCXazBM.js                     142.46 kB │ gzip: 53.24 kB
+2026-10-06T01:49:38.2863149Z .svelte-kit/output/client/_app/immutable/chunks/r-Tzu0BR.js                     142.82 kB │ gzip: 58.01 kB
+2026-10-06T01:49:38.2864004Z .svelte-kit/output/client/_app/immutable/chunks/HakaqmDz.js                     144.36 kB │ gzip: 57.98 kB
+2026-10-06T01:49:38.2864856Z .svelte-kit/output/client/_app/immutable/chunks/ysVUnwU0.js                     145.54 kB │ gzip: 57.44 kB
+2026-10-06T01:49:38.2865712Z .svelte-kit/output/client/_app/immutable/chunks/CxNTQdXf.js                     146.35 kB │ gzip: 58.89 kB
+2026-10-06T01:49:38.2867029Z .svelte-kit/output/client/_app/immutable/chunks/DoL51Yuw.js                     146.50 kB │ gzip: 58.73 kB
+2026-10-06T01:49:38.2867927Z .svelte-kit/output/client/_app/immutable/chunks/CrEWZgWJ.js                     146.57 kB │ gzip: 58.22 kB
+2026-10-06T01:49:38.2869001Z .svelte-kit/output/client/_app/immutable/chunks/BMU5xNVl.js                     148.04 kB │ gzip: 56.20 kB
+2026-10-06T01:49:38.2869888Z .svelte-kit/output/client/_app/immutable/chunks/CYj3jB7Q.js                     148.52 kB │ gzip: 59.20 kB
+2026-10-06T01:49:38.2871091Z .svelte-kit/output/client/_app/immutable/chunks/CTGeXi8q.js                     149.35 kB │ gzip: 58.57 kB
+2026-10-06T01:49:38.2872088Z .svelte-kit/output/client/_app/immutable/chunks/CjV8Aas_.js                     149.44 kB │ gzip: 58.29 kB
+2026-10-06T01:49:38.2873075Z .svelte-kit/output/client/_app/immutable/chunks/q5HUmo-S.js                     149.64 kB │ gzip: 58.11 kB
+2026-10-06T01:49:38.2874178Z .svelte-kit/output/client/_app/immutable/chunks/BjG_kK7b.js                     153.55 kB │ gzip: 60.58 kB
+2026-10-06T01:49:38.2875057Z .svelte-kit/output/client/_app/immutable/chunks/D68j2xRM.js                     153.64 kB │ gzip: 56.31 kB
+2026-10-06T01:49:38.2876284Z .svelte-kit/output/client/_app/immutable/chunks/ggTszAym.js                     157.12 kB │ gzip: 59.64 kB
+2026-10-06T01:49:38.2877392Z .svelte-kit/output/client/_app/immutable/chunks/Di1PzVfV.js                     158.50 kB │ gzip: 59.59 kB
+2026-10-06T01:49:38.2878265Z .svelte-kit/output/client/_app/immutable/chunks/BO0edF28.js                     166.07 kB │ gzip: 60.56 kB
+2026-10-06T01:49:38.2879333Z .svelte-kit/output/client/_app/immutable/chunks/po2SFOGq.js                     167.64 kB │ gzip: 61.57 kB
+2026-10-06T01:49:38.2880214Z .svelte-kit/output/client/_app/immutable/chunks/Cesw7BeT.js                     181.45 kB │ gzip: 62.86 kB
+2026-10-06T01:49:38.2881295Z .svelte-kit/output/client/_app/immutable/chunks/COBogUjU.js                     195.78 kB │ gzip: 61.69 kB
+2026-10-06T01:49:38.2882559Z .svelte-kit/output/client/_app/immutable/chunks/ZPA7-ZTR.js                     204.61 kB │ gzip: 63.09 kB
+2026-10-06T01:49:38.2883895Z .svelte-kit/output/client/_app/immutable/chunks/C9SKR0zZ.js                     224.16 kB │ gzip: 65.68 kB
+2026-10-06T01:49:38.2885656Z .svelte-kit/output/client/_app/immutable/chunks/mD0vlD-8.js                     272.21 kB │ gzip: 66.47 kB
+2026-10-06T01:49:38.2887777Z .svelte-kit/output/client/_app/immutable/chunks/DJkhZC9H.js                     298.15 kB │ gzip: 66.14 kB
+2026-10-06T01:49:38.2888718Z .svelte-kit/output/client/_app/immutable/nodes/8.CPZ4emC8.js                    354.94 kB │ gzip: 87.97 kB
+2026-10-06T01:49:38.2889108Z 
+2026-10-06T01:49:38.2890426Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useQuery.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2893014Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useQuery.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2893784Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2894070Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2894395Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2894883Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2895282Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2896078Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2896664Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2896890Z [39m
+2026-10-06T01:49:38.2898229Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useQueries.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2899928Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useQueries.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2900664Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2900931Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2901252Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2901708Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2902090Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2902704Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2903258Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2903474Z [39m
+2026-10-06T01:49:38.2904860Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2906777Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2907542Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2907857Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2908188Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2908640Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2909020Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2909638Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2910195Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2910409Z [39m
+2026-10-06T01:49:38.2912029Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2913845Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2914763Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2915041Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2915359Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2915810Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2916383Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2917135Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2918151Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2918376Z [39m
+2026-10-06T01:49:38.2919762Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2921537Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2922305Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2922580Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2922895Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2923341Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2923722Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2924333Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2925133Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2925361Z [39m
+2026-10-06T01:49:38.2927226Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2929340Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2930348Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2930620Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2931117Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2931587Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2932039Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2932796Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2933533Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2933764Z [39m
+2026-10-06T01:49:38.2935345Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2937658Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2938634Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2938922Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2939239Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2939885Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2940476Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2941316Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2941992Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2942321Z [39m
+2026-10-06T01:49:38.2944036Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/HydrationBoundary.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2946349Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/HydrationBoundary.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2947344Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2947631Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2947948Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2948617Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2949009Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2949807Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2950383Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2950732Z [39m
+2026-10-06T01:49:38.2952361Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/IsRestoringProvider.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2954504Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/IsRestoringProvider.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2955302Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2955781Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2956380Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2957015Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2957428Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2958188Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2958771Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2958995Z [39m
+2026-10-06T01:49:38.2960645Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useMutation.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2962491Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useMutation.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2963456Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2963727Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2964202Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2964659Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2965098Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2965792Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2966761Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2966983Z [39m
+2026-10-06T01:49:38.2968797Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useInfiniteQuery.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2971010Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useInfiniteQuery.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2972207Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2972579Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2973190Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2974014Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2974532Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2975586Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2976675Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2977119Z [39m
+2026-10-06T01:49:38.2978892Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useIsFetching.js" may not be preserved when bundling.
+2026-10-06T01:49:38.2981121Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useIsFetching.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.2982266Z    [38;5;246m│[0m
+2026-10-06T01:49:38.2993404Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.2994050Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.2994865Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.2995618Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.2997138Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.2998214Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.2998506Z [39m
+2026-10-06T01:49:38.2999899Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useMutationState.js" may not be preserved when bundling.
+2026-10-06T01:49:38.3002199Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useMutationState.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.3003726Z    [38;5;246m│[0m
+2026-10-06T01:49:38.3004106Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.3004446Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.3004921Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.3005584Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.3006952Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.3007579Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.3007855Z [39m
+2026-10-06T01:49:38.3009250Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js" may not be preserved when bundling.
+2026-10-06T01:49:38.3011193Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.3011957Z    [38;5;246m│[0m
+2026-10-06T01:49:38.3012231Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.3012550Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.3013118Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.3013520Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.3014135Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.3014685Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.3014903Z [39m
+2026-10-06T01:49:38.3016770Z [33m[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useBaseQuery.js" may not be preserved when bundling.
+2026-10-06T01:49:38.3019452Z    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/.pnpm/@tanstack+react-query@5.90.21_react@19.3.0/node_modules/@tanstack/react-query/build/modern/useBaseQuery.js:1:1 [38;5;246m][0m
+2026-10-06T01:49:38.3020237Z    [38;5;246m│[0m
+2026-10-06T01:49:38.3020513Z  [38;5;246m1 │[0m "use client";
+2026-10-06T01:49:38.3020830Z  [38;5;240m  │[0m ──────┬──────  
+2026-10-06T01:49:38.3021297Z  [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+2026-10-06T01:49:38.3021674Z  [38;5;240m  │[0m 
+2026-10-06T01:49:38.3022287Z  [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+2026-10-06T01:49:38.3022845Z [38;5;246m───╯[0m
+2026-10-06T01:49:38.3023059Z [39m
+2026-10-06T01:49:38.3023307Z [32m✓ built in 1.84s[39m
+2026-10-06T01:49:39.3393872Z computing gzip size...
+2026-10-06T01:49:39.3903289Z .svelte-kit/output/server/.vite/manifest.json                                                                  75.15 kB │ gzip:  6.87 kB
+2026-10-06T01:49:39.3905308Z .svelte-kit/output/server/_app/immutable/assets/_page.DrcXZYa3.css                                              0.17 kB │ gzip:  0.13 kB
+2026-10-06T01:49:39.3907492Z .svelte-kit/output/server/_app/immutable/assets/MenuDialog.CSb6g0e0.css                                         0.20 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3909335Z .svelte-kit/output/server/_app/immutable/assets/_page.Dcp-D_B2.css                                              0.22 kB │ gzip:  0.15 kB
+2026-10-06T01:49:39.3910783Z .svelte-kit/output/server/_app/immutable/assets/_page.gKqYElxg.css                                              0.36 kB │ gzip:  0.22 kB
+2026-10-06T01:49:39.3911842Z .svelte-kit/output/server/_app/immutable/assets/EditorForm.BHWZld0R.css                                         0.44 kB │ gzip:  0.23 kB
+2026-10-06T01:49:39.3912942Z .svelte-kit/output/server/_app/immutable/assets/DraftPreview.fwW3PV90.css                                       0.48 kB │ gzip:  0.25 kB
+2026-10-06T01:49:39.3913985Z .svelte-kit/output/server/_app/immutable/assets/_page.CyTVIvfE.css                                              0.54 kB │ gzip:  0.26 kB
+2026-10-06T01:49:39.3914995Z .svelte-kit/output/server/_app/immutable/assets/_page.CVJ5M564.css                                              0.57 kB │ gzip:  0.29 kB
+2026-10-06T01:49:39.3916247Z .svelte-kit/output/server/_app/immutable/assets/_page.B4jjrLtW.css                                              0.68 kB │ gzip:  0.31 kB
+2026-10-06T01:49:39.3917279Z .svelte-kit/output/server/_app/immutable/assets/_page.CccxuyKJ.css                                              0.70 kB │ gzip:  0.35 kB
+2026-10-06T01:49:39.3918338Z .svelte-kit/output/server/_app/immutable/assets/ContentTypeEditor.BP8dJX1x.css                                  1.57 kB │ gzip:  0.55 kB
+2026-10-06T01:49:39.3919396Z .svelte-kit/output/server/_app/immutable/assets/_page.DYOooGE9.css                                              1.60 kB │ gzip:  0.40 kB
+2026-10-06T01:49:39.3920723Z .svelte-kit/output/server/_app/immutable/assets/_page.C1Ra8cmf.css                                              2.18 kB │ gzip:  0.68 kB
+2026-10-06T01:49:39.3921758Z .svelte-kit/output/server/_app/immutable/assets/_page.CvGkr_1p.css                                              2.27 kB │ gzip:  0.85 kB
+2026-10-06T01:49:39.3922927Z .svelte-kit/output/server/_app/immutable/assets/admin.CSBm7Oz-.css                                              2.57 kB │ gzip:  0.88 kB
+2026-10-06T01:49:39.3923952Z .svelte-kit/output/server/_app/immutable/assets/_page.D2HNaFcR.css                                              3.13 kB │ gzip:  0.93 kB
+2026-10-06T01:49:39.3924955Z .svelte-kit/output/server/_app/immutable/assets/_page.ZjhzejkS.css                                             12.10 kB │ gzip:  2.88 kB
+2026-10-06T01:49:39.3926251Z .svelte-kit/output/server/_app/immutable/assets/WorkspaceShell.CG4u5kwz.css                                    37.08 kB │ gzip:  5.01 kB
+2026-10-06T01:49:39.3927297Z .svelte-kit/output/server/chunks/navigation.js                                                                  0.03 kB │ gzip:  0.05 kB
+2026-10-06T01:49:39.3928429Z .svelte-kit/output/server/chunks/content2.js                                                                    0.08 kB │ gzip:  0.07 kB
+2026-10-06T01:49:39.3929933Z .svelte-kit/output/server/chunks/repository2.js                                                                 0.08 kB │ gzip:  0.07 kB
+2026-10-06T01:49:39.3931043Z .svelte-kit/output/server/chunks/repository4.js                                                                 0.08 kB │ gzip:  0.08 kB
+2026-10-06T01:49:39.3931980Z .svelte-kit/output/server/chunks/repository6.js                                                                 0.09 kB │ gzip:  0.08 kB
+2026-10-06T01:49:39.3933109Z .svelte-kit/output/server/chunks/taxonomies2.js                                                                 0.09 kB │ gzip:  0.08 kB
+2026-10-06T01:49:39.3934047Z .svelte-kit/output/server/chunks/chunks.js                                                                      0.10 kB │ gzip:  0.09 kB
+2026-10-06T01:49:39.3934964Z .svelte-kit/output/server/chunks/object-cache2.js                                                               0.10 kB │ gzip:  0.09 kB
+2026-10-06T01:49:39.3936263Z .svelte-kit/output/server/remote-entry.js                                                                       0.16 kB │ gzip:  0.12 kB
+2026-10-06T01:49:39.3937262Z .svelte-kit/output/server/chunks/server.js                                                                      0.16 kB │ gzip:  0.12 kB
+2026-10-06T01:49:39.3938489Z .svelte-kit/output/server/chunks/transaction2.js                                                                0.19 kB │ gzip:  0.15 kB
+2026-10-06T01:49:39.3939545Z .svelte-kit/output/server/entries/endpoints/api/calendar/user/_server.ts.js                                     0.20 kB │ gzip:  0.15 kB
+2026-10-06T01:49:39.3940610Z .svelte-kit/output/server/entries/endpoints/api/comments/_server.ts.js                                          0.20 kB │ gzip:  0.16 kB
+2026-10-06T01:49:39.3941656Z .svelte-kit/output/server/entries/endpoints/api/calendar/manifest/_server.ts.js                                 0.21 kB │ gzip:  0.16 kB
+2026-10-06T01:49:39.3942712Z .svelte-kit/output/server/entries/endpoints/api/admin/comments/_server.ts.js                                    0.21 kB │ gzip:  0.16 kB
+2026-10-06T01:49:39.3943776Z .svelte-kit/output/server/entries/pages/_page.server.ts.js                                                      0.22 kB │ gzip:  0.16 kB
+2026-10-06T01:49:39.3944681Z .svelte-kit/output/server/env.js                                                                                0.22 kB │ gzip:  0.14 kB
+2026-10-06T01:49:39.3945570Z .svelte-kit/output/server/chunks/remote-4cga8b.js                                                               0.22 kB │ gzip:  0.14 kB
+2026-10-06T01:49:39.3947090Z .svelte-kit/output/server/entries/endpoints/api/redirects/404s/summary/_server.ts.js                            0.22 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3948190Z .svelte-kit/output/server/entries/endpoints/api/admin/comments/bulk/_server.ts.js                               0.22 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3949274Z .svelte-kit/output/server/entries/endpoints/api/admin/comments/counts/_server.ts.js                             0.22 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3950462Z .svelte-kit/output/server/chunks/navigation2.js                                                                 0.22 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3951401Z .svelte-kit/output/server/chunks/remote-5e9re.js                                                                0.23 kB │ gzip:  0.14 kB
+2026-10-06T01:49:39.3952341Z .svelte-kit/output/server/chunks/remote-6z7yaa.js                                                               0.23 kB │ gzip:  0.14 kB
+2026-10-06T01:49:39.3953322Z .svelte-kit/output/server/entries/pages/redirects/_page.server.ts.js                                            0.23 kB │ gzip:  0.18 kB
+2026-10-06T01:49:39.3954387Z .svelte-kit/output/server/entries/endpoints/api/admin/comments/_id_/status/_server.ts.js                        0.23 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3955408Z .svelte-kit/output/server/chunks/remote-1ghd0c5.js                                                              0.24 kB │ gzip:  0.15 kB
+2026-10-06T01:49:39.3956600Z .svelte-kit/output/server/chunks/remote-126fj8m.js                                                              0.24 kB │ gzip:  0.15 kB
+2026-10-06T01:49:39.3957617Z .svelte-kit/output/server/entries/pages/content/_collection_/_layout.server.ts.js                               0.24 kB │ gzip:  0.18 kB
+2026-10-06T01:49:39.3958721Z .svelte-kit/output/server/entries/endpoints/api/comments/_collection_/_contentId_/_server.ts.js                 0.25 kB │ gzip:  0.18 kB
+2026-10-06T01:49:39.3959751Z .svelte-kit/output/server/chunks/remote-15ax3ep.js                                                              0.26 kB │ gzip:  0.15 kB
+2026-10-06T01:49:39.3960805Z .svelte-kit/output/server/entries/endpoints/api/admin/comments/settings/_collection_/_server.ts.js              0.26 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3961907Z .svelte-kit/output/server/entries/endpoints/api/redirects/_server.ts.js                                         0.26 kB │ gzip:  0.18 kB
+2026-10-06T01:49:39.3962951Z .svelte-kit/output/server/chunks/object-cache-configuration.js                                                  0.27 kB │ gzip:  0.19 kB
+2026-10-06T01:49:39.3964222Z .svelte-kit/output/server/entries/endpoints/api/comments/_collection_/_contentId_/reactions/_server.ts.js       0.27 kB │ gzip:  0.18 kB
+2026-10-06T01:49:39.3965782Z .svelte-kit/output/server/chunks/contract.js                                                                    0.28 kB │ gzip:  0.19 kB
+2026-10-06T01:49:39.3967050Z .svelte-kit/output/server/entries/endpoints/api/schema/block-types/_server.ts.js                                0.28 kB │ gzip:  0.21 kB
+2026-10-06T01:49:39.3968163Z .svelte-kit/output/server/entries/endpoints/api/content-picker/manifest/_server.ts.js                           0.28 kB │ gzip:  0.20 kB
+2026-10-06T01:49:39.3969340Z .svelte-kit/output/server/chunks/env.js                                                                         0.28 kB │ gzip:  0.17 kB
+2026-10-06T01:49:39.3970346Z .svelte-kit/output/server/entries/endpoints/api/admin/comments/_id_/_server.ts.js                               0.29 kB │ gzip:  0.19 kB
+2026-10-06T01:49:39.3971442Z .svelte-kit/output/server/entries/endpoints/api/calendar/content/_collection_/_id_/_server.ts.js                0.31 kB │ gzip:  0.19 kB
+2026-10-06T01:49:39.3972563Z .svelte-kit/output/server/entries/endpoints/api/content-picker/collections/_server.ts.js                        0.32 kB │ gzip:  0.22 kB
+2026-10-06T01:49:39.3973845Z .svelte-kit/output/server/entries/endpoints/api/schema/collections/reorder/_server.ts.js                        0.33 kB │ gzip:  0.23 kB
+2026-10-06T01:49:39.3975368Z .svelte-kit/output/server/entries/endpoints/api/setup/status/_server.ts.js                                      0.33 kB │ gzip:  0.23 kB
+2026-10-06T01:49:39.3977140Z .svelte-kit/output/server/entries/endpoints/api/redirects/_id_/_server.ts.js                                    0.33 kB │ gzip:  0.20 kB
+2026-10-06T01:49:39.3978855Z .svelte-kit/output/server/entries/endpoints/api/redirects/404s/_server.ts.js                                    0.34 kB │ gzip:  0.20 kB
+2026-10-06T01:49:39.3980241Z .svelte-kit/output/server/entries/pages/widgets/_page.server.ts.js                                              0.36 kB │ gzip:  0.23 kB
+2026-10-06T01:49:39.3981971Z .svelte-kit/output/server/entries/pages/sections/_layout.server.ts.js                                           0.36 kB │ gzip:  0.23 kB
+2026-10-06T01:49:39.3983087Z .svelte-kit/output/server/entries/endpoints/api/content-picker/content/_collection_/_server.ts.js               0.36 kB │ gzip:  0.24 kB
+2026-10-06T01:49:39.3985057Z .svelte-kit/output/server/entries/endpoints/api/schema/collections/_collection_/fields/reorder/_server.ts.js    0.40 kB │ gzip:  0.26 kB
+2026-10-06T01:49:39.3986959Z .svelte-kit/output/server/internal.js                                                                           0.40 kB │ gzip:  0.19 kB
+2026-10-06T01:49:39.3988532Z .svelte-kit/output/server/entries/fallbacks/layout.svelte.js                                                    0.42 kB │ gzip:  0.30 kB
+2026-10-06T01:49:39.3990299Z .svelte-kit/output/server/entries/endpoints/api/schema/collections/_server.ts.js                                0.42 kB │ gzip:  0.25 kB
+2026-10-06T01:49:39.3992172Z .svelte-kit/output/server/entries/endpoints/api/schema/collections/_collection_/fields/_server.ts.js            0.45 kB │ gzip:  0.29 kB
+2026-10-06T01:49:39.3994075Z .svelte-kit/output/server/entries/endpoints/api/admin/users/_id_/enable/_server.ts.js                           0.47 kB │ gzip:  0.31 kB
+2026-10-06T01:49:39.3996132Z .svelte-kit/output/server/entries/endpoints/api/admin/users/_id_/disable/_server.ts.js                          0.47 kB │ gzip:  0.31 kB
+2026-10-06T01:49:39.3997983Z .svelte-kit/output/server/chunks/collection-slugs-state.js                                                      0.48 kB │ gzip:  0.29 kB
+2026-10-06T01:49:39.3999698Z .svelte-kit/output/server/chunks/authorize2.js                                                                  0.49 kB │ gzip:  0.32 kB
+2026-10-06T01:49:39.4001403Z .svelte-kit/output/server/chunks/context.js                                                                     0.50 kB │ gzip:  0.29 kB
+2026-10-06T01:49:39.4002910Z .svelte-kit/output/server/chunks/deferred-tasks.js                                                              0.50 kB │ gzip:  0.29 kB
+2026-10-06T01:49:39.4004629Z .svelte-kit/output/server/chunks/chrome-tags.js                                                                 0.52 kB │ gzip:  0.33 kB
+2026-10-06T01:49:39.4006526Z .svelte-kit/output/server/entries/endpoints/api/auth/me/_server.ts.js                                           0.53 kB │ gzip:  0.32 kB
+2026-10-06T01:49:39.4008515Z .svelte-kit/output/server/entries/endpoints/api/schema/collections/_collection_/fields/_field_/_server.ts.js    0.54 kB │ gzip:  0.30 kB
+2026-10-06T01:49:39.4010487Z .svelte-kit/output/server/entries/fallbacks/error.svelte.js                                                     0.56 kB │ gzip:  0.35 kB
+2026-10-06T01:49:39.4012394Z .svelte-kit/output/server/chunks/storage.js                                                                     0.56 kB │ gzip:  0.32 kB
+2026-10-06T01:49:39.4014309Z .svelte-kit/output/server/chunks/chunks2.js                                                                     0.56 kB │ gzip:  0.39 kB
+2026-10-06T01:49:39.4016476Z .svelte-kit/output/server/entries/endpoints/api/admin/users/_server.ts.js                                       0.59 kB │ gzip:  0.34 kB
+2026-10-06T01:49:39.4018614Z .svelte-kit/output/server/entries/endpoints/api/auth/passkey/options/_server.ts.js                              0.60 kB │ gzip:  0.34 kB
+2026-10-06T01:49:39.4021157Z .svelte-kit/output/server/entries/pages/comments/settings/_collection_/_page.server.ts.js                       0.61 kB │ gzip:  0.35 kB
+2026-10-06T01:49:39.4023155Z [33m[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 5.5s of this 5.8s build (95%).
+2026-10-06T01:49:39.4025140Z The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+2026-10-06T01:49:39.4026891Z   - plugin vite-plugin-sveltekit-compile writeBundle (72%, 4.1s, 1 call)
+2026-10-06T01:49:39.4028115Z Additional callback time came from the callbacks below and from callbacks under 1s.
+2026-10-06T01:49:39.4030272Z 1 callback is listed without a time. Its calls overlapped, so the time inside one call includes work from other calls. To find its cost, profile the build with `node --cpu-prof`:
+2026-10-06T01:49:39.4032125Z   - plugin vite-plugin-sveltekit-guard resolveId (2418 calls)
+2026-10-06T01:49:39.4033280Z See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+2026-10-06T01:49:39.4034167Z [39m
+2026-10-06T01:49:39.4035259Z .svelte-kit/output/server/entries/pages/schema/_layout.server.ts.js                                             0.61 kB │ gzip:  0.36 kB
+2026-10-06T01:49:39.4037007Z .svelte-kit/output/server/entries/pages/schema/_manage/_layout.svelte.js                                        0.63 kB │ gzip:  0.32 kB
+2026-10-06T01:49:39.4038035Z .svelte-kit/output/server/chunks/current-user.js                                                                0.66 kB │ gzip:  0.38 kB
+2026-10-06T01:49:39.4039075Z .svelte-kit/output/server/entries/pages/content/_collection_/_id_/workflow/_page.server.ts.js                   0.67 kB │ gzip:  0.32 kB
+2026-10-06T01:49:39.4040201Z .svelte-kit/output/server/entries/endpoints/api/schema/collections/_collection_/_server.ts.js                   0.70 kB │ gzip:  0.35 kB
+2026-10-06T01:49:39.4041221Z .svelte-kit/output/server/chunks/host.js                                                                        0.75 kB │ gzip:  0.37 kB
+2026-10-06T01:49:39.4042178Z .svelte-kit/output/server/entries/pages/calendar/_page.server.ts.js                                             0.77 kB │ gzip:  0.37 kB
+2026-10-06T01:49:39.4043195Z .svelte-kit/output/server/chunks/editor-display.js                                                              0.77 kB │ gzip:  0.37 kB
+2026-10-06T01:49:39.4044119Z .svelte-kit/output/server/chunks/store.js                                                                       0.78 kB │ gzip:  0.42 kB
+2026-10-06T01:49:39.4045113Z .svelte-kit/output/server/entries/pages/trash/_collection_/_page.server.ts.js                                   0.79 kB │ gzip:  0.41 kB
+2026-10-06T01:49:39.4046488Z .svelte-kit/output/server/entries/endpoints/api/setup/admin/verify/_server.ts.js                                0.83 kB │ gzip:  0.43 kB
+2026-10-06T01:49:39.4047581Z .svelte-kit/output/server/entries/pages/menus/_layout.server.ts.js                                              0.85 kB │ gzip:  0.48 kB
+2026-10-06T01:49:39.4048610Z .svelte-kit/output/server/entries/endpoints/api/setup/admin/_server.ts.js                                       0.87 kB │ gzip:  0.46 kB
+2026-10-06T01:49:39.4049705Z .svelte-kit/output/server/entries/endpoints/api/menus/_name_/items/_server.ts.js                                0.89 kB │ gzip:  0.45 kB
+2026-10-06T01:49:39.4050801Z .svelte-kit/output/server/entries/endpoints/api/menus/_name_/reorder/_server.ts.js                              0.90 kB │ gzip:  0.45 kB
+2026-10-06T01:49:39.4051952Z .svelte-kit/output/server/entries/endpoints/api/byline-fields/_slug_/usage/_server.ts.js                        0.92 kB │ gzip:  0.47 kB
+2026-10-06T01:49:39.4053020Z .svelte-kit/output/server/chunks/i18n-config.js                                                                 0.93 kB │ gzip:  0.49 kB
+2026-10-06T01:49:39.4053945Z .svelte-kit/output/server/chunks/widgets.js                                                                     0.95 kB │ gzip:  0.47 kB
+2026-10-06T01:49:39.4055143Z .svelte-kit/output/server/entries/endpoints/api/menus/_server.ts.js                                             1.01 kB │ gzip:  0.47 kB
+2026-10-06T01:49:39.4056622Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/_name_/translations/_server.ts.js                    1.04 kB │ gzip:  0.51 kB
+2026-10-06T01:49:39.4057944Z .svelte-kit/output/server/chunks/status.js                                                                      1.04 kB │ gzip:  0.55 kB
+2026-10-06T01:49:39.4059039Z .svelte-kit/output/server/entries/endpoints/api/admin/users/_id_/_server.ts.js                                  1.04 kB │ gzip:  0.48 kB
+2026-10-06T01:49:39.4060117Z .svelte-kit/output/server/chunks/transaction.js                                                                 1.06 kB │ gzip:  0.50 kB
+2026-10-06T01:49:39.4061205Z .svelte-kit/output/server/entries/endpoints/api/byline-fields/reorder/_server.ts.js                             1.08 kB │ gzip:  0.47 kB
+2026-10-06T01:49:39.4062322Z .svelte-kit/output/server/chunks/write-plan.js                                                                  1.13 kB │ gzip:  0.56 kB
+2026-10-06T01:49:39.4063431Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/_name_/reorder/_server.ts.js                         1.14 kB │ gzip:  0.52 kB
+2026-10-06T01:49:39.4064522Z .svelte-kit/output/server/chunks/paths.js                                                                       1.15 kB │ gzip:  0.64 kB
+2026-10-06T01:49:39.4065516Z .svelte-kit/output/server/chunks/context2.js                                                                    1.18 kB │ gzip:  0.67 kB
+2026-10-06T01:49:39.4066801Z .svelte-kit/output/server/entries/endpoints/api/auth/logout/_server.ts.js                                       1.28 kB │ gzip:  0.62 kB
+2026-10-06T01:49:39.4067861Z .svelte-kit/output/server/chunks/request.js                                                                     1.30 kB │ gzip:  0.68 kB
+2026-10-06T01:49:39.4068828Z .svelte-kit/output/server/chunks/internal2.js                                                                   1.30 kB │ gzip:  0.54 kB
+2026-10-06T01:49:39.4069855Z .svelte-kit/output/server/chunks/namespaces.js                                                                  1.34 kB │ gzip:  0.63 kB
+2026-10-06T01:49:39.4070864Z .svelte-kit/output/server/chunks/schema3.js                                                                     1.35 kB │ gzip:  0.65 kB
+2026-10-06T01:49:39.4071951Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/_server.ts.js                                        1.36 kB │ gzip:  0.57 kB
+2026-10-06T01:49:39.4073203Z .svelte-kit/output/server/entries/endpoints/api/auth/passkey/verify/_server.ts.js                               1.39 kB │ gzip:  0.63 kB
+2026-10-06T01:49:39.4074423Z .svelte-kit/output/server/chunks/base64.js                                                                      1.41 kB │ gzip:  0.65 kB
+2026-10-06T01:49:39.4075486Z .svelte-kit/output/server/entries/endpoints/api/menus/_name_/items/_id_/_server.ts.js                           1.47 kB │ gzip:  0.55 kB
+2026-10-06T01:49:39.4076761Z .svelte-kit/output/server/chunks/identity-schemas.js                                                            1.48 kB │ gzip:  0.55 kB
+2026-10-06T01:49:39.4077766Z .svelte-kit/output/server/entries/pages/sections/_slug_/_page.svelte.js                                         1.50 kB │ gzip:  0.58 kB
+2026-10-06T01:49:39.4078809Z .svelte-kit/output/server/entries/endpoints/api/menus/_name_/_server.ts.js                                      1.52 kB │ gzip:  0.52 kB
+2026-10-06T01:49:39.4079872Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/_name_/terms/_server.ts.js                           1.59 kB │ gzip:  0.63 kB
+2026-10-06T01:49:39.4080952Z .svelte-kit/output/server/entries/endpoints/api/byline-fields/_server.ts.js                                     1.64 kB │ gzip:  0.59 kB
+2026-10-06T01:49:39.4082132Z .svelte-kit/output/server/chunks/atomic-query-loop.js                                                           1.66 kB │ gzip:  0.73 kB
+2026-10-06T01:49:39.4083140Z .svelte-kit/output/server/entries/pages/schema/_manage/new/_page.svelte.js                                      1.67 kB │ gzip:  0.73 kB
+2026-10-06T01:49:39.4084574Z .svelte-kit/output/server/entries/endpoints/api/menus/_name_/translations/_server.ts.js                         1.70 kB │ gzip:  0.68 kB
+2026-10-06T01:49:39.4087473Z .svelte-kit/output/server/chunks/slugify.js                                                                     1.77 kB │ gzip:  0.91 kB
+2026-10-06T01:49:39.4088953Z .svelte-kit/output/server/entries/hooks.universal.js                                                            1.77 kB │ gzip:  0.73 kB
+2026-10-06T01:49:39.4090367Z .svelte-kit/output/server/chunks/migrations2.js                                                                 1.78 kB │ gzip:  0.67 kB
+2026-10-06T01:49:39.4091728Z .svelte-kit/output/server/chunks/parse2.js                                                                      1.85 kB │ gzip:  0.90 kB
+2026-10-06T01:49:39.4093091Z .svelte-kit/output/server/chunks/DraftPreview.js                                                                1.88 kB │ gzip:  0.79 kB
+2026-10-06T01:49:39.4094543Z .svelte-kit/output/server/entries/endpoints/api/sections/_server.ts.js                                          1.88 kB │ gzip:  0.64 kB
+2026-10-06T01:49:39.4096217Z .svelte-kit/output/server/chunks/schemas5.js                                                                    1.91 kB │ gzip:  0.49 kB
+2026-10-06T01:49:39.4097619Z .svelte-kit/output/server/chunks/workspace.remote.js                                                            1.95 kB │ gzip:  0.76 kB
+2026-10-06T01:49:39.4099006Z .svelte-kit/output/server/chunks/readiness.js                                                                   1.98 kB │ gzip:  0.92 kB
+2026-10-06T01:49:39.4100342Z .svelte-kit/output/server/chunks/db-errors.js                                                                   2.01 kB │ gzip:  0.97 kB
+2026-10-06T01:49:39.4101776Z .svelte-kit/output/server/entries/pages/comments/_page.server.ts.js                                             2.02 kB │ gzip:  0.86 kB
+2026-10-06T01:49:39.4103247Z .svelte-kit/output/server/chunks/validate2.js                                                                   2.05 kB │ gzip:  0.95 kB
+2026-10-06T01:49:39.4104668Z .svelte-kit/output/server/entries/endpoints/api/widget-areas/_name_/reorder/_server.ts.js                       2.06 kB │ gzip:  0.87 kB
+2026-10-06T01:49:39.4105713Z .svelte-kit/output/server/chunks/validate.js                                                                    2.08 kB │ gzip:  0.97 kB
+2026-10-06T01:49:39.4106975Z .svelte-kit/output/server/chunks/editor-autosave.remote.js                                                      2.12 kB │ gzip:  0.75 kB
+2026-10-06T01:49:39.4108050Z .svelte-kit/output/server/entries/endpoints/api/widget-components/_server.ts.js                                 2.13 kB │ gzip:  0.77 kB
+2026-10-06T01:49:39.4109062Z .svelte-kit/output/server/chunks/init-lock.js                                                                   2.15 kB │ gzip:  1.00 kB
+2026-10-06T01:49:39.4109978Z .svelte-kit/output/server/chunks/turnstile.js                                                                   2.20 kB │ gzip:  1.13 kB
+2026-10-06T01:49:39.4110894Z .svelte-kit/output/server/chunks/client2.js                                                                     2.23 kB │ gzip:  0.92 kB
+2026-10-06T01:49:39.4111884Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/_name_/_server.ts.js                                 2.23 kB │ gzip:  0.69 kB
+2026-10-06T01:49:39.4112950Z .svelte-kit/output/server/entries/endpoints/api/widget-areas/_name_/_server.ts.js                               2.36 kB │ gzip:  0.80 kB
+2026-10-06T01:49:39.4114065Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/_name_/terms/_slug_/translations/_server.ts.js       2.39 kB │ gzip:  0.81 kB
+2026-10-06T01:49:39.4115350Z .svelte-kit/output/server/entries/endpoints/api/byline-fields/_slug_/_server.ts.js                              2.40 kB │ gzip:  0.69 kB
+2026-10-06T01:49:39.4117185Z .svelte-kit/output/server/entries/endpoints/api/widget-areas/_name_/widgets/_server.ts.js                       2.41 kB │ gzip:  0.99 kB
+2026-10-06T01:49:39.4118279Z .svelte-kit/output/server/chunks/BlockSettings.js                                                               2.42 kB │ gzip:  0.90 kB
+2026-10-06T01:49:39.4119481Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/_name_/terms/_slug_/_server.ts.js                    2.44 kB │ gzip:  0.69 kB
+2026-10-06T01:49:39.4120534Z .svelte-kit/output/server/chunks/passkey-browser.js                                                             2.46 kB │ gzip:  0.78 kB
+2026-10-06T01:49:39.4121467Z .svelte-kit/output/server/chunks/schema.js                                                                      2.51 kB │ gzip:  0.76 kB
+2026-10-06T01:49:39.4122483Z .svelte-kit/output/server/entries/pages/sections/_page.svelte.js                                                2.52 kB │ gzip:  0.87 kB
+2026-10-06T01:49:39.4123468Z .svelte-kit/output/server/chunks/admin-http2.js                                                                 2.53 kB │ gzip:  1.11 kB
+2026-10-06T01:49:39.4124483Z .svelte-kit/output/server/entries/endpoints/api/bylines/_id_/translations/_server.ts.js                         2.60 kB │ gzip:  0.92 kB
+2026-10-06T01:49:39.4125517Z .svelte-kit/output/server/entries/pages/_page.svelte.js                                                         2.60 kB │ gzip:  1.05 kB
+2026-10-06T01:49:39.4127361Z .svelte-kit/output/server/entries/pages/schema/_manage/_collection_/_page.svelte.js                             2.63 kB │ gzip:  0.98 kB
+2026-10-06T01:49:39.4128375Z .svelte-kit/output/server/chunks/http2.js                                                                       2.64 kB │ gzip:  1.19 kB
+2026-10-06T01:49:39.4129301Z .svelte-kit/output/server/chunks/content-write.js                                                               2.64 kB │ gzip:  0.95 kB
+2026-10-06T01:49:39.4130225Z .svelte-kit/output/server/chunks/session.js                                                                     2.65 kB │ gzip:  1.10 kB
+2026-10-06T01:49:39.4131203Z .svelte-kit/output/server/entries/endpoints/api/sections/_slug_/_server.ts.js                                   2.66 kB │ gzip:  0.71 kB
+2026-10-06T01:49:39.4132264Z .svelte-kit/output/server/entries/endpoints/api/widget-areas/_server.ts.js                                      2.69 kB │ gzip:  0.99 kB
+2026-10-06T01:49:39.4133237Z .svelte-kit/output/server/chunks/state.js                                                                       2.70 kB │ gzip:  1.13 kB
+2026-10-06T01:49:39.4134128Z .svelte-kit/output/server/chunks/types2.js                                                                      2.92 kB │ gzip:  1.23 kB
+2026-10-06T01:49:39.4135057Z .svelte-kit/output/server/chunks/schema-common.js                                                               2.93 kB │ gzip:  1.32 kB
+2026-10-06T01:49:39.4136407Z .svelte-kit/output/server/entries/endpoints/api/bylines/_server.ts.js                                           2.93 kB │ gzip:  1.09 kB
+2026-10-06T01:49:39.4137420Z .svelte-kit/output/server/chunks/settings.js                                                                    2.99 kB │ gzip:  1.21 kB
+2026-10-06T01:49:39.4138410Z .svelte-kit/output/server/entries/endpoints/api/bylines/_id_/_server.ts.js                                      3.03 kB │ gzip:  1.00 kB
+2026-10-06T01:49:39.4139376Z .svelte-kit/output/server/chunks/types3.js                                                                      3.32 kB │ gzip:  1.38 kB
+2026-10-06T01:49:39.4140314Z .svelte-kit/output/server/chunks/taxonomy-migrations.js                                                         3.35 kB │ gzip:  0.96 kB
+2026-10-06T01:49:39.4141275Z .svelte-kit/output/server/chunks/dialect-helpers.js                                                             3.47 kB │ gzip:  1.51 kB
+2026-10-06T01:49:39.4142392Z .svelte-kit/output/server/chunks/request-cache.js                                                               3.48 kB │ gzip:  1.49 kB
+2026-10-06T01:49:39.4143342Z .svelte-kit/output/server/chunks/d1.js                                                                          3.51 kB │ gzip:  1.19 kB
+2026-10-06T01:49:39.4144368Z .svelte-kit/output/server/chunks/field-handlers.js                                                              3.67 kB │ gzip:  0.93 kB
+2026-10-06T01:49:39.4145411Z .svelte-kit/output/server/entries/endpoints/api/widget-areas/_name_/widgets/_id_/_server.ts.js                  3.85 kB │ gzip:  1.08 kB
+2026-10-06T01:49:39.4146818Z .svelte-kit/output/server/chunks/types.js                                                                       3.90 kB │ gzip:  1.62 kB
+2026-10-06T01:49:39.4147719Z .svelte-kit/output/server/chunks/node.js                                                                        3.93 kB │ gzip:  1.45 kB
+2026-10-06T01:49:39.4148655Z .svelte-kit/output/server/chunks/repository7.js                                                                 4.07 kB │ gzip:  1.49 kB
+2026-10-06T01:49:39.4149578Z .svelte-kit/output/server/chunks/request5.js                                                                    4.24 kB │ gzip:  1.74 kB
+2026-10-06T01:49:39.4150547Z .svelte-kit/output/server/entries/pages/setup/_page.svelte.js                                                   4.41 kB │ gzip:  1.59 kB
+2026-10-06T01:49:39.4151537Z .svelte-kit/output/server/chunks/runtime-client.js                                                              4.44 kB │ gzip:  1.42 kB
+2026-10-06T01:49:39.4152467Z .svelte-kit/output/server/chunks/schemas3.js                                                                    4.54 kB │ gzip:  1.50 kB
+2026-10-06T01:49:39.4153477Z .svelte-kit/output/server/entries/pages/comments/settings/_collection_/_page.svelte.js                          4.78 kB │ gzip:  1.52 kB
+2026-10-06T01:49:39.4154545Z .svelte-kit/output/server/entries/pages/login/_page.svelte.js                                                   4.81 kB │ gzip:  1.65 kB
+2026-10-06T01:49:39.4155530Z .svelte-kit/output/server/entries/pages/menus/_page.svelte.js                                                   4.98 kB │ gzip:  1.55 kB
+2026-10-06T01:49:39.4156737Z .svelte-kit/output/server/chunks/namespace.js                                                                   5.00 kB │ gzip:  1.68 kB
+2026-10-06T01:49:39.4157659Z .svelte-kit/output/server/chunks/manifest.js                                                                    5.25 kB │ gzip:  1.96 kB
+2026-10-06T01:49:39.4158682Z .svelte-kit/output/server/entries/endpoints/api/content/_collection_/_id_/terms/_taxonomy_/_server.ts.js        5.29 kB │ gzip:  1.54 kB
+2026-10-06T01:49:39.4159786Z .svelte-kit/output/server/entries/pages/content/_collection_/_id_/_page.svelte.js                               5.37 kB │ gzip:  1.40 kB
+2026-10-06T01:49:39.4160769Z .svelte-kit/output/server/chunks/admin.js                                                                       5.55 kB │ gzip:  1.09 kB
+2026-10-06T01:49:39.4161700Z .svelte-kit/output/server/chunks/migration-provider.js                                                          5.68 kB │ gzip:  2.10 kB
+2026-10-06T01:49:39.4162661Z .svelte-kit/output/server/chunks/auth.remote.js                                                                 5.88 kB │ gzip:  1.74 kB
+2026-10-06T01:49:39.4163573Z .svelte-kit/output/server/chunks/client.js                                                                      5.98 kB │ gzip:  2.38 kB
+2026-10-06T01:49:39.4164498Z .svelte-kit/output/server/chunks/schemas2.js                                                                    5.99 kB │ gzip:  1.66 kB
+2026-10-06T01:49:39.4165415Z .svelte-kit/output/server/chunks/MenuDialog.js                                                                  6.05 kB │ gzip:  1.45 kB
+2026-10-06T01:49:39.4166801Z .svelte-kit/output/server/chunks/admin-http.js                                                                  6.16 kB │ gzip:  2.04 kB
+2026-10-06T01:49:39.4167728Z .svelte-kit/output/server/chunks/schema4.js                                                                     6.26 kB │ gzip:  1.93 kB
+2026-10-06T01:49:39.4168641Z .svelte-kit/output/server/chunks/i18n-resolve.js                                                                6.32 kB │ gzip:  2.52 kB
+2026-10-06T01:49:39.4169690Z .svelte-kit/output/server/chunks/config.js                                                                      6.36 kB │ gzip:  2.29 kB
+2026-10-06T01:49:39.4170653Z .svelte-kit/output/server/entries/pages/schema/_page.svelte.js                                                  6.39 kB │ gzip:  1.82 kB
+2026-10-06T01:49:39.4171604Z .svelte-kit/output/server/chunks/authorize.js                                                                   6.52 kB │ gzip:  2.47 kB
+2026-10-06T01:49:39.4172590Z .svelte-kit/output/server/entries/endpoints/api/calendar/_server.ts.js                                          6.86 kB │ gzip:  2.71 kB
+2026-10-06T01:49:39.4173554Z .svelte-kit/output/server/chunks/exports.js                                                                     6.90 kB │ gzip:  2.18 kB
+2026-10-06T01:49:39.4174515Z .svelte-kit/output/server/entries/pages/schema/_manage/_page.svelte.js                                          6.99 kB │ gzip:  2.03 kB
+2026-10-06T01:49:39.4175505Z .svelte-kit/output/server/chunks/zod-generator.js                                                               7.30 kB │ gzip:  2.48 kB
+2026-10-06T01:49:39.4176817Z .svelte-kit/output/server/chunks/repository3.js                                                                 7.43 kB │ gzip:  2.01 kB
+2026-10-06T01:49:39.4177741Z .svelte-kit/output/server/chunks/bylines.js                                                                     7.89 kB │ gzip:  2.69 kB
+2026-10-06T01:49:39.4178727Z .svelte-kit/output/server/entries/pages/trash/_collection_/_page.svelte.js                                      9.18 kB │ gzip:  2.68 kB
+2026-10-06T01:49:39.4179711Z .svelte-kit/output/server/chunks/routing.js                                                                     9.39 kB │ gzip:  3.13 kB
+2026-10-06T01:49:39.4180691Z .svelte-kit/output/server/entries/pages/content/_collection_/_page.svelte.js                                    9.56 kB │ gzip:  1.87 kB
+2026-10-06T01:49:39.4181678Z .svelte-kit/output/server/chunks/request3.js                                                                    9.77 kB │ gzip:  3.19 kB
+2026-10-06T01:49:39.4182590Z .svelte-kit/output/server/chunks/taxonomies.js                                                                  9.95 kB │ gzip:  3.58 kB
+2026-10-06T01:49:39.4183574Z .svelte-kit/output/server/entries/pages/redirects/_page.svelte.js                                              10.08 kB │ gzip:  2.74 kB
+2026-10-06T01:49:39.4184532Z .svelte-kit/output/server/chunks/schemas4.js                                                                   10.23 kB │ gzip:  2.61 kB
+2026-10-06T01:49:39.4185541Z .svelte-kit/output/server/entries/endpoints/api/taxonomies/bulk-tag/_server.ts.js                              10.52 kB │ gzip:  3.15 kB
+2026-10-06T01:49:39.4186790Z .svelte-kit/output/server/chunks/shared.js                                                                     11.15 kB │ gzip:  3.49 kB
+2026-10-06T01:49:39.4187792Z .svelte-kit/output/server/entries/endpoints/sitemap-_collection_.xml/_server.ts.js                             11.31 kB │ gzip:  4.21 kB
+2026-10-06T01:49:39.4188811Z .svelte-kit/output/server/chunks/object-cache.js                                                               11.47 kB │ gzip:  4.03 kB
+2026-10-06T01:49:39.4189727Z .svelte-kit/output/server/chunks/schemas.js                                                                    11.98 kB │ gzip:  3.88 kB
+2026-10-06T01:49:39.4190729Z .svelte-kit/output/server/entries/pages/content/_collection_/_id_/workflow/_page.svelte.js                     12.84 kB │ gzip:  2.27 kB
+2026-10-06T01:49:39.4191952Z .svelte-kit/output/server/entries/pages/widgets/_page.svelte.js                                                13.24 kB │ gzip:  3.31 kB
+2026-10-06T01:49:39.4192936Z .svelte-kit/output/server/chunks/schema.remote.js                                                              13.32 kB │ gzip:  3.37 kB
+2026-10-06T01:49:39.4193904Z .svelte-kit/output/server/entries/pages/comments/_page.svelte.js                                               13.73 kB │ gzip:  3.66 kB
+2026-10-06T01:49:39.4195031Z .svelte-kit/output/server/chunks/WorkspaceShell.js                                                             14.07 kB │ gzip:  3.61 kB
+2026-10-06T01:49:39.4196217Z .svelte-kit/output/server/chunks/content.remote.js                                                             15.46 kB │ gzip:  3.06 kB
+2026-10-06T01:49:39.4197171Z .svelte-kit/output/server/chunks/service.js                                                                    18.35 kB │ gzip:  4.31 kB
+2026-10-06T01:49:39.4198095Z .svelte-kit/output/server/chunks/EditorForm.js                                                                 19.22 kB │ gzip:  5.36 kB
+2026-10-06T01:49:39.4199066Z .svelte-kit/output/server/entries/pages/menus/_name_/_page.svelte.js                                           20.48 kB │ gzip:  5.21 kB
+2026-10-06T01:49:39.4200108Z .svelte-kit/output/server/entries/pages/schema/_collection_/_page.svelte.js                                    20.66 kB │ gzip:  3.59 kB
+2026-10-06T01:49:39.4201122Z .svelte-kit/output/server/chunks/collection-indexes.js                                                         21.94 kB │ gzip:  5.84 kB
+2026-10-06T01:49:39.4202060Z .svelte-kit/output/server/chunks/registry.js                                                                   23.17 kB │ gzip:  5.91 kB
+2026-10-06T01:49:39.4202967Z .svelte-kit/output/server/chunks/schema2.js                                                                    24.59 kB │ gzip:  7.94 kB
+2026-10-06T01:49:39.4203865Z .svelte-kit/output/server/chunks/http.js                                                                       24.75 kB │ gzip:  7.34 kB
+2026-10-06T01:49:39.4204756Z .svelte-kit/output/server/chunks/error.js                                                                      26.57 kB │ gzip:  5.92 kB
+2026-10-06T01:49:39.4205644Z .svelte-kit/output/server/chunks/parse.js                                                                      28.03 kB │ gzip:  6.49 kB
+2026-10-06T01:49:39.4206846Z .svelte-kit/output/server/chunks/repository5.js                                                                28.50 kB │ gzip:  8.02 kB
+2026-10-06T01:49:39.4207776Z .svelte-kit/output/server/chunks/handlers2.js                                                                  30.53 kB │ gzip:  7.65 kB
+2026-10-06T01:49:39.4208708Z .svelte-kit/output/server/chunks/sql-recognition.js                                                            30.55 kB │ gzip:  4.86 kB
+2026-10-06T01:49:39.4209642Z .svelte-kit/output/server/chunks/handlers.js                                                                   34.24 kB │ gzip:  7.90 kB
+2026-10-06T01:49:39.4210625Z .svelte-kit/output/server/chunks/identity-request.js                                                           35.44 kB │ gzip:  9.04 kB
+2026-10-06T01:49:39.4211560Z .svelte-kit/output/server/chunks/runtime.js                                                                    36.87 kB │ gzip:  9.71 kB
+2026-10-06T01:49:39.4212477Z .svelte-kit/output/server/chunks/request4.js                                                                   36.99 kB │ gzip:  9.55 kB
+2026-10-06T01:49:39.4213378Z .svelte-kit/output/server/chunks/utils.js                                                                      37.43 kB │ gzip: 10.84 kB
+2026-10-06T01:49:39.4214287Z .svelte-kit/output/server/entries/hooks.server.js                                                              37.65 kB │ gzip: 11.68 kB
+2026-10-06T01:49:39.4215214Z .svelte-kit/output/server/chunks/internal.js                                                                   43.17 kB │ gzip: 11.95 kB
+2026-10-06T01:49:39.4216526Z .svelte-kit/output/server/chunks/repository.js                                                                 43.97 kB │ gzip: 12.06 kB
+2026-10-06T01:49:39.4217490Z .svelte-kit/output/server/chunks/ContentTypeEditor.js                                                          44.30 kB │ gzip:  8.57 kB
+2026-10-06T01:49:39.4218557Z .svelte-kit/output/server/chunks/artifacts.js                                                                  51.29 kB │ gzip: 15.22 kB
+2026-10-06T01:49:39.4219484Z .svelte-kit/output/server/chunks/request2.js                                                                   52.19 kB │ gzip: 15.18 kB
+2026-10-06T01:49:39.4220397Z .svelte-kit/output/server/chunks/remote.js                                                                     55.47 kB │ gzip: 12.15 kB
+2026-10-06T01:49:39.4221328Z .svelte-kit/output/server/chunks/content-validation.js                                                         70.41 kB │ gzip: 17.25 kB
+2026-10-06T01:49:39.4222327Z .svelte-kit/output/server/entries/pages/calendar/_page.svelte.js                                              104.15 kB │ gzip: 25.21 kB
+2026-10-06T01:49:39.4223300Z .svelte-kit/output/server/chunks/migrations.js                                                                104.50 kB │ gzip: 24.57 kB
+2026-10-06T01:49:39.4224218Z .svelte-kit/output/server/chunks/content.js                                                                   114.26 kB │ gzip: 26.84 kB
+2026-10-06T01:49:39.4225116Z .svelte-kit/output/server/chunks/async.js                                                                     121.99 kB │ gzip: 31.86 kB
+2026-10-06T01:49:39.4226245Z .svelte-kit/output/server/index.js                                                                            132.41 kB │ gzip: 33.27 kB
+2026-10-06T01:49:39.4227161Z .svelte-kit/output/server/chunks/messages30.js                                                                156.75 kB │ gzip: 59.87 kB
+2026-10-06T01:49:39.4228093Z .svelte-kit/output/server/chunks/messages8.js                                                                 158.15 kB │ gzip: 54.30 kB
+2026-10-06T01:49:39.4229001Z .svelte-kit/output/server/chunks/messages7.js                                                                 158.15 kB │ gzip: 54.31 kB
+2026-10-06T01:49:39.4229921Z .svelte-kit/output/server/chunks/messages23.js                                                                158.15 kB │ gzip: 54.30 kB
+2026-10-06T01:49:39.4230848Z .svelte-kit/output/server/chunks/messages11.js                                                                158.61 kB │ gzip: 55.29 kB
+2026-10-06T01:49:39.4231768Z .svelte-kit/output/server/chunks/messages31.js                                                                159.80 kB │ gzip: 60.56 kB
+2026-10-06T01:49:39.4232687Z .svelte-kit/output/server/chunks/messages16.js                                                                161.12 kB │ gzip: 54.15 kB
+2026-10-06T01:49:39.4233612Z .svelte-kit/output/server/chunks/registry2.js                                                                 162.17 kB │ gzip: 30.31 kB
+2026-10-06T01:49:39.4234524Z .svelte-kit/output/server/chunks/messages20.js                                                                162.62 kB │ gzip: 58.04 kB
+2026-10-06T01:49:39.4235449Z .svelte-kit/output/server/chunks/messages22.js                                                                163.54 kB │ gzip: 59.27 kB
+2026-10-06T01:49:39.4236602Z .svelte-kit/output/server/chunks/messages25.js                                                                165.27 kB │ gzip: 59.27 kB
+2026-10-06T01:49:39.4237527Z .svelte-kit/output/server/chunks/messages21.js                                                                165.98 kB │ gzip: 58.70 kB
+2026-10-06T01:49:39.4238447Z .svelte-kit/output/server/chunks/messages28.js                                                                166.91 kB │ gzip: 59.93 kB
+2026-10-06T01:49:39.4239513Z .svelte-kit/output/server/chunks/messages19.js                                                                166.94 kB │ gzip: 60.25 kB
+2026-10-06T01:49:39.4240433Z .svelte-kit/output/server/chunks/messages10.js                                                                167.11 kB │ gzip: 59.47 kB
+2026-10-06T01:49:39.4241344Z .svelte-kit/output/server/chunks/messages5.js                                                                 168.50 kB │ gzip: 57.34 kB
+2026-10-06T01:49:39.4242368Z .svelte-kit/output/server/chunks/messages15.js                                                                168.90 kB │ gzip: 60.44 kB
+2026-10-06T01:49:39.4243340Z .svelte-kit/output/server/chunks/messages9.js                                                                 169.90 kB │ gzip: 59.80 kB
+2026-10-06T01:49:39.4244260Z .svelte-kit/output/server/chunks/messages3.js                                                                 169.92 kB │ gzip: 59.50 kB
+2026-10-06T01:49:39.4245179Z .svelte-kit/output/server/chunks/messages24.js                                                                170.09 kB │ gzip: 59.34 kB
+2026-10-06T01:49:39.4246373Z .svelte-kit/output/server/chunks/messages26.js                                                                173.99 kB │ gzip: 57.33 kB
+2026-10-06T01:49:39.4247328Z .svelte-kit/output/server/chunks/messages4.js                                                                 175.88 kB │ gzip: 61.93 kB
+2026-10-06T01:49:39.4248262Z .svelte-kit/output/server/chunks/messages13.js                                                                177.48 kB │ gzip: 60.77 kB
+2026-10-06T01:49:39.4249180Z .svelte-kit/output/server/chunks/messages12.js                                                                179.02 kB │ gzip: 60.80 kB
+2026-10-06T01:49:39.4250096Z .svelte-kit/output/server/chunks/messages6.js                                                                 186.49 kB │ gzip: 61.58 kB
+2026-10-06T01:49:39.4251014Z .svelte-kit/output/server/chunks/messages17.js                                                                187.76 kB │ gzip: 62.58 kB
+2026-10-06T01:49:39.4251933Z .svelte-kit/output/server/chunks/messages29.js                                                                202.74 kB │ gzip: 64.00 kB
+2026-10-06T01:49:39.4252841Z .svelte-kit/output/server/chunks/messages27.js                                                                216.66 kB │ gzip: 62.82 kB
+2026-10-06T01:49:39.4253764Z .svelte-kit/output/server/chunks/messages.js                                                                  228.11 kB │ gzip: 64.17 kB
+2026-10-06T01:49:39.4254676Z .svelte-kit/output/server/chunks/messages14.js                                                                244.46 kB │ gzip: 66.64 kB
+2026-10-06T01:49:39.4255594Z .svelte-kit/output/server/chunks/messages18.js                                                                292.42 kB │ gzip: 67.10 kB
+2026-10-06T01:49:39.4256746Z .svelte-kit/output/server/chunks/messages2.js                                                                 318.50 kB │ gzip: 66.71 kB
+2026-10-06T01:49:39.4257166Z 
+2026-10-06T01:49:39.4257324Z [32m✓ built in 5.77s[39m
+2026-10-06T01:49:39.4257489Z 
+2026-10-06T01:49:39.4257740Z Run npm run preview to preview your production build locally.
+2026-10-06T01:49:39.4257999Z 
+2026-10-06T01:49:39.4258143Z > Using @sveltejs/adapter-auto
+2026-10-06T01:49:39.4258949Z   Could not detect a supported production environment. See https://svelte.dev/docs/kit/adapters to learn how to configure your app to run on the platform of your choosing
+2026-10-06T01:49:39.4259685Z   ✔ done
+2026-10-06T01:49:40.3161946Z 
+2026-10-06T01:49:40.3167929Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:49:40.3168567Z 
+2026-10-06T01:49:48.4684387Z  [32m✓[39m tests/writable-editor-native/editor-form.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 6027[2mms[22m[39m
+2026-10-06T01:49:48.4686703Z    [33m[2m✓[22m[39m actual create form stores the entered locale and navigates using its accepted receipt [33m 889[2mms[22m[39m
+2026-10-06T01:49:48.4689004Z    [33m[2m✓[22m[39m actual programmatic autosave enters pending and preserves later typing through a second stored revision [33m 4134[2mms[22m[39m
+2026-10-06T01:49:49.4159756Z  [32m✓[39m tests/writable-editor-native/validation-contract.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+2026-10-06T01:49:50.3097574Z  [32m✓[39m tests/writable-editor-native/writable-draft.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 63[2mms[22m[39m
+2026-10-06T01:49:53.2220082Z  [32m✓[39m tests/writable-editor-native/collection-navigation.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 2188[2mms[22m[39m
+2026-10-06T01:49:53.2222051Z    [33m[2m✓[22m[39m Node collection links preserve default entry routes and explicit French identity [33m 833[2mms[22m[39m
+2026-10-06T01:49:53.2223784Z    [33m[2m✓[22m[39m D1 collection links preserve default entry routes and explicit French identity [33m 1353[2mms[22m[39m
+2026-10-06T01:49:53.2245289Z 
+2026-10-06T01:49:53.2249775Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-06T01:49:53.2250439Z [2m      Tests [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+2026-10-06T01:49:53.2250911Z [2m   Start at [22m 01:49:40
+2026-10-06T01:49:53.2252622Z [2m   Duration [22m 12.90s[2m (transform 1.44s, setup 0ms, import 1.69s, tests 8.35s, environment 2.37s)[22m
+2026-10-06T01:49:53.2254546Z 
+2026-10-06T01:49:53.3196718Z {"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeFiles":49,"wholeTestFiles":11,"bytes":325597,"productTestsRun":0,"sourceCausalCredit":0}
+2026-10-06T01:49:53.3395435Z $ TZ=America/New_York node --test tests/blocks/provider-defaults-original.test.ts tests/blocks/catalogue-fixture.test.ts tests/blocks/provider-preservation.test.ts tests/blocks/comments-readiness-defaults-original.test.ts
+2026-10-06T01:49:54.2548409Z ✔ node finite catalogue names, bound index lookup and PRAGMA use actual block storage (94.597819ms)
+2026-10-06T01:49:56.3355292Z ✔ d1 finite catalogue names, bound index lookup and PRAGMA use actual block storage (2086.724774ms)
+2026-10-06T01:49:56.7962858Z ✔ Node: Comments readiness follows installed14 creation default and stays read-only (54.938276ms)
+2026-10-06T01:49:56.7965029Z ✔ Node: Comments readiness follows installed15 creation default and stays read-only (63.980291ms)
+2026-10-06T01:49:56.7967099Z ✔ Node: Comments readiness follows installed16 creation default and stays read-only (67.19508ms)
+2026-10-06T01:49:56.7968299Z ✔ raw D1: Comments readiness follows installed14 creation default and stays read-only (1400.59754ms)
+2026-10-06T01:49:56.7969783Z ✔ raw D1: Comments readiness follows installed15 creation default and stays read-only (509.340387ms)
+2026-10-06T01:49:56.7970857Z ✔ raw D1: Comments readiness follows installed16 creation default and stays read-only (192.024006ms)
+2026-10-06T01:49:56.8303228Z ✔ ordinary node startup installs both block registry tables (51.856626ms)
+2026-10-06T01:49:56.8305074Z ✔ ordinary node startup provides Source creation defaults and keeps explicit false (55.644873ms)
+2026-10-06T01:49:56.8306232Z ✔ ordinary d1 startup installs both block registry tables (1300.986802ms)
+2026-10-06T01:49:56.8307025Z ✔ ordinary d1 startup provides Source creation defaults and keeps explicit false (234.486595ms)
+2026-10-06T01:49:57.4066782Z ✖ node fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (111.234072ms)
+2026-10-06T01:49:57.4071997Z ✖ node installed16 near-miss block or metadata defaults are refused without repair (29.004443ms)
+2026-10-06T01:49:57.4084735Z ✖ node forward16 preserves all metadata/content values and operator objects from 8 (75.462591ms)
+2026-10-06T01:49:57.4088308Z ✖ node forward16 preserves all metadata/content values and operator objects from 14 (80.393117ms)
+2026-10-06T01:49:57.4090687Z ✔ node Source UTC timestamp metadata CAS remains literal and monotonic in a non-UTC host (30.424439ms)
+2026-10-06T01:49:57.4097241Z ✔ node real omitted Source metadata creation defaults permit persisted collection and field creation (24.476187ms)
+2026-10-06T01:49:57.4099966Z ✔ node rebuild refuses external metadata parent foreign keys before any atomic writes (91.042336ms)
+2026-10-06T01:49:57.4101500Z ✔ node unknown partial block installation rejects without repair or row changes (26.087299ms)
+2026-10-06T01:49:57.4105029Z ✖ node every forward rebuild DDL failure rolls back complete historical data and marker state (84.138152ms)
+2026-10-06T01:49:58.0012195Z ✖ d1 fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (590.455454ms)
+2026-10-06T01:49:58.7129839Z ✖ d1 installed16 near-miss block or metadata defaults are refused without repair (715.315583ms)
+2026-10-06T01:49:59.1200077Z ✖ d1 forward16 preserves all metadata/content values and operator objects from 8 (407.118963ms)
+2026-10-06T01:49:59.6277752Z ✖ d1 forward16 preserves all metadata/content values and operator objects from 14 (507.226402ms)
+2026-10-06T01:49:59.7502127Z ✔ d1 Source UTC timestamp metadata CAS remains literal and monotonic in a non-UTC host (122.48923ms)
+2026-10-06T01:49:59.8337505Z ✔ d1 real omitted Source metadata creation defaults permit persisted collection and field creation (84.274771ms)
+2026-10-06T01:50:01.2356224Z ✔ d1 rebuild refuses external metadata parent foreign keys before any atomic writes (1400.36154ms)
+2026-10-06T01:50:01.6451213Z ✔ d1 unknown partial block installation rejects without repair or row changes (410.847824ms)
+2026-10-06T01:50:02.5979811Z ✖ d1 every forward rebuild DDL failure rolls back complete historical data and marker state (952.903798ms)
+2026-10-06T01:50:02.9161801Z ℹ tests 30
+2026-10-06T01:50:02.9162248Z ℹ suites 0
+2026-10-06T01:50:02.9162615Z ℹ pass 20
+2026-10-06T01:50:02.9162934Z ℹ fail 10
+2026-10-06T01:50:02.9163195Z ℹ cancelled 0
+2026-10-06T01:50:02.9163455Z ℹ skipped 0
+2026-10-06T01:50:02.9163690Z ℹ todo 0
+2026-10-06T01:50:02.9163974Z ℹ duration_ms 9545.748634
+2026-10-06T01:50:02.9199927Z 
+2026-10-06T01:50:02.9200257Z ✖ failing tests:
+2026-10-06T01:50:02.9200514Z 
+2026-10-06T01:50:02.9200972Z test at tests/blocks/provider-preservation.test.ts:71:3
+2026-10-06T01:50:02.9202536Z ✖ node fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (111.234072ms)
+2026-10-06T01:50:02.9203354Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9203788Z   
+2026-10-06T01:50:02.9203994Z   18 !== 17
+2026-10-06T01:50:02.9204202Z   
+2026-10-06T01:50:02.9204822Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:85:14)
+2026-10-06T01:50:02.9205573Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9206392Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+2026-10-06T01:50:02.9207093Z     generatedMessage: true,
+2026-10-06T01:50:02.9207380Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9207979Z     actual: 18,
+2026-10-06T01:50:02.9208217Z     expected: 17,
+2026-10-06T01:50:02.9208468Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9208742Z     diff: 'simple'
+2026-10-06T01:50:02.9208969Z   }
+2026-10-06T01:50:02.9209082Z 
+2026-10-06T01:50:02.9209354Z test at tests/blocks/provider-preservation.test.ts:90:3
+2026-10-06T01:50:02.9210204Z ✖ node installed16 near-miss block or metadata defaults are refused without repair (29.004443ms)
+2026-10-06T01:50:02.9210922Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9211487Z   
+2026-10-06T01:50:02.9211690Z   18 !== 17
+2026-10-06T01:50:02.9211896Z   
+2026-10-06T01:50:02.9212482Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:94:47)
+2026-10-06T01:50:02.9213616Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9214579Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9215094Z     generatedMessage: true,
+2026-10-06T01:50:02.9215379Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9215636Z     actual: 18,
+2026-10-06T01:50:02.9216021Z     expected: 17,
+2026-10-06T01:50:02.9216271Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9216540Z     diff: 'simple'
+2026-10-06T01:50:02.9216766Z   }
+2026-10-06T01:50:02.9216878Z 
+2026-10-06T01:50:02.9217329Z test at tests/blocks/provider-preservation.test.ts:108:41
+2026-10-06T01:50:02.9218104Z ✖ node forward16 preserves all metadata/content values and operator objects from 8 (75.462591ms)
+2026-10-06T01:50:02.9218745Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9219117Z   
+2026-10-06T01:50:02.9219293Z   18 !== 17
+2026-10-06T01:50:02.9219476Z   
+2026-10-06T01:50:02.9219990Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:122:14)
+2026-10-06T01:50:02.9220623Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9221150Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9221604Z     generatedMessage: true,
+2026-10-06T01:50:02.9221860Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9222089Z     actual: 18,
+2026-10-06T01:50:02.9222297Z     expected: 17,
+2026-10-06T01:50:02.9222549Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9222811Z     diff: 'simple'
+2026-10-06T01:50:02.9223029Z   }
+2026-10-06T01:50:02.9223130Z 
+2026-10-06T01:50:02.9223392Z test at tests/blocks/provider-preservation.test.ts:108:41
+2026-10-06T01:50:02.9224177Z ✖ node forward16 preserves all metadata/content values and operator objects from 14 (80.393117ms)
+2026-10-06T01:50:02.9224842Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9225242Z   
+2026-10-06T01:50:02.9225431Z   18 !== 17
+2026-10-06T01:50:02.9225630Z   
+2026-10-06T01:50:02.9226519Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:122:14)
+2026-10-06T01:50:02.9227242Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9227807Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9228262Z     generatedMessage: true,
+2026-10-06T01:50:02.9228535Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9228784Z     actual: 18,
+2026-10-06T01:50:02.9229014Z     expected: 17,
+2026-10-06T01:50:02.9229251Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9229514Z     diff: 'simple'
+2026-10-06T01:50:02.9229738Z   }
+2026-10-06T01:50:02.9229838Z 
+2026-10-06T01:50:02.9230087Z test at tests/blocks/provider-preservation.test.ts:203:3
+2026-10-06T01:50:02.9230907Z ✖ node every forward rebuild DDL failure rolls back complete historical data and marker state (84.138152ms)
+2026-10-06T01:50:02.9231621Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9232003Z   
+2026-10-06T01:50:02.9232198Z   18 !== 17
+2026-10-06T01:50:02.9232623Z   
+2026-10-06T01:50:02.9233227Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:215:16)
+2026-10-06T01:50:02.9233865Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9234409Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9234860Z     generatedMessage: true,
+2026-10-06T01:50:02.9235113Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9235359Z     actual: 18,
+2026-10-06T01:50:02.9235739Z     expected: 17,
+2026-10-06T01:50:02.9237632Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9238161Z     diff: 'simple'
+2026-10-06T01:50:02.9238515Z   }
+2026-10-06T01:50:02.9238684Z 
+2026-10-06T01:50:02.9239063Z test at tests/blocks/provider-preservation.test.ts:71:3
+2026-10-06T01:50:02.9240405Z ✖ d1 fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes (590.455454ms)
+2026-10-06T01:50:02.9241548Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9242208Z   
+2026-10-06T01:50:02.9242473Z   18 !== 17
+2026-10-06T01:50:02.9242734Z   
+2026-10-06T01:50:02.9243576Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:85:14)
+2026-10-06T01:50:02.9244774Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-06T01:50:02.9245625Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9246727Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9247452Z     generatedMessage: true,
+2026-10-06T01:50:02.9247881Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9248280Z     actual: 18,
+2026-10-06T01:50:02.9248624Z     expected: 17,
+2026-10-06T01:50:02.9248997Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9249408Z     diff: 'simple'
+2026-10-06T01:50:02.9249748Z   }
+2026-10-06T01:50:02.9249922Z 
+2026-10-06T01:50:02.9250304Z test at tests/blocks/provider-preservation.test.ts:90:3
+2026-10-06T01:50:02.9251560Z ✖ d1 installed16 near-miss block or metadata defaults are refused without repair (715.315583ms)
+2026-10-06T01:50:02.9252624Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9253262Z   
+2026-10-06T01:50:02.9253570Z   18 !== 17
+2026-10-06T01:50:02.9253872Z   
+2026-10-06T01:50:02.9254769Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:94:47)
+2026-10-06T01:50:02.9256339Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-06T01:50:02.9257286Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9258200Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9258950Z     generatedMessage: true,
+2026-10-06T01:50:02.9259377Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9259767Z     actual: 18,
+2026-10-06T01:50:02.9260125Z     expected: 17,
+2026-10-06T01:50:02.9260508Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9260923Z     diff: 'simple'
+2026-10-06T01:50:02.9261261Z   }
+2026-10-06T01:50:02.9261436Z 
+2026-10-06T01:50:02.9261845Z test at tests/blocks/provider-preservation.test.ts:108:41
+2026-10-06T01:50:02.9263043Z ✖ d1 forward16 preserves all metadata/content values and operator objects from 8 (407.118963ms)
+2026-10-06T01:50:02.9264155Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9264819Z   
+2026-10-06T01:50:02.9265128Z   18 !== 17
+2026-10-06T01:50:02.9265433Z   
+2026-10-06T01:50:02.9266529Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:122:14)
+2026-10-06T01:50:02.9267846Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-06T01:50:02.9268862Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9269811Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9270718Z     generatedMessage: true,
+2026-10-06T01:50:02.9271000Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9271234Z     actual: 18,
+2026-10-06T01:50:02.9271440Z     expected: 17,
+2026-10-06T01:50:02.9271655Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9271927Z     diff: 'simple'
+2026-10-06T01:50:02.9272133Z   }
+2026-10-06T01:50:02.9272286Z 
+2026-10-06T01:50:02.9272730Z test at tests/blocks/provider-preservation.test.ts:108:41
+2026-10-06T01:50:02.9274266Z ✖ d1 forward16 preserves all metadata/content values and operator objects from 14 (507.226402ms)
+2026-10-06T01:50:02.9275025Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9275388Z   
+2026-10-06T01:50:02.9275561Z   18 !== 17
+2026-10-06T01:50:02.9275737Z   
+2026-10-06T01:50:02.9276531Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:122:14)
+2026-10-06T01:50:02.9277263Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-06T01:50:02.9277785Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9278287Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9278736Z     generatedMessage: true,
+2026-10-06T01:50:02.9278982Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9279217Z     actual: 18,
+2026-10-06T01:50:02.9279419Z     expected: 17,
+2026-10-06T01:50:02.9279636Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9279886Z     diff: 'simple'
+2026-10-06T01:50:02.9280094Z   }
+2026-10-06T01:50:02.9280202Z 
+2026-10-06T01:50:02.9280430Z test at tests/blocks/provider-preservation.test.ts:203:3
+2026-10-06T01:50:02.9281219Z ✖ d1 every forward rebuild DDL failure rolls back complete historical data and marker state (952.903798ms)
+2026-10-06T01:50:02.9281858Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-06T01:50:02.9282217Z   
+2026-10-06T01:50:02.9282408Z   18 !== 17
+2026-10-06T01:50:02.9282593Z   
+2026-10-06T01:50:02.9283099Z       at TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/blocks/provider-preservation.test.ts:215:16)
+2026-10-06T01:50:02.9283829Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-06T01:50:02.9284929Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-06T01:50:02.9286379Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-06T01:50:02.9299839Z     generatedMessage: true,
+2026-10-06T01:50:02.9300376Z     code: 'ERR_ASSERTION',
+2026-10-06T01:50:02.9300805Z     actual: 18,
+2026-10-06T01:50:02.9301168Z     expected: 17,
+2026-10-06T01:50:02.9301546Z     operator: 'strictEqual',
+2026-10-06T01:50:02.9301969Z     diff: 'simple'
+2026-10-06T01:50:02.9302326Z   }
+2026-10-06T01:50:02.9302810Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-06T01:50:02.9303404Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-06T01:50:02.9323396Z ##[error]Process completed with exit code 1.
+2026-10-06T01:50:02.9433042Z Post job cleanup.
+2026-10-06T01:50:03.0914790Z Pruning is unnecessary.
+2026-10-06T01:50:03.1091449Z Post job cleanup.
+2026-10-06T01:50:03.2062533Z [command]/usr/bin/git version
+2026-10-06T01:50:03.2147003Z git version 2.55.0
+2026-10-06T01:50:03.2240044Z Temporarily overriding HOME='/home/runner/work/_temp/aeec737e-14ee-44af-b4a0-e29268baa801' before making global git config changes
+2026-10-06T01:50:03.2268163Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T01:50:03.2269760Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T01:50:03.2271956Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T01:50:03.2275104Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T01:50:03.2534476Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T01:50:03.2566660Z http.https://github.com/.extraheader
+2026-10-06T01:50:03.2586899Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-06T01:50:03.2618364Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T01:50:03.2891621Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T01:50:03.2928209Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T01:50:03.3339221Z Cleaning up orphan processes
+2026-10-06T01:50:03.3673841Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
