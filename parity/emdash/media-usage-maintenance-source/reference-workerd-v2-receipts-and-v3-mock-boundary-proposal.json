@@ -1,0 +1,70 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "referenceOnly": true,
+  "nativeParityCredit": 0,
+  "officialWorkersRunnerIdentity": false,
+  "originalBodiesDataMocksAndSourceClockUnchanged": true,
+  "families": 4,
+  "callbacks": {
+    "passed": 10,
+    "failed": 1
+  },
+  "failureClassification": "Original collection-recreate vi.mock virtual:dialect factory was not honored through external:true boundary; Source executes local unsupported transaction at Source499. Honest fixture/mock prerequisite; no upstream bug claim.",
+  "completePerFamilyActualReceipts": [
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v2-collection-recreate-d1.test.ts-receipts.json",
+      "bytes": 514997,
+      "sha256": "9e0976c53c9e9bd2f88ac357dec260bf4e2e29e35a19f0c87d93ea5c730fc665",
+      "family": "collection-recreate-d1.test.ts",
+      "actualReceipts": 649,
+      "actualGuardBatches": 0
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v2-media-usage-activation-d1.test.ts-receipts.json",
+      "bytes": 703937,
+      "sha256": "36e0ee1a875757a75b4c061d18dcb902d5ac06b40d83d65786a6a404d69293ad",
+      "family": "media-usage-activation-d1.test.ts",
+      "actualReceipts": 786,
+      "actualGuardBatches": 0
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v2-media-usage-collection-deletion-d1.test.ts-receipts.json",
+      "bytes": 597331,
+      "sha256": "c4f25b2da8658dbd2ada1fc14e4a94b6d49f60be6bb881decb48043f3ead4bbe",
+      "family": "media-usage-collection-deletion-d1.test.ts",
+      "actualReceipts": 704,
+      "actualGuardBatches": 3
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v2-media-usage-maintenance-engine-d1.test.ts-receipts.json",
+      "bytes": 5481477,
+      "sha256": "ea374f0368569005d5ceeadedb1d0f81d57cb10909b9e63d97b916795110ae3b",
+      "family": "media-usage-maintenance-engine-d1.test.ts",
+      "actualReceipts": 937,
+      "actualGuardBatches": 0
+    }
+  ],
+  "nextUnexecutedFixtureDelta": {
+    "v2": "explicit external module boundary bypasses actual Original mock",
+    "v3": "identity-only resolveId returns same bare virtual:emdash/dialect specifier; Original vi.mock actual pinned Cloudflare callback supplies its own module; no synthetic module loader/export/function or Native alias is added"
+  },
+  "newFiles": [
+    {
+      "path": "vitest.media-usage-maintenance-reference-d1-v3.config.ts",
+      "bytes": 2681,
+      "sha256": "e43a3219362eaf25e5a62178e099c525ff25289547249fa1e8d025200cd52638"
+    },
+    {
+      "path": "tests/helpers/media-usage-maintenance/reference-workerd-v3-env.ts",
+      "bytes": 3114,
+      "sha256": "7d28332969e3dd97108606faae9b2b114a7f71ce6a6c8f451730443a03ebfd02"
+    },
+    {
+      "path": "tests/helpers/media-usage-maintenance/reference-workerd-v3-lifetime.ts",
+      "bytes": 312,
+      "sha256": "374acd66a2e87322b8b42534d6d67227295f493d1b11d22b01c2a5b5d8be92d3"
+    }
+  ],
+  "executionPending": true,
+  "sourcePlatformDifferencesPreserved": "Node runner and existing Worker main/flags remain distinct, zero Native credit. Source30s clocks/date/stubs/per-family isolation/binding/sessions are retained."
+}
