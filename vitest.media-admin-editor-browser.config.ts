@@ -16,6 +16,7 @@ const group=process.env.MEDIA_SOURCE_GROUP;
 if(group&&!Object.hasOwn(groups,group))throw new Error(`Unknown whole Media Source group ${group}`);
 const include=(group?groups[group as keyof typeof groups]:Object.values(groups).flat()).map(path=>`parity/emdash/media-admin-editor/source/packages/admin/tests/${path}`);
 export default defineConfig({plugins:[{name:'whole-media-native-framework-transport',enforce:'pre',resolveId(id,importer){
+ if(id==='@dnd-kit/core')return resolve(root,'tests/helpers/media-library-dnd-reference.ts');
  if(id==='$app/paths')return resolve(root,'tests/helpers/media-panel-client-paths.ts');
  if(importer?.split('?')[0]===resolve(root,'src/lib/media/MediaDetails.svelte')){
   if(id==='./MediaImageCropper.svelte')return resolve(root,'tests/helpers/MediaPanelCropperMock.svelte');
@@ -29,6 +30,7 @@ export default defineConfig({plugins:[{name:'whole-media-native-framework-transp
  const target=resolve(dirname(importer.split('?')[0]!),id).replace(/\.(tsx?|js)$/,'');
  const named={
   'src/components/MediaLibrary':'tests/helpers/media-admin-editor-library-react.tsx',
+  'src/components/RouterLinkButton':'tests/helpers/media-library-router-reference.ts',
   'src/components/MediaDetailPanel':'tests/helpers/media-panel-react-bridge.ts',
   'src/components/FocalPointEditor':'tests/helpers/media-panel-focal-react-bridge.ts',
   'src/components/MediaUsedIn':'tests/helpers/media-panel-used-in-react-bridge.ts',
