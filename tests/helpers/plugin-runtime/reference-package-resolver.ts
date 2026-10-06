@@ -48,6 +48,23 @@ export function createReferencePackageResolver(root: string, directory = '/tmp/p
     const name = specifier.startsWith('@') ? specifier.split('/').slice(0, 2).join('/') : specifier.split('/')[0];
     if (importer.startsWith(source + path.sep)) {
       const relative = path.relative(source, importer).replaceAll(path.sep, '/');
+      if (name === 'sax' && relative.startsWith('packages/core/')) {
+        const directory = process.env.PLUGIN_REFERENCE_SAX ?? '/tmp/plugin127-additional-reference-sax/package';
+        const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'package.json'), 'utf8'));
+        if (manifest.name !== 'sax' || manifest.version !== '1.4.4') throw new Error('Unqualified Source Core sax');
+        return path.resolve(directory, manifest.main);
+      }
+      // Additional exact Source Registry-client catalog7.7.4 archive, separately
+      // approved and verified; transitive7.8.5 retains its own snapshot link.
+      if (name === 'semver' && relative.startsWith('packages/registry-client/')) {
+        const directory = process.env.PLUGIN_REFERENCE_SEMVER ?? '/tmp/plugin127-additional-reference-semver/package';
+        const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'package.json'), 'utf8'));
+        if (manifest.name !== 'semver' || manifest.version !== '7.7.4') throw new Error('Unqualified Source Registry-client semver');
+        const suffix = specifier.slice(name.length);
+        const result = path.resolve(directory, suffix ? `.${suffix}` : manifest.main);
+        if (!result.startsWith(directory + path.sep) || !fs.statSync(result).isFile()) throw new Error(`Missing genuine semver subpath: ${specifier}`);
+        return result;
+      }
       const workspace = inventory.workspaceImports.find((row: any) => row.importer === relative && row.specifier === specifier);
       if (workspace) return path.join(source, workspace.target);
       const selected = proposal.missingImporterSelections.find((row: any) => row.importer === relative && row.specifier === specifier);

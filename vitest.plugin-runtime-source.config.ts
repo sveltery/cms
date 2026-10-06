@@ -25,7 +25,7 @@ export default defineConfig({
       if (id === '@emdash-cms/plugin-types') return path.join(product, 'contracts/index.ts');
       if (id === '@emdash-cms/blocks/server') return path.join(product, 'contracts/block-server.ts');
       if (id === '@emdash-cms/blocks') return path.join(product, 'contracts/block-types.ts');
-      if (id === '@emdash-cms/auth') return path.join(root, 'src/lib/server/auth/permissions.ts');
+      if (id === '@emdash-cms/auth') return path.join(root, 'parity/emdash/plugin-runtime/source/packages/auth/src/index.ts');
       if (id === '@emdash-cms/auth/adapters/kysely') return path.join(root, 'parity/emdash/plugin-runtime/source/packages/auth/src/adapters/kysely.ts');
       // A finite test-only package export facade points at the complete pinned
       // config authority; no fabricated locale functions or public-index identity.
@@ -55,6 +55,7 @@ export default defineConfig({
           '../menus/i18n-resolve.ts': 'i18n/resolve.ts',
           'native-media-handlers.ts': 'api/handlers/media.ts', 'native-taxonomy-handlers.ts': 'api/handlers/taxonomies.ts',
           'content-usage-refresh.ts': 'media/usage/content-refresh.ts',
+          'transfer-fence.ts': 'transfer/fence.ts',
           '../entry-locks/repository.ts': 'database/repositories/entry-locks.ts',
           '../general-media/upstream/api/handlers/media-allowlist.ts': 'api/handlers/media-allowlist.ts',
           '../general-media/upstream/api/schemas/media.ts': 'api/schemas/media.ts',
@@ -67,7 +68,7 @@ export default defineConfig({
       if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
       const target = path.resolve(path.dirname(importer), id);
       const relative = path.relative(frozen, target).replaceAll(path.sep, '/');
-      const originalControlledExtensions = new Set(['src/plugins/index.js', 'src/plugins/sandbox/proxy.js', 'src/plugins/sandbox/types.js', 'src/plugins/sandbox/runner-options.js', 'src/plugins/sandbox/index.js', 'src/plugins/sandbox/noop.js', 'src/plugins/adapt-sandbox-entry.js', 'src/plugins/marketplace.js']);
+      const originalControlledExtensions = new Set(['src/plugins/index.js', 'src/plugins/http-route-dispatch.js', 'src/plugins/sandbox/proxy.js', 'src/plugins/sandbox/types.js', 'src/plugins/sandbox/runner-options.js', 'src/plugins/sandbox/index.js', 'src/plugins/sandbox/noop.js', 'src/plugins/adapt-sandbox-entry.js', 'src/plugins/marketplace.js']);
       if (originalControlledExtensions.has(relative)) return path.join(frozen, relative.replace(/\.js$/, '.ts'));
       if (relative.startsWith('src/plugins/')) return path.join(product, relative.slice('src/plugins/'.length).replace(/\.js$/, '.ts'));
       const native: Record<string, string> = {
@@ -76,7 +77,8 @@ export default defineConfig({
         'src/config/secrets.js': 'src/lib/server/plugins/configuration-secrets.ts',
         'src/api/handlers/plugins.js': 'src/lib/server/plugins/handlers.ts',
         'src/api/handlers/plugin-settings.js': 'src/lib/server/plugins/settings-handlers.ts',
-        'src/auth/trusted-proxy.js': 'src/lib/server/comments/upstream/auth/trusted-proxy.ts'
+        'src/auth/trusted-proxy.js': 'src/lib/server/comments/upstream/auth/trusted-proxy.ts',
+        'src/security/ssrf.js': 'src/lib/server/plugins/ssrf.ts'
       };
       if (native[relative]) return path.join(root, native[relative]);
     }

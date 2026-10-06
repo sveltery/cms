@@ -1,0 +1,26 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "packages/core/tests/integration/plugins/cron-correctness.test.ts",
+  "sourceSha256": "02a9860c06a871a38901715695953f86669bf9753aa46eed076d502b02294942",
+  "native": "tests/plugin-runtime/canonical-cron-source.test.ts",
+  "wholeBodyImportAndTableTransports": [
+    {
+      "from": "../../../src/plugins/cron.js",
+      "to": "../../src/lib/server/plugins/cron.ts"
+    },
+    {
+      "from": "../../utils/test-db.js",
+      "to": "./helpers/canonical-cron.ts"
+    },
+    {
+      "from": "_emdash_cron_tasks",
+      "to": "_cms_cron_tasks"
+    }
+  ],
+  "allOriginalDataMocksAndClocksPreserved": true,
+  "adapter": "actual openSqlite/migrateCms/requireCronTaskStorage/pluginSourceDatabase, no repository substitute",
+  "executedAdapters": [
+    "Node SQLite"
+  ],
+  "D1OrPostgresCredit": false
+}

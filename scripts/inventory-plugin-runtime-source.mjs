@@ -68,7 +68,8 @@ function resolveAlias(specifier) {
 // Whole Reference-only adapter needed by the complete Source runtime cleanup
 // import graph. No Native auth writer or new protected request tests are adopted.
 const closure = new Set([...testSeeds, ...sourceSeeds, corePackage, 'packages/core/vitest.config.ts',
-  'packages/auth/package.json', 'packages/auth/src/adapters/kysely.ts']);
+  'packages/auth/package.json', 'packages/auth/src/adapters/kysely.ts',
+  'packages/plugins/audit-log/emdash-plugin.jsonc', 'packages/plugins/webhook-notifier/emdash-plugin.jsonc']);
 // Keep all previously published immutable authorities. Import census additions
 // must never remove the existing whole-file Source evidence.
 const publishedInventory = JSON.parse(execFileSync('git', ['show', 'HEAD:parity/emdash/plugin-runtime/inventory.json'], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }));

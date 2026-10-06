@@ -1,0 +1,27 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "scope": "Proposed isolated additional genuine archives only; no Main dependencies",
+  "reason": "Corrected actual ESM availability census excludes host-global require-only packages; entire raw initial inventory preserved",
+  "missingESMImporterSelections": [
+    {
+      "importer": "packages/core/src/cli/wxr/parser.ts",
+      "specifier": "sax",
+      "packageManifest": "packages/core/package.json",
+      "selected": {
+        "specifier": "^1.4.1",
+        "version": "1.4.4"
+      },
+      "packageKey": "sax@1.4.4",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-1n3r/tGXO6b6VXMdFT54SHzT9ytu9yr7TaELowdYpMqY/Ao7EnlQGmAQ1+RatX7Tkkdm6hONI2owqNx2aZj5Sw=="
+        },
+        "engines": {
+          "node": ">=11.0.0"
+        }
+      },
+      "sourceSnapshot": {}
+    }
+  ],
+  "authorized": false
+}

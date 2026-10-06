@@ -1,0 +1,141 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > registers every hook the sandbox entry declares
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > records the previous state when content is updated
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > records media uploads
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts (3 tests | 3 failed) 373ms
+     × registers every hook the sandbox entry declares 152ms
+     × records the previous state when content is updated 114ms
+     × records media uploads 105ms
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts (13 tests | 13 failed) 10ms
+     × posts a webhook when content is saved 5ms
+     × posts a webhook when content is deleted 0ms
+     × posts a webhook when media is uploaded 0ms
+     × sends no content webhooks when the site sends media uploads only 1ms
+     × sends no delete webhooks when the site sends media uploads only 0ms
+     × sends no media webhooks when the site sends content changes only 0ms
+     × adds the saved fields to content payloads only when Include Content Data is on 0ms
+     × names the draft revision when content data is an unpublished edit 0ms
+     × adds the file's name, type and size to media payloads only when Include Content Data is on 0ms
+     × records each delivery and counts it in the status stats 0ms
+     × records a delivery to a URL the webhook URL check refuses as failed 0ms
+     × keeps only the newest 500 delivery records 0ms
+     × prunes a backlog past one query page down to the cap 0ms
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts > EmDashRuntime.handlePluginApiRoute — cron > keeps public plugin reads query-free and fences only actual content writes
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts > EmDashRuntime.handlePluginApiRoute — cron > keeps public plugin reads query-free and fences only actual content writes
+[plugin:cron-route] Route handler failed: MEDIA_USAGE_ACTIVATION_IN_PROGRESS: Media usage activation is in progress
+    at assertSiteWriteAllowed (/workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/transfer/fence.ts:180:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at Object.create (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts:800:24)
+    at PluginRouteHandler.invoke (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/routes.ts:283:19)
+    at EmDashRuntime.handlePluginApiRoute (/workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:5511:19)
+    at /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts:91:24
+    at file:///workspace/cms-full-plugin-runtime-provider/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20 {
+  code: 'MEDIA_USAGE_ACTIVATION_IN_PROGRESS',
+  status: 503,
+  operationId: undefined
+}
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts (2 tests | 1 failed) 266ms
+     × keeps public plugin reads query-free and fences only actual content writes 114ms
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/http-route-dispatch.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts:11:1
+      9| import { pluginResponse } from "../../../src/plugin-types.js";
+     10| import { definePlugin, definePluginRoute } from "../../../src/plugins/…
+     11| import { dispatchPluginApiRequest } from "../../../src/plugins/http-ro…
+       | ^
+     12| import type { PluginRoute } from "../../../src/plugins/types.js";
+     13|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/18]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 17 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > registers every hook the sandbox entry declares
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > records the previous state when content is updated
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > records media uploads
+Error: ENOENT: no such file or directory, open '/workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/plugins/audit-log/emdash-plugin.jsonc'
+ ❯ loadAuditLogPlugin parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts:44:30
+     42| function loadAuditLogPlugin(): ResolvedPlugin {
+     43|  // eslint-disable-next-line typescript/no-unsafe-type-assertion -- th…
+     44|  const manifest = parseJsonc(readFileSync(MANIFEST_URL, "utf8")) as Au…
+       |                              ^
+     45|  const descriptor: PluginDescriptor = {
+     46|   id: manifest.slug,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts:119:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/18]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is saved
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is deleted
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when media is uploaded
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no content webhooks when the site sends media uploads only
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no delete webhooks when the site sends media uploads only
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no media webhooks when the site sends content changes only
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the saved fields to content payloads only when Include Content Data is on
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > names the draft revision when content data is an unpublished edit
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the file's name, type and size to media payloads only when Include Content Data is on
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > records each delivery and counts it in the status stats
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > records a delivery to a URL the webhook URL check refuses as failed
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > keeps only the newest 500 delivery records
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > prunes a backlog past one query page down to the cap
+Error: ENOENT: no such file or directory, open '/workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/plugins/webhook-notifier/emdash-plugin.jsonc'
+ ❯ loadWebhookNotifierPlugin parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:45:30
+     43| function loadWebhookNotifierPlugin(): ResolvedPlugin {
+     44|  // eslint-disable-next-line typescript/no-unsafe-type-assertion -- th…
+     45|  const manifest = parseJsonc(readFileSync(MANIFEST_URL, "utf8")) as We…
+       |                              ^
+     46|  const descriptor: PluginDescriptor = {
+     47|   id: manifest.slug,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:79:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/18]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts > EmDashRuntime.handlePluginApiRoute — cron > keeps public plugin reads query-free and fences only actual content writes
+AssertionError: expected { success: false, …(2) } to match object { success: false, status: 503, …(1) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "error": {
+-     "code": "MEDIA_USAGE_ACTIVATION_IN_PROGRESS",
++     "code": "INTERNAL_ERROR",
+    },
+-   "status": 503,
++   "status": 500,
+    "success": false,
+  }
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts:98:24
+     96|    );
+     97|
+     98|    expect(writeResult).toMatchObject({
+       |                        ^
+     99|     success: false,
+    100|     status: 503,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/18]⎯
+
+
+ Test Files  4 failed | 23 passed (27)
+      Tests  17 failed | 319 passed (336)
+   Start at  02:43:33
+   Duration  56.05s (transform 3.68s, setup 0ms, import 18.07s, tests 33.82s, environment 2ms)
+

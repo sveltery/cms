@@ -29,4 +29,11 @@ if (actual.split(host.addedSpan).length !== 2) throw new Error('Lifecycle additi
 const restored = actual.replace(host.addedSpan, '');
 const prior = execFileSync('git', ['show', `${host.baseCommit}:${host.path}`], { cwd: root, encoding: 'utf8' });
 if (restored !== prior) throw new Error('Whole accepted lifecycle host reconstruction failed');
-console.log(JSON.stringify({ sourcePin: ledger.sourcePin, wholeModulesAfterExactImports: whole, finiteAdaptations: finite, everyPriorLifecycleHostByteRetained: true, productParityCredit: 0 }));
+const cronTests = JSON.parse(fs.readFileSync(path.join(root, 'parity/emdash/plugin-runtime/canonical-cron-test-transport.json'), 'utf8'));
+const originalCronTests = fs.readFileSync(path.join(root, 'parity/emdash/plugin-runtime/source', cronTests.source), 'utf8');
+if (crypto.createHash('sha256').update(originalCronTests).digest('hex') !== cronTests.sourceSha256) throw new Error('Cron whole Original family hash changed');
+let expectedCronTests = originalCronTests;
+for (const span of cronTests.wholeBodyImportAndTableTransports) expectedCronTests = expectedCronTests.replaceAll(span.from, span.to);
+const actualCronTests = fs.readFileSync(path.join(root, cronTests.native), 'utf8');
+if (actualCronTests !== '// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.\n// Whole Original family; finite host and table transports recorded separately.\n' + expectedCronTests) throw new Error('Cron whole Original family body reconstruction failed');
+console.log(JSON.stringify({ sourcePin: ledger.sourcePin, wholeModulesAfterExactImports: whole, finiteAdaptations: finite, wholeOriginalCronFamilyAfterFiniteTransports: true, everyPriorLifecycleHostByteRetained: true, productParityCredit: 0 }));
