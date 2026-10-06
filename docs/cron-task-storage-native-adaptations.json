@@ -148,6 +148,25 @@
           "count": 1
         }
       ]
+    },
+    {
+      "path": "tests/blocks/provider-preservation.test.ts",
+      "baseBytes": 18912,
+      "baseSha256": "40d34fc9a12419786c315286ff612ab589f768c1794211d106260273d77b8b22",
+      "baseBlob": "236200633e0b65f5149900b47e2f1a023aba54a6",
+      "archive": "docs/cron-task-storage-evidence/provider-preservation-c906-whole.ts.txt",
+      "edits": [
+        {
+          "before": "assert.equal(CMS_MIGRATION_VERSION,17)",
+          "after": "assert.equal(CMS_MIGRATION_VERSION,18)",
+          "count": 3
+        },
+        {
+          "before": "selectAll().execute()).length,17)",
+          "after": "selectAll().execute()).length,18)",
+          "count": 1
+        }
+      ]
     }
   ]
 }

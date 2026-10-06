@@ -13,6 +13,7 @@ for (const item of ledger.authorities) {
   if (process.argv[2]) assert.deepEqual(bytes, execFileSync('git', ['show', ledger.pin + ':' + item.path], { cwd: process.argv[2] }), item.path);
 }
 const adaptations = JSON.parse(readFileSync('docs/cron-task-storage-native-adaptations.json', 'utf8'));
+assert.equal(adaptations.changedLeaves.length, 10, 'Complete finite Native leaf census');
 for (const leaf of adaptations.changedLeaves) {
   let body = readFileSync(leaf.path, 'utf8');
   for (const edit of leaf.edits.toReversed()) {
@@ -23,6 +24,7 @@ for (const leaf of adaptations.changedLeaves) {
   assert.equal(bytes.length, leaf.baseBytes, leaf.path);
   assert.equal(createHash('sha256').update(bytes).digest('hex'), leaf.baseSha256, leaf.path);
   assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'), leaf.baseBlob, leaf.path);
+  if (leaf.archive) assert.deepEqual(bytes, readFileSync(leaf.archive), leaf.path + ' complete archived old leaf');
 }
 const sourceTypes = readFileSync('parity/emdash/cron-storage-source/upstream/packages/core/src/database/types.ts', 'utf8');
 const nativeTypes = readFileSync('src/lib/server/cron/types.ts', 'utf8');

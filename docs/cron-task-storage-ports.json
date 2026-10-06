@@ -415,11 +415,13 @@
   },
   "blockPreservationCurrentLatestReviewRepair": {
     "ledger": "docs/cron-task-storage-blocks-review-repair.json",
-    "phase": "whole30-real-hosted-red-preserved-before-four-token-fix",
+    "phase": "exact-four-token-fix-after-regular-red-commit",
     "reviewedHead": "c9060072c1139b8ab9e0ffdef4131ca4523dc37c",
     "registered": 30,
     "passed": 20,
     "failed": 10,
-    "sourceBodyChanges": 0
+    "sourceBodyChanges": 0,
+    "completeReverseIdentical": true,
+    "earlierNineNativeLeavesUnchanged": true
   }
 }
