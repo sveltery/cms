@@ -1,0 +1,38 @@
+{
+  "source": "parity/emdash/entry-locks/source/packages/core/src/astro/routes/api/content/[collection]/[id]/lock.ts",
+  "native": "src/lib/server/entry-locks/route.ts",
+  "sourceBytes": 3912,
+  "sourceSha256": "cc2c78fe7a8ba6a0721907988464509a223737328e52605a1d0e738983ff2122",
+  "header": "// Whole immutable Source lock route body, finite actual Native types/owners transport.\n// Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.\n",
+  "finiteSpans": [
+    {
+      "original": "import type { APIRoute } from \"astro\";",
+      "native": "import type { EntryLockAPIRoute as APIRoute, EntryLockRouteLocals } from \"./route-types.ts\";"
+    },
+    {
+      "original": "import { requireOwnerPerm } from \"#api/authorize.js\";",
+      "native": "import { requireOwnerPerm } from \"./authorize.ts\";"
+    },
+    {
+      "original": "from \"#api/error.js\"",
+      "native": "from \"../sections-widgets/api/error.ts\""
+    },
+    {
+      "original": "from \"#api/handlers/entry-lock.js\"",
+      "native": "from \"./handlers.ts\""
+    },
+    {
+      "original": "from \"#api/parse.js\"",
+      "native": "from \"../sections-widgets/api/parse.ts\""
+    },
+    {
+      "original": "from \"#api/schemas.js\"",
+      "native": "from \"./schema.ts\""
+    },
+    {
+      "original": "locals: App.Locals,",
+      "native": "locals: EntryLockRouteLocals,"
+    }
+  ],
+  "fullReversal": true
+}

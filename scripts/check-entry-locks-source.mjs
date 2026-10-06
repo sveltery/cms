@@ -78,3 +78,13 @@ for(const leaf of writer.sharedDrafts){
  assert.deepEqual(bytes,readFileSync(new URL(leaf.archive,root)),leaf.path+' whole old writer archive');
 }
 console.log(JSON.stringify({wholeWriterSharedReversals:writer.sharedDrafts.length,productCallbacks:0}));
+
+const route=JSON.parse(readFileSync(new URL('parity/emdash/entry-locks/route-transport.json',root),'utf8'));
+let routeBody=readFileSync(new URL(route.native,root),'utf8');
+assert.ok(routeBody.startsWith(route.header));routeBody=routeBody.slice(route.header.length);
+for(const span of route.finiteSpans.toReversed()){
+ assert.equal(routeBody.split(span.native).length,2,'sole route import/type span');routeBody=routeBody.replace(span.native,span.original);
+}
+const routeOriginal=readFileSync(new URL(route.source,root));
+assert.deepEqual(Buffer.from(routeBody),routeOriginal,'complete Source lock route7span reversal');
+assert.equal(routeOriginal.length,route.sourceBytes);assert.equal(hash(routeOriginal),route.sourceSha256);
