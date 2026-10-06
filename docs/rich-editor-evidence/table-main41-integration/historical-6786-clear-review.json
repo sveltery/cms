@@ -1,0 +1,744 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-05T22:43:28.635212+00:00",
+  "reviewer": "SAME full independent PR117 reviewer; finite successor qualification retaining prior whole review",
+  "pr": "https://github.com/sveltery/cms/pull/117",
+  "verdict": "CLEAR",
+  "stationary_head": "6786d709c007c70563554fde0a9cfb514b45b6f6",
+  "tree": "e335f330484477409eca68d3e1edc57f1034a1de",
+  "ordered_parents": [
+    "1fa5d64a7f5795275adda2b624382d1a94baaa56"
+  ],
+  "base": "028dce4a9d71d47f9b9c9bb3e96d7496d11b70ec",
+  "source_pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "isolated_worktree": "/workspace/cms-table117-final-review",
+  "product_edits": 0,
+  "static_checks": {
+    "count": 220,
+    "passed": 220,
+    "public_complete_vector_entries": 4248,
+    "public_recursive_entries": 5421,
+    "public_truncated": false,
+    "source_exact_files": 148,
+    "whole_Source_families": 34,
+    "old106_raw_directory_and_old_Native19_files": "exact d314 public bytes, including all original Source bodies/data/clocks and old86 Native callbacks",
+    "regular_public_successor_nodes": 5,
+    "actual_public_headers": "all five Git API headers independently fetched; full raw commit SHA1/tree/ordered parent/message equality verified",
+    "source_pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "all_lock_documents_old_and_Main_values_preserved": true,
+    "all_Main_server_Calendar_locales_owners": "exact actual public Main99",
+    "workflow": "complete current Main99 prefix including Calendar job plus byte-exact d314 owned Rich job",
+    "package_test_source_chain": "literal Main99 source chain plus unchanged two owned Rich gates",
+    "compatibility": "exact whole incoming Main610050 bytes plus complete owned57385-byte tail; only current docs seal metadata added",
+    "actual_validation_product_head": "1fa5d64a7f5795275adda2b624382d1a94baaa56",
+    "validation_product_test_browser_helper_Source_vectors": "every code/test/Source/vitest vector exact current6786; compatibility metadata explicitly excluded from executable vector equality",
+    "proof": {
+      "path": "/tmp/table117-6786-static-review.json",
+      "bytes": 30220,
+      "sha256": "0a13f5c5f25d6a115b64cbcc6b38a2ab39e70cff112ee3e048e0b2241b43ca1c"
+    }
+  },
+  "semantic_review": [
+    {
+      "name": "Picker switch, coarse initial focus, grid keyboard and RTL",
+      "source": "TableControls95\u2013213",
+      "assessment": "Genuine Svelte switch/select/grid; roles, clamp, hover preview, Home/End/Control and active focus match Source. Native custom select is explicit framework presentation."
+    },
+    {
+      "name": "Eight action groups, plural labels and selected rectangle",
+      "source": "TableControls groups and ActionMenu",
+      "assessment": "All20 action ids/order, deletion pluralization and command result messages match Source. Actual shared TableActions/insertTable owners unchanged."
+    },
+    {
+      "name": "Mixed headers close, normal headers persist",
+      "source": "ActionMenu regular Item versus CheckboxItem; pinned BaseUI1.5 true/false closeOnClick",
+      "assessment": "Native keepOpen matches normal/mixed header semantics for both axes; first incorrect new fixture retained with zero Source causal credit."
+    },
+    {
+      "name": "Unavailable items focusable, activation guarded",
+      "source": "BaseUI useButton focusableWhenDisabled:true; MenuRoot disabledIndices empty",
+      "assessment": "Actual aria-disabled and command can guards match pinned Source; unavailable items are admitted to pointer focus and guarded activation remains a real no-op. Both prior pointer findings now close."
+    },
+    {
+      "name": "Keyboard and typeahead",
+      "source": "BaseUI1.5 actual useTypeahead/MenuRoot",
+      "assessment": "ArrowUp/Down/Home/End;500ms session/case-insensitive prefixes/unmatched reset/repeated letters/active Space suppression match exact Source. New expectation corrections retained separately."
+    },
+    {
+      "name": "Bookmarks, Alt+F10, Escape, outside focus",
+      "source": "TableControls TableMenu close-intent/restore guard",
+      "assessment": "Real SelectionBookmark owner restores only where Source allows; command produced selection retained, outside focus undisturbed. Genuine Native value assertions pass."
+    },
+    {
+      "name": "Middle insertion",
+      "source": "Source TableMenu/insertTable",
+      "assessment": "Uses unchanged sole insertion owner at real selection, not doc end; picker transition does not overwrite selection. Native middle insertion callback passes."
+    },
+    {
+      "name": "Announcements",
+      "source": "TableSelectionAnnouncer selectionUpdate/transaction subscriptions and meta keys",
+      "assessment": "Exact row/column Source ICU descriptor IDs, real structural data, keyed repeated-label announcement refresh and cleanup."
+    },
+    {
+      "name": "Localization descriptors",
+      "source": "Whole immutable TableControls/PortableTextEditor macro compilation",
+      "assessment": "Independent installed exact Lingui recompilation verifies all64 candidate message IDs against182 extracted Source messages. No simulated matching or Source test body edits."
+    },
+    {
+      "name": "Actual Bubble plugin and cleanup",
+      "source": "PortableTextEditor4369\u20134448",
+      "assessment": "Genuine3.20 BubbleMenuPlugin/PluginKey registration, current readonly capture, editor/menu focus and selection predicate, sole floating root append, real unregister cleanup; minimal mode excluded."
+    },
+    {
+      "name": "Bubble positioning",
+      "source": "PortableTextEditor3050\u20133070 and4369\u20134448",
+      "assessment": "Whole previous Source-faithful absolute/top/offset8, visualviewport safeTop/rootBoundary/padding8, middleware and availableWidth owners remain byte-exact d314. Current official browser geometry gate is skipped after upstream protected Node browser timeout; no current geometry credit inferred from Native."
+    },
+    {
+      "name": "Unsupported Native Range",
+      "source": "Root finite actual absence qualification",
+      "assessment": "Only missing actual getBoundingClientRect/getClientRects stops shouldShow; no fake Range/layout/visibility. Original unhandled/process1 retained, Native plugin lifecycle earns zero geometry credit."
+    },
+    {
+      "name": "Parent ownership",
+      "source": "Published Rich ab546 base vector",
+      "assessment": "All incoming CodeMirror/iframe/Lingui/preload Source/raw bytes exact. Portable edits restricted to table imports/refs/mounts/announcement dispatch; no private bytes adopted."
+    },
+    {
+      "name": "Finite old Native transports",
+      "source": "Root readonly absence and two capability-helper decisions",
+      "assessment": "Only readonly trigger expectation and genuine aria-disabled helper transports change; all old boolean/data/clocks/other tests retained, old bytes hash-equal public base; zero extra Source causal credit."
+    },
+    {
+      "name": "TABLE117-HOVER-FOCUS01 original finding closure",
+      "assessment": "Original four mounted focus reds at b469, actual Kumo2.6 faithful fix5d13/sharedhover1d17 remain preserved. Unchanged original reviewer hover callback passes at exact6786; toolbar/More/Insert/unavailable focus owner remains intact. Finding CLOSED."
+    },
+    {
+      "name": "Read-only picker update loop",
+      "assessment": "Whole original213 first e4:212PASS/1 actual effect_update_depth_exceeded before final value; Nativea30 real exception reproduces. Native9f127 untracks only imperative setEditable/closeTableControls and actual Bubble registration synchronous ProseMirror callbacks; actual editor/editability/blocked props remain tracked. Source React explicit dependency owner3842\u20133856 supports transport. Source213 historical d314 passes; current6786 lifecycle/product bytes remain exact and Native89 passes, Native86 including readonly callback passes, existing equalJsonValues/onUpdate dedupe bytes exact publishedparent028."
+    },
+    {
+      "name": "Finite NEW fixture corrections",
+      "assessment": "Only newly authored scrollIntoView absence helper and previously unreached cumulative callback expectation/order corrected. Old Native/Source bytes unchanged; all first exception/intermediate failures retained; zero Source callback, geometry or causal credit from fixture correction."
+    },
+    {
+      "name": "TABLE117-HOVER-SCROLL01 closure and modality",
+      "source": "Actual pinned Kumo2.6 list navigation vendor3493\u20133512/3616\u20133628, exact preserved Source contract SHA1d47b470a975b3a51c1a8a0c75c04946f024a13e093a53e90a7cca632cf93f0a",
+      "assessment": "Only owned production delta is TableMenu focusItem/hoverItem. Actual focus uses preventScroll:true for keyboard and pointer. Pointer admits focusable unavailable actions and makes no reveal request; keyboard requests block/inline nearest. Shared roving owner, membership/open/editability/current-focus guards remain real and unchanged. Transparent per-element spies call through original actual methods. Both unchanged original reviewer probes and all three new mounted callbacks pass, including guarded document no-op. Zero Source original or browser layout/scroll-position causal credit from Native call observations."
+    },
+    {
+      "name": "Second repair TDD and regular Main integration",
+      "assessment": "Actual public ordered7c065 test-first3 reached call-value reds\u2192af5ed fix7PASS\u21925a71 explicit modality refactor whole89PASS\u21921fa regular ordered[5a71,Main99] union\u21926786 docs seal. All raw original first/intermediate/final evidence retained, exact hashes and reversible UTF8 wrappers verified. No old Source/Native data, clocks, bodies, editor dedupe/effects or private HTML changes. Incoming Main Calendar implementation remains byte-exact and Main full workflow/package/lock/docs/pins preserved."
+    }
+  ],
+  "descriptor_proof": {
+    "sourceMessages": 182,
+    "candidateDescriptors": 64,
+    "failed": []
+  },
+  "independent_runs": {
+    "native": {
+      "registered": 89,
+      "passed": 89,
+      "failed": 0,
+      "process_exit": 0,
+      "report": {
+        "path": "/tmp/table117-6786-independent-native89-report.json",
+        "bytes": 36750,
+        "sha256": "738961a6156fafdae1f27db89d1d4644e6bf857f086603eec608c477d5df180c"
+      }
+    },
+    "pure_source": {
+      "registered": 206,
+      "passed": 206,
+      "failed": 0,
+      "process_exit": 0,
+      "report": {
+        "path": "/tmp/table117-6786-independent-source206-report.json",
+        "bytes": 71568,
+        "sha256": "b06b615f499381735f238d2bbb7d96ee878b3259a9f2d801d17f65d3c240a2a1"
+      }
+    },
+    "source_guard": {
+      "whole_families": 34,
+      "immutable_files": 148,
+      "process_exit": 0,
+      "log": {
+        "path": "/tmp/table117-6786-independent-source-guard.log",
+        "bytes": 125,
+        "sha256": "cf28192e7c148258c1c1b17a0b5cba9a99111bcf8202b1e2c775ab0309449318"
+      }
+    },
+    "ci_orchestration": {
+      "registered": 26,
+      "passed": 26,
+      "failed": 0,
+      "process_exit": 0
+    },
+    "original_reviewer_and_new_controls": {
+      "registered": 5,
+      "passed": 5,
+      "failed": 0,
+      "process_exit": 0,
+      "report": {
+        "path": "/tmp/table117-6786-independent-original-controls5-report.json",
+        "bytes": 2490,
+        "sha256": "a3b1e8ed6b9844060c1d1539eb748ad56d0aee8b646a8ea119eed788015e7d82"
+      }
+    },
+    "review_probe_preservation": {
+      "original_hover_bytes": 1300,
+      "original_hover_sha256": "5ed635d49ed4cda1c2e7a7010f52d8ca887ccf5d59fc3fb9a4090acf8d300017",
+      "original_scroll_bytes": 1839,
+      "original_scroll_sha256": "16d34b5bb4c1f4da787b828ed8dc82330ea09776fdeee95319541d365149031e",
+      "copied_unchanged": true,
+      "actual_pointer_witness": {
+        "focusOptions": {
+          "preventScroll": true
+        },
+        "scrollRequests": 0
+      },
+      "keyboard_expected_actual": {
+        "focusOptions": {
+          "preventScroll": true
+        },
+        "scrollIntoView": [
+          {
+            "block": "nearest",
+            "inline": "nearest"
+          }
+        ]
+      },
+      "new_controls_count": 3,
+      "original_reviewer_controls_count": 2
+    },
+    "heavy_checker_and_build": "Not independently repeated per Root resource instruction. Public author first1fa frozen install/check0errors0warnings/default build process0 evidence independently hashed and tested code vector exact current6786."
+  },
+  "findings": [],
+  "hosted_current": {
+    "observed_at_utc": "2026-10-05T22:41:10Z",
+    "run_id": 37383049710,
+    "ci_number": 589,
+    "head": "6786d709c007c70563554fde0a9cfb514b45b6f6",
+    "synthetic": {
+      "sha": "ab41253d617b9bba9aa2cf7545986f3e3e92247e",
+      "tree": "e335f330484477409eca68d3e1edc57f1034a1de",
+      "ordered_parents": [
+        "028dce4a9d71d47f9b9c9bb3e96d7496d11b70ec",
+        "6786d709c007c70563554fde0a9cfb514b45b6f6"
+      ],
+      "verified_signature": true,
+      "proof": {
+        "path": "/tmp/table117-6786-actual-synthetic-commit.json",
+        "bytes": 2618,
+        "sha256": "c96a2e8e6584d38a712ea1655fc8d946fc06d9925d2f7869c3f83c3274edb454"
+      }
+    },
+    "jobs": [
+      {
+        "id": 112009537649,
+        "name": "calendar-admin-source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 112009537871,
+        "name": "browser",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 112009538149,
+        "name": "validate-services",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 112011990322,
+        "name": "validate-source",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 112012272646,
+        "name": "rich-editor-source",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ],
+    "protected_browser": {
+      "job_id": 112009537871,
+      "status": "failure",
+      "failed_step": "18 Run sandboxed Node browser tests",
+      "actual_command": "timeout --kill-after=30s 180s pnpm test:browser",
+      "started_at_utc": "2026-10-05T22:36:37.724Z",
+      "terminal_at_utc": "2026-10-05T22:39:38.029Z",
+      "terminal_exit": 124,
+      "full_final65_verdict": false,
+      "causal_classification": "No specific Table117 or infrastructure cause established; deadline stop is not a product-value pass or failure diagnosis. Root informed; original deadline/test owners unchanged.",
+      "log": {
+        "path": "/tmp/table117-6786-ci589-browser.log",
+        "bytes": 529413,
+        "sha256": "de2fb9548e6448541497fbaba7c3dfbc7ea0594407a6f04c1ff3cd97692a8888"
+      }
+    },
+    "whole_editor213": "SKIPPED after browser prerequisite failure; no current OriginalSource208+NativeEnter1+realBubble4 credit",
+    "secured10": "FAIL at Node browser deadline; all predecessor Source/default browser steps reported success, whole current secured10 incomplete",
+    "normal_gates": "servicesSUCCESS, Sourceinprogress, hosting and aggregate not observed complete at snapshot; all mandatory gates still required",
+    "configured_comments": [
+      {
+        "id": 6004520516,
+        "body": "@codex review\n\nPlease review exact stationary head6786d709c007c70563554fde0a9cfb514b45b6f6. This finite successor closes TABLE117-HOVER-SCROLL01 with first3genuine Native reds, fix7PASS and whole89PASS: actual focus uses preventScroll:true, pointer hover makes no scroll request and keyboard preserves Source nearest reveal. Original Source/old86 Native tests, editor deduplication and lifecycle repairs remain unchanged. Regular Main99 union retains approved Calendar work, all package/lock values and workflow bodies. Current hosted normal aggregate/secured10/whole213 and independent delta review remain pending.",
+        "created_at": "2026-10-05T22:32:34Z",
+        "author": "hugo-hsi-dev"
+      },
+      {
+        "id": 6004523965,
+        "body": "You have reached your Codex usage limits for code reviews. You can see your limits in the [Codex usage dashboard](https://chatgpt.com/codex/cloud/settings/usage).\nTo continue using code reviews, add credits to your account and enable them for code reviews in your [settings](https://chatgpt.com/codex/cloud/settings/code-review).",
+        "created_at": "2026-10-05T22:32:47Z",
+        "author": "chatgpt-codex-connector[bot]"
+      }
+    ],
+    "reviews": [],
+    "configured_verdict": null,
+    "configured_retries": 0,
+    "standing_quota_exception": "Root configured-only exception applies to genuine current quota, does not waive current full gates or semantic independent review",
+    "mergeable": true,
+    "merged": false
+  },
+  "historical_original_baseline": {
+    "head": "2e8747bef91b9b61975832b86d097b5e82c2a9b1",
+    "run": 37366707175,
+    "registered": 209,
+    "passed": 206,
+    "failed": 3,
+    "table": {
+      "registered": 60,
+      "passed": 58,
+      "failed": 2,
+      "genuine_value": "missing Header-row switch; coarse focus expectation unreached"
+    },
+    "iframe": {
+      "registered": 11,
+      "passed": 11
+    },
+    "other_source": {
+      "registered": 137,
+      "passed": 136,
+      "failed": 1,
+      "cause": "cold first editor readiness null before conversion expectation; zero product causal credit"
+    },
+    "native_enter": {
+      "registered": 1,
+      "passed": 1
+    },
+    "original_log_sha256": "3b157a3f240114526bdaac9bd57f81a0a52499ab56c5fc80adc7bb6051f07ed0",
+    "original_report_sha256": "88d1a2dd93f4057955e652cd93c3bf59b982913414470e7bf293b95c59519127"
+  },
+  "limits": [
+    "Semantic exact6786 CLEAR contains zero open owned findings. Root exact approval and author regular expected-head merge remain blocked until actual current whole213/secured10/three normal phases/aggregate succeed.",
+    "Current CI589 protected Node browser exit124 prevents whole secured10 qualification and skips whole213. No prior d314 success is credited to current candidate. Root owns gate failure follow-up.",
+    "Genuine current configured request6004520516 and quota6004523965 independently verified, reviews[] and no configured verdict. Standing configured-only quota exception does not waive independent review or real gates.",
+    "Original Source bodies/data/clocks, all148 immutable Source files, old106raw and old19Native files exact. New three call-value controls earn zero original Source callback or browser scroll geometry credit.",
+    "No private HTML/provider bytes adopted. Complete Rich/media/gallery/plugin/reference/repeater/protected/deployed product remains outside this Table117 scoped review.",
+    "Reviewer owns isolated untracked copied probes and review artifacts only: zero product edits, zero author/Root worktree edits, zero repo publication/merge/hosted rerun/cancellation. No extra heavy checker/build or new auth/session/race probes."
+  ],
+  "main": "99c659f67a2117f9e523f1231f0f44d207713396",
+  "previous_stationary_review": {
+    "head": "d31489b144fa23566783e1fd40643bbaf36f4fb7",
+    "path": "/tmp/table117-d314-independent-full-successor-review.json",
+    "bytes": 26840,
+    "sha256": "dc07ddddb7abdb373fe22b7a064ac0fb7eff873bc3a72d0a3332e8882477a2c2",
+    "verdict": "REQUEST_CHANGES for now closed TABLE117-HOVER-SCROLL01",
+    "status": "Historical; complete prior whole semantic/dependency/TDD review retained, finite new delta and all Main integration requalified. Historical current213/secured10 and Root later all6SUCCESS are not current6786 gate credit."
+  },
+  "closed_findings": [
+    "TABLE117-HOVER-FOCUS01",
+    "TABLE117-HOVER-SCROLL01"
+  ],
+  "historical_raw_evidence": [
+    {
+      "path": "/tmp/table117-independent-build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-build.log",
+      "bytes": 57291,
+      "sha256": "6fd843118ce0c763c04629ff857642ce1605242248c9983c36f43e54db386533"
+    },
+    {
+      "path": "/tmp/table117-independent-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-check.log",
+      "bytes": 152,
+      "sha256": "8aaca014d52f8af4c39950f2aeb7dd71e97b52eb259edfd27447947c2ebd58ab"
+    },
+    {
+      "path": "/tmp/table117-independent-ci569-secured.log",
+      "bytes": 472974,
+      "sha256": "76340041cd7c72c0e4c7c6e913159d9272fbf37d68f1a4072a0ae29526cd8ba4"
+    },
+    {
+      "path": "/tmp/table117-independent-hosted-snapshot.json",
+      "bytes": 6814,
+      "sha256": "68dc460b7040e50280a82741e3fc63fbff2979ceaefe569090fee5d80b5d65a9"
+    },
+    {
+      "path": "/tmp/table117-independent-hover-report.json",
+      "bytes": 1475,
+      "sha256": "be43f9657a36dacfc78e783ad0191f529f1ec7e8dec951181c1d61bd49c5407f"
+    },
+    {
+      "path": "/tmp/table117-independent-hover.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-independent-hover.log",
+      "bytes": 67,
+      "sha256": "505fa8aea3b765cb6df90850c83eda09fac17a94b597caedfa42d0ca9f9bc525"
+    },
+    {
+      "path": "/tmp/table117-independent-kit-sync.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-kit-sync.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/table117-independent-message-compile.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-message-compile.log",
+      "bytes": 62,
+      "sha256": "aa4043cca495e137fbb7987d2ee2924b62dc7e402afe209c54ef11d4155e2b1f"
+    },
+    {
+      "path": "/tmp/table117-independent-message-ids.json",
+      "bytes": 74,
+      "sha256": "e9469708eac96aa64cb747f16e817b6961aec07db38ba5a524b9800812886f9c"
+    },
+    {
+      "path": "/tmp/table117-independent-native-after-sync-report.json",
+      "bytes": 32705,
+      "sha256": "7e5334d0d5907e9f5bfdbb9cb7ef05dba511274a720f73845a34d086d010a500"
+    },
+    {
+      "path": "/tmp/table117-independent-native-after-sync.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-native-after-sync.log",
+      "bytes": 79,
+      "sha256": "c2fc97bd5603c950238af9d7d09eb4adfdbe3cba7347e618820c4bb6c4df744f"
+    },
+    {
+      "path": "/tmp/table117-independent-native.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-independent-native.log",
+      "bytes": 1864,
+      "sha256": "b0e212744788e8378d6ec2cde3118aedd97ad14978da3db61e600196da6943ba"
+    },
+    {
+      "path": "/tmp/table117-independent-source-after-sync-report.json",
+      "bytes": 71706,
+      "sha256": "3f22051b02c72db501068138a4c90a5d43738d9c667758d2e97fd56587e74ccc"
+    },
+    {
+      "path": "/tmp/table117-independent-source-after-sync.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-independent-source-after-sync.log",
+      "bytes": 79,
+      "sha256": "adc3500d5773d65fd15fd18ed3f4012489a8905a606f1a7dea42c6e43fc12414"
+    },
+    {
+      "path": "/tmp/table117-independent-source-guard.log",
+      "bytes": 125,
+      "sha256": "cf28192e7c148258c1c1b17a0b5cba9a99111bcf8202b1e2c775ab0309449318"
+    },
+    {
+      "path": "/tmp/table117-independent-source-report.json",
+      "bytes": 9961,
+      "sha256": "209f750313fbe69dacf04ef112d808a8c6162a502dee8c20f992fdbee3c5cbbe"
+    },
+    {
+      "path": "/tmp/table117-independent-source.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-independent-source.log",
+      "bytes": 68,
+      "sha256": "51373d5382238049f80035dd8d8a86929ed972324114ef1d9554f8a474271319"
+    },
+    {
+      "path": "/tmp/table117-independent-static-review.json",
+      "bytes": 43061,
+      "sha256": "da444814c8387864b1d17c321e495f572dfa7e478ee467d208dbe9dcac8d5d7d"
+    },
+    {
+      "path": "/tmp/table117-independent-static-review.py",
+      "bytes": 5236,
+      "sha256": "95f42073d2c4f154f01dc9db819051bad3ef8ad3898478747a45b5a2341b6069"
+    },
+    {
+      "path": "/tmp/table117-public-tree.json",
+      "bytes": 1316764,
+      "sha256": "1b4ad1815e3720e2408947837c304b6b139dee178fc21d02bdf4f656e6fc3a93"
+    },
+    {
+      "path": "/tmp/table117-source-hover-contract.json",
+      "bytes": 934,
+      "sha256": "a76a3959438ffa33ee80f835f64fe05fa5dec34a9e00e185f7ee418cea97acd4"
+    },
+    {
+      "path": "/tmp/table117-d314-ci582-editor213.log",
+      "bytes": 60599,
+      "sha256": "9c6b9440283e2bac4de516940b2a60bfdf2a06665ccdf272928218760647e3a5"
+    },
+    {
+      "path": "/tmp/table117-d314-ci582-secured10.log",
+      "bytes": 475027,
+      "sha256": "6e6a54bc0fec6c46060939d32f3aad8fa79a234276c92debca72a2168c4d4ae6"
+    },
+    {
+      "path": "/tmp/table117-d314-current-hosted-review-snapshot.json",
+      "bytes": 4031,
+      "sha256": "d70c8b3e7a270b8f0367af490e993855408fb8356158f685ab4a75a931771547"
+    },
+    {
+      "path": "/tmp/table117-d314-eight-public-headers.json",
+      "bytes": 9383,
+      "sha256": "d0ec44736763f54115d9c288556e1b78f346d78dc12deecd824b1d9c0bc714f9"
+    },
+    {
+      "path": "/tmp/table117-d314-hover-scroll-report.json",
+      "bytes": 1468,
+      "sha256": "246e29cb0fa7ed24e30aeeb783b9e68f70e41b540e603facb1eaa33e7309467c"
+    },
+    {
+      "path": "/tmp/table117-d314-hover-scroll-witness-report.json",
+      "bytes": 1470,
+      "sha256": "f2beaaf46f2dde7fceedf6f799595a9efe278345671db99d8aedc62fe5b1f394"
+    },
+    {
+      "path": "/tmp/table117-d314-hover-scroll-witness.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-d314-hover-scroll-witness.log",
+      "bytes": 1607,
+      "sha256": "ba901bf3e13016e00f88b5d3f4d22f07578c49cd7c00b4e0d73f304a4712e000"
+    },
+    {
+      "path": "/tmp/table117-d314-hover-scroll.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/tmp/table117-d314-hover-scroll.log",
+      "bytes": 67,
+      "sha256": "898916abf2278334c5e6982be03e981ccf8a5f2502912715b9402792d90d9cbb"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-native86-report.json",
+      "bytes": 35867,
+      "sha256": "0edc5f1823fc5be45b6ef5727473d2c0e78226283ac4efd2280f07d2132f3981"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-native86.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-native86.log",
+      "bytes": 75,
+      "sha256": "25f48604011dd52e6842ad74d303d311babbabe0d6255829e070612b5673a8f7"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-source-guard.log",
+      "bytes": 125,
+      "sha256": "cf28192e7c148258c1c1b17a0b5cba9a99111bcf8202b1e2c775ab0309449318"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-source206-report.json",
+      "bytes": 71664,
+      "sha256": "c54e07e936495a7348c10a7dea49f977e9396cde5029784b85a50b872c7c8583"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-source206.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-source206.log",
+      "bytes": 76,
+      "sha256": "9bc0afe9ce6d2e4ca9f68a8514374dbc8c9afc61cacec29a0c65ede5c5fee10e"
+    },
+    {
+      "path": "/tmp/table117-d314-independent-sync.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/table117-d314-public-tree.json",
+      "bytes": 1342602,
+      "sha256": "2032ebd515835ebb311814c7bf0f3784d9812aa7defc08daf4affdd66d3988e2"
+    },
+    {
+      "path": "/tmp/table117-d314-source-hover-scroll-contract.json",
+      "bytes": 3459,
+      "sha256": "1d47b470a975b3a51c1a8a0c75c04946f024a13e093a53e90a7cca632cf93f0a"
+    },
+    {
+      "path": "/tmp/table117-d314-static-review.json",
+      "bytes": 27446,
+      "sha256": "d8a2ce88b6a6c38ba9290ccbda74897cdf865593139ef70a06fec270f05dfc3f"
+    },
+    {
+      "path": "/tmp/table117-d314-static-review.py",
+      "bytes": 5683,
+      "sha256": "4f618f0c8fdd94a5d14c552a73ad22a1aa5e0999e52d93870a09884e0189a14c"
+    }
+  ],
+  "raw_evidence": [
+    {
+      "path": "/tmp/table117-6786-actual-synthetic-commit.json",
+      "bytes": 2618,
+      "sha256": "c96a2e8e6584d38a712ea1655fc8d946fc06d9925d2f7869c3f83c3274edb454"
+    },
+    {
+      "path": "/tmp/table117-6786-ci589-browser.log",
+      "bytes": 529413,
+      "sha256": "de2fb9548e6448541497fbaba7c3dfbc7ea0594407a6f04c1ff3cd97692a8888"
+    },
+    {
+      "path": "/tmp/table117-6786-ci589-current-jobs.json",
+      "bytes": 10091,
+      "sha256": "47160e71073e11500929fe61b28dc072d0459f659ccfff6b85b2f5f6fa1bc452"
+    },
+    {
+      "path": "/tmp/table117-6786-configured-comments.json",
+      "bytes": 19399,
+      "sha256": "895f68bf96aeb6098b53dae1270adaad0779aae84df6fb60ae26d993a116251c"
+    },
+    {
+      "path": "/tmp/table117-6786-current-pr.json",
+      "bytes": 16889,
+      "sha256": "d495a1a2ed1ecbc3b979f96944acff046c54283ca04a306d8152a95290cda443"
+    },
+    {
+      "path": "/tmp/table117-6786-current-reviews.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "/tmp/table117-6786-five-public-headers.json",
+      "bytes": 5918,
+      "sha256": "eff402006343e896f2f82354e7c4d65fe801d2d7e437650b7adca9d1fcc9f817"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-ci26.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-ci26.log",
+      "bytes": 2569,
+      "sha256": "0949042b311c287b3efda0b930a9f60727230d774913121fba826656e1680b07"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-native89-report.json",
+      "bytes": 36750,
+      "sha256": "738961a6156fafdae1f27db89d1d4644e6bf857f086603eec608c477d5df180c"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-native89.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-native89.log",
+      "bytes": 75,
+      "sha256": "76e79b6586de2c062d43ba55d90968af5ec8437177ee378fc3ead5a5fbc98b3e"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-original-controls5-report.json",
+      "bytes": 2490,
+      "sha256": "a3b1e8ed6b9844060c1d1539eb748ad56d0aee8b646a8ea119eed788015e7d82"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-original-controls5.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-original-controls5.log",
+      "bytes": 990,
+      "sha256": "21cd582f338ddb815cb3756546d054d9c19951dfbdb7f5acba181ee61be68e14"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-source-guard.log",
+      "bytes": 125,
+      "sha256": "cf28192e7c148258c1c1b17a0b5cba9a99111bcf8202b1e2c775ab0309449318"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-source206-report.json",
+      "bytes": 71568,
+      "sha256": "b06b615f499381735f238d2bbb7d96ee878b3259a9f2d801d17f65d3c240a2a1"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-source206.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-source206.log",
+      "bytes": 76,
+      "sha256": "725c1adb66776e6d5c9dce4a928b1885b8f1f8459e5193ba26d117408408b118"
+    },
+    {
+      "path": "/tmp/table117-6786-independent-sync.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/table117-6786-public-tree.json",
+      "bytes": 1433828,
+      "sha256": "bd581edfdb6eebb03c1983b3a2960d125eef27ce112d89d9366867c10162ddd9"
+    },
+    {
+      "path": "/tmp/table117-6786-static-review.json",
+      "bytes": 30220,
+      "sha256": "0a13f5c5f25d6a115b64cbcc6b38a2ab39e70cff112ee3e048e0b2241b43ca1c"
+    },
+    {
+      "path": "/tmp/table117-6786-static-review.py",
+      "bytes": 7519,
+      "sha256": "c7798c94c7bd71761a305efa003fd194d2e08debc8012d1904cf28fd47999d3e"
+    }
+  ],
+  "verdict_scope": "Exact owned PR117 semantic/full-history/dependency review CLEAR; this is not merge approval or a current hosted-gate pass.",
+  "author_stationary_handoff": {
+    "path": "/tmp/rich104-table-6786-stationary-handoff.json",
+    "bytes": 13487,
+    "sha256": "5a3dd7f131f591075f9505b9e841437a2ff4579b1804d3e87c90de7988e6e6b9"
+  }
+}
