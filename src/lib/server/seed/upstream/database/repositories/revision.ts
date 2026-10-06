@@ -42,12 +42,14 @@ export function normalizeRevisionLimit(value: unknown): number {
  * Used when collection has `supports: ["revisions"]` enabled.
  */
 export class RevisionRepository {
+	private db: Kysely<Database>;
 	private readonly datetimes: ContentDatetimeNormalizer;
 
 	constructor(
-		private db: Kysely<Database>,
+		db: Kysely<Database>,
 		datetimeContexts?: DatetimeContextCache,
 	) {
+		this.db = db;
 		this.datetimes = new ContentDatetimeNormalizer(db, datetimeContexts);
 	}
 

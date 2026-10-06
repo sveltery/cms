@@ -4,12 +4,14 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import ts from 'typescript';
+import {restoreSeedNodeConstructors,assertSeedConstructorLedger} from './seed-node-constructor-transports.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const read = path => readFileSync(resolve(root, path));
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const inventory = JSON.parse(read('docs/source-seed-backend-inventory.json'));
 const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
+assertSeedConstructorLedger('e48f0db1771df1c1ea2b828d9d61dbf17b6fe441ea57d1f326b6a2d79ea7618b');
 assert.equal(inventory.sourcePin, pin);
 assert.equal(inventory.publicBase, 'aa6d942a9a5167a0bb656750880fdeeee134a218');
 assert.equal(inventory.authorities.length, 78);
@@ -44,7 +46,7 @@ for (const { native, source } of inventory.runtime) {
   const lines = read(native).toString().split('\n');
   assert.equal(lines[0], '// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.');
   assert.equal(lines[1], '// Source ' + pin + ':' + source + '; complete import-adapted body.');
-  assert.equal(normalizeImports(lines.slice(2).join('\n'), native), normalizeImports(read(snapshot + source).toString(), source), native + ' complete Source body');
+  assert.equal(normalizeImports(restoreSeedNodeConstructors(lines.slice(2).join('\n'), native), native), normalizeImports(read(snapshot + source).toString(), source), native + ' complete Source body after exact listed constructor reversal');
 }
 for (const { native, source, declarations } of inventory.extractedRuntime ?? []) {
   function selected(text, path) {
@@ -56,7 +58,7 @@ for (const { native, source, declarations } of inventory.extractedRuntime ?? [])
       return matches[0].getText(file);
     });
   }
-  assert.deepEqual(selected(read(native).toString(), native), selected(read(snapshot + source).toString(), source), native + ' entire named Source declarations');
+  assert.deepEqual(selected(restoreSeedNodeConstructors(read(native).toString(), native), native), selected(read(snapshot + source).toString(), source), native + ' entire named Source declarations after exact listed constructor reversal');
 }
 for (const { native, source, declarations } of inventory.extractedNestedRuntime ?? []) {
   function selected(text, path) {
@@ -75,4 +77,4 @@ for (const { native, source, declarations } of inventory.extractedNestedRuntime 
   }
   assert.deepEqual(selected(read(native).toString(), native), selected(read(snapshot + source).toString(), source), native + ' entire named nested Source declarations');
 }
-console.log('Source seed guard:78 complete authorities and35 whole test families pinned; MIT retained. Static guard provides zero execution/parity credit.');
+console.log('Source seed guard:78 complete authorities and35 whole test families pinned; MIT retained. Only exact listed constructor spans are reversed before complete body comparisons; zero whole-module identity, execution/parity credit from those transports.');

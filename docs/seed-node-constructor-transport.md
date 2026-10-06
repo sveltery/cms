@@ -33,3 +33,11 @@ the parameter-property assignments. Every other statement and method remains
 the complete pinned import-adapted Source body, checked after reversing only the
 exact listed constructor spans. No dependencies, flags, database owners or
 options boundary changes are part of this transport.
+
+The qualified constructor successor passes all **17** Native import/descriptor
+controls, the unchanged whole Source Node **85/85 apply** and **69/69 capture**
+families, and all **12** existing real Node/raw-D1 default/setup domain controls.
+Four Source guards pass with exact frozen authorities and the finite constructor
+ledger; these static checks give no execution credit. The latest bounded checker
+preceded these erased constructor changes; current full stationary gates and
+independent review are still required before merge.

@@ -125,7 +125,8 @@ export interface ContentReference {
  * collection-agreement / relation-existence invariants in the handler.
  */
 export class RelationRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+	constructor(db: Kysely<Database>) { this.db = db; }
 
 	/**
 	 * Create a relation.

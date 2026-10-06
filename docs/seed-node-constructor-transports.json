@@ -1,0 +1,87 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "classification": "finite constructor syntax transport; zero Source causal/whole-module identity credit",
+  "transports": [
+    {
+      "native": "src/lib/server/seed/upstream/database/repositories/relation.ts",
+      "source": "packages/core/src/database/repositories/relation.ts",
+      "class": "RelationRepository",
+      "sourceSpan": "\tconstructor(private db: Kysely<Database>) {}",
+      "nativeSpan": "\tprivate db: Kysely<Database>;\n\tconstructor(db: Kysely<Database>) { this.db = db; }",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/comments/upstream/database/repositories/options.ts",
+      "source": "packages/core/src/database/repositories/options.ts",
+      "class": "OptionsRepository",
+      "sourceSpan": "\tconstructor(private db: Kysely<Database>) {}",
+      "nativeSpan": "\tprivate db: Kysely<Database>;\n\tconstructor(db: Kysely<Database>) { this.db = db; }",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/options/repository.ts",
+      "source": "packages/core/src/database/repositories/options.ts",
+      "class": "OptionsRepository",
+      "sourceSpan": "\tconstructor(private db: Kysely<Database>) {}",
+      "nativeSpan": "\tprivate db: Kysely<Database>;\n\tconstructor(db: Kysely<Database>) { this.db = db; }",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/seed/upstream/database/content-datetime.ts",
+      "source": "packages/core/src/database/content-datetime.ts",
+      "class": "ContentDatetimeNormalizer",
+      "sourceSpan": "export class ContentDatetimeNormalizer {\n\tconstructor(\n\t\tprivate readonly db: Kysely<Database>,\n\t\tprivate readonly contexts?: DatetimeContextCache,\n\t) {}",
+      "nativeSpan": "export class ContentDatetimeNormalizer {\n\tprivate readonly db: Kysely<Database>;\n\tprivate readonly contexts?: DatetimeContextCache;\n\tconstructor(\n\t\tdb: Kysely<Database>,\n\t\tcontexts?: DatetimeContextCache,\n\t) {\n\t\tthis.db = db;\n\t\tthis.contexts = contexts;\n\t}",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/seed/upstream/database/repositories/content.ts",
+      "source": "packages/core/src/database/repositories/content.ts",
+      "class": "ContentRepository",
+      "sourceSpan": "export class ContentRepository {\n\tprivate readonly datetimes: ContentDatetimeNormalizer;\n\n\tconstructor(\n\t\tprivate db: Kysely<Database>,\n\t\tprivate readonly datetimeContexts?: DatetimeContextCache,\n\t) {\n\t\tthis.datetimes = new ContentDatetimeNormalizer(db, datetimeContexts);\n\t}",
+      "nativeSpan": "export class ContentRepository {\n\tprivate db: Kysely<Database>;\n\tprivate readonly datetimeContexts?: DatetimeContextCache;\n\tprivate readonly datetimes: ContentDatetimeNormalizer;\n\n\tconstructor(\n\t\tdb: Kysely<Database>,\n\t\tdatetimeContexts?: DatetimeContextCache,\n\t) {\n\t\tthis.db = db;\n\t\tthis.datetimeContexts = datetimeContexts;\n\t\tthis.datetimes = new ContentDatetimeNormalizer(db, datetimeContexts);\n\t}",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/seed/upstream/database/repositories/revision.ts",
+      "source": "packages/core/src/database/repositories/revision.ts",
+      "class": "RevisionRepository",
+      "sourceSpan": "export class RevisionRepository {\n\tprivate readonly datetimes: ContentDatetimeNormalizer;\n\n\tconstructor(\n\t\tprivate db: Kysely<Database>,\n\t\tdatetimeContexts?: DatetimeContextCache,\n\t) {\n\t\tthis.datetimes = new ContentDatetimeNormalizer(db, datetimeContexts);\n\t}",
+      "nativeSpan": "export class RevisionRepository {\n\tprivate db: Kysely<Database>;\n\tprivate readonly datetimes: ContentDatetimeNormalizer;\n\n\tconstructor(\n\t\tdb: Kysely<Database>,\n\t\tdatetimeContexts?: DatetimeContextCache,\n\t) {\n\t\tthis.db = db;\n\t\tthis.datetimes = new ContentDatetimeNormalizer(db, datetimeContexts);\n\t}",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/seed/schema-error.ts",
+      "source": "packages/core/src/schema/registry.ts",
+      "class": "SchemaError",
+      "sourceSpan": "export class SchemaError extends Error {\n\tconstructor(\n\t\tmessage: string,\n\t\tpublic code: string,\n\t\tpublic details?: Record<string, unknown>,\n\t) {\n\t\tsuper(message);\n\t\tthis.name = \"SchemaError\";\n\t}\n}",
+      "nativeSpan": "export class SchemaError extends Error {\n\tpublic code: string;\n\tpublic details?: Record<string, unknown>;\n\tconstructor(\n\t\tmessage: string,\n\t\tcode: string,\n\t\tdetails?: Record<string, unknown>,\n\t) {\n\t\tsuper(message);\n\t\tthis.code = code;\n\t\tthis.details = details;\n\t\tthis.name = \"SchemaError\";\n\t}\n}",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/seed/apply.ts",
+      "source": "packages/core/src/seed/apply.ts",
+      "class": "SeedBudget",
+      "sourceSpan": "\tconstructor(private readonly limits: SeedApplyBudget) {}",
+      "nativeSpan": "\tprivate readonly limits: SeedApplyBudget;\n\tconstructor(limits: SeedApplyBudget) { this.limits = limits; }",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": true
+    },
+    {
+      "native": "src/lib/server/seed/apply-d1.ts",
+      "source": "packages/core/src/seed/apply.ts",
+      "class": "SeedBudget",
+      "sourceSpan": "\tconstructor(private readonly limits: SeedApplyBudget) {}",
+      "nativeSpan": "\tprivate readonly limits: SeedApplyBudget;\n\tconstructor(limits: SeedApplyBudget) { this.limits = limits; }",
+      "causalCredit": 0,
+      "completeSourceBodyAfterExactConstructorReversal": false
+    }
+  ]
+}

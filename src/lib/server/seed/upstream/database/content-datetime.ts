@@ -59,10 +59,15 @@ function repeaterSubFieldsOfType(validation: string | null, type: FieldType): st
 export type DatetimeContextCache = Map<string, Promise<DatetimeContext>>;
 
 export class ContentDatetimeNormalizer {
+	private readonly db: Kysely<Database>;
+	private readonly contexts?: DatetimeContextCache;
 	constructor(
-		private readonly db: Kysely<Database>,
-		private readonly contexts?: DatetimeContextCache,
-	) {}
+		db: Kysely<Database>,
+		contexts?: DatetimeContextCache,
+	) {
+		this.db = db;
+		this.contexts = contexts;
+	}
 
 	private context(collection: string): Promise<DatetimeContext> {
 		if (this.contexts) {
