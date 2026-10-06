@@ -38,7 +38,6 @@ export function createCmsRuntime(
   const sqlite = new Map<string, Promise<CmsDatabase>>();
   const bindings = new Map<D1Binding, Promise<CmsDatabase>>();
   const configurations = new WeakMap<RequestEvent, RuntimeConfiguration>();
-  const seedTasks = new Set<Promise<void>>();
   let closed = false;
   let closing: Promise<void> | undefined;
 
@@ -46,37 +45,23 @@ export function createCmsRuntime(
     if (closed) throw new Error('CMS runtime is closed');
   }
 
-  async function initialize(open: () => CmsDatabase | Promise<CmsDatabase>, config: RuntimeConfiguration): Promise<CmsDatabase> {
+  async function initialize(open: () => CmsDatabase | Promise<CmsDatabase>): Promise<CmsDatabase> {
     const database = await open();
-    const databaseSeedTasks = new Set<Promise<void>>();
     try {
       assertOpen();
       await migrateCms(database);
       assertOpen();
-      const { initializeConfiguredDefaultSeed } = await import('./default-seed.ts');
-      assertOpen();
-      await initializeConfiguredDefaultSeed(database, { ...config, keepAlive: task => {
-        seedTasks.add(task); databaseSeedTasks.add(task);
-        const settled = () => { seedTasks.delete(task); databaseSeedTasks.delete(task); };
-        void task.then(settled, settled);
-        config.keepAlive?.(task);
-      } });
-      assertOpen();
       return database;
     }
-    catch (cause) {
-      await Promise.allSettled(databaseSeedTasks);
-      await database.close();
-      throw cause;
-    }
+    catch (cause) { await database.close(); throw cause; }
   }
 
   function cachedAdapter<Key>(
-    cache: Map<Key, Promise<CmsDatabase>>, key: Key, open: () => CmsDatabase | Promise<CmsDatabase>, config: RuntimeConfiguration
+    cache: Map<Key, Promise<CmsDatabase>>, key: Key, open: () => CmsDatabase | Promise<CmsDatabase>
   ): Promise<CmsDatabase> {
     let pending = cache.get(key);
     if (!pending) {
-      pending = initialize(open, config);
+      pending = initialize(open);
       cache.set(key, pending);
       const initialized = pending;
       void pending.catch(() => { if (cache.get(key) === initialized) cache.delete(key); });
@@ -94,13 +79,13 @@ export function createCmsRuntime(
         const { openRuntimeSqlite } = await import('./node.ts');
         assertOpen();
         return openRuntimeSqlite(path);
-      }, config);
+      });
     }
     const binding = config.binding;
     if (!binding || typeof binding.prepare !== 'function' || typeof binding.batch !== 'function') {
       throw new Error('CMS_DB must be a raw D1 database binding declared in d1_databases');
     }
-    return cachedAdapter(bindings, binding, () => openD1(binding), config);
+    return cachedAdapter(bindings, binding, () => openD1(binding));
   }
 
   async function storageFor(config: RuntimeConfiguration): Promise<Storage | undefined> {
@@ -134,6 +119,9 @@ export function createCmsRuntime(
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
     const storage = await storageFor(config);
     const database = await databaseFor(config);
+    assertOpen();
+    const { initializeConfiguredDefaultSeed } = await import('./default-seed.ts');
+    await initializeConfiguredDefaultSeed(database, config);
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     configurations.set(event, config);
@@ -215,7 +203,6 @@ export function createCmsRuntime(
         const pending = [...sqlite.values(), ...bindings.values()];
         sqlite.clear(); bindings.clear();
         const initialized = await Promise.allSettled(pending);
-        while (seedTasks.size) await Promise.allSettled(seedTasks);
         await Promise.all(initialized.filter(result => result.status === 'fulfilled')
           .map(result => result.value.close()));
       })();

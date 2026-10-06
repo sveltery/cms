@@ -28,13 +28,8 @@ export async function initializeConfiguredDefaultSeed(database: CmsDatabase,
     { kind: 'd1'; binding: object; keepAlive?: (task: Promise<void>) => void }) {
   // Account completion remains the existing enrollment authority. Read its
   // actual receipt; do not mirror account flags/state into canonical options.
-  try {
-    const accountComplete = await identityOptions(database).get('emdash:setup_complete');
-    if (accountComplete === true || accountComplete === 'true') return;
-  } catch {
-    // Same conservative Source gate: unreadable completion metadata never seeds.
-    return;
-  }
+  const accountComplete = await identityOptions(database).get('emdash:setup_complete');
+  if (accountComplete === true || accountComplete === 'true') return;
   const holder = seedHolder();
   let databaseKey: string;
   if (configured.kind === 'sqlite') databaseKey = `sqlite:${configured.path}`;
