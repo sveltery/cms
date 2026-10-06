@@ -1,0 +1,46 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/canonical-content-delegation.test.ts (3 tests | 2 failed) 111ms
+     × reads canonical stored content and its actual revision through the registered ordinary view 54ms
+     × refuses an unknown derived namespace before exposing canonical content access 28ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/canonical-content-delegation.test.ts > plugin content access delegates to the sole canonical lifecycle owner > reads canonical stored content and its actual revision through the registered ordinary view
+TypeError: Cannot read properties of undefined (reading 'get')
+ ❯ tests/plugin-runtime/canonical-content-delegation.test.ts:27:37
+     25|     const access = createContentAccess(db, { revisions: true });
+     26|     expect((await access.get('posts', created.id))?.data).toEqual({ ti…
+     27|     expect((await access.revisions!.get('posts', created.id, revision.…
+       |                                     ^
+     28|   });
+     29|   it('refuses an unknown derived namespace before exposing canonical c…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/plugin-runtime/canonical-content-delegation.test.ts > plugin content access delegates to the sole canonical lifecycle owner > refuses an unknown derived namespace before exposing canonical content access
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/canonical-content-delegation.test.ts:32:48
+     30|     const { db } = await fixture();
+     31|     const derived = db.withPlugin({ transformQuery: args => args.node,…
+     32|     expect(() => createContentAccess(derived)).toThrow('registered CMS…
+       |                                                ^
+     33|   });
+     34|   it('reads the genuine current transaction and leaves its uncommitted…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  02:33:29
+   Duration  909ms (transform 417ms, setup 0ms, import 670ms, tests 111ms, environment 0ms)
+

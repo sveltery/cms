@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/canonical-content-delegation.test.ts (3 tests | 1 failed) 120ms
+     × refuses an unknown derived namespace before exposing canonical content access 35ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/canonical-content-delegation.test.ts > plugin content access delegates to the sole canonical lifecycle owner > refuses an unknown derived namespace before exposing canonical content access
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/canonical-content-delegation.test.ts:32:48
+     30|     const { db } = await fixture();
+     31|     const derived = db.withPlugin({ transformQuery: args => args.node,…
+     32|     expect(() => createContentAccess(derived)).toThrow('registered CMS…
+       |                                                ^
+     33|   });
+     34|   it('reads the genuine current transaction and leaves its uncommitted…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  02:34:05
+   Duration  915ms (transform 402ms, setup 0ms, import 662ms, tests 120ms, environment 0ms)
+
