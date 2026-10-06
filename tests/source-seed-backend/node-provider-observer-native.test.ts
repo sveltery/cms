@@ -72,3 +72,27 @@ for (const kind of ['taxonomy', 'relation'] as const) {
     } finally { await storage.close(); }
   }, 30000);
 }
+
+for (const transaction of [false, true]) {
+  it(`Node: preserves actual taxonomy result-hook failure with callback transaction=${transaction}`, async () => {
+    const storage = await schemaAdminStorage('Node');
+    try {
+      await migrateCms(storage.database);
+      const failure = new Error('Actual INSERT result hook failed'), inserts = new Set<unknown>();
+      let throws = 0;
+      const db = seedSourceDatabase(storage.database).withPlugin({
+        transformQuery({ node, queryId }) { if (node.kind === 'InsertQueryNode') inserts.add(queryId); return node; },
+        async transformResult({ result, queryId }) {
+          if (inserts.has(queryId)) { throws++; throw failure; }
+          return result;
+        },
+      });
+      const create = async (view: typeof db) => new TaxonomyRepository(view).create({ name: 'tag', slug: 'actual-hook-error', label: 'Actual hook error' });
+      const outcome = await (transaction ? db.transaction().execute(create) : create(db)).then(value => ({ value, error: null }), error => ({ value: null, error }));
+      const actual = await sql`SELECT slug FROM _cms_taxonomies WHERE slug='actual-hook-error'`.execute(storage.database.db);
+      expect(actual.rows).toEqual(transaction ? [] : [{ slug: 'actual-hook-error' }]);
+      expect(outcome.error).toBe(failure);
+      expect(throws).toBe(1);
+    } finally { await storage.close(); }
+  }, 30000);
+}
