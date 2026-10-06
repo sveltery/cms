@@ -196,7 +196,7 @@ test('two independent connections competing from the same revision yield exactly
   } finally { await second.close(); await first.database.close(); rmSync(directory, { recursive: true, force: true }); }
 });
 
-test('schema version conflicts and field bounds preserve existing definitions', async () => {
+test('schema version conflicts preserve definitions and Source permits fields beyond32', async () => {
   const f = await fixture();
   try {
     const version = (await f.schema.getCollection('posts'))!.version;
@@ -204,8 +204,8 @@ test('schema version conflicts and field bounds preserve existing definitions', 
     await assert.rejects(() => f.service.addField({ collection: 'posts', expectedSchemaVersion: version, input: { slug: 'stale', label: 'Stale', type: 'text' } }), conflict);
     assert.equal(await f.schema.getField('posts', 'stale'), null);
     for (let n = 3; n < MAX_FIELDS; n++) await f.schema.createField('posts', { slug: 'f_' + n, label: 'Field', type: 'text' });
-    await assert.rejects(() => f.schema.createField('posts', { slug: 'overflow', label: 'Overflow', type: 'text' }), { code: 'LIMIT_EXCEEDED' });
-    assert.equal((await f.schema.listFields((await f.schema.getCollection('posts'))!.id)).length, MAX_FIELDS);
+    await assert.doesNotReject(() => f.schema.createField('posts', { slug: 'overflow', label: 'Overflow', type: 'text' }));
+    assert.equal((await f.schema.listFields((await f.schema.getCollection('posts'))!.id)).length, MAX_FIELDS + 1);
     await assert.rejects(() => f.service.addField({ collection: 'posts', input: { slug: 'missing_version', label: 'Missing', type: 'text' } }), invalid);
   } finally { await f.database.close(); }
 });

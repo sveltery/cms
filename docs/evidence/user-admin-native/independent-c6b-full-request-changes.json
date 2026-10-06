@@ -1,0 +1,319 @@
+{
+  "kind": "same-independent-full-owned-review-finite-successor",
+  "pr": 99,
+  "url": "https://github.com/sveltery/cms/pull/99",
+  "head": "c6b2c936cafbd6b7d86048d0e09b631121f8b5b2",
+  "tree": "a293f13921a61c539641e79a6237f68164c5ca69",
+  "reviewedAt": "2026-10-05T22:20:06Z",
+  "verdict": "REQUEST_CHANGES",
+  "inheritedFullReview": {
+    "path": "/tmp/user99-8fb-independent-full-final-semantic-review.json",
+    "sha256": "94d811d03eb7420574c5c3037ad3327a6a9b919d22a7c4ca9d11025f22a47936",
+    "semanticAreas": [
+      "Complete Source Core UserRepository creation/read/batch/email/count/delete fields",
+      "Source timestamps, cursor encoding/order/invalid handling and exact role filtering",
+      "Source role-name/numeric-level resolution and unknown-role fallback",
+      "Canonical split identity/profile storage, same-batch creation/update rollback, real affected rows",
+      "Profileless historical identity preservation and proposal USR-01/02/03",
+      "Pinned RBAC scope policy tail, transfer constants/type and unchanged Native guards",
+      "Actual list/search/role/stored-timestamp admin pagination",
+      "Stored profile/detail and existing safe credential metadata projection",
+      "Original update DTO exactly nine fields and omitted-field/custom-JSON preservation",
+      "Self role/email conflicts/enabled last-admin restrictions and batch guard policy",
+      "Disable/enable persistence, missing target, self and last-admin policy",
+      "RequestEvent adapter current stored role and disabled verification",
+      "Existing origin/trusted runtime/mutation opt-in guards, no protected probe expansion",
+      "Whole shared request parser and original schemas/coercion/structured issue details",
+      "Missing ID, malformed profile JSON, exact fallback messages and private no-store envelope",
+      "Full whole Source authority/runtime import graph and extension-only TypeScript emit",
+      "Complete Native and Source test fixtures, fixed datasets/clocks/mocks and genuine Node/raw-D1 owners",
+      "Entire public mode/type/path/SHA/size vectors and Native blob objects",
+      "Entire owned commit history, raw Git object SHA/tree/parents/messages and retained historical aliases",
+      "Historical and current raw TDD controls, value-red versus pre-expectation-stop classification",
+      "Package versions/dependencies/SRI/lock/providers/bootstrap/CI/security protected Main vector preservation",
+      "Entire Main compatibility prefix and whole Source chain plus appended owned gates",
+      "Original inherited test erased-only correction and original before bytes/runtime SHA",
+      "Independent current full focused suites and check zero/zero",
+      "Current exact synthetic hosted normal thirteen stages and secured ten launches",
+      "Configured review genuine exact-current quota notice, no completed verdict",
+      "Actual current Main advancement and unresolved merge conflict, no unqualified main adoption",
+      "Explicit incomplete OAuth/PAT/invites/user UI/broader whole consumer families"
+    ],
+    "fullReviewAreaCount": 28
+  },
+  "closedFindings": [
+    {
+      "id": "USER99-DISABLED-ATOMIC-01",
+      "status": "CLOSED",
+      "reason": "All identity/profile writes now share existing canonical atomicBatch, original self/last-admin SQL threshold/conditional predicate/affected-row/error boundaries preserved; exact original four-case reviewer witness is now4PASS; whole48 gives24SQLite/24rawD1 including genuine four value reds followed by fix/refactor46 and two initially-green admin controls",
+      "sourceBugCredit": 0,
+      "copiedSourceCaseCredit": 0
+    }
+  ],
+  "findings": [
+    {
+      "id": "USER99-SOURCE-GATE-EXACT-01",
+      "priority": "P2",
+      "path": "scripts/check-user-repository-source.mjs",
+      "line": 114,
+      "endLine": 116,
+      "title": "Compare complete Source gate commands instead of shared-prefix substrings",
+      "description": "The new includes/split guards match command-name prefixes. Actual unchanged whole guard passes when pnpm test:user-admin is replaced by pnpm test:user-admin-other, although the complete actual administration gate count is zero. It also rejects a legitimate separately named future pnpm test:user-admin-ui append with actual core/admin both present exactly once. The assigned contract requires adjacent actual complete core/admin gates exactly once while permitting later whole feature leaves. Tokenize the && chain and compare trimmed complete command tokens for both adjacency and counts; preserve the exact historical chain prefix and all Source bodies/fixtures.",
+      "reproducer": {
+        "path": "/tmp/user99-c6b-reviewer-whole-guard-fixture-results.json",
+        "wholeActualGuardByteExact": true,
+        "fixtureOnlyPackageChainChanges": true,
+        "unmodifiedPinnedSourceAndWholeNativeBodies": true,
+        "currentValid": "PASS",
+        "futureBylineValidAppend": "PASS",
+        "missingAdminReplacedByOtherPrefixLeaf": "incorrect PASS with0 exact admin gates",
+        "futureUserUiValidAppend": "incorrect FAIL with1 core/1 admin gate",
+        "classification": "Infrastructure guard behavior only,0 Source causal/product behavior credit. No auth/HTTP/session/credential/clock/race probes."
+      }
+    }
+  ],
+  "qualification": {
+    "head": "c6b2c936cafbd6b7d86048d0e09b631121f8b5b2",
+    "tree": "a293f13921a61c539641e79a6237f68164c5ca69",
+    "fullEntries": 4579,
+    "fullBlobs": 3477,
+    "fullVectorsAndAllNativeBlobObjectBytesExact": true,
+    "MainBlobs": 3299,
+    "MainProtectedExact": 3295,
+    "fourEstablishedOverlays": [
+      ".gitattributes",
+      "package.json",
+      "parity/emdash/compatibility.md",
+      "src/lib/server/auth/permissions.ts"
+    ],
+    "oldProtectedOwnedLeavesExact": 114,
+    "frozenSourceDestinationBodiesRetained": 63,
+    "oldOwnedHistoryRetained": 28,
+    "newOwnedRawPublicCommits": 6,
+    "originalCompleteMainRegisterPrefixAndWholeOldOwnedTailPreserved": true,
+    "oldRawReceiptsPreserved": 34,
+    "newRawReceipts": [
+      {
+        "path": "/tmp/user99-disabled-atomic-testfirst-whole46.log",
+        "bytes": 4735,
+        "sha256": "d1f16eb83949d8084b7f63932f9ac02f91ebd85598a68da65144acceb7cb8272"
+      },
+      {
+        "path": "/tmp/user99-disabled-atomic-fixed-whole46.log",
+        "bytes": 225,
+        "sha256": "39048e5e8e428f9bc7de0aec6f293fe8eaeeed982382f679de73fc521d7c643c"
+      },
+      {
+        "path": "/tmp/user99-disabled-atomic-refactor-whole46.log",
+        "bytes": 225,
+        "sha256": "e6ebe8fa8665282a411869933c2ec55e31d3f1df9b91e1cc2bc409c4aab82454"
+      },
+      {
+        "path": "/tmp/user99-disabled-atomic-guard-controls-whole48.log",
+        "bytes": 225,
+        "sha256": "5411554f41d8f003ec5500ccc4a430b0c91cb936de5dfb50575ed12ae60fdc95"
+      },
+      {
+        "path": "/tmp/user99-rollback-current-core65.log",
+        "bytes": 612,
+        "sha256": "8af1943070c83785406e48fac28a32b097f5beebf0196b08cf729046b842e791"
+      },
+      {
+        "path": "/tmp/user99-rollback-current-admin-inputs-reference48.log",
+        "bytes": 1197,
+        "sha256": "121a0ace3b7c5297408aa015e853b778d952dbfabe857889f522513d01789008"
+      },
+      {
+        "path": "/tmp/user99-rollback-bounded-check.log",
+        "bytes": 209,
+        "sha256": "19e014641b4aadab95bd2ca14222c84adf23ebb5fe7dfb8cadb173bbed9cb270"
+      },
+      {
+        "path": "/tmp/user99-rollback-current-ci-orchestration.log",
+        "bytes": 2567,
+        "sha256": "a8052967b2fad967b0af590a45cb182bf0704278ae9053dd53ce7f29e6cf94e2"
+      },
+      {
+        "path": "/tmp/user99-rollback-native-publication.log",
+        "bytes": 97,
+        "sha256": "a1a3f45c6c21bfec6ce7eda46cb16212459b6e6b77741f67ce9aa6bda0c6eafe"
+      },
+      {
+        "path": "/tmp/user99-rollback-final-native-tree.txt",
+        "bytes": 413351,
+        "sha256": "5f7b1f0c4725a96fbeca26452d359c30ec03f95a1c343aa7835028c120d651fc"
+      },
+      {
+        "path": "/tmp/user99-rollback-final-native-vector.json",
+        "bytes": 542001,
+        "sha256": "ceb3870c704c0cba2a97a9abd56c5788440d25e22aa95ad0b9fc01b4d44e84a5"
+      },
+      {
+        "path": "/tmp/user99-atomic-repair-public-snapshot.json",
+        "bytes": 11259,
+        "sha256": "f4f620845350047a4eb7dd1296ca1703082f5e45c76ce4a44a180dd5e759ba65"
+      }
+    ]
+  },
+  "newImplementationDelta": {
+    "onlyProductChange": "accounts/repository.ts:setDisabled",
+    "allOtherOwnedProductSourcePreserved": true,
+    "lastAdminBatchGuard": "existing _cms_guards pattern, current count>1 predicate, no new table/provider/writer",
+    "principalsRolesAuthBodyScope": "unchanged protected Main and old owned vectors; no policy/threshold/default relaxation",
+    "guardedAdminInitiallyGreenControls": 2,
+    "originalNative42BodiesExact": true,
+    "newNativeFileHashGuardAdded": true
+  },
+  "independentTests": {
+    "core65": "PASS",
+    "wholeParser2": "PASS",
+    "originalSupplementalReference9": "PASS",
+    "currentNative48": "PASS (SQLite24/rawD124)",
+    "exactOriginalReviewerWitness4": "PASS (Source2/Native2)",
+    "currentCI26": "PASS",
+    "checker": "0 errors0 warnings",
+    "heapBoundMiB": 2048,
+    "newHeavyBootstrap": false,
+    "originalSourceCausalAssertionRedCredit": 0
+  },
+  "currentHosted": {
+    "run": 37380328047,
+    "services": {
+      "job": 112000348065,
+      "status": "SUCCESS",
+      "rawIndependentQualified": true,
+      "completeStageCount": 3,
+      "CIWhole26": 26,
+      "NodeWholeServices": 1498,
+      "failures": 0
+    },
+    "browser": {
+      "job": 112000348445,
+      "status": "SUCCESS",
+      "rawIndependentQualified": true,
+      "sourceWholeGroups": [
+        14,
+        30,
+        25,
+        3,
+        35,
+        4,
+        3,
+        139
+      ],
+      "default65": 65,
+      "node65": 65,
+      "official1243": true,
+      "tenLaunchesTenZeroExits": true,
+      "noNoSandboxFlag": true
+    },
+    "source": {
+      "job": 112003962751,
+      "status": "SUCCESS",
+      "currentApiConfirmed": true,
+      "decodedRawIndependentlyQualified": false
+    },
+    "hosting": {
+      "job": 112005655953,
+      "status": "IN_PROGRESS"
+    },
+    "aggregate": "pending dependencies",
+    "fullCurrentNormal13Credit": false,
+    "synthetic": {
+      "sha": "3c49784a14cc97f8dc44034f52709c03ed5d678d",
+      "tree": "a293f13921a61c539641e79a6237f68164c5ca69",
+      "orderedParents": [
+        "cdc5b8d9d8fcf90f9899ea8ee4c0b3614010ecdb",
+        "c6b2c936cafbd6b7d86048d0e09b631121f8b5b2"
+      ],
+      "GithubSignature": "valid",
+      "actualDecodedServicesAndBrowserCheckoutMatches": true
+    }
+  },
+  "configuredReview": {
+    "request": 6004117360,
+    "createdAt": "2026-10-05T22:09:46Z",
+    "exactHeadNamed": "c6b2c936cafbd6b7d86048d0e09b631121f8b5b2",
+    "quota": 6004121940,
+    "quotaAt": "2026-10-05T22:09:58Z",
+    "genuineCurrentAssociation": true,
+    "completedVerdict": null,
+    "RootStandingConfiguredReviewOnlyExceptionSeparate": true
+  },
+  "currentMain": "99c659f67a2117f9e523f1231f0f44d207713396",
+  "candidateMainIncluded": "cdc5b8d9d8fcf90f9899ea8ee4c0b3614010ecdb",
+  "mergeable": null,
+  "stationaryHead": true,
+  "broaderScopeLimits": [
+    "No whole UsersAPI90 exists at frozen pin; no such runner credit",
+    "OAuth account/provider fields/storage and disable token revocation unimplemented separate owner",
+    "User administration UI, invites/recovery/PAT/allowed domains and historical profile enrollment unfinished",
+    "Nine broader Core consumer families and six additional Users/Transfer/OpenAPI/auth UI files retained whole but not executed here",
+    "No new live protected credentials/sessions/authenticated HTTP/race/SC49 probes",
+    "No PostgreSQL/deployed full product parity claim"
+  ],
+  "authorization": "No merge/approval. Root exact-head decision after remaining guard repair/current full mandatory gates. Same author expected-head regular merge only.",
+  "rawArtifacts": [
+    {
+      "path": "/tmp/user99-atomic-repair-final-handoff.json",
+      "bytes": 16327,
+      "sha256": "6c7f64a93b1ebaf66b2ce22e59af4cf4840365aecff13927c69e49c10d5fd150"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-independent-successor-qualification.json",
+      "bytes": 2877,
+      "sha256": "8b545f6c6520fff23f9b9fa24b628f493685a9e1372d6e5c90c73c5ac4ce32b5"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-public-tree.json",
+      "bytes": 1208309,
+      "sha256": "f8317acc906691e75291f411ef92838b2eee602396f31922e4df99f81ff8688e"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-public-main-tree.json",
+      "bytes": 1131366,
+      "sha256": "e4cfc1a89fe5a57307a8238966bd65f056c41c78c87562cc6675c766ac1a513e"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-public-newhistories.json",
+      "bytes": 7085,
+      "sha256": "59166db5918a678be2a54b73ca283eb01212771050dfea2994bb8d569dd38ecd"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-focused.log",
+      "bytes": 4738,
+      "sha256": "d828aeffc8046e538838264790f2ecb4355f84111b0b3fd2a1b2ff3a3704124a"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-check.log",
+      "bytes": 148,
+      "sha256": "916c119ca17d456821decb64dbc5b315d1ec367c42933dc5bf5358d550bead7c"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-whole-guard-fixture-results.json",
+      "bytes": 2267,
+      "sha256": "9002df8f92402d9b249d9e71ec82385b0ee92471c21df53f4c42d21a20fb89f7"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-guard-fixture/scripts/check-user-repository-source.mjs",
+      "bytes": 8391,
+      "sha256": "fa8dfee99d46b591cd0210c96dc678962d7521ce854b7d00e0d2e52ea2ae4aad"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-current-services-original.log",
+      "bytes": 245834,
+      "sha256": "92fac54b615111f679b75a306c7d5c7fb7d095086292ededf444692bb2a11bd0"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-current-secured10-original.log",
+      "bytes": 469287,
+      "sha256": "1b3924e7f3f418dc68e2a3efda848eda7dfa8bcbef0918002f4b6f55f53a6a86"
+    },
+    {
+      "path": "/tmp/user99-c6b-reviewer-final-api-snapshot.json",
+      "bytes": 44308,
+      "sha256": "e412e0ad16fdd0375a75b201e6376ff86425bf5942601996c4c3840508fa8e78"
+    }
+  ],
+  "currentMainLimit": "Main advanced to Calendar merge99c659 during this finite review; candidate contains priorcdc5, new actual Main union is not qualified or adopted here"
+}

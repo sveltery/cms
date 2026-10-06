@@ -1,0 +1,96 @@
+Loading svelte-check in workspace: /workspace/cms-full-seed-engine
+Getting Svelte diagnostics...
+
+/workspace/cms-full-seed-engine/src/lib/server/database/seed-capture-plan.ts:40:44
+Error: Argument of type '"_cms_media_usage_index_status"' is not assignable to parameter of type '"_cms_collections" | "_cms_fields" | "_cms_migrations" | "_cms_guards" | "_cms_options" | "_cms_plugin_storage" | "_cms_plugin_state" | "_cms_plugin_indexes" | "_cms_taxonomies" | ... 9 more ... | "_cms_auth_rate_limits"'. 
+  const result: CompiledQuery[] = [fence(sql`${active} AND ${previous}`),...statements.slice(0,collectionOffset)];
+  if (!existing) result.push(db.insertInto('_cms_media_usage_index_status').values({
+    adapter_id:'content-media',scope_type:'collection',scope_key:input.collectionSlug,status:'never',
+
+/workspace/cms-full-seed-engine/src/lib/server/database/seed-capture-plan.ts:63:30
+Error: Argument of type '"_cms_media_usage_index_status"' is not assignable to parameter of type 'TableExpressionOrList<CmsTables, never>'. 
+    AND ${sql.join(definitions.map(definition=>sql`EXISTS(SELECT 1 FROM sqlite_master WHERE type='trigger' AND tbl_name=${identifiers.tableName} AND name=${definition.name} AND sql=${definition.sql})`),sql` AND `)}`));
+  result.push(db.updateTable('_cms_media_usage_index_status').set({capture_state:'ready',updated_at:sql`strftime('%Y-%m-%dT%H:%M:%fZ','now')`})
+    .where('adapter_id','=','content-media').where('scope_type','=','collection').where('scope_key','=',input.collectionSlug)
+
+/workspace/cms-full-seed-engine/src/lib/server/database/seed-capture-plan.ts:63:63
+Error: This expression is not callable.
+  Each member of the union type '{ (update: UpdateObjectExpression<{ [x: string]: never; }, any, any>): UpdateQueryBuilder<{ [x: string]: never; }, any, any, UpdateResult>; <RE extends ReferenceExpression<...>>(key: RE, value: ValueExpression<...>): UpdateQueryBuilder<...>; } | ... 40 more ... | { ...; }' has signatures, but none of those signatures are compatible with each other. 
+    AND ${sql.join(definitions.map(definition=>sql`EXISTS(SELECT 1 FROM sqlite_master WHERE type='trigger' AND tbl_name=${identifiers.tableName} AND name=${definition.name} AND sql=${definition.sql})`),sql` AND `)}`));
+  result.push(db.updateTable('_cms_media_usage_index_status').set({capture_state:'ready',updated_at:sql`strftime('%Y-%m-%dT%H:%M:%fZ','now')`})
+    .where('adapter_id','=','content-media').where('scope_type','=','collection').where('scope_key','=',input.collectionSlug)
+
+/workspace/cms-full-seed-engine/src/lib/server/database/seed-capture-plan.ts:68:30
+Error: Argument of type '"_cms_media_usage_index_status"' is not assignable to parameter of type 'TableExpressionOrList<CmsTables, never>'. 
+  result.push(...statements.slice(tableOffset+1).map(retained));
+  result.push(db.updateTable('_cms_media_usage_index_status').set({capture_state:'active',cursor:null,updated_at:sql`strftime('%Y-%m-%dT%H:%M:%fZ','now')`})
+    .where('adapter_id','=','content-media').where('scope_type','=','collection').where('scope_key','=',input.collectionSlug)
+
+/workspace/cms-full-seed-engine/src/lib/server/database/seed-capture-plan.ts:68:63
+Error: This expression is not callable.
+  Each member of the union type '{ (update: UpdateObjectExpression<{ [x: string]: never; }, any, any>): UpdateQueryBuilder<{ [x: string]: never; }, any, any, UpdateResult>; <RE extends ReferenceExpression<...>>(key: RE, value: ValueExpression<...>): UpdateQueryBuilder<...>; } | ... 40 more ... | { ...; }' has signatures, but none of those signatures are compatible with each other. 
+  result.push(...statements.slice(tableOffset+1).map(retained));
+  result.push(db.updateTable('_cms_media_usage_index_status').set({capture_state:'active',cursor:null,updated_at:sql`strftime('%Y-%m-%dT%H:%M:%fZ','now')`})
+    .where('adapter_id','=','content-media').where('scope_type','=','collection').where('scope_key','=',input.collectionSlug)
+
+/workspace/cms-full-seed-engine/src/lib/server/database/registry.ts:446:24
+Error: Argument of type 'readonly CompiledQuery<unknown>[]' is not assignable to parameter of type 'CompiledQuery<unknown>[]'.
+  The type 'readonly CompiledQuery<unknown>[]' is 'readonly' and cannot be assigned to the mutable type 'CompiledQuery<unknown>[]'. 
+    if (!this.database.atomicQueryLoops) {
+      await this.batch(await buildSeedCapturedCreationPlan(this.database,input,statements,collectionOffset,tableOffset),'LIMIT_EXCEEDED');
+      return;
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:25:35
+Error: Argument of type '"_cms_media_usage_index_status"' is not assignable to parameter of type 'TableExpressionOrList<CmsTables, never>'. 
+      expect(await verifyMediaUsageCaptureTriggers(db as unknown as Kysely<Database>, identity)).toBe(true);
+      expect((await db.selectFrom('_cms_media_usage_index_status').select('capture_state').where('scope_key', '=', 'captured').executeTakeFirst())?.capture_state).toBe('active');
+      await sql`INSERT INTO ec_captured(id) VALUES ('actual-captured-row')`.execute(db);
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:25:68
+Error: This expression is not callable.
+  Each member of the union type '{ <SE extends SelectExpression<{ [x: string]: CollectionRow | TaxonomyTable | ContentTaxonomyTable | TaxonomyDefTable | TaxonomyDefGroupTable | ... 13 more ... | { ...; }; }, any>>(selections: readonly SE[]): SelectQueryBuilder<...>; <const CB extends SelectCallback<...>>(callback: CB): SelectQueryBuilder<...>; <SE ...' has signatures, but none of those signatures are compatible with each other. 
+      expect(await verifyMediaUsageCaptureTriggers(db as unknown as Kysely<Database>, identity)).toBe(true);
+      expect((await db.selectFrom('_cms_media_usage_index_status').select('capture_state').where('scope_key', '=', 'captured').executeTakeFirst())?.capture_state).toBe('active');
+      await sql`INSERT INTO ec_captured(id) VALUES ('actual-captured-row')`.execute(db);
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:27:35
+Error: Argument of type '"_cms_media_usage_work"' is not assignable to parameter of type 'TableExpressionOrList<CmsTables, never>'. 
+      await sql`INSERT INTO ec_captured(id) VALUES ('actual-captured-row')`.execute(db);
+      expect((await db.selectFrom('_cms_media_usage_work').select(['collection_id', 'content_id', 'work_version']).execute())).toEqual([
+        { collection_id: collection.id, content_id: 'actual-captured-row', work_version: 1 }
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:27:60
+Error: This expression is not callable.
+  Each member of the union type '{ <SE extends SelectExpression<{ [x: string]: CollectionRow | TaxonomyTable | ContentTaxonomyTable | TaxonomyDefTable | TaxonomyDefGroupTable | ... 13 more ... | { ...; }; }, any>>(selections: readonly SE[]): SelectQueryBuilder<...>; <const CB extends SelectCallback<...>>(callback: CB): SelectQueryBuilder<...>; <SE ...' has signatures, but none of those signatures are compatible with each other. 
+      await sql`INSERT INTO ec_captured(id) VALUES ('actual-captured-row')`.execute(db);
+      expect((await db.selectFrom('_cms_media_usage_work').select(['collection_id', 'content_id', 'work_version']).execute())).toEqual([
+        { collection_id: collection.id, content_id: 'actual-captured-row', work_version: 1 }
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:48:35
+Error: Argument of type '"_cms_media_usage_work"' is not assignable to parameter of type 'TableExpressionOrList<CmsTables, never>'. 
+      expect((await sql<{ field_73: string }>`SELECT field_73 FROM ec_captured_seed`.execute(db)).rows).toEqual([{ field_73: 'stored last field' }]);
+      expect((await db.selectFrom('_cms_media_usage_work').select('content_id').execute())).toEqual([{ content_id: 'actual-final-field' }]);
+    } finally { await storage.close(); }
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:48:60
+Error: This expression is not callable.
+  Each member of the union type '{ <SE extends SelectExpression<{ [x: string]: CollectionRow | TaxonomyTable | ContentTaxonomyTable | TaxonomyDefTable | TaxonomyDefGroupTable | ... 13 more ... | { ...; }; }, any>>(selections: readonly SE[]): SelectQueryBuilder<...>; <const CB extends SelectCallback<...>>(callback: CB): SelectQueryBuilder<...>; <SE ...' has signatures, but none of those signatures are compatible with each other. 
+      expect((await sql<{ field_73: string }>`SELECT field_73 FROM ec_captured_seed`.execute(db)).rows).toEqual([{ field_73: 'stored last field' }]);
+      expect((await db.selectFrom('_cms_media_usage_work').select('content_id').execute())).toEqual([{ content_id: 'actual-final-field' }]);
+    } finally { await storage.close(); }
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:61:34
+Error: Argument of type '"_cms_media_usage_index_status"' is not assignable to parameter of type 'TableExpressionOrList<CmsTables, never>'. 
+      expect(await db.selectFrom('_cms_collections').select('id').where('slug', '=', 'failed_capture').execute()).toEqual([]);
+      expect(await db.selectFrom('_cms_media_usage_index_status').select('scope_key').where('scope_key', '=', 'failed_capture').execute()).toEqual([]);
+      expect((await sql`SELECT name FROM sqlite_master WHERE name = 'ec_failed_capture' OR tbl_name = 'ec_failed_capture'`.execute(db)).rows).toEqual([]);
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/capture-native.test.ts:61:67
+Error: This expression is not callable.
+  Each member of the union type '{ <SE extends SelectExpression<{ [x: string]: CollectionRow | TaxonomyTable | ContentTaxonomyTable | TaxonomyDefTable | TaxonomyDefGroupTable | ... 13 more ... | { ...; }; }, any>>(selections: readonly SE[]): SelectQueryBuilder<...>; <const CB extends SelectCallback<...>>(callback: CB): SelectQueryBuilder<...>; <SE ...' has signatures, but none of those signatures are compatible with each other. 
+      expect(await db.selectFrom('_cms_collections').select('id').where('slug', '=', 'failed_capture').execute()).toEqual([]);
+      expect(await db.selectFrom('_cms_media_usage_index_status').select('scope_key').where('scope_key', '=', 'failed_capture').execute()).toEqual([]);
+      expect((await sql`SELECT name FROM sqlite_master WHERE name = 'ec_failed_capture' OR tbl_name = 'ec_failed_capture'`.execute(db)).rows).toEqual([]);
+
+====================================
+svelte-check found 14 errors and 0 warnings in 3 files

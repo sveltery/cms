@@ -1,0 +1,126 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testFirstCommit": "5354db078d98c59cc1dba5f016b770ff775f813f",
+  "runtimeApplied": false,
+  "heldProposal": {
+    "path": "/tmp/source-seed-namespace-runtime-proposal-r5/proposal.json",
+    "bytes": 19407,
+    "sha256": "5fe134bb3ed7fd559bffe0a3a1b35811a28c07ddc451b3c523caa4484c1775b7"
+  },
+  "heldNamespace": {
+    "path": "/tmp/source-seed-namespace-runtime-proposal-r5/after/src/lib/server/seed/namespace.ts",
+    "bytes": 28208,
+    "sha256": "bdaed8c7914a619965460a57a2f4b42ee4edb85565696f54b92c61121f88ab98"
+  },
+  "wholeNewNativeFile": {
+    "path": "tests/source-seed-backend/namespace-compound.test.ts",
+    "bytes": 4417,
+    "sha256": "3248ffa07b0af6479724c0ae2e75e8bc50643f2dad16921ae7291470fa39ed01",
+    "cases": 10,
+    "deadlinesMilliseconds": 30000,
+    "mocks": 0,
+    "skips": 0
+  },
+  "priorSevenWholeNativeFilesUnchanged": [
+    {
+      "path": "tests/source-seed-backend/namespace-catalog.test.ts",
+      "bytes": 3769,
+      "sha256": "6fb19901e3b0b14770940ab64df21063791c3ad25ff9547ec498b99aae17c87f"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-control.test.ts",
+      "bytes": 898,
+      "sha256": "a5d4e23b48a662ff093f79dffcfd811ae7b8f9e5c986fc6a4f279ceebaccd153"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-predicate.test.ts",
+      "bytes": 3385,
+      "sha256": "b9462e8b3baeca1064289a74589e9b453a4d98323bcba9200ed43647cf65ce27"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace.test.ts",
+      "bytes": 4894,
+      "sha256": "215feb727e93ebaf86f455bc01493f438a93b8e6b3c07cde34b7bcfcb3d92f2e"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-plan.test.ts",
+      "bytes": 2967,
+      "sha256": "c85bdce0b1353fdb5bd42bb96f1739e361b3b0a28f3acb91fd6a792df169f650"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-metadata.test.ts",
+      "bytes": 6012,
+      "sha256": "7a9e3a5da95047464cd30f318e792b20e421bf7250c22e7550472dabe7f20d35"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-collision.test.ts",
+      "bytes": 6193,
+      "sha256": "557db4e6b86338ac46d0592b6fe9d4849064eaa01e69a94ece6e2304a3717bd8"
+    }
+  ],
+  "wholeNativeFiles": 8,
+  "nativeCases": 60,
+  "publicBaseline": {
+    "assertionReds": 57,
+    "controls": 3,
+    "fixtureImportPreexpectFailures": 0
+  },
+  "heldR5": {
+    "prior50Pass": 50,
+    "newCompoundAssertionReds": 8,
+    "newLiteralQuotedIdentifierCommentControls": 2,
+    "fixtureImportPreexpectFailures": 0
+  },
+  "finalIsolatedCandidate": {
+    "pass": 60,
+    "bad": 0,
+    "checkerErrors": 0,
+    "checkerWarnings": 0
+  },
+  "coverage": [
+    "Real sqlite_master table/index rows verified on Node and raw D1 before refusal assertions",
+    "UNION and UNION ALL accepted by held R5 reach actual null-rejection assertion reds",
+    "Same compound class INTERSECT and EXCEPT reach actual null-rejection assertion reds",
+    "Corrected candidate explicit refusal and zero actual pinned connection executeQuery calls",
+    "Same query compile refuses explicitly before SQL execution",
+    "Quoted alias, literal and comment compound words preserve ordinary table-name mapping"
+  ],
+  "adaptation": "Finite fail-closed rejection of unquoted UNION/INTERSECT/EXCEPT in raw catalog SQL during query transformation. Existing lexer leaves quoted identifiers, literals and comments opaque. This does not implement compound catalog result semantics or a general SQL parser.",
+  "sourceFamilyExecutions": 0,
+  "sourceCausalCredit": 0,
+  "profileAuthRuntimeProbes": 0,
+  "newPrincipals": 0,
+  "decision": "Held revisions1\u20135 and complete logs remain immutable. Revision6 candidate remains under/tmp only, with Root exact qualification and actual public providers pending. Full Source85/capture/providers/Pg unfinished.",
+  "logs": [
+    {
+      "path": "/tmp/source-seed-namespace-compound-r5-beforefix.log",
+      "bytes": 2920,
+      "sha256": "fc9f7f12d0c9e6f2ae964e7e1618128af826a0588969a610f25fc0c69820491f",
+      "purpose": "Whole60 exact heldR5: prior50+2 literal controls pass,8 reached compound assertion reds"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-compound-public-baseline.log",
+      "bytes": 31416,
+      "sha256": "a1b5271be5ffc188071436f5923f0c6a38e2c8f21f50edf5096000bbb2db54cf",
+      "purpose": "Whole60 actual public baseline57 reached assertion reds+3 controls"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-compound-candidate-green.log",
+      "bytes": 233,
+      "sha256": "a2912452c11f0c6c1128b243ff5f435ad7ea9a37b3526ec69e484f7d344f971b",
+      "purpose": "Whole60 isolated fail-closed compound candidate60green"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-compound-candidate-types.log",
+      "bytes": 156,
+      "sha256": "a198f782707d65a07c11f68bdbe65551c61f75bb078752678fa76eec5f33e8cc",
+      "purpose": "Whole candidate full checker0/0"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-compound-source-guard.log",
+      "bytes": 142,
+      "sha256": "80d5151f04c5df233e360e4a9299e2959348f90eeb629e66ec66290d5de91bb0",
+      "purpose": "Static78 authorities/35 whole families guard; zero execution credit"
+    }
+  ]
+}

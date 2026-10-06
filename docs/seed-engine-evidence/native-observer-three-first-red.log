@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/native-observer-transport.test.ts (3 tests | 1 failed) 927ms
+   × observes actual media writes, media reads and usage reads on the same owner 88ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/native-observer-transport.test.ts > observes actual media writes, media reads and usage reads on the same owner
+AssertionError: expected [] to have a length of 3 but got +0
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ ❯ tests/source-seed-backend/native-observer-transport.test.ts:41:19
+     39|   expect((await media.findById(item.id))?.id).toBe(item.id);
+     40|   expect(await new MediaUsageRepository(db).findSource('absent-observe…
+     41|   expect(queries).toHaveLength(3);expect(results).toEqual(queries);
+       |                   ^
+     42|   expect((await sql`SELECT id FROM _cms_media WHERE id=${item.id}`.exe…
+     43|  }finally{await f.storage.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  23:26:49
+   Duration  2.63s (transform 1.01s, setup 0ms, import 1.57s, tests 927ms, environment 0ms)
+

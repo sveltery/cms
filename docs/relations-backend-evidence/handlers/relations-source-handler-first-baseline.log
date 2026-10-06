@@ -1,0 +1,39 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-relations-backend
+
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/api/references-edges.test.ts (0 test)
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/api/relations-handlers.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/relations-source/executable/packages/core/tests/integration/api/references-edges.test.ts [ parity/emdash/relations-source/executable/packages/core/tests/integration/api/references-edges.test.ts ]
+Error: Cannot find module '/src/lib/server/relations/handlers.ts' imported from /workspace/cms-complete-relations-backend/parity/emdash/relations-source/executable/packages/core/tests/integration/api/references-edges.test.ts
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/api/references-edges.test.ts:5:1
+      3| import { afterEach, beforeEach, expect, it } from "vitest";
+      4|
+      5| import {
+       | ^
+      6|  handleReferenceChildrenGet,
+      7|  handleReferenceParentsGet,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/relations-source/executable/packages/core/tests/integration/api/relations-handlers.test.ts [ parity/emdash/relations-source/executable/packages/core/tests/integration/api/relations-handlers.test.ts ]
+Error: Cannot find module '/src/lib/server/relations/handlers.ts' imported from /workspace/cms-complete-relations-backend/parity/emdash/relations-source/executable/packages/core/tests/integration/api/relations-handlers.test.ts
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/api/relations-handlers.test.ts:5:1
+      3| import { afterEach, beforeEach, expect, it } from "vitest";
+      4|
+      5| import {
+       | ^
+      6|  handleRelationCreate,
+      7|  handleRelationGet,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  no tests
+   Start at  17:29:48
+   Duration  391ms (transform 78ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+JSON report written to /tmp/relations-source-handler-first-baseline.json

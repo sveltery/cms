@@ -1,0 +1,51 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts (0 test)
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts (0 test)
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts [ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts ]
+Error: Cannot find module '/src/lib/server/seed/apply.ts' imported from /workspace/cms-full-seed-engine/parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:16:1
+     14| import { TaxonomyRepository } from "../../../src/database/repositories…
+     15| import type { Database } from "../../../src/database/types.js";
+     16| import {
+       | ^
+     17|  applySeed,
+     18|  applySeedWithinBudget,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts [ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts ]
+Error: Cannot find module '/src/lib/server/menus/deferred-tasks.ts' imported from /workspace/cms-full-seed-engine/parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-object-cache.test.ts:7:1
+      5|
+      6| import type { Database } from "../../../src/database/types.js";
+      7| import { waitForDeferredTasks } from "../../../src/deferred-tasks.js";
+       | ^
+      8| import {
+      9|  __setObjectCacheBackendForTests,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts [ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/taxonomy-definition.ts' imported from /workspace/cms-full-seed-engine/parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:19:1
+     17| import { RedirectRepository } from "../../../src/database/repositories…
+     18| import { RelationRepository } from "../../../src/database/repositories…
+     19| import { selectTaxonomyDefs } from "../../../src/database/repositories…
+       | ^
+     20| import { TaxonomyRepository } from "../../../src/database/repositories…
+     21| import type { Database } from "../../../src/database/types.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  no tests
+   Start at  21:19:29
+   Duration  1.68s (transform 579ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

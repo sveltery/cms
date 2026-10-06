@@ -1,0 +1,71 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/repository.test.ts (24 tests | 2 failed) 2533ms
+   × Node SQLite: creation-time cursors use original stored timestamp bytes 32ms
+   × raw workerd D1: creation-time cursors use original stored timestamp bytes 140ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > Node SQLite: creation-time cursors use original stored timestamp bytes
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   '01M46X27HC40AVV990AYSY839W'
+-   '01M46X27HDVBSJ0VZF242V4SNQ'
+  ]
+
+
+- Expected
++ Received
+
+  [
+-   "01M46X27HDVBSJ0VZF242V4SNQ",
++   "01M46X27HC40AVV990AYSY839W",
+  ]
+
+ ❯ tests/user-admin-native/repository.test.ts:54:72
+     52|    await f.database.db.updateTable('_cms_auth_profiles').set({created_…
+     53|    const first=await r.list({limit:1});assert.deepEqual(first.items.ma…
+     54|    const second=await r.list({limit:1,cursor:first.nextCursor});assert…
+       |                                                                        ^
+     55|    assert.equal((await r.list({cursor:'missing'})).items.length,2);
+     56|   }finally{await f.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/user-admin-native/repository.test.ts > raw workerd D1: creation-time cursors use original stored timestamp bytes
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   '01M46X28P780BHWY02SGZFP5TR'
+-   '01M46X28PEXYG5DPJQS6710DKY'
+  ]
+
+
+- Expected
++ Received
+
+  [
+-   "01M46X28PEXYG5DPJQS6710DKY",
++   "01M46X28P780BHWY02SGZFP5TR",
+  ]
+
+ ❯ tests/user-admin-native/repository.test.ts:54:72
+     52|    await f.database.db.updateTable('_cms_auth_profiles').set({created_…
+     53|    const first=await r.list({limit:1});assert.deepEqual(first.items.ma…
+     54|    const second=await r.list({limit:1,cursor:first.nextCursor});assert…
+       |                                                                        ^
+     55|    assert.equal((await r.list({cursor:'missing'})).items.length,2);
+     56|   }finally{await f.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 22 passed (24)
+   Start at  20:46:09
+   Duration  3.65s (transform 353ms, setup 0ms, import 770ms, tests 2.53s, environment 0ms)
+

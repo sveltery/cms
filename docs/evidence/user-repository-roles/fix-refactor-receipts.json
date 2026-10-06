@@ -1,0 +1,54 @@
+{
+  "kind": "complete-original-runtime-family-receipts",
+  "publicOwnPR": 99,
+  "publicHeadBeforePendingProductPush": "1aa73216cbab78e69b7299720975de7aa94cccee",
+  "records": [
+    {
+      "phase": "fix",
+      "nativeHead": "a667ee88c43f1b1aae01d316b64d2b145312d03d",
+      "command": "pnpm test:user-repository-roles",
+      "exitCode": 0,
+      "elapsedSeconds": 3.576376438140869,
+      "wholeCallbacks": 65,
+      "passedCallbacks": 65,
+      "SourceWholePureCallbacks": 33,
+      "NativeCallbacks": 32,
+      "sourceCausalReachedAssertionRedCredit": 0,
+      "nineBroaderWholeSourceConsumersExecuted": 0,
+      "log": {
+        "path": "docs/evidence/user-repository-roles/fix-whole65.log",
+        "bytes": 610,
+        "sha256": "63bfa37352052a83be72d86b723281f4574e56edfad696d68b9fda2d3adb90cc"
+      }
+    },
+    {
+      "phase": "refactor",
+      "nativeHead": "ba1fd60e3e7769011eddb1a48912c06c9a3367ac",
+      "command": "pnpm test:user-repository-roles",
+      "exitCode": 0,
+      "elapsedSeconds": 3.629690408706665,
+      "wholeCallbacks": 65,
+      "passedCallbacks": 65,
+      "SourceWholePureCallbacks": 33,
+      "NativeCallbacks": 32,
+      "sourceCausalReachedAssertionRedCredit": 0,
+      "nineBroaderWholeSourceConsumersExecuted": 0,
+      "log": {
+        "path": "docs/evidence/user-repository-roles/refactor-whole65.log",
+        "bytes": 610,
+        "sha256": "45e027c617a7c0f6c11dedec35b9b43822778d00b6095bdfa198d86082ba2c40"
+      }
+    }
+  ],
+  "developmentQualification": {
+    "path": "docs/evidence/user-repository-roles/pm-development-qualification.json",
+    "bytes": 1513,
+    "sha256": "3750d5109d57103e3828aade3925f0fd05197f76635c4677a9818219955d489b"
+  },
+  "causalSourceReachedAssertionReds": 0,
+  "nativeBaselineReachedAssertionReds": 31,
+  "sourceBaselinePreExpectationFailures": 5,
+  "testBodiesChanged": false,
+  "protectedProbesAdded": false,
+  "futureCombinedHeadNormal13AndSecured9": "pending actual public fixture96+97 adoption and final shared push"
+}

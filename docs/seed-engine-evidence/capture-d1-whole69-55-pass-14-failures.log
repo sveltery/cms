@@ -1,0 +1,507 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 4 failed) 6479ms
+     × treats a missing activation table as inactive without aborting the transaction 128ms
+     × activates durable capture when registering an orphan after global activation 170ms
+     × rejects orphan writes until collection publication is active and resumes registration 140ms
+     × resumes orphan registration after publication commits before finalization 111ms
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes a columns source and replaces its current usage
+[media-usage] Failed to refresh posts/01M473DPKRBZHB4ZWXG0XJCT1S: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > does not create another generation when the full projection is unchanged
+[media-usage] Failed to refresh posts/01M473DQ4RQRHFV3EKV1C8SN5B: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > does not create another generation when the full projection is unchanged
+[media-usage] Failed to refresh posts/01M473DQ4RQRHFV3EKV1C8SN5B: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes columns and draft overlay sources when a draft exists
+[media-usage] Failed to refresh posts/01M473DQP3W2BCJSZPTX920021: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes a stale draft overlay source after a successful columns-only refresh
+[media-usage] Failed to refresh posts/01M473DR2P871YK2EB7YWVVWS2: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks coverage stale instead of clobbering a newer source generation
+[media-usage] Failed to refresh posts/01M473DRFDT4P9E9QHJMPN88DY: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks coverage stale instead of clobbering a newer source generation
+[media-usage] Failed to refresh posts/01M473DRFDT4P9E9QHJMPN88DY: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a replace generation conflict before marking coverage stale
+[media-usage] Failed to refresh posts/01M473DRTWQ2MMQE7H3H3ZA9Z0: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a replace generation conflict before marking coverage stale
+[media-usage] Failed to refresh posts/01M473DRTWQ2MMQE7H3H3ZA9Z0: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+[media-usage] Failed to refresh posts/01M473DS6X5BPWXA8V9QYMBX3Y: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+[media-usage] Failed to refresh posts/01M473DS6X5BPWXA8V9QYMBX3Y: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes every source for a content item
+[media-usage] Failed to refresh posts/01M473DSP30PFTTP8GYGVPD0W8: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > removes the old projection when its collection registry row disappears
+[media-usage] Failed to refresh posts/01M473DT1XZCS5T2H2MZ1D2HW6: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks draft snapshot failures without replacing current usage
+[media-usage] Failed to refresh posts/01M473DTDQYNYWWAWFN1XMDAPK: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at withTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:18)
+    at /workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:737:4
+    at MediaUsageRepository.withGenerationWriteLease (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:3500:4)
+    at MediaUsageRepository.replaceSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:735:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh.ts:596:18)
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts (11 tests | 10 failed) 5553ms
+     × refreshes a columns source and replaces its current usage 1311ms
+     × does not create another generation when the full projection is unchanged 550ms
+     × refreshes columns and draft overlay sources when a draft exists 515ms
+     × deletes a stale draft overlay source after a successful columns-only refresh 401ms
+     × marks coverage stale instead of clobbering a newer source generation 397ms
+     × retries a replace generation conflict before marking coverage stale 359ms
+     × retries a draft overlay delete after a concurrent source change 505ms
+     × deletes every source for a content item 347ms
+     × removes the old projection when its collection registry row disappears 369ms
+     × marks draft snapshot failures without replacing current usage 470ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > treats a missing activation table as inactive without aborting the transaction
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:50:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture when registering an orphan after global activation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ prepareMediaUsageCollectionCapture src/lib/server/seed/upstream/media/usage/activation.ts:209:4
+ ❯ SchemaRegistry.registerOrphanedTable src/lib/server/database/registry.ts:480:19
+ ❯ SchemaRegistry.registerOrphanedTable src/lib/server/seed/registry.ts:421:5
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:195:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects orphan writes until collection publication is active and resumes registration
+AssertionError: expected [Function] to throw error matching /media usage capture inactive/i but got 'D1 taxonomy writes require atomic ada…'
+
+- Expected:
+/media usage capture inactive/i
+
++ Received:
+"D1 taxonomy writes require atomic adaptation"
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:224:63
+    222|   const registry = new SchemaRegistry(ctx.db);
+    223|
+    224|   await expect(registry.registerOrphanedTable("orphan_posts")).rejects…
+       |                                                               ^
+    225|    /media usage capture inactive/i,
+    226|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes orphan registration after publication commits before finalization
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:399:47
+    397|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    398|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    399|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    400|     return d1Boundary.transformNode(node);
+    401|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ prepareMediaUsageCollectionCapture src/lib/server/seed/upstream/media/usage/activation.ts:209:4
+ ❯ SchemaRegistry.registerOrphanedTable src/lib/server/database/registry.ts:480:19
+ ❯ SchemaRegistry.registerOrphanedTable src/lib/server/seed/registry.ts:421:5
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:481:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes a columns source and replaces its current usage
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+    "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+-   "refreshedSourceCount": 1,
+-   "success": true,
++   "refreshedSourceCount": 0,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:57:17
+     55|   const first = await refreshContentMediaUsage(ctx.db, "posts", item.i…
+     56|
+     57|   expect(first).toEqual({
+       |                 ^
+     58|    success: true,
+     59|    refreshedSourceCount: 1,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > does not create another generation when the full projection is unchanged
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+    "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+-   "refreshedSourceCount": 1,
+-   "success": true,
++   "refreshedSourceCount": 0,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:132:20
+    130|   const repeated = await refreshContentMediaUsage(ctx.db, "posts", ite…
+    131|
+    132|   expect(repeated).toEqual({
+       |                    ^
+    133|    success: true,
+    134|    refreshedSourceCount: 1,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes columns and draft overlay sources when a draft exists
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+    "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+-   "refreshedSourceCount": 2,
+-   "success": true,
++   "refreshedSourceCount": 0,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:165:18
+    163|   const result = await refreshContentMediaUsage(ctx.db, "posts", item.…
+    164|
+    165|   expect(result).toEqual({
+       |                  ^
+    166|    success: true,
+    167|    refreshedSourceCount: 2,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes a stale draft overlay source after a successful columns-only refresh
+AssertionError: expected null not to be null
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:207:79
+    205|   await setDraftRevision(ctx, item.id, draft.id);
+    206|   await refreshContentMediaUsage(ctx.db, "posts", item.id);
+    207|   expect(await usageRepo.findSource(sourceKey(item.id, "draft_overlay"…
+       |                                                                               ^
+    208|
+    209|   await clearDraftRevision(ctx, item.id);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks coverage stale instead of clobbering a newer source generation
+AssertionError: expected { success: false, …(4) } to deeply equal { success: false, …(4) }
+
+- Expected
++ Received
+
+  {
+    "deletedSourceCount": 0,
+-   "errorCode": "CONTENT_USAGE_GENERATION_CONFLICT",
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+    "refreshedSourceCount": 0,
+    "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:242:18
+    240|   const result = await refreshContentMediaUsage(ctx.db, "posts", item.…
+    241|
+    242|   expect(result).toEqual({
+       |                  ^
+    243|    success: false,
+    244|    refreshedSourceCount: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a replace generation conflict before marking coverage stale
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+    "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+-   "refreshedSourceCount": 1,
+-   "success": true,
++   "refreshedSourceCount": 0,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:286:18
+    284|   const result = await refreshContentMediaUsage(ctx.db, "posts", item.…
+    285|
+    286|   expect(result).toEqual({
+       |                  ^
+    287|    success: true,
+    288|    refreshedSourceCount: 1,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+AssertionError: expected undefined not to be undefined // Object.is equality
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:332:94
+    330|
+    331|   const result = await refreshContentMediaUsage(ctx.db, "posts", item.…
+    332|   expect((await usageRepo.findSource(sourceKey(item.id, "columns")))?.…
+       |                                                                                              ^
+    333|    observedColumnsGeneration,
+    334|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes every source for a content item
+AssertionError: expected { success: true, …(3) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+-   "deletedSourceCount": 2,
++   "deletedSourceCount": 0,
+    "failedSourceCount": 0,
+    "refreshedSourceCount": 0,
+    "success": true,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:366:18
+    364|   const result = await deleteContentMediaUsage(ctx.db, "posts", item.i…
+    365|
+    366|   expect(result).toEqual({
+       |                  ^
+    367|    success: true,
+    368|    refreshedSourceCount: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > removes the old projection when its collection registry row disappears
+AssertionError: expected { success: true, …(3) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+-   "deletedSourceCount": 1,
++   "deletedSourceCount": 0,
+    "failedSourceCount": 0,
+    "refreshedSourceCount": 0,
+    "success": true,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:393:18
+    391|   const result = await refreshContentMediaUsage(ctx.db, "posts", item.…
+    392|
+    393|   expect(result).toEqual({
+       |                  ^
+    394|    success: true,
+    395|    refreshedSourceCount: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/14]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks draft snapshot failures without replacing current usage
+AssertionError: expected null to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "sourceCompleteness": "complete",
+}
+
++ Received:
+null
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:429:69
+    427|    errorCode: "DRAFT_REVISION_INVALID",
+    428|   });
+    429|   expect(await usageRepo.findSource(sourceKey(item.id, "columns"))).to…
+       |                                                                     ^
+    430|    expect.objectContaining({ sourceCompleteness: "complete" }),
+    431|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/14]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  14 failed | 55 passed (69)
+   Start at  22:36:59
+   Duration  32.27s (transform 1.02s, setup 0ms, import 4.23s, tests 27.24s, environment 1ms)
+

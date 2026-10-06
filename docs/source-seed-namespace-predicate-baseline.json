@@ -1,0 +1,108 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testFirstCommit": "2e61decf",
+  "runtimeApplied": false,
+  "heldProposal": {
+    "path": "/tmp/source-seed-namespace-runtime-proposal-r4/proposal.json",
+    "bytes": 16896,
+    "sha256": "bb326ceaa4946c4eca77c9d5e66618069b38a81f0f1863e898f1871dad60b1fc"
+  },
+  "wholeNewNativeFile": {
+    "path": "tests/source-seed-backend/namespace-predicate.test.ts",
+    "bytes": 3385,
+    "sha256": "b9462e8b3baeca1064289a74589e9b453a4d98323bcba9200ed43647cf65ce27",
+    "cases": 8,
+    "deadlinesMilliseconds": 30000,
+    "mocks": 0,
+    "skips": 0
+  },
+  "priorSixWholeNativeFilesUnchanged": [
+    {
+      "path": "tests/source-seed-backend/namespace.test.ts",
+      "bytes": 4894,
+      "sha256": "215feb727e93ebaf86f455bc01493f438a93b8e6b3c07cde34b7bcfcb3d92f2e"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-metadata.test.ts",
+      "bytes": 6012,
+      "sha256": "7a9e3a5da95047464cd30f318e792b20e421bf7250c22e7550472dabe7f20d35"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-catalog.test.ts",
+      "bytes": 3769,
+      "sha256": "6fb19901e3b0b14770940ab64df21063791c3ad25ff9547ec498b99aae17c87f"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-plan.test.ts",
+      "bytes": 2967,
+      "sha256": "c85bdce0b1353fdb5bd42bb96f1739e361b3b0a28f3acb91fd6a792df169f650"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-control.test.ts",
+      "bytes": 898,
+      "sha256": "a5d4e23b48a662ff093f79dffcfd811ae7b8f9e5c986fc6a4f279ceebaccd153"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-collision.test.ts",
+      "bytes": 6193,
+      "sha256": "557db4e6b86338ac46d0592b6fe9d4849064eaa01e69a94ece6e2304a3717bd8"
+    }
+  ],
+  "wholeNativeFiles": 7,
+  "nativeCases": 50,
+  "publicBaseline": {
+    "assertionReds": 47,
+    "controls": 3,
+    "fixtureImportPreexpectFailures": 0
+  },
+  "heldR4": {
+    "prior42Pass": 42,
+    "newNegativeAssertionReds": 4,
+    "newPositiveControls": 4,
+    "fixtureImportPreexpectFailures": 0
+  },
+  "finalIsolatedCandidate": {
+    "pass": 50,
+    "bad": 0,
+    "checkerErrors": 0,
+    "checkerWarnings": 0
+  },
+  "coverage": [
+    "NOT(type=table) must keep index names opaque",
+    "NOT(type=table AND name=...) must keep index names opaque",
+    "Positive type=table AND name NOT LIKE guards still map table names",
+    "Double negation of positive type=table remains a table constraint"
+  ],
+  "adaptation": "Finite conservative Boolean WHERE constraint inference tracks both possible truth and possible falsehood for table/non-table objects. NOT swaps possibilities; AND/OR combine them; unsupported atoms remain unknown. This is not a general SQL parser or full Source namespace/engine acceptance.",
+  "sourceFamilyExecutions": 0,
+  "sourceCausalCredit": 0,
+  "profileAuthRuntimeProbes": 0,
+  "newPrincipals": 0,
+  "decision": "Held namespace revisions/complete logs remain immutable. New candidate under/tmp only; Root exact qualification and actual public providers are pending.",
+  "logs": [
+    {
+      "path": "/tmp/source-seed-namespace-predicate-r4-beforefix.log",
+      "purpose": "Whole50 heldR4 prior42+4positive controls green and4 reached negative assertion reds",
+      "bytes": 2637,
+      "sha256": "9ef99f68cf1918aa34f6f2f3f0e75801d5802ae9231cf559e46c35f4865e4cc4"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-predicate-public-baseline.log",
+      "purpose": "Whole50 public baseline47 assertion reds+3controls",
+      "bytes": 28073,
+      "sha256": "5976b2c7a530fa65e717caf7f38a645168daf5cf74f1db35f0284c70d7dba81a"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-predicate-final-candidate-green.log",
+      "purpose": "Whole50 final isolated Boolean candidate50green",
+      "bytes": 233,
+      "sha256": "73059062fbe1514ec8030d7c3cbd590f1f63aa6479a1ac1e41567ff3f46843b2"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-predicate-final-types.log",
+      "purpose": "Boolean candidate full checker0/0",
+      "bytes": 156,
+      "sha256": "a198f782707d65a07c11f68bdbe65551c61f75bb078752678fa76eec5f33e8cc"
+    }
+  ]
+}

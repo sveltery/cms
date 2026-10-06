@@ -1,0 +1,585 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 21 failed) 4445ms
+     × treats a missing activation table as inactive without aborting the transaction 200ms
+     × activates durable capture for collections created after global activation 168ms
+     × activates durable capture for seed collections created after global activation 186ms
+     × rejects seed writes until field metadata and capture publication are complete 162ms
+     × activates durable capture when registering an orphan after global activation 185ms
+     × rejects orphan writes until collection publication is active and resumes registration 263ms
+     × resumes collection capture after the content table commits before registration 120ms
+     × resumes collection publication after verified capture reaches ready 145ms
+     × resumes collection capture after registration commits before finalization 144ms
+     × resumes seed capture and restores missing field metadata before finalization 129ms
+     × rejects a conflicting seed definition while capture installation is incomplete 100ms
+     × does not resume a cursorless collection lifecycle as seed creation 109ms
+     × does not resume a fingerprinted seed lifecycle as ordinary collection creation 101ms
+     × distinguishes an omitted seed default from an explicit null default 123ms
+     × resumes orphan registration after publication commits before finalization 108ms
+     × activates one bounded collection per call and captures writes only after each exact lifecycle 149ms
+     × conservatively invalidates trusted coverage before activating capture 106ms
+     × fails closed with durable diagnostics when trigger installation cannot finish 90ms
+     × rejects an excessive owned trigger set before changing trigger DDL 88ms
+     × cannot finalize after losing its exact lease during collection activation 71ms
+     × cannot downgrade an active collection after its activation lease is taken over 88ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts (16 tests | 16 failed) 3038ms
+     × builds a columns snapshot from stored content fields 872ms
+     × returns a typed not-found result for missing content 129ms
+     × keeps JSON-looking stored display strings as strings 113ms
+     × builds columns and draft overlay snapshots for a pending draft revision 123ms
+     × merges draft overlays over columns when the draft changes unrelated fields 128ms
+     × preserves column display fields when a draft changes only media 117ms
+     × keeps JSON-looking revision display strings as strings 176ms
+     × honors draft nulls that clear media fields 121ms
+     × keeps block media in independent live and draft projections 127ms
+     × fails when draft_revision_id belongs to another content row 192ms
+     × fails with a columns snapshot when draft_revision_id is missing 112ms
+     × fails when draft revision data is invalid JSON 178ms
+     × adds stable source schema versions and fingerprints to snapshots 197ms
+     × changes fingerprints when V1-visible source metadata changes 181ms
+     × changes fingerprints when extraction-relevant values or fields change 115ms
+     × keeps fingerprints stable for non-extraction schema metadata changes 155ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts (11 tests | 11 failed) 2632ms
+     × refreshes a columns source and replaces its current usage 1257ms
+     × does not create another generation when the full projection is unchanged 132ms
+     × refreshes columns and draft overlay sources when a draft exists 157ms
+     × deletes a stale draft overlay source after a successful columns-only refresh 126ms
+     × marks coverage stale instead of clobbering a newer source generation 134ms
+     × retries a replace generation conflict before marking coverage stale 149ms
+     × retries a draft overlay delete after a concurrent source change 179ms
+     × deletes every source for a content item 152ms
+     × removes the old projection when its collection registry row disappears 125ms
+     × marks draft snapshot failures without replacing current usage 117ms
+     × marks collection coverage stale while preserving existing status metadata 101ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts (9 tests | 9 failed) 1843ms
+     × coalesces insert, update, and delete into one newest pending job 1042ms
+     × rejects writes unless the exact registry and lifecycle identity is active 89ms
+     × rejects a status identity mismatch while the registry identity remains current 125ms
+     × is behaviorally idempotent when installed repeatedly 115ms
+     × replaces stale triggers from an interrupted earlier collection identity 100ms
+     × repairs a same-named disabled or incorrect trigger while fenced 95ms
+     × rolls back every row, job, and epoch when one row cannot be captured 99ms
+     × removes the capture boundary explicitly 89ms
+     × refuses rollback after capture is active and leaves writes protected 87ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts (7 tests | 7 failed) 2197ms
+     × discovers V1 extraction fields and display fields separately 1240ms
+     × filters unsupported repeater subfields and excludes repeaters without images 157ms
+     × fails closed on malformed repeater validation 195ms
+     × discovers every retained block version and fingerprints contract changes 156ms
+     × fails closed when a configured block type cannot be resolved 143ms
+     × rejects supported fields with invalid slugs before they can become column refs 150ms
+     × fingerprints exact extraction and display-field definitions independent of row order 154ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 64 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > treats a missing activation table as inactive without aborting the transaction
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:50:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for collections created after global activation
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:100:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for seed collections created after global activation
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:121:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects seed writes until field metadata and capture publication are complete
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:144:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture when registering an orphan after global activation
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:193:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects orphan writes until collection publication is active and resumes registration
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:222:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after the content table commits before registration
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:261:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection publication after verified capture reaches ready
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:288:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after registration commits before finalization
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:307:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes seed capture and restores missing field metadata before finalization
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:325:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects a conflicting seed definition while capture installation is incomplete
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:357:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a cursorless collection lifecycle as seed creation
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:386:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a fingerprinted seed lifecycle as ordinary collection creation
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:407:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > distinguishes an omitted seed default from an explicit null default
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:442:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes orphan registration after publication commits before finalization
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:480:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates one bounded collection per call and captures writes only after each exact lifecycle
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:497:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > conservatively invalidates trusted coverage before activating capture
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:539:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > fails closed with durable diagnostics when trigger installation cannot finish
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:602:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects an excessive owned trigger set before changing trigger DDL
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:628:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > cannot finalize after losing its exact lease during collection activation
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:676:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > cannot downgrade an active collection after its activation lease is taken over
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:705:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > coalesces insert, update, and delete into one newest pending job
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:30:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rejects writes unless the exact registry and lifecycle identity is active
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:110:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rejects a status identity mismatch while the registry identity remains current
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:138:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > is behaviorally idempotent when installed repeatedly
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:151:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > replaces stale triggers from an interrupted earlier collection identity
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:173:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > repairs a same-named disabled or incorrect trigger while fenced
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:205:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rolls back every row, job, and epoch when one row cannot be captured
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:227:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > removes the capture boundary explicitly
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:252:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > refuses rollback after capture is active and leaves writes protected
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:281:19
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:269:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > discovers V1 extraction fields and display fields separately
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > filters unsupported repeater subfields and excludes repeaters without images
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fails closed on malformed repeater validation
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > discovers every retained block version and fingerprints contract changes
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fails closed when a configured block type cannot be resolved
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > rejects supported fields with invalid slugs before they can become column refs
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fingerprints exact extraction and display-field definitions independent of row order
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:24:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes a columns source and replaces its current usage
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > does not create another generation when the full projection is unchanged
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes columns and draft overlay sources when a draft exists
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes a stale draft overlay source after a successful columns-only refresh
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks coverage stale instead of clobbering a newer source generation
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a replace generation conflict before marking coverage stale
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes every source for a content item
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > removes the old projection when its collection registry row disappears
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks draft snapshot failures without replacing current usage
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks collection coverage stale while preserving existing status metadata
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:31:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/64]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > builds a columns snapshot from stored content fields
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > returns a typed not-found result for missing content
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps JSON-looking stored display strings as strings
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > builds columns and draft overlay snapshots for a pending draft revision
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > merges draft overlays over columns when the draft changes unrelated fields
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > preserves column display fields when a draft changes only media
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps JSON-looking revision display strings as strings
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > honors draft nulls that clear media fields
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps block media in independent live and draft projections
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails when draft_revision_id belongs to another content row
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails with a columns snapshot when draft_revision_id is missing
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails when draft revision data is invalid JSON
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > adds stable source schema versions and fingerprints to snapshots
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > changes fingerprints when V1-visible source metadata changes
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > changes fingerprints when extraction-relevant values or fields change
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps fingerprints stable for non-extraction schema metadata changes
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:479:23
+    477| export function seedDatabaseOwner(db: object): CmsDatabase {
+    478|   const context = views.get(db);
+    479|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    480|   return context.owner;
+    481| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:92:84
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:27:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/64]⎯
+
+
+ Test Files  5 failed (5)
+      Tests  64 failed | 5 passed (69)
+   Start at  22:35:36
+   Duration  19.55s (transform 1.28s, setup 0ms, import 4.61s, tests 14.15s, environment 1ms)
+

@@ -1,0 +1,34 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "wholeNativeFiles": 5,
+  "nativeCases": 30,
+  "baseline": {
+    "assertionReds": 27,
+    "controlGreens": 3,
+    "preAssertionFailures": 0
+  },
+  "controls": [
+    "Original raw-D1 rejects102-bindings on actual baseline.",
+    "Node catalog preserves an index named options.",
+    "Raw-D1 catalog preserves an index named options."
+  ],
+  "prototypeRegression": {
+    "indexControlAssertionReds": 2,
+    "otherCasesGreen": 28,
+    "decision": "Narrow catalog name binding mapping to tableExists; indexExists name values must stay literal. Correct before finite submission."
+  },
+  "sourceCredit": 0,
+  "evidence": [
+    {
+      "path": "/tmp/source-seed-namespace-native-final-baseline.log",
+      "bytes": 17703,
+      "sha256": "45455543b4b03cfb500ce870c8c448d6ed76277cc2e5ebdd403efa2a5d70b637"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-native-index-candidate-control-red.log",
+      "bytes": 1321,
+      "sha256": "3a35f9f7ab4f6022f306c0faea6449527f3b1323fd6602cfc5472cb98bf37d23"
+    }
+  ],
+  "status": "Prototype only; production canonical namespace/guard unchanged."
+}
