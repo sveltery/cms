@@ -41,3 +41,34 @@ it('Node: retains real relation queries and receipts with original class identit
     expect(results).toEqual(queries.map(query => query.id));
   } finally { await storage.close(); }
 }, 30000);
+
+for (const kind of ['taxonomy', 'relation'] as const) {
+  it(`Node: observes ${kind} writes once inside a genuine Source callback transaction`, async () => {
+    const storage = await schemaAdminStorage('Node');
+    try {
+      await migrateCms(storage.database);
+      const queries: unknown[] = [], results: unknown[] = [], order: string[] = [];
+      const db = seedSourceDatabase(storage.database).withPlugin({
+        transformQuery({ node, queryId }) { queries.push(queryId); order.push('query:first'); return node; },
+        async transformResult({ result, queryId }) { results.push(queryId); order.push('result:first'); return result; },
+      }).withPlugin({
+        transformQuery({ node }) { order.push('query:second'); return node; },
+        async transformResult({ result }) { order.push('result:second'); return result; },
+      });
+      const id = await db.transaction().execute(async transaction => {
+        if (kind === 'taxonomy') return (await new TaxonomyRepository(transaction).create({ name: 'tag', slug: 'transaction-observed', label: 'Transaction observed' })).id;
+        return (await new RelationRepository(transaction).create({ slug: 'transaction_observed', parentCollection: 'posts', childCollection: 'pages', parentLabel: 'Posts', childLabel: 'Pages' })).id;
+      });
+      const actual = kind === 'taxonomy'
+        ? await sql`SELECT id FROM _cms_taxonomies WHERE id=${id}`.execute(storage.database.db)
+        : await sql`SELECT id FROM _cms_relations WHERE id=${id}`.execute(storage.database.db);
+      expect(actual.rows).toEqual([{ id }]);
+      expect(queries.length).toBeGreaterThan(1);
+      expect(new Set(queries).size).toBe(queries.length);
+      expect(results).toEqual(queries);
+      for (let index = 0; index < order.length; index += 2) {
+        expect(order[index + 1]).toBe(order[index].replace(':first', ':second'));
+      }
+    } finally { await storage.close(); }
+  }, 30000);
+}

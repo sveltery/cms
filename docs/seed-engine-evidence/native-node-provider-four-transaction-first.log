@@ -1,0 +1,53 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/node-provider-observer-native.test.ts (4 tests | 2 failed) 117ms
+   × Node: retains real taxonomy compiler query and receipt observers with original class identity 46ms
+   × Node: retains real relation queries and receipts with original class identity 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/node-provider-observer-native.test.ts > Node: retains real taxonomy compiler query and receipt observers with original class identity
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/source-seed-backend/node-provider-observer-native.test.ts:23:71
+     21|     const term = await new TaxonomyRepository(db).create({ name: 'tag'…
+     22|     expect((await sql`SELECT id FROM _cms_taxonomies WHERE id=${term.i…
+     23|     expect(queries.filter(query => query.kind === 'InsertQueryNode')).…
+       |                                                                       ^
+     24|     expect(results).toEqual(queries.map(query => query.id));
+     25|   } finally { await storage.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/source-seed-backend/node-provider-observer-native.test.ts > Node: retains real relation queries and receipts with original class identity
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/source-seed-backend/node-provider-observer-native.test.ts:40:71
+     38|     const relation = await new RelationRepository(db).create({ slug: '…
+     39|     expect((await sql`SELECT id FROM _cms_relations WHERE id=${relatio…
+     40|     expect(queries.filter(query => query.kind === 'InsertQueryNode')).…
+       |                                                                       ^
+     41|     expect(results).toEqual(queries.map(query => query.id));
+     42|   } finally { await storage.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  01:15:56
+   Duration  1.80s (transform 967ms, setup 0ms, import 1.55s, tests 117ms, environment 0ms)
+
