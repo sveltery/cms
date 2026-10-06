@@ -15,3 +15,6 @@ Before applying the reviewed shared server patch, all24 complete new Native dire
 
 
 The exact reviewed29 shared server spans are now applied after the complete24 callback test-first record. All24 controlled Native direct-service tests pass on actual Node/D1, including every after-authorization/before-CAS holder refusal, no permission elevation from exact boolean override, draft metadata preservation, successfuldelete lease cleanup and failedCAS content/lease/guard rollback. All nine whole affected current19 Native installation/upgrade/readiness families then pass sequentially with old data/clocks/fixtures retained. The full shared9-file writer reversal and real positive/negative controls pass. These checks prove the named direct-service/storage boundaries; no protected HTTP/session/race or Original Source callbacks are credited.
+
+
+The new lock GET/POST/DELETE HTTP producer has nine complete controlled Native context tests committed first. Its absent module produces an actual import stop and zero reached callbacks; it earns no value or Original/security credit. The pin has no separate lock-route unit family. The complete Sourcewrite25 family covers eight content mutation routes and remains unchanged Reference evidence; it is not relabeled as a Native lock endpoint family.
