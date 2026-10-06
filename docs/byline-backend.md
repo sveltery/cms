@@ -15,3 +15,31 @@ Configured review `4180251385` exposed a Native runtime cache boundary: separate
 Current CI500 stopped with1491 service passes and one outdated Native Subscriber expectation in `tests/runtime-d1.test.ts`. Only the already Source-backed `bylines:read` literal was appended to that existing expectation; its complete existing D1 runtime callback passes. Original bodies, permissions/session controls and all Source tests remain intact. The obsolete local13 attempt was deliberately terminated in incomplete service stage and receives0 whole13 credit; its complete raw log and termination receipt remain local. Changed-head complete normal13/secured9, fresh closure/configured review and exact manager approval remain required.
 
 The next ordinary union adopts actual published Schema Main `f6d10ddfe66c81b4a6203f6cccdcf9d70d8c953b`, including its sole canonical provider16 and complete Source22/Native response1/index13 checks. Regular merge `4d136d94c3be011503d427452551df22c8615282` preserves that entire published command/dependency/lock/bootstrap/CI graph, then appends the unchanged Byline Source216/Native23 tail. Byline changes no provider. Its unchanged whole selected Source216 passes on the combined tree; new current-head hosted normal13/secured9 and closure review remain required. The previously reported dirty GitHub merge state belonged to the older main snapshot.
+
+## Constructor-only Node hosting successor
+
+The proposed child [PR125](https://github.com/sveltery/cms/pull/125) uses the
+already-public Byline118 `5b59e398` equivalent explicit-field constructor for
+`EmDashValidationError`, without adopting the wider content lifecycle lane.
+Only the optional `details` parameter property's syntax and equivalent
+assignment change. The immutable Source class remains intact as the behavior
+authority; whole altered-class body identity is not claimed. [Paired hosting
+evidence and limits](node-error-constructor-hosting.md) distinguish two genuine
+Native Node import exit reds from prerequisite stops and zero Source causal
+credit. Final review, exact-head approval and regular merge are pending.
+
+
+### RAW-EOF01: literal evidence formatting
+
+Independent review of the stationary `2ec95354` head clears product semantics
+and identifies only retained runner blank lines at EOF as a P3 range diff-check
+failure. The complete failed range-check receipt is retained in
+[the evidence directory](node-error-constructor-evidence/2ec953-full-range-diffcheck-red.log).
+Root authorizes an append-only `.gitattributes` exception for precisely
+`docs/node-error-constructor-evidence/*.log`, disabling only blank-at-EOF
+whitespace diagnostics. All 14 prior raw logs retain their exact bytes; Source,
+product, tests and every earlier public commit remain unchanged. The full
+parent-to-successor diff check now passes. This infrastructure formatting repair
+adds no product or Source causal credit. Current successor hosted checks,
+independent delta review, exact-head approval and regular author merge remain
+pending; no feature completion or landing is recorded.

@@ -241,6 +241,8 @@ docs/evidence/user-admin-native/disabled-atomic-guard-controls-whole48.log -whit
 docs/evidence/user-admin-native/rollback-current-core65.log -whitespace
 
 docs/evidence/user-admin-native/rollback-current-admin-inputs-reference48.log -whitespace
+# Preserve literal Node error-constructor runner EOF formatting only.
+docs/node-error-constructor-evidence/*.log whitespace=-blank-at-eof
 
 parity/emdash/entry-locks/source/packages/core/src/database/migrations/013_scheduled_publishing.ts -whitespace
 parity/emdash/entry-locks/source/packages/core/src/database/migrations/015_indexes.ts -whitespace

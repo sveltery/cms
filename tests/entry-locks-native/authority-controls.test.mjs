@@ -7,11 +7,12 @@ import { tmpdir } from 'node:os';
 import { resolve,dirname } from 'node:path';
 const root=resolve(import.meta.dirname,'../..');
 const receipt=JSON.parse(readFileSync(resolve(root,'parity/emdash/entry-locks/evidence/finite-whitespace-authority.json'),'utf8'));
+const union=JSON.parse(readFileSync(resolve(root,'parity/emdash/entry-locks/evidence/media-c4-development-union.json'),'utf8')).conflicts.find(row=>row.path==='.gitattributes');
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 test('only the exact immutable Source authorities receive whitespace exemptions',()=>{
  const current=readFileSync(resolve(root,'.gitattributes'));
- assert.equal(digest(current.subarray(0,receipt.oldBytes)),receipt.oldSha256);
- assert.equal(current.subarray(receipt.oldBytes).toString(),receipt.append);
+ assert.equal(digest(current.subarray(0,union.incomingBytes)),union.incomingSha256);
+ assert.equal(current.subarray(union.incomingBytes).toString(),receipt.append);
  const directory=mkdtempSync(resolve(tmpdir(),'entry-lock-whitespace-controls-'));
  try{
   execFileSync('git',['init','--quiet'],{cwd:directory});
