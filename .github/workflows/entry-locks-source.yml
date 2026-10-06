@@ -1,0 +1,35 @@
+name: Whole entry-lock Source browser families
+on:
+  pull_request:
+    paths:
+      - 'parity/emdash/entry-locks/**'
+      - 'src/lib/entry-locks/**'
+      - 'tests/entry-locks-native/**'
+      - 'tests/helpers/entry-locks/**'
+      - 'scripts/check-entry-locks-source.mjs'
+      - 'vitest.entry-locks-*.config.ts'
+      - '.github/workflows/entry-locks-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  entry-locks-source-browser:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: corepack enable
+      - run: corepack prepare pnpm@12.6.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec svelte-kit sync
+      - run: node scripts/check-entry-locks-source.mjs
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec vitest run --config vitest.entry-locks-browser-reference.config.ts --reporter=default --reporter=json --outputFile=entry-locks-source-browser-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: entry-locks-source-browser-results
+          path: entry-locks-source-browser-results.json

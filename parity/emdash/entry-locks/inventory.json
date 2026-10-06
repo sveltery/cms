@@ -2581,6 +2581,24 @@
       "sha256": "59eda5b5a16a658b5cc4d96263d20fc568377801e9e04b88d88b49c44b471fda"
     },
     {
+      "path": "packages/auth/src/rbac.ts",
+      "bytes": 7361,
+      "gitBlob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb",
+      "sha256": "1d5663c430cb02e934eafeca27c512007112dcc0c975d6a84ad3c73c9343d85e"
+    },
+    {
+      "path": "packages/auth/src/tokens.ts",
+      "bytes": 9438,
+      "gitBlob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+      "sha256": "9699e9636b3329812bc3743987ba4e36a5abab1a21dcf0dfffe03bf877bc215d"
+    },
+    {
+      "path": "packages/auth/src/types.ts",
+      "bytes": 10246,
+      "gitBlob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5"
+    },
+    {
       "path": "packages/core/src/after.ts",
       "bytes": 2681,
       "gitBlob": "97f609ba4cb2e336cefd9bdc60e14284e7696ce0",
@@ -6122,6 +6140,34 @@
       ]
     },
     {
+      "specifier": "@oslojs/crypto/hmac",
+      "importers": [
+        "packages/auth/src/tokens.ts"
+      ]
+    },
+    {
+      "specifier": "@oslojs/crypto/sha2",
+      "importers": [
+        "packages/auth/src/tokens.ts",
+        "packages/core/src/transfer/format/digest.ts",
+        "packages/core/src/config/secrets.ts"
+      ]
+    },
+    {
+      "specifier": "@oslojs/crypto/subtle",
+      "importers": [
+        "packages/auth/src/tokens.ts"
+      ]
+    },
+    {
+      "specifier": "@oslojs/encoding",
+      "importers": [
+        "packages/auth/src/tokens.ts",
+        "packages/core/src/transfer/format/digest.ts",
+        "packages/core/src/config/secrets.ts"
+      ]
+    },
+    {
       "specifier": "zod",
       "importers": [
         "packages/core/src/api/schemas/entry-lock.ts",
@@ -7376,20 +7422,6 @@
       "importers": [
         "packages/core/src/media/usage/collection-deletion.ts",
         "packages/core/src/loader.ts"
-      ]
-    },
-    {
-      "specifier": "@oslojs/crypto/sha2",
-      "importers": [
-        "packages/core/src/transfer/format/digest.ts",
-        "packages/core/src/config/secrets.ts"
-      ]
-    },
-    {
-      "specifier": "@oslojs/encoding",
-      "importers": [
-        "packages/core/src/transfer/format/digest.ts",
-        "packages/core/src/config/secrets.ts"
       ]
     },
     {
