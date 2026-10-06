@@ -82,15 +82,21 @@
       ]
     }
   ],
-  "ownedConfigSha256": "8ff9dcc350a6b0b1b3c20cad422c3b40d22103e79caa41530557a935c5f6579e",
+  "ownedConfigSha256": "2e0104957ba51177de462fb22e85cf7b42321eff081f32a76e2015618a014f67",
   "supportedSourceOutput": {
     "path": "tests/helpers/passkey-runtime-server.mjs",
     "literal": "const output = resolve(process.env.CMS_AUTH_OUTPUT ?? '.svelte-kit/output');"
   },
   "actualBuild": {
     "file": "tests/helpers/default-seed-setup/account-ssr-build.ts",
-    "sha256": "b14e4a5644c76a5b3495dc8f67382a72b13259141d56124f4db869a1ce9d2f5c",
-    "command": "node node_modules/vite/bin/vite.js build --config vite.default-seed-account-ssr.config.ts",
-    "status": "Root-authorized actual isolated fixture build once per Node process before old real server; actual stdout/stderr forwarded unchanged for literal raw receipt; failure propagates,no skip/fake/retry"
+    "sha256": "2df2079dcfceb066b362670cf8ce30c858072796086d60cb92c7f51c67c0a569",
+    "command": "node <actual-root>/node_modules/vite/bin/vite.js build",
+    "status": "Root-qualified owned default config build root; exact production files/root and distinct output; actual build once per process, errors forwarded/propagated. No successor execution yet.",
+    "cwd": "tests/helpers/default-seed-setup/account-ssr-project",
+    "defaultConfig": {
+      "path": "tests/helpers/default-seed-setup/account-ssr-project/vite.config.ts",
+      "sha256": "3d99a8e8c620ee147a0e464f4cf19c92e91774d2df0639a81eac13d8dd412343"
+    },
+    "qualificationProposalSha256": "1982a0c9ec58e5c40a00a954b4039727d27b197c0ca7d3a975d327535cf3461e"
   }
 }

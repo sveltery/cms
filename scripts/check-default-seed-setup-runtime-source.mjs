@@ -10,4 +10,23 @@ for (const authority of ledger.sourceAuthorities) {
     throw new Error(`Immutable Source authority changed: ${authority.path}`);
   }
 }
+const facade = ledger.blocksTypeFacade;
+const index = await readFile(resolve(root, ledger.sourceRoot, facade.publicIndexAuthority), 'utf8');
+const block = index.match(/export type\s*\{([^}]*?)\}\s*from\s*["']\.\/types\.js["']/);
+if (!block) throw new Error('Actual Source public types.js export block absent');
+const exports = block[1].replace(/\/\/[^\n]*/g, '').split(',').map(name => name.trim()).filter(Boolean);
+if (JSON.stringify(exports) !== JSON.stringify(facade.exports)) {
+  throw new Error('Actual Source public type export names/order changed');
+}
+const aliases = await readFile(resolve(root, facade.path), 'utf8');
+if (createHash('sha256').update(aliases).digest('hex') !== facade.sha256) {
+  throw new Error('Finite complete Source type-only facade changed');
+}
+const target = '../../../' + ledger.sourceRoot + '/' + facade.typesAuthority;
+const expected = '// TEST ONLY: actual complete pinned Source types.js public export block.\n'
+  + '// No runtime package/provider functions or fabricated type shapes.\n'
+  + 'declare module "@emdash-cms/blocks" {\n'
+  + exports.map(name => `  export type ${name} = import("${target}").${name};\n`).join('')
+  + '}\n';
+if (aliases !== expected) throw new Error('Type-only facade exceeds exact pinned public export aliases');
 console.log(`Preserved ${ledger.sourceAuthorities.length} complete EmDash 1.1.0 authorities; execution credit is separate.`);

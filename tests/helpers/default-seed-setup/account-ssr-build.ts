@@ -5,10 +5,8 @@ import { fileURLToPath } from 'node:url';
 let pending: Promise<void> | undefined;
 export function ensureAccountSsrBuild(): Promise<void> {
   return pending ??= new Promise((resolve, reject) => {
-    const projectRoot = fileURLToPath(new URL('../../../', import.meta.url));
-    const child = spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'build',
-      '--config', 'vite.default-seed-account-ssr.config.ts'], {
-      cwd: projectRoot, stdio: ['ignore', 'pipe', 'pipe']
+    const child = spawn(process.execPath, [fileURLToPath(new URL('../../../node_modules/vite/bin/vite.js', import.meta.url)), 'build'], {
+      cwd: fileURLToPath(new URL('./account-ssr-project/', import.meta.url)), stdio: ['ignore', 'pipe', 'pipe']
     });
     let output = '';
     child.stdout.on('data', data => { output += data; process.stdout.write(data); });
