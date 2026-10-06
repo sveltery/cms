@@ -1,0 +1,698 @@
+﻿2026-10-06T01:59:13.1786011Z Current runner version: '2.337.0'
+2026-10-06T01:59:13.1812398Z ##[group]Runner Image Provisioner
+2026-10-06T01:59:13.1813572Z Hosted Compute Agent
+2026-10-06T01:59:13.1814187Z Version: 20260901.588
+2026-10-06T01:59:13.1814905Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-06T01:59:13.1815686Z Build Date: 2026-09-01T19:56:44Z
+2026-10-06T01:59:13.1816415Z Worker ID: {575f567d-100f-4c21-b4be-83442555c31c}
+2026-10-06T01:59:13.1817256Z Azure Region: eastus
+2026-10-06T01:59:13.1817867Z ##[endgroup]
+2026-10-06T01:59:13.1819428Z ##[group]Operating System
+2026-10-06T01:59:13.1820127Z Ubuntu
+2026-10-06T01:59:13.1821149Z 22.04.5
+2026-10-06T01:59:13.1821793Z LTS
+2026-10-06T01:59:13.1822356Z ##[endgroup]
+2026-10-06T01:59:13.1822909Z ##[group]Runner Image
+2026-10-06T01:59:13.1823599Z Image: ubuntu-22.04
+2026-10-06T01:59:13.1824199Z Version: 20260927.309.1
+2026-10-06T01:59:13.1825499Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20260927.309/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-06T01:59:13.1827202Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20260927.309
+2026-10-06T01:59:13.1828230Z ##[endgroup]
+2026-10-06T01:59:13.1829496Z ##[group]GITHUB_TOKEN Permissions
+2026-10-06T01:59:13.1832045Z Contents: read
+2026-10-06T01:59:13.1832743Z Metadata: read
+2026-10-06T01:59:13.1833475Z ##[endgroup]
+2026-10-06T01:59:13.1835543Z Secret source: Actions
+2026-10-06T01:59:13.1836737Z Cache mode: write
+2026-10-06T01:59:13.1837463Z Prepare workflow directory
+2026-10-06T01:59:13.2172603Z Prepare all required actions
+2026-10-06T01:59:13.2221427Z Getting action download info
+2026-10-06T01:59:13.4738003Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-06T01:59:13.5702645Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-10-06T01:59:13.7482250Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-06T01:59:13.8855329Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-06T01:59:14.1355122Z Complete job name: default-seed-setup-source
+2026-10-06T01:59:14.2309542Z ##[group]Run actions/checkout@v4
+2026-10-06T01:59:14.2311307Z with:
+2026-10-06T01:59:14.2312257Z   repository: sveltery/cms
+2026-10-06T01:59:14.2321120Z   token: ***
+2026-10-06T01:59:14.2322105Z   ssh-strict: true
+2026-10-06T01:59:14.2323146Z   ssh-user: git
+2026-10-06T01:59:14.2324130Z   persist-credentials: true
+2026-10-06T01:59:14.2325195Z   clean: true
+2026-10-06T01:59:14.2326250Z   sparse-checkout-cone-mode: true
+2026-10-06T01:59:14.2327403Z   fetch-depth: 1
+2026-10-06T01:59:14.2328439Z   fetch-tags: false
+2026-10-06T01:59:14.2329428Z   show-progress: true
+2026-10-06T01:59:14.2330553Z   lfs: false
+2026-10-06T01:59:14.2331571Z   submodules: false
+2026-10-06T01:59:14.2332592Z   set-safe-directory: true
+2026-10-06T01:59:14.2333745Z   allow-unsafe-pr-checkout: false
+2026-10-06T01:59:14.2335284Z ##[endgroup]
+2026-10-06T01:59:14.3406561Z Syncing repository: sveltery/cms
+2026-10-06T01:59:14.3409953Z ##[group]Getting Git version info
+2026-10-06T01:59:14.3412392Z Working directory is '/home/runner/work/cms/cms'
+2026-10-06T01:59:14.3415676Z [command]/usr/bin/git version
+2026-10-06T01:59:14.3508820Z git version 2.55.0
+2026-10-06T01:59:14.3545767Z ##[endgroup]
+2026-10-06T01:59:14.3569090Z Temporarily overriding HOME='/home/runner/work/_temp/c9d7e21e-f50d-4a25-a60b-e73a2e66f31b' before making global git config changes
+2026-10-06T01:59:14.3575085Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T01:59:14.3578555Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T01:59:14.3611149Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-06T01:59:14.3615184Z ##[group]Initializing the repository
+2026-10-06T01:59:14.3617891Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-06T01:59:14.3762251Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-06T01:59:14.3766715Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-06T01:59:14.3770756Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-06T01:59:14.3774151Z hint: call:
+2026-10-06T01:59:14.3776931Z hint:
+2026-10-06T01:59:14.3779347Z hint: 	git config --global init.defaultBranch <name>
+2026-10-06T01:59:14.3782492Z hint:
+2026-10-06T01:59:14.3784844Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-06T01:59:14.3788476Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-06T01:59:14.3791735Z hint:
+2026-10-06T01:59:14.3793454Z hint: 	git branch -m <name>
+2026-10-06T01:59:14.3795446Z hint:
+2026-10-06T01:59:14.3797894Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-06T01:59:14.3801944Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-06T01:59:14.3807802Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-06T01:59:14.3827544Z ##[endgroup]
+2026-10-06T01:59:14.3831414Z ##[group]Disabling automatic garbage collection
+2026-10-06T01:59:14.3833698Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-06T01:59:14.3867790Z ##[endgroup]
+2026-10-06T01:59:14.3871474Z ##[group]Setting up auth
+2026-10-06T01:59:14.3876215Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T01:59:14.3915595Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T01:59:14.4349291Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T01:59:14.4391648Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T01:59:14.4669131Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T01:59:14.4710883Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T01:59:14.4970626Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-06T01:59:14.5023806Z ##[endgroup]
+2026-10-06T01:59:14.5026340Z ##[group]Fetching the repository
+2026-10-06T01:59:14.5032079Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +47fc890137e5db461429ae588aa6862174f6eba8:refs/remotes/pull/126/merge
+2026-10-06T01:59:15.9106813Z From https://github.com/sveltery/cms
+2026-10-06T01:59:15.9107485Z  * [new ref]         47fc890137e5db461429ae588aa6862174f6eba8 -> pull/126/merge
+2026-10-06T01:59:15.9120675Z ##[endgroup]
+2026-10-06T01:59:15.9121255Z ##[group]Determining the checkout info
+2026-10-06T01:59:15.9121835Z ##[endgroup]
+2026-10-06T01:59:15.9122182Z [command]/usr/bin/git sparse-checkout disable
+2026-10-06T01:59:15.9174800Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-06T01:59:15.9212907Z ##[group]Checking out the ref
+2026-10-06T01:59:15.9217613Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/126/merge
+2026-10-06T01:59:16.4409032Z Note: switching to 'refs/remotes/pull/126/merge'.
+2026-10-06T01:59:16.4409501Z 
+2026-10-06T01:59:16.4409763Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-06T01:59:16.4410815Z changes and commit them, and you can discard any commits you make in this
+2026-10-06T01:59:16.4411834Z state without impacting any branches by switching back to a branch.
+2026-10-06T01:59:16.4412384Z 
+2026-10-06T01:59:16.4412666Z If you want to create a new branch to retain commits you create, you may
+2026-10-06T01:59:16.4413250Z do so (now or later) by using -c with the switch command. Example:
+2026-10-06T01:59:16.4414006Z 
+2026-10-06T01:59:16.4414147Z   git switch -c <new-branch-name>
+2026-10-06T01:59:16.4414372Z 
+2026-10-06T01:59:16.4414534Z Or undo this operation with:
+2026-10-06T01:59:16.4414768Z 
+2026-10-06T01:59:16.4414894Z   git switch -
+2026-10-06T01:59:16.4415073Z 
+2026-10-06T01:59:16.4415348Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-06T01:59:16.4415761Z 
+2026-10-06T01:59:16.4416222Z HEAD is now at 47fc890 Merge 74d9005d92d9dc88c69c115062ddce07da762005 into 82e3dd7b673f774ca8c3eceaafa28234641bd6b1
+2026-10-06T01:59:16.4431830Z ##[endgroup]
+2026-10-06T01:59:16.4479302Z [command]/usr/bin/git log -1 --format=%H
+2026-10-06T01:59:16.4511092Z 47fc890137e5db461429ae588aa6862174f6eba8
+2026-10-06T01:59:16.4772064Z ##[group]Run pnpm/action-setup@v4
+2026-10-06T01:59:16.4772381Z with:
+2026-10-06T01:59:16.4772593Z   version: 12.6.0
+2026-10-06T01:59:16.4772807Z   dest: ~/setup-pnpm
+2026-10-06T01:59:16.4773027Z   run_install: null
+2026-10-06T01:59:16.4773258Z   cache: false
+2026-10-06T01:59:16.4773480Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-06T01:59:16.4773800Z   package_json_file: package.json
+2026-10-06T01:59:16.4774051Z   standalone: false
+2026-10-06T01:59:16.4774259Z ##[endgroup]
+2026-10-06T01:59:16.6287179Z ##[group]Running self-installer...
+2026-10-06T01:59:17.0936960Z (node:2206) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:59:17.0939197Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:59:17.2349283Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-06T01:59:17.3852585Z Packages: +3
+2026-10-06T01:59:17.3853338Z +++
+2026-10-06T01:59:18.1088170Z Progress: resolved 15, reused 0, downloaded 3, added 3, done
+2026-10-06T01:59:18.1256539Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall$ node install.js
+2026-10-06T01:59:18.3949345Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall: Done
+2026-10-06T01:59:18.3956270Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall$ node install.js
+2026-10-06T01:59:18.4438209Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall: Done
+2026-10-06T01:59:19.9006972Z 
+2026-10-06T01:59:19.9007462Z dependencies:
+2026-10-06T01:59:19.9007805Z + pnpm 12.6.0 (12.9.1 is available)
+2026-10-06T01:59:19.9008049Z 
+2026-10-06T01:59:19.9034274Z Done in 3s
+2026-10-06T01:59:19.9693594Z ##[endgroup]
+2026-10-06T01:59:19.9694248Z Installation Completed!
+2026-10-06T01:59:19.9887466Z ##[group]Run actions/setup-node@v4
+2026-10-06T01:59:19.9887750Z with:
+2026-10-06T01:59:19.9887945Z   node-version: 24
+2026-10-06T01:59:19.9888151Z   cache: pnpm
+2026-10-06T01:59:19.9888349Z   always-auth: false
+2026-10-06T01:59:19.9888562Z   check-latest: false
+2026-10-06T01:59:19.9891086Z   token: ***
+2026-10-06T01:59:19.9891298Z env:
+2026-10-06T01:59:19.9891559Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:59:19.9891888Z ##[endgroup]
+2026-10-06T01:59:20.1413435Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-06T01:59:20.1417159Z (node:2237) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T01:59:20.1418333Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T01:59:20.1419971Z ##[group]Environment details
+2026-10-06T01:59:20.5684420Z node: v24.21.0
+2026-10-06T01:59:20.5684714Z npm: 11.19.0
+2026-10-06T01:59:20.5684914Z yarn: 1.22.22
+2026-10-06T01:59:20.5686094Z ##[endgroup]
+2026-10-06T01:59:20.5715725Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-06T01:59:20.5921943Z /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:59:20.6822411Z Cache hit for: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:59:20.6932799Z (node:2237) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T01:59:21.6506506Z Received 174062786 of 174062786 (100.0%), 180.8 MBs/sec
+2026-10-06T01:59:21.6507815Z Cache Size: ~166 MB (174062786 B)
+2026-10-06T01:59:21.6574989Z [command]/usr/bin/tar -xf /home/runner/work/_temp/fcd2004c-e1cb-4ad0-87ff-60cbe52da817/cache.tzst -P -C /home/runner/work/cms/cms --use-compress-program unzstd
+2026-10-06T01:59:23.8104359Z Cache restored successfully
+2026-10-06T01:59:23.8513840Z Cache restored from key: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-06T01:59:23.8811591Z ##[group]Run pnpm install --frozen-lockfile
+2026-10-06T01:59:23.8812025Z [36;1mpnpm install --frozen-lockfile[0m
+2026-10-06T01:59:23.9252181Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:59:23.9252473Z env:
+2026-10-06T01:59:23.9252748Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:59:23.9253108Z ##[endgroup]
+2026-10-06T01:59:23.9835062Z ? Verifying lockfile against supply-chain policies (534 entries)...
+2026-10-06T01:59:24.2044117Z Packages are hard linked from the content-addressable store to the virtual store.
+2026-10-06T01:59:24.2050949Z   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-06T01:59:24.2052200Z   Virtual store is at:             node_modules/.pnpm
+2026-10-06T01:59:26.3907168Z ✓ Lockfile passes supply-chain policies (534 entries in 2.4s)
+2026-10-06T01:59:26.3908037Z Lockfile is up to date, resolution step is skipped
+2026-10-06T01:59:26.3991401Z Packages: +403
+2026-10-06T01:59:26.3992432Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-06T01:59:26.4500575Z Progress: resolved 403, reused 403, downloaded 0, added 403, done
+2026-10-06T01:59:26.5302293Z . prepare$ svelte-kit sync
+2026-10-06T01:59:27.7158247Z . prepare: Done
+2026-10-06T01:59:27.7166308Z 
+2026-10-06T01:59:27.7167050Z dependencies:
+2026-10-06T01:59:27.7168042Z + @oslojs/crypto 1.0.1
+2026-10-06T01:59:27.7168550Z + @oslojs/encoding 1.1.0
+2026-10-06T01:59:27.7169030Z + @oslojs/webauthn 1.0.0
+2026-10-06T01:59:27.7169696Z + @wordpress/block-serialization-default-parser 5.38.0
+2026-10-06T01:59:27.7170538Z + blurhash 2.0.5
+2026-10-06T01:59:27.7171126Z + cn 0.2.2
+2026-10-06T01:59:27.7171480Z + date-fns 4.1.0
+2026-10-06T01:59:27.7171849Z + image-size 2.0.2
+2026-10-06T01:59:27.7172200Z + jpeg-js 0.4.4
+2026-10-06T01:59:27.7172567Z + jsonc-parser 3.3.1
+2026-10-06T01:59:27.7172933Z + kysely 0.29.2
+2026-10-06T01:59:27.7173259Z + mime 4.1.0
+2026-10-06T01:59:27.7173578Z + parse5 7.3.0
+2026-10-06T01:59:27.7173953Z + smol-toml 1.6.0
+2026-10-06T01:59:27.7174338Z + ulidx 2.4.1
+2026-10-06T01:59:27.7174641Z + upng-js 2.1.0
+2026-10-06T01:59:27.7174947Z + valibot 1.5.0
+2026-10-06T01:59:27.7175291Z + zod 4.5.4
+2026-10-06T01:59:27.7175470Z 
+2026-10-06T01:59:27.7175672Z devDependencies:
+2026-10-06T01:59:27.7176053Z + @babel/core 7.29.7
+2026-10-06T01:59:27.7176471Z + @cloudflare/kumo 2.6.0
+2026-10-06T01:59:27.7176983Z + @cloudflare/workers-types 4.20260507.1
+2026-10-06T01:59:27.7177460Z + @floating-ui/dom 1.8.0
+2026-10-06T01:59:27.7177955Z + @lingui/babel-plugin-lingui-macro 5.9.5
+2026-10-06T01:59:27.7178423Z + @lingui/conf 5.9.5
+2026-10-06T01:59:27.7178776Z + @lingui/core 5.9.5
+2026-10-06T01:59:27.7179129Z + @lingui/react 5.9.5
+2026-10-06T01:59:27.7179529Z + @playwright/test 1.63.0
+2026-10-06T01:59:27.7180098Z + @sveltejs/adapter-auto 7.0.1
+2026-10-06T01:59:27.7195216Z + @sveltejs/adapter-cloudflare 7.2.9
+2026-10-06T01:59:27.7221500Z + @sveltejs/adapter-node 5.5.7
+2026-10-06T01:59:27.7222956Z + @sveltejs/kit 2.70.3
+2026-10-06T01:59:27.7223925Z + @sveltejs/vite-plugin-svelte 7.3.1
+2026-10-06T01:59:27.7224841Z + @tanstack/react-query 5.90.21
+2026-10-06T01:59:27.7225681Z + @tanstack/react-router 1.163.2
+2026-10-06T01:59:27.7226734Z + @testing-library/react 16.3.2
+2026-10-06T01:59:27.7235286Z + @types/jsdom 30.0.0
+2026-10-06T01:59:27.7235746Z + @types/node 24.19.0
+2026-10-06T01:59:27.7236572Z + @types/react 19.3.0
+2026-10-06T01:59:27.7237375Z + @types/react-dom 19.3.0
+2026-10-06T01:59:27.7237906Z + @vitest/browser-playwright 4.1.10
+2026-10-06T01:59:27.7238603Z + devalue 5.9.4
+2026-10-06T01:59:27.7238945Z + jsdom 30.1.1
+2026-10-06T01:59:27.7239563Z + miniflare 4.20260507.1
+2026-10-06T01:59:27.7239942Z + pg 8.18.0
+2026-10-06T01:59:27.7240444Z + react 19.3.0
+2026-10-06T01:59:27.7240948Z + react-day-picker 9.14.0
+2026-10-06T01:59:27.7241695Z + react-dom 19.3.0
+2026-10-06T01:59:27.7242065Z + svelte 5.57.1
+2026-10-06T01:59:27.7242436Z + svelte-check 4.7.6
+2026-10-06T01:59:27.7242837Z + typescript 6.0.3
+2026-10-06T01:59:27.7243291Z + vite 8.3.2
+2026-10-06T01:59:27.7243975Z + vitest 4.1.10
+2026-10-06T01:59:27.7244388Z + vitest-browser-react 2.2.0
+2026-10-06T01:59:27.7244817Z + wrangler 4.99.0
+2026-10-06T01:59:27.7245022Z 
+2026-10-06T01:59:27.7245263Z Done in 3.8s using pnpm v12.6.0
+2026-10-06T01:59:27.7604533Z ##[group]Run pnpm exec playwright install --with-deps chromium
+2026-10-06T01:59:27.7605326Z [36;1mpnpm exec playwright install --with-deps chromium[0m
+2026-10-06T01:59:27.7695622Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:59:27.7695908Z env:
+2026-10-06T01:59:27.7696185Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:59:27.7696543Z ##[endgroup]
+2026-10-06T01:59:28.3266691Z Installing dependencies...
+2026-10-06T01:59:28.3414321Z Switching to root user to install dependencies...
+2026-10-06T01:59:28.4573504Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-06T01:59:28.4832238Z Get:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
+2026-10-06T01:59:28.5682794Z Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-10-06T01:59:28.5685561Z Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main amd64 Packages [797 kB]
+2026-10-06T01:59:28.5708256Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+2026-10-06T01:59:28.5731332Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+2026-10-06T01:59:28.5851371Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+2026-10-06T01:59:28.5902139Z Get:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main arm64 Packages [551 kB]
+2026-10-06T01:59:28.7575863Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3907 kB]
+2026-10-06T01:59:28.7762609Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [576 kB]
+2026-10-06T01:59:28.7786140Z Get:11 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6714 kB]
+2026-10-06T01:59:28.8109364Z Get:12 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1290 kB]
+2026-10-06T01:59:28.8177232Z Get:13 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1285 kB]
+2026-10-06T01:59:28.8258221Z Get:14 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [325 kB]
+2026-10-06T01:59:28.9712050Z Get:15 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3631 kB]
+2026-10-06T01:59:28.9895663Z Get:16 http://azure.archive.ubuntu.com/ubuntu jammy-security/main Translation-en [508 kB]
+2026-10-06T01:59:28.9928736Z Get:17 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6465 kB]
+2026-10-06T01:59:29.0284264Z Get:18 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1244 kB]
+2026-10-06T01:59:29.0806094Z Get:19 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1052 kB]
+2026-10-06T01:59:29.0871840Z Get:20 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe Translation-en [237 kB]
+2026-10-06T01:59:34.5409289Z Fetched 29.0 MB in 3s (8985 kB/s)
+2026-10-06T01:59:35.8383999Z Reading package lists...
+2026-10-06T01:59:35.9015603Z Reading package lists...
+2026-10-06T01:59:36.1528356Z Building dependency tree...
+2026-10-06T01:59:36.1545295Z Reading state information...
+2026-10-06T01:59:36.3599510Z fonts-liberation is already the newest version (1:1.07.4-11).
+2026-10-06T01:59:36.3601017Z fonts-liberation set to manually installed.
+2026-10-06T01:59:36.3602209Z libatk-bridge2.0-0 is already the newest version (2.38.0-3).
+2026-10-06T01:59:36.3604707Z libatk-bridge2.0-0 set to manually installed.
+2026-10-06T01:59:36.3605521Z libatk1.0-0 is already the newest version (2.36.0-3build1).
+2026-10-06T01:59:36.3606505Z libatk1.0-0 set to manually installed.
+2026-10-06T01:59:36.3607063Z libatspi2.0-0 is already the newest version (2.44.0-3).
+2026-10-06T01:59:36.3607464Z libatspi2.0-0 set to manually installed.
+2026-10-06T01:59:36.3607901Z libfontconfig1 is already the newest version (2.13.1-4.2ubuntu5).
+2026-10-06T01:59:36.3608380Z libfontconfig1 set to manually installed.
+2026-10-06T01:59:36.3608777Z libxcb1 is already the newest version (1.14-3ubuntu3).
+2026-10-06T01:59:36.3609136Z libxcb1 set to manually installed.
+2026-10-06T01:59:36.3609982Z libxcomposite1 is already the newest version (1:0.4.5-1build2).
+2026-10-06T01:59:36.3611011Z libxcomposite1 set to manually installed.
+2026-10-06T01:59:36.3611753Z libxdamage1 is already the newest version (1:1.1.5-2build2).
+2026-10-06T01:59:36.3612444Z libxdamage1 set to manually installed.
+2026-10-06T01:59:36.3613135Z libxext6 is already the newest version (2:1.3.4-1build1).
+2026-10-06T01:59:36.3613782Z libxext6 set to manually installed.
+2026-10-06T01:59:36.3614282Z libxfixes3 is already the newest version (1:6.0.0-1).
+2026-10-06T01:59:36.3614659Z libxfixes3 set to manually installed.
+2026-10-06T01:59:36.3615281Z libxkbcommon0 is already the newest version (1.4.0-1).
+2026-10-06T01:59:36.3615952Z libxkbcommon0 set to manually installed.
+2026-10-06T01:59:36.3616672Z libxrandr2 is already the newest version (2:1.5.2-1build1).
+2026-10-06T01:59:36.3617346Z libxrandr2 set to manually installed.
+2026-10-06T01:59:36.3617999Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.22.04.1).
+2026-10-06T01:59:36.3618550Z libasound2 is already the newest version (1.2.6.1-1ubuntu1.2).
+2026-10-06T01:59:36.3618967Z libasound2 set to manually installed.
+2026-10-06T01:59:36.3619356Z libcairo2 is already the newest version (1.16.0-5ubuntu2.1).
+2026-10-06T01:59:36.3619742Z libcairo2 set to manually installed.
+2026-10-06T01:59:36.3620449Z libcups2 is already the newest version (2.4.1op1-1ubuntu4.21).
+2026-10-06T01:59:36.3621169Z libcups2 set to manually installed.
+2026-10-06T01:59:36.3621879Z libdbus-1-3 is already the newest version (1.12.20-2ubuntu4.1).
+2026-10-06T01:59:36.3622568Z libdbus-1-3 set to manually installed.
+2026-10-06T01:59:36.3623303Z libdrm2 is already the newest version (2.4.113-2~ubuntu0.22.04.1).
+2026-10-06T01:59:36.3623969Z libdrm2 set to manually installed.
+2026-10-06T01:59:36.3624392Z libfreetype6 is already the newest version (2.11.1+dfsg-1ubuntu0.3).
+2026-10-06T01:59:36.3624824Z libfreetype6 set to manually installed.
+2026-10-06T01:59:36.3625254Z libgbm1 is already the newest version (23.2.1-1ubuntu3.1~22.04.4).
+2026-10-06T01:59:36.3625652Z libgbm1 set to manually installed.
+2026-10-06T01:59:36.3626085Z libglib2.0-0 is already the newest version (2.72.4-0ubuntu2.10).
+2026-10-06T01:59:36.3626495Z libglib2.0-0 set to manually installed.
+2026-10-06T01:59:36.3626918Z libnspr4 is already the newest version (2:4.35-0ubuntu0.22.04.1).
+2026-10-06T01:59:36.3627408Z libnss3 is already the newest version (2:3.98-0ubuntu0.22.04.4).
+2026-10-06T01:59:36.3627895Z libpango-1.0-0 is already the newest version (1.50.6+ds-2ubuntu1).
+2026-10-06T01:59:36.3628514Z libpango-1.0-0 set to manually installed.
+2026-10-06T01:59:36.3629319Z libwayland-client0 is already the newest version (1.20.0-1ubuntu0.1).
+2026-10-06T01:59:36.3630106Z libwayland-client0 set to manually installed.
+2026-10-06T01:59:36.3631041Z libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+2026-10-06T01:59:36.3631702Z libx11-6 set to manually installed.
+2026-10-06T01:59:36.3632234Z xvfb is already the newest version (2:21.1.4-2ubuntu1.7~22.04.16).
+2026-10-06T01:59:36.3632692Z The following additional packages will be installed:
+2026-10-06T01:59:36.3633271Z   xfonts-encodings xfonts-utils
+2026-10-06T01:59:36.3633558Z Recommended packages:
+2026-10-06T01:59:36.3633838Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-10-06T01:59:36.3855950Z The following NEW packages will be installed:
+2026-10-06T01:59:36.3856830Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-06T01:59:36.3863464Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-06T01:59:36.3864211Z   xfonts-utils
+2026-10-06T01:59:36.4075603Z 0 upgraded, 9 newly installed, 0 to remove and 20 not upgraded.
+2026-10-06T01:59:36.4076353Z Need to get 18.4 MB of archives.
+2026-10-06T01:59:36.4077126Z After this operation, 56.8 MB of additional disk space will be used.
+2026-10-06T01:59:36.4077964Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-06T01:59:36.5099308Z Get:2 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-06T01:59:37.1885167Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 fonts-freefont-ttf all 20120503-10build1 [2388 kB]
+2026-10-06T01:59:37.3334364Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-06T01:59:37.4386723Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-unifont all 1:14.0.01-1 [3551 kB]
+2026-10-06T01:59:37.6425453Z Get:6 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-06T01:59:38.0042231Z Get:7 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-06T01:59:38.0898257Z Get:8 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-utils amd64 1:7.7+6build2 [94.6 kB]
+2026-10-06T01:59:38.1790873Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 xfonts-cyrillic all 1:1.0.5 [386 kB]
+2026-10-06T01:59:38.2893513Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-scalable all 1:1.0.3-1.2ubuntu1 [306 kB]
+2026-10-06T01:59:38.7884384Z Fetched 18.4 MB in 2s (9626 kB/s)
+2026-10-06T01:59:38.8228245Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-06T01:59:38.8658866Z (Reading database ... 
+2026-10-06T01:59:38.8659592Z (Reading database ... 5%
+2026-10-06T01:59:38.8659996Z (Reading database ... 10%
+2026-10-06T01:59:38.8660706Z (Reading database ... 15%
+2026-10-06T01:59:38.8661043Z (Reading database ... 20%
+2026-10-06T01:59:38.8661359Z (Reading database ... 25%
+2026-10-06T01:59:38.8661808Z (Reading database ... 30%
+2026-10-06T01:59:38.8662116Z (Reading database ... 35%
+2026-10-06T01:59:38.8662428Z (Reading database ... 40%
+2026-10-06T01:59:38.8662731Z (Reading database ... 45%
+2026-10-06T01:59:38.8663035Z (Reading database ... 50%
+2026-10-06T01:59:38.9102955Z (Reading database ... 55%
+2026-10-06T01:59:39.1111492Z (Reading database ... 60%
+2026-10-06T01:59:39.2786419Z (Reading database ... 65%
+2026-10-06T01:59:39.4917797Z (Reading database ... 70%
+2026-10-06T01:59:39.6042807Z (Reading database ... 75%
+2026-10-06T01:59:39.7249287Z (Reading database ... 80%
+2026-10-06T01:59:39.8874268Z (Reading database ... 85%
+2026-10-06T01:59:40.1108731Z (Reading database ... 90%
+2026-10-06T01:59:40.3231461Z (Reading database ... 95%
+2026-10-06T01:59:40.3232062Z (Reading database ... 100%
+2026-10-06T01:59:40.3232948Z (Reading database ... 260411 files and directories currently installed.)
+2026-10-06T01:59:40.3284739Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-06T01:59:40.3391430Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-06T01:59:40.5923995Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-06T01:59:40.6126379Z Preparing to unpack .../1-fonts-freefont-ttf_20120503-10build1_all.deb ...
+2026-10-06T01:59:40.6134181Z Unpacking fonts-freefont-ttf (20120503-10build1) ...
+2026-10-06T01:59:40.8042878Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-06T01:59:40.8249447Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-06T01:59:40.8257089Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-06T01:59:40.8502045Z Selecting previously unselected package fonts-unifont.
+2026-10-06T01:59:40.8702364Z Preparing to unpack .../3-fonts-unifont_1%3a14.0.01-1_all.deb ...
+2026-10-06T01:59:40.8710159Z Unpacking fonts-unifont (1:14.0.01-1) ...
+2026-10-06T01:59:40.9667291Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-06T01:59:40.9871430Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-06T01:59:40.9991719Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-06T01:59:41.5182127Z Selecting previously unselected package xfonts-encodings.
+2026-10-06T01:59:41.5387056Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-06T01:59:41.5394419Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-06T01:59:41.5726540Z Selecting previously unselected package xfonts-utils.
+2026-10-06T01:59:41.5928687Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build2_amd64.deb ...
+2026-10-06T01:59:41.5935247Z Unpacking xfonts-utils (1:7.7+6build2) ...
+2026-10-06T01:59:41.6331285Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-06T01:59:41.6533699Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5_all.deb ...
+2026-10-06T01:59:41.6542774Z Unpacking xfonts-cyrillic (1:1.0.5) ...
+2026-10-06T01:59:41.7065387Z Selecting previously unselected package xfonts-scalable.
+2026-10-06T01:59:41.7268513Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.2ubuntu1_all.deb ...
+2026-10-06T01:59:41.7274669Z Unpacking xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-06T01:59:41.7813674Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-06T01:59:41.7935323Z Setting up fonts-freefont-ttf (20120503-10build1) ...
+2026-10-06T01:59:41.7952767Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-06T01:59:41.7981841Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-06T01:59:41.8000093Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-06T01:59:41.8086579Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-06T01:59:41.8106492Z Setting up fonts-unifont (1:14.0.01-1) ...
+2026-10-06T01:59:41.8137100Z Setting up xfonts-utils (1:7.7+6build2) ...
+2026-10-06T01:59:41.8179302Z Setting up xfonts-cyrillic (1:1.0.5) ...
+2026-10-06T01:59:41.8689341Z Setting up xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-06T01:59:41.9068909Z Processing triggers for man-db (2.10.2-1) ...
+2026-10-06T01:59:41.9127959Z Not building database; man-db/auto-update is not 'true'.
+2026-10-06T01:59:41.9139680Z Processing triggers for fontconfig (2.13.1-4.2ubuntu5) ...
+2026-10-06T01:59:42.6644776Z 
+2026-10-06T01:59:42.6645658Z Running kernel seems to be up-to-date.
+2026-10-06T01:59:42.6646172Z 
+2026-10-06T01:59:42.6646504Z No services need to be restarted.
+2026-10-06T01:59:42.6646754Z 
+2026-10-06T01:59:42.6646981Z No containers need to be restarted.
+2026-10-06T01:59:42.6647224Z 
+2026-10-06T01:59:42.6647451Z No user sessions are running outdated binaries.
+2026-10-06T01:59:42.6647727Z 
+2026-10-06T01:59:42.6648101Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-06T01:59:44.0161463Z Downloading Chrome for Testing 153.0.8010.12 (playwright chromium v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-linux64.zip
+2026-10-06T01:59:44.3931373Z |                                                                                |   0% of 186.8 MiB
+2026-10-06T01:59:44.5918671Z |■■■■■■■■                                                                        |  10% of 186.8 MiB
+2026-10-06T01:59:44.6839495Z |■■■■■■■■■■■■■■■■                                                                |  20% of 186.8 MiB
+2026-10-06T01:59:44.7882595Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 186.8 MiB
+2026-10-06T01:59:44.8521668Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 186.8 MiB
+2026-10-06T01:59:44.9442548Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 186.8 MiB
+2026-10-06T01:59:45.0362671Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 186.8 MiB
+2026-10-06T01:59:45.1151442Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 186.8 MiB
+2026-10-06T01:59:45.2048652Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 186.8 MiB
+2026-10-06T01:59:45.2683064Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 186.8 MiB
+2026-10-06T01:59:45.3522040Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 186.8 MiB
+2026-10-06T01:59:48.3296512Z Chrome for Testing 153.0.8010.12 (playwright chromium v1243) downloaded to /home/runner/.cache/ms-playwright/chromium-1243
+2026-10-06T01:59:48.3300065Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+2026-10-06T01:59:48.7062762Z |                                                                                |   0% of 2.3 MiB
+2026-10-06T01:59:48.7102947Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+2026-10-06T01:59:48.7127624Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+2026-10-06T01:59:48.7147430Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+2026-10-06T01:59:48.7164624Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+2026-10-06T01:59:48.7178656Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+2026-10-06T01:59:48.7190610Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+2026-10-06T01:59:48.7214310Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+2026-10-06T01:59:48.7227308Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+2026-10-06T01:59:48.7239964Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+2026-10-06T01:59:48.7248733Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+2026-10-06T01:59:48.7884834Z FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+2026-10-06T01:59:48.7889241Z Downloading Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-headless-shell-linux64.zip
+2026-10-06T01:59:49.1886657Z |                                                                                |   0% of 114.3 MiB
+2026-10-06T01:59:49.2858721Z |■■■■■■■■                                                                        |  10% of 114.3 MiB
+2026-10-06T01:59:49.3532664Z |■■■■■■■■■■■■■■■■                                                                |  20% of 114.3 MiB
+2026-10-06T01:59:49.4107345Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.3 MiB
+2026-10-06T01:59:49.4733005Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.3 MiB
+2026-10-06T01:59:49.5324841Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.3 MiB
+2026-10-06T01:59:49.5735040Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.3 MiB
+2026-10-06T01:59:49.6322955Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.3 MiB
+2026-10-06T01:59:49.6738566Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.3 MiB
+2026-10-06T01:59:49.7139686Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.3 MiB
+2026-10-06T01:59:49.7672678Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.3 MiB
+2026-10-06T01:59:51.9654760Z Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1243
+2026-10-06T01:59:51.9927622Z ##[group]Run timeout --kill-after=30s 360s pnpm exec vitest run --config vitest.default-seed-setup-wizard.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-source-results.json
+2026-10-06T01:59:51.9929104Z [36;1mtimeout --kill-after=30s 360s pnpm exec vitest run --config vitest.default-seed-setup-wizard.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-source-results.json[0m
+2026-10-06T01:59:52.0001609Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:59:52.0001869Z env:
+2026-10-06T01:59:52.0002150Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:59:52.0002464Z   DEBUG: pw:browser
+2026-10-06T01:59:52.0002675Z ##[endgroup]
+2026-10-06T01:59:53.0733399Z 
+2026-10-06T01:59:53.0737305Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:59:53.0737945Z 
+2026-10-06T01:59:53.7892281Z 2026-10-06T01:59:53.787Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-C4TnsZ --remote-debugging-pipe --no-startup-window
+2026-10-06T01:59:53.7939384Z 2026-10-06T01:59:53.793Z pw:browser <launched> pid=3161
+2026-10-06T01:59:53.8662572Z 2026-10-06T01:59:53.865Z pw:browser [pid=3161][err] [1006/015953.863238:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-06T01:59:53.8705490Z 2026-10-06T01:59:53.869Z pw:browser [pid=3161][err] Unable to revert mtime: /usr/share/fonts
+2026-10-06T01:59:53.8717710Z 2026-10-06T01:59:53.871Z pw:browser [pid=3161][err] Unable to revert mtime: /usr/share/fonts/truetype
+2026-10-06T01:59:53.8863007Z 2026-10-06T01:59:53.884Z pw:browser [pid=3161][err] [1006/015953.884353:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-06T01:59:53.8875375Z 2026-10-06T01:59:53.887Z pw:browser [pid=3161][err] [1006/015953.886304:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-06T01:59:53.8907163Z 2026-10-06T01:59:53.890Z pw:browser [pid=3161][err] Unable to revert mtime: /usr/share/fonts/truetype/dejavu
+2026-10-06T01:59:53.9238677Z 2026-10-06T01:59:53.923Z pw:browser [pid=3161][err] Unable to revert mtime: /usr/share/fonts/truetype/lato
+2026-10-06T01:59:53.9503508Z 2026-10-06T01:59:53.950Z pw:browser [pid=3161][err] Unable to revert mtime: /usr/share/fonts/truetype/liberation
+2026-10-06T01:59:53.9603434Z 2026-10-06T01:59:53.960Z pw:browser [pid=3161][err] Unable to revert mtime: /usr/share/fonts/truetype/noto
+2026-10-06T01:59:54.0092886Z 2026-10-06T01:59:54.008Z pw:browser [pid=3161][err] [1006/015954.007362:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-06T01:59:54.0103314Z 2026-10-06T01:59:54.008Z pw:browser [pid=3161][err] [1006/015954.008363:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-06T01:59:54.0128819Z 2026-10-06T01:59:54.012Z pw:browser [pid=3161][err] [1006/015954.012599:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-06T01:59:54.3629799Z 2026-10-06T01:59:54.362Z pw:browser [pid=3161][err] [1006/015954.362550:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:59:54.3695466Z 2026-10-06T01:59:54.369Z pw:browser [pid=3161][err] [1006/015954.368672:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:59:54.4322733Z 2026-10-06T01:59:54.431Z pw:browser [pid=3161][err] [1006/015954.417275:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T01:59:54.4432433Z 2026-10-06T01:59:54.442Z pw:browser [pid=3161][err] [1006/015954.439088:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T01:59:55.6992705Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mshows site setup step first with title input[32m 78[2mms[22m[39m
+2026-10-06T01:59:55.6995839Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mempty title prevents advancing and shows validation error[32m 166[2mms[22m[39m
+2026-10-06T01:59:55.8229025Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mfilling title and clicking Next advances to admin step[32m 125[2mms[22m[39m
+2026-10-06T01:59:55.9233176Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mdoes not present media usage tracking as an onboarding choice[32m 56[2mms[22m[39m
+2026-10-06T01:59:56.0885989Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22madmin step shows email input[32m 110[2mms[22m[39m
+2026-10-06T01:59:56.2086598Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mempty email prevents advancing on admin step[32m 166[2mms[22m[39m
+2026-10-06T01:59:56.2090617Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mstep indicator shows three steps[32m 54[2mms[22m[39m
+2026-10-06T01:59:56.3167202Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mprefills title and tagline from seedInfo[32m 55[2mms[22m[39m
+2026-10-06T01:59:56.3171135Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22muses empty string for title and tagline when not in seedInfo[32m 54[2mms[22m[39m
+2026-10-06T01:59:56.4383595Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mprefilled title can be edited and submitted[32m 122[2mms[22m[39m
+2026-10-06T01:59:56.7876513Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mstarting from a site package[2m > [22moffers import alongside sample content and an empty site[32m 56[2mms[22m[39m
+2026-10-06T01:59:56.7880727Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mstarting from a site package[2m > [22mskips sample content and lands on the Transfer import after signing in[32m 293[2mms[22m[39m
+2026-10-06T01:59:57.0538380Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mstarting from a site package[2m > [22mkeeps sample content and the dashboard as the default[32m 266[2mms[22m[39m
+2026-10-06T01:59:57.3697807Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mstarting from a site package[2m > [22mskips sample content for an empty site[33m 316[2mms[22m[39m
+2026-10-06T01:59:57.6202982Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mstarting from a site package[2m > [22mgoes straight to the Transfer import when Cloudflare Access completes setup[32m 150[2mms[22m[39m
+2026-10-06T01:59:57.8046613Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mkeeps posting while sample content remains, then advances[32m 178[2mms[22m[39m
+2026-10-06T01:59:57.9049760Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mkeeps the added sample content after a failed request and resumes on Continue[32m 206[2mms[22m[39m
+2026-10-06T01:59:58.0546242Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx[2m > [22mSetupWizard[2m > [22mstops posting when a request reports no progress[32m 150[2mms[22m[39m
+2026-10-06T01:59:58.0618928Z 
+2026-10-06T01:59:58.0623518Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-06T01:59:58.0624571Z [2m      Tests [22m [1m[32m18 passed[39m[22m[90m (18)[39m
+2026-10-06T01:59:58.0625380Z [2m   Start at [22m 01:59:53
+2026-10-06T01:59:58.0626608Z [2m   Duration [22m 4.98s[2m (transform 0ms, setup 231ms, import 543ms, tests 2.60s, environment 0ms)[22m
+2026-10-06T01:59:58.0627726Z 
+2026-10-06T01:59:58.0639276Z JSON report written to /home/runner/work/cms/cms/setup-source-results.json
+2026-10-06T01:59:58.0699500Z 2026-10-06T01:59:58.069Z pw:browser [pid=3161][err] [1006/015958.065289:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-06T01:59:58.0702790Z 2026-10-06T01:59:58.069Z pw:browser [pid=3161][err] [1006/015958.066751:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-06T01:59:58.0831796Z 2026-10-06T01:59:58.082Z pw:browser [pid=3161] <gracefully close start>
+2026-10-06T01:59:58.1044247Z 2026-10-06T01:59:58.104Z pw:browser [pid=3161] <process did exit: exitCode=0, signal=null>
+2026-10-06T01:59:58.1046025Z 2026-10-06T01:59:58.104Z pw:browser [pid=3161] starting temporary directories cleanup
+2026-10-06T01:59:58.1079271Z 2026-10-06T01:59:58.107Z pw:browser [pid=3161] finished temporary directories cleanup
+2026-10-06T01:59:58.1080574Z 2026-10-06T01:59:58.107Z pw:browser [pid=3161] <gracefully close end>
+2026-10-06T01:59:58.1561936Z ##[group]Run timeout --kill-after=30s 360s pnpm exec vitest run --config vitest.default-seed-setup-wizard-native.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-native-results.json
+2026-10-06T01:59:58.1563656Z [36;1mtimeout --kill-after=30s 360s pnpm exec vitest run --config vitest.default-seed-setup-wizard-native.browser.config.ts --reporter=verbose --reporter=json --outputFile.json=setup-native-results.json[0m
+2026-10-06T01:59:58.1636054Z shell: /usr/bin/bash -e {0}
+2026-10-06T01:59:58.1636317Z env:
+2026-10-06T01:59:58.1636582Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T01:59:58.1636912Z   DEBUG: pw:browser
+2026-10-06T01:59:58.1637134Z ##[endgroup]
+2026-10-06T01:59:59.1983340Z 
+2026-10-06T01:59:59.1986992Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-06T01:59:59.1987613Z 
+2026-10-06T01:59:59.2847332Z [2m1:59:59 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-06T01:59:59.2857493Z [2m1:59:59 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+2026-10-06T01:59:59.8798278Z 2026-10-06T01:59:59.878Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-RYuBOs --remote-debugging-pipe --no-startup-window
+2026-10-06T01:59:59.8845706Z 2026-10-06T01:59:59.884Z pw:browser <launched> pid=3285
+2026-10-06T01:59:59.9322232Z 2026-10-06T01:59:59.931Z pw:browser [pid=3285][err] [1006/015959.929744:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-06T01:59:59.9450030Z 2026-10-06T01:59:59.943Z pw:browser [pid=3285][err] [1006/015959.943095:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-06T01:59:59.9503565Z 2026-10-06T01:59:59.944Z pw:browser [pid=3285][err] [1006/015959.943940:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-06T01:59:59.9533315Z 2026-10-06T01:59:59.948Z pw:browser [pid=3285][err] [1006/015959.948326:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-06T01:59:59.9583959Z 2026-10-06T01:59:59.952Z pw:browser [pid=3285][err] [1006/015959.950497:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-06T01:59:59.9613034Z 2026-10-06T01:59:59.952Z pw:browser [pid=3285][err] [1006/015959.952260:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-06T02:00:00.3599681Z 2026-10-06T02:00:00.359Z pw:browser [pid=3285][err] [1006/020000.359423:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T02:00:00.3667677Z 2026-10-06T02:00:00.366Z pw:browser [pid=3285][err] [1006/020000.365942:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T02:00:00.4226376Z 2026-10-06T02:00:00.422Z pw:browser [pid=3285][err] [1006/020000.421434:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-06T02:00:00.4505279Z 2026-10-06T02:00:00.450Z pw:browser [pid=3285][err] [1006/020000.428251:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-06T02:00:01.9601391Z  [31m×[39m [30m[43m chromium [49m[39m tests/default-seed-setup/wizard-native-presentation.test.tsx[2m > [22mNative wizard presentation lifecycle[2m > [22mreturning to Site remounts its seed defaults and starting choice[33m 481[2mms[22m[39m
+2026-10-06T02:00:01.9604077Z [31m   → expected 'My Custom Blog' to be 'My Awesome Blog' // Object.is equality[39m
+2026-10-06T02:00:02.4623688Z  [31m×[39m [30m[43m chromium [49m[39m tests/default-seed-setup/wizard-native-presentation.test.tsx[2m > [22mNative wizard presentation lifecycle[2m > [22mreturning from Sign In remounts empty Account fields[33m 304[2mms[22m[39m
+2026-10-06T02:00:02.4625863Z [31m   → expected 'admin@example.com' to be '' // Object.is equality[39m
+2026-10-06T02:00:02.4695210Z  [31m×[39m [30m[43m chromium [49m[39m tests/default-seed-setup/wizard-native-presentation.test.tsx[2m > [22mNative wizard presentation lifecycle[2m > [22meach controlled registration attempt prepares fresh account options before the credential boundary[33m 302[2mms[22m[39m
+2026-10-06T02:00:02.4698080Z [31m   → expected [ Array(1) ] to deeply equal [ { …(2) }, { …(2) } ][39m
+2026-10-06T02:00:02.4726412Z 
+2026-10-06T02:00:02.4727034Z [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 3 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2026-10-06T02:00:02.4727333Z 
+2026-10-06T02:00:02.4731095Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m tests/default-seed-setup/wizard-native-presentation.test.tsx[2m > [22mNative wizard presentation lifecycle[2m > [22mreturning to Site remounts its seed defaults and starting choice
+2026-10-06T02:00:02.4736285Z [31m[1mAssertionError[22m: expected 'My Custom Blog' to be 'My Awesome Blog' // Object.is equality[39m
+2026-10-06T02:00:02.4736998Z 
+2026-10-06T02:00:02.4737222Z Failure screenshot:
+2026-10-06T02:00:02.4738842Z   - [2mtests/default-seed-setup/__screenshots__/wizard-native-presentation.test.tsx/Native-wizard-presentation-lifecycle-returning-to-Site-remounts-its-seed-defaults-and-starting-choice-1.png[22m
+2026-10-06T02:00:02.4740109Z 
+2026-10-06T02:00:02.4740658Z Expected: [32m"My [7mAwes[27mom[7me[27m Blog"[39m
+2026-10-06T02:00:02.4741123Z Received: [31m"My [7mCust[27mom Blog"[39m
+2026-10-06T02:00:02.4741334Z 
+2026-10-06T02:00:02.4741825Z [36m [2m❯[22m tests/default-seed-setup/wizard-native-presentation.test.tsx:[2m55:93[22m[39m
+2026-10-06T02:00:02.4786167Z     [90m 53|[39m     [35mawait[39m screen[33m.[39m[34mgetByText[39m([32m'← Back'[39m)[33m.[39m[34mclick[39m()[33m;[39m
+2026-10-06T02:00:02.4787691Z     [90m 54|[39m     await expect.element(screen.getByText('Set up your site')).toBeInT…
+2026-10-06T02:00:02.4788995Z     [90m 55|[39m     expect((screen.getByPlaceholder('My Awesome Blog').element() as HT…
+2026-10-06T02:00:02.4790884Z     [90m   |[39m                                                                                             [31m^[39m
+2026-10-06T02:00:02.4792210Z     [90m 56|[39m     expect((screen.getByPlaceholder('Thoughts, tutorials, and more').e…
+2026-10-06T02:00:02.4793533Z     [90m 57|[39m     await expect.element(screen.getByRole('radio', { name: /Sample con…
+2026-10-06T02:00:02.4794143Z 
+2026-10-06T02:00:02.4794631Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯[22m[39m
+2026-10-06T02:00:02.4795002Z 
+2026-10-06T02:00:02.4796988Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m tests/default-seed-setup/wizard-native-presentation.test.tsx[2m > [22mNative wizard presentation lifecycle[2m > [22mreturning from Sign In remounts empty Account fields
+2026-10-06T02:00:02.4799311Z [31m[1mAssertionError[22m: expected 'admin@example.com' to be '' // Object.is equality[39m
+2026-10-06T02:00:02.4799985Z 
+2026-10-06T02:00:02.4800195Z Failure screenshot:
+2026-10-06T02:00:02.4802522Z   - [2mtests/default-seed-setup/__screenshots__/wizard-native-presentation.test.tsx/Native-wizard-presentation-lifecycle-returning-from-Sign-In-remounts-empty-Account-fields-1.png[22m
+2026-10-06T02:00:02.4804383Z 
+2026-10-06T02:00:02.4804700Z [32m- Expected[39m
+2026-10-06T02:00:02.4805211Z [31m+ Received[39m
+2026-10-06T02:00:02.4805474Z 
+2026-10-06T02:00:02.4805780Z [31m+ admin@example.com[39m
+2026-10-06T02:00:02.4806089Z 
+2026-10-06T02:00:02.4808394Z [36m [2m❯[22m tests/default-seed-setup/wizard-native-presentation.test.tsx:[2m63:93[22m[39m
+2026-10-06T02:00:02.4810114Z     [90m 61|[39m     [35mawait[39m screen[33m.[39m[34mgetByText[39m([32m'← Back'[39m)[33m.[39m[34mclick[39m()[33m;[39m
+2026-10-06T02:00:02.4811853Z     [90m 62|[39m     await expect.element(screen.getByText('Create your account')).toBe…
+2026-10-06T02:00:02.4813094Z     [90m 63|[39m     expect((screen.getByPlaceholder('you@example.com').element() as HT…
+2026-10-06T02:00:02.4814412Z     [90m   |[39m                                                                                             [31m^[39m
+2026-10-06T02:00:02.4815681Z     [90m 64|[39m     expect((screen.getByPlaceholder('Jane Doe').element() as HTMLInput…
+2026-10-06T02:00:02.4816609Z     [90m 65|[39m   })[33m;[39m
+2026-10-06T02:00:02.4816935Z 
+2026-10-06T02:00:02.4817406Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯[22m[39m
+2026-10-06T02:00:02.4817780Z 
+2026-10-06T02:00:02.4820162Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m tests/default-seed-setup/wizard-native-presentation.test.tsx[2m > [22mNative wizard presentation lifecycle[2m > [22meach controlled registration attempt prepares fresh account options before the credential boundary
+2026-10-06T02:00:02.4823028Z [31m[1mAssertionError[22m: expected [ Array(1) ] to deeply equal [ { …(2) }, { …(2) } ][39m
+2026-10-06T02:00:02.4823697Z 
+2026-10-06T02:00:02.4823912Z Failure screenshot:
+2026-10-06T02:00:02.4826533Z   - [2mtests/default-seed-setup/__screenshots__/wizard-native-presentation.test.tsx/Native-wizard-presentation-lifecycle-each-controlled-registration-attempt-prepares-fresh-account-options-before-the-credential-boundary-1.png[22m
+2026-10-06T02:00:02.4828543Z 
+2026-10-06T02:00:02.4828852Z [32m- Expected[39m
+2026-10-06T02:00:02.4829338Z [31m+ Received[39m
+2026-10-06T02:00:02.4829577Z 
+2026-10-06T02:00:02.4829773Z [2m  [[22m
+2026-10-06T02:00:02.4830176Z [2m    {[22m
+2026-10-06T02:00:02.4831044Z [2m      "email": "admin@example.com",[22m
+2026-10-06T02:00:02.4832281Z [2m      "name": "Admin",[22m
+2026-10-06T02:00:02.4833173Z [2m    },[22m
+2026-10-06T02:00:02.4833614Z [32m-   {[39m
+2026-10-06T02:00:02.4834197Z [32m-     "email": "admin@example.com",[39m
+2026-10-06T02:00:02.4834863Z [32m-     "name": "Admin",[39m
+2026-10-06T02:00:02.4835354Z [32m-   },[39m
+2026-10-06T02:00:02.4835745Z [2m  ][22m
+2026-10-06T02:00:02.4835950Z 
+2026-10-06T02:00:02.4836841Z [36m [2m❯[22m tests/default-seed-setup/wizard-native-presentation.test.tsx:[2m71:26[22m[39m
+2026-10-06T02:00:02.4839007Z     [90m 69|[39m     [35mawait[39m screen[33m.[39m[34mgetByText[39m([32m'Create administrator and passkey'[39m)[33m.[39m[34mclick[39m()[33m;[39m
+2026-10-06T02:00:02.4840904Z     [90m 70|[39m     await expect.element(screen.getByText('Setup could not be complete…
+2026-10-06T02:00:02.4842142Z     [90m 71|[39m     expect(adminRequests).toEqual(Array.from({ length: 2 }, () => ({ e…
+2026-10-06T02:00:02.4847104Z     [90m   |[39m                          [31m^[39m
+2026-10-06T02:00:02.4848321Z     [90m 72|[39m     [34mexpect[39m(controlledAttempts)[33m.[39m[34mtoHaveLength[39m([34m1[39m)[33m;[39m
+2026-10-06T02:00:02.4850168Z     [90m 73|[39m     [35mawait[39m screen[33m.[39m[34mgetByText[39m([32m'Create administrator and passkey'[39m)[33m.[39m[34mclick[39m()[33m;[39m
+2026-10-06T02:00:02.4851396Z 
+2026-10-06T02:00:02.4851872Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯[22m[39m
+2026-10-06T02:00:02.4852221Z 
+2026-10-06T02:00:02.4852288Z 
+2026-10-06T02:00:02.4852806Z [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+2026-10-06T02:00:02.4854038Z [2m      Tests [22m [1m[31m3 failed[39m[22m[90m (3)[39m
+2026-10-06T02:00:02.4854751Z [2m   Start at [22m 01:59:59
+2026-10-06T02:00:02.4855892Z [2m   Duration [22m 3.27s[2m (transform 0ms, setup 237ms, import 476ms, tests 1.09s, environment 0ms)[22m
+2026-10-06T02:00:02.4856536Z 
+2026-10-06T02:00:02.4857092Z JSON report written to /home/runner/work/cms/cms/setup-native-results.json
+2026-10-06T02:00:02.4893094Z 2026-10-06T02:00:02.488Z pw:browser [pid=3285][err] [1006/020002.484469:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-06T02:00:02.4903997Z 2026-10-06T02:00:02.488Z pw:browser [pid=3285][err] [1006/020002.486677:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-06T02:00:02.5020566Z 2026-10-06T02:00:02.501Z pw:browser [pid=3285] <gracefully close start>
+2026-10-06T02:00:02.5246843Z 2026-10-06T02:00:02.524Z pw:browser [pid=3285] <process did exit: exitCode=0, signal=null>
+2026-10-06T02:00:02.5248037Z 2026-10-06T02:00:02.524Z pw:browser [pid=3285] starting temporary directories cleanup
+2026-10-06T02:00:02.5281238Z 2026-10-06T02:00:02.527Z pw:browser [pid=3285] finished temporary directories cleanup
+2026-10-06T02:00:02.5282345Z 2026-10-06T02:00:02.527Z pw:browser [pid=3285] <gracefully close end>
+2026-10-06T02:00:02.5762191Z ##[error]Process completed with exit code 1.
+2026-10-06T02:00:02.5851170Z ##[group]Run actions/upload-artifact@v4
+2026-10-06T02:00:02.5851493Z with:
+2026-10-06T02:00:02.5851724Z   name: default-seed-setup-source-results
+2026-10-06T02:00:02.5852149Z   path: setup-source-results.json
+setup-native-results.json
+test-results/
+
+2026-10-06T02:00:02.5852559Z   retention-days: 7
+2026-10-06T02:00:02.5852780Z   if-no-files-found: warn
+2026-10-06T02:00:02.5853015Z   compression-level: 6
+2026-10-06T02:00:02.5853233Z   overwrite: false
+2026-10-06T02:00:02.5853451Z   include-hidden-files: false
+2026-10-06T02:00:02.5853707Z env:
+2026-10-06T02:00:02.5853942Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-06T02:00:02.5854249Z ##[endgroup]
+2026-10-06T02:00:02.7718341Z (node:3356) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-06T02:00:02.7719471Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-06T02:00:02.7841658Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-06T02:00:02.7867725Z The least common ancestor is /home/runner/work/cms/cms. This will be the root directory of the artifact
+2026-10-06T02:00:02.7869342Z With the provided path, there will be 2 files uploaded
+2026-10-06T02:00:02.7871441Z Artifact name is valid!
+2026-10-06T02:00:02.7872365Z Root directory input is valid!
+2026-10-06T02:00:02.9694052Z Beginning upload of artifact content to blob storage
+2026-10-06T02:00:02.9904487Z (node:3356) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-06T02:00:03.0153731Z Uploaded bytes 2283
+2026-10-06T02:00:03.0311856Z Finished uploading artifact content to blob storage!
+2026-10-06T02:00:03.0313511Z SHA256 digest of uploaded artifact zip is 2f3ca851229806a5a9d2f531f4dfd26bcd2cc6efd8c91effb50d62bd257b0a3b
+2026-10-06T02:00:03.0314386Z Finalizing artifact upload
+2026-10-06T02:00:03.2234146Z Artifact default-seed-setup-source-results.zip successfully finalized. Artifact ID 11385866488
+2026-10-06T02:00:03.2236832Z Artifact default-seed-setup-source-results has been successfully uploaded! Final size is 2283 bytes. Artifact ID is 11385866488
+2026-10-06T02:00:03.2241002Z Artifact download URL: https://github.com/sveltery/cms/actions/runs/37401886662/artifacts/11385866488
+2026-10-06T02:00:03.2415810Z Post job cleanup.
+2026-10-06T02:00:03.3929238Z Pruning is unnecessary.
+2026-10-06T02:00:03.4118952Z Post job cleanup.
+2026-10-06T02:00:03.5207219Z [command]/usr/bin/git version
+2026-10-06T02:00:03.5255396Z git version 2.55.0
+2026-10-06T02:00:03.5329827Z Temporarily overriding HOME='/home/runner/work/_temp/b83410b5-67c4-4314-9332-11b475466fa7' before making global git config changes
+2026-10-06T02:00:03.5331924Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-06T02:00:03.5336679Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-06T02:00:03.5384036Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-06T02:00:03.5430208Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-06T02:00:03.5731120Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-06T02:00:03.5758905Z http.https://github.com/.extraheader
+2026-10-06T02:00:03.5773967Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-06T02:00:03.5817165Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-06T02:00:03.6166109Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-06T02:00:03.6211053Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-06T02:00:03.6656797Z Cleaning up orphan processes
+2026-10-06T02:00:03.6999276Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
