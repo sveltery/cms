@@ -211,12 +211,16 @@ export interface Storage {
  * Storage error with additional context
  */
 export class EmDashStorageError extends Error {
+	public code: string;
+	public override cause?: unknown;
 	constructor(
 		message: string,
-		public code: string,
-		public override cause?: unknown,
+		code: string,
+		cause?: unknown,
 	) {
 		super(message);
+		this.code = code;
+		this.cause = cause;
 		this.name = "EmDashStorageError";
 	}
 }

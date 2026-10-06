@@ -346,3 +346,34 @@ all prior raw histories remain exact. The Byline owner prerequisite, complete
 child-import green, fresh current-head gates/review, Root exact-head approval,
 author regular merge and post-main verification remain pending. This does not
 establish complete Node import hosting or full Media parity.
+
+## Constructor-only Node error hosting successor
+
+The proposed child [PR125](https://github.com/sveltery/cms/pull/125) targets the
+stationary Media113 `c78460e7` prerequisite and converts only the shared Byline
+validation error and Source storage error parameter properties to equivalent
+explicit fields. Public mutable code/cause, details, initialization order and
+constructor behavior remain. Parent Native24 now passes, including its unchanged
+real child Node canonical folder/media results; supplemental controls expand the
+focused Native total to34. [Paired hosting evidence](node-error-constructor-hosting.md)
+records Source321/R2mock1/Byline216, exact/negative guards and the revised truthful
+Media guard total of57 whole modules plus three constructor-only transports.
+The historical MED-NODE-CTOR01 second red remains unchanged evidence. Current
+whole gates, review, Root approval and author regular merge remain pending;
+full Media feature/hosting parity is not established.
+
+
+### RAW-EOF01: literal evidence formatting
+
+Independent review of the stationary `2ec95354` head clears product semantics
+and identifies only retained runner blank lines at EOF as a P3 range diff-check
+failure. The complete failed range-check receipt is retained in
+[the evidence directory](node-error-constructor-evidence/2ec953-full-range-diffcheck-red.log).
+Root authorizes an append-only `.gitattributes` exception for precisely
+`docs/node-error-constructor-evidence/*.log`, disabling only blank-at-EOF
+whitespace diagnostics. All 14 prior raw logs retain their exact bytes; Source,
+product, tests and every earlier public commit remain unchanged. The full
+parent-to-successor diff check now passes. This infrastructure formatting repair
+adds no product or Source causal credit. Current successor hosted checks,
+independent delta review, exact-head approval and regular author merge remain
+pending; no feature completion or landing is recorded.

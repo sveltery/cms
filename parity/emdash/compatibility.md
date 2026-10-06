@@ -2790,3 +2790,53 @@ author regular merge and post-main verification remain pending. This does not
 establish complete Node import hosting or full Media parity.
 
 [Paired feature and complete retained evidence](../../docs/general-media-backend.md).
+
+
+### NODE-ERROR-CTOR01: two equivalent erasable error constructors
+
+The proposed child [PR125](https://github.com/sveltery/cms/pull/125) targets the
+actual public Media113 `c78460e749edc1ba77215cabbd268bbdef2a2625`. Immutable EmDash
+1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` repository `types.ts` and storage
+`types.ts` remain the authority. Only Native `EmDashValidationError` and
+`EmDashStorageError` parameter properties become explicit fields assigned after
+`super(message)` and before the unchanged name assignment. Public mutable
+code/cause, optional details, undefined/cause identity, enumerable own-property
+descriptors and subclass instanceof behavior remain. The Byline transport follows
+the already-public sole-owner `5b59e398` without adopting that wider feature lane.
+All other statements/methods and Source bytes/hashes remain unchanged.
+
+Test-first `3c520a9` reaches two real Native Node exit-zero assertion failures; two
+Source constructor runtime reference controls initially pass. Missing generated
+Kit config is a separate zero-callback prerequisite stop. Fix `e3011f9` passes the
+unchanged parent Native24 including actual canonical owner folder/media writes
+and reads, plus four new constructor controls. Refactor `f559ed8` shares one finite
+strict validator; six isolated exact/negative preservation controls pass, rejecting
+wrong assignments and original error-name bodies. Native34 and focused whole
+Source Media321/R2mock1/Byline216 pass. No Source causal repair, altered-class
+body identity, Source import-stop credit or full hosting/feature parity is claimed.
+The Media guard now reports 57 whole modules plus three constructor-only transports
+rather than claiming58 whole modules after the storage error change. Complete R2,
+seven usage-read functions and two cleanup blocks remain exact and guarded.
+
+This finite framework syntax substitution has Root development authorization.
+Current normal13/aggregate, secured10/Calendar checks, independent/configured
+review, Root exact-head approval and author expected-head regular merge remain
+pending; no final acceptance or landing is recorded. [Paired feature documentation
+and retained evidence](../../docs/node-error-constructor-hosting.md) preserves the
+historical MED-NODE-CTOR01 second red and distinguishes all partial outcomes.
+
+
+### RAW-EOF01: literal evidence formatting
+
+Independent review of the stationary `2ec95354` head clears product semantics
+and identifies only retained runner blank lines at EOF as a P3 range diff-check
+failure. The complete failed range-check receipt is retained in
+[the evidence directory](../../docs/node-error-constructor-evidence/2ec953-full-range-diffcheck-red.log).
+Root authorizes an append-only `.gitattributes` exception for precisely
+`docs/node-error-constructor-evidence/*.log`, disabling only blank-at-EOF
+whitespace diagnostics. All 14 prior raw logs retain their exact bytes; Source,
+product, tests and every earlier public commit remain unchanged. The full
+parent-to-successor diff check now passes. This infrastructure formatting repair
+adds no product or Source causal credit. Current successor hosted checks,
+independent delta review, exact-head approval and regular author merge remain
+pending; no feature completion or landing is recorded.
