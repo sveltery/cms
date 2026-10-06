@@ -1,0 +1,156 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "sourceLockSha256": "385a0995c565c14ccccf822424398987df233967f4a1d8e3a3a18c01703395ea",
+  "scope": "Finite genuine Source Arctic import dependency acquisition in own isolated /tmp only; no Main/package/lock/shared node_modules/storage/protected probe changes",
+  "missingImporterSelections": [
+    {
+      "importer": "packages/core/src/api/handlers/device-flow.ts",
+      "specifier": "arctic",
+      "packageManifest": "packages/core/package.json",
+      "packageManifestSha256": "a63a34bb0300bd53384e69de05a09e8449a22feda41eced0161c1dd9f3c1fe20",
+      "sourceDeclaredSpecifier": "^3.7.0",
+      "selected": {
+        "specifier": "^3.7.0",
+        "version": "3.7.0"
+      },
+      "snapshotKey": "arctic@3.7.0"
+    },
+    {
+      "importer": "packages/core/src/api/handlers/oauth-authorization.ts",
+      "specifier": "arctic",
+      "packageManifest": "packages/core/package.json",
+      "packageManifestSha256": "a63a34bb0300bd53384e69de05a09e8449a22feda41eced0161c1dd9f3c1fe20",
+      "sourceDeclaredSpecifier": "^3.7.0",
+      "selected": {
+        "specifier": "^3.7.0",
+        "version": "3.7.0"
+      },
+      "snapshotKey": "arctic@3.7.0"
+    },
+    {
+      "importer": "packages/core/tests/integration/auth/authorization-code.test.ts",
+      "specifier": "arctic",
+      "packageManifest": "packages/core/package.json",
+      "packageManifestSha256": "a63a34bb0300bd53384e69de05a09e8449a22feda41eced0161c1dd9f3c1fe20",
+      "sourceDeclaredSpecifier": "^3.7.0",
+      "selected": {
+        "specifier": "^3.7.0",
+        "version": "3.7.0"
+      },
+      "snapshotKey": "arctic@3.7.0"
+    },
+    {
+      "importer": "packages/core/tests/integration/auth/oauth-clients.test.ts",
+      "specifier": "arctic",
+      "packageManifest": "packages/core/package.json",
+      "packageManifestSha256": "a63a34bb0300bd53384e69de05a09e8449a22feda41eced0161c1dd9f3c1fe20",
+      "sourceDeclaredSpecifier": "^3.7.0",
+      "selected": {
+        "specifier": "^3.7.0",
+        "version": "3.7.0"
+      },
+      "snapshotKey": "arctic@3.7.0"
+    }
+  ],
+  "completeSelectedExternalLockClosure": [
+    {
+      "snapshotKey": "arctic@3.7.0",
+      "packageKey": "arctic@3.7.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-ZMQ+f6VazDgUJOd+qNV+H7GohNSYal1mVjm5kEaZfE2Ifb7Ss70w+Q7xpJC87qZDkMZIXYf0pTIYZA0OPasSbw=="
+        },
+        "deprecated": "Package no longer supported. Contact Support at https://www.npmjs.com/support for more info."
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@oslojs/crypto": "1.0.1",
+          "@oslojs/encoding": "1.1.0",
+          "@oslojs/jwt": "0.2.0"
+        }
+      }
+    },
+    {
+      "snapshotKey": "@oslojs/crypto@1.0.1",
+      "packageKey": "@oslojs/crypto@1.0.1",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-7n08G8nWjAr/Yu3vu9zzrd0L9XnrJfpMioQcvCMxBIiF5orECHe5/3J0jmXRVvgfqMm/+4oxlQ+Sq39COYLcNQ=="
+        },
+        "deprecated": "Package no longer supported. Contact Support at https://www.npmjs.com/support for more info."
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@oslojs/asn1": "1.0.0",
+          "@oslojs/binary": "1.0.0"
+        }
+      }
+    },
+    {
+      "snapshotKey": "@oslojs/asn1@1.0.0",
+      "packageKey": "@oslojs/asn1@1.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-zw/wn0sj0j0QKbIXfIlnEcTviaCzYOY3V5rAyjR6YtOByFtJiT574+8p9Wlach0lZH9fddD4yb9laEAIl4vXQA=="
+        },
+        "deprecated": "Package no longer supported. Contact Support at https://www.npmjs.com/support for more info."
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@oslojs/binary": "1.0.0"
+        }
+      }
+    },
+    {
+      "snapshotKey": "@oslojs/binary@1.0.0",
+      "packageKey": "@oslojs/binary@1.0.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-9RCU6OwXU6p67H4NODbuxv2S3eenuQ4/WFLrsq+K/k682xrznH5EVWA7N4VFk9VYVcbFtKqur5YQQZc0ySGhsQ=="
+        },
+        "deprecated": "Package no longer supported. Contact Support at https://www.npmjs.com/support for more info."
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "@oslojs/encoding@1.1.0",
+      "packageKey": "@oslojs/encoding@1.1.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ=="
+        }
+      },
+      "sourceSnapshot": {}
+    },
+    {
+      "snapshotKey": "@oslojs/jwt@0.2.0",
+      "packageKey": "@oslojs/jwt@0.2.0",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-bLE7BtHrURedCn4Mco3ma9L4Y1GR2SMBuIvjWr7rmQ4/W/4Jy70TIAgZ+0nIlk0xHz1vNP8x8DCns45Sb2XRbg=="
+        },
+        "deprecated": "Package no longer supported. Contact Support at https://www.npmjs.com/support for more info."
+      },
+      "sourceSnapshot": {
+        "dependencies": {
+          "@oslojs/encoding": "0.4.1"
+        }
+      }
+    },
+    {
+      "snapshotKey": "@oslojs/encoding@0.4.1",
+      "packageKey": "@oslojs/encoding@0.4.1",
+      "sourcePackage": {
+        "resolution": {
+          "integrity": "sha512-hkjo6MuIK/kQR5CrGNdAPZhS01ZCXuWDRJ187zh6qqF2+yMHZpD9fAYpX8q2bOO6Ryhl3XpCT6kUX76N8hhm4Q=="
+        }
+      },
+      "sourceSnapshot": {}
+    }
+  ],
+  "executeInstallScripts": false,
+  "sourceReferenceCredit": 0,
+  "nativeProductCredit": 0,
+  "protectedSecurityCredit": 0,
+  "acquisitionState": "PROPOSED ONLY"
+}

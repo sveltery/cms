@@ -4,12 +4,16 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../../..');
-const record = JSON.parse(readFileSync(resolve(root, 'docs/full-auth-qualified-reference-package-bindings-v2.json'), 'utf8'));
+const record = JSON.parse(readFileSync(resolve(root, 'docs/full-auth-qualified-reference-package-bindings-v3.json'), 'utf8'));
 const sha = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
 assert.equal(sha(readFileSync(record.qualifiedPackageMapPath)), record.qualifiedPackageMapSha256, 'whole Root-qualified isolated package map');
 const packages = JSON.parse(readFileSync(record.qualifiedPackageMapPath, 'utf8'));
 assert.equal(sha(readFileSync(record.additionalQualifiedPackageMapPath)), record.additionalQualifiedPackageMapSha256, 'whole additional Root-qualified isolated package map');
 const additionalPackages = JSON.parse(readFileSync(record.additionalQualifiedPackageMapPath, 'utf8'));
+assert.equal(sha(readFileSync(record.arcticQualifiedPackageMapPath)), record.arcticQualifiedPackageMapSha256, 'whole Root-qualified Arctic package map');
+const arcticPackages = JSON.parse(readFileSync(record.arcticQualifiedPackageMapPath, 'utf8'));
+assert.equal(arcticPackages.wholeReceiptSha256, record.arcticQualifiedReceiptSha256);
+assert.equal(arcticPackages.approvedProposalSha256, record.arcticQualifiedProposalSha256);
 assert.equal(additionalPackages.wholeReceiptSha256, record.additionalQualifiedReceiptSha256);
 assert.equal(additionalPackages.approvedProposalSha256, record.additionalQualifiedProposalSha256);
 assert.equal(packages.wholeReceiptSha256, record.qualifiedPluginReceiptSha256);
@@ -48,7 +52,7 @@ export function qualifiedReferencePackages() {
     if (!relative) return;
     const binding = bindings.get(`${relative}:${specifier}`);
     if (!binding) return;
-    const registered = [...packages.packages, ...additionalPackages.packages].find((entry: any) => entry.packageKey === binding.packageKey);
+    const registered = [...packages.packages, ...additionalPackages.packages, ...arcticPackages.packages].find((entry: any) => entry.packageKey === binding.packageKey);
     assert.ok(registered?.sourceExactSRIMatch); assert.equal(registered.actualPackageDirectory, binding.actualPackageDirectory);
     const pkg = JSON.parse(readFileSync(resolve(binding.actualPackageDirectory, 'package.json'), 'utf8'));
     assert.equal(`${pkg.name}@${pkg.version}`, binding.packageKey, 'exact Source importer-selected package version');
