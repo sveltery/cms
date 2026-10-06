@@ -132,3 +132,24 @@ six whitespace controls remain immutable. See the complete repair ledger at
 repair was needed. Current successor hosted gates, fresh review closure and
 Root approval remain required before the regular author merge; neither failed
 historical run is retried or counted as a pass.
+
+## Approved media Main development union
+
+The complete approved public Media Main `c4c885e0` is integrated through an
+ordinary author merge with ordered parents comprising the qualified Cron
+`ae51583f` head and that accepted Main. Its whole 17,599-byte attribute file
+and 663,868-byte compatibility register precede the entire unchanged Cron
+tails. The full incoming package, including all three Media Source commands,
+is retained with only the existing Cron command suffix and two owned scripts;
+reversing those finite edits reconstructs every incoming package byte.
+`docs/cron-task-storage-main-c4-union.json` retains complete parent identities,
+lengths, hashes and all three conflict resolution rules.
+
+All earlier Cron Source/product/test bodies and raw histories remain, alongside
+every unchanged accepted Main owner. Providers 1–17 and Cron provider18 retain
+their exact implementations. The whole Source provenance guard and owned range
+whitespace check pass; no local checker, build or D1 run is repeated during
+another owner's allocation. The earlier ae515 all-six hosted success applies
+to that prior tree. Current successor normal and secured gates, finite union
+review and Root exact approval are required before the regular author merge
+and downstream provider18 handoff.
