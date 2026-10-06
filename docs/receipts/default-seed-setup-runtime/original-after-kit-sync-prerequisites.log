@@ -1,0 +1,66 @@
+
+ RUN  v4.1.10 /workspace/cms-default-seed-setup-runtime
+
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts (0 test)
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts (0 test)
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts (0 test)
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts ]
+Error: Cannot find module '#api/error.js' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/src/astro/routes/api/setup/index.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/src/astro/routes/api/setup/index.ts:11:1
+      9| export const prerender = false;
+     10|
+     11| import { apiError, apiSuccess, handleError } from "#api/error.js";
+       | ^
+     12| import { isParseError, parseBody } from "#api/parse.js";
+     13| import { getConfiguredOrigin } from "#api/public-url.js";
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-seed-budget.test.ts:45:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts ]
+Error: Cannot find module '#api/error.js' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/src/astro/routes/api/setup/index.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/src/astro/routes/api/setup/index.ts:11:1
+      9| export const prerender = false;
+     10|
+     11| import { apiError, apiSuccess, handleError } from "#api/error.js";
+       | ^
+     12| import { isParseError, parseBody } from "#api/parse.js";
+     13| import { getConfiguredOrigin } from "#api/public-url.js";
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/astro/setup-site-url-lock.test.ts:29:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts:6:1
+      4| import { afterEach, describe, expect, it, vi } from "vitest";
+      5|
+      6| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+      7|
+      8| vi.mock(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts [ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-default-seed-setup-runtime/parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts
+ ❯ parity/emdash/default-seed-setup-runtime/source/packages/core/tests/integration/runtime/invalid-auto-seed.test.ts:6:1
+      4| import { afterEach, describe, expect, it, vi } from "vitest";
+      5|
+      6| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+      7|
+      8| vi.mock("virtual:emdash/seed", () => ({ seed: { version: "unsupported"…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  00:11:41
+   Duration  801ms (transform 85ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
