@@ -190,3 +190,52 @@ reference9, whole-checker12 and CI orchestration26 pass. These focused results
 do not replace the final-head full phase CI, original secured browser workload,
 Calendar browser jobs, configured review and independent finite-delta review.
 Root's exact-head approval and the author's regular merge remain pending.
+
+## Approved public SEO Main integration
+
+The full independent review of `fafe2816` is CLEAR and closes both findings above;
+its exact whole report is retained. Root subsequently qualified that head's
+original complete normal phase jobs and sole current secured-browser retry as
+successful. These are historical `fafe2816`/Calendar Main results.
+
+Main then advanced through the approved regular SEO PR #109 merge
+`cc1fc9044ae54ab44efba993cd71849fe2f990b0`, with ordered parents `99c659f6` and
+`c0aa3206`. This continuation merges only that actual public Main. Its complete
+Source command chain, including both SEO storage leaves, precedes the exact
+existing Core/admin/infrastructure leaves. All public Main dependencies, lock,
+CI/bootstrap, compatibility text and attributes are preserved. Both user fixes,
+immutable whole Source policies, Native48 and infrastructure12 remain unchanged;
+this integration introduces no product work, test edit or new authentication
+probe. The whole focused suites and provenance guards run against this union.
+
+The successor requires its own complete hosted services/Source/hosting, secured
+browser and Calendar jobs, a current configured review request, independent
+integration review and exact Root approval before the author's regular merge.
+The earlier CLEAR and historical full-gate success do not qualify the new head.
+
+## Approved public browser fixture integration
+
+Root's finite semantic review of `2d582a1a` is CLEAR and its exact report is
+retained. Root subsequently qualified all six latest CI jobs in run37389127062,
+including its sole secured-browser retry, as successful. These remain historical
+`2d582a1a`/SEO Main results, with both original findings closed.
+
+Actual public Main then advanced through the approved author regular PR #124
+merge `41ee48fe781db307174079837387f4565814456c`, with ordered parents `cc1fc904`
+and `d5096920`. The fixture repair isolates generated root-page build staging
+and changes no product code, package, dependencies, CI/bootstrap or locks.
+This continuation adopts only that approved public Main with an ordinary merge.
+Complete Main attributes/compatibility prefixes and the full Source command
+chain followed by exactly the three existing user leaves are preserved.
+
+All prior User99 product, Source/test bodies, inventories, whole-family configs
+and guards remain byte-exact. Both complete provenance guards and all twelve
+whole-checker controls pass at the union. The already qualified unchanged
+Core65/Native48/parser2/reference9 remain historical; no new execution claim is
+made for them. No local heavy check, build, browser, or new protected
+authentication probe runs. This integration earns no causal parity credit.
+
+The successor's complete current normal phases, secured browser and Calendar
+jobs, configured review association, finite independent review, exact Root
+approval and author expected-head regular merge remain required. No historical
+retry is dispatched and no historical gate result qualifies this new head.

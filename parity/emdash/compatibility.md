@@ -2598,6 +2598,224 @@ Ordinary Main99 union0326fab4 preserves actual public dependencies, Source prefi
 ## Native isolated browser fixture graph repair
 
 BF-GRAPH01: [count/restore staging](../../docs/browser-fixture-graph.md) limits only two Native test-host builds to their actual generated root routes. The exact EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, every Source/Main browser callback, generated fixture modules/auth/data/clocks, canonical remotes, complete standard previews, actual Kit/adapters and security policy remain unchanged. Three actual compiled-manifest value reds preceded the fix; all seven Native controls pass after fix/refactor. Fresh independent directories and databases remain, with no cache. This is fixture hosting/performance evidence, with zero Source/product credit and no product behavioral difference. Scope is manager-authorized; final-head normal/secured browser gates, independent/configured review, exact-head approval and author regular merge remain pending. Required-scalar and all other fixture graphs remain complete/unchanged.
+
+
+## Core user repository and pure role scope policy (proposed)
+
+[PR #99](https://github.com/sveltery/cms/pull/99) proposes the foundation described
+in [the owning record](../../docs/user-repository-roles.md) and
+[complete inventory](../../docs/user-repository-roles-ports.json). Authority is
+EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; all 23 whole Source
+files remain byte-exact. Only the complete Source RBAC family is registered:
+30 declarations, 35 static expectation expressions, 33 callbacks. No dedicated
+Source Core UserRepository test exists at the pin. Nine whole broader consumer
+families remain unexecuted; Native SQL cases provide zero copied Source credit.
+
+USR-01 proposes replacing Source Core's single `users` Kysely table API with the
+real Native `CmsDatabase` and a join of existing `_cms_auth_users` and
+`_cms_auth_profiles`. ID, role and disabled remain stored in the existing identity;
+all actual profile fields remain stored in the existing frozen profile table.
+Creation and multi-table updates use the actual atomic batch adapter, not a view,
+manual transaction fallback or test result shim. Genuine count/filter/cursor
+queries and real affected-row deletion preserve Core behavior for complete
+profiles. Source SQLite `(datetime('now'))` defaults produce UTC second timestamps;
+Native Core creation uses the same expression and Core update leaves updated_at
+unchanged. Existing Auth adapter ISO/Date/update behavior and stored bytes remain
+unchanged. No migration, raw users/UPSERT mapping or fabricated profile is added.
+This framework/storage substitution is proposed for finite development; final
+project-manager acceptance, final validation/review and author merge are pending.
+
+USR-02 proposes preserving historical Native identities without a profile and
+omitting them from the complete Core repository. Lookup/update return null,
+delete returns false and Core count counts joined profiles. The unchanged Auth
+adapter continues its historical identity lookup/count behavior. Source has no
+partial profile row because those fields occupy its single table. This difference
+protects actual existing identity bytes without inventing email/profile values.
+Original Node/raw-D1 preservation assertions are present, with current reached
+assertion failures followed by later unreached expectations; final acceptance
+is pending. Explicit historical profile enrollment is unfinished.
+
+USR-03 proposes a module substitution for Source's pure role scope policy: the
+entire Source scope mapping and `scopesForRole`/`clampScopes` tail remains exact
+in the existing Native permission module; three pure constants/type declarations
+come from Source tokens.ts in a separate Native module. Existing Native permission
+guards and ownership rules are unchanged. This does not implement API token
+issuance, signing, sessions or endpoints. Final exact-head acceptance is pending.
+
+The test-first Native `741b29cd04645b871af3a29c6686c91f6da74bf1` and public
+tree-equivalent `b4ec05ffddf43a8c91e8fab6ee1e501ccef2437f` precede runtime changes.
+[The full original baseline](../../docs/evidence/user-repository-roles/testfirst-whole65.log)
+records 65 callbacks: 29 pass and 36 fail. Native 31 reached assertion reds comprise
+26 actual SQL availability requirements and five pure scope availability
+requirements; later field/value expectations remain unreached. Source 28 cases
+initially pass and five stop at missing-function errors before assertions; the
+Native role-resolution control initially passes. Fixture/infra failures are zero.
+Causal reached Source assertion-red credit and upstream bug credit are both zero.
+Product green/refactor receipts remain pending, not inferred from a byte guard.
+
+The corrected seed inventory traverses 113 modules including every literal
+dynamic import, compared with 103 eager modules. It finds no users query/raw users
+SQL/UserRepository chain; Source apply itself has zero users queries. This graph
+evidence does not establish product integration or qualify a raw users facade.
+The shared package change appends the whole new 65-case guard/family after the
+entire actual public Main14 Source chain, including its canonical storage guard.
+Versions, dependency locks, media patch/notices, frozen providers, existing normal
+thirteen-stage and secured ten-launch gates/deadlines remain unchanged. Those
+gates and final independent/configured review must qualify the eventual head.
+Full admin APIs/DTO/UI, broader byline/plugin/content consumers, legacy enrollment,
+invites/recovery/OAuth/API tokens, complete logical facade/raw UPSERT routing and
+deployed-hosting parity remain unfinished.
+
+
+## Core user foundation development receipts — 2026-10-04
+
+Root specifically accepted USR-01/02/03 FOR DEVELOPMENT in the
+[immutable finite qualification](../../docs/evidence/user-repository-roles/pm-development-qualification.json),
+1,513 bytes/SHA256 `3750d5109d57103e3828aade3925f0fd05197f76635c4677a9818219955d489b`.
+It qualifies the exact R2 thirteen actions, all 34 protected files, all 23 pinned
+Source bodies, unchanged whole 65 callbacks and complete existing package/register
+prefixes. The independent review's sole USRREV-01 static guard schema finding was
+closed before application: numeric 113 module count and the lengths of the two
+complete empty users-query arrays. R1 and its original independent review remain
+preserved; this infrastructure correction earns zero product parity credit.
+
+Regular Native fix `a667ee88c43f1b1aae01d316b64d2b145312d03d`, tree
+`a1b89843f21f6ec9481c9a9d04712dcebf822dd5`, followed the immutable test-first
+commit and actual public Main14 ordinary union. The complete guard and unchanged
+65-case family passed once: all 33 Source pure-policy and 32 Native callbacks.
+[The full raw fix receipt](../../docs/evidence/user-repository-roles/fix-whole65.log)
+is 610 bytes/SHA256 `63bfa37352052a83be72d86b723281f4574e56edfad696d68b9fda2d3adb90cc`.
+Regular refactor `ba1fd60e3e7769011eddb1a48912c06c9a3367ac`, tree
+`aad9b40c520c6b4fd2ad50a0d8d4029a9b378c08`, removes duplicated join construction
+by sharing the same real complete identity/profile join for reads and counts.
+All predicates, selected values, cursor order and atomic writes stay unchanged.
+The unchanged whole 65 family passed once again;
+[the full raw refactor receipt](../../docs/evidence/user-repository-roles/refactor-whole65.log)
+is 610 bytes/SHA256 `45e027c617a7c0f6c11dedec35b9b43822778d00b6095bdfa198d86082ba2c40`.
+The [paired owning record](../../docs/user-repository-roles.md) and
+[structured full receipts](../../docs/evidence/user-repository-roles/fix-refactor-receipts.json)
+retain exact evaluated heads, commands and elapsed times.
+
+The Native baseline had 31 reached assertion failures: 26 real SQL storage
+availability assertions and five pure-policy availability assertions. Its later
+field/value/rollback/cursor/count/delete/preservation expectations are now reached
+and green. Source had five missing-function errors BEFORE assertions and 28
+initial greens; all 33 Source pure-policy callbacks now pass, with unchanged
+35 static expectation expressions. Reached causal Source assertion-red credit
+is zero. No Source bug credit, changed Source/Native assertion, new protected
+credential/session/HTTP/signature/principal/race probe or frozen migration change
+is introduced. Nine whole broader Source user consumer families remain
+unexecuted; their full product behavior remains unfinished.
+
+OWN draft PR #99 still has the earlier public tree-equivalent test-first/Main14
+union head `1aa73216cbab78e69b7299720975de7aa94cccee`; these fix/refactor receipts
+evaluate local Native commits and are not yet a public combined-head pass. Final
+shared push waits ordinary adoption of actual public fixture96+97 Main. The full
+original thirteen normal stages and secured nine browser launches, independent
+and configured final review, exact final decisions, author expected-head merge
+and actual post-Main verification remain pending. Full admin/DTO/UI, historical
+profile enrollment, broader consumers, invites/recovery/OAuth/API token issuance,
+logical/raw users facade and deployed-hosting parity remain unfinished.
+
+
+## Stored user administration backend — proposed continuation of PR #99
+
+The [owning record](../../docs/user-administration-backend.md) and
+[whole Source consumer inventory](../../docs/user-admin-inputs-source-inventory.json)
+record immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+Source authorities, actual Native test-first failures/repairs/refactor and
+remaining prerequisites. Whole Core65, Native stored-administration42, original
+parser2 and original Source-only reference qualifiers9 pass in finite installed
+dependency runs. No full Users API/UI/OAuth, normal/browser, or deployed parity
+claim follows from those results. Specific final-head acceptance is pending.
+
+| Record | Source and local behavior | Constraint, evidence and decision status |
+| --- | --- | --- |
+| USR-04: administration storage/HTTP adapter | Source public `astro/routes/api/admin/users` uses one `users` table and Astro locals; Native routes use genuine `_cms_auth_users`/`_cms_auth_profiles`, RequestEvent and the existing principal. List/search/exact-role/creation cursor, stored profile fields, original update DTO, validation envelope and missing-ID/fallback errors preserve Source. Detail safely projects existing credential metadata, excluding stored keys/custom JSON. | Existing canonical storage and SvelteKit transport. Node/raw-D1 Native42 and Source-only9 qualification receipts are linked above; no new provider or credential/session algorithm. Proposed PR #99; final explicit acceptance not recorded. |
+| USR-05: retained Native administrator/write guards | Source route authorization checks `locals.user.role >= Role.ADMIN`; Native rereads the real actor's current stored role/disabled flag before decoding. Native also retains its existing Origin, trusted-runtime and operator mutation opt-in gates. Original self-role, duplicate-email and last-admin restrictions remain; Native atomic split writes use existing guard/batch storage instead of Source's one-row transaction helper. | Preserve already established current-role/write safeguards and actual atomic canonical storage. Original Native assertions exercise these finite stored-role/RequestEvent and rollback boundaries; no new signed-session, replay or concurrent-auth proof. Proposed continuation, development boundary authorized by Root; final acceptance pending. |
+| USR-06: historical profileless administration | Source has a complete profile in each `users` row. Native list/detail omit historical identities lacking `_cms_auth_profiles`, list reports actual `legacyCount`, and auth-level admin counts still include actual identities under existing policy. Native initialization messages refer to its database/runtime rather than EmDash initialization. | Preserve old identity bytes and auth safeguards instead of inventing profiles. Real Node/raw-D1 legacy preservation and actual count assertions pass. Proposed continuation of USR-02; explicit enrollment remains unfinished; final acceptance pending. |
+
+OAuth `oauthProviders`/`oauthAccounts` fields and their storage are unimplemented,
+not synthesized as empty successful parity values. Full UserDetail/Invite UI,
+recovery/invitations/PAT/allowed-domain flows, Transfer/OpenAPI consumers and
+legacy enrollment remain separately owned prerequisites. Their complete original
+Source files are retained and unexecuted, with zero selection-only full-family
+credit. The previous foundation's broader consumer inventory remains historical;
+Byline PR #118 separately owns its whole content54/filter14 and real user bridge.
+The two original shared-parser tests run unchanged against an existing public
+Native parser and initially passed; Source causal assertion-red credit remains0.
+
+
+## USER99-DISABLED-ATOMIC-01 fidelity repair
+
+Source `auth/src/adapters/kysely.ts:155–168` and the complete public
+`astro/routes/api/admin/users/[id]/disable.ts` and `enable.ts` at immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` update the disabled flag and timestamp
+as one Source row. The previous Native split committed identity before profile,
+so profile operator rejection left a partial toggle. The
+[owning repair record](../../docs/user-administration-backend.md) preserves the
+exact independent witness, two Source controls, two Native value failures and
+new whole46 test-first42 pass/4 genuine SQLite/raw-D1 rollback failures.
+
+Both Native physical writes now use the existing canonical atomic batch. The
+existing enabled-admin count threshold, SQL conditional predicate, affected-row
+check, self/last-admin messages, stored role/principal/origin/write safeguards and
+profileless policy remain. For stored-admin disable, the existing role/profile
+canonical guard/batch pattern prevents a rejected last-admin predicate from
+committing a timestamp. No provider, table, credential/session algorithm or
+concurrency probe is added. Complete unchanged whole46 repair/refactor greens
+and two later initially green admin controls yield current whole48.
+
+This restores Source rollback behavior and is not an upstream bug or intentional
+policy change. Original Source bodies and old Native42 assertions remain exact;
+Source causal/copied-case credit is0. Proposed PR #99 continuation; reviewer
+finite-delta closure, current full normal13/secured10, explicit Root acceptance
+and author merge remain pending. Future whole Source leaves may append after the
+adjacent exactly-once user gates; that provenance integration earns0 behavioral
+or Source credit.
+
+## USER99-SOURCE-GATE-EXACT-01 infrastructure repair
+
+The successor independent review closes the preceding atomic rollback issue and
+identifies substring matching in the user provenance guard. The full unchanged
+checker incorrectly accepted a substituted `test:user-admin-other` and rejected
+a legitimate appended `test:user-admin-ui`. Controlled package copies preserve
+all whole Source/Native files and checker bytes. Eleven test-first controls have
+eight passes and three actual command-acceptance failures, including the same
+future-prefix defect for a repository leaf. Complete trimmed `&&` tokens now
+require the actual Core/admin commands exactly once and adjacent in that order.
+All eleven pass; the separate refactor plus an initially green whitespace
+control passes twelve. The complete fixture gate appends after the entire actual
+public Calendar Main chain and adjacent owned gates. No workload is dropped or
+reordered. Product and Source causal credit remains zero; full final-head CI,
+browser jobs, reviewer qualification, exact Root approval and merge are pending.
+
+## User99 approved public SEO Main union
+
+The complete independent `fafe2816` review is CLEAR and closes both stored-user
+findings. Root qualified that historical head's original full normal phases and
+current secured-browser retry. The User99 integration now includes actual public
+Main `cc1fc9044ae54ab44efba993cd71849fe2f990b0`, the approved regular SEO109 merge,
+while preserving its whole Source chain (including SEO storage Source/Native)
+followed by the exact existing Core/admin/infrastructure leaves. Complete public
+Main text, attributes, dependencies, lock and CI remain preserved. Original
+whole user Source/Native policies, all old test bodies and both fixes are unchanged.
+No new parity/causal credit is claimed. Full successor hosted gates and review,
+exact Root approval and the author's regular merge remain required.
+
+## User99 approved public fixture repair union
+
+Historical `2d582a1a` has Root's finite CLEAR review and all six latest hosted
+jobs passing, including its sole secured-browser retry. Both original User99
+findings remain closed. The successor ordinary-merges only actual public Main
+`41ee48fe781db307174079837387f4565814456c`, approved author regular fixture PR124.
+Complete public Main attributes/compatibility, package/dependencies/lock/CI and
+Source prefix plus exactly the three existing user leaves remain preserved.
+Original User99 product, Source/test bodies, guards, inventories and earlier raw
+evidence remain unchanged. Both whole guards and twelve complete-checker controls
+pass; no heavy local check/build/browser or new protected probe runs. Prior full
+gate results are historical, with no successor or causal credit. Current full
+normal/secured/Calendar gates, review and exact Root approval precede author merge.
 ### Byline content lifecycle: canonical batch composition and framework transport
 
 BYL-LF01 composes the existing Byline replacement/copy/deletion plans inside the sole Native content/DraftRepository atomic owner. Creation, metadata edits, revision staging, translation and independent duplication preserve ordered roles, translation-group primary pointers, omitted selections, authoritative clears and locale-strict hydration. Both complete Source hydration function bodies remain verbatim. The existing schema/CAS/ownership/redirect guards and deferred pruning remain; no migration, provider or secondary writer is added. Permanent deletion requires exactly Source `content:delete_permanent` through the existing trusted administrator projection and cleans only a real trashed row. Public SEO/Relations cleanup owners and Seed integration remain pending.
@@ -3395,3 +3613,5 @@ DSR actual isolated account SSR build stops after927 transformed modules because
 DSR ONE bounded3072 checker completes naturally8errors/0warnings after sync0:3own erased-type diagnostics and5whole SourceAPIClient missing type dependencies. Literal raw retained; oom_kill4 unchanged, no fulltyped/build/gates claim. Complete pinned Source type closure and finite own erased types remain to qualify, with no fake declaration/success, sharedconfig/flag/Sourcebody change.
 
 DSR three own erased-type repairs preserve all runtime branches and SQL/assertions: actual account step:string matches its existing producer while wizard still startsSite, and the same real Native fixture owner/query receives exact existing Source MediaUsageActivationTable typing only. No fullchecker rerun/green claim; the five actualSource type dependencies remain to qualify. Paired feature record retains static-only erasure boundary.
+
+DSR ordinary accepted Main82 union preserves its whole current attrs/compat vectors and every genuine Seed/owned history appendix, plus exact accepted Source command prefix and prior dependency extensions. User99 enters only through accepted Main. Static guards pass0new product/execution credit; actual post-UI hosted/full gates remain pending after the merge-conflict prerequisite. Paired feature record/union receipt retain complete vector hashes.

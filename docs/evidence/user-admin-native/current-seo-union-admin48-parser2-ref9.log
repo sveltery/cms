@@ -1,0 +1,29 @@
+$ node scripts/check-user-admin-source.mjs && vitest run --config vitest.user-admin-inputs.config.ts && vitest run --config vitest.user-admin-reference.config.ts && vitest run --config vitest.user-admin-native.config.ts
+User administration provenance: 33 whole immutable Source authorities, complete original parser2/7 expectations, unchanged Native42 plus six stored rollback/ADMIN controls and complete nine-case original reference qualifier; exact TypeScript runtime emission, Native fixture host only. Zero additional Native copied-Source/Source causal/whole Runner credit.
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:31:27
+   Duration  451ms (transform 104ms, setup 0ms, import 203ms, tests 35ms, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  23:31:28
+   Duration  615ms (transform 165ms, setup 0ms, import 374ms, tests 96ms, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+
+ Test Files  3 passed (3)
+      Tests  48 passed (48)
+   Start at  23:31:29
+   Duration  8.64s (transform 577ms, setup 0ms, import 1.79s, tests 6.40s, environment 0ms)
+
