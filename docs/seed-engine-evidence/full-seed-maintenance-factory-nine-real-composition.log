@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/maintenance-phase-factory-native.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/maintenance-phase-factory-native.test.ts [ tests/source-seed-backend/maintenance-phase-factory-native.test.ts ]
+Error: JSONError { path: "/workspace/cms-full-seed-engine/package.json", message: "File is empty", line: 0, column: 0 }
+  Plugin: builtin:vite-resolve
+ ❯ EnvironmentPluginContainer.resolveId ../cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8461:19
+ ❯ TransformPluginContext.resolve ../cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8696:13
+ ❯ normalizeUrl ../cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26415:22
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26493:30
+ ❯ TransformPluginContext.transform ../cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26459:4
+ ❯ EnvironmentPluginContainer.transform ../cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8545:14
+ ❯ loadAndTransform ../cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:19988:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:52:36
+   Duration  1.19s (transform 563ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

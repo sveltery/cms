@@ -589,6 +589,16 @@ function nativeRefreshReadView(db:Kysely<any>):Kysely<Database>{
   views.set(read,context);
   return read as Kysely<Database>;
 }
+/** Only the qualified named cleanup class receives the original owner and a
+ * private registered read/compiler view. Its canonical fixed batch transforms
+ * actual receipts itself once; do not pass the hosted result-transform owner. */
+export async function seedNativeMediaUsageCollectionDeletionPhases(db:Kysely<Database>){
+  const context=views.get(db);
+  if(!context)throw new Error('Seed Native deletion phases require their actual registered query handle');
+  const read=nativeRefreshReadView(db);
+  const actual=await import('../media-usage/collection-deletion-phases.ts');
+  return new actual.NativeMediaUsageCollectionDeletionPhases(context.owner,read as unknown as ConstructorParameters<typeof actual.NativeMediaUsageCollectionDeletionPhases>[1]);
+}
 type RefreshModule=typeof import('./upstream/media/usage/content-refresh-d1.ts');
 type DomainArguments<F extends (...args:any[])=>any>=Parameters<F> extends [unknown,...infer A]?A:never;
 export async function seedNativeRefreshContentMediaUsage(db:Kysely<Database>,...args:DomainArguments<RefreshModule['refreshContentMediaUsage']>){const read=nativeRefreshReadView(db),actual=await import('./upstream/media/usage/content-refresh-d1.ts');return actual.refreshContentMediaUsage(read,...args);}
