@@ -1,2 +1,2 @@
 import {defineConfig} from 'vitest/config';
-export default defineConfig({test:{environment:'node',fileParallelism:false,include:['tests/entry-locks-native/controller.test.ts']}});
+export default defineConfig({plugins:[{name:'native-entry-lock-controlled-base',resolveId(id){if(id==='$app/paths')return'\0entry-lock-controller-base';},load(id){if(id==='\0entry-lock-controller-base')return"export const base='';";}}],test:{environment:'node',fileParallelism:false,include:['tests/entry-locks-native/controller.test.ts','tests/entry-locks-native/editor-refusal.test.ts']}});
