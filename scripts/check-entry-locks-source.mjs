@@ -64,3 +64,17 @@ assert.equal(errorBody.split(envelope.after).length,2,'sole App.Error type-only 
 const errorPrior=Buffer.from(errorBody.replace(envelope.after,envelope.before));
 assert.equal(errorPrior.length,envelope.oldBytes);assert.equal(hash(errorPrior),envelope.oldSha256);
 assert.deepEqual(errorPrior,readFileSync(new URL(envelope.archive,root)),'whole old App.Error declaration');
+
+const writer=JSON.parse(readFileSync(new URL('parity/emdash/entry-locks/writer-transport.json',root),'utf8'));
+for(const leaf of writer.sharedDrafts){
+ let value=readFileSync(new URL(leaf.path,root),'utf8');
+ for(const span of leaf.finiteSpans.toReversed()){
+  assert.equal(value.split(span.native).length,1+(span.occurrences??1),leaf.path+' exact writer span');
+  value=value.replaceAll(span.native,span.original);
+ }
+ const bytes=Buffer.from(value);
+ assert.equal(bytes.length,leaf.oldBytes,leaf.path+' complete old writer bytes');
+ assert.equal(hash(bytes),leaf.oldSha256,leaf.path+' complete old writer SHA');
+ assert.deepEqual(bytes,readFileSync(new URL(leaf.archive,root)),leaf.path+' whole old writer archive');
+}
+console.log(JSON.stringify({wholeWriterSharedReversals:writer.sharedDrafts.length,productCallbacks:0}));

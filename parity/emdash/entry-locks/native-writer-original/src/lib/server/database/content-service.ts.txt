@@ -1,5 +1,4 @@
 import {sql,type CompiledQuery} from 'kysely';
-import {assertEntryLockWrite} from '../entry-locks/write.ts';
 import {hydrateContentSeo,hydrateContentSeoMany} from '../seo/content-read.ts';
 import {ulid} from 'ulidx';
 import {deserializeValue} from './field-value.ts';
@@ -84,15 +83,10 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    ${locale===undefined?sql``:sql`AND locale=${locale}`}`.execute(database.db)).rows[0];
   if(!row)throw new CmsError('NOT_FOUND');return{item:{...nativeRow(type,row,collection.fields),deletedAt:typeof row.deleted_at==='string'?row.deleted_at:null},hasSeo:collection.hasSeo};
  }
- async function guarded(collection:{id:string;version:number},query:CompiledQuery,afterSuccess:readonly CompiledQuery[]=[]){
+ async function guarded(collection:{id:string;version:number},query:CompiledQuery){
   const token=ulid();try{return await database.atomicBatch([
    sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version}) THEN 1 ELSE 0 END`.compile(database.db),
-   query,
-   ...(afterSuccess.length?[
-    sql`INSERT INTO _cms_guards(token,pass) SELECT ${token+'-entry-lock-delete'},CASE WHEN changes()=1 THEN 1 ELSE 0 END`.compile(database.db),
-    ...afterSuccess,sql`DELETE FROM _cms_guards WHERE token=${token+'-entry-lock-delete'}`.compile(database.db)
-   ]:[]),
-   sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)
+   query,sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)
   ]);}catch(cause){if(cause instanceof Error&&/CHECK constraint failed: pass = 1|UNIQUE constraint failed:/.test(cause.message))throw new CmsError('CONFLICT');throw cause;}
  }
  return{
@@ -120,12 +114,11 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   async deleteContent(input:unknown){
    const identity=mutation('content:delete_own','content:delete_any');const value=parse(deleteDraftInput,input);
    const item=(await includingTrashed(value.type,value.id,value.locale)).item;if(item.deletedAt)throw new CmsError('NOT_FOUND');owner(item,'content:delete_any');
-   await assertEntryLockWrite(database,value.type,item.id,identity.id,value.overrideLock);
    const collection=await definition(value.type);const now=new Date().toISOString();
    const query=sql`UPDATE ${sql.ref(tableName(value.type))} SET deleted_at=${now},updated_at=${now},version=version+1
     WHERE id=${value.id} AND locale=${value.locale} AND deleted_at IS NULL AND version=${value.expected.version} AND updated_at=${value.expected.updatedAt}
     ${identity.permissions.includes('content:delete_any')?sql``:sql`AND author_id=${identity.id}`} RETURNING id`.compile(database.db);
-   const results=await guarded(collection,query,[sql`DELETE FROM _cms_entry_locks WHERE collection=${value.type} AND entry_id=${item.id}`.compile(database.db)]);if(!results[1]?.rows.length)throw new CmsError('CONFLICT');
+   const results=await guarded(collection,query);if(!results[1]?.rows.length)throw new CmsError('CONFLICT');
   },
   async restoreContent(input:unknown){
    const identity=mutation('content:edit_own','content:edit_any');const value=parse(restoreDraftInput,input);

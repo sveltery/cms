@@ -55,7 +55,7 @@ export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntri
   v.transform(({ jsonData, ...input }) => ({ ...input, data: { ...input.data, ...jsonData } })),
   v.forward(v.check(input => v.safeParse(schemaData, input.data).success, 'Invalid content data'), ['data']));
 export const revisionToken = v.pipe(v.string(), v.minLength(1), v.maxLength(2048), v.regex(/^[A-Za-z0-9_-]+$/));
-export const updateInput = v.pipe(v.strictObject({ ...contentKey.entries, _rev: revisionToken, ...contentEntries, data: v.optional(contentData), overrideLock: v.optional(v.boolean()) }),
+export const updateInput = v.pipe(v.strictObject({ ...contentKey.entries, _rev: revisionToken, ...contentEntries, data: v.optional(contentData) }),
   v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data ?? {}, key)),
     'Supply each field once'), ['jsonData']),
   // Omission selects Source's live-metadata path. An explicitly supplied empty
@@ -63,7 +63,7 @@ export const updateInput = v.pipe(v.strictObject({ ...contentKey.entries, _rev: 
   v.transform(({ data, jsonData, ...input }) => ({ ...input,
     ...(data === undefined && Object.keys(jsonData).length === 0 ? {} : { data: { ...data, ...jsonData } }) })),
   v.forward(v.check(input => input.data === undefined || v.safeParse(schemaData, input.data).success, 'Invalid content data'), ['data']));
-export const trashInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken, overrideLock: v.optional(v.boolean()) });
+export const trashInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
 export const restoreInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
 const token = v.strictObject({ ...contentKey.entries, expected: revisionInput });
 

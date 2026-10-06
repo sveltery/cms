@@ -3,7 +3,6 @@
 // existing lifecycle methods retain the only publication/scheduling writer.
 import type { RequestEvent } from '@sveltejs/kit';
 import { CmsError } from '../database/contract.ts';
-import {EntryLockRefusalError} from '../entry-locks/write.ts';
 import { lifecycleService } from '../database/lifecycle/service.ts';
 import { editorManifest } from '../content/manifest.ts';
 import { currentUser } from '../auth/current-user.ts';
@@ -19,10 +18,6 @@ import { readCalendarContent } from './content-read.ts';
 import { calendarMutation } from './mutation.ts';
 type Event=Pick<RequestEvent,'request'|'url'|'params'|'locals'>;
 function failure(cause:unknown):Response {
-  if(cause instanceof EntryLockRefusalError){
-    const {userId,userName,acquiredAt,expiresAt}=cause.details;
-    return apiError(cause.code,cause.message,409,{userId,userName,acquiredAt,expiresAt});
-  }
   if(cause instanceof CmsError){
     const status=cause.code==='UNAUTHENTICATED'?401:cause.code==='FORBIDDEN'?403:cause.code==='NOT_FOUND'?404:cause.code==='VALIDATION_ERROR'?400:cause.code==='MIGRATION_REQUIRED'?503:409;
     return apiError(cause.code,cause.message,status);
@@ -79,7 +74,7 @@ export async function calendarContentPost(event:Event):Promise<Response>{
     const service=lifecycleService(cms.database,cms.principal,keepAlive?{after:task=>keepAlive(Promise.resolve().then(task))}:{});
     const locale=event.url.searchParams.get('locale')||undefined;
     const key=await service.resolvePublicationKey({type:event.params.collection,id:event.params.id,...(locale===undefined?{}:{locale})});
-    const input={...key,...(value.overrideLock===undefined?{}:{overrideLock:value.overrideLock}),...(value._rev===undefined?{}:{expected:precondition({collection:key.type,id:key.id,locale:key.locale,_rev:value._rev})})};
+    const input={...key,...(value._rev===undefined?{}:{expected:precondition({collection:key.type,id:key.id,locale:key.locale,_rev:value._rev})})};
     const item=value.action==='publish'?await service.publish(input):value.action==='schedule'?await service.schedule({...input,scheduledAt:value.scheduledAt}):await service.unschedule(input);
     return apiSuccess(withRevision(contentEntry(item)));
   }catch(cause){if(cause instanceof SessionOriginError)return apiError(cause.code,cause.message,403);return failure(cause);}

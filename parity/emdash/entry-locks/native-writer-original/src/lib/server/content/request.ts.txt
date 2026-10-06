@@ -2,7 +2,6 @@ import { error } from '@sveltejs/kit';
 import { getRequestEvent } from '$app/server';
 import { InvalidCursorError } from '../database/trash-cursor';
 import { CmsError } from '../database/contract';
-import {EntryLockRefusalError} from '../entry-locks/write.ts';
 import { cmsService } from '../database/service';
 
 /** The adapter/session owner supplies trusted request locals. No database is opened here. */
@@ -20,10 +19,6 @@ export function requestContent(operation: 'read' | 'mutation' = 'read') {
 export async function contentResponse<T>(run: () => Promise<T>): Promise<T> {
   try { return await run(); }
   catch (cause) {
-    if (cause instanceof EntryLockRefusalError) {
-      const {userId,userName,acquiredAt,expiresAt}=cause.details;
-      error(409,{message:cause.message,code:cause.code,details:{userId,userName,acquiredAt,expiresAt}});
-    }
     if (cause instanceof InvalidCursorError) error(400, { message: 'invalid-cursor', code: 'INVALID_CURSOR' });
     if (cause instanceof CmsError) {
       const status = cause.code === 'UNAUTHENTICATED' ? 401 : cause.code === 'FORBIDDEN' ? 403 :

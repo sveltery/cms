@@ -11,9 +11,10 @@ test('whole current reversals pass and changed old body, unowned repository and 
  try{
   const canonical=JSON.parse(readFileSync(resolve(root,'parity/emdash/entry-locks/canonical-registration-transport.json'),'utf8'));
   const editor=JSON.parse(readFileSync(resolve(root,'parity/emdash/entry-locks/editor-transport.json'),'utf8'));
+  const writer=JSON.parse(readFileSync(resolve(root,'parity/emdash/entry-locks/writer-transport.json'),'utf8'));
   const paths=new Set(['parity/emdash/entry-locks','src/lib/server/entry-locks','src/lib/entry-locks',
    'src/app.d.ts','scripts/check-entry-locks-source.mjs','scripts/entry-locks-canonical-transport.mjs',
-   ...canonical.changedLeaves.map(row=>row.path),...editor.sharedDrafts.map(row=>row.path)]);
+   ...canonical.changedLeaves.map(row=>row.path),...editor.sharedDrafts.map(row=>row.path),...writer.sharedDrafts.map(row=>row.path)]);
   for(const path of paths){const output=resolve(directory,path);mkdirSync(dirname(output),{recursive:true});cpSync(resolve(root,path),output,{recursive:true});}
   const run=()=>spawnSync(process.execPath,['scripts/check-entry-locks-source.mjs'],{cwd:directory,encoding:'utf8'});
   const positive=run();assert.equal(positive.status,0,positive.stdout+positive.stderr);
