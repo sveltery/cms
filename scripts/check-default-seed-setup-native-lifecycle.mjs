@@ -1,4 +1,5 @@
 // Exact approved Native lifecycle transports; zero execution/Source credit.
+import './check-default-seed-setup-fixture-seed-producers.mjs';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';

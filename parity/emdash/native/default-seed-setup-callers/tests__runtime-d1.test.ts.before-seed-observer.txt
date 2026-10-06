@@ -10,7 +10,6 @@ import { hashSessionToken } from '../src/lib/server/auth/session.ts';
 import { Role } from '../src/lib/server/auth/roles.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
-import './helpers/source-seed-node-transport.ts';
 
 test('trusted D1 platform configuration migrates local storage, resolves fresh roles and forwards request waitUntil', { timeout: 30_000 }, async () => {
   const worker = new Miniflare({ modules: true, script: 'export default {fetch() {return new Response("fixture")}}',
@@ -34,9 +33,6 @@ test('trusted D1 platform configuration migrates local storage, resolves fresh r
     assert.equal(anonymous.cms!.principal, null);
     assert.equal(anonymous.cms!.mutationsEnabled, true);
     assert.deepEqual(anonymous.cmsRuntime, { publicOrigin: 'https://cms.example', basePath: '/cms', rpName: 'Sveltery CMS' });
-    // Complete the real initial Seed lifetime before observing the old renewal workload.
-    await Promise.all(lifetimeTasks);
-    lifetimeTasks.length = 0;
     const database = anonymous.cms!.database;
     const registry = new SchemaRegistry(database);
     await registry.createCollection({ slug: 'notes', label: 'Notes' });

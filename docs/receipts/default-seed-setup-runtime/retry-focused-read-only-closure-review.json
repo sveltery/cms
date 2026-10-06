@@ -1,0 +1,202 @@
+{
+  "reviewer": "/root/full_default_seed_and_setup_runtime_developer/default_seed_d1_runtime_static_review",
+  "kind": "same focused P2 retry finding closure and regression inspection; not full-feature acceptance",
+  "head": "28144b5cea69978a2a9c2e676e86f6a6021c5c4c",
+  "tree": "a1e26e8e802fecf7f36be89a530c21eda25c6551",
+  "priorFocusedHead": "d783f45a7e7c2c7ed6fcbc328045b4e0a438e652",
+  "priorReport": "/tmp/setup126-d783-focused-three-finding-closure-review.json",
+  "rootProposal": {
+    "path": "/tmp/setup126-runtime-nonfatal-seed-retry-and-owned-task-proposal.json",
+    "sha256": "8af6d7bc959d3bd1e55469fa58706df9cf4110f2322a4db43ddd4de8483773c9",
+    "productionWholeFileMatchesExactly": true
+  },
+  "decision": "Prior P2 cached-incomplete/nonfatal retry finding is closed. No new concrete finding in the shown repair.",
+  "closure": {
+    "id": "P2-cached-adapter-suppresses-nonfatal-seed-retry",
+    "status": "closed",
+    "path": "src/lib/server/runtime/composition.ts",
+    "lines": [
+      49,
+      60,
+      92,
+      129,
+      130,
+      133,
+      134,
+      135,
+      136,
+      137,
+      141,
+      216,
+      219,
+      221,
+      222,
+      223
+    ],
+    "reason": "Cached initialization owns only adapter opening and migrations again. Each request after databaseFor invokes the actual configured seed producer, so a nonfatal incomplete outcome no longer suppresses the next request. Durable completion and done-lock guards stay in the unchanged real producer; no completion flag or result is fabricated.",
+    "ownedLifetimeProof": "The outer async task is registered synchronously before its dynamic-import await can resume. The post-import assertOpen prevents starting new seed work if close ran during module loading. Once started, the actual producer call and each deadline anchor are in the private per-runtime seedWork set. close first waits cached adapters then repeatedly drains this set before closing their databases, including anchors that may outlive an early-returning caller. Assertions before registration and after seeding prevent dispatch after close. The adapter/migration cache, failed initialization cleanup and sole owner stay unchanged from the original lifecycle contract.",
+    "earlierFindingClosuresRetained": [
+      "Actual account receipt query/JSON failure conservative catch unchanged whole file",
+      "Early actual D1 fixture cleanup unchanged whole file",
+      "Real seed and anchor lifetime work now tracked independently of retryable outcomes"
+    ]
+  },
+  "priorRunReceiptsInspected": {
+    "valueRed": {
+      "head": "7faf72f4754d86d43d68275bb2000f4736f2d8f0",
+      "pass": 7,
+      "genuineSQLValueRed": 1,
+      "prerequisiteStops": 0,
+      "exitCode": 1,
+      "rawSha256Verified": true
+    },
+    "green": {
+      "head": "05a365654c38bfd853f6542c6eee664904022f48",
+      "pass": 8,
+      "fail": 0,
+      "skip": 0,
+      "exitCode": 0,
+      "rawSha256Verified": true
+    },
+    "wholeNativeEightFixtureUnchangedRedToGreen": true,
+    "productionReviewedHeadEqualsExecutedGreenProduction": true,
+    "credit": "Existing author-run meaningful Native same-adapter control only; no reviewer execution or Source/full Runtime factory credit."
+  },
+  "staticChecks": {
+    "productionFullProposalMatch": true,
+    "retryFixtureAndConfigHashAndSingleIncludeReverse": true,
+    "oldCallerAndEarlierFixFilesWholeUnchanged": [
+      "src/lib/server/runtime/default-seed.ts",
+      "tests/default-seed-runtime-d1-caller.test.ts",
+      "tests/default-seed-runtime-caller.test.ts",
+      "src/lib/server/seed/startup.ts",
+      "src/lib/server/menus/after.ts",
+      "src/lib/server/redirects/init-lock.ts",
+      "src/lib/server/auth/composition.ts",
+      "src/lib/server/auth/identity-store.ts",
+      "src/lib/server/setup/site.ts",
+      "src/lib/server/setup/status.ts",
+      "tests/default-seed-setup/error-caller.test.ts",
+      "tests/default-seed-setup/status-caller.test.ts",
+      "tests/default-seed-setup/startup-read-caller.test.ts"
+    ],
+    "completePinnedSourceAuthoritiesVerified": 25,
+    "sourceDeadlineMs": 30000,
+    "sourceAfter": "after(() => promise) unchanged",
+    "staticGuardProgramsNotExecuted": "Equivalent file/hash/byte checks performed as read-only inspection; no test/runtime execution."
+  },
+  "counterLimits": {
+    "newReviewerTestRuns": 0,
+    "heavyRuns": 0,
+    "protectedSecurityAuthSessionCredentialProbes": 0,
+    "shutdownRaceProbes": 0,
+    "originalRuntime4": "unregistered/unfinished",
+    "fullFeatureAcceptance": false,
+    "fullNormalSecuredGates": "pending outside focused review",
+    "ownedNative15AndSource27": "Separate prior author evidence; focused review adds zero execution counts"
+  },
+  "files": {
+    "src/lib/server/runtime/composition.ts": {
+      "bytes": 10234,
+      "sha256": "b0b4d9148decfb8bf6b3d1efc812228847160e2f301dca4d2098ddbbf3a9658c",
+      "gitBlob": "0d0eced415e532530ed1728c68e2f953c2a9213d",
+      "fullText": "import type { D1Database } from '@cloudflare/workers-types';\nimport { createRequestScopedDb, type D1Config } from './cloudflare-d1.ts';\nimport { SESSION_COOKIE_NAME } from '../auth/request.ts';\nimport type { Handle, RequestEvent } from '@sveltejs/kit';\nimport { createCmsHandle } from '../auth/composition.ts';\nimport type { D1Binding } from '../database/d1.ts';\nimport { openD1 } from '../database/d1.ts';\nimport { migrateCms } from '../database/migrations.ts';\nimport type { CmsDatabase } from '../database/contract.ts';\nimport type { Storage } from '../general-media/upstream/storage/types.ts';\nimport { resolveCmsRedirects } from '../redirects/middleware.ts';\n\nexport interface RuntimePresentation {\n  /** Trusted injected provider; no default bucket or filesystem creation. */\n  storage?: Storage;\n  /** Trusted Node-only opt-in; construction stays outside the Worker graph. */\n  mediaStorage?: { kind: 'local'; directory: string };\n  publicOrigin: string;\n  basePath?: string;\n  rpName?: string;\n  mutationsEnabled?: boolean;\n  keepAlive?: (task: Promise<void>) => void;\n}\nexport type RuntimeConfiguration = RuntimePresentation & (\n  { kind: 'sqlite'; path: string } |\n  { kind: 'd1'; binding: D1Binding; d1?: D1Config }\n);\n\nexport interface CmsRuntime {\n  handle: Handle;\n  close(): Promise<void>;\n}\n\n/** Request configuration is supplied by the hosting owner, never a client claim. */\nexport function createCmsRuntime(\n  configuration: (event: RequestEvent) => RuntimeConfiguration | undefined | Promise<RuntimeConfiguration | undefined>\n): CmsRuntime {\n  const sqlite = new Map<string, Promise<CmsDatabase>>();\n  const bindings = new Map<D1Binding, Promise<CmsDatabase>>();\n  const configurations = new WeakMap<RequestEvent, RuntimeConfiguration>();\n  const seedWork = new Set<Promise<unknown>>();\n  let closed = false;\n  let closing: Promise<void> | undefined;\n\n  function assertOpen() {\n    if (closed) throw new Error('CMS runtime is closed');\n  }\n\n  async function initialize(open: () => CmsDatabase | Promise<CmsDatabase>): Promise<CmsDatabase> {\n    const database = await open();\n    try {\n      assertOpen();\n      await migrateCms(database);\n      assertOpen();\n      return database;\n    }\n    catch (cause) { await database.close(); throw cause; }\n  }\n\n  function cachedAdapter<Key>(\n    cache: Map<Key, Promise<CmsDatabase>>, key: Key, open: () => CmsDatabase | Promise<CmsDatabase>\n  ): Promise<CmsDatabase> {\n    let pending = cache.get(key);\n    if (!pending) {\n      pending = initialize(open);\n      cache.set(key, pending);\n      const initialized = pending;\n      void pending.catch(() => { if (cache.get(key) === initialized) cache.delete(key); });\n    }\n    return pending;\n  }\n\n  function databaseFor(config: RuntimeConfiguration): Promise<CmsDatabase> {\n    if (config.kind === 'sqlite') {\n      const path = config.path;\n      if (typeof path !== 'string' || !path.trim() || path.includes('\\0') || path === ':memory:') {\n        throw new Error('SVELTERY_DATABASE_PATH must name a persistent SQLite file');\n      }\n      return cachedAdapter(sqlite, path, async () => {\n        const { openRuntimeSqlite } = await import('./node.ts');\n        assertOpen();\n        return openRuntimeSqlite(path);\n      });\n    }\n    const binding = config.binding;\n    if (!binding || typeof binding.prepare !== 'function' || typeof binding.batch !== 'function') {\n      throw new Error('CMS_DB must be a raw D1 database binding declared in d1_databases');\n    }\n    return cachedAdapter(bindings, binding, () => openD1(binding));\n  }\n\n  function trackSeedWork<T>(task: Promise<T>): Promise<T> {\n    seedWork.add(task);\n    const settled = () => { seedWork.delete(task); };\n    void task.then(settled, settled);\n    return task;\n  }\n\n  async function storageFor(config: RuntimeConfiguration): Promise<Storage | undefined> {\n    if (config.mediaStorage && config.kind !== 'sqlite') {\n      throw new Error('SVELTERY_MEDIA_DIRECTORY requires the Node SQLite runtime');\n    }\n    if (config.storage || !config.mediaStorage) return config.storage;\n    const { createRuntimeLocalStorage } = await import('./node.ts');\n    assertOpen();\n    return createRuntimeLocalStorage({\n      directory: config.mediaStorage.directory,\n      baseUrl: config.publicOrigin + (config.basePath ?? '') + '/api/media/file'\n    });\n  }\n\n  const sessionHandle = createCmsHandle(async event => {\n    assertOpen();\n    const config = await configuration(event);\n    assertOpen();\n    if (!config) return undefined;\n    const { publicOrigin, basePath = '', rpName = 'Sveltery CMS' } = config;\n    let parsed: URL;\n    try { parsed = new URL(publicOrigin); }\n    catch { throw new Error('SVELTERY_PUBLIC_ORIGIN must be an exact HTTP or HTTPS origin'); }\n    if (!['http:', 'https:'].includes(parsed.protocol) || parsed.origin !== publicOrigin) {\n      throw new Error('SVELTERY_PUBLIC_ORIGIN must be an exact HTTP or HTTPS origin');\n    }\n    if (basePath !== '' && (!basePath.startsWith('/') || basePath.startsWith('//') || basePath.endsWith('/'))) {\n      throw new Error('CMS base path must be an absolute path without a trailing slash');\n    }\n    if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');\n    const storage = await storageFor(config);\n    const database = await databaseFor(config);\n    assertOpen();\n    // Retry incomplete/nonfatal initialization on later requests, like Source.\n    // Both this call and its deadline-anchored work belong to runtime teardown.\n    await trackSeedWork((async () => {\n      const { initializeConfiguredDefaultSeed } = await import('./default-seed.ts');\n      assertOpen();\n      return initializeConfiguredDefaultSeed(database, { ...config, keepAlive: task => {\n        trackSeedWork(task);\n        config.keepAlive?.(task);\n      } });\n    })());\n    assertOpen();\n    event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });\n    configurations.set(event, config);\n    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive, storage };\n  });\n\n  return {\n    handle: async input => {\n      const resolvePage: typeof input.resolve = (event, options) =>\n        resolveCmsRedirects(event, () => input.resolve(event, options));\n      delete input.event.locals.cmsRuntime;\n      try {\n        return await sessionHandle({ ...input, resolve: async (event, options) => {\n          assertOpen();\n          const config = configurations.get(event);\n          if (config?.kind !== 'd1' || !config.d1) return resolvePage(event, options);\n          const cookies = event.cookies;\n          // Kit can replace its public setter in resolve's finally. Preserve the\n          // jar handoff for a propagating error before the outer error response.\n          const setErrorCookie = cookies.set.bind(cookies);\n          let outgoingSession = false;\n          event.cookies = new Proxy(cookies, { get(target, key) {\n            if (key === 'set') return (...args: Parameters<typeof cookies.set>) => {\n              if (args[0] === SESSION_COOKIE_NAME) outgoingSession = true;\n              return cookies.set(...args);\n            };\n            const value = Reflect.get(target, key);\n            return typeof value === 'function' ? value.bind(target) : value;\n          } });\n          const isAuthenticated = !!event.locals.cms?.principal;\n          const bookmarks: string[] = [];\n          let renderingFailed = false;\n          const scoped = createRequestScopedDb({\n            config: config.d1, binding: config.binding as D1Database,\n            isAuthenticated, endedAuthenticated: () => isAuthenticated || outgoingSession,\n            isWrite: !['GET', 'HEAD'].includes(event.request.method), url: event.url,\n            cookies: {\n              get: name => { const value = cookies.get(name); return value === undefined ? undefined : { value }; },\n              set: (name, value, options) => {\n                if (renderingFailed) setErrorCookie(name, value, options as unknown as Parameters<typeof cookies.set>[2]);\n                else bookmarks.push(cookies.serialize(name, value, options as unknown as Parameters<typeof cookies.serialize>[2]));\n              }\n            }\n          });\n          try {\n            if (!scoped) return await resolvePage(event, options);\n            event.locals.cms = Object.freeze({ ...event.locals.cms!, database: scoped.database });\n            let response: Response;\n            try { response = await resolvePage(event, options); }\n            catch (cause) {\n              renderingFailed = true;\n              try { scoped.commit(); }\n              catch (commitError) { console.error('CMS D1 bookmark commit failed during error handling', commitError); }\n              throw cause;\n            }\n            scoped.commit();\n            // Kit forbids cookies.set after resolve. Serialization plus response headers\n            // preserves the pinned commit timing and cookie options on the native boundary.\n            if (bookmarks.length) {\n              const headers = new Headers(response.headers);\n              for (const bookmark of bookmarks) headers.append('set-cookie', bookmark);\n              response = new Response(response.body, { status: response.status, statusText: response.statusText, headers });\n            }\n            // D1 has no connection teardown. Stream/deferred readers retain this request's db.\n            return response;\n          } finally { event.cookies = cookies; }\n        } });\n      } catch (cause) {\n        if (closed) {\n          delete input.event.locals.cms;\n          delete input.event.locals.cmsRuntime;\n        }\n        throw cause;\n      } finally { configurations.delete(input.event); }\n    },\n    close() {\n      closed = true;\n      closing ??= (async () => {\n        const pending = [...sqlite.values(), ...bindings.values()];\n        sqlite.clear(); bindings.clear();\n        const initialized = await Promise.allSettled(pending);\n        while (seedWork.size) await Promise.allSettled(seedWork);\n        await Promise.all(initialized.filter(result => result.status === 'fulfilled')\n          .map(result => result.value.close()));\n      })();\n      return closing;\n    }\n  };\n}\n"
+    },
+    "tests/default-seed-setup/startup-retry-caller.test.ts": {
+      "bytes": 2886,
+      "sha256": "c47152c2df7d42db344445de01d5219f34af9055d91e495ee71cd76aebdcb854",
+      "gitBlob": "32b78302855a8dc3778ff3075dc1b2b5bccab21b",
+      "fullText": "// Supplemental Native nonfatal Seed retry through actual production runtime.\n// Original Source loadSeed alone fails once, then the same real virtual producer\n// and real domain apply persist the seed. No protected/auth/race probe credit.\nimport { expect, it, vi } from 'vitest';\nimport { mkdtemp, rm } from 'node:fs/promises';\nimport { tmpdir } from 'node:os';\nimport { join } from 'node:path';\nimport type { RequestEvent } from '@sveltejs/kit';\nimport { createCmsRuntime } from '../../src/lib/server/runtime/composition.ts';\nimport { waitForDeferredTasks } from '../../src/lib/server/redirects/deferred-tasks.ts';\nimport { AUTO_SEED_COMPLETE_OPTION } from '../../src/lib/server/seed/ownership.ts';\n\nconst fixture = vi.hoisted(() => ({ loads: 0 }));\nvi.mock('../../src/lib/server/seed/load.ts', async importOriginal => {\n  const actual = await importOriginal<typeof import('../../src/lib/server/seed/load.ts')>();\n  return { ...actual, async loadSeed() {\n    fixture.loads++;\n    if (fixture.loads === 1) throw new Error('configured seed load unavailable once');\n    return actual.loadSeed();\n  } };\n});\n\nfunction anonymousEvent(): RequestEvent {\n  return { request: new Request('http://cms.test/'), url: new URL('http://cms.test/'),\n    locals: {}, cookies: { get() {} } } as unknown as RequestEvent;\n}\n\nit('a nonfatal real Seed load failure retries on the next caller using the same migrated adapter', async () => {\n  fixture.loads = 0;\n  const directory = await mkdtemp(join(tmpdir(), 'cms-default-seed-retry-'));\n  const runtime = createCmsRuntime(() => ({ kind: 'sqlite', path: join(directory, 'data.db'), publicOrigin: 'http://cms.test' }));\n  try {\n    const first = anonymousEvent();\n    await runtime.handle({ event: first, resolve: async () => new Response('ok') });\n    const database = first.locals.cms!.database;\n    expect(fixture.loads).toBe(1);\n    expect(await database.db.selectFrom('_cms_collections').select('slug').execute()).toEqual([]);\n    expect(await database.db.selectFrom('_cms_options').select('value').where('name', '=', AUTO_SEED_COMPLETE_OPTION).executeTakeFirst()).toBeUndefined();\n    const second = anonymousEvent();\n    await runtime.handle({ event: second, resolve: async () => new Response('ok') });\n    expect(second.locals.cms!.database).toBe(database);\n    const collections = await database.db.selectFrom('_cms_collections').select('slug').orderBy('slug').execute();\n    expect(collections.map(row => row.slug)).toEqual(['pages', 'posts']);\n    expect(fixture.loads).toBe(2);\n    const completed = await database.db.selectFrom('_cms_options').select('value').where('name', '=', AUTO_SEED_COMPLETE_OPTION).executeTakeFirstOrThrow();\n    expect(JSON.parse(completed.value)).toBe(true);\n  } finally {\n    try { await waitForDeferredTasks(); await runtime.close(); }\n    finally { await rm(directory, { recursive: true, force: true }); }\n  }\n});\n"
+    },
+    "docs/default-seed-setup-startup-retry-native.json": {
+      "bytes": 3806,
+      "sha256": "66f0a672249274bbf3829ef73d0ff691a2b1900001d9c930176e9e49a1fca5fc",
+      "gitBlob": "399d1e4307cc9365ec24bd96e33f2f88d120a457"
+    },
+    "docs/default-seed-setup-native-lifecycle.json": {
+      "bytes": 14151,
+      "sha256": "02ffa9db9dd0fa5080b82ebad930682cfbf0bfd398cb452036c3b38df5b2c025",
+      "gitBlob": "11ea21f6f4dc7862c18fa9e70a8b91bb0fa04e60"
+    },
+    "vitest.default-seed-setup-caller.config.ts": {
+      "bytes": 459,
+      "sha256": "dc7bee57a8c5c93ae685410cfbf418797129f20f41926263b2ea23c0821b847b",
+      "gitBlob": "b74a40921e9b2d78cd96f3a7d03df048586b6c01"
+    },
+    "docs/receipts/default-seed-setup-runtime/native-eight-seed-retry-value-red.log": {
+      "bytes": 1348,
+      "sha256": "e129840cfdeb65ba0eb2f6499461af9ff189ce616d99cd9adb06fdc399d85529",
+      "gitBlob": "116a060037b1c703c8a63682ae946b19236d3071"
+    },
+    "docs/receipts/default-seed-setup-runtime/native-eight-seed-retry-green.log": {
+      "bytes": 424,
+      "sha256": "8398e7bc0e9b6bf47e9eb7a57084331f1fa4e2f54e30412222b13bb6921e4633",
+      "gitBlob": "8e8f4cb4c48d8cc047453c75b3748c980a70a531"
+    },
+    "src/lib/server/runtime/default-seed.ts": {
+      "bytes": 2462,
+      "sha256": "c540e87fec2987a7bd3de5169b947f944733fed4e2a3db3b72b66a5f99c4078a",
+      "gitBlob": "b96879209a42e610fd8889a1b7d12af1a856bbee"
+    },
+    "tests/default-seed-runtime-d1-caller.test.ts": {
+      "bytes": 3658,
+      "sha256": "e1a87094375972338ee13465fb0829c7462196f7f016726c0e08fda647c009d2",
+      "gitBlob": "fa0148ae78ae892751a0c3eccdcf00ebcad1b5fb"
+    },
+    "tests/default-seed-runtime-caller.test.ts": {
+      "bytes": 3206,
+      "sha256": "e5314eaae8db2cbe841bd77475bca6439e864cdd6fa368de4357383a0aee12e0",
+      "gitBlob": "03c4b9c188dad916fe5e95a6ef5f5bb7d81ece65"
+    },
+    "src/lib/server/seed/startup.ts": {
+      "bytes": 4701,
+      "sha256": "a13b13747c00f5526835a586c4291db90a4ac4e3d1a6b49be8df581071feeda3",
+      "gitBlob": "66b94d6e3732ba87d5e7cc65eded410066b003ac"
+    },
+    "src/lib/server/menus/after.ts": {
+      "bytes": 633,
+      "sha256": "e426934c2d6d65b72f70fe859906b7d32d090fb1b1c78d8e02abff1dbe659ed7",
+      "gitBlob": "606a856131dfbc940fe3ac2dafd02fd72e6cccb2"
+    },
+    "src/lib/server/redirects/init-lock.ts": {
+      "bytes": 6126,
+      "sha256": "ccf506b0779969cb4f33fac524a0de5ac737025bac4fa6063a00746183656211",
+      "gitBlob": "4f77e7730e90ada9e834fd6ea1b2672bcd916de9"
+    },
+    "src/lib/server/auth/composition.ts": {
+      "bytes": 3195,
+      "sha256": "cd4fdca1db32ab0e8a8529ff1a24ce1cf863f503fe9e262f6e1d2f2fe1a20094",
+      "gitBlob": "4252ed6c1320fd6984260e778ddbf45bb7d9d46f"
+    },
+    "src/lib/server/auth/identity-store.ts": {
+      "bytes": 6158,
+      "sha256": "b638655d0d759011a66b8a5bc02d355018d452f28b4447bba474833380d75ba1",
+      "gitBlob": "07d50b909e0b0b379b6ca66a0c03eb71e64861f9"
+    },
+    "src/lib/server/setup/site.ts": {
+      "bytes": 4013,
+      "sha256": "2aada4f47194bd560a5c8fd1a348c64a199d8060a291e692281b4bb547d27678",
+      "gitBlob": "b2fec13a670f4fd6d520bfc0c331893f3b145841"
+    },
+    "src/lib/server/setup/status.ts": {
+      "bytes": 407,
+      "sha256": "85f779ce2a42b3e8d17cb9141a2aaa7cb426f8d2cb416a0a4ffcca4077e1f3a3",
+      "gitBlob": "972c74cfb137219c7630e6bb2c92a00c9c9eff7c"
+    },
+    "tests/default-seed-setup/error-caller.test.ts": {
+      "bytes": 3153,
+      "sha256": "1e4ade80c9e952a6a6783e30a5299778afd974200704de936a2081a021420c6d",
+      "gitBlob": "54dee898f5dc40b858a3b66f08156c26ec281ec7"
+    },
+    "tests/default-seed-setup/status-caller.test.ts": {
+      "bytes": 2941,
+      "sha256": "9aadc8baa0f54a060fbfd5ad5301dfb51b164950efb4d5459f3f96621cf591d0",
+      "gitBlob": "c30c00e5869e7e3ca6cf07b5828d45fc17ae1277"
+    },
+    "tests/default-seed-setup/startup-read-caller.test.ts": {
+      "bytes": 1435,
+      "sha256": "7cd35f5ac7623bd4e4524ed095d2273195aab146956d90b13e52c26397fc04e8",
+      "gitBlob": "6092de8a96124a79ccf96ee9e48a0fbbc202ca03"
+    }
+  }
+}

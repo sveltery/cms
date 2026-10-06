@@ -1,0 +1,52 @@
+{
+  "proposalSha256": "50c8bd21a524016e4f5b114a2f247c236be4aef936db98b402ce12c5307fbf33",
+  "d1ProposalSha256": "0d6df8f18a9d56d4a7f13bce9b80da4109f4eed41dde98272992e38ac33ed3ff",
+  "RootQualificationSha256": "65f6befdbf59541aca118a9334d3e77be71d8ef27efe1b8ccb8240ee0802725a",
+  "counter": "Exact existing Native test/build transport only; zero new callbacks/Source/fullfactory/new-auth/security proof. No existing assertion/data/protected action/clock or production handler/flags/dependencies/normalconfig/CI changed.",
+  "files": {
+    "tests/browser/collection-cursor.spec.ts": {
+      "beforeAuthority": "parity/emdash/native/default-seed-setup-callers/tests__browser__collection-cursor.spec.ts.before-seed-producer.txt",
+      "beforeSha256": "7a2fed0f3e19ffc399ac430b97c9c80b2d111aa5971befc6213b0396fd32d846",
+      "currentSha256": "78f74a0eee1ce0645fa3e9a99aee460109df512c61cc4300079f69fc24c6b209"
+    },
+    "tests/helpers/collection-trash.ts": {
+      "beforeAuthority": "parity/emdash/native/default-seed-setup-callers/tests__helpers__collection-trash.ts.before-seed-producer.txt",
+      "beforeSha256": "06e81ffa94d338ddbbff7222139381c7bbb435c6e6f4106f3d9544255caf64aa",
+      "currentSha256": "feab8b5a438598e972c96324d6f167cd21d70b01518faabcac615b0c2aa23cdf"
+    },
+    "tests/helpers/pattern-base-build.ts": {
+      "beforeAuthority": "parity/emdash/native/default-seed-setup-callers/tests__helpers__pattern-base-build.ts.before-seed-producer.txt",
+      "beforeSha256": "553b1fa833d2bd3730677dde163b1810751a571f5211588b3cd0f3bf0c1aebea",
+      "currentSha256": "aaaf1aead3ea5320b76ecdbe9e7778f95cea5f89e596c7045347942d25e73f47"
+    },
+    "tests/helpers/required-scalar-fields-server.mjs": {
+      "beforeAuthority": "parity/emdash/native/default-seed-setup-callers/tests__helpers__required-scalar-fields-server.mjs.before-seed-producer.txt",
+      "beforeSha256": "d762dacc3d66d668067ade640dc5ab635274739b4435ecc06045abcf0d1029aa",
+      "currentSha256": "5364732a1d2249aba180687f7318a6a608cc3aa96dbe4f8cd0fdfb90d978cca9"
+    },
+    "tests/helpers/trash-count.ts": {
+      "beforeAuthority": "parity/emdash/native/default-seed-setup-callers/tests__helpers__trash-count.ts.before-seed-producer.txt",
+      "beforeSha256": "6bd22e6c883b8a5bb28f526ecedf63ac7fbdc292712c64c5382c722812c57b0c",
+      "currentSha256": "9a0bbadc5d7848fe7c3120e2512063c25d6c1218b5a341794c5f97b94964a41c"
+    },
+    "tests/helpers/trash-restore-fields-server.mjs": {
+      "beforeAuthority": "parity/emdash/native/default-seed-setup-callers/tests__helpers__trash-restore-fields-server.mjs.before-seed-producer.txt",
+      "beforeSha256": "925fa2f6e3062bf7997d7c1a31dd02664c4deb50d4ba3bfb746058c7edf63154",
+      "currentSha256": "0e31efc10c6c20348ff737f4d099077019dbc302864d8f7cf386262ff52ba76d"
+    }
+  },
+  "producerClosure": {
+    "scripts/source-seed-vite.ts": "f680c054ad2f5277c50fa9f617d1da2306cc5cff3c8e14e7da51237cbc9ea5e6",
+    "scripts/source-seed-virtual-module.ts": "207bccf4934db5595b8dded6eb9bd96236ef9a1c4504c48d4316e5eaedf7cb76",
+    "src/lib/server/seed/default.ts": "57e1afcc26a6e225951c3eed3be6f6b3ee9e9bcafd29bc6760d0f52cb3f1703d"
+  },
+  "d1": {
+    "path": "tests/runtime-d1.test.ts",
+    "beforeAuthority": "parity/emdash/native/default-seed-setup-callers/tests__runtime-d1.test.ts.before-seed-observer.txt",
+    "beforeSha256": "c760797defe48a3d6f0234f83a57c85ac289223b38ac268abd48044aebef71a9",
+    "currentSha256": "e6dc217c403f8bbe1bff525c8152fb3889eb4035f180078410bc9ae7da82988b",
+    "helperPath": "tests/helpers/source-seed-node-transport.ts",
+    "helperSha256": "31fe682672b3c253b098a1910bcd6e749f25cfbffe9295e20ba9dbdfd0990b46",
+    "scope": "Complete real initial Source Seed waitUntil tasks are awaited, then completed observer array is cleared before unchanged original user/session renewal workload. No task filtering/suppression or fake source/response/result. Whole original30s callback/assertions/actions remain exact after two-insertion reversal."
+  }
+}
