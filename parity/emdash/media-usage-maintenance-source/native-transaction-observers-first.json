@@ -1,0 +1,165 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actualBase": "30d3ed098a9830c1846f21d43a6d98bb3cc744cc",
+  "nativeTests": 2,
+  "firstFixturePrerequisite": {
+    "tests": 2,
+    "failed": 2,
+    "causalCredit": 0,
+    "reason": "Missing required actual Native next_attempt_at fixture column; corrected fixture without changing assertions"
+  },
+  "validBaseline": {
+    "passed": 1,
+    "failed": 1,
+    "causalRed": 1,
+    "sourceIdentityCredit": 0,
+    "reason": "Actual Node transaction executed seven queries but both actual caller plugins received thirteen result hooks"
+  },
+  "state": {
+    "sourceTestsUnchanged": true,
+    "sourceIdentityCredit": 0,
+    "checkpoint": [
+      {
+        "phase": "sources",
+        "state": "leased",
+        "lease_token": "01M47EC1605J8Q9TK5C6XA0BZN"
+      }
+    ],
+    "remainingWork": [],
+    "guards": [],
+    "queryCount": 7,
+    "firstResultCount": 13,
+    "secondResultCount": 13,
+    "firstResultQueryIndexes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "secondResultQueryIndexes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "actualReceipts": [
+      {
+        "rows": [
+          {
+            "content_id": "actual-work"
+          }
+        ]
+      },
+      {
+        "insertId": "1",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "1",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "rows": [
+          {
+            "collection_id": "native-transaction-deletion"
+          }
+        ]
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "1",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "1",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "rows": [
+          {
+            "collection_id": "native-transaction-deletion"
+          }
+        ]
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      },
+      {
+        "insertId": "2",
+        "numAffectedRows": "1",
+        "rows": []
+      }
+    ]
+  },
+  "receiptFiles": [
+    {
+      "path": "/tmp/media-usage-maintenance-native-transaction-observers-first.log",
+      "bytes": 3834,
+      "sha256": "503b949405264c7148a34d9a8079636e044d68cbdfe73a3d0bc41871c7193a03"
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-native-transaction-observers-valid-baseline.log",
+      "bytes": 1563,
+      "sha256": "ccb20d8f2bc70fa27ca74b8b80c3539b610532628fad416902b5997f5446a93b"
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-native-transaction-observers-first-state.log",
+      "bytes": 1561,
+      "sha256": "8b55969ca7a738e51511186f0b2fa1624daf14568e2c740575c6282f2634710a"
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-native-transaction-observer-state.json",
+      "bytes": 1743,
+      "sha256": "52b087ad7fa7d2a800f0fd7a83f9078bfb6a771f730746a4fd12f208d63aedd5"
+    }
+  ],
+  "untouched": [
+    "All immutable whole Source tests",
+    "Seed namespace and executor",
+    "Node transaction owner",
+    "Production phase class"
+  ]
+}
