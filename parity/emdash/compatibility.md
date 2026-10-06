@@ -2598,3 +2598,20 @@ Ordinary Main99 union0326fab4 preserves actual public dependencies, Source prefi
 ## Native isolated browser fixture graph repair
 
 BF-GRAPH01: [count/restore staging](../../docs/browser-fixture-graph.md) limits only two Native test-host builds to their actual generated root routes. The exact EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, every Source/Main browser callback, generated fixture modules/auth/data/clocks, canonical remotes, complete standard previews, actual Kit/adapters and security policy remain unchanged. Three actual compiled-manifest value reds preceded the fix; all seven Native controls pass after fix/refactor. Fresh independent directories and databases remain, with no cache. This is fixture hosting/performance evidence, with zero Source/product credit and no product behavioral difference. Scope is manager-authorized; final-head normal/secured browser gates, independent/configured review, exact-head approval and author regular merge remain pending. Required-scalar and all other fixture graphs remain complete/unchanged.
+
+### PL1 complete runtime/provider work in progress
+
+The [plugin runtime/provider record](../../docs/plugin-runtime-provider.md) and
+[whole pinned inventory](plugin-runtime/inventory.json) preserve EmDash 1.1.0
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`: 78 whole test families, 45 selected
+implementation authorities and 648 byte-exact closure files. Their 1,107
+declarations and 4,884 AST assertion expressions are inventory with zero product
+execution credit. The initial missing generated Kit configuration and missing
+plugin modules stop before Source callbacks, earning zero behavioral-red credit.
+After actual Kit sync, two supplemental Native tests execute actual configured
+startup and fail on real values: absent request plugin manager and absent
+canonical `_cms_plugin_state` activation row. These are Native integration reds,
+not copied Source callbacks. Svelte provider/framework adaptation, current-event
+database ownership, implementation and complete final qualification are pending.
+Sandbox execution (PL2) and marketplace/registry installation (PL3) remain separate
+delivery scopes; neighboring preserved authorities establish no completion.

@@ -1,0 +1,57 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/configured-runtime-first.test.ts (2 tests | 2 failed) 145ms
+     × makes the actual configured active plugin manager available on the request 107ms
+     × persists configured activation in the existing canonical plugin state table 36ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/configured-runtime-first.test.ts > configured trusted plugin runtime > makes the actual configured active plugin manager available on the request
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/configured-runtime-first.test.ts:33:63
+     31|         cmsPlugins?: { manager: { hasPlugin(id: string): boolean } }
+     32|       }).cmsPlugins;
+     33|       expect(plugins?.manager.hasPlugin('configured-plugin')).toBe(tru…
+       |                                                               ^
+     34|     } finally { await fixture.runtime.close(); await rm(fixture.direct…
+     35|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/plugin-runtime/configured-runtime-first.test.ts > configured trusted plugin runtime > persists configured activation in the existing canonical plugin state table
+AssertionError: expected undefined to deeply equal { Object (plugin_id, version, ...) }
+
+- Expected:
+{
+  "plugin_id": "configured-plugin",
+  "status": "active",
+  "version": "1.0.0",
+}
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/configured-runtime-first.test.ts:41:19
+     39|       const row = await fixture.event.locals.cms!.database.db.selectFr…
+     40|         .select(['plugin_id', 'version', 'status']).where('plugin_id',…
+     41|       expect(row).toEqual({ plugin_id: 'configured-plugin', version: '…
+       |                   ^
+     42|     } finally { await fixture.runtime.close(); await rm(fixture.direct…
+     43|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  00:53:36
+   Duration  923ms (transform 416ms, setup 0ms, import 635ms, tests 145ms, environment 0ms)
+
