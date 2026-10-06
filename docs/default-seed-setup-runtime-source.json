@@ -118,7 +118,15 @@
     }
   ],
   "execution": {
-    "originalConsumers": "Inventoried, not yet executed",
+    "originalCoreFirst": "4 suites, 0 registered callbacks; missing generated Kit tsconfig",
+    "originalCoreAfterKitSync": "4 suites, 0 registered callbacks; #api/error.js and #node-sqlite aliases unresolved",
+    "originalWizardFirst": "0 registered callbacks; official Chromium1243 absent",
+    "nativeRuntimeFirst": {
+      "registered": 2,
+      "passed": 0,
+      "failed": 2,
+      "genuineValueFailures": 2
+    },
     "sourceCausalCredit": 0
   },
   "boundaries": [
@@ -126,5 +134,32 @@
     "Source E2E dev-reset/PAT/auth consequence helpers remain inventoried and unexecuted.",
     "Source external auth setup/status branches inventoried; current product passkey configuration only.",
     "Actual SvelteKit runtime/caller controls are supplemental Native contracts, not replacements for the original EmDashRuntime."
+  ],
+  "consumerInventory": [
+    {
+      "path": "packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts",
+      "declarations": 3
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/invalid-auto-seed.test.ts",
+      "declarations": 1
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-seed-budget.test.ts",
+      "declarations": 1
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-site-url-lock.test.ts",
+      "declarations": 8
+    },
+    {
+      "path": "packages/admin/tests/components/SetupWizard.test.tsx",
+      "declarations": 18
+    },
+    {
+      "path": "e2e/tests/setup-wizard.spec.ts",
+      "declarations": 6,
+      "executed": false
+    }
   ]
 }
