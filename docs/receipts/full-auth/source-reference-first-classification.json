@@ -1,0 +1,603 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "inventoryCommit": "f1d09859a06442c9366018a8f5b92f30d71dd52f",
+  "command": "node scripts/emit-full-auth-reference.mjs --write && node_modules/.bin/vitest run --config vitest.full-auth-reference.config.ts --reporter=json --outputFile=docs/receipts/full-auth/source-reference-first.json",
+  "runtime": "Node24; borrowed existing Media113 installed tooling via ignored node_modules symlink; not a current frozen installation receipt",
+  "wholeFilesAttempted": 51,
+  "passedCallbacks": 211,
+  "failedBeforeAssertions": 11,
+  "pendingCallbacks": 41,
+  "sourceCausalAssertionReds": 0,
+  "nativeProductCredit": 0,
+  "actualProtectedSecurityCredit": 0,
+  "omissions": "Other inventoried Node/admin dependencies, complete Source UI/browser/full runtime factory and Native implementation remain unexecuted/incomplete",
+  "files": [
+    {
+      "source": "packages/auth/src/email-templates.test.ts",
+      "registered": 10,
+      "passed": 10,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth/src/rbac.test.ts",
+      "registered": 33,
+      "passed": 33,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth/src/tokens.test.ts",
+      "registered": 28,
+      "passed": 28,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth-atproto/tests/auth.test.ts",
+      "registered": 13,
+      "passed": 13,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth-atproto/tests/oauth-client.test.ts",
+      "registered": 11,
+      "passed": 0,
+      "failed": 11,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "",
+      "failedReasons": [
+        {
+          "title": "getAtprotoOAuthClient (HTTPS - public client) returns an OAuthClient instance",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:14:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (HTTPS - public client) sets client_id to the well-known metadata URL",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:20:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (HTTPS - public client) sets redirect_uri to the callback endpoint",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:25:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (HTTPS - public client) does not set jwks_uri (public client)",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:32:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (HTTPS - public client) requests atproto scope",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:37:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (HTTPS - public client) creates a fresh instance per call (no shared state between requests)",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:42:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (HTTPS - public client) creates distinct instances for different baseUrls",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:48:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (localhost - loopback public client) creates a loopback client for http://localhost",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:60:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (localhost - loopback public client) uses http://localhost client_id (loopback format)",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:66:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (localhost - loopback public client) does not set jwks_uri for loopback clients",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:72:43"
+          ]
+        },
+        {
+          "title": "getAtprotoOAuthClient (localhost - loopback public client) also treats 127.0.0.1 as loopback",
+          "messages": [
+            "Error: Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs\n    at reviveInvokeError (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)\n    at Object.invoke (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:571:33)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at VitestModuleRunner.getModuleInformation (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)\n    at request (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/oauth-client.mjs:24:1\n    at VitestModuleEvaluator._runInlinedModule (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/module-evaluator.js:206:4)\n    at VitestModuleRunner.directRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1286:59)\n    at VitestModuleRunner.cachedRequest (file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1193:73)\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/tests/oauth-client.test.mjs:77:43"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "packages/auth-atproto/tests/resolve-handle.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package '@atcute/identity-resolver' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth-atproto/src/resolve-handle.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth/src/passkey/authenticate.test.ts",
+      "registered": 18,
+      "passed": 18,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth/src/passkey/challenge-context.test.ts",
+      "registered": 6,
+      "passed": 6,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth/src/passkey/register.test.ts",
+      "registered": 10,
+      "passed": 10,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/api-tokens.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth/src/oauth/providers/github.test.ts",
+      "registered": 4,
+      "passed": 4,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/auth/src/oauth/providers/microsoft.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.test.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/integration/auth/api-tokens.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/integration/auth/authorization-code.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/integration/auth/device-flow.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/integration/auth/oauth-clients.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/integration/auth/passkey-options.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package '@emdash-cms/auth/passkey' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/astro/routes/api/auth/passkey/options.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/integration/auth/rate-limit.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/astro/session-user.test.ts",
+      "registered": 4,
+      "passed": 4,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/allowed-domains.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/allowed-origins.test.ts",
+      "registered": 27,
+      "passed": 27,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/api-tokens.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/challenge-store.test.ts",
+      "registered": 12,
+      "passed": 12,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/device-authorize-lookup-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/discovery-endpoints.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'virtual:emdash/config' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/astro/routes/api/well-known/oauth-authorization-server.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/invite-register-options-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/invite-route-localization.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/invite.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/logout-route.test.ts",
+      "registered": 4,
+      "passed": 4,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/magic-link-verify-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/magic-link.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/mcp-discovery-post.test.ts",
+      "registered": 6,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package '@atcute/lexicons/syntax' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/registry/config.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find module '#api/schemas.js' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/astro/routes/api/auth/me.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/oauth-authorize-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/oauth-callback-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/oauth-invite.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/oauth-microsoft-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/oauth-register-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find module '#auth/rate-limit.js' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/astro/routes/api/oauth/register.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/oauth-start-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/passkey-config.test.ts",
+      "registered": 22,
+      "passed": 22,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/passkey-management.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/passkey-verify-route.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package '@emdash-cms/auth/passkey' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/astro/routes/api/auth/passkey/verify.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/scopes.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/signup.test.ts",
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/auth/trusted-proxy.test.ts",
+      "registered": 10,
+      "passed": 10,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/middleware/admin-public-routes.test.ts",
+      "registered": 4,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package '@atcute/lexicons/syntax' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/registry/config.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/middleware/oauth-csrf.test.ts",
+      "registered": 17,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package '@atcute/lexicons/syntax' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/registry/config.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/middleware/search-soft-auth.test.ts",
+      "registered": 2,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package '@atcute/lexicons/syntax' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/registry/config.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/middleware/transfer-scope.test.ts",
+      "registered": 12,
+      "passed": 0,
+      "failed": 0,
+      "pending": 0,
+      "classification": "import/configuration/fixture stop; zero causal assertion-red credit",
+      "error": "Cannot find package 'jose' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/auth/src/oauth/providers/microsoft.mjs",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/database/migrations/016_api_tokens.test.ts",
+      "registered": 4,
+      "passed": 4,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    },
+    {
+      "source": "packages/core/tests/unit/database/migrations/017_authorization_codes.test.ts",
+      "registered": 6,
+      "passed": 6,
+      "failed": 0,
+      "pending": 0,
+      "classification": "first-green whole Source Reference",
+      "error": "",
+      "failedReasons": []
+    }
+  ],
+  "raw": [
+    {
+      "path": "docs/receipts/full-auth/source-reference-first.json",
+      "sha256": "27a85aff084c8f0e18f3713e77723b6c83de7da62dd41e8bde0c59345e6ffa84"
+    },
+    {
+      "path": "docs/receipts/full-auth/source-reference-first.log",
+      "sha256": "777f21b5c878e10de30b343cf60ba2702a7ccba766dc69cb2c72692c18527fc3"
+    }
+  ]
+}

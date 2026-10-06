@@ -1,0 +1,31 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "wholeFiles": 51,
+  "passingCallbacks": 596,
+  "failedCallbacks": 2,
+  "pendingCallbacks": 0,
+  "originalAssertionsChanged": 0,
+  "nativeProductCredit": 0,
+  "fullSecurityCredit": 0,
+  "failedWholeFiles": [
+    {
+      "wholeFile": "packages/core/tests/unit/auth/invite-route-localization.test.mjs",
+      "suiteStop": "",
+      "failedCallbacks": [
+        {
+          "fullName": "invite route \u2014 email localization wiring threads the site locale into the sent email's lang/dir",
+          "failureMessages": [
+            "AssertionError: expected 500 to be 200 // Object.is equality\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/tests/unit/auth/invite-route-localization.test.mjs:57:33\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+          ]
+        },
+        {
+          "fullName": "invite route \u2014 email localization wiring defaults to English lang/ltr without a site locale",
+          "failureMessages": [
+            "AssertionError: expected 500 to be 200 // Object.is equality\n    at /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/tests/unit/auth/invite-route-localization.test.mjs:64:33\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-complete-general-media-backend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+          ]
+        }
+      ]
+    }
+  ],
+  "classification": "Two actual status value assertions reached 500 versus 200 while the genuine compiled Source catalog producer is absent. Preserve reached values; zero causal Source bug/product credit until original catalog fixture producer is installed and whole family reruns."
+}

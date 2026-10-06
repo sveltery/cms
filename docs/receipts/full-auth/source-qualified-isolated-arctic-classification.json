@@ -1,0 +1,28 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "wholeFiles": 53,
+  "passingCallbacks": 596,
+  "failedCallbacks": 0,
+  "pendingCallbacks": 0,
+  "originalAssertionsChanged": 0,
+  "nativeProductCredit": 0,
+  "fullSecurityCredit": 0,
+  "failedWholeFiles": [
+    {
+      "wholeFile": "packages/admin/tests/lib/api-token-scopes-contract.test.mjs",
+      "suiteStop": "Cannot find module 'babel-plugin-macros'\nRequire stack:\n- /workspace/cms-complete-general-media-backend/node_modules/.pnpm/@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3/node_modules/@lingui/babel-plugin-lingui-macro/dist/macro.cjs",
+      "failedCallbacks": []
+    },
+    {
+      "wholeFile": "packages/admin/tests/lib/webauthn-environment.test.mjs",
+      "suiteStop": "Cannot read properties of undefined (reading 'PublicKeyCredential')",
+      "failedCallbacks": []
+    },
+    {
+      "wholeFile": "packages/core/tests/unit/auth/invite-route-localization.test.mjs",
+      "suiteStop": "Cannot find module 'babel-plugin-macros'\nRequire stack:\n- /workspace/cms-complete-general-media-backend/node_modules/.pnpm/@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3/node_modules/@lingui/babel-plugin-lingui-macro/dist/macro.cjs",
+      "failedCallbacks": []
+    }
+  ],
+  "classification": "596 actual Source callbacks pass; three whole files stop at macro/environment host. No causal assertion reds."
+}

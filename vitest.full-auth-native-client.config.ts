@@ -1,0 +1,2 @@
+import { defineConfig } from 'vitest/config';
+export default defineConfig({ plugins:[{name:'explicit-native-users-framework-base',resolveId(id){if(id==='$app/paths')return '\0full-auth-native-client-paths';},load(id){if(id==='\0full-auth-native-client-paths')return "export const base='/cms';";}}],test:{environment:'node',fileParallelism:false,include:['tests/full-auth-native-pure/users-client.test.ts']} });

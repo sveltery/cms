@@ -1,0 +1,115 @@
+✔ canonical role 10 retains its whole accepted permission prefix and exact Source users floor (1.296894ms)
+✔ canonical role 20 retains its whole accepted permission prefix and exact Source users floor (0.180963ms)
+✔ canonical role 30 retains its whole accepted permission prefix and exact Source users floor (0.108093ms)
+✔ canonical role 40 retains its whole accepted permission prefix and exact Source users floor (0.149706ms)
+✖ canonical role 50 retains its whole accepted permission prefix and exact Source users floor (1.531517ms)
+✔ users capability projection retains the unchanged existing principal validation (0.132049ms)
+✖ users navigation is an appended installed item with the genuine users capability and mounted path (0.48468ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.738594
+
+✖ failing tests:
+
+test at tests/full-auth-native-pure/capabilities.test.ts:10:57
+✖ canonical role 50 retains its whole accepted permission prefix and exact Source users floor (1.531517ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'schema:read',
+      'schema:manage',
+      'content:read',
+      'content:read_drafts',
+  ...
+      'media:delete_any',
+  -   'users:read',
+  -   'users:invite',
+  -   'users:manage'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-full-auth-users/tests/full-auth-native-pure/capabilities.test.ts:12:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'schema:read',         'schema:manage',
+      'content:read',        'content:read_drafts',
+      'content:create',      'content:edit_own',
+      'content:edit_any',    'content:delete_own',
+      'content:delete_any',  'content:publish_own',
+      'content:publish_any', 'taxonomies:read',
+      'taxonomies:manage',   'menus:read',
+      'menus:manage',        'redirects:read',
+      'redirects:manage',    'sections:read',
+      'sections:manage',     'widgets:read',
+      'widgets:manage',      'comments:read',
+      'comments:moderate',   'comments:delete',
+      'comments:settings',   'bylines:read',
+      'bylines:manage',      'media:read',
+      'media:upload',        'media:edit_own',
+      'media:edit_any',      'media:delete_own',
+      'media:delete_any'
+    ],
+    expected: [
+      'schema:read',         'schema:manage',
+      'content:read',        'content:read_drafts',
+      'content:create',      'content:edit_own',
+      'content:edit_any',    'content:delete_own',
+      'content:delete_any',  'content:publish_own',
+      'content:publish_any', 'taxonomies:read',
+      'taxonomies:manage',   'menus:read',
+      'menus:manage',        'redirects:read',
+      'redirects:manage',    'sections:read',
+      'sections:manage',     'widgets:read',
+      'widgets:manage',      'comments:read',
+      'comments:moderate',   'comments:delete',
+      'comments:settings',   'bylines:read',
+      'bylines:manage',      'media:read',
+      'media:upload',        'media:edit_own',
+      'media:edit_any',      'media:delete_own',
+      'media:delete_any',    'users:read',
+      'users:invite',        'users:manage'
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/full-auth-native-pure/capabilities.test.ts:21:1
+✖ users navigation is an appended installed item with the genuine users capability and mounted path (0.48468ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   {
+  -     href: '/cms/users',
+  -     label: 'Users'
+  -   }
+  - ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-full-auth-users/tests/full-auth-native-pure/capabilities.test.ts:24:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ { href: '/cms/users', label: 'Users' } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

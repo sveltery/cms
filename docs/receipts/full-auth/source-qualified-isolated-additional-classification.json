@@ -1,0 +1,394 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "attemptedWholeFiles": 53,
+  "passingCallbacks": 472,
+  "hookImportStops": 0,
+  "genuineValueAssertionReds": 0,
+  "suiteStops": [
+    "packages/admin/tests/lib/api-token-scopes-contract.test.mjs",
+    "packages/admin/tests/lib/webauthn-environment.test.mjs",
+    "packages/core/tests/integration/auth/api-tokens.test.mjs",
+    "packages/core/tests/integration/auth/authorization-code.test.mjs",
+    "packages/core/tests/integration/auth/device-flow.test.mjs",
+    "packages/core/tests/integration/auth/oauth-clients.test.mjs",
+    "packages/core/tests/integration/auth/rate-limit.test.mjs",
+    "packages/core/tests/unit/auth/device-authorize-lookup-route.test.mjs",
+    "packages/core/tests/unit/auth/invite-route-localization.test.mjs",
+    "packages/core/tests/unit/auth/oauth-authorize-route.test.mjs"
+  ],
+  "nativeProductCredit": 0,
+  "fullSecurityCredit": 0,
+  "wholeFiles": [
+    {
+      "file": "packages/auth-atproto/tests/auth.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 13,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth-atproto/tests/oauth-client.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 11,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth-atproto/tests/resolve-handle.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 3,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth/src/email-templates.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 10,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth/src/rbac.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 33,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth/src/tokens.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 28,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/admin/tests/lib/api-token-scopes-contract.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find module 'babel-plugin-macros'\nRequire stack:\n- /workspace/cms-complete-general-media-backend/node_modules/.pnpm/@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3/node_modules/@lingui/babel-plugin-lingui-macro/dist/macro.cjs"
+    },
+    {
+      "file": "packages/admin/tests/lib/webauthn-environment.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot read properties of undefined (reading 'PublicKeyCredential')"
+    },
+    {
+      "file": "packages/auth/src/passkey/authenticate.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 18,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth/src/passkey/challenge-context.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 6,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth/src/passkey/register.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 10,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/api-tokens.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 2,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth/src/oauth/providers/github.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 4,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/auth/src/oauth/providers/microsoft.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 24,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/integration/auth/api-tokens.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find package 'arctic' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/api/handlers/device-flow.mjs"
+    },
+    {
+      "file": "packages/core/tests/integration/auth/authorization-code.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find package 'arctic' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/tests/integration/auth/authorization-code.test.mjs"
+    },
+    {
+      "file": "packages/core/tests/integration/auth/device-flow.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find package 'arctic' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/api/handlers/device-flow.mjs"
+    },
+    {
+      "file": "packages/core/tests/integration/auth/oauth-clients.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find package 'arctic' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/tests/integration/auth/oauth-clients.test.mjs"
+    },
+    {
+      "file": "packages/core/tests/integration/auth/passkey-options.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 1,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/integration/auth/rate-limit.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find package 'arctic' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/api/handlers/device-flow.mjs"
+    },
+    {
+      "file": "packages/core/tests/unit/astro/session-user.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 4,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/allowed-domains.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 23,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/allowed-origins.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 27,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/api-tokens.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 29,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/challenge-store.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 12,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/device-authorize-lookup-route.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find package 'arctic' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/api/handlers/device-flow.mjs"
+    },
+    {
+      "file": "packages/core/tests/unit/auth/discovery-endpoints.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 14,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/invite-register-options-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 2,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/invite-route-localization.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find module 'babel-plugin-macros'\nRequire stack:\n- /workspace/cms-complete-general-media-backend/node_modules/.pnpm/@lingui+babel-plugin-lingui-macro@5.9.5_supports-color@10.2.2_typescript@6.0.3/node_modules/@lingui/babel-plugin-lingui-macro/dist/macro.cjs"
+    },
+    {
+      "file": "packages/core/tests/unit/auth/invite.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 18,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/logout-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 4,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/magic-link-verify-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 3,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/magic-link.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 2,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/mcp-discovery-post.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 6,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/me-welcome-dismiss.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 2,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/oauth-authorize-route.test.mjs",
+      "status": "failed",
+      "passedCallbacks": 0,
+      "failedCallbacks": [],
+      "suiteStop": "Cannot find package 'arctic' imported from /workspace/cms-full-auth-users/parity/emdash/full-auth-source/reference/packages/core/src/api/handlers/oauth-authorization.mjs"
+    },
+    {
+      "file": "packages/core/tests/unit/auth/oauth-callback-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 1,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/oauth-invite.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 8,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/oauth-microsoft-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 6,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/oauth-register-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 5,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/oauth-start-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 2,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/passkey-config.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 22,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/passkey-management.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 17,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/passkey-verify-route.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 2,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/scopes.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 23,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/signup.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 22,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/auth/trusted-proxy.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 10,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/middleware/admin-public-routes.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 4,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/middleware/oauth-csrf.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 17,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/middleware/search-soft-auth.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 2,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/middleware/transfer-scope.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 12,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/database/migrations/016_api_tokens.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 4,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    },
+    {
+      "file": "packages/core/tests/unit/database/migrations/017_authorization_codes.test.mjs",
+      "status": "passed",
+      "passedCallbacks": 6,
+      "failedCallbacks": [],
+      "suiteStop": ""
+    }
+  ]
+}

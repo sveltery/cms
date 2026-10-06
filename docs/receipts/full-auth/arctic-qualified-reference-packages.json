@@ -1,0 +1,1749 @@
+{
+  "approvedProposalSha256": "bff32a161fb83aa3ff375d323a9d891c37152f5d85c163d1e1d6294c3a8bbe26",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "completedAtUtc": "2026-10-06T02:54:28.903289+00:00",
+  "genuinePackageTarballs": 7,
+  "genuineSnapshotRecords": 7,
+  "packages": [
+    {
+      "packageKey": "@oslojs/asn1@1.0.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__asn1@1.0.0/package",
+      "actualTarball": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__asn1@1.0.0/oslojs-asn1-1.0.0.tgz",
+      "tarballBytes": 9559,
+      "tarballSRI": "sha512-zw/wn0sj0j0QKbIXfIlnEcTviaCzYOY3V5rAyjR6YtOByFtJiT574+8p9Wlach0lZH9fddD4yb9laEAIl4vXQA==",
+      "tarballSha256": "158c1a578ba17c4414e9d60b7ee412923a53aab052e2c1c18076244c3e3e2ab0",
+      "allFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "mode": 420,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396"
+        },
+        {
+          "path": "package/dist/asn1.js",
+          "bytes": 39870,
+          "mode": 420,
+          "sha256": "8bd15cef99dede1bebb13bd8c33db33fd7298af0b600aa54bd916efe36d01f4a"
+        },
+        {
+          "path": "package/dist/index.js",
+          "bytes": 645,
+          "mode": 420,
+          "sha256": "d8efba3004533d2abb8a99b9cacf43194cf8c9bfc17c949643d4219629fbee5a"
+        },
+        {
+          "path": "package/dist/integer.js",
+          "bytes": 2014,
+          "mode": 420,
+          "sha256": "46b27f017def1908cc667d1caa5ba185c722e0ccec78d24db58cdac00976f0ec"
+        },
+        {
+          "path": "package/dist/string.js",
+          "bytes": 237,
+          "mode": 420,
+          "sha256": "5d0ac6e4e8435b40badf450581f6abcaf07abcba279b545fe9c5272ce6361431"
+        },
+        {
+          "path": "package/package.json",
+          "bytes": 953,
+          "mode": 420,
+          "sha256": "4045ffd1188791bf29a5de8b7b3e5d56ed363d768e7b17a222e695d46d8f5e93"
+        },
+        {
+          "path": "package/README.md",
+          "bytes": 595,
+          "mode": 420,
+          "sha256": "7360c23905c84638d5a85dbfece35aefe64877cd697f781c7c38ad3b5f397be4"
+        },
+        {
+          "path": "package/dist/asn1.d.ts",
+          "bytes": 9122,
+          "mode": 420,
+          "sha256": "5a21e6c27c4761e63e3b16d1aa433412b6ef2baee4a9f06d24529d6eec2d8bc1"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "bytes": 703,
+          "mode": 420,
+          "sha256": "e02f1b4d1a9200de74b0886e59338a8b46b26aa73920f9963fe8649651e5cabd"
+        },
+        {
+          "path": "package/dist/integer.d.ts",
+          "bytes": 365,
+          "mode": 420,
+          "sha256": "2e7b2971d2e31024d80672a688d11c5ecdda06b21e12cc6f5037f2d5906a7cc1"
+        },
+        {
+          "path": "package/dist/string.d.ts",
+          "bytes": 66,
+          "mode": 420,
+          "sha256": "9b5aecfb0cc2913259d700493236efd6a46c79ffab384e4edccd67ba3bf9da72"
+        }
+      ],
+      "wholePackageJson": "{\n  \"name\": \"@oslojs/asn1\",\n  \"type\": \"module\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Encode and decode ASN.1 DER\",\n  \"main\": \"dist/index.js\",\n  \"types\": \"dist/index.d.ts\",\n  \"module\": \"dist/index.js\",\n  \"files\": [\n    \"/dist/\"\n  ],\n  \"keywords\": [\n    \"auth\",\n    \"asn1\",\n    \"der\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/oslo-project/asn1\"\n  },\n  \"author\": \"pilcrowOnPaper\",\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"@types/node\": \"^20.8.6\",\n    \"@typescript-eslint/eslint-plugin\": \"^6.7.5\",\n    \"@typescript-eslint/parser\": \"^6.7.5\",\n    \"auri\": \"^2.0.0\",\n    \"eslint\": \"^8.51.0\",\n    \"prettier\": \"^3.0.3\",\n    \"typescript\": \"5.4.5\",\n    \"vitest\": \"^0.34.6\"\n  },\n  \"dependencies\": {\n    \"@oslojs/binary\": \"1.0.0\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf dist/* && tsc --project tsconfig.build.json\",\n    \"format\": \"prettier -w .\",\n    \"lint\": \"eslint src\",\n    \"test\": \"vitest run --sequence.concurrent\"\n  }\n}",
+      "licenseDeclaration": "MIT",
+      "completeLicenseFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396",
+          "wholeText": "MIT License\n\nCopyright (c) 2024 pilcrowOnPaper\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+      ],
+      "engineDeclaration": null,
+      "declaredInstallLifecycleHooks": {},
+      "installScriptsExecuted": false,
+      "actualPackExit": 0,
+      "sourceExactSRIMatch": true,
+      "nativeProductCredit": 0,
+      "nodeEngineInspection": {
+        "actualNode": "v24.19.0",
+        "range": null,
+        "result": "no declared Node engine"
+      },
+      "wholeLicenseInspected": true
+    },
+    {
+      "packageKey": "@oslojs/binary@1.0.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__binary@1.0.0/package",
+      "actualTarball": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__binary@1.0.0/oslojs-binary-1.0.0.tgz",
+      "tarballBytes": 3381,
+      "tarballSRI": "sha512-9RCU6OwXU6p67H4NODbuxv2S3eenuQ4/WFLrsq+K/k682xrznH5EVWA7N4VFk9VYVcbFtKqur5YQQZc0ySGhsQ==",
+      "tarballSha256": "ca5f0a2c334f1e0fbea2af150ce2b652d95491a053393553c9535505b5188a69",
+      "allFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "mode": 420,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396"
+        },
+        {
+          "path": "package/dist/big.js",
+          "bytes": 725,
+          "mode": 420,
+          "sha256": "b657109c467be9a8e7b83ba60bba4e4a08bafd6fc3d2888433c4c990771865f9"
+        },
+        {
+          "path": "package/dist/bits.js",
+          "bytes": 382,
+          "mode": 420,
+          "sha256": "c443f26c699d3e3c925b320d33cce91a8399a36cd7208d3a5993e88cc6b594df"
+        },
+        {
+          "path": "package/dist/bytes.js",
+          "bytes": 2152,
+          "mode": 420,
+          "sha256": "7f55e8a2a046ba0d93715b3876962c849a2b42d6d987be32b6b0fa292efa21be"
+        },
+        {
+          "path": "package/dist/index.js",
+          "bytes": 246,
+          "mode": 420,
+          "sha256": "214c1a6e4f776e80b1311dbdc55085394c514b3189eeb9ebd6d67c4438dd7f6e"
+        },
+        {
+          "path": "package/dist/uint.js",
+          "bytes": 4871,
+          "mode": 420,
+          "sha256": "3d693170e7019504d60cffc6b4eeceb878fc85369baed15edefe4963c2d18c3e"
+        },
+        {
+          "path": "package/package.json",
+          "bytes": 912,
+          "mode": 420,
+          "sha256": "c0d58717e98f7404a0bae0fafd9253bf031da963af4c8f26011bd0a1bac8ff18"
+        },
+        {
+          "path": "package/README.md",
+          "bytes": 389,
+          "mode": 420,
+          "sha256": "164c4c5a342881008859095b67666412e574e9d0cf9e89e72b236325c8074050"
+        },
+        {
+          "path": "package/dist/big.d.ts",
+          "bytes": 132,
+          "mode": 420,
+          "sha256": "da6a9e6d89c63d197880b3338be39c3d75822ca21e86d7c74baf43d42728ab1f"
+        },
+        {
+          "path": "package/dist/bits.d.ts",
+          "bytes": 248,
+          "mode": 420,
+          "sha256": "67ce7094b2b08b533953ce71cc26f725c30ab76ec7cc0920957c12869610c11a"
+        },
+        {
+          "path": "package/dist/bytes.d.ts",
+          "bytes": 451,
+          "mode": 420,
+          "sha256": "f5fd79381a2a627a702917e3c472b46b43e6c65ce5d7718939e3b31c89efa207"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "bytes": 290,
+          "mode": 420,
+          "sha256": "ce6746fb23ad1488ad13d245133ccea8b7497355bd448260a8654ce9364d836f"
+        },
+        {
+          "path": "package/dist/uint.d.ts",
+          "bytes": 1741,
+          "mode": 420,
+          "sha256": "147955697ada87377dec75efb9be078424fba8f6b54e0d2a77ec72652b71af75"
+        }
+      ],
+      "wholePackageJson": "{\n  \"name\": \"@oslojs/binary\",\n  \"type\": \"module\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Basic primitives for working with binary data\",\n  \"files\": [\n    \"/dist/\"\n  ],\n  \"main\": \"dist/index.js\",\n  \"module\": \"dist/index.js\",\n  \"types\": \"dist/index.d.ts\",\n  \"keywords\": [\n    \"auth\",\n    \"binary\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/oslo-project/binary\"\n  },\n  \"author\": \"pilcrowOnPaper\",\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"@types/node\": \"^20.8.6\",\n    \"@typescript-eslint/eslint-plugin\": \"^6.7.5\",\n    \"@typescript-eslint/parser\": \"^6.7.5\",\n    \"auri\": \"^2.0.0\",\n    \"eslint\": \"^8.51.0\",\n    \"prettier\": \"^3.0.3\",\n    \"typescript\": \"^5.2.2\",\n    \"vitest\": \"^0.34.6\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf dist/* && tsc --project tsconfig.build.json\",\n    \"format\": \"prettier -w .\",\n    \"lint\": \"eslint src\",\n    \"test\": \"vitest run --sequence.concurrent\"\n  }\n}",
+      "licenseDeclaration": "MIT",
+      "completeLicenseFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396",
+          "wholeText": "MIT License\n\nCopyright (c) 2024 pilcrowOnPaper\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+      ],
+      "engineDeclaration": null,
+      "declaredInstallLifecycleHooks": {},
+      "installScriptsExecuted": false,
+      "actualPackExit": 0,
+      "sourceExactSRIMatch": true,
+      "nativeProductCredit": 0,
+      "nodeEngineInspection": {
+        "actualNode": "v24.19.0",
+        "range": null,
+        "result": "no declared Node engine"
+      },
+      "wholeLicenseInspected": true
+    },
+    {
+      "packageKey": "@oslojs/crypto@1.0.1",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__crypto@1.0.1/package",
+      "actualTarball": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__crypto@1.0.1/oslojs-crypto-1.0.1.tgz",
+      "tarballBytes": 16436,
+      "tarballSRI": "sha512-7n08G8nWjAr/Yu3vu9zzrd0L9XnrJfpMioQcvCMxBIiF5orECHe5/3J0jmXRVvgfqMm/+4oxlQ+Sq39COYLcNQ==",
+      "tarballSha256": "ea25e00efb78f23f393f34bdfeba09b9fdb0c228d9351469e29106904ddae149",
+      "allFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "mode": 420,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396"
+        },
+        {
+          "path": "package/dist/ecdsa/curve-nist.js",
+          "bytes": 128,
+          "mode": 420,
+          "sha256": "74999a34a2d77d38075a87bf3dfc24ad6f5c501953d13b9e0f16192c5eb85c94"
+        },
+        {
+          "path": "package/dist/ecdsa/curve-sec.js",
+          "bytes": 4245,
+          "mode": 420,
+          "sha256": "9556999bfb981a71f2fa9100757b6a4f5723a34dc6afc7bf4650ab9462625e94"
+        },
+        {
+          "path": "package/dist/ecdsa/curve.js",
+          "bytes": 4277,
+          "mode": 420,
+          "sha256": "a64f5f85438e66758373e514e78f4a6da0bc259f7ce92e155c2917f151d72fef"
+        },
+        {
+          "path": "package/dist/ecdsa/ecdsa.js",
+          "bytes": 7431,
+          "mode": 420,
+          "sha256": "840479ed5f7987c08e0831f79bca48ce72ff0031b989f4cdb42229d7bffdeb31"
+        },
+        {
+          "path": "package/dist/sha3/hash.js",
+          "bytes": 1397,
+          "mode": 420,
+          "sha256": "4ba9030612a75adc53f1a63af998a5d465d45c2e0a58ded1487cb963404183bb"
+        },
+        {
+          "path": "package/dist/ecdsa/index.js",
+          "bytes": 418,
+          "mode": 420,
+          "sha256": "1270f2ddbd4963201401d2b4b0fdc1634155b100d2f5da29dc4ffe63b27725c8"
+        },
+        {
+          "path": "package/dist/hash/index.js",
+          "bytes": 11,
+          "mode": 420,
+          "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+        },
+        {
+          "path": "package/dist/hmac/index.js",
+          "bytes": 1315,
+          "mode": 420,
+          "sha256": "18e97c7a3b27f57ec403b441494a9640e21906bf0fbb98281f611a881ed4e562"
+        },
+        {
+          "path": "package/dist/random/index.js",
+          "bytes": 1743,
+          "mode": 420,
+          "sha256": "49c43612efc84ae38fa3c6a2d70df17de17425fc9222ac70526cfc18f6959817"
+        },
+        {
+          "path": "package/dist/rsa/index.js",
+          "bytes": 6469,
+          "mode": 420,
+          "sha256": "32417858065a171d44a396bc1c5dd62e2c8235e877693facf19f9262f8980b43"
+        },
+        {
+          "path": "package/dist/sha1/index.js",
+          "bytes": 3641,
+          "mode": 420,
+          "sha256": "6318a3887f3f3cfefdae0159b4f0deafb64eea3a82778c3e3aa111268c682482"
+        },
+        {
+          "path": "package/dist/sha2/index.js",
+          "bytes": 300,
+          "mode": 420,
+          "sha256": "1de06de6991ac366cf0e438cb9270fc14e6c948bc93d9017f62acbf59aff147f"
+        },
+        {
+          "path": "package/dist/sha3/index.js",
+          "bytes": 175,
+          "mode": 420,
+          "sha256": "813a4eee27526055255676feba69f260cf12fb60b8908230797bd69a6e0c8f52"
+        },
+        {
+          "path": "package/dist/subtle/index.js",
+          "bytes": 213,
+          "mode": 420,
+          "sha256": "78caa24744c09344af85e840c7ee3d9bffe4becb40440558290f60ac534e41c7"
+        },
+        {
+          "path": "package/dist/ecdsa/math.js",
+          "bytes": 2269,
+          "mode": 420,
+          "sha256": "8fbef62bd528cf721572aca82c644d86df7ef7ef32c6d1cc3b51d72e9d3358b1"
+        },
+        {
+          "path": "package/dist/sha2/sha224.js",
+          "bytes": 4773,
+          "mode": 420,
+          "sha256": "b119602d5d71e4afdf8a2f9fbcc7ee3209a50e4da451de19f11b74fe93c225ae"
+        },
+        {
+          "path": "package/dist/sha2/sha256.js",
+          "bytes": 4773,
+          "mode": 420,
+          "sha256": "644064e42ec5c2f4f359305125b480156076305934f9a5901185459b0c54959f"
+        },
+        {
+          "path": "package/dist/sha3/sha3.js",
+          "bytes": 4959,
+          "mode": 420,
+          "sha256": "f8b1290034c360bfafdc94727a9aca5b4f81d3426d9dc9ab8af28af70f0081b4"
+        },
+        {
+          "path": "package/dist/sha2/sha384.js",
+          "bytes": 693,
+          "mode": 420,
+          "sha256": "b3d9a68b2fffbf4fb5a74ace1f1b71fcfc1a5a14236815f1c2343cc472f30527"
+        },
+        {
+          "path": "package/dist/sha2/sha512_224.js",
+          "bytes": 804,
+          "mode": 420,
+          "sha256": "19218127e7541e935805816a28034906e854bd1c9a9a34ad3a1b87f573c3ce4c"
+        },
+        {
+          "path": "package/dist/sha2/sha512_256.js",
+          "bytes": 705,
+          "mode": 420,
+          "sha256": "b9b86da1680b0159d2ca322579c4ae2cde923a569b276523128519577f2bb659"
+        },
+        {
+          "path": "package/dist/sha2/sha512.js",
+          "bytes": 7260,
+          "mode": 420,
+          "sha256": "b6613e0230c45f64191aaf2de331b15f5b19ee73162de114884f7af79ff3a3f0"
+        },
+        {
+          "path": "package/dist/sha3/xof.js",
+          "bytes": 973,
+          "mode": 420,
+          "sha256": "a5bf23bd99d191cf59c232b9155c94803ae94490a6ba741bf15eedf12ab33aff"
+        },
+        {
+          "path": "package/package.json",
+          "bytes": 2253,
+          "mode": 420,
+          "sha256": "9cd8756f8d6ef4c2769911a73171e275680a9716a1f88d8b541b345c3e495a8e"
+        },
+        {
+          "path": "package/README.md",
+          "bytes": 430,
+          "mode": 420,
+          "sha256": "551c84d28b6620de994145a69f54aff46631a8000b3f449c75a321fc49b29eea"
+        },
+        {
+          "path": "package/dist/ecdsa/curve-nist.d.ts",
+          "bytes": 128,
+          "mode": 420,
+          "sha256": "74999a34a2d77d38075a87bf3dfc24ad6f5c501953d13b9e0f16192c5eb85c94"
+        },
+        {
+          "path": "package/dist/ecdsa/curve-sec.d.ts",
+          "bytes": 438,
+          "mode": 420,
+          "sha256": "69d6887e0c22a802d85db96ccee11a37e5ae918c0aabb74b0f09e4d7dba8cbe9"
+        },
+        {
+          "path": "package/dist/ecdsa/curve.d.ts",
+          "bytes": 987,
+          "mode": 420,
+          "sha256": "3143b3bf1aaee3fdbafe5ed63e790703e0338232abf502d5b1c8d6c7b748e859"
+        },
+        {
+          "path": "package/dist/ecdsa/ecdsa.d.ts",
+          "bytes": 1158,
+          "mode": 420,
+          "sha256": "1c071a6cfcc5acff47d50fed8c7b01c9312211655986df07718923387fd1b086"
+        },
+        {
+          "path": "package/dist/sha3/hash.d.ts",
+          "bytes": 986,
+          "mode": 420,
+          "sha256": "386d1189ba867f16ad0621e4706f2229fd19fe29e8460c1e82e072163f4c8e82"
+        },
+        {
+          "path": "package/dist/ecdsa/index.d.ts",
+          "bytes": 418,
+          "mode": 420,
+          "sha256": "1270f2ddbd4963201401d2b4b0fdc1634155b100d2f5da29dc4ffe63b27725c8"
+        },
+        {
+          "path": "package/dist/hash/index.d.ts",
+          "bytes": 190,
+          "mode": 420,
+          "sha256": "e4ac5af24dc1b55f8955fb3d7c834037e9099e3a50f70934012946f6fc819685"
+        },
+        {
+          "path": "package/dist/hmac/index.d.ts",
+          "bytes": 370,
+          "mode": 420,
+          "sha256": "ced8b503cce093b7f0b469891597590f11fabf95cefe365c5c254f389ff21cd4"
+        },
+        {
+          "path": "package/dist/random/index.d.ts",
+          "bytes": 365,
+          "mode": 420,
+          "sha256": "71569f0c75a2a8bef0d5fded1490a109738d6445a545462f11ca833e450f1279"
+        },
+        {
+          "path": "package/dist/rsa/index.d.ts",
+          "bytes": 1114,
+          "mode": 420,
+          "sha256": "4357b0b5ca0466da2dd35a72d99aeba5c4e1b3588efd0dffb1f97b17e46e67ba"
+        },
+        {
+          "path": "package/dist/sha1/index.d.ts",
+          "bytes": 371,
+          "mode": 420,
+          "sha256": "85f83dca9fd1aa34c970d74d1b63c45ecff674d4e0c9bfdc8557507f0f9ea229"
+        },
+        {
+          "path": "package/dist/sha2/index.d.ts",
+          "bytes": 300,
+          "mode": 420,
+          "sha256": "1de06de6991ac366cf0e438cb9270fc14e6c948bc93d9017f62acbf59aff147f"
+        },
+        {
+          "path": "package/dist/sha3/index.d.ts",
+          "bytes": 175,
+          "mode": 420,
+          "sha256": "813a4eee27526055255676feba69f260cf12fb60b8908230797bd69a6e0c8f52"
+        },
+        {
+          "path": "package/dist/subtle/index.d.ts",
+          "bytes": 82,
+          "mode": 420,
+          "sha256": "b06b36b7720d998cdf5b8668547be4d4d4b9e0a94511b828a1330cf3b5e61d66"
+        },
+        {
+          "path": "package/dist/ecdsa/math.d.ts",
+          "bytes": 276,
+          "mode": 420,
+          "sha256": "81f4fb1873fa3c59b6282119e3f20cf761ce6a5a453a497c8d9da8b4063c5ec8"
+        },
+        {
+          "path": "package/dist/sha2/sha224.d.ts",
+          "bytes": 375,
+          "mode": 420,
+          "sha256": "47c56dc29e59a4e12b5c835a4d0cb6c73a44bc8514e7244d4b8ea8949fc6e237"
+        },
+        {
+          "path": "package/dist/sha2/sha256.d.ts",
+          "bytes": 375,
+          "mode": 420,
+          "sha256": "c00c1df3f8fbfd71ee4ec7ec8cb550c9bbe966b5ecd5535f6ff9608885e322f0"
+        },
+        {
+          "path": "package/dist/sha3/sha3.d.ts",
+          "bytes": 469,
+          "mode": 420,
+          "sha256": "c165efe6f0d571fdab96294c1eb064c15cf0ce730d300ccfc05cfe12637cf052"
+        },
+        {
+          "path": "package/dist/sha2/sha384.d.ts",
+          "bytes": 279,
+          "mode": 420,
+          "sha256": "32e516ad5165077c440d581e9ee50a5603316f8201faf8c3f25420b8314a00ff"
+        },
+        {
+          "path": "package/dist/sha2/sha512_224.d.ts",
+          "bytes": 287,
+          "mode": 420,
+          "sha256": "64ec680147ee57ca8488abbee7d9c029f912d07e624e653a25e0a97828c8c054"
+        },
+        {
+          "path": "package/dist/sha2/sha512_256.d.ts",
+          "bytes": 287,
+          "mode": 420,
+          "sha256": "a09a7c96ec56d719302ed870eda430ad54ec7f2bd4ed74b674752586a163aad1"
+        },
+        {
+          "path": "package/dist/sha2/sha512.d.ts",
+          "bytes": 587,
+          "mode": 420,
+          "sha256": "3b6c9d3228ca795ac1ed5b5fbb56f31475ae7e3b1aff44bb2debbba141623db1"
+        },
+        {
+          "path": "package/dist/sha3/xof.d.ts",
+          "bytes": 606,
+          "mode": 420,
+          "sha256": "11900ed2b6138482a7217cc99112e078a6a32ebeab530958439edb6b7ebc2850"
+        }
+      ],
+      "wholePackageJson": "{\n  \"name\": \"@oslojs/crypto\",\n  \"type\": \"module\",\n  \"version\": \"1.0.1\",\n  \"description\": \"A very basic crypto library\",\n  \"files\": [\n    \"/dist/\"\n  ],\n  \"exports\": {\n    \"./ecdsa\": \"./dist/ecdsa/index.js\",\n    \"./hash\": \"./dist/hash/index.js\",\n    \"./hmac\": \"./dist/hmac/index.js\",\n    \"./random\": \"./dist/random/index.js\",\n    \"./rsa\": \"./dist/rsa/index.js\",\n    \"./sha1\": \"./dist/sha1/index.js\",\n    \"./sha2\": \"./dist/sha2/index.js\",\n    \"./sha3\": \"./dist/sha3/index.js\",\n    \"./subtle\": \"./dist/subtle/index.js\"\n  },\n  \"typesVersions\": {\n    \"*\": {\n      \"ecdsa\": [\n        \"dist/ecdsa/index.d.ts\"\n      ],\n      \"hash\": [\n        \"dist/hash/index.d.ts\"\n      ],\n      \"hmac\": [\n        \"dist/hmac/index.d.ts\"\n      ],\n      \"random\": [\n        \"dist/random/index.d.ts\"\n      ],\n      \"rsa\": [\n        \"dist/rsa/index.d.ts\"\n      ],\n      \"sha1\": [\n        \"dist/sha1/index.d.ts\"\n      ],\n      \"sha2\": [\n        \"dist/sha2/index.d.ts\"\n      ],\n      \"sha3\": [\n        \"dist/sha3/index.d.ts\"\n      ],\n      \"subtle\": [\n        \"dist/subtle/index.d.ts\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"auth\",\n    \"crypto\",\n    \"encoding\",\n    \"auth\",\n    \"random\",\n    \"hash\",\n    \"sha\",\n    \"hmac\",\n    \"ecdsa\",\n    \"rsa\",\n    \"sha1\",\n    \"sha2\",\n    \"sha3\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/oslo-project/crypto\"\n  },\n  \"author\": \"pilcrowOnPaper\",\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"@oslojs/encoding\": \"0.3.0\",\n    \"@scure/base\": \"^1.1.3\",\n    \"@types/node\": \"^20.8.6\",\n    \"@typescript-eslint/eslint-plugin\": \"^6.7.5\",\n    \"@typescript-eslint/parser\": \"^6.7.5\",\n    \"auri\": \"^2.0.0\",\n    \"eslint\": \"^8.51.0\",\n    \"prettier\": \"^3.0.3\",\n    \"typescript\": \"^5.2.2\",\n    \"vitest\": \"1.6.0\"\n  },\n  \"dependencies\": {\n    \"@oslojs/asn1\": \"1.0.0\",\n    \"@oslojs/binary\": \"1.0.0\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf dist/* && tsc --project tsconfig.build.json\",\n    \"format\": \"prettier -w . !test-vectors/**\",\n    \"format.all\": \"prettier -w .\",\n    \"format.test-vectors\": \"prettier -w test-vectors/**\",\n    \"lint\": \"eslint src\",\n    \"test\": \"vitest run --sequence.concurrent src/**\",\n    \"test.all\": \"vitest run --sequence.concurrent\",\n    \"test-vectors\": \"vitest run --sequence.concurrent test-vectors/**\"\n  }\n}",
+      "licenseDeclaration": "MIT",
+      "completeLicenseFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396",
+          "wholeText": "MIT License\n\nCopyright (c) 2024 pilcrowOnPaper\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+      ],
+      "engineDeclaration": null,
+      "declaredInstallLifecycleHooks": {},
+      "installScriptsExecuted": false,
+      "actualPackExit": 0,
+      "sourceExactSRIMatch": true,
+      "nativeProductCredit": 0,
+      "nodeEngineInspection": {
+        "actualNode": "v24.19.0",
+        "range": null,
+        "result": "no declared Node engine"
+      },
+      "wholeLicenseInspected": true
+    },
+    {
+      "packageKey": "@oslojs/encoding@0.4.1",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__encoding@0.4.1/package",
+      "actualTarball": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__encoding@0.4.1/oslojs-encoding-0.4.1.tgz",
+      "tarballBytes": 4014,
+      "tarballSRI": "sha512-hkjo6MuIK/kQR5CrGNdAPZhS01ZCXuWDRJ187zh6qqF2+yMHZpD9fAYpX8q2bOO6Ryhl3XpCT6kUX76N8hhm4Q==",
+      "tarballSha256": "367a000b8150f276e3fbe30f020a5f68f56a03a96a8bacfff196d1ca013e351a",
+      "allFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "mode": 420,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396"
+        },
+        {
+          "path": "package/dist/base32.js",
+          "bytes": 4765,
+          "mode": 420,
+          "sha256": "5a94f343a8e6a215facaf0b80f37314c218399a7a1725c36bfaf2c79e7710d9b"
+        },
+        {
+          "path": "package/dist/base64.js",
+          "bytes": 5642,
+          "mode": 420,
+          "sha256": "fdb525a7f320de49e3cfef25feb7d2435c11e2db3233cd24d68a099590454464"
+        },
+        {
+          "path": "package/dist/hex.js",
+          "bytes": 1391,
+          "mode": 420,
+          "sha256": "f75e1b2aef0453b02bb378db58973cb08629fcddf78145d9bc996f36583bb924"
+        },
+        {
+          "path": "package/dist/index.js",
+          "bytes": 384,
+          "mode": 420,
+          "sha256": "c641442d204249de836a8ac1c7f5f8a00c343a4d2812bf4932e7b30c949fe498"
+        },
+        {
+          "path": "package/package.json",
+          "bytes": 1029,
+          "mode": 420,
+          "sha256": "3659a4cd29453c01148109641fc20acc3939783f6aa45724ca7902701126d4da"
+        },
+        {
+          "path": "package/README.md",
+          "bytes": 664,
+          "mode": 420,
+          "sha256": "b7c69db51b8877b152f48c1e8055175d4b0bca5d68cf7f9f9665a96dda722d3f"
+        },
+        {
+          "path": "package/dist/base32.d.ts",
+          "bytes": 286,
+          "mode": 420,
+          "sha256": "2cefbfcb98719ad88e71cfdf8eadbbab2ceac18e720cfc1bbcbd661bf33bd20e"
+        },
+        {
+          "path": "package/dist/base64.d.ts",
+          "bytes": 584,
+          "mode": 420,
+          "sha256": "8db321501b826d6d094b45101f8d4e35cd90bc62adfbfce7cc358a9a90ec3f2a"
+        },
+        {
+          "path": "package/dist/hex.d.ts",
+          "bytes": 201,
+          "mode": 420,
+          "sha256": "c98682911e0544bc997b71bd786b244779e7fc1c6dc8c86f5da795d457085bea"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "bytes": 384,
+          "mode": 420,
+          "sha256": "c641442d204249de836a8ac1c7f5f8a00c343a4d2812bf4932e7b30c949fe498"
+        }
+      ],
+      "wholePackageJson": "{\n  \"name\": \"@oslojs/encoding\",\n  \"type\": \"module\",\n  \"version\": \"0.4.1\",\n  \"description\": \"Runtime-agnostic library for encoding and decoding data\",\n  \"files\": [\n    \"/dist/\"\n  ],\n  \"main\": \"dist/index.js\",\n  \"module\": \"dist/index.js\",\n  \"types\": \"dist/index.d.ts\",\n  \"keywords\": [\n    \"auth\",\n    \"encoding\",\n    \"hex\",\n    \"base16\",\n    \"base32\",\n    \"base64\",\n    \"base64url\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/oslo-project/encoding\"\n  },\n  \"author\": \"pilcrowOnPaper\",\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"@scure/base\": \"^1.1.6\",\n    \"@types/node\": \"^20.11.25\",\n    \"@typescript-eslint/eslint-plugin\": \"^6.7.5\",\n    \"@typescript-eslint/parser\": \"^6.7.5\",\n    \"auri\": \"^2.0.0\",\n    \"eslint\": \"^8.51.0\",\n    \"prettier\": \"^3.0.3\",\n    \"typescript\": \"^5.2.2\",\n    \"vitest\": \"^0.34.6\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf dist/* && tsc --project tsconfig.build.json\",\n    \"format\": \"prettier -w .\",\n    \"lint\": \"eslint src\",\n    \"test\": \"vitest run --sequence.concurrent\"\n  }\n}",
+      "licenseDeclaration": "MIT",
+      "completeLicenseFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396",
+          "wholeText": "MIT License\n\nCopyright (c) 2024 pilcrowOnPaper\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+      ],
+      "engineDeclaration": null,
+      "declaredInstallLifecycleHooks": {},
+      "installScriptsExecuted": false,
+      "actualPackExit": 0,
+      "sourceExactSRIMatch": true,
+      "nativeProductCredit": 0,
+      "nodeEngineInspection": {
+        "actualNode": "v24.19.0",
+        "range": null,
+        "result": "no declared Node engine"
+      },
+      "wholeLicenseInspected": true
+    },
+    {
+      "packageKey": "@oslojs/encoding@1.1.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__encoding@1.1.0/package",
+      "actualTarball": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__encoding@1.1.0/oslojs-encoding-1.1.0.tgz",
+      "tarballBytes": 4131,
+      "tarballSRI": "sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==",
+      "tarballSha256": "3bb63f0032de73814387e42b747d2e4b2b5a5f9a536e4dba87037ce524679a05",
+      "allFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "mode": 420,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396"
+        },
+        {
+          "path": "package/dist/base32.js",
+          "bytes": 5461,
+          "mode": 420,
+          "sha256": "908c56b07fd6bd5a9baee09e86455556655f3ab56e660174edf6e0125903548a"
+        },
+        {
+          "path": "package/dist/base64.js",
+          "bytes": 5642,
+          "mode": 420,
+          "sha256": "fdb525a7f320de49e3cfef25feb7d2435c11e2db3233cd24d68a099590454464"
+        },
+        {
+          "path": "package/dist/hex.js",
+          "bytes": 1391,
+          "mode": 420,
+          "sha256": "f75e1b2aef0453b02bb378db58973cb08629fcddf78145d9bc996f36583bb924"
+        },
+        {
+          "path": "package/dist/index.js",
+          "bytes": 494,
+          "mode": 420,
+          "sha256": "023f2424c168b8112d210847e6bd9ce6d84a6ed2198e0b5df0362418b13e8668"
+        },
+        {
+          "path": "package/package.json",
+          "bytes": 1029,
+          "mode": 420,
+          "sha256": "41031d06bc9471a0cf1eb6c2141c561e24fa974959f55d9543aecc13ef7a76f7"
+        },
+        {
+          "path": "package/README.md",
+          "bytes": 664,
+          "mode": 420,
+          "sha256": "b7c69db51b8877b152f48c1e8055175d4b0bca5d68cf7f9f9665a96dda722d3f"
+        },
+        {
+          "path": "package/dist/base32.d.ts",
+          "bytes": 717,
+          "mode": 420,
+          "sha256": "538a80e7806da911679fc0cc0e4b5f9ef77d606b3edb5dc471f391749be9faf1"
+        },
+        {
+          "path": "package/dist/base64.d.ts",
+          "bytes": 584,
+          "mode": 420,
+          "sha256": "8db321501b826d6d094b45101f8d4e35cd90bc62adfbfce7cc358a9a90ec3f2a"
+        },
+        {
+          "path": "package/dist/hex.d.ts",
+          "bytes": 201,
+          "mode": 420,
+          "sha256": "c98682911e0544bc997b71bd786b244779e7fc1c6dc8c86f5da795d457085bea"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "bytes": 494,
+          "mode": 420,
+          "sha256": "023f2424c168b8112d210847e6bd9ce6d84a6ed2198e0b5df0362418b13e8668"
+        }
+      ],
+      "wholePackageJson": "{\n  \"name\": \"@oslojs/encoding\",\n  \"type\": \"module\",\n  \"version\": \"1.1.0\",\n  \"description\": \"Runtime-agnostic library for encoding and decoding data\",\n  \"files\": [\n    \"/dist/\"\n  ],\n  \"main\": \"dist/index.js\",\n  \"module\": \"dist/index.js\",\n  \"types\": \"dist/index.d.ts\",\n  \"keywords\": [\n    \"auth\",\n    \"encoding\",\n    \"hex\",\n    \"base16\",\n    \"base32\",\n    \"base64\",\n    \"base64url\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/oslo-project/encoding\"\n  },\n  \"author\": \"pilcrowOnPaper\",\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"@scure/base\": \"^1.1.6\",\n    \"@types/node\": \"^20.11.25\",\n    \"@typescript-eslint/eslint-plugin\": \"^6.7.5\",\n    \"@typescript-eslint/parser\": \"^6.7.5\",\n    \"auri\": \"^2.0.0\",\n    \"eslint\": \"^8.51.0\",\n    \"prettier\": \"^3.0.3\",\n    \"typescript\": \"^5.2.2\",\n    \"vitest\": \"^0.34.6\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf dist/* && tsc --project tsconfig.build.json\",\n    \"format\": \"prettier -w .\",\n    \"lint\": \"eslint src\",\n    \"test\": \"vitest run --sequence.concurrent\"\n  }\n}",
+      "licenseDeclaration": "MIT",
+      "completeLicenseFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396",
+          "wholeText": "MIT License\n\nCopyright (c) 2024 pilcrowOnPaper\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+      ],
+      "engineDeclaration": null,
+      "declaredInstallLifecycleHooks": {},
+      "installScriptsExecuted": false,
+      "actualPackExit": 0,
+      "sourceExactSRIMatch": true,
+      "nativeProductCredit": 0,
+      "nodeEngineInspection": {
+        "actualNode": "v24.19.0",
+        "range": null,
+        "result": "no declared Node engine"
+      },
+      "wholeLicenseInspected": true
+    },
+    {
+      "packageKey": "@oslojs/jwt@0.2.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__jwt@0.2.0/package",
+      "actualTarball": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__jwt@0.2.0/oslojs-jwt-0.2.0.tgz",
+      "tarballBytes": 3595,
+      "tarballSRI": "sha512-bLE7BtHrURedCn4Mco3ma9L4Y1GR2SMBuIvjWr7rmQ4/W/4Jy70TIAgZ+0nIlk0xHz1vNP8x8DCns45Sb2XRbg==",
+      "tarballSha256": "16132d3a3ab1987b7d59196320f18b004c22791e6ebbb8f49b33c5f3b30ea145",
+      "allFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "mode": 420,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396"
+        },
+        {
+          "path": "package/dist/index.js",
+          "bytes": 10616,
+          "mode": 420,
+          "sha256": "93deb3f4f3e78dbdfe3814f9881e1f7c67d4a0a25c740397fd8e7fb42dcbc82e"
+        },
+        {
+          "path": "package/package.json",
+          "bytes": 949,
+          "mode": 420,
+          "sha256": "ae160df96c771eb9c68a288cb7b8224fefe911392e1e91a624e4c28bcd4e2b63"
+        },
+        {
+          "path": "package/README.md",
+          "bytes": 834,
+          "mode": 420,
+          "sha256": "d4e48ca89ce8a8e1c7afd887a53888a020e8d890680ba4286998e6940d9d1848"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "bytes": 1847,
+          "mode": 420,
+          "sha256": "17830af71f9ca5c4d115f366b41a975ba0d7cf66dd6f7e4d15ca06cae08317e8"
+        }
+      ],
+      "wholePackageJson": "{\n  \"name\": \"@oslojs/jwt\",\n  \"type\": \"module\",\n  \"version\": \"0.2.0\",\n  \"description\": \"Parse and encoding JSON web tokens\",\n  \"main\": \"dist/index.js\",\n  \"types\": \"dist/index.d.ts\",\n  \"module\": \"dist/index.js\",\n  \"files\": [\n    \"/dist/\"\n  ],\n  \"keywords\": [\n    \"auth\",\n    \"jwt\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/oslo-project/jwt\"\n  },\n  \"author\": \"pilcrowOnPaper\",\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"@types/node\": \"^20.8.6\",\n    \"@typescript-eslint/eslint-plugin\": \"^6.7.5\",\n    \"@typescript-eslint/parser\": \"^6.7.5\",\n    \"auri\": \"^2.0.0\",\n    \"eslint\": \"^8.51.0\",\n    \"prettier\": \"^3.0.3\",\n    \"typescript\": \"^5.2.2\",\n    \"vitest\": \"^0.34.6\"\n  },\n  \"dependencies\": {\n    \"@oslojs/encoding\": \"0.4.1\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf dist/* && tsc --project tsconfig.build.json\",\n    \"format\": \"prettier -w .\",\n    \"lint\": \"eslint src\",\n    \"test\": \"vitest run --sequence.concurrent\"\n  }\n}",
+      "licenseDeclaration": "MIT",
+      "completeLicenseFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "sha256": "37765ef8cf5691a06a6ee5fa3ad0349e25a54ab3a9e370033add44a01b2e4396",
+          "wholeText": "MIT License\n\nCopyright (c) 2024 pilcrowOnPaper\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+      ],
+      "engineDeclaration": null,
+      "declaredInstallLifecycleHooks": {},
+      "installScriptsExecuted": false,
+      "actualPackExit": 0,
+      "sourceExactSRIMatch": true,
+      "nativeProductCredit": 0,
+      "nodeEngineInspection": {
+        "actualNode": "v24.19.0",
+        "range": null,
+        "result": "no declared Node engine"
+      },
+      "wholeLicenseInspected": true
+    },
+    {
+      "packageKey": "arctic@3.7.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/arctic@3.7.0/package",
+      "actualTarball": "/tmp/auth131-arctic-reference-packages/archives/arctic@3.7.0/arctic-3.7.0.tgz",
+      "tarballBytes": 16202,
+      "tarballSRI": "sha512-ZMQ+f6VazDgUJOd+qNV+H7GohNSYal1mVjm5kEaZfE2Ifb7Ss70w+Q7xpJC87qZDkMZIXYf0pTIYZA0OPasSbw==",
+      "tarballSha256": "dd8bff6fc12ac2614adbdb06bec96fff3745672d63f8c321b8d7f7059daf9507",
+      "allFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "mode": 420,
+          "sha256": "303e6f4e014208793c6c5c0b2be0a987b0134821e4e78e35816a0a00a3b552f6"
+        },
+        {
+          "path": "package/dist/providers/42.js",
+          "bytes": 1383,
+          "mode": 420,
+          "sha256": "ce7122b702f3aa2bd5c5281a9ac48590ea7afd8ce296df0f41e606ec9dac8efd"
+        },
+        {
+          "path": "package/dist/providers/amazon-cognito.js",
+          "bytes": 1266,
+          "mode": 420,
+          "sha256": "fa3da3a73e6e973aa690e0f1600deb3bcb469384f52149d95f0daf4cea78b839"
+        },
+        {
+          "path": "package/dist/providers/anilist.js",
+          "bytes": 678,
+          "mode": 420,
+          "sha256": "2065e94cfe15bb07242fe06fc473c7808c76c9c1985ac16f5540effda306f494"
+        },
+        {
+          "path": "package/dist/providers/apple.js",
+          "bytes": 2503,
+          "mode": 420,
+          "sha256": "5669111f7679d2725c3a61d813b3207e7dc54bf419bf501d4e9ab9346bac7c70"
+        },
+        {
+          "path": "package/dist/providers/atlassian.js",
+          "bytes": 1936,
+          "mode": 420,
+          "sha256": "d65e1919a1710f1d226a3108542999754676b7bc478817eb8632400e139b6dee"
+        },
+        {
+          "path": "package/dist/providers/auth0.js",
+          "bytes": 1421,
+          "mode": 420,
+          "sha256": "b737486c025832b9a4ae1034954b75a6c883c349b5d3c8be75a508f92634e65c"
+        },
+        {
+          "path": "package/dist/providers/authentik.js",
+          "bytes": 1347,
+          "mode": 420,
+          "sha256": "43c6b0880636489766f17245ff41938fe92d6def73403bbbe9a0ffdb12db3313"
+        },
+        {
+          "path": "package/dist/providers/autodesk.js",
+          "bytes": 1209,
+          "mode": 420,
+          "sha256": "6d1b0a785af85a5609c1bcde08ad53f595cee5e449033fac7c166526a096364e"
+        },
+        {
+          "path": "package/dist/providers/battlenet.js",
+          "bytes": 1327,
+          "mode": 420,
+          "sha256": "5af953bb4bf47e40184100a5dd5148b34404ca0c7dffc437458b8c9307bde29f"
+        },
+        {
+          "path": "package/dist/providers/bitbucket.js",
+          "bytes": 859,
+          "mode": 420,
+          "sha256": "cf8884b45c15ca25f1ee50269fd7eab1b47b49459b4358643ce3c57eee5ac3ee"
+        },
+        {
+          "path": "package/dist/providers/box.js",
+          "bytes": 2257,
+          "mode": 420,
+          "sha256": "1cac146919270ec55754a8cc6bba1403c309acb13c6bc320b928f58b4e6630d6"
+        },
+        {
+          "path": "package/dist/providers/bungie.js",
+          "bytes": 867,
+          "mode": 420,
+          "sha256": "11b9888ca537d0064243e7838f383eb08ae4faf9292050f045f376d69f2fa412"
+        },
+        {
+          "path": "package/dist/client.js",
+          "bytes": 4616,
+          "mode": 420,
+          "sha256": "67e299edba5260d4d2604d5ba4aa8501ffad464f2c3aef4a2986560ace2559a0"
+        },
+        {
+          "path": "package/dist/providers/coinbase.js",
+          "bytes": 2266,
+          "mode": 420,
+          "sha256": "fbbdeec1019450b9c633a92f7e7257e875cbfe8d5e8c1db3f0cfa1b3e7c971e8"
+        },
+        {
+          "path": "package/dist/providers/discord.js",
+          "bytes": 1323,
+          "mode": 420,
+          "sha256": "0af952da746eb814f954d49f320ecbe6ea64a8fd7b13b1cbdd46bc67bf276b10"
+        },
+        {
+          "path": "package/dist/providers/donation-alerts.js",
+          "bytes": 1794,
+          "mode": 420,
+          "sha256": "976ef06af4919f590c389babfb6965440a4e686788b4aef823a0ed9407196f59"
+        },
+        {
+          "path": "package/dist/providers/dribbble.js",
+          "bytes": 1377,
+          "mode": 420,
+          "sha256": "8b4d8d68aa6a7c1446eb8f778f758bee14774e1b158c850f9d3b5ee8c6ce697b"
+        },
+        {
+          "path": "package/dist/providers/dropbox.js",
+          "bytes": 1049,
+          "mode": 420,
+          "sha256": "9398456c14e01e0718dd42da9b7d24c32f72df1ffe0aab42176c1fc387f7f9ff"
+        },
+        {
+          "path": "package/dist/providers/epicgames.js",
+          "bytes": 1055,
+          "mode": 420,
+          "sha256": "39c3a4eac5f71af1932b4d9204e031e28ad3234cb11e798e284c01c4cfe31ef8"
+        },
+        {
+          "path": "package/dist/providers/etsy.js",
+          "bytes": 936,
+          "mode": 420,
+          "sha256": "5e5eaf88a235dd6681c9356af441d58e37d75b0e2d7ecfb63c4471e78205dd98"
+        },
+        {
+          "path": "package/dist/providers/facebook.js",
+          "bytes": 1403,
+          "mode": 420,
+          "sha256": "51a937e3ef5f02f61e0ce437522bde7d64f5decd4c6375acdb299fb8ccb3a8b3"
+        },
+        {
+          "path": "package/dist/providers/figma.js",
+          "bytes": 909,
+          "mode": 420,
+          "sha256": "4d7ac6c9d937a2f7e7b45293462218b41d35c500a526bbefac3402ad33c07923"
+        },
+        {
+          "path": "package/dist/providers/gitea.js",
+          "bytes": 1112,
+          "mode": 420,
+          "sha256": "8ffb56af6c734b2aa209fdc90f8a05d1f5b9f57eb67014b56d5ec1b356409da0"
+        },
+        {
+          "path": "package/dist/providers/github.js",
+          "bytes": 3234,
+          "mode": 420,
+          "sha256": "060d7bf2163e1256c1a05cc153f243ae878a5672e2b0af1c4818b896ce490c38"
+        },
+        {
+          "path": "package/dist/providers/gitlab.js",
+          "bytes": 1212,
+          "mode": 420,
+          "sha256": "2f22c09d0e5f5541fb8d05b332b8ed640acd8ee9c7036c55b6a4100253c7cfce"
+        },
+        {
+          "path": "package/dist/providers/google.js",
+          "bytes": 1143,
+          "mode": 420,
+          "sha256": "219a9aee135f87c0ff9077c98a292b7025956a7ee2371824820a50429f4368ab"
+        },
+        {
+          "path": "package/dist/index.js",
+          "bytes": 3513,
+          "mode": 420,
+          "sha256": "0c322157b3f0d6275654adde3b3358409f9afc7bb1755b4e9e6c128b3ee1ad42"
+        },
+        {
+          "path": "package/dist/providers/intuit.js",
+          "bytes": 1079,
+          "mode": 420,
+          "sha256": "f3cd5c67e0c1d13974ef980d0dc152d3124334f1616f6bf118e7b4edb31d3f4b"
+        },
+        {
+          "path": "package/dist/providers/kakao.js",
+          "bytes": 1818,
+          "mode": 420,
+          "sha256": "5c8954476f6610adc73a1b55c21ba19846eda421c8f2f8682fb9115f9ea8a2e8"
+        },
+        {
+          "path": "package/dist/providers/keycloak.js",
+          "bytes": 1279,
+          "mode": 420,
+          "sha256": "8ce99cc806eb2d5ab990bf25368080a7fc237a92b9ba025e7317c17118d0dbf0"
+        },
+        {
+          "path": "package/dist/providers/kick.js",
+          "bytes": 2475,
+          "mode": 420,
+          "sha256": "9b6a350af9bb5cb64f6094bd35bc54862100f74cb772778a98b01a58f33a36c6"
+        },
+        {
+          "path": "package/dist/providers/lichess.js",
+          "bytes": 749,
+          "mode": 420,
+          "sha256": "28beb297b8593b7dd1f34ad0970114f56bf0bee9ac11694433a6d7dae11c6a6a"
+        },
+        {
+          "path": "package/dist/providers/line.js",
+          "bytes": 2152,
+          "mode": 420,
+          "sha256": "29c46fded5c3af3aeecaee5f45aec35b81de77e37183ccc72a6ae4a72a26ffe2"
+        },
+        {
+          "path": "package/dist/providers/linear.js",
+          "bytes": 1375,
+          "mode": 420,
+          "sha256": "17ecf4a3f0f0c3a490a6b217d983c81a02b843939caeefbf6a1866319b169f36"
+        },
+        {
+          "path": "package/dist/providers/linkedin.js",
+          "bytes": 1891,
+          "mode": 420,
+          "sha256": "40e3ed578aa167a87fcdf84ab36128d89662b8f6e355796edd57f6a9e7e6a721"
+        },
+        {
+          "path": "package/dist/providers/mastodon.js",
+          "bytes": 1167,
+          "mode": 420,
+          "sha256": "538205ee3f42aa2e3323c95203395c8e0e6335d7d914952da6e3de765cebaf31"
+        },
+        {
+          "path": "package/dist/providers/mercadolibre.js",
+          "bytes": 2130,
+          "mode": 420,
+          "sha256": "7dd680f4ddc6db7981b14efb2bef8a26c840dc481fb0b39a4732e20f8cbac9fc"
+        },
+        {
+          "path": "package/dist/providers/mercadopago.js",
+          "bytes": 2127,
+          "mode": 420,
+          "sha256": "9c76a44dcdf3bc827fd5a2008b5db7355c302b39e04f66a977ac9b96c4a92618"
+        },
+        {
+          "path": "package/dist/providers/microsoft-entra-id.js",
+          "bytes": 3250,
+          "mode": 420,
+          "sha256": "f60b4d9bda8d82af8c924cf273d97f481a2e777fdc14d394d4853af49430fd44"
+        },
+        {
+          "path": "package/dist/providers/myanimelist.js",
+          "bytes": 960,
+          "mode": 420,
+          "sha256": "6d4d8e078edbafd2e30a6c3c410c89de8af2881afa8ba0bb242c48ef50b75dab"
+        },
+        {
+          "path": "package/dist/providers/naver.js",
+          "bytes": 1657,
+          "mode": 420,
+          "sha256": "13c39dffad15627a6bc35f8e62c725608261fc33da1c19b492db241a5559d0ea"
+        },
+        {
+          "path": "package/dist/providers/notion.js",
+          "bytes": 724,
+          "mode": 420,
+          "sha256": "065f9b8a78d2f7dfb75ec111a014aff2cb05dfd6a22f563ca2c878b5725ec4f2"
+        },
+        {
+          "path": "package/dist/oauth2.js",
+          "bytes": 2483,
+          "mode": 420,
+          "sha256": "2984b35029a00c18fd0af24339e57d04feae951e633a92d86ca194d310874a52"
+        },
+        {
+          "path": "package/dist/oidc.js",
+          "bytes": 235,
+          "mode": 420,
+          "sha256": "ecb003119191e1f8f9e97920a767f9822ef702e148ac1e8a9ad01d09d4b7e24a"
+        },
+        {
+          "path": "package/dist/providers/okta.js",
+          "bytes": 1516,
+          "mode": 420,
+          "sha256": "ac0f94c164974253ac04c05b6ed8bf6873186077917f6005a7b1478bf2290104"
+        },
+        {
+          "path": "package/dist/providers/osu.js",
+          "bytes": 1916,
+          "mode": 420,
+          "sha256": "f1bddb815e1dce1883790774a9d36321f52d12f65ad862bdd11a76e3f23680d2"
+        },
+        {
+          "path": "package/dist/providers/patreon.js",
+          "bytes": 1826,
+          "mode": 420,
+          "sha256": "08638721bbf7dd2e339aeceed830a7cd599a06efea82e8dbe07c95320385afe9"
+        },
+        {
+          "path": "package/dist/providers/polar.js",
+          "bytes": 2698,
+          "mode": 420,
+          "sha256": "ca53ca05b7aa8e410211a47d7b4f1c33f2bc29c86035921cc3553f2ef561f197"
+        },
+        {
+          "path": "package/dist/providers/reddit.js",
+          "bytes": 860,
+          "mode": 420,
+          "sha256": "42480d82be59bff43e402b667420ab80c3b5aa289ea2639a9e9f345ed8173612"
+        },
+        {
+          "path": "package/dist/request.js",
+          "bytes": 5415,
+          "mode": 420,
+          "sha256": "8ead72c2ec5c640e2458f8f7d0c7cca7add835daed2836836515bcd12a08e2a3"
+        },
+        {
+          "path": "package/dist/providers/roblox.js",
+          "bytes": 1153,
+          "mode": 420,
+          "sha256": "df085a84e2a5ff5a0244a4d180ab73d476a2418acf692724f1a251f38599e69a"
+        },
+        {
+          "path": "package/dist/providers/salesforce.js",
+          "bytes": 1278,
+          "mode": 420,
+          "sha256": "932fcfe666f6f383191a4b46c50fb8b5355beeafb58dc41567f8e74fb2f0cc6f"
+        },
+        {
+          "path": "package/dist/providers/shikimori.js",
+          "bytes": 1706,
+          "mode": 420,
+          "sha256": "2aa04db8e27576d7b1231cb5b8f2cec8d4c99dee609753ca8cb7b9be473173a5"
+        },
+        {
+          "path": "package/dist/providers/slack.js",
+          "bytes": 694,
+          "mode": 420,
+          "sha256": "0e586d5a635e2d2e745075690624e9777fe63e1a3538967926ad8502bb668682"
+        },
+        {
+          "path": "package/dist/providers/spotify.js",
+          "bytes": 1140,
+          "mode": 420,
+          "sha256": "29c90dc7e8b3b3808c5905c157fa63e44b53e89efe4b789e53bf77405d255e10"
+        },
+        {
+          "path": "package/dist/providers/startgg.js",
+          "bytes": 2133,
+          "mode": 420,
+          "sha256": "3e2fe011e59ec541af0083b9868dcf43fb9d648ad865158a5956ca5e9980174a"
+        },
+        {
+          "path": "package/dist/providers/strava.js",
+          "bytes": 1918,
+          "mode": 420,
+          "sha256": "a8693af30e922be00e9d2466c78424edb4af6e0c4a42c9ac47cba3285658a153"
+        },
+        {
+          "path": "package/dist/providers/synology.js",
+          "bytes": 969,
+          "mode": 420,
+          "sha256": "fcf8f0fb3df37238b259888634f0345802f2a9a211dbe8b133cfecc1d64277ea"
+        },
+        {
+          "path": "package/dist/providers/tiktok.js",
+          "bytes": 2618,
+          "mode": 420,
+          "sha256": "e315f13d742114e534e2ca06665e1cf342f7da252d05efc16819598d6967e5b5"
+        },
+        {
+          "path": "package/dist/providers/tiltify.js",
+          "bytes": 1824,
+          "mode": 420,
+          "sha256": "3db2efa8809f7307d73187111ba860c8a81bb6174a8be6f0b387eb3b120fc255"
+        },
+        {
+          "path": "package/dist/providers/tumblr.js",
+          "bytes": 856,
+          "mode": 420,
+          "sha256": "04c64835c4b411b8ee72d65f967f3754f772e6fef1a5a94974b34e267d9a56ea"
+        },
+        {
+          "path": "package/dist/providers/twitch.js",
+          "bytes": 1859,
+          "mode": 420,
+          "sha256": "08e687c4cc591cd62fb71def0271f4576366e9c5f61d7afa2466e5535e6def32"
+        },
+        {
+          "path": "package/dist/providers/twitter.js",
+          "bytes": 1144,
+          "mode": 420,
+          "sha256": "b4d70c9d969b281151760099410a2109df62f0920e386c9aedfc7d06a74e0092"
+        },
+        {
+          "path": "package/dist/utils.js",
+          "bytes": 530,
+          "mode": 420,
+          "sha256": "3d3d02bc59f0dd36834f6393fc46b3e6b1db16d3e8eb8faeb11e648ac1579f79"
+        },
+        {
+          "path": "package/dist/providers/vk.js",
+          "bytes": 1366,
+          "mode": 420,
+          "sha256": "9e55b9fdabc7b2b4974d7cf7cde730c20920fa11db9b05b1093fcc09740e455b"
+        },
+        {
+          "path": "package/dist/providers/withings.js",
+          "bytes": 3231,
+          "mode": 420,
+          "sha256": "5ba77cb660ef19851f67867f6e2258a9394b35b790b6a2451ff55bbfc0992d9d"
+        },
+        {
+          "path": "package/dist/providers/workos.js",
+          "bytes": 1757,
+          "mode": 420,
+          "sha256": "df4b2cad0e1441d7dc062a648f341b0722aced311a590ec4f8c42acf94b7df23"
+        },
+        {
+          "path": "package/dist/providers/yahoo.js",
+          "bytes": 869,
+          "mode": 420,
+          "sha256": "413cce779b229404cbe3bd413d2779ca7f9e51923228f4b4140c0c39f146613d"
+        },
+        {
+          "path": "package/dist/providers/yandex.js",
+          "bytes": 843,
+          "mode": 420,
+          "sha256": "e0fa39b1b6b54891c5d521136c21cfe92650b4b968ed7a368ef367e0fe5a2e73"
+        },
+        {
+          "path": "package/dist/providers/zoom.js",
+          "bytes": 1112,
+          "mode": 420,
+          "sha256": "5c6d7b533ee9afa98719ec5972b4d6a35165e8ce527014670879fa97360d2340"
+        },
+        {
+          "path": "package/package.json",
+          "bytes": 888,
+          "mode": 420,
+          "sha256": "dd24f4d58686c676bf5c1d40564fc054c272fd72adbea9665a72e64096cd3e3c"
+        },
+        {
+          "path": "package/README.md",
+          "bytes": 1743,
+          "mode": 420,
+          "sha256": "c9507374c2f611ac8b13b0ecf4cc392945c37bb8186a4b1f19022f65708225fc"
+        },
+        {
+          "path": "package/dist/providers/42.d.ts",
+          "bytes": 369,
+          "mode": 420,
+          "sha256": "e57a366e8b02b1417fde54baaa1f016f5ac3d1a7055c7044053bec687b77ec79"
+        },
+        {
+          "path": "package/dist/providers/amazon-cognito.d.ts",
+          "bytes": 621,
+          "mode": 420,
+          "sha256": "6d697bf55481310569894fead1d7fb3086ee6f8a69af228c9d4ac58fb33cf887"
+        },
+        {
+          "path": "package/dist/providers/anilist.d.ts",
+          "bytes": 297,
+          "mode": 420,
+          "sha256": "e2821424164ac6d1491a01706297b6f4c49bd2a791970bb047c6dc2436c8cc60"
+        },
+        {
+          "path": "package/dist/providers/apple.d.ts",
+          "bytes": 478,
+          "mode": 420,
+          "sha256": "a06c13e765be42adfdff0bb900b12549e5376e9b941e0a6f10a14d09d835781a"
+        },
+        {
+          "path": "package/dist/providers/atlassian.d.ts",
+          "bytes": 439,
+          "mode": 420,
+          "sha256": "3b2431f72bd4e044fbcdc742ddfc3ad6b27bec4c8df1a4f9e45611eaf1091697"
+        },
+        {
+          "path": "package/dist/providers/auth0.d.ts",
+          "bytes": 609,
+          "mode": 420,
+          "sha256": "cc437492d4a9073aa17f25d0d3a8ddccebbc7d6a5f20c29991189e26f923bbf7"
+        },
+        {
+          "path": "package/dist/providers/authentik.d.ts",
+          "bytes": 600,
+          "mode": 420,
+          "sha256": "cfc7b590c0a950b0e05767b18823ca1f22fc27ece21bbe1243b38f967c4ceb15"
+        },
+        {
+          "path": "package/dist/providers/autodesk.d.ts",
+          "bytes": 483,
+          "mode": 420,
+          "sha256": "60be454be775325b56a1d1a1373868b5900d90e6ec1ee60c3da691c45fd77134"
+        },
+        {
+          "path": "package/dist/providers/battlenet.d.ts",
+          "bytes": 370,
+          "mode": 420,
+          "sha256": "f8ee244261e02c8a3c47ddd03c77b47a4d020983a65d1849691a89e6ac4fda0d"
+        },
+        {
+          "path": "package/dist/providers/bitbucket.d.ts",
+          "bytes": 368,
+          "mode": 420,
+          "sha256": "4abf4b0c1d059498a1e637e0ad7d74d4a17724fa44cc7b7ee84e6046167151af"
+        },
+        {
+          "path": "package/dist/providers/box.d.ts",
+          "bytes": 480,
+          "mode": 420,
+          "sha256": "f075e67796d55b81c826166f0b5f5c4ad9c2c36709c6c8a9ffad91fd0d3ac0cc"
+        },
+        {
+          "path": "package/dist/providers/bungie.d.ts",
+          "bytes": 390,
+          "mode": 420,
+          "sha256": "1f56eadafc61950a78ee1a866ab4a669ca1fe231e19066c28680fe29a98e7e0d"
+        },
+        {
+          "path": "package/dist/client.d.ts",
+          "bytes": 904,
+          "mode": 420,
+          "sha256": "a36d36247ebf61cede3b841881130a67688033e2bf33ad0a28a2ac6cbfcde8bd"
+        },
+        {
+          "path": "package/dist/providers/coinbase.d.ts",
+          "bytes": 485,
+          "mode": 420,
+          "sha256": "d6112d9f67d0e8221362842f42fd1c35c775cab898635006f31eb5f163abc0b2"
+        },
+        {
+          "path": "package/dist/providers/discord.d.ts",
+          "bytes": 496,
+          "mode": 420,
+          "sha256": "3ae9d26dae233d0ec9c19932f8b32468c7b53c39f56ccd3b9ff6b49cac7f68f8"
+        },
+        {
+          "path": "package/dist/providers/donation-alerts.d.ts",
+          "bytes": 447,
+          "mode": 420,
+          "sha256": "9c14c15f2c2be99d55f89b07b0ef4f08f5c84b65f9c3e89f292f1cbbcca98d9f"
+        },
+        {
+          "path": "package/dist/providers/dribbble.d.ts",
+          "bytes": 369,
+          "mode": 420,
+          "sha256": "77570e9a2b2282948bb14271ebb54ae70c90a8b8c6eeb88bbd0ed69fcdb71ebf"
+        },
+        {
+          "path": "package/dist/providers/dropbox.d.ts",
+          "bytes": 431,
+          "mode": 420,
+          "sha256": "fa8c9b1f181d6dd9763e5a5db4f8daacfe08d8150fc9c4a893594fe30f12aaef"
+        },
+        {
+          "path": "package/dist/providers/epicgames.d.ts",
+          "bytes": 433,
+          "mode": 420,
+          "sha256": "5052b53f0ef253e6bb554379283ef2875fdcbd57b6fd938c78a27d4cc66c9609"
+        },
+        {
+          "path": "package/dist/providers/etsy.d.ts",
+          "bytes": 403,
+          "mode": 420,
+          "sha256": "b0f1a2621d66dbeb7636baf01e48edbfa1b239c743e66c4aec4021abd1fe8e10"
+        },
+        {
+          "path": "package/dist/providers/facebook.d.ts",
+          "bytes": 369,
+          "mode": 420,
+          "sha256": "ab231105585231fae3e8dc2a980398d43075dfbdd8ae089d83d8a43bdde27770"
+        },
+        {
+          "path": "package/dist/providers/figma.d.ts",
+          "bytes": 382,
+          "mode": 420,
+          "sha256": "1183848e20e9ffa6991ac6131694bac65fe047fcc506f1ee21014a1ba3ef260c"
+        },
+        {
+          "path": "package/dist/providers/gitea.d.ts",
+          "bytes": 512,
+          "mode": 420,
+          "sha256": "86fe8c45e7b9a5714b40400c0390ee023431669adebc36a5cac865f051a4f1fb"
+        },
+        {
+          "path": "package/dist/providers/github.d.ts",
+          "bytes": 438,
+          "mode": 420,
+          "sha256": "275262645e177f96e1081a73d9bc56b9dd3455ac5f77563c767785748f20f5bf"
+        },
+        {
+          "path": "package/dist/providers/gitlab.d.ts",
+          "bytes": 553,
+          "mode": 420,
+          "sha256": "db3a5a8db706b79bb5f25ed0f00e2eefe1eae63d9074a5e0afc013671f105089"
+        },
+        {
+          "path": "package/dist/providers/google.d.ts",
+          "bytes": 474,
+          "mode": 420,
+          "sha256": "ed21b32443305d288fa34c3d1ea7bd18009d2fcf6ff540f1d9f1116ad5b0a38e"
+        },
+        {
+          "path": "package/dist/index.d.ts",
+          "bytes": 3513,
+          "mode": 420,
+          "sha256": "0c322157b3f0d6275654adde3b3358409f9afc7bb1755b4e9e6c128b3ee1ad42"
+        },
+        {
+          "path": "package/dist/providers/intuit.d.ts",
+          "bytes": 430,
+          "mode": 420,
+          "sha256": "83e5758a4f74b4463da00478c62ae79d106e23bdde8b4b07a0510acd83eb21b3"
+        },
+        {
+          "path": "package/dist/providers/kakao.d.ts",
+          "bytes": 435,
+          "mode": 420,
+          "sha256": "a1e17ef7e2f559a1478f42e047dfac137c71b7eaf691a4fc5471f028423c0a36"
+        },
+        {
+          "path": "package/dist/providers/keycloak.d.ts",
+          "bytes": 600,
+          "mode": 420,
+          "sha256": "fc6776df698590ce7fbdfb5b96bede432916a2302897db893112e2bc02d9329c"
+        },
+        {
+          "path": "package/dist/providers/kick.d.ts",
+          "bytes": 525,
+          "mode": 420,
+          "sha256": "df5c4b1777e47504e484d75d2d87e67e1060c82b688e404dc196c5c51e69db85"
+        },
+        {
+          "path": "package/dist/providers/lichess.d.ts",
+          "bytes": 337,
+          "mode": 420,
+          "sha256": "71aa695b9a6cdda899c654675e53efbd75146502eb6de3ddf5bd7f69c0833fa6"
+        },
+        {
+          "path": "package/dist/providers/line.d.ts",
+          "bytes": 478,
+          "mode": 420,
+          "sha256": "d592cd4a2767b72eed03dd0877df64e492ddcffbe792d71ffbce1c53aad11e7c"
+        },
+        {
+          "path": "package/dist/providers/linear.d.ts",
+          "bytes": 367,
+          "mode": 420,
+          "sha256": "4050f336e8e01f3eff1f99d0a7304cb027891f51ceecbdd24972b486611c5370"
+        },
+        {
+          "path": "package/dist/providers/linkedin.d.ts",
+          "bytes": 438,
+          "mode": 420,
+          "sha256": "910cbc2f83eff65d33789fcf2b964f1da6eb4d38916de8459a7051c03d52d197"
+        },
+        {
+          "path": "package/dist/providers/mastodon.d.ts",
+          "bytes": 523,
+          "mode": 420,
+          "sha256": "f3a9db2ae3eaa6f6a5cf08b18cc75def0405bc5f977ce0bd78b4a71243948f2e"
+        },
+        {
+          "path": "package/dist/providers/mercadolibre.d.ts",
+          "bytes": 468,
+          "mode": 420,
+          "sha256": "ddb990438fb480c1040a6e62d9a823befcc2b4b7ea26aca18d22dc2a64289d35"
+        },
+        {
+          "path": "package/dist/providers/mercadopago.d.ts",
+          "bytes": 467,
+          "mode": 420,
+          "sha256": "c761ebdeb06a8a6373459a930815a54829dd5d3ce14d080523b36f8f3a71dafa"
+        },
+        {
+          "path": "package/dist/providers/microsoft-entra-id.d.ts",
+          "bytes": 593,
+          "mode": 420,
+          "sha256": "1ededbc1a691501b630e0f369afaef16a3adcf622a47f171614961481f750f4d"
+        },
+        {
+          "path": "package/dist/providers/myanimelist.d.ts",
+          "bytes": 421,
+          "mode": 420,
+          "sha256": "4f937fa77a27ae43f7e8ba6b5e060ad8fc94f85031419699fcf12982e1f5c928"
+        },
+        {
+          "path": "package/dist/providers/naver.d.ts",
+          "bytes": 404,
+          "mode": 420,
+          "sha256": "6628739d30dc4e5de3fb50014055e5e622afd5c631589bb45f2fc339e1bd9c92"
+        },
+        {
+          "path": "package/dist/providers/notion.d.ts",
+          "bytes": 296,
+          "mode": 420,
+          "sha256": "fe85d31af2d5b509d13ea3cfe85856513530e45e24fd094700eb365be6471c3d"
+        },
+        {
+          "path": "package/dist/oauth2.d.ts",
+          "bytes": 533,
+          "mode": 420,
+          "sha256": "f0b6c11b71ff0c67824a6a9954c468ef18b7f26c813c7c8f451c2c41334f17f2"
+        },
+        {
+          "path": "package/dist/oidc.d.ts",
+          "bytes": 64,
+          "mode": 420,
+          "sha256": "8164ec566b23256d8e2e454e7873dc76e182f29c93f5570ad976e40b196bffc7"
+        },
+        {
+          "path": "package/dist/providers/okta.d.ts",
+          "bytes": 643,
+          "mode": 420,
+          "sha256": "c2a2dc13a35ae9f1355d9ea8ca414aca1404dd69e6234fdc1647035f2cb99162"
+        },
+        {
+          "path": "package/dist/providers/osu.d.ts",
+          "bytes": 440,
+          "mode": 420,
+          "sha256": "e212b22fe680ffacaa6cee3d3202c0cd3d806969af88e22c9da615932d35e24a"
+        },
+        {
+          "path": "package/dist/providers/patreon.d.ts",
+          "bytes": 437,
+          "mode": 420,
+          "sha256": "f719ef709f09b47fe85e2ff2fb327da5c9f3af858e50bd92f8b29541275d530a"
+        },
+        {
+          "path": "package/dist/providers/polar.d.ts",
+          "bytes": 533,
+          "mode": 420,
+          "sha256": "0a887966b80f7bb98d273907455a5f068b87e031f49a3d16632646d5d90e58e1"
+        },
+        {
+          "path": "package/dist/providers/reddit.d.ts",
+          "bytes": 383,
+          "mode": 420,
+          "sha256": "aae7a61cb59a9685d098b5cfcd857df534f985b9af411a8074ee58f4908a854b"
+        },
+        {
+          "path": "package/dist/request.d.ts",
+          "bytes": 1197,
+          "mode": 420,
+          "sha256": "9ef16761af9851ddff64042632cc0a1b84cc3b46165c0d5f60127151acaa6322"
+        },
+        {
+          "path": "package/dist/providers/roblox.d.ts",
+          "bytes": 481,
+          "mode": 420,
+          "sha256": "c0a8df74a96813dab2e6a711d9174c7167ca9445884c192f50e6b213d3366f94"
+        },
+        {
+          "path": "package/dist/providers/salesforce.d.ts",
+          "bytes": 600,
+          "mode": 420,
+          "sha256": "4e623976d6bbb393f7a2b2155c748b18212c0b699c06be054b98e922899cc9a2"
+        },
+        {
+          "path": "package/dist/providers/shikimori.d.ts",
+          "bytes": 421,
+          "mode": 420,
+          "sha256": "dc9d8cd9c1c5ecd50a91fa30082c6398d4bc7f168861f9d1652fb0dadf9042eb"
+        },
+        {
+          "path": "package/dist/providers/slack.d.ts",
+          "bytes": 320,
+          "mode": 420,
+          "sha256": "e5b3ada76c566668eea940d7ea74eb1e46f74f061e91eb970f65b7afe1a4e082"
+        },
+        {
+          "path": "package/dist/providers/spotify.d.ts",
+          "bytes": 449,
+          "mode": 420,
+          "sha256": "879b1b5b295ffa0474fafb12f2c9044534edd87d07f986b9d482f3d40cddd3fa"
+        },
+        {
+          "path": "package/dist/providers/startgg.d.ts",
+          "bytes": 473,
+          "mode": 420,
+          "sha256": "c6e5df9cf1a3079f37650b1d7cc5c1f4933c5874639c46eed5675c636e15b8c1"
+        },
+        {
+          "path": "package/dist/providers/strava.d.ts",
+          "bytes": 436,
+          "mode": 420,
+          "sha256": "aa81c7e9ebc8a79c8023638f7ed787b5e65c4f7901be27fe35f88196ce73dfb9"
+        },
+        {
+          "path": "package/dist/providers/synology.d.ts",
+          "bytes": 449,
+          "mode": 420,
+          "sha256": "66921c11f0a71054ff77f2a9ec5f8b910e32916a7c52842795fde57c1a84150e"
+        },
+        {
+          "path": "package/dist/providers/tiktok.d.ts",
+          "bytes": 529,
+          "mode": 420,
+          "sha256": "eb28597e57df938cccf1863d0fc5ab4608c65a521b7c49ad4901e8637dc1f41f"
+        },
+        {
+          "path": "package/dist/providers/tiltify.d.ts",
+          "bytes": 437,
+          "mode": 420,
+          "sha256": "cd49e258a6d79ae7caab0c5faee3d1f0bf854bd0edfe3b7cfd41233e813b4551"
+        },
+        {
+          "path": "package/dist/providers/tumblr.d.ts",
+          "bytes": 383,
+          "mode": 420,
+          "sha256": "8dde1d33816f72db472b96308e487b68ebc2df3c71c9791a008b1d77a2a3506b"
+        },
+        {
+          "path": "package/dist/providers/twitch.d.ts",
+          "bytes": 436,
+          "mode": 420,
+          "sha256": "de1d6832fb550a26afb93f3b911935d68181ab5f7f269f34c89cb6d2bb54d991"
+        },
+        {
+          "path": "package/dist/providers/twitter.d.ts",
+          "bytes": 482,
+          "mode": 420,
+          "sha256": "da6bd6b6671cf671a261089400d9579186e46f3b7632637b5ce9212854079107"
+        },
+        {
+          "path": "package/dist/utils.d.ts",
+          "bytes": 145,
+          "mode": 420,
+          "sha256": "20a9b62a0cc624e5f474715cafd3e252651c93cca35206f7c989d822e3c9dd0e"
+        },
+        {
+          "path": "package/dist/providers/vk.d.ts",
+          "bytes": 363,
+          "mode": 420,
+          "sha256": "58e0476d405309a1d3bf54b2b644162c30dc481bd19cbe81e04e1f79604c0988"
+        },
+        {
+          "path": "package/dist/providers/withings.d.ts",
+          "bytes": 364,
+          "mode": 420,
+          "sha256": "e864eb10aef07d9afb8d14ed38e011376fa162e377694685ded74960ccd0de42"
+        },
+        {
+          "path": "package/dist/providers/workos.d.ts",
+          "bytes": 414,
+          "mode": 420,
+          "sha256": "0a3ffb9ba6ec9ab0ba8e865f67715ca6bf65066f5e1e71728f697583bf978058"
+        },
+        {
+          "path": "package/dist/providers/yahoo.d.ts",
+          "bytes": 382,
+          "mode": 420,
+          "sha256": "01d4b660abf81a0fea3504e2e3328744f212e0a02d9e7acaa1b6a153f29ab13e"
+        },
+        {
+          "path": "package/dist/providers/yandex.d.ts",
+          "bytes": 383,
+          "mode": 420,
+          "sha256": "3a7d1f0cf534ca48ea1ed6ac585336104d3bfa997d174c287b945b55565aebe6"
+        },
+        {
+          "path": "package/dist/providers/zoom.d.ts",
+          "bytes": 472,
+          "mode": 420,
+          "sha256": "e94594bfc5bd5f76dd05130defcc0f8770fe02ea53e2618d63a76f82eacb7390"
+        }
+      ],
+      "wholePackageJson": "{\n\t\"name\": \"arctic\",\n\t\"type\": \"module\",\n\t\"version\": \"3.7.0\",\n\t\"description\": \"OAuth 2.0 clients for popular providers\",\n\t\"main\": \"dist/index.js\",\n\t\"types\": \"dist/index.d.ts\",\n\t\"module\": \"dist/index.js\",\n\t\"scripts\": {\n\t\t\"build\": \"rm -rf dist/* && tsc\",\n\t\t\"format\": \"prettier -w .\",\n\t\t\"lint\": \"eslint src\",\n\t\t\"test\": \"vitest run --sequence.concurrent\"\n\t},\n\t\"files\": [\n\t\t\"/dist/\"\n\t],\n\t\"author\": \"pilcrowOnPaper\",\n\t\"license\": \"MIT\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://github.com/pilcrowonpaper/arctic.git\"\n\t},\n\t\"devDependencies\": {\n\t\t\"@types/node\": \"^20.8.6\",\n\t\t\"@typescript-eslint/eslint-plugin\": \"^6.7.5\",\n\t\t\"@typescript-eslint/parser\": \"^6.7.5\",\n\t\t\"auri\": \"^3.1.0\",\n\t\t\"eslint\": \"^8.51.0\",\n\t\t\"prettier\": \"^3.0.3\",\n\t\t\"typescript\": \"^5.2.2\",\n\t\t\"vitest\": \"1.6.0\"\n\t},\n\t\"dependencies\": {\n\t\t\"@oslojs/crypto\": \"1.0.1\",\n\t\t\"@oslojs/encoding\": \"1.1.0\",\n\t\t\"@oslojs/jwt\": \"0.2.0\"\n\t}\n}\n",
+      "licenseDeclaration": "MIT",
+      "completeLicenseFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 1071,
+          "sha256": "303e6f4e014208793c6c5c0b2be0a987b0134821e4e78e35816a0a00a3b552f6",
+          "wholeText": "MIT License\n\nCopyright (c) 2023 pilcrowOnPaper\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+      ],
+      "engineDeclaration": null,
+      "declaredInstallLifecycleHooks": {},
+      "installScriptsExecuted": false,
+      "actualPackExit": 0,
+      "sourceExactSRIMatch": true,
+      "nativeProductCredit": 0,
+      "nodeEngineInspection": {
+        "actualNode": "v24.19.0",
+        "range": null,
+        "result": "no declared Node engine"
+      },
+      "wholeLicenseInspected": true
+    }
+  ],
+  "allArchivesAndWholeFilesVerified": true,
+  "mainDependencyOrSharedNodeModulesChanges": false,
+  "installScriptsExecuted": false,
+  "nativePL2PL3RuntimeCredit": 0,
+  "exactSourceNestedDependencyLinks": [
+    {
+      "importerPackage": "@oslojs/asn1@1.0.0",
+      "specifier": "@oslojs/binary",
+      "sourceSnapshotKey": "@oslojs/binary@1.0.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__binary@1.0.0/package",
+      "link": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__asn1@1.0.0/package/node_modules/@oslojs/binary"
+    },
+    {
+      "importerPackage": "@oslojs/crypto@1.0.1",
+      "specifier": "@oslojs/asn1",
+      "sourceSnapshotKey": "@oslojs/asn1@1.0.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__asn1@1.0.0/package",
+      "link": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__crypto@1.0.1/package/node_modules/@oslojs/asn1"
+    },
+    {
+      "importerPackage": "@oslojs/crypto@1.0.1",
+      "specifier": "@oslojs/binary",
+      "sourceSnapshotKey": "@oslojs/binary@1.0.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__binary@1.0.0/package",
+      "link": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__crypto@1.0.1/package/node_modules/@oslojs/binary"
+    },
+    {
+      "importerPackage": "@oslojs/jwt@0.2.0",
+      "specifier": "@oslojs/encoding",
+      "sourceSnapshotKey": "@oslojs/encoding@0.4.1",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__encoding@0.4.1/package",
+      "link": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__jwt@0.2.0/package/node_modules/@oslojs/encoding"
+    },
+    {
+      "importerPackage": "arctic@3.7.0",
+      "specifier": "@oslojs/crypto",
+      "sourceSnapshotKey": "@oslojs/crypto@1.0.1",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__crypto@1.0.1/package",
+      "link": "/tmp/auth131-arctic-reference-packages/archives/arctic@3.7.0/package/node_modules/@oslojs/crypto"
+    },
+    {
+      "importerPackage": "arctic@3.7.0",
+      "specifier": "@oslojs/encoding",
+      "sourceSnapshotKey": "@oslojs/encoding@1.1.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__encoding@1.1.0/package",
+      "link": "/tmp/auth131-arctic-reference-packages/archives/arctic@3.7.0/package/node_modules/@oslojs/encoding"
+    },
+    {
+      "importerPackage": "arctic@3.7.0",
+      "specifier": "@oslojs/jwt",
+      "sourceSnapshotKey": "@oslojs/jwt@0.2.0",
+      "actualPackageDirectory": "/tmp/auth131-arctic-reference-packages/archives/@oslojs__jwt@0.2.0/package",
+      "link": "/tmp/auth131-arctic-reference-packages/archives/arctic@3.7.0/package/node_modules/@oslojs/jwt"
+    }
+  ],
+  "wholePackagedLicenseCount": 7,
+  "fullRegularFileCount": 243,
+  "allWholeLicenseAndNodeEngineInspectionsComplete": true
+}

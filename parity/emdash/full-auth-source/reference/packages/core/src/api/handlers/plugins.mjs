@@ -1,0 +1,293 @@
+/**
+ * Plugin management handlers
+ */
+import { PluginStateRepository } from "../../plugins/state.js";
+function marketplaceIconUrl(marketplaceUrl, pluginId) {
+    return `${marketplaceUrl}/api/v1/plugins/${encodeURIComponent(pluginId)}/icon`;
+}
+/**
+ * Get plugin info from configured plugin and database state
+ */
+function buildPluginInfo(plugin, state, marketplaceUrl) {
+    // If no state exists, plugin is considered active (default on first run)
+    const status = state?.status ?? "active";
+    const enabled = status === "active";
+    const isMarketplace = (state?.source ?? "config") === "marketplace";
+    return {
+        id: plugin.id,
+        name: state?.displayName || plugin.id,
+        version: plugin.version,
+        package: undefined, // v2 doesn't have package field
+        enabled,
+        status,
+        source: state?.source ?? "config",
+        marketplaceVersion: state?.marketplaceVersion ?? undefined,
+        registryPublisherDid: state?.registryPublisherDid ?? undefined,
+        registrySlug: state?.registrySlug ?? undefined,
+        capabilities: plugin.capabilities,
+        hasAdminPages: (plugin.admin.pages?.length ?? 0) > 0,
+        hasDashboardWidgets: (plugin.admin.widgets?.length ?? 0) > 0,
+        hasHooks: Object.keys(plugin.hooks ?? {}).length > 0,
+        hasSettings: Object.keys(plugin.admin.settingsSchema ?? {}).length > 0,
+        installedAt: state?.installedAt?.toISOString(),
+        activatedAt: state?.activatedAt?.toISOString() ?? undefined,
+        deactivatedAt: state?.deactivatedAt?.toISOString() ?? undefined,
+        description: state?.description ?? undefined,
+        iconUrl: isMarketplace && marketplaceUrl ? marketplaceIconUrl(marketplaceUrl, plugin.id) : undefined,
+        mcpToolsEnabled: state?.mcpToolsEnabled ?? false,
+        mcpTools: Object.entries(plugin.mcp?.tools ?? {}).flatMap(([name, tool]) => {
+            const permission = plugin.routes[tool.route]?.permission;
+            return permission
+                ? [
+                    {
+                        name,
+                        description: tool.description,
+                        route: tool.route,
+                        permission,
+                        destructive: tool.destructive ?? false,
+                    },
+                ]
+                : [];
+        }),
+    };
+}
+/**
+ * Build plugin info for a statically-sandboxed plugin entry
+ */
+function buildSandboxedPluginInfo(entry, state) {
+    const status = state?.status ?? "active";
+    const enabled = status === "active";
+    return {
+        id: entry.id,
+        name: state?.displayName || entry.id,
+        version: entry.version,
+        package: undefined, // v2 doesn't have package field
+        enabled,
+        status,
+        source: "config",
+        sandboxed: true,
+        capabilities: entry.capabilities,
+        hasAdminPages: (entry.adminPages?.length ?? 0) > 0,
+        hasDashboardWidgets: (entry.adminWidgets?.length ?? 0) > 0,
+        hasHooks: false,
+        hasSettings: Object.keys(entry.settingsSchema ?? {}).length > 0,
+        installedAt: state?.installedAt?.toISOString(),
+        activatedAt: state?.activatedAt?.toISOString() ?? undefined,
+        deactivatedAt: state?.deactivatedAt?.toISOString() ?? undefined,
+        description: state?.description ?? undefined,
+        mcpToolsEnabled: state?.mcpToolsEnabled ?? false,
+        mcpTools: entry.mcp?.tools.map(({ inputSchema: _, outputSchema: __, ...tool }) => tool) ?? [],
+    };
+}
+/**
+ * List all configured plugins with their state
+ */
+export async function handlePluginList(db, configuredPlugins, sandboxedPluginEntries, marketplaceUrl, 
+/**
+ * Settings-schema lookup for runtime-installed (marketplace/registry)
+ * plugins, which aren't in either build-time list. Typically
+ * `EmDashRuntime.getRuntimePluginSettingsSchema`.
+ */
+runtimeSettingsSchemaLookup) {
+    try {
+        const stateRepo = new PluginStateRepository(db);
+        const allStates = await stateRepo.getAll();
+        const stateMap = new Map(allStates.map((s) => [s.pluginId, s]));
+        const configuredIds = new Set(configuredPlugins.map((p) => p.id));
+        const items = configuredPlugins.map((plugin) => {
+            const state = stateMap.get(plugin.id) ?? null;
+            return buildPluginInfo(plugin, state, marketplaceUrl);
+        });
+        // Include statically-sandboxed plugins (registered via `sandboxed: []`
+        // in astro.config.mjs).
+        for (const entry of sandboxedPluginEntries) {
+            if (configuredIds.has(entry.id))
+                continue;
+            configuredIds.add(entry.id);
+            items.push(buildSandboxedPluginInfo(entry, stateMap.get(entry.id) ?? null));
+        }
+        // Include runtime-installed plugins (marketplace or registry) that
+        // aren't in the configured plugins list.
+        for (const state of allStates) {
+            if (state.source !== "marketplace" && state.source !== "registry")
+                continue;
+            if (configuredIds.has(state.pluginId))
+                continue;
+            items.push(buildStateOnlyPluginInfo(state, marketplaceUrl, runtimeSettingsSchemaLookup));
+        }
+        return {
+            success: true,
+            data: { items },
+        };
+    }
+    catch {
+        return {
+            success: false,
+            error: {
+                code: "PLUGIN_LIST_ERROR",
+                message: "Failed to list plugins",
+            },
+        };
+    }
+}
+/**
+ * Get a single plugin's info
+ */
+export async function handlePluginGet(db, configuredPlugins, sandboxedPluginEntries, pluginId, marketplaceUrl, runtimeSettingsSchemaLookup) {
+    try {
+        const stateRepo = new PluginStateRepository(db);
+        const plugin = configuredPlugins.find((p) => p.id === pluginId);
+        if (plugin) {
+            const state = await stateRepo.get(pluginId);
+            return {
+                success: true,
+                data: { item: buildPluginInfo(plugin, state, marketplaceUrl) },
+            };
+        }
+        const sandboxed = sandboxedPluginEntries.find((e) => e.id === pluginId);
+        if (sandboxed) {
+            const state = await stateRepo.get(pluginId);
+            return {
+                success: true,
+                data: { item: buildSandboxedPluginInfo(sandboxed, state) },
+            };
+        }
+        const state = await stateRepo.get(pluginId);
+        if (state && (state.source === "marketplace" || state.source === "registry")) {
+            return {
+                success: true,
+                data: {
+                    item: buildStateOnlyPluginInfo(state, marketplaceUrl, runtimeSettingsSchemaLookup),
+                },
+            };
+        }
+        return {
+            success: false,
+            error: {
+                code: "NOT_FOUND",
+                message: `Plugin not found: ${pluginId}`,
+            },
+        };
+    }
+    catch {
+        return {
+            success: false,
+            error: {
+                code: "PLUGIN_GET_ERROR",
+                message: "Failed to get plugin",
+            },
+        };
+    }
+}
+/**
+ * Build a minimal `PluginInfo` for a plugin that exists only as a
+ * `_plugin_state` row (marketplace or registry install), with no
+ * matching `configuredPlugins` entry. Runtime-installed plugins don't
+ * have ResolvedPlugin metadata until they're loaded into the sandbox,
+ * so the list, single-plugin, and enable/disable responses surface the
+ * state-row view as a stable shape the admin UI already understands.
+ */
+function buildStateOnlyPluginInfo(state, marketplaceUrl, runtimeSettingsSchemaLookup) {
+    return {
+        id: state.pluginId,
+        name: state.displayName || state.pluginId,
+        version: state.marketplaceVersion ?? state.version,
+        enabled: state.status === "active",
+        status: state.status,
+        source: state.source,
+        marketplaceVersion: state.marketplaceVersion ?? undefined,
+        registryPublisherDid: state.registryPublisherDid ?? undefined,
+        registrySlug: state.registrySlug ?? undefined,
+        capabilities: [],
+        hasAdminPages: false,
+        hasDashboardWidgets: false,
+        hasHooks: false,
+        hasSettings: Object.keys(runtimeSettingsSchemaLookup?.(state.pluginId) ?? {}).length > 0,
+        installedAt: state.installedAt?.toISOString(),
+        activatedAt: state.activatedAt?.toISOString() ?? undefined,
+        deactivatedAt: state.deactivatedAt?.toISOString() ?? undefined,
+        description: state.description ?? undefined,
+        iconUrl: state.source === "marketplace" && marketplaceUrl
+            ? marketplaceIconUrl(marketplaceUrl, state.pluginId)
+            : undefined,
+        mcpToolsEnabled: state.mcpToolsEnabled,
+        mcpTools: [],
+    };
+}
+/**
+ * Enable a plugin
+ */
+export async function handlePluginEnable(db, configuredPlugins, sandboxedPluginEntries, pluginId) {
+    try {
+        const stateRepo = new PluginStateRepository(db);
+        const plugin = configuredPlugins.find((p) => p.id === pluginId);
+        // Configured plugin: use its version as the source of truth.
+        if (plugin) {
+            const state = await stateRepo.enable(pluginId, plugin.version);
+            return { success: true, data: { item: buildPluginInfo(plugin, state) } };
+        }
+        // Statically-sandboxed plugin: addressable via its build-time entry.
+        const sandboxed = sandboxedPluginEntries.find((e) => e.id === pluginId);
+        if (sandboxed) {
+            const state = await stateRepo.enable(pluginId, sandboxed.version);
+            return { success: true, data: { item: buildSandboxedPluginInfo(sandboxed, state) } };
+        }
+        // Runtime-installed plugin (marketplace or registry): only
+        // addressable through the state row. Fall back to the existing
+        // version recorded there.
+        const existing = await stateRepo.get(pluginId);
+        if (!existing || (existing.source !== "marketplace" && existing.source !== "registry")) {
+            return {
+                success: false,
+                error: { code: "NOT_FOUND", message: `Plugin not found: ${pluginId}` },
+            };
+        }
+        const enabled = await stateRepo.enable(pluginId, existing.version);
+        return { success: true, data: { item: buildStateOnlyPluginInfo(enabled) } };
+    }
+    catch {
+        return {
+            success: false,
+            error: {
+                code: "PLUGIN_ENABLE_ERROR",
+                message: "Failed to enable plugin",
+            },
+        };
+    }
+}
+/**
+ * Disable a plugin
+ */
+export async function handlePluginDisable(db, configuredPlugins, sandboxedPluginEntries, pluginId) {
+    try {
+        const stateRepo = new PluginStateRepository(db);
+        const plugin = configuredPlugins.find((p) => p.id === pluginId);
+        if (plugin) {
+            const state = await stateRepo.disable(pluginId, plugin.version);
+            return { success: true, data: { item: buildPluginInfo(plugin, state) } };
+        }
+        const sandboxed = sandboxedPluginEntries.find((e) => e.id === pluginId);
+        if (sandboxed) {
+            const state = await stateRepo.disable(pluginId, sandboxed.version);
+            return { success: true, data: { item: buildSandboxedPluginInfo(sandboxed, state) } };
+        }
+        const existing = await stateRepo.get(pluginId);
+        if (!existing || (existing.source !== "marketplace" && existing.source !== "registry")) {
+            return {
+                success: false,
+                error: { code: "NOT_FOUND", message: `Plugin not found: ${pluginId}` },
+            };
+        }
+        const disabled = await stateRepo.disable(pluginId, existing.version);
+        return { success: true, data: { item: buildStateOnlyPluginInfo(disabled) } };
+    }
+    catch {
+        return {
+            success: false,
+            error: {
+                code: "PLUGIN_DISABLE_ERROR",
+                message: "Failed to disable plugin",
+            },
+        };
+    }
+}

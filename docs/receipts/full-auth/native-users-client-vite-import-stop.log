@@ -1,0 +1,20 @@
+
+ RUN  v4.1.10 /workspace/cms-full-auth-users
+
+ ❯ tests/full-auth-native-pure/users-client.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/full-auth-native-pure/users-client.test.ts [ tests/full-auth-native-pure/users-client.test.ts ]
+Error: Cannot find module '../../src/lib/users/client.ts' imported from /workspace/cms-full-auth-users/tests/full-auth-native-pure/users-client.test.ts
+ ❯ tests/full-auth-native-pure/users-client.test.ts:4:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  02:46:55
+   Duration  148ms (transform 21ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
