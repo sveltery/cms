@@ -8,21 +8,39 @@ import {canonicalMediaProviderId,getMediaPreviewUrl,localMediaFileUrl} from './s
 export interface ImagePreviewAttributes {mediaId?:unknown;provider?:string;src?:unknown}
 export interface GalleryPreviewImage {asset:{_ref:string;url?:string;provider?:string}}
 
+interface PreviewQuery {
+  queryKey:readonly unknown[];
+  queryFn:(context:{signal:AbortSignal})=>Promise<LocalMediaItem>;
+  enabled:boolean;
+}
+
+function createPreviewObserver(queryClient:QueryClient,options:()=>PreviewQuery,storedSrc:()=>string,preferCurrentUrl:boolean) {
+  const observer=new QueryObserver<LocalMediaItem>(queryClient,options());
+  const listeners=new Set<()=>void>();let stop:(()=>void)|undefined;
+  return {
+    queryClient,
+    start(){if(!stop)stop=observer.subscribe(()=>{for(const listener of listeners)listener();});},
+    refresh(){observer.setOptions(options());},
+    subscribe(listener:()=>void){listeners.add(listener);return()=>{listeners.delete(listener);};},
+    snapshot(){
+      const result=observer.getCurrentResult();
+      const src=preferCurrentUrl?(result.data?.url||storedSrc()):storedSrc();
+      return {src:getMediaPreviewUrl(src,result.data?.contentHash),currentMedia:result.data,error:result.error,isFetching:result.isFetching};
+    },
+    dispose(){stop?.();observer.destroy();listeners.clear();},
+  };
+}
+
 export function observeImageMediaPreview(queryClient:QueryClient,initial:ImagePreviewAttributes) {
   let attributes=initial;
   const options=()=>{
     const mediaId=typeof attributes.mediaId==='string'&&attributes.mediaId&&canonicalMediaProviderId(attributes.provider)==='local'?attributes.mediaId:null;
     return {queryKey:['media',mediaId],queryFn:({signal}:{signal:AbortSignal})=>fetchMediaItem(mediaId!,{signal}),enabled:mediaId!==null};
   };
-  const observer=new QueryObserver<LocalMediaItem>(queryClient,options());
-  const listeners=new Set<()=>void>();let stop:(()=>void)|undefined;
+  const {refresh,...preview}=createPreviewObserver(queryClient,options,()=>typeof attributes.src==='string'?attributes.src:'',true);
   return {
-    queryClient,
-    start(){if(!stop)stop=observer.subscribe(()=>{for(const listener of listeners)listener();});},
-    update(next:ImagePreviewAttributes){attributes=next;observer.setOptions(options());},
-    subscribe(listener:()=>void){listeners.add(listener);return()=>{listeners.delete(listener);};},
-    snapshot(){const result=observer.getCurrentResult(),storedSrc=typeof attributes.src==='string'?attributes.src:'';return {src:getMediaPreviewUrl(result.data?.url||storedSrc,result.data?.contentHash),currentMedia:result.data,error:result.error,isFetching:result.isFetching};},
-    dispose(){stop?.();observer.destroy();listeners.clear();},
+    ...preview,
+    update(next:ImagePreviewAttributes){attributes=next;refresh();},
   };
 }
 
@@ -32,14 +50,9 @@ export function observeGalleryMediaPreview(queryClient:QueryClient,initial:Galle
     const mediaId=canonicalMediaProviderId(image.asset.provider)==='local'&&image.asset._ref?image.asset._ref:null;
     return {queryKey:mediaId?['media',mediaId]:['media-preview-disabled',image.asset._ref],queryFn:({signal}:{signal:AbortSignal})=>fetchMediaItem(mediaId!,{signal}),enabled:false};
   };
-  const observer=new QueryObserver<LocalMediaItem>(queryClient,options());
-  const listeners=new Set<()=>void>();let stop:(()=>void)|undefined;
+  const {refresh,...preview}=createPreviewObserver(queryClient,options,()=>image.asset.url||(image.asset._ref?localMediaFileUrl(image.asset._ref):''),false);
   return {
-    queryClient,
-    start(){if(!stop)stop=observer.subscribe(()=>{for(const listener of listeners)listener();});},
-    update(next:GalleryPreviewImage){image=next;observer.setOptions(options());},
-    subscribe(listener:()=>void){listeners.add(listener);return()=>{listeners.delete(listener);};},
-    snapshot(){const result=observer.getCurrentResult(),storedSrc=image.asset.url||(image.asset._ref?localMediaFileUrl(image.asset._ref):'');return {src:getMediaPreviewUrl(storedSrc,result.data?.contentHash),currentMedia:result.data,error:result.error,isFetching:result.isFetching};},
-    dispose(){stop?.();observer.destroy();listeners.clear();},
+    ...preview,
+    update(next:GalleryPreviewImage){image=next;refresh();},
   };
 }

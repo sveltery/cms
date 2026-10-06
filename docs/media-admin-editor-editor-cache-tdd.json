@@ -101,6 +101,25 @@
       "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-corrected-fixture-green.json",
       "bytes": 11001,
       "sha256": "5839e48026752e3281f006126a1699b7c6c291d74205b43600f4cddf697f02c1"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-refactor.log",
+      "bytes": 7929,
+      "sha256": "05be582346af3a952bc0d9a64422bdf9cc547dac461f5ce26d5399176df79322"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/editor-cache-tdd/media120-editor-cache-refactor.json",
+      "bytes": 10980,
+      "sha256": "6e117631813af6b11905b42e3efc39f34623ba593f7515e68af76b8bcd78d23c"
     }
-  ]
+  ],
+  "refactor": {
+    "firstFixCommit": "cf998d69",
+    "change": "Factor the same actual QueryObserver subscription, cache-result preview, disposal and option-refresh lifecycle; Image/Gallery retain their separate pinned current-URL preference and query-enable rules. Current tests unchanged.",
+    "registered": 24,
+    "passed": 21,
+    "failed": 3,
+    "newNativeCachePassed": 2,
+    "remaining": "The same three known canonical cursor-class failures."
+  }
 }
