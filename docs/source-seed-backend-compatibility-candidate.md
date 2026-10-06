@@ -40,3 +40,17 @@ Revision5 additionally infers a table-only result only when the supported Boolea
 Revision6 closes the held revision5 compound-catalog result inference: raw catalog UNION/UNION ALL/INTERSECT/EXCEPT tokens fail explicitly during transformation, before compilation/driver execution. Literal/comment/quoted identifier words stay opaque. Whole8/60 ordinary Native cases pass; exact heldR5 reaches8 compound assertion reds while prior50 and2 new lexical controls pass. No compound result adaptation, general SQL parser, production application or Source/auth credit is claimed. Full Source85/capture/provider/Pg closure remains unfinished.
 
 Current PR119 domain successors supersede only historical incompleteness/identity claims where separately evidenced. The complete Original Node85 apply and69 capture families pass; D1 comparisons and clocks retain their literal unsupported/timeout outcomes in the shared register. [The constructor transport ledger](seed-node-constructor-transports.json) and [paired runtime documentation](seed-node-constructor-transport.md) classify nine exact syntax substitutions with zero whole-module identity/Source causal credit; every other statement remains guarded. The real default/setup domain exposes typed inputs/outcomes without a SourceRuntime stand-in. Its separate SetupSeedApplyError wraps only actual apply failures and preserves the exact cause; load/override/validation stay outside that catch so the actual runtime/HTTP owner can retain Source SETUP_ERROR versus SEED_ERROR behavior. Derived Native16 and directNode17 pass; complete original runtime/setup consumer acceptance and full final gates remain pending.
+
+The later finite field-discovery error constructor transport expands the ledger
+to ten exact spans and passes all19 complete Native import/descriptor controls;
+the preceding nine-span/17-control record remains historical. The current
+qualified public maintenance ebac union passes all unchanged old namespace60 and
+direct Node30 controls. Its bounded checker records7 errors/0 warnings before
+the four owned erased-type fixture corrections; three incoming fixture fixes
+await ordinary public adoption. The mandatory named-maintenance transaction
+control reaches an actual6-query/11-result-hook failure after verifying stored
+phase/lease/guard outcomes. Its separate author's repair and current full gates
+remain pending. Whole Node85/69 greens and original D1 apply84/85 with its
+5000ms timeout, capture68/69 with its unsupported interactive callback, retain
+their actual clocks and literal comparison status. No timeout increase,
+callback emulation, guard widening or whole Source-body credit is introduced.

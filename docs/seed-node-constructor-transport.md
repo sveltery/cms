@@ -63,3 +63,12 @@ type annotation and unknown-first cast, with identical emitted fixture values
 and calls. These corrections do not establish a green current checker; the
 sole maintenance owner repairs its incoming diagnostics before the next
 qualified combined gate. No dependency, TypeScript/Node flag or clock changes.
+
+The subsequent complete qualified public maintenance ebac union closes those
+nine incoming diagnostics. The next single bounded checker reports seven errors
+and zero warnings: four new descriptor-type diagnostics in the tenth constructor
+fixture and three incoming maintenance fixture excess-property diagnostics.
+An explicit `PropertyDescriptorMap` annotation corrects the four owned errors
+without changing emitted fixture values, calls or assertions. The incoming
+author's public fixes and a new granted checker are still required; the archived
+seven-error receipt is retained literally, with no current checker-green claim.

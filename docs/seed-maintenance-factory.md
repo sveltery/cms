@@ -56,3 +56,29 @@ with no Source whole-module identity claim. The maintenance author's complete
 constructor/reference descriptor controls, full feature families, current
 combined mandatory gates and final review remain separate requirements. Front
 fence, registry, table and finalization execution remain held in this lane.
+
+The next mandatory Native control invokes the genuine named factory inside a
+real Node callback transaction. Its actual phase advances to status, retains the
+stored lease and leaves no guard rows; it then reaches a result-hook assertion
+failure: six genuine query IDs receive eleven result hooks. Five fixed-plan
+receipts were already transformed by the transaction executor and are manually
+transformed again by the maintenance class. The test-first receipt is retained
+in `seed-engine-evidence/maintenance-node-transaction-observer-first.log` and
+the complete current Seed Native command includes this control. The preceding
+nine outside-transaction Node/raw-D1 passes remain valid chronological evidence;
+they do not establish a green current combined gate. The sole maintenance author
+owns the finite transaction-receipt repair; no private repair is adopted here.
+
+The complete qualified public maintenance successor
+`ebac0b78b2910b7dbc0912b9e829a00ccc7a3c86`, tree
+`49b595bfe3159cc80e1f1c9a2a9278a2500324fb`, is ordinarily adopted by
+`e62bb2c9d5728c3c2d8726d2ca1366f228b85ade`. All 5,631 public/native blob
+path, mode, SHA and size vectors match. This development union closes nine
+incoming type-boundary diagnostics without activating the held front phases.
+The unchanged old namespace60 Node/raw-D1 and old direct Node30 controls pass
+on this union. Its single bounded checker reports seven errors and zero
+warnings: four erased-only diagnostics in the new Seed constructor fixture and
+three incoming maintenance fixture diagnostics. The four owned diagnostics are
+corrected with an explicit descriptor type; the three incoming corrections and
+the actual transaction repair await their author's public successor. No second
+checker or current whole-green claim follows those type-only corrections.

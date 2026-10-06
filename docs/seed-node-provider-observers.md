@@ -26,3 +26,12 @@ query ID, observer query or budget cost is synthesized. This is finite framework
 composition with zero Source body-identity/setup causal credit. Original whole
 Source Node85/69, old Node30/namespace60 and the current combined checker remain
 separate regression evidence.
+
+After the complete qualified public maintenance ebac union, all unchanged old
+namespace60 controls pass on Node/raw-D1 and all old direct Node30 controls
+pass. Their literal raw receipts are retained in `seed-engine-evidence/`.
+The current combined checker reports seven errors and zero warnings; erased
+fixture corrections remain separate from these actual execution results. A
+new mandatory named-maintenance transaction control reaches a duplicate result
+hook failure in that separate class. The canonical taxonomy/relation six-control
+fix does not claim to repair or cover that independently owned class.
