@@ -11,7 +11,14 @@ if (sha(await read(ledger.fixture.path)) !== ledger.fixture.sha256) throw new Er
 for (const [path, hash] of Object.entries(ledger.oldCallerFiles)) {
   if (sha(await read(path)) !== hash) throw new Error('Existing whole six Native caller controls changed');
 }
-const config = await read('vitest.default-seed-setup-caller.config.ts');
+let config = await read('vitest.default-seed-setup-caller.config.ts');
+const retryLedger = JSON.parse(await read('docs/default-seed-setup-startup-retry-native.json'));
+const retryAddition = ", 'tests/default-seed-setup/startup-retry-caller.test.ts'";
+if (sha(config) !== retryLedger.configCurrentSha256 || config.split(retryAddition).length !== 2
+  || sha(config.replace(retryAddition, '')) !== retryLedger.configBeforeSha256) {
+  throw new Error('Native retry config exceeds its single approved successor include');
+}
+config = config.replace(retryAddition, '');
 const addition = ", 'tests/default-seed-setup/startup-read-caller.test.ts'";
 if (sha(config) !== ledger.configCurrentSha256 || config.split(addition).length !== 2
   || sha(config.replace(addition, '')) !== ledger.configBeforeSha256) {
