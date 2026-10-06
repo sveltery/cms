@@ -2295,6 +2295,6 @@ export interface PluginManifest {
 // error when T resolves to `never`. Don't replace this with a bare type
 // alias.
 type _AssertManifestCompat =
-	PluginManifest extends import("@emdash-cms/plugin-types").PluginManifest ? true : never;
+	PluginManifest extends import("./contracts/index.ts").PluginManifest ? true : never;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _MANIFEST_COMPAT: _AssertManifestCompat = true;

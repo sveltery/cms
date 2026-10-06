@@ -211,3 +211,14 @@ D1 compound callback writes still reject unresolved producers. Original plain
 controlled Source databases retain their original fallback, while unknown Native
 namespace handles are rejected before it. Standard production lifecycle controls
 and all remaining full integration checks are still required for final approval.
+
+## Whole runtime import transport guard
+
+The literal complete-module guard first found a missed type-only dynamic import
+in the manifest compatibility assertion. Correcting that one import makes all
+45 whole Source modules reconstruct exactly after the listed import substitutions
+and MIT notice prefixes. Seven finite framework/body adaptations are separately
+reported; no whole-module identity is inferred for them. The entire accepted
+shared lifecycle host also reconstructs exactly after removing its one additive
+span. The unchanged 35-family host now reaches 31 families/705 passing callbacks;
+four complete SourceRuntime families remain prerequisite-stopped on modern-tar.

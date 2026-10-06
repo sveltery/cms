@@ -2923,3 +2923,10 @@ four document/index controls remain green. The missing initial reader receives
 zero causal credit. Existing owner metadata, Source original mocks and D1 C-07
 guards are preserved. Wider production lifecycle and full runtime qualification
 remain pending in the [paired record](../../docs/plugin-runtime-provider.md).
+
+The literal PL1 module guard qualifies 45 complete Source import transports
+after fixing one missed type-only dynamic import. Seven finite adaptations
+remain separately identified, with no whole-module identity claim. The unchanged
+35-family host reaches 705 callbacks and four real prerequisite stops. The
+[paired record](../../docs/plugin-runtime-provider.md) retains initial guard
+failure, exact fix and complete accepted-host reconstruction.
