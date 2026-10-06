@@ -1,0 +1,262 @@
+✖ Node: ordinary fresh startup installs the complete canonical Cron domain (44.608279ms)
+✖ Node: actual contiguous public1–17 upgrades preserve every existing object and row (63.62671ms)
+✖ Node: future Cron collision is rejected before any startup write (44.903497ms)
+✖ Node: late real Cron uniqueness failure rolls back the complete fresh startup (8.742566ms)
+✖ D1: ordinary fresh startup installs the complete canonical Cron domain (729.982367ms)
+✖ D1: actual contiguous public1–17 upgrades preserve every existing object and row (649.556801ms)
+✖ D1: future Cron collision is rejected before any startup write (608.342535ms)
+✖ D1: late real Cron uniqueness failure rolls back the complete fresh startup (26.456723ms)
+✖ provider18 is a new named provider after the frozen contiguous1–17 registry (0.547374ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3004.861391
+
+✖ failing tests:
+
+test at tests/cron-task-storage.test.ts:11:3
+✖ Node: ordinary fresh startup installs the complete canonical Cron domain (44.608279ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   '_cms_cron_tasks'
+  - ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:15:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ '_cms_cron_tasks' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:18:3
+✖ Node: actual contiguous public1–17 upgrades preserve every existing object and row (63.62671ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  -   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:25:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:30:3
+✖ Node: future Cron collision is rejected before any startup write (44.903497ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:35:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'MIGRATION_REQUIRED' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:39:3
+✖ Node: late real Cron uniqueness failure rolls back the complete fresh startup (8.742566ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /UNIQUE constraint failed/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n' +
+    '\n' +
+    '  assert.ok(statements.some(statement => /create table "_cms_cron_tasks"/i.test(statement.sql)))\n'
+  
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:42:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+    
+      assert.ok(statements.some(statement => /create table "_cms_cron_tasks"/i.test(statement.sql)))
+    
+        at Object.atomicBatch (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:43:14)
+        at migrateCms (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/migrations.ts:315:24)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:42:5)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /UNIQUE constraint failed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:11:3
+✖ D1: ordinary fresh startup installs the complete canonical Cron domain (729.982367ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   '_cms_cron_tasks'
+  - ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:15:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ '_cms_cron_tasks' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:18:3
+✖ D1: actual contiguous public1–17 upgrades preserve every existing object and row (649.556801ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  -   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:25:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:30:3
+✖ D1: future Cron collision is rejected before any startup write (608.342535ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:35:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { code: 'MIGRATION_REQUIRED' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:39:3
+✖ D1: late real Cron uniqueness failure rolls back the complete fresh startup (26.456723ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /UNIQUE constraint failed/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n' +
+    '\n' +
+    '  assert.ok(statements.some(statement => /create table "_cms_cron_tasks"/i.test(statement.sql)))\n'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:42:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+    
+      assert.ok(statements.some(statement => /create table "_cms_cron_tasks"/i.test(statement.sql)))
+    
+        at Object.atomicBatch (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:43:14)
+        at migrateCms (file:///workspace/cms-canonical-cron-task-storage/src/lib/server/database/migrations.ts:315:24)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:42:5)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /UNIQUE constraint failed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/cron-task-storage.test.ts:50:1
+✖ provider18 is a new named provider after the frozen contiguous1–17 registry (0.547374ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      17,
+  -   18
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-canonical-cron-task-storage/tests/cron-task-storage.test.ts:51:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17, 18
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

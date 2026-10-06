@@ -1,0 +1,137 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "version": "1.1.0",
+  "authorities": [
+    {
+      "path": "packages/core/src/database/migrations/026_cron_tasks.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/migrations/026_cron_tasks.ts",
+      "bytes": 1872,
+      "sha256": "6e867622e8e05b921482053ff4d532123c4492ee26deb50553e0f0c12d3e9876",
+      "blob": "67f705793bafb8b5121486a7baf0e487ebf6ab5a",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+      "bytes": 1220,
+      "sha256": "f992b5fc5da55c1118d77fd29274d5349111f17d48fafa41bd4db9d3525e58fe",
+      "blob": "da3036406f934bda4f7ac4f333b56a28a5f91331",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/dialect-helpers.ts",
+      "bytes": 18242,
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/validate.ts",
+      "bytes": 5766,
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/database/types.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/database/types.ts",
+      "bytes": 31530,
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts",
+      "bytes": 3258,
+      "sha256": "183715834d5cc467efc29827e5c6fe72aa632425c27ec73709f02295c7ee1073",
+      "blob": "02e57c6cbbde284c919bb73681ba374d73f25032",
+      "role": "whole-test"
+    },
+    {
+      "path": "packages/core/tests/utils/test-db.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/tests/utils/test-db.ts",
+      "bytes": 18803,
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "blob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "role": "authority"
+    },
+    {
+      "path": "packages/core/src/plugins/cron.ts",
+      "local": "parity/emdash/cron-storage-source/upstream/packages/core/src/plugins/cron.ts",
+      "bytes": 14101,
+      "sha256": "e95270d9738871b514e08315784a4396ccf81fbc870261ebbbda080ef5c96e6c",
+      "blob": "922823cc8bbda5e8bd7eee865800dc0967ad2ccf",
+      "role": "authority"
+    },
+    {
+      "path": "LICENSE",
+      "local": "parity/emdash/cron-storage-source/upstream/LICENSE",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "blob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "role": "authority"
+    }
+  ],
+  "wholeFamilies": [
+    {
+      "path": "packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts",
+      "testDeclarations": 2,
+      "expectExpressions": 4,
+      "sourceRuntime": "explicit Source physical Node SQLite and real D1",
+      "causalProductCredit": 0
+    }
+  ],
+  "migrationDirectoryCensus": {
+    "files": 92,
+    "cronMatches": [
+      "026_cron_tasks.ts",
+      "088_cron_oneshot_utc.ts"
+    ],
+    "chronology": "026 creates layout;088 normalizes one-shot UTC;no other migration changes cron objects"
+  },
+  "limits": [
+    "PostgreSQL unavailable",
+    "Cron runtime/scheduler/correctness belongs to PL1 PR127",
+    "Named full Source migration runner/locks not executed",
+    "Explicit Source fixtures do not establish canonical startup"
+  ],
+  "evidence": {
+    "nativeCanonicalFirst": {
+      "tests": 9,
+      "pass": 0,
+      "fail": 9,
+      "registeredOn": [
+        "Node SQLite",
+        "real raw D1"
+      ],
+      "raw": "docs/cron-task-storage-evidence/native9-canonical-first-red.log",
+      "causalSourceCredit": 0
+    },
+    "wholeSourceFirst": {
+      "registered": 0,
+      "prerequisite": "missing generated Kit tsconfig",
+      "raw": "docs/cron-task-storage-evidence/source4-explicit-reference-first.log",
+      "causalProductCredit": 0
+    },
+    "wholeSourceAfterSync": {
+      "registered": 4,
+      "pass": 3,
+      "fail": 1,
+      "sqlite": {
+        "pass": 2,
+        "fail": 0
+      },
+      "realD1": {
+        "pass": 1,
+        "fixtureFailure": 1,
+        "reason": "unchanged105-row dataset inserts20 rows*9bindings=180 exceeding real D1 limit100; migration088 never reached in that case"
+      },
+      "raw": "docs/cron-task-storage-evidence/source4-explicit-reference-after-sync.log",
+      "canonicalStartupCredit": 0,
+      "causalProductCredit": 0
+    }
+  }
+}

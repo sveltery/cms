@@ -1,0 +1,45 @@
+
+ RUN  v4.1.10 /workspace/cms-canonical-cron-task-storage
+
+ ❯ parity/emdash/cron-storage-source/upstream/packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts (4 tests | 1 failed) 706ms
+     × processes more than one bounded page 19ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/cron-storage-source/upstream/packages/core/tests/integration/database/cron-oneshot-utc-migration.test.ts > cron one-shot UTC migration [explicit Source physical d1] > processes more than one bounded page
+Error: D1_ERROR: too many SQL variables at offset 466: SQLITE_ERROR
+ ❯ Error tests/helpers/async-d1-storage.ts:41:19
+     39|   const owned = new WeakMap<D1Statement, Query>();
+     40|   const revivers = { Error(value: { name: string; message: string; cau…
+     41|     const error = new Error(value.message, { cause: value.cause });
+       |                   ^
+     42|     error.name = value.name;
+     43|     return error;
+ ❯ hydrate node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24
+ ❯ hydrate node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ unflatten node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9
+ ❯ parse node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9
+ ❯ tests/helpers/async-d1-storage.ts:51:21
+ ❯ execute tests/helpers/async-d1-storage.ts:56:18
+ ❯ D1Connection.executeQuery src/lib/server/database/d1.ts:55:29
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+
+Caused by: Error: too many SQL variables at offset 466: SQLITE_ERROR
+ ❯ Error tests/helpers/async-d1-storage.ts:41:19
+ ❯ hydrate node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24
+ ❯ hydrate node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ hydrate node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32
+ ❯ hydrate node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ unflatten node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9
+ ❯ parse node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9
+ ❯ tests/helpers/async-d1-storage.ts:51:21
+ ❯ execute tests/helpers/async-d1-storage.ts:56:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  01:06:41
+   Duration  1.27s (transform 118ms, setup 0ms, import 435ms, tests 706ms, environment 0ms)
+
