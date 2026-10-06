@@ -1,0 +1,30 @@
+JSON report written to /workspace/cms-default-seed-setup-runtime/docs/receipts/default-seed-setup-runtime/original-wizard-first-baseline.json
+error during close browserType.launch: Executable doesn't exist at /home/agent/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     npx playwright install                                 ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+    at /workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:941:55
+    at PlaywrightBrowserProvider.createContext (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1077:19)
+    at PlaywrightBrowserProvider.openBrowserPage (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1147:19)
+    at PlaywrightBrowserProvider.openPage (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1161:23)
+    at TestProject._openBrowserPage (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:10973:3)
+    at BrowserPool.openPage (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2578:3)
+    at BrowserPool.runTests (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2573:3)
+    at runWorkspaceTests (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2473:3)
+    at executeTests (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:3712:25)
+    at /workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13590:7
+    at /workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13617:11
+    at /workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13479:19
+    at startVitest (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:14554:8)
+    at start (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js:2340:15)
+    at CAC.run (/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js:2318:2) {
+  log: [],
+  name: 'Error',
+  type: 'Unhandled Error'
+}
+12:15:26 AM [vite] (client) [optimizer] bundling dependencies...
