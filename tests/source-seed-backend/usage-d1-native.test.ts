@@ -97,7 +97,7 @@ it('D1: delegates genuinely active capture to its existing guarded projection ba
 for(const active of [false,true]){
  it(`D1: records a real new failed-source attempt with capture active=${active}`,async()=>{
   const f=await fixture(active);try{
-   const failed={...f.source,sourceVariant:'draft_overlay',sourceKey:f.source.sourceKey.replace(':columns',':draft_overlay'),sourceCompleteness:'failed' as const,lastErrorCode:'DRAFT_REVISION_MISMATCH'};
+   const failed:MediaUsageSourceInput={...f.source,sourceVariant:'draft_overlay',sourceKey:f.source.sourceKey.replace(':columns',':draft_overlay'),sourceCompleteness:'failed' as const,lastErrorCode:'DRAFT_REVISION_MISMATCH'};
    const outcome=await f.repo.markSourceAttemptedIfMatching(failed,null).then(receipt=>({receipt,error:null}),error=>({receipt:null,error}));
    expect(outcome.error).toBeNull();expect(outcome.receipt).toEqual({attempted:true,source:null});
    const actual=await f.repo.findSource(failed.sourceKey);

@@ -72,7 +72,7 @@ for (const target of ['Node', 'D1'] as const) {
     const f = await fixture(target);
     const batch = vi.spyOn(f.storage.database, 'atomicBatch');
     try {
-      await expect(Promise.resolve().then(() => Reflect.get(namespace, 'seedNativeMediaUsageCollectionDeletionPhases')(f.storage.database.db))).rejects.toThrow('actual registered query handle');
+      await expect(Promise.resolve().then(() => Reflect.get(namespace, 'seedNativeMediaUsageCollectionDeletionPhases')(f.storage.database.db as unknown as Parameters<typeof namespace.seedNativeMediaUsageCollectionDeletionPhases>[0]))).rejects.toThrow('actual registered query handle');
       expect(batch).not.toHaveBeenCalled();
     } finally { batch.mockRestore(); await f.storage.close(); }
   }, 30000);
