@@ -378,6 +378,21 @@
       "path": "docs/cron-task-storage-evidence/source4-explicit-reference-first.log",
       "bytes": 1701,
       "sha256": "3cd45bf3aae0e715e7fdaa8f18eae4b2b392ff5a0a66a0eddee330535f1dd253"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/ci649-c906-complete-source-block30-first-red.log",
+      "bytes": 177483,
+      "sha256": "9874f4072a5a091b0181c2aa7231a7ac66c41814f5ea8cae04ed45086bc18391"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/c906-independent-complete-review-request-changes.json",
+      "bytes": 33290,
+      "sha256": "89c88e5b06435ae75f2654489605450b908a171c70c42ec1c063b1faa442b0d6"
+    },
+    {
+      "path": "docs/cron-task-storage-evidence/provider-preservation-c906-whole.ts.txt",
+      "bytes": 18912,
+      "sha256": "40d34fc9a12419786c315286ff612ab589f768c1794211d106260273d77b8b22"
     }
   ],
   "publicIntegration": {
@@ -397,5 +412,14 @@
     "earlier43OwnedAddsExact": true,
     "allMainAttrsCompatPrefixExact": true,
     "mainPackageOnlyCronAppend": true
+  },
+  "blockPreservationCurrentLatestReviewRepair": {
+    "ledger": "docs/cron-task-storage-blocks-review-repair.json",
+    "phase": "whole30-real-hosted-red-preserved-before-four-token-fix",
+    "reviewedHead": "c9060072c1139b8ab9e0ffdef4131ca4523dc37c",
+    "registered": 30,
+    "passed": 20,
+    "failed": 10,
+    "sourceBodyChanges": 0
   }
 }
