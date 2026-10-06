@@ -41,3 +41,25 @@ Four Source guards pass with exact frozen authorities and the finite constructor
 ledger; these static checks give no execution credit. The latest bounded checker
 preceded these erased constructor changes; current full stationary gates and
 independent review are still required before merge.
+
+The actual complete maintenance caller graph subsequently reaches Seed's
+MediaUsageFieldDiscoveryError parameter property. Two additional Native controls
+retain the genuine direct Node parse prerequisite and the complete immutable
+Source constructor comparison: 18 passes and one import failure across the
+preserved 17 controls plus these two. One exact authorized public mutable code
+field/ordinary parameter/assignment after super transport then passes all 19.
+Code/name own-field order, descriptors, mutation, undefined arguments and
+subclass behavior match the complete Source class; every other Source body byte
+remains exact under the narrow reversal guard. There is zero value-red, Source
+causal or whole-module identity credit from the parse prerequisite. The ten-span
+current ledger SHA256 is
+`05fa10415d79d40d4bcbf14acc32f2e5800f1632b064523c74d9f8697c1336a5`;
+the preceding nine-span ledger and all chronological receipts remain in history.
+
+The latest combined 3072 checker before this final constructor span reports
+11 errors and zero warnings: nine incoming maintenance graph diagnostics and
+two new Native fixture erased-type diagnostics. The latter receive only a
+type annotation and unknown-first cast, with identical emitted fixture values
+and calls. These corrections do not establish a green current checker; the
+sole maintenance owner repairs its incoming diagnostics before the next
+qualified combined gate. No dependency, TypeScript/Node flag or clock changes.
