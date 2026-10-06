@@ -1,0 +1,72 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/maintenance-phase-factory-native.test.ts (9 tests | 5 failed) 1991ms
+   × Node: named factory refuses an unknown actual query handle 26ms
+   × Node: named factory reuses the trusted original owner with genuine once-only receipts 22ms
+   × D1: named factory refuses an unknown actual query handle 91ms
+   × D1: named factory reuses the trusted original owner with genuine once-only receipts 94ms
+   × invokes the actual named factory in unchanged direct Node24 hosting 532ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/maintenance-phase-factory-native.test.ts > Node: named factory refuses an unknown actual query handle
+ FAIL  tests/source-seed-backend/maintenance-phase-factory-native.test.ts > D1: named factory refuses an unknown actual query handle
+AssertionError: expected [Function] to throw error including 'actual registered query handle' but got 'Reflect.get(...) is not a function'
+
+Expected: "actual registered query handle"
+Received: "Reflect.get(...) is not a function"
+
+ ❯ tests/source-seed-backend/maintenance-phase-factory-native.test.ts:75:144
+     73|     const batch = vi.spyOn(f.storage.database, 'atomicBatch');
+     74|     try {
+     75|       await expect(Promise.resolve().then(() => Reflect.get(namespace,…
+       |                                                                                                                                                ^
+     76|       expect(batch).not.toHaveBeenCalled();
+     77|     } finally { batch.mockRestore(); await f.storage.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/source-seed-backend/maintenance-phase-factory-native.test.ts > Node: named factory reuses the trusted original owner with genuine once-only receipts
+ FAIL  tests/source-seed-backend/maintenance-phase-factory-native.test.ts > D1: named factory reuses the trusted original owner with genuine once-only receipts
+TypeError: Reflect.get(...) is not a function
+ ❯ observedPhase tests/source-seed-backend/maintenance-phase-factory-native.test.ts:41:85
+     39|   try {
+     40|     const phases = useFactory
+     41|       ? await Reflect.get(namespace, 'seedNativeMediaUsageCollectionDe…
+       |                                                                                     ^
+     42|       : new NativeMediaUsageCollectionDeletionPhases(f.storage.databas…
+     43|     expect(phases).toBeInstanceOf(NativeMediaUsageCollectionDeletionPh…
+ ❯ tests/source-seed-backend/maintenance-phase-factory-native.test.ts:81:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/source-seed-backend/maintenance-phase-factory-native.test.ts > invokes the actual named factory in unchanged direct Node24 hosting
+AssertionError: file:///workspace/cms-full-seed-engine/[eval1]:1
+import{openSqlite}from'./src/lib/server/database/sqlite.ts';import{migrateCms}from'./src/lib/server/database/migrations.ts';import*as namespace from'./src/lib/server/seed/namespace.ts';const database=openSqlite(':memory:');try{await migrateCms(database);const view=namespace.seedSourceDatabase(database);const phases=await namespace.seedNativeMediaUsageCollectionDeletionPhases(view);console.log(typeof phases.processSources);}finally{await database.close();}
+                                                                                                                                                                                                                                                                                                                                             ^
+
+TypeError: namespace.seedNativeMediaUsageCollectionDeletionPhases is not a function
+    at file:///workspace/cms-full-seed-engine/[eval1]:1:334
+
+Node.js v24.19.0
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ [eval1]:1:334
+ ❯ tests/source-seed-backend/maintenance-phase-factory-native.test.ts:87:38
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 4 passed (9)
+   Start at  00:51:44
+   Duration  3.67s (transform 937ms, setup 0ms, import 1.54s, tests 1.99s, environment 0ms)
+
