@@ -18,7 +18,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - name: Run all six unchanged whole detail Source families in secured Chromium
-        run: pnpm exec vitest run --config vitest.media-detail-complete-browser.config.ts --reporter=default --reporter=json --outputFile=media-detail-source-results.json
+        run: pnpm exec vitest run --config vitest.media-detail-old-widget-replay-browser.config.ts --reporter=default --reporter=json --outputFile=media-detail-source-results.json
         env:
           DEBUG: pw:browser
       - name: Run supplemental Native crop-state value controls
