@@ -10,6 +10,7 @@ import {seedNativeActivateMediaUsageCapture} from './namespace.ts';
 import {loadSeed} from './load.ts';
 import {validateSeed} from './validate.ts';
 import {applySeed,applySeedWithinBudget} from './index.ts';
+import {SetupSeedApplyError} from './startup-errors.ts';
 
 /** The runtime supplies its real configured database key and existing holder.
  * The domain creates no global lock/cache, database or runtime lifecycle. */
@@ -79,6 +80,8 @@ export async function applySetupSeedWithinBudgetDomain(db:Kysely<Database>,param
  seed.settings={...seed.settings,title:parameters.title,tagline:parameters.tagline};
  const validation=validateSeed(seed);
  if(!validation.valid)return{validation,seeded:null};
- const seeded=await applySeedWithinBudget(db,seed,{includeContent:parameters.includeContent,onConflict:'skip',storage:parameters.storage},SETUP_SEED_BUDGET);
- return{validation,seeded};
+ try{
+  const seeded=await applySeedWithinBudget(db,seed,{includeContent:parameters.includeContent,onConflict:'skip',storage:parameters.storage},SETUP_SEED_BUDGET);
+  return{validation,seeded};
+ }catch(error){throw new SetupSeedApplyError(error);}
 }
