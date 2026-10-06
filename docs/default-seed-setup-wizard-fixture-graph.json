@@ -1,5 +1,5 @@
 {
-  "nativeHead": "8be6821b52a22e8c2013c2a399eb132c391a491b",
+  "nativeHead": "b066a46b23491b2cca7d2085a753a76f81657b41",
   "status": "Exact finite test-only current-page fixture runtime import graph; static0execution/causal credit",
   "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "files": [
@@ -40,9 +40,9 @@
     },
     {
       "path": "tests/helpers/default-seed-setup/wizard-react.tsx",
-      "bytes": 521,
-      "sha256": "8ed75574b538c8f7126c0bfc55ccbde30c5441e128b864c5f22d52a8fd787d4f",
-      "blob": "b14d8898896c79aae77f31084d878ee5e56b1257",
+      "bytes": 1564,
+      "sha256": "6a2cedafa7c71a4805ae9ee00a1db5cca3f8d082c47fb978fe8c4614d7e87039",
+      "blob": "c24a960ee541cab3a3e417a0b468563417d650a4",
       "compiledSvelteRuntimeImports": []
     },
     {
@@ -65,10 +65,24 @@
       ]
     },
     {
+      "path": "tests/helpers/default-seed-setup/setup-providers.ts",
+      "bytes": 1446,
+      "sha256": "14f95de307f7b21e2671f5b918d7ba1a6ec54e618752cd058b43c175c4a5ebb2",
+      "blob": "6eda9a4a6ce9775fa6c79c2656e1c244250e95a8",
+      "compiledSvelteRuntimeImports": []
+    },
+    {
+      "path": "tests/helpers/default-seed-setup/auth-remotes.ts",
+      "bytes": 1858,
+      "sha256": "8415e5e2657f0dc63e9597cbc4c053f27a6517e91e49828c2e58b134b7d7a4dd",
+      "blob": "941192fbf1c1b39d598559ef5f9d2f4d84eda3f9",
+      "compiledSvelteRuntimeImports": []
+    },
+    {
       "path": "src/routes/setup/+page.svelte",
-      "bytes": 671,
-      "sha256": "b3bcb8858cbf7a7498b0980f85cde80fdcc0f53ea1e0519793bfcc4b55182fa0",
-      "blob": "4e27f6931e3b9d4b43e22499b465d785089de115",
+      "bytes": 906,
+      "sha256": "a4f39093d8b23c656687a87ed54b2da1f05fade13df275d328326f365ac0464d",
+      "blob": "f3db43fed26ca5916ad248e1f9d8f9c23ee93391",
       "compiledSvelteRuntimeImports": [
         "svelte/internal/disclose-version",
         "svelte/internal/flags/async",
@@ -76,17 +90,22 @@
       ]
     },
     {
+      "path": "tests/helpers/default-seed-setup/react-provider-host.svelte",
+      "bytes": 237,
+      "sha256": "18e630da6c66656a08b791cd6438f69951d135b792cc0abad23d686e734af3a6",
+      "blob": "9b26e96ca27d60a6455fc6356904d387e17b6187",
+      "compiledSvelteRuntimeImports": [
+        "svelte/internal/disclose-version",
+        "svelte/internal/flags/async",
+        "svelte/internal/client",
+        "svelte"
+      ]
+    },
+    {
       "path": "tests/helpers/schema-ui/kit-paths.ts",
       "bytes": 377,
       "sha256": "bcea8e0b8e0fdb5d512c61cb4273fe4e895df67182f41e3540493509a4aaae4b",
       "blob": "a09b60895d900c89c782c47e87ee2d0f0376dea0",
-      "compiledSvelteRuntimeImports": []
-    },
-    {
-      "path": "tests/helpers/default-seed-setup/auth-remotes.ts",
-      "bytes": 900,
-      "sha256": "714fbb2d24d3187d77afa6385058811ac749800df09de165875f5f46a8244b19",
-      "blob": "e90bf5bd3c5253a15fa29fb77a4f8269b4d50fe6",
       "compiledSvelteRuntimeImports": []
     },
     {
@@ -102,10 +121,50 @@
       ]
     },
     {
+      "path": "src/lib/ui/SetupWizard.svelte",
+      "bytes": 10501,
+      "sha256": "26c47e8c959c1bbdc44cb581ce346b03c535ad5376058eb4dcb906c83e2013e8",
+      "blob": "8511d09343978155f2ab00c7db364f60ccbe8a2b",
+      "compiledSvelteRuntimeImports": [
+        "svelte/internal/disclose-version",
+        "svelte/internal/flags/async",
+        "svelte/internal/client",
+        "svelte"
+      ]
+    },
+    {
       "path": "src/lib/auth/passkey-browser.ts",
       "bytes": 2820,
       "sha256": "30b3532d0937c686ecaf26c72e7b6eee99228cd346141468b7c9311d0ed8794d",
       "blob": "9987a2ff7feac9b05e02a2b5c77d52ad2c913608",
+      "compiledSvelteRuntimeImports": []
+    },
+    {
+      "path": "tests/helpers/default-seed-setup/setup-client.ts",
+      "bytes": 465,
+      "sha256": "45427d3cd9d2df1c774cc78629dc9eb31b410f85520839e6629b1d3bd1b0a815",
+      "blob": "384373da87d8fa130555ecd39b3860010f4dbc91",
+      "compiledSvelteRuntimeImports": []
+    },
+    {
+      "path": "tests/helpers/default-seed-setup/setup-navigation.ts",
+      "bytes": 448,
+      "sha256": "38b6b66c17d52be1e65b5f0008be1667863fd68792b2013ce6da31c8f4c840c2",
+      "blob": "b350dd10bace32256cbd3b5a53380cef753063ba",
+      "compiledSvelteRuntimeImports": []
+    },
+    {
+      "path": "src/lib/setup/client.ts",
+      "bytes": 1713,
+      "sha256": "df1ed76945659fbe758af9e02bc8fbb230036632d2edb8ce5b972c096732edf1",
+      "blob": "be42336bf6fc6efd9b4a22a37c18c78503a88b04",
+      "compiledSvelteRuntimeImports": []
+    },
+    {
+      "path": "src/lib/sections-widgets/client.ts",
+      "bytes": 2515,
+      "sha256": "48f39dcbdbbe273fec290e6aaf35ff7e8dd76be02a54e8d0f85d839b21465aa4",
+      "blob": "006fae2da0e50b7b11d746a2262f37e83d1450b7",
       "compiledSvelteRuntimeImports": []
     }
   ],
@@ -202,6 +261,16 @@
     },
     {
       "from": "tests/helpers/default-seed-setup/wizard-react.tsx",
+      "specifier": "react-dom",
+      "to": "react-dom"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/wizard-react.tsx",
+      "specifier": "@tanstack/react-query",
+      "to": "@tanstack/react-query"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/wizard-react.tsx",
       "specifier": "svelte",
       "to": "svelte"
     },
@@ -209,6 +278,21 @@
       "from": "tests/helpers/default-seed-setup/wizard-react.tsx",
       "specifier": "./current-page-host.svelte",
       "to": "tests/helpers/default-seed-setup/current-page-host.svelte"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/wizard-react.tsx",
+      "specifier": "../../../parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/auth-provider-context",
+      "to": "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/auth-provider-context.tsx"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/wizard-react.tsx",
+      "specifier": "./setup-providers.ts",
+      "to": "tests/helpers/default-seed-setup/setup-providers.ts"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/wizard-react.tsx",
+      "specifier": "./auth-remotes.ts",
+      "to": "tests/helpers/default-seed-setup/auth-remotes.ts"
     },
     {
       "from": "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/auth-provider-context.tsx",
@@ -219,6 +303,16 @@
       "from": "tests/helpers/default-seed-setup/current-page-host.svelte",
       "specifier": "../../../src/routes/setup/+page.svelte",
       "to": "src/routes/setup/+page.svelte"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/setup-providers.ts",
+      "specifier": "./react-provider-host.svelte",
+      "to": "tests/helpers/default-seed-setup/react-provider-host.svelte"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/auth-remotes.ts",
+      "specifier": "../../../parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client",
+      "to": "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts"
     },
     {
       "from": "src/routes/setup/+page.svelte",
@@ -236,9 +330,14 @@
       "to": "src/lib/ui/PasskeySetup.svelte"
     },
     {
-      "from": "tests/helpers/default-seed-setup/auth-remotes.ts",
-      "specifier": "../../../parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client",
-      "to": "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts"
+      "from": "src/routes/setup/+page.svelte",
+      "specifier": "$lib/ui/SetupWizard.svelte",
+      "to": "src/lib/ui/SetupWizard.svelte"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/react-provider-host.svelte",
+      "specifier": "svelte",
+      "to": "svelte"
     },
     {
       "from": "src/lib/ui/PasskeySetup.svelte",
@@ -254,6 +353,61 @@
       "from": "src/lib/ui/PasskeySetup.svelte",
       "specifier": "svelte",
       "to": "svelte"
+    },
+    {
+      "from": "src/lib/ui/SetupWizard.svelte",
+      "specifier": "svelte",
+      "to": "svelte"
+    },
+    {
+      "from": "src/lib/ui/SetupWizard.svelte",
+      "specifier": "$lib/auth.remote",
+      "to": "tests/helpers/default-seed-setup/auth-remotes.ts"
+    },
+    {
+      "from": "src/lib/ui/SetupWizard.svelte",
+      "specifier": "$lib/auth/passkey-browser",
+      "to": "src/lib/auth/passkey-browser.ts"
+    },
+    {
+      "from": "src/lib/ui/SetupWizard.svelte",
+      "specifier": "$lib/setup/client",
+      "to": "tests/helpers/default-seed-setup/setup-client.ts"
+    },
+    {
+      "from": "src/lib/ui/SetupWizard.svelte",
+      "specifier": "$lib/setup/navigation",
+      "to": "tests/helpers/default-seed-setup/setup-navigation.ts"
+    },
+    {
+      "from": "src/lib/ui/SetupWizard.svelte",
+      "specifier": "$lib/setup/providers",
+      "to": "tests/helpers/default-seed-setup/setup-providers.ts"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/setup-client.ts",
+      "specifier": "../../../parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client",
+      "to": "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/setup-client.ts",
+      "specifier": "../../../src/lib/setup/client.ts",
+      "to": "src/lib/setup/client.ts"
+    },
+    {
+      "from": "tests/helpers/default-seed-setup/setup-navigation.ts",
+      "specifier": "../../../parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/navigation.js",
+      "to": "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/navigation.ts"
+    },
+    {
+      "from": "src/lib/setup/client.ts",
+      "specifier": "../sections-widgets/client.ts",
+      "to": "src/lib/sections-widgets/client.ts"
+    },
+    {
+      "from": "src/lib/sections-widgets/client.ts",
+      "specifier": "$app/paths",
+      "to": "tests/helpers/schema-ui/kit-paths.ts"
     }
   ],
   "externalImports": {
@@ -268,7 +422,8 @@
     ],
     "@tanstack/react-query": [
       "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx",
-      "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/utils/render.tsx"
+      "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/utils/render.tsx",
+      "tests/helpers/default-seed-setup/wizard-react.tsx"
     ],
     "react": [
       "parity/emdash/default-seed-setup-runtime/source/packages/admin/tests/components/SetupWizard.test.tsx",
@@ -285,9 +440,14 @@
     "@lingui/core/macro": [
       "parity/emdash/default-seed-setup-runtime/source/packages/admin/src/lib/api/client.ts"
     ],
+    "react-dom": [
+      "tests/helpers/default-seed-setup/wizard-react.tsx"
+    ],
     "svelte": [
       "tests/helpers/default-seed-setup/wizard-react.tsx",
-      "src/lib/ui/PasskeySetup.svelte"
+      "tests/helpers/default-seed-setup/react-provider-host.svelte",
+      "src/lib/ui/PasskeySetup.svelte",
+      "src/lib/ui/SetupWizard.svelte"
     ]
   },
   "frozenFrameworkVersions": {

@@ -28,13 +28,17 @@ export default defineConfig({
   resolve: { conditions: ['browser'], dedupe: ['react', 'react-dom'], alias: {
     '$lib/auth.remote': resolve(root, 'tests/helpers/default-seed-setup/auth-remotes.ts'),
     '$lib/ui/PasskeySetup.svelte': resolve(root, 'src/lib/ui/PasskeySetup.svelte'),
+    '$lib/ui/SetupWizard.svelte': resolve(root, 'src/lib/ui/SetupWizard.svelte'),
     '$lib/auth/passkey-browser': resolve(root, 'src/lib/auth/passkey-browser.ts'),
+    '$lib/setup/client': resolve(root, 'tests/helpers/default-seed-setup/setup-client.ts'),
+    '$lib/setup/navigation': resolve(root, 'tests/helpers/default-seed-setup/setup-navigation.ts'),
+    '$lib/setup/providers': resolve(root, 'tests/helpers/default-seed-setup/setup-providers.ts'),
     '$app/paths': resolve(root, 'tests/helpers/schema-ui/kit-paths.ts')
   } },
   // Explicit frozen framework dependencies avoid discovery re-optimization while
   // the whole Original file awaits its mocked API/provider imports.
   optimizeDeps: { noDiscovery: true, include: [
-    'react', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime',
+    'react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime',
     '@lingui/core', '@lingui/react', '@tanstack/react-query', 'vitest-browser-react'
   ] },
   oxc: { jsx: { runtime: 'automatic' } },
