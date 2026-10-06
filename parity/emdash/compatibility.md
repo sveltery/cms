@@ -2802,3 +2802,17 @@ Main text, attributes, dependencies, lock and CI remain preserved. Original
 whole user Source/Native policies, all old test bodies and both fixes are unchanged.
 No new parity/causal credit is claimed. Full successor hosted gates and review,
 exact Root approval and the author's regular merge remain required.
+
+## User99 approved public fixture repair union
+
+Historical `2d582a1a` has Root's finite CLEAR review and all six latest hosted
+jobs passing, including its sole secured-browser retry. Both original User99
+findings remain closed. The successor ordinary-merges only actual public Main
+`41ee48fe781db307174079837387f4565814456c`, approved author regular fixture PR124.
+Complete public Main attributes/compatibility, package/dependencies/lock/CI and
+Source prefix plus exactly the three existing user leaves remain preserved.
+Original User99 product, Source/test bodies, guards, inventories and earlier raw
+evidence remain unchanged. Both whole guards and twelve complete-checker controls
+pass; no heavy local check/build/browser or new protected probe runs. Prior full
+gate results are historical, with no successor or causal credit. Current full
+normal/secured/Calendar gates, review and exact Root approval precede author merge.
