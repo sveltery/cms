@@ -1,0 +1,39 @@
+{
+  "head": "17949ba0dda2a5a1e5018e6d97af68bf722ecfcc",
+  "tree": "e50c0fed56ef0182f66d4d2fee60585cf4d6c7d5",
+  "kind": "actual official Kit Worker optimizer integration assertion before lifecycle classification",
+  "logs": [
+    {
+      "path": "/tmp/media-image-cloudflare-diagnostic-build.log",
+      "sha256": "8880799d66e664c46b06927c05e9897d89fe5ca7c33f5d76f4ed26d8c50985f0"
+    },
+    {
+      "path": "/tmp/media-image-cloudflare-diagnostic-dry-bundle.log",
+      "sha256": "1737d5678227b375df1824fbc8b5cd1d1dea7604ac2da8f08006e790035576be"
+    },
+    {
+      "path": "/tmp/media-image-current-official-worker.log",
+      "sha256": "a66d3ee94d58dca958111860ece59d29c191559e0c7ec57153fc1ef83029b086"
+    },
+    {
+      "path": "/tmp/media-179-normal-publication.log",
+      "sha256": "db5ca7916ef231d84184583dbe4e0e22e10b2fdda58fb5d90d27eba3e4d1bf9b"
+    }
+  ],
+  "results": {
+    "CloudflareInstalledPackageBuild": "PASS diagnostic only",
+    "WranglerDryBundle": "PASS diagnostic only; native Sharp excluded",
+    "officialWorkerNativeMedia": "FAIL completed cache-control assertion after transformed200/WebP",
+    "expectedCache": "public, max-age=0, must-revalidate",
+    "actualCache": "public, max-age=0, must-revalidate, private=Set-Cookie",
+    "sourceCallbackCredit": 0,
+    "completedNativeIntegrationAssertionReds": 1
+  },
+  "sourceContract": "packages/core/tests/unit/astro/middleware-image-endpoint.test.ts entire273-line frozen file; signed-in/signed-out requests use request-scoped DB/auth, close once, no commit/runtime init/getDb.",
+  "limits": [
+    "No full normal/official Worker new-head pass.",
+    "Original supplemental assertion preserved; core runtime remains unmodified pending owner coordination.",
+    "Ordinary Git publication fails transport503; permitted SAME GitData writer available, no automatic-review rejection on new publication.",
+    "Source middleware file inventory only, no whole-body execution yet."
+  ]
+}

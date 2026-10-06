@@ -1,0 +1,204 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "scope": "7 unchanged English formatter callbacks and 10 selected unchanged native browser callbacks; source assertion/body preservation only. No formal catalog expansion or full-file/product parity.",
+  "declarations": 17,
+  "expectationLocations": 31,
+  "baselineEvidence": {
+    "formatter": {
+      "commit": "26fa28d",
+      "result": "six genuine formatting assertion failures, one fallback declaration already passing"
+    },
+    "crud": {
+      "commit": "ce6b3556f79f8bedaf3bab244da1239ec2ef2b39",
+      "run": "37071511535",
+      "result": "table visibility and status count assertions failed; Add New/read/save stopped at absent actions with zero reached expression credit"
+    },
+    "creation": {
+      "commit": "f5e376c904a30ff933774c58b62a880292a2cd70",
+      "run": "37065155715",
+      "result": "both native editable-title preconditions failed; original creation assertions not reached"
+    },
+    "autosave": {
+      "commit": "5aef76f6efab390d965d2946b1803f6c53eed298",
+      "run": "37078743960",
+      "result": "first callback failed Original/title source assertion; other two fill timeouts grant zero reached expression credit"
+    }
+  },
+  "greenEvidence": {
+    "commit": "0dc46d323ef4b5fd2b263846bc7fd4ba1aa2959d",
+    "run": "37081094415",
+    "result": "normal bootstrap and secured default/Node browser jobs pass; final real-auth/approved-main reviews pending"
+  },
+  "records": [
+    {
+      "sourcePath": "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
+      "sourceLine": 24,
+      "title": "names each field by its editor label and words the failed bound",
+      "localPath": "tests/native-content-validation-error-ports.test.ts",
+      "bodySha256": "495390ef9f45a2df8457c70ff327945f625122509d0b9613241ca05fa9beff6b",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
+      "sourceLine": 37,
+      "title": "names a repeater sub-field together with its row",
+      "localPath": "tests/native-content-validation-error-ports.test.ts",
+      "bodySha256": "5904722fc31456ec13e0f100bd9aa97077dcd8fc42ebffc105596e7c02bea678",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
+      "sourceLine": 47,
+      "title": "falls back to the capitalized slug the editor shows for an unlabeled field",
+      "localPath": "tests/native-content-validation-error-ports.test.ts",
+      "bodySha256": "ea56ab9d627df045c9e49ab5166203779fbb943277a6645669fc5e87f076631b",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
+      "sourceLine": 57,
+      "title": "says once per field that a value is missing when core reports it twice",
+      "localPath": "tests/native-content-validation-error-ports.test.ts",
+      "bodySha256": "e8983d331adf445ec88f4ef474b2cdd5072b331a189d359a5ef4fba7b0584d8d",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
+      "sourceLine": 66,
+      "title": "names every rule a field breaks",
+      "localPath": "tests/native-content-validation-error-ports.test.ts",
+      "bodySha256": "1f0b8dbee327db400233f50b9d626eae5bcd7c9cd2ff12775b51204b2a5fda7e",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
+      "sourceLine": 77,
+      "title": "words references, unknown keys and unrecognized codes without raw validator text",
+      "localPath": "tests/native-content-validation-error-ports.test.ts",
+      "bodySha256": "f16924d525eb9a85b1015042392b57dca9320b92155d69aa1cf8bbf286fc8b34",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
+      "sourceLine": 89,
+      "title": "leaves request-shape issues and other errors to the server message",
+      "localPath": "tests/native-content-validation-error-ports.test.ts",
+      "bodySha256": "b29619be2451ce02e2d2635a159d3e0a12d504ad3f63c2acb124049224334dcd",
+      "expectationLocations": 3
+    },
+    {
+      "sourcePath": "e2e/tests/content-crud.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "cec6e451203d1abd3b464e5d0c486c58211fa054",
+      "sourceLine": 27,
+      "title": "displays content list with seeded items",
+      "localPath": "tests/browser/native-content-crud-source.spec.ts",
+      "bodySha256": "a2409a158f36dab3201334e8bb25d3344ca35f735f676f92bbfd0ea50710d4df",
+      "expectationLocations": 5
+    },
+    {
+      "sourcePath": "e2e/tests/content-crud.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "cec6e451203d1abd3b464e5d0c486c58211fa054",
+      "sourceLine": 48,
+      "title": "clicking Add New navigates to content editor",
+      "localPath": "tests/browser/native-content-crud-source.spec.ts",
+      "bodySha256": "fc8cacdc0188ec9323017cf252f3f973610e684bae20089a1971d28e8eae104d",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "e2e/tests/content-crud.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "cec6e451203d1abd3b464e5d0c486c58211fa054",
+      "sourceLine": 143,
+      "title": "loads existing content for editing",
+      "localPath": "tests/browser/native-content-crud-source.spec.ts",
+      "bodySha256": "4e6b164c92c3110e9c5659143a41844834c953ce4fd86f146c96720e9aebce6f",
+      "expectationLocations": 2
+    },
+    {
+      "sourcePath": "e2e/tests/content-crud.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "cec6e451203d1abd3b464e5d0c486c58211fa054",
+      "sourceLine": 158,
+      "title": "saves updated content",
+      "localPath": "tests/browser/native-content-crud-source.spec.ts",
+      "bodySha256": "6fab82fd1912e2d5a86cf69cb8c63777c2a12c95c3156e99bde4663c24d7b0f2",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "e2e/tests/content-crud.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "cec6e451203d1abd3b464e5d0c486c58211fa054",
+      "sourceLine": 185,
+      "title": "displays content status badges",
+      "localPath": "tests/browser/native-content-crud-source.spec.ts",
+      "bodySha256": "13791ea533443c3ade1c5ececd77061a74ff7a8ca941a615604c418be61e6c1a",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "e2e/tests/content-crud.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "cec6e451203d1abd3b464e5d0c486c58211fa054",
+      "sourceLine": 63,
+      "title": "creates new post with title",
+      "localPath": "tests/browser/native-content-create-source.spec.ts",
+      "bodySha256": "d0f5ceaaa22ebd5b440bc9c28eef08eb8d75c1347e5244eb891825aa3d30a975",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "e2e/tests/content-crud.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "cec6e451203d1abd3b464e5d0c486c58211fa054",
+      "sourceLine": 79,
+      "title": "auto-generates slug from title",
+      "localPath": "tests/browser/native-content-create-source.spec.ts",
+      "bodySha256": "64ea18f19c8ba696643a664ed922502970ff9676a62f48e36d82ba89cac8be8e",
+      "expectationLocations": 1
+    },
+    {
+      "sourcePath": "e2e/tests/autosave.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "176a16c5d2a1d6fec92d1af43e02986aa47df64c",
+      "sourceLine": 76,
+      "title": "multiple autosaves update draft in place instead of creating new revisions",
+      "localPath": "tests/browser/native-content-autosave-source.spec.ts",
+      "bodySha256": "1fdc513361f8f2ec79722a089bbc419b66a184fc5dbc0bd05395b6065fdfe3cc",
+      "expectationLocations": 3
+    },
+    {
+      "sourcePath": "e2e/tests/autosave.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "176a16c5d2a1d6fec92d1af43e02986aa47df64c",
+      "sourceLine": 131,
+      "title": "does not resend a rejected autosave until the content changes",
+      "localPath": "tests/browser/native-content-autosave-source.spec.ts",
+      "bodySha256": "b8b0aa5ed43bbf87dcdbf9aea7f93ce4a6a3c7576732f7115799f259f43c6771",
+      "expectationLocations": 4
+    },
+    {
+      "sourcePath": "e2e/tests/autosave.spec.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "sourceBlob": "176a16c5d2a1d6fec92d1af43e02986aa47df64c",
+      "sourceLine": 167,
+      "title": "names the rejected field by its label",
+      "localPath": "tests/browser/native-content-autosave-source.spec.ts",
+      "bodySha256": "5c73a6ba71477d626087150fad0fefa2f0584e1ef6ff1f54bd4687d353c9f889",
+      "expectationLocations": 3
+    }
+  ]
+}

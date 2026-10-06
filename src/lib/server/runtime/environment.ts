@@ -21,6 +21,7 @@ export function runtimeConfiguration(
   const bindingName = setting('SVELTERY_D1_BINDING');
   const binding = platformEnv?.[bindingName ?? 'CMS_DB'];
   const path = setting('SVELTERY_DATABASE_PATH');
+  const mediaDirectory = setting('SVELTERY_MEDIA_DIRECTORY');
   if (!path && !binding && !bindingName) return undefined;
   const publicOrigin = setting('SVELTERY_PUBLIC_ORIGIN') ?? setting('ORIGIN') ??
     (typeof platformEnv?.CMS_PUBLIC_ORIGIN === 'string' ? platformEnv.CMS_PUBLIC_ORIGIN : undefined);
@@ -30,7 +31,16 @@ export function runtimeConfiguration(
     mutationsEnabled: setting('SVELTERY_MUTATIONS_ENABLED') !== 'false'
   };
   if (path && (binding || bindingName)) throw new Error('Configure one CMS database runtime per request');
-  if (path) return { ...presentation, kind: 'sqlite', path };
+  if (mediaDirectory && (!mediaDirectory.trim() || mediaDirectory.includes('\0'))) {
+    throw new CmsConfigurationError('SVELTERY_MEDIA_DIRECTORY must name a nonempty directory', 'CONFIGURATION_ERROR');
+  }
+  if (path) return {
+    ...presentation, kind: 'sqlite', path,
+    ...(mediaDirectory ? { mediaStorage: { kind: 'local', directory: mediaDirectory } } : {})
+  };
+  if (mediaDirectory) {
+    throw new CmsConfigurationError('SVELTERY_MEDIA_DIRECTORY requires the Node SQLite runtime', 'CONFIGURATION_ERROR');
+  }
   if (!binding || typeof binding !== 'object' || typeof (binding as D1Binding).prepare !== 'function' ||
     typeof (binding as D1Binding).batch !== 'function') {
     throw new CmsConfigurationError(`D1 binding ${bindingName ?? 'CMS_DB'} was not found; declare it in d1_databases`, 'BINDING_NOT_FOUND');

@@ -1,0 +1,85 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-media-admin-editor
+
+ ❯ tests/media-admin-editor/source-client-current.test.ts (2 tests | 2 failed) 69ms
+   × connects the complete Source media client to canonical read, folder and metadata operations 47ms
+   × reads real canonical usage through the Source client and GET-only application route 21ms
+stderr | tests/media-admin-editor/usage-read-current.test.ts > reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary
+[media-usage] detail read failed: InvalidCursorError: Invalid pagination cursor: not-a-cursor
+    at decodeCursor (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/types.ts:288:9)
+    at MediaUsageRepository.findCurrentEntryUsagePageByMediaId (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:1486:35)
+    at handleMediaUsageDetails (/workspace/cms-complete-media-admin-editor/src/lib/server/general-media/upstream/api/handlers/media-usage-read.ts:87:33)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-complete-media-admin-editor/tests/media-admin-editor/usage-read-current.test.ts:15:16
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+ ❯ tests/media-admin-editor/usage-read-current.test.ts (1 test | 1 failed) 59ms
+   × reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary 58ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/media-admin-editor/source-client-current.test.ts > connects the complete Source media client to canonical read, folder and metadata operations
+AssertionError: _emdash/api/media: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/media-admin-editor/source-client-current.test.ts:20:90
+     18|   const item=await repository.create({filename:'actual-client.png',mim…
+     19|   const required=['_emdash/api/media','_emdash/api/media/[id]','_emdas…
+     20|   for(const path of required)expect(modules[`../../src/routes/${path}/…
+       |                                                                                          ^
+     21|   vi.stubGlobal('fetch',async(input:string|URL|Request,init:RequestIni…
+     22|    const url=new URL(input instanceof Request?input.url:String(input),…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/media-admin-editor/source-client-current.test.ts > reads real canonical usage through the Source client and GET-only application route
+AssertionError: Actual Source usage route: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/media-admin-editor/source-client-current.test.ts:51:44
+     49|   const item=await new MediaRepository(database).create({filename:'use…
+     50|   const load=modules['../../src/routes/_emdash/api/media/[id]/usage/+s…
+     51|   expect(load,'Actual Source usage route').toBeTypeOf('function');
+       |                                            ^
+     52|   const routes=await load!() as Record<string,(event:RequestEvent)=>Pr…
+     53|   expect(Object.keys(routes).filter(key=>['GET','POST','PUT','PATCH','…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/media-admin-editor/usage-read-current.test.ts > reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary
+AssertionError: expected { success: false, error: { …(2) } } to deeply equal ObjectContaining{…}
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "error": ObjectContaining {
+-     "code": "INVALID_CURSOR",
++ {
++   "error": {
++     "code": "MEDIA_USAGE_READ_ERROR",
++     "message": "Failed to read media usage",
+    },
+    "success": false,
+  }
+
+ ❯ tests/media-admin-editor/usage-read-current.test.ts:16:18
+     14|   const media=await new MediaRepository(database).create({filename:'us…
+     15|   const result=await handleMediaUsageDetails(generalMediaDatabase(data…
+     16|   expect(result).toEqual(expect.objectContaining({success:false,error:…
+       |                  ^
+     17|  } finally {await database.close();}
+     18| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed (3)
+   Start at  23:32:28
+   Duration  1.31s (transform 469ms, setup 0ms, import 963ms, tests 128ms, environment 0ms)
+

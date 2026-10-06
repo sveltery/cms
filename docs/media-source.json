@@ -1,0 +1,742 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT; notices/emdash-MIT.txt",
+  "modules": [
+    {
+      "sourcePath": "packages/core/src/database/repositories/media.ts",
+      "blob": "39becd67fd4fc96d8f222f1197d5ee10a155f9b6",
+      "sourceSha256": "89adf9e33736c4fd5d415faadbe564b3811bc752aeb21ea5d6206339d90ee0f9",
+      "productPath": "src/lib/server/media/source/database/repositories/media.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Constructor parameter properties lowered to explicit declarations and assignments for Node24 strip-only execution; algorithms unchanged"
+      ],
+      "productSha256": "e52973779caf3942c31b9bae8af13b19a3d311065bf06227158110b98325ec33"
+    },
+    {
+      "sourcePath": "packages/core/src/database/repositories/media-folders.ts",
+      "blob": "3b72439c05fd37896e60909ab9cc547bc45238af",
+      "sourceSha256": "7b655d11d592eee048efff1e6ad2aa3caf19bafa8d6f1f8dc6366dbb0f088c13",
+      "productPath": "src/lib/server/media/source/database/repositories/media-folders.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Constructor parameter properties lowered to explicit declarations and assignments for Node24 strip-only execution; algorithms unchanged"
+      ],
+      "productSha256": "4f63a4c682f9b06e28acdf4258ed9c05be79c253ccc21f5d816d109120a3cb36"
+    },
+    {
+      "sourcePath": "packages/core/src/database/repositories/types.ts",
+      "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sourceSha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "productPath": "src/lib/server/media/source/database/repositories/types.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "type-only CustomFieldValue supplied by existing pinned native schema/types",
+        "Constructor parameter properties lowered to explicit declarations and assignments for Node24 strip-only execution; algorithms unchanged",
+        "Derived parameter-property assignments execute immediately after super(), preserving TypeScript runtime order"
+      ],
+      "productSha256": "d665ec59fda816db963176b6a2b1d38b5b29039ab5d2dafea11d5a13647cea95"
+    },
+    {
+      "sourcePath": "packages/core/src/database/types.ts",
+      "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "sourceSha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "productPath": "src/lib/server/media/source/database/types.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "5e8aa8e5b74544a16fdc38db4399ff9a3b2163b40b24f2ffb21024bc15441c9a"
+    },
+    {
+      "sourcePath": "packages/core/src/database/dialect-helpers.ts",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sourceSha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "productPath": "src/lib/server/media/source/database/dialect-helpers.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "type-only dialect union supplied locally instead of loading unrelated adapter configuration"
+      ],
+      "productSha256": "12cb73fcb24c0fd03e6fabe0044ec6382ad4da55d124848d6413b13a087023f1"
+    },
+    {
+      "sourcePath": "packages/core/src/database/validate.ts",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sourceSha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "productPath": "src/lib/server/media/source/database/validate.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Constructor parameter properties lowered to explicit declarations and assignments for Node24 strip-only execution; algorithms unchanged",
+        "Derived parameter-property assignments execute immediately after super(), preserving TypeScript runtime order"
+      ],
+      "productSha256": "a2d3ed24417be1dff8fa145283f47e3c30db0838a4c338b24421e6c71404f148"
+    },
+    {
+      "sourcePath": "packages/core/src/content-list-query.ts",
+      "blob": "075fbabc173e1eac9c04edcaab98939c9fef271c",
+      "sourceSha256": "7763889d7e7f5ac31a0461b6e9806fe0bf169ae91064ada1153b6833cc566e10",
+      "productPath": "src/lib/server/media/source/content-list-query.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "cc1779071fe88c606e7860124b83ea93793f1adb1470846e7653396209396f1b"
+    },
+    {
+      "sourcePath": "packages/core/src/utils/base64.ts",
+      "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
+      "sourceSha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
+      "productPath": "src/lib/server/media/source/utils/base64.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "0f6684fb2b2ae1ac03f53e24887ad2f668a779fe3006b6062ad34ba2dbebc41d"
+    },
+    {
+      "sourcePath": "packages/core/src/utils/chunks.ts",
+      "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sourceSha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "productPath": "src/lib/server/media/source/utils/chunks.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "2df6c1ad9653d68791fe99c2aa4e5f28bccfd798a880b5b3d9d7f58139e5ac46"
+    },
+    {
+      "sourcePath": "packages/core/src/storage/types.ts",
+      "blob": "d8ffcd99f9c4c544306d986be7534345442e41be",
+      "sourceSha256": "65acd62c4dd6dfd863282ca50ac5aacee594f3a421ea7148823d555e9eef2970",
+      "productPath": "src/lib/server/media/source/storage/types.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Constructor parameter properties lowered to explicit declarations and assignments for Node24 strip-only execution; algorithms unchanged",
+        "Derived parameter-property assignments execute immediately after super(), preserving TypeScript runtime order"
+      ],
+      "productSha256": "527bb54d031c593903e670ff6755cad20468d5f3df1b01760839a706c98a2ef3"
+    },
+    {
+      "sourcePath": "packages/core/src/storage/local.ts",
+      "blob": "8658c2c3cbda734f96a2f5081998b9700cf5a565",
+      "sourceSha256": "c1cdab8a965d1b9e15c0e1b19fddb3167d43294f8f42321c75e4085eb3dc9755",
+      "productPath": "src/lib/server/media/source/storage/local.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "71b5944322dbf349efb1429c83a71fe3fcb8e7a121ca6eae39d26c439c8b0861"
+    },
+    {
+      "sourcePath": "packages/core/src/storage/s3.ts",
+      "blob": "fa641801ae14edc37003816bf316ad387141bb0c",
+      "sourceSha256": "a31d7eb8baf898ef4f1ffb0cc269e71de0d24725478c7f639b99ad74cfc9071e",
+      "productPath": "src/lib/server/media/source/storage/s3.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "SDK3.1145.0 type-only response alias maps ListObjectsV2Response to ListObjectsV2CommandOutput; runtime unchanged"
+      ],
+      "productSha256": "5167bdb8952a5f7f9adee7a43845bd8a258decce27b1bb9ed28f5cd2c8d71aa4"
+    },
+    {
+      "sourcePath": "packages/core/src/media/focal-point.ts",
+      "blob": "e694d23eeafd7f502288890f12727b72e95c72c5",
+      "sourceSha256": "43fafbabba063e924071232263de32bffdc054446134f297655e3466cf79004b",
+      "productPath": "src/lib/media/source/focal-point.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "61c776f3593fcfb14b9d7caa1bc12550159b05445a565950c334e4233f54bbe2"
+    },
+    {
+      "sourcePath": "packages/core/src/media/normalize.ts",
+      "blob": "9344437721528d3a81db41a6ea760e7f1cda86b7",
+      "sourceSha256": "b77395a2ef839891652bf8711f4d15cad4aecbcf9bac19fa30c5de4ffc14191b",
+      "productPath": "src/lib/server/media/source/media/normalize.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "fb49ee3c8a0d313a0f376524da963155b96a61768ab10a115b3a08615b12e629"
+    },
+    {
+      "sourcePath": "packages/core/src/media/types.ts",
+      "blob": "34abda177065eb7e51e8592897f4ecf93565924d",
+      "sourceSha256": "3482d45e65d67dde0c5bb6e617b8d5c51eb775fb289be9cd7a678991c05d94a3",
+      "productPath": "src/lib/media/source/types.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "fd8ecbdbb07593a6a6ad38f5c264e2eb6fdc3e172b41a79abe07587fe28e5cf4"
+    },
+    {
+      "sourcePath": "packages/core/src/media/mime.ts",
+      "blob": "4d865955bed1a12fc2799bcbfbe971bcc117537f",
+      "sourceSha256": "3e50552e92594e3fec39ef49d3b7c8c90917360efd9d9ba0b135ff6490c90c38",
+      "productPath": "src/lib/server/media/source/media/mime.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "e54a1d6b7e7980d8742786a5af9310a6f59637afc1647ff3d0f8a9a9a17d748b"
+    },
+    {
+      "sourcePath": "packages/core/src/media/placeholder.ts",
+      "blob": "ac7a232fe4628b131e0fcce778f607983bd4362d",
+      "sourceSha256": "32c6af3e613095a9025a3b068a65286dfff238bd225f124b02afc5dbe73c8275",
+      "productPath": "src/lib/server/media/source/media/placeholder.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "4eefd04fa069bf7b5c5c475238b7c9d3a4d890296c00491c95a66236486b0b6d"
+    },
+    {
+      "sourcePath": "packages/core/src/media/enrich.ts",
+      "blob": "8eea2beccb68a7c5f626e2fe5a47faa64f8bf1e8",
+      "sourceSha256": "2e1fd18ae29be9598c2c59fd4e304d8a2c1c2ef29e4e4bb1d91c7163f6f8c31f",
+      "productPath": "src/lib/server/media/source/media/enrich.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "40a623aa2da4b78f599e987543e59e56516373eb044843f2122eb7032edaf98e"
+    },
+    {
+      "sourcePath": "packages/core/src/media/responsive.ts",
+      "blob": "de13119f6761b1be8fb6ee37ca913f8264f766dc",
+      "sourceSha256": "5336c9ff604b3801ce5b130e09c0b830bffbb1fd177a7adfc20dcb3fee0afe1a",
+      "productPath": "src/lib/server/media/source/media/responsive.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "4b640583b01be2e137d47b09aa1baff044817bfb8844b5de803805fba2c7faa6"
+    },
+    {
+      "sourcePath": "packages/core/src/media/thumbnail.ts",
+      "blob": "67769fcf54a89627e99e3bd9571b4e933c73f608",
+      "sourceSha256": "e680830b8bf582e59706201611120840ef9d3eca8b93c16cd674f5214e991007",
+      "productPath": "src/lib/server/media/source/media/thumbnail.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "0e4288121b899d4671a40f6b422622648e477269462d1b1a99ae7e178d1848f5"
+    },
+    {
+      "sourcePath": "packages/core/src/media/url.ts",
+      "blob": "1c7562d0394b827cca12024423a08d9a2e408f26",
+      "sourceSha256": "d02b82842c2808a6c061fe8b6eadbe6f4b8a9eec0f027665d5d7ed9127664275",
+      "productPath": "src/lib/server/media/source/media/url.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "5ec579540c1f7b710be8c50f07cf5010ff957afd07c2cc2e528c949087f33c37"
+    },
+    {
+      "sourcePath": "packages/core/src/media/image-endpoint.ts",
+      "blob": "f2ba30babd924c84b219a959b4dce9b0141c6d0a",
+      "sourceSha256": "76e5a0dacfafaaa2035e716d5d2b4baaaaec457be436f9f35cd18568548ea185",
+      "productPath": "src/lib/server/media/source/media/image-endpoint.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "e6682bac724cc4f184f9987fc3b67e662b165e2911b2fc184cb66e284775f6c0"
+    },
+    {
+      "sourcePath": "packages/core/src/database/migrations/072_media_folders.ts",
+      "blob": "db0003387a4fe977799ca38b361eaca84c561bfc",
+      "sourceSha256": "2452ed2096aa697ee9a56b018d027f9aaab8f8a647450c7d5eaeffae2bda07bf",
+      "productPath": "src/lib/server/media/source/database/migrations/072_media_folders.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "521f436f0d7f873f7e2ece80d4373194382b112c109ae98548abb7bb0fc5d109"
+    },
+    {
+      "sourcePath": "packages/core/src/database/migrations/073_media_focal_point.ts",
+      "blob": "ed11df9cdc8b3f5fb16daa3448c18349243d3c2d",
+      "sourceSha256": "e157b0418c92f4203083840e619742e7d0dc51cbe7bc5e8af1a03ee40684e71e",
+      "productPath": "src/lib/server/media/source/database/migrations/073_media_focal_point.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "cb5017134f0dd602f93c7b4dd68fcf2ac1ebf116f3a524e44ba6549dfecf145a"
+    },
+    {
+      "sourcePath": "packages/core/src/transfer/staging/keys.ts",
+      "blob": "5ce8d440486b68eaa5ad3e2d8fb04dd150ecd397",
+      "sourceSha256": "940bda771953f375d56ff525bb64e71bc0fc48f893f8483d599de19b42cb4cf6",
+      "productPath": "src/lib/server/media/source/transfer/staging/keys.ts",
+      "transformations": [
+        "Exact AST extraction of the complete five-symbol public key helper closure; unrelated transfer staging/schema code omitted"
+      ],
+      "productSha256": "4bd3a035890d613cbf15b84a413e070e6e059ca9cc190544318c15c798957b17"
+    },
+    {
+      "sourcePath": "packages/core/src/transfer/errors.ts",
+      "blob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0",
+      "sourceSha256": "6f608fc23b7a93fdb2cce71e40f802faacf69308616140a4d361f8e90116d4b1",
+      "productPath": "src/lib/server/media/source/transfer/errors.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "1f587425359e9520279496cd43381634c12143ee3e1a3671f0f4508753f75868"
+    },
+    {
+      "sourcePath": "packages/core/src/api/types.ts",
+      "blob": "462b0800408c270a8ac0b7e59b89adb46426fc3f",
+      "sourceSha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
+      "productPath": "src/lib/server/media/source/api/types.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Type-only schema types from existing pinned native definitions; relative source closure paths"
+      ],
+      "productSha256": "570ac28cc253277a421a0db3fd9a14eacb5ba0052309d4598960cf3972754fba"
+    },
+    {
+      "sourcePath": "packages/core/src/api/errors.ts",
+      "blob": "2e99070d97edc14d2797795e13cc82636a0cf500",
+      "sourceSha256": "e1d2ffcf77f31ffef22c8a18c4ea6cbb0cd86bb8d950c02d7ca82de3e2f2aed5",
+      "productPath": "src/lib/server/media/source/api/errors.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "5be2d7040048560a5e35c3c2d49dcb1d389a720731ae419812b80749cd49c8c4"
+    },
+    {
+      "sourcePath": "packages/core/src/api/error.ts",
+      "blob": "cac556e93bb76d42e7a36353cd045ce22638f3ef",
+      "sourceSha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+      "productPath": "src/lib/server/media/source/api/error.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "ec0b1d5e29d476d0c287e945b2f16e97ac4f3e9b2caa6a0e55c02babcf8194bc"
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/media.ts",
+      "blob": "8b4201ed6f9ae1ead969631ade1d25c19a9ab902",
+      "sourceSha256": "2c13bb6af8486f84ae8d556b5d0ec753e84bab1b40b185b59a218038116efaf7",
+      "productPath": "src/lib/server/media/source/api/handlers/media.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "bdfc8c6f34e5a8416cc141b01a8be398bce90baf3412547f753412ee6821ef0a"
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/media-folders.ts",
+      "blob": "737447959090ae7f8fd27646ec11e71d31a7e883",
+      "sourceSha256": "3fa1b4a6eef2373f11a78296e80dafce96d34acee2598ea27c42ba11b8dc5504",
+      "productPath": "src/lib/server/media/source/api/handlers/media-folders.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "ef8164df4d6b92337efa441159457ec221b379dc1481e9bd09e7a7b512561bea"
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/media-upload.ts",
+      "blob": "38136157bf4d73b983cbf9d57d8fb0d9a2bfe557",
+      "sourceSha256": "1dbc84b009c7a642dbac786936b7f7c3ddcbd8308c03fe495e0233a548025d6d",
+      "productPath": "src/lib/server/media/source/api/handlers/media-upload.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "982e594631291e96f024f7887fd1aebf0095461ca7c670bc9dfa45893c5f745c"
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/media-allowlist.ts",
+      "blob": "bb7055789af5785de040ecda6417fabaeb24271a",
+      "sourceSha256": "927200b1dd1f838f6057af00e9f01b114ebc2fee83cab0c448ccaa2da455e113",
+      "productPath": "src/lib/server/media/source/api/handlers/media-allowlist.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "0b083587f9e234f1e4e99704db6f1316445558ac0f450ef2800fd72101faaac8"
+    },
+    {
+      "sourcePath": "packages/core/src/api/schemas/common.ts",
+      "blob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59",
+      "sourceSha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
+      "productPath": "src/lib/server/media/source/api/schemas/common.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "ced194fce1d2720ecb880d8e803d719d4357ccd2aed750c63b634fea052620fd"
+    },
+    {
+      "sourcePath": "packages/core/src/api/schemas/media.ts",
+      "blob": "a438afee97dcdbdb0742089c3df2a4f5c3b714a4",
+      "sourceSha256": "294db4b80aefe5885fb591dda63411197f975593373a9b5011fcca2feda3cd7f",
+      "productPath": "src/lib/server/media/source/api/schemas/media.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "e9e5a019a9746a2073f4f8fc462e6725351c8c58a6637c8652d5d185f6b98019"
+    },
+    {
+      "sourcePath": "packages/core/src/api/schemas/media-usage.ts",
+      "blob": "b821048f1d1fd7ffe49bc7b656e3149b6cc4a0e8",
+      "sourceSha256": "76178ba4148f164b5ac8bf80ac8a391e9b6e9a866f76751f96c630a51a695808",
+      "productPath": "src/lib/server/media/source/api/schemas/media-usage.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "6f16e65b53f7817b5558a1832a11474bc33b4aeaa583a4a2d9a6e3b28c1486cd"
+    },
+    {
+      "sourcePath": "packages/core/src/media/upload-attempts.ts",
+      "blob": "45c466ef6110b187513ca6323490908d93b7bd01",
+      "sourceSha256": "38a2c4e7f47e2091c61253445f8935ab5f837afa399ef21a24d4e4f586b547f6",
+      "productPath": "src/lib/server/media/source/media/upload-attempts.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "6305483ce31382922ba43159b0ce30371a416c9cf8968e3f9ec70d0d4e1bb39f"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/site-settings.ts",
+      "blob": "f2228d1db7a54171cb4d55a6e4c441c908869331",
+      "sourceSha256": "d7c45bf37f94331ea764fda9551b8875a8fd79c6de18cfff70c4c13aae5b25a2",
+      "productPath": "src/lib/server/media/source/media/usage/site-settings.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "baf95d3e26e8c58ac2a999f8b7f52e10f54651e3caf71a9514c6afb4ed4b2dcf"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/types.ts",
+      "blob": "c25b56f3ef56a90ae3f65502c66263726cfc799a",
+      "sourceSha256": "f5647c22d2e783013e6b045b1791aff16ec929ac3699ad1367a4c170ab48d17a",
+      "productPath": "src/lib/server/media/source/media/usage/types.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Type-only schema types from existing pinned native definitions; relative source closure paths"
+      ],
+      "productSha256": "6e9f694476eaab68989609a59f7ea732495ac2e36640ba03ba9a1571246c65d5"
+    },
+    {
+      "sourcePath": "packages/core/src/utils/hash.ts",
+      "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8",
+      "sourceSha256": "7245086a4e29bb0a82852cb63f477ba3ced6d89ab6bee8cbe9f716561e5eced3",
+      "productPath": "src/lib/media/hash.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Exact pure module moved to shared client/server location; original server path is a native re-export bridge"
+      ],
+      "productSha256": "ff727bb78ce438d31d20d266535884ee5a31a704ef82a8afc9add40a51c8f507"
+    },
+    {
+      "sourcePath": "packages/core/src/i18n/config.ts",
+      "blob": "fe714e5ad514485fe1737585c663e470d50519df",
+      "sourceSha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7",
+      "productPath": "src/lib/server/media/source/i18n/config.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+      ],
+      "productSha256": "69e64815744191a3574bba824e54d463a9f2af82866034c938441e8c02017102"
+    },
+    {
+      "sourcePath": "packages/core/src/media/local-runtime.ts",
+      "blob": "529cb0644633ba41a901e2222ed5e7fbd02b62f6",
+      "sourceSha256": "655d15e1c0bc875c63b88bd041adc71f23932a268762c5aaac4727e3a45b27bc",
+      "productPath": "src/lib/server/media/source/media/local-runtime.ts",
+      "transformations": [
+        "runtime relative .js imports become .ts",
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "native storage type and media invalidation bridge; settings cache binding remains separately incomplete until real settings integration"
+      ],
+      "productSha256": "07fbc65ccdccdd5629ae249d1f00a3e76384b106bd6cb8ad157f0be618224cac"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/file/[...key].ts",
+      "blob": "9fc78076729e721ceab23fc93467326640bbf2cf",
+      "sourceSha256": "d5d6ae0aee0d6445d64780ad01fc602e02d22b2e8582214e36074407fa7cd5dc",
+      "productPath": "src/lib/server/media/source/routes/media/file.ts",
+      "productSha256": "70c4a762ec93092c525154b786a8017897053e6225f707833998fc428167c948",
+      "transformations": [
+        "Astro APIRoute type becomes minimal framework-independent route context; unchanged complete GET body",
+        "three absolute/relative dependency imports map to pinned copied modules",
+        "Type-only schema types from existing pinned native definitions; relative source closure paths"
+      ]
+    },
+    {
+      "sourcePath": "packages/cloudflare/src/storage/r2.ts",
+      "blob": "149dfa1699693339bd2b9bf6825f4495a18447d7",
+      "sourceSha256": "9c15578880da00a199e0bb588754b62bf850653576ca23defd08ff30a052d29c",
+      "productPath": "src/lib/server/media/r2.ts",
+      "productSha256": "76ac53645f39ef766bf8b5bdec09124930c974a0a4deb2376498cf17c3553561",
+      "transformations": [
+        "Pinned complete R2Storage class; global Cloudflare factory omitted in favor of the native request-scoped storage factory",
+        "Storage types and error map to pinned copied source",
+        "Type-only stream casts bridge Node DOM and workers-types declarations; unchanged runtime statements"
+      ]
+    },
+    {
+      "sourcePath": "packages/core/src/transfer/format/settings.ts",
+      "blob": "2f4bebb27e8de9b9ec8265ca5c9e560a8154c2bb",
+      "sourceSha256": "301873d39780d0ee118c81d5500df2c4fd707f168767ce0bc43d7185edc05a7e",
+      "productPath": "src/lib/server/media/source/transfer/format/settings.ts",
+      "productSha256": "20b808976e1af0e5b23b8794a25c6fbd9c7e52859f8d6c04f19059304bb9fcd8",
+      "transformations": [
+        "MIT/source header only; whole pure settings module"
+      ]
+    },
+    {
+      "sourcePath": "packages/core/src/api/parse.ts",
+      "blob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0",
+      "sourceSha256": "8b8271292e8d8d5b0d39701f28a5820e45e2a89ddc159e0f4ab6da7dd484735a",
+      "productPath": "src/lib/server/media/source/api/parse.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_"
+      ],
+      "productSha256": "cf930f00a8f57f3c20ddecb169a0a91261cf06a47b20945bd940d11c3bb05ed1"
+    },
+    {
+      "sourcePath": "packages/auth/src/types.ts",
+      "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "sourceSha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "productPath": "src/lib/server/media/source/auth/types.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete pure source auth types; no live token infrastructure claim"
+      ],
+      "productSha256": "7411f77d10223059f42c37b12bf856497f50226111ef890d23309bc5af023e52"
+    },
+    {
+      "sourcePath": "packages/auth/src/rbac.ts",
+      "blob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb",
+      "sourceSha256": "1d5663c430cb02e934eafeca27c512007112dcc0c975d6a84ad3c73c9343d85e",
+      "productPath": "src/lib/server/media/source/auth/rbac.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete pure source role/scope predicates; no live token infrastructure claim",
+        "Node24 parameter property lowered after super; original public mutable code preserved",
+        "Ownership parameter type admits source repository null authorId; runtime value and complete function bodies unchanged"
+      ],
+      "productSha256": "1acb4dcf36d99685591e13c840eb8e5075daec90df06c4a3706e508625fc120b"
+    },
+    {
+      "sourcePath": "packages/core/src/api/authorize.ts",
+      "blob": "5d1858d3403c921e2becbc8b358cff714420c36a",
+      "sourceSha256": "e4d26d9a2f05224c7289bbb2f2f40aac45582fbb449ece115d85da44750a8e95",
+      "productPath": "src/lib/server/media/source/api/authorize.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "auth package import mapped to pinned pure source role/scope predicates",
+        "Ownership parameter type admits source repository null authorId; runtime value and complete function bodies unchanged"
+      ],
+      "productSha256": "146175ed5507a862f6c5e2658406b7dfc1b5c74858826c6dc665781a2a0448cb"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media.ts",
+      "blob": "75ce161c623422b8063279b1bd5b805da12e3378",
+      "sourceSha256": "1662963ba0d2a1a690f72428ab9c652f698ae76b60d46a667849ccbfb683efe8",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "56354beb3edc9d8e06ced56b55ef55d7d50f2ef2643e44578511094a42e81ff0"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id].ts",
+      "blob": "10eb11226766fb429015ce2709c3d897449d83af",
+      "sourceSha256": "4ce8a3348ba23c2a2d1990ed916d6c15db914f08d6fe3788eac288786927c2d5",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id].ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "f631faef901be695e7ddf80aa6763c7246fbb5d2e55ec040716cd6bf7d4984c1"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id]/confirm.ts",
+      "blob": "abf0019357af8b88a188896c76d15a767b9cf83e",
+      "sourceSha256": "6ba25eab9ccbf96734a56bafa7565a369b46f32c0f468d0f70c04127e06cbca5",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id]/confirm.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "61dda3ff032aff892aa0f77c2716529d9cb98686497494e97848614ac8997e95"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id]/upload.ts",
+      "blob": "37a575cba2987b4c07226a2e826a71ab9e01a27a",
+      "sourceSha256": "dd0217446bcd312d00ef4d758bc7382e8ea205f191506212e0da26e3ed6e3def",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id]/upload.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "1639ec150ce6d8498a9922d55aab9cd3dd961d74d4d3f2f278f14b7ffe9321bf"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id]/replace.ts",
+      "blob": "1bc0f213c0fa2b85624605548721f8cc11fd6f73",
+      "sourceSha256": "7c80b3662ebca1ee9faaff30aa7b279ee6fd2b888f6ddafbab5681a19c675c78",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id]/replace.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "061efd1d4a9b23038e080ac95ef1c27ff450c3fa46bb6512ff698012628db1e7"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/upload-url.ts",
+      "blob": "1983eed1079362d5bd8a86abb0b8e75fa14df401",
+      "sourceSha256": "f76b61d26b20ec6cb308b0210046ea811ceb7fff874cdf33cb60f4b09bb48f6f",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/upload-url.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "5eb287c85018d771d876bde4ca2dbce6e1b6e86752ead5387ed5f3a12a55fe97"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/folders/index.ts",
+      "blob": "ef1e496910b5bfcf42f9c399a34aac13b0f8a769",
+      "sourceSha256": "3c8107bb3cc48e125ca80ca470a1bd2079ab072ba9b698a36e096dc4654d83d5",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/folders/index.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "46d8a8e99fc05605fbc786ffdd1ecb6e9f0506acf163182addc200ada34f077c"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/folders/[id].ts",
+      "blob": "a0e230ec5dad37d14438c87e073683cb0079e95a",
+      "sourceSha256": "e7e50d2d1620dc6b5c8553e430ba19100ff402ef21d6f9904f7eb59e691ef7ff",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/folders/[id].ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "25b4000e7b8f95815f561e67dd52f3dbf317bb610828c92f8e300f63db0000b3"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/asset/[id]/[filename].ts",
+      "blob": "a99bf4c584c750ca725d74d2bb1d2dcb175c961d",
+      "sourceSha256": "ca041b7aaa0fb9cf71dfe456b1c01ff7a250b5eb060f9a3d452e0e1c7683f2c2",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/asset/[id]/[filename].ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "9c4ac4b9d8e22dfdc1b4504cd06bdc8a1e01eef49a14074934faa2e68d16e05e"
+    },
+    {
+      "sourcePath": "packages/auth/src/tokens.ts",
+      "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+      "sourceSha256": "9699e9636b3329812bc3743987ba4e36a5abab1a21dcf0dfffe03bf877bc215d",
+      "productPath": "src/lib/server/media/source/auth/tokens.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete pure token/scope utilities; no live PAT or MCP infrastructure claim"
+      ],
+      "productSha256": "dbd59bcf699291efd9a1cafc076e4aa7b9d8fc12e2f61aefdc0e807d9a26c463"
+    },
+    {
+      "sourcePath": "packages/core/src/emdash-runtime.ts",
+      "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+      "sourceSha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+      "productPath": "src/lib/server/media/runtime.ts",
+      "sourceSymbols": [
+        "handleMediaUpdate",
+        "handleMediaReplaceMetadata",
+        "handleMediaDelete"
+      ],
+      "transformations": [
+        "Complete selected class method bodies retained verbatim; native class composes source db/storage and real settings cache invalidation",
+        "Other native methods delegate real pure source handlers; plugin lifecycle hooks and usage engine explicitly incomplete"
+      ],
+      "productSha256": "abf044d3a5d188415565f93c54240aa343f7159c4c9c2e158e66cb9dc24871d2"
+    },
+    {
+      "sourcePath": "packages/core/src/plugins/types.ts",
+      "blob": "4c70d4438aebb76eb711482a8ed1e312b452fe1a",
+      "sourceSha256": "89a8ec1e885481dafd1bca969ad4da8a085d240f1071adcb16b02a2d89958e3b",
+      "productPath": "src/lib/server/media/source/plugins/types.ts",
+      "sourceSymbols": [
+        "PaginatedResult",
+        "MediaItem",
+        "MediaBytes",
+        "MediaMetadataPatch",
+        "MediaListOptions",
+        "MediaAccess"
+      ],
+      "transformations": [
+        "AST-selected complete declarations with exact bodies and imported type closure; no live plugin infrastructure claim"
+      ],
+      "productSha256": "c50262ba9314ff0b1f1aaa2da0e6ed70b864a90127dfb95096321aefdf4760d7"
+    },
+    {
+      "sourcePath": "packages/core/src/plugins/media.ts",
+      "blob": "ce0e20b9637daccde6fb90276844b34aef87f9c3",
+      "sourceSha256": "a36e06942ede5526d990316ee49edde1a9bb1b21787a645c62454951437508c6",
+      "productPath": "src/lib/server/media/source/plugins/media.ts",
+      "sourceSymbols": [
+        "mediaUrl",
+        "toPluginMediaItem"
+      ],
+      "transformations": [
+        "AST-selected complete declarations with exact bodies and imported type closure; no live plugin infrastructure claim"
+      ],
+      "productSha256": "57c2b06afed8bf1d984663c9f3f1e5d1627915bd2deb2a8740abfde5153e0254"
+    },
+    {
+      "sourcePath": "packages/core/src/plugins/context.ts",
+      "blob": "ee05129cc8b217ec64f96e92a412947712fc3473",
+      "sourceSha256": "09b8e2784d0aed1d21527ba74a0cd5a03d7c64d1a956ca35bf8b6f3eede77747",
+      "productPath": "src/lib/server/media/source/plugins/context.ts",
+      "sourceSymbols": [
+        "createMediaAccess"
+      ],
+      "transformations": [
+        "AST-selected complete declarations with exact bodies and imported type closure; no live plugin infrastructure claim"
+      ],
+      "productSha256": "8f5563389fefee57f7216752f0d5e4b2b403477c7e6fdfdd1a7018a52aae0529"
+    }
+  ]
+}

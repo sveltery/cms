@@ -1,0 +1,910 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "notices/emdash-MIT.txt",
+  "files": [
+    {
+      "sourcePath": "packages/core/tests/unit/api/media-usage-read-route.test.ts",
+      "path": "parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts",
+      "sourceBlob": "f5cc1d52b210f37d0761e9a8a255e5264a7f0275",
+      "bytes": 14623,
+      "sha256": "e8e07d72a497968585e05b17c8c51bf4ed1887811e68cf34a698b718f45a1758",
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:39",
+          "line": 39,
+          "title": "\"defaults and validates entry-group pagination\"",
+          "expression": "it",
+          "callbackSha256": "a3a6d9fc815b7b877ad8e9f150d1cf1a45000b072a449e964ec9d70208910bde",
+          "declarationSha256": "e8164b002f84a1c745ca6fab0ade2acff644dfe1fae5e88564ce74463ca10923"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:151",
+          "line": 151,
+          "title": "\"registers a GET-only local-media usage route\"",
+          "expression": "it",
+          "callbackSha256": "97bb9271cf8beaf160c4cbed4bc7bfc95a0c39942e79fd086270416662d615bb",
+          "declarationSha256": "57539bdfbb0fb91bbbb9b77bc6bfa5909d58acc27bface8ec2492adee8dba394"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:164",
+          "line": 164,
+          "title": "\"maps preferred metadata, conservative deletion, and narrow nested DTOs\"",
+          "expression": "it",
+          "callbackSha256": "9df98a14f5bd7eb980d94bfa8bba33ab678fd488ade73daae649b164b490efae",
+          "declarationSha256": "242349970db4a3e20bd3e3e9fe9a5ebc98034405e63c435d7b56f7028872bcc3"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:263",
+          "line": 263,
+          "title": "\"returns empty details plus coverage for an existing unreferenced media item\"",
+          "expression": "it",
+          "callbackSha256": "f7d278abfb01b01f3e5ad07e725d2158b5118b5424ebe0065b978a0f0ae86d9b",
+          "declarationSha256": "2e203d9aae2a4ac8ed9d4096ffc43df6696fa75c560acdb65346124461b2c28f"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:277",
+          "line": 277,
+          "title": "\"returns NOT_FOUND before coverage or grouped usage reads\"",
+          "expression": "it",
+          "callbackSha256": "906b9f9b27477fe9c2c07fd41931ac30c2a759d1414d9286bc9324f67fa484bc",
+          "declarationSha256": "3fae02da7cddf3eb2d87e04dd8b967b1c39a2e00c080bf1336f3c500ebeb295c"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:288",
+          "line": 288,
+          "title": "\"maps malformed cursors to INVALID_CURSOR\"",
+          "expression": "it",
+          "callbackSha256": "cdd5384f0463291b2e4b54f25a9b69a3f5a79e4e40856184315e989a5d0289a5",
+          "declarationSha256": "9cf55ce8d2cd1704c5ccc569937579ae597ead068dd631851803beb0537603b1"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:300",
+          "line": 300,
+          "title": "\"returns generic read errors without leaking database failures\"",
+          "expression": "it",
+          "callbackSha256": "19612bc9260744e7ff988aafe7e8693b459c61e4b85466bd5c0ba2970e6439d8",
+          "declarationSha256": "febd7dbd20d2e515990950be79db6bd8a2f04ae40ebafc6056088f9c69bc0465"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:315",
+          "line": 315,
+          "title": "\"pages entry groups through the route within three queries per page\"",
+          "expression": "it",
+          "callbackSha256": "0adcf2012d6f0cdcfdc2c46db4b345014ebb867b20f92f30cc1fa899438609b0",
+          "declarationSha256": "d3a9a8101cce2efff756555114fddd8cce7428112a19aaf0982b7598f07dae7f"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:350",
+          "line": 350,
+          "title": "\"returns stable validation errors for %s\"",
+          "expression": "it.each([\n\t\t[\"missing ID\", undefined, \"\", Role.CONTRIBUTOR, undefined, 400, \"INVALID_REQUEST\"],\n\t\t[\"empty cursor\", \"media\", \"?cursor=\", Role.CONTRIBUTOR, undefined, 400, \"VALIDATION_ERROR\"],\n\t] as const)",
+          "callbackSha256": "75f2a7b4866d0db11fad868792c7d37b62c464a6acd8881fcb9d2229e9f8f621",
+          "declarationSha256": "a82f873c25af0f6d41fd47ef3431d92b5bf1726ade32414044b0ede8340b5569"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:366",
+          "line": 366,
+          "title": "\"returns INVALID_CURSOR for an authorized malformed cursor\"",
+          "expression": "it",
+          "callbackSha256": "4242266b0fb7427ea7a471e9f73af025b3c7c9c918667838852069114697c6ce",
+          "declarationSha256": "c20b76e3e8add22bf0d3f1443c40fc7c662e8c180d5e0a0cd3d563230ff5f977"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:379",
+          "line": 379,
+          "title": "\"denies a %s before input validation or database reads\"",
+          "expression": "it.each([\n\t\t[\"anonymous caller\", null, undefined, 401, \"UNAUTHORIZED\"],\n\t\t[\"subscriber session\", Role.SUBSCRIBER, undefined, 403, \"FORBIDDEN\"],\n\t\t[\"media-read token\", Role.CONTRIBUTOR, [\"media:read\"], 403, \"INSUFFICIENT_SCOPE\"],\n\t] as const)",
+          "callbackSha256": "8a66d97fce12d360d3622531ab6864e3f75654cb43fac91ede6b471802b5c290",
+          "declarationSha256": "7b8eb9b451cdf87d5ac0a898eb76112c6f65a7b7f89b382a7392e0ba150d8e84"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-read-route.test.ts:401",
+          "line": 401,
+          "title": "\"returns NOT_CONFIGURED after authorization\"",
+          "expression": "it",
+          "callbackSha256": "c8e067e01518e373f7e53a221039b3339d8ba84ce99cf301dd54265c4c23ac11",
+          "declarationSha256": "7fab6b496054f1400c147c3c1cc2c371b49a6b056390ea41c1c7c9369a5c279e"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 40,
+          "expression": "expect(mediaUsageDetailsQuery.parse({}))",
+          "sha256": "b76488c34333835f736f87620b20566f88a97c1e7875e729a352f3e337c34816"
+        },
+        {
+          "line": 41,
+          "expression": "expect(mediaUsageDetailsQuery.parse({ limit: \"100\", cursor: \"cursor\" }))",
+          "sha256": "2aa55f1ca78e366afe2223bca8fcc729025a64cf449b882a8cdcdefc0948a253"
+        },
+        {
+          "line": 52,
+          "expression": "expect(mediaUsageDetailsQuery.safeParse(input).success)",
+          "sha256": "7021870e3737885a5041437f39496ec7dc71328effea7004a4d9c0e703c86696"
+        },
+        {
+          "line": 156,
+          "expression": "expect(matches)",
+          "sha256": "79d4bbaa4226a8c2a522ac2304a3eed27bf637b76858f5bb20f420fa1edfa5e6"
+        },
+        {
+          "line": 157,
+          "expression": "expect(matches[0]?.entrypoint)",
+          "sha256": "ca7343229051421be27004501487263a5e6f8e59f69917ed6cbdcf705b3b4708"
+        },
+        {
+          "line": 158,
+          "expression": "expect(usageRoute.GET)",
+          "sha256": "cc3294619b63b9c8ba95108ba9a0b3a774a954fc584190fa7743e898ab87ec8d"
+        },
+        {
+          "line": 160,
+          "expression": "expect(usageRoute)",
+          "sha256": "61d31856b5ffe3bb22cba355959fd87e77131decede6663e6c61f441f5882258"
+        },
+        {
+          "line": 167,
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "line": 246,
+          "expression": "expect(mediaUsageDetailsResponseSchema.parse(result.data))",
+          "sha256": "2442fa6195a2cf32f1fe400745c9d4258d70f02f0565b16e61fe2b47454c95fa"
+        },
+        {
+          "line": 247,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 258,
+          "expression": "expect(serialized)",
+          "sha256": "c4af67e6f5a7d2f20e1fb1f400d42aedda827202466025ed43a88b72b2ebf33e"
+        },
+        {
+          "line": 260,
+          "expression": "expect(serialized)",
+          "sha256": "c4af67e6f5a7d2f20e1fb1f400d42aedda827202466025ed43a88b72b2ebf33e"
+        },
+        {
+          "line": 266,
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "line": 274,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 280,
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "line": 284,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 285,
+          "expression": "expect(queries[0])",
+          "sha256": "8c6601d4846683c0a4df1001bcbc9b11b238dfdb57c825f0cff362690766a2aa"
+        },
+        {
+          "line": 291,
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "line": 292,
+          "expression": "expect.objectContaining({\n\t\t\t\tsuccess: false,\n\t\t\t\terror: expect.objectContaining({ code: \"INVALID_CURSOR\" }),\n\t\t\t})",
+          "sha256": "916b0dab31f20ce0035e99ba65a563c92d718d4dea993b6a7e3ce8d1d79d2963"
+        },
+        {
+          "line": 294,
+          "expression": "expect.objectContaining({ code: \"INVALID_CURSOR\" })",
+          "sha256": "d4330a96f43a49d9f236e8723f1e1fa10002ad60855370cd43cb27e81bd801bf"
+        },
+        {
+          "line": 297,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 307,
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "line": 311,
+          "expression": "expect(JSON.stringify(result))",
+          "sha256": "741994ce23eaca879ec3ebbecc9925f6bfdbac1aad8f8ff2415016f80bec9a1a"
+        },
+        {
+          "line": 312,
+          "expression": "expect(errorSpy)",
+          "sha256": "b98a870d401335a3b3f61e373c8daec0f82f164a4fd8690578d1f2561a4c9d7a"
+        },
+        {
+          "line": 326,
+          "expression": "expect(first.items)",
+          "sha256": "4505349187640b8f1720ffebe5d33549d3b37266aae609e56839e2385a7a0470"
+        },
+        {
+          "line": 327,
+          "expression": "expect.objectContaining({ collection: \"pages\", contentId: \"entry-page\" })",
+          "sha256": "ba55a4049bc18804fcb741fb8b2c1f6d6c6a755bb0223fb638fc0e5adb20767a"
+        },
+        {
+          "line": 329,
+          "expression": "expect(first.nextCursor)",
+          "sha256": "8b5bb88d903e49f731390b368212babb79ab27482b40618583675c9b7d52e282"
+        },
+        {
+          "line": 330,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 343,
+          "expression": "expect(second.items)",
+          "sha256": "903e6043f29136f7b983f6035bce36128e6c222d60a6e44ca619cac2bde91b5e"
+        },
+        {
+          "line": 344,
+          "expression": "expect.objectContaining({ collection: \"posts\", contentId: \"entry-post\" })",
+          "sha256": "ce2c48db6874d2fcdbbb5acf2044f97119b9ec85e35415c81592dc1ecec8b342"
+        },
+        {
+          "line": 346,
+          "expression": "expect(second.nextCursor)",
+          "sha256": "8131713f8c7ad0a7ff7fb396998943956581dc290ce5789fbc354b2b20735aab"
+        },
+        {
+          "line": 347,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 358,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 359,
+          "expression": "expect((await response.json()) as ErrorBody)",
+          "sha256": "f305334b0eaf36b11a58407cb650f47e8853b02e83ff953268aa3990937822ed"
+        },
+        {
+          "line": 360,
+          "expression": "expect.objectContaining({ error: expect.objectContaining({ code }) })",
+          "sha256": "219e80594f257700c0c333a8dc121089158f2695a832cd545fb886bd91d5f3b5"
+        },
+        {
+          "line": 360,
+          "expression": "expect.objectContaining({ code })",
+          "sha256": "c8f3996bc7bda8db65344bf1a2e30c50459745cb5d3b0da629354170fccb5064"
+        },
+        {
+          "line": 362,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 373,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 374,
+          "expression": "expect((await response.json()) as ErrorBody)",
+          "sha256": "f305334b0eaf36b11a58407cb650f47e8853b02e83ff953268aa3990937822ed"
+        },
+        {
+          "line": 375,
+          "expression": "expect.objectContaining({ error: expect.objectContaining({ code: \"INVALID_CURSOR\" }) })",
+          "sha256": "45df8ecb04743820cc0e28304913537eea2e33b34d2a351e6c726e0f0ea8ebf6"
+        },
+        {
+          "line": 375,
+          "expression": "expect.objectContaining({ code: \"INVALID_CURSOR\" })",
+          "sha256": "d4330a96f43a49d9f236e8723f1e1fa10002ad60855370cd43cb27e81bd801bf"
+        },
+        {
+          "line": 393,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 394,
+          "expression": "expect((await response.json()) as ErrorBody)",
+          "sha256": "f305334b0eaf36b11a58407cb650f47e8853b02e83ff953268aa3990937822ed"
+        },
+        {
+          "line": 395,
+          "expression": "expect.objectContaining({ error: expect.objectContaining({ code }) })",
+          "sha256": "219e80594f257700c0c333a8dc121089158f2695a832cd545fb886bd91d5f3b5"
+        },
+        {
+          "line": 395,
+          "expression": "expect.objectContaining({ code })",
+          "sha256": "c8f3996bc7bda8db65344bf1a2e30c50459745cb5d3b0da629354170fccb5064"
+        },
+        {
+          "line": 397,
+          "expression": "expect(queries)",
+          "sha256": "4d8513ccfb5d76fe9ccecfd81f89c403fca113f56fed533ca0e7c521e124a544"
+        },
+        {
+          "line": 409,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 410,
+          "expression": "expect((await response.json()) as ErrorBody)",
+          "sha256": "f305334b0eaf36b11a58407cb650f47e8853b02e83ff953268aa3990937822ed"
+        },
+        {
+          "line": 411,
+          "expression": "expect.objectContaining({ error: expect.objectContaining({ code: \"NOT_CONFIGURED\" }) })",
+          "sha256": "b22c0ebc44e4733ff660992828d5da5180573f793a6007e136c3e7f18d841501"
+        },
+        {
+          "line": 411,
+          "expression": "expect.objectContaining({ code: \"NOT_CONFIGURED\" })",
+          "sha256": "2e31071377a1c3465a7517615f7e3248a2750059646947a6e3f55ea2fa8e3026"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/api/media-usage-activation-route.test.ts",
+      "path": "parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-activation-route.test.ts",
+      "sourceBlob": "948dee81d7edea3b11120ed1651d7848ba3e93fd",
+      "bytes": 9880,
+      "sha256": "4a47191ee61ceaefc10b507006037da0944668ad4ef48eab3a8a9f2f4dda9885",
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:27",
+          "line": 27,
+          "title": "\"registers the activation route\"",
+          "expression": "it",
+          "callbackSha256": "e14dbfbdb73060d4e00e136cda2b5608514d409a8ef6514bf1fa9d665f38075c",
+          "declarationSha256": "f53c0f58a2c5807e6aaf236849cf59953ecd16da7fe27b7234ba681374acab1d"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:41",
+          "line": 41,
+          "title": "\"requires authentication, schema permission, and admin token scope\"",
+          "expression": "it",
+          "callbackSha256": "2ed1f375d5d6457bb20448221722bab22fbc348c7c0ba76768adc9d602254bd4",
+          "declarationSha256": "48d694e552edd55f7a96c45ea9b1c3ee0f3429dbbe39fbc5ecbf9eb43520518e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:62",
+          "line": 62,
+          "title": "\"returns a read-only redacted activation status\"",
+          "expression": "it",
+          "callbackSha256": "822e18b3ed0c2209b3e5379054f1b4886ea0864f60d20db1e1955417948a59f0",
+          "declarationSha256": "05cbf95b08d7ddcfc75579690cd7d77b040574b5c094d36cb42311e79323ec46"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:107",
+          "line": 107,
+          "title": "\"fails closed for an incompatible runtime generation\"",
+          "expression": "it",
+          "callbackSha256": "cd28f9f8d2e813e7b2e6d7d9e2a670d468d804fc82e7b6aa23246a4b4cd4e122",
+          "declarationSha256": "e4f634863c864889b72bf1c1ab7febb7ee5f1962809f146d169e7c6497664455"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:128",
+          "line": 128,
+          "title": "\"fails closed for missing or invalid lifecycle metadata\"",
+          "expression": "it",
+          "callbackSha256": "12b28a10067bea05b2f826a1476b4bfb48ec2eb130d8e050f4811de4b752546a",
+          "declarationSha256": "973e1908ba66c30c021d958455d400098eff3524c9e197b979b5c984f3f5455e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:158",
+          "line": 158,
+          "title": "\"requires both literal confirmations without mutating activation state\"",
+          "expression": "it",
+          "callbackSha256": "13e8d2fb6a0d9434a72d5273774fb660f6669c4258f107e18fe3a34795915dbb",
+          "declarationSha256": "f59f2b0ed326cd5d8ed90cf3b1e0ae14ac8a0414fe717049d3c1d7a47128ab22"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:170",
+          "line": 170,
+          "title": "\"advances exactly one collection per confirmed request and is idempotent when active\"",
+          "expression": "it",
+          "callbackSha256": "ad5a244eca5d2e69e31d0b4751e6a2932cf9d1db616b86650675cc4ec7c41a2d",
+          "declarationSha256": "a8ebc435bf0ccd004428566bf91724fa8e59056ece32a4256d0f7773f7da5b96"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:205",
+          "line": 205,
+          "title": "\"returns a stable redacted conflict for a live activation lease\"",
+          "expression": "it",
+          "callbackSha256": "5a4397f63051f5a66b3751dc603cc50f89bd01d57abf262a013bff8409a03435",
+          "declarationSha256": "0a41aee8440b532412ca305b1686e5a0c702be2893bb2aaaa5e7ffaa388067de"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:230",
+          "line": 230,
+          "title": "\"maps ownership loss to a stable conflict\"",
+          "expression": "it",
+          "callbackSha256": "e3cad53d3f1cfc3f67fae041607d36e2cab0fc079a4d11d3760977106f842056",
+          "declarationSha256": "6dc27e28185a33213ec7033aa0d667555341f52474ac09aedb25fdb0902da8d9"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-activation-route.test.ts:250",
+          "line": 250,
+          "title": "\"records trigger failures while returning only a stable public error\"",
+          "expression": "it",
+          "callbackSha256": "bb95bb1c01daf2b90c180c52dd670eea9253e8187b5ea7d185002409b8d57bd0",
+          "declarationSha256": "c75f4935d96cec3835bf4b24e3ab51472a93538fe04400258d324a64f0f50cc4"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 31,
+          "expression": "expect(routes)",
+          "sha256": "8004cd634baf575c01408dd8e2146cd99b8b1c565ad14bd5d75cc4b47520d67a"
+        },
+        {
+          "line": 32,
+          "expression": "expect.arrayContaining([\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\tpattern: \"/_emdash/api/admin/media-usage/activation\",\n\t\t\t\t\tentrypoint: expect.stringContaining(\"api/admin/media-usage/activation\"),\n\t\t\t\t}),\n\t\t\t])",
+          "sha256": "775a08cd295d348a84e0f163f3a9975408bf4a5abe1aa601d98b69e549c9d280"
+        },
+        {
+          "line": 33,
+          "expression": "expect.objectContaining({\n\t\t\t\t\tpattern: \"/_emdash/api/admin/media-usage/activation\",\n\t\t\t\t\tentrypoint: expect.stringContaining(\"api/admin/media-usage/activation\"),\n\t\t\t\t})",
+          "sha256": "544111421fb48bec12fdfd20e754c1f211136dd7466c82c8b39be16a8f9ea57d"
+        },
+        {
+          "line": 35,
+          "expression": "expect.stringContaining(\"api/admin/media-usage/activation\")",
+          "sha256": "2d34457458289cd34316b96d7fc59dbc91b37555a1a27d08dc0975edec8135cf"
+        },
+        {
+          "line": 83,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 84,
+          "expression": "expect(response.headers.get(\"Cache-Control\"))",
+          "sha256": "1fc2ed1d98cb5b792cdbdc16a004608cb2d0c538c784b7418c4fbc793757d0ec"
+        },
+        {
+          "line": 86,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 100,
+          "expression": "expect(await activationRow())",
+          "sha256": "5a9dfd7aa3aeaef6ca8492c623b59dda703b608e98774f212864a46eb351e422"
+        },
+        {
+          "line": 102,
+          "expression": "expect(serialized)",
+          "sha256": "c4af67e6f5a7d2f20e1fb1f400d42aedda827202466025ed43a88b72b2ebf33e"
+        },
+        {
+          "line": 103,
+          "expression": "expect(serialized)",
+          "sha256": "c4af67e6f5a7d2f20e1fb1f400d42aedda827202466025ed43a88b72b2ebf33e"
+        },
+        {
+          "line": 104,
+          "expression": "expect(serialized)",
+          "sha256": "c4af67e6f5a7d2f20e1fb1f400d42aedda827202466025ed43a88b72b2ebf33e"
+        },
+        {
+          "line": 125,
+          "expression": "expect(await activationRow())",
+          "sha256": "5a9dfd7aa3aeaef6ca8492c623b59dda703b608e98774f212864a46eb351e422"
+        },
+        {
+          "line": 166,
+          "expression": "expect(await activationRow())",
+          "sha256": "5a9dfd7aa3aeaef6ca8492c623b59dda703b608e98774f212864a46eb351e422"
+        },
+        {
+          "line": 174,
+          "expression": "expect(first.status)",
+          "sha256": "73f71d52ea8069009ffe1a54b2543de3bed2e773c36f14e86e1e05475e2ff3ee"
+        },
+        {
+          "line": 175,
+          "expression": "expect(await first.json())",
+          "sha256": "bb83d1aa0f5994e827a9bf67653e161b61378fa23c239fbc8b317f4099f898d2"
+        },
+        {
+          "line": 180,
+          "expression": "expect.objectContaining({ state: \"activating\" })",
+          "sha256": "fcf116cb5a168cbc85b92d6ac3ef51d4e79e9b89822058077cb0e9e4b91a0f77"
+        },
+        {
+          "line": 184,
+          "expression": "expect(second.status)",
+          "sha256": "e80358ddfddaf8c414228683a9fcb8bbcc82ad899d585ed468be64dd813607f2"
+        },
+        {
+          "line": 185,
+          "expression": "expect(await second.json())",
+          "sha256": "8945478fa2fc3b46dd2978fe5f2e9f63f1cb867ef70ded170481fd8ed925e98d"
+        },
+        {
+          "line": 190,
+          "expression": "expect.objectContaining({ state: \"active\" })",
+          "sha256": "363f4f489804a7c9717980a63311a7f604ece2f1113eb1a3c6dc638dd9b35d88"
+        },
+        {
+          "line": 195,
+          "expression": "expect(await third.json())",
+          "sha256": "99a331c9680e118c19e7d002fe4f2660ae200ca5a06787d382be7cbe18a87303"
+        },
+        {
+          "line": 200,
+          "expression": "expect.objectContaining({ state: \"active\" })",
+          "sha256": "363f4f489804a7c9717980a63311a7f604ece2f1113eb1a3c6dc638dd9b35d88"
+        },
+        {
+          "line": 217,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 219,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 223,
+          "expression": "expect.any(String)",
+          "sha256": "a9c0f2de43aa958106105891e5af310cfe15d390bdf568dfbb30e86e8c623467"
+        },
+        {
+          "line": 227,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 254,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 256,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 260,
+          "expression": "expect.any(String)",
+          "sha256": "a9c0f2de43aa958106105891e5af310cfe15d390bdf568dfbb30e86e8c623467"
+        },
+        {
+          "line": 263,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 264,
+          "expression": "expect(await activationRow())",
+          "sha256": "5a9dfd7aa3aeaef6ca8492c623b59dda703b608e98774f212864a46eb351e422"
+        },
+        {
+          "line": 265,
+          "expression": "expect.objectContaining({\n\t\t\t\tstate: \"activating\",\n\t\t\t\tlease_token: null,\n\t\t\t\tlast_error_code: \"MEDIA_USAGE_ACTIVATION_FAILED\",\n\t\t\t})",
+          "sha256": "eefd1bd7bcf37dd0f740a83e3cbbc1542a31bd3c2bb710f3db4048993057fb91"
+        },
+        {
+          "line": 298,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 300,
+          "expression": "expect(body.error.code)",
+          "sha256": "b2c9dfb2ed824430b6bbec68f6975e5746b3df89c89009f60aad543f220caf6f"
+        },
+        {
+          "line": 301,
+          "expression": "expect(response.headers.get(\"Cache-Control\"))",
+          "sha256": "1fc2ed1d98cb5b792cdbdc16a004608cb2d0c538c784b7418c4fbc793757d0ec"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/api/media-usage-progress-route.test.ts",
+      "path": "parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-progress-route.test.ts",
+      "sourceBlob": "df71930d2218936090fb6515cbcb8668edff57c9",
+      "bytes": 10185,
+      "sha256": "247c21cadf171ca37d0837033775d22acb3adba8f5eee12d8cff14e2642e60c8",
+      "declarations": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:55",
+          "line": 55,
+          "title": "\"registers the progress route\"",
+          "expression": "it",
+          "callbackSha256": "cfa292288f3c5be1c4baf6d8463fa02e808c87e7869aca33c0d77c51d95c7fe5",
+          "declarationSha256": "e59ad87b075ddc59a9bbca306719864a6a25f44448ff6b260aa761ca1e645c15"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:69",
+          "line": 69,
+          "title": "\"requires authentication, schema permission, and admin token scope\"",
+          "expression": "it",
+          "callbackSha256": "d94c462831b4fa9f1c060fb83dc1a2eba20f79dd6a2e8fedb02a72f647327df6",
+          "declarationSha256": "cb8b173e003ab7a7c8983ef69d383b0704d7c8c1776309d87bef6e13a0db63a6"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:79",
+          "line": 79,
+          "title": "\"requires authentication, schema permission, and admin token scope to advance\"",
+          "expression": "it",
+          "callbackSha256": "f6146b5e05fb44cadba15b5cbe5b93bb278de148635a1166faf2eb0f6f7ffe83",
+          "declarationSha256": "e8dcddb5be2d1098b05d1b2fbecd5233a7f1ea56ce7054460f82248b74fddaa7"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:89",
+          "line": 89,
+          "title": "\"runs one maintenance step and returns the stored state after it\"",
+          "expression": "it",
+          "callbackSha256": "c6ae5d14e07a4e50a24aa2845f452ae53ebb969c4628779a59a263563679b0cc",
+          "declarationSha256": "e1e51fb6cf204609c79ce922a1cfd4014f341d44b9ea24ac84456384aa158184"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:111",
+          "line": 111,
+          "title": "\"returns immediate continuation after exactly one activation step\"",
+          "expression": "it",
+          "callbackSha256": "9d2c26f01e4e8f4ee6d30f6be41c9c2775d3ee1bcd4f4124f6713a7953821b1a",
+          "declarationSha256": "49a11484729fb6c2a62a206fe55073546835bc1fb6150e781d1eb9177cd112f6"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:137",
+          "line": 137,
+          "title": "\"returns delayed continuation while another activation lease is live\"",
+          "expression": "it",
+          "callbackSha256": "6dab3649c2bde24505c77535a3b52b467e157d6f16f988015fcd8526f03d373c",
+          "declarationSha256": "e3d4c0615a826e8f318e6f22a21befe705a82db9cb01c4a2ba600bb46e96d520"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:163",
+          "line": 163,
+          "title": "\"continues when durable progress becomes incomplete after an idle step\"",
+          "expression": "it",
+          "callbackSha256": "65741750fe4b2dc4071a617398e7499e2c2f2e357662f18a036caec3859c590c",
+          "declarationSha256": "db982e09a6b5b9e69758454e9f0790a72f3186b16b9dc552dd287ba172578eec"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:187",
+          "line": 187,
+          "title": "\"stops when stored progress needs attention\"",
+          "expression": "it",
+          "callbackSha256": "103cfb09928fe7ebe75f12b627e571f98f7e69559421fd8dfdb743a2fda3b009",
+          "declarationSha256": "5e836d8d69dd20ff4512dc64f31ace038a134d7a007d290f620c5b77437a24bd"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:211",
+          "line": 211,
+          "title": "\"rejects untouched activation without changing it\"",
+          "expression": "it",
+          "callbackSha256": "04b025a8bf6bc0b647845b0f83aac12474813fefc19280f447ebe207243b0245",
+          "declarationSha256": "4f07b798c58555a59d43a6d5179abd91c577531a8b0b8c39fbb01a237c51ae8e"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:232",
+          "line": 232,
+          "title": "\"returns aggregate readiness without exposing collection or work details\"",
+          "expression": "it",
+          "callbackSha256": "644953ec6bd375f65be010a168eeed3597f1beaeac97e6083a3acbf2f992b6ba",
+          "declarationSha256": "a8a0aaeb5ed7308aa99a512b862055427e8d2ef652c11639821bcf90300b84b6"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:250",
+          "line": 250,
+          "title": "\"rejects progress reads before activation is active\"",
+          "expression": "it",
+          "callbackSha256": "0f07d5bc7486b41723784e1afd4ca0401c76971530a9bc2ba68f1f296c46980b",
+          "declarationSha256": "5ad9047ad08027bf94cef8c8a2b2283670c62df37cb8dc6a7499d287ad4018e8"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:264",
+          "line": 264,
+          "title": "\"rejects an incompatible activation runtime generation\"",
+          "expression": "it",
+          "callbackSha256": "757f8ebcd22b3ae6e1c766d9d6b79457fc08fb27d6c2bd3b09a3655719a46388",
+          "declarationSha256": "ad07134dc682317535277ac4fc1165aaaea587de927f2da50277ed75538b0a09"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:283",
+          "line": 283,
+          "title": "\"returns a stable redacted read error\"",
+          "expression": "it",
+          "callbackSha256": "c56664edeee0d2ded73361b5fd216c360ed50e7f5fa65eca7b3bfe6c101305da",
+          "declarationSha256": "dd30b64ba15e89334b19782050c0db49f002c2fe52757ab7a278809c868ee7ad"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/media-usage-progress-route.test.ts:293",
+          "line": 293,
+          "title": "\"returns a stable redacted advance error\"",
+          "expression": "it",
+          "callbackSha256": "4aff15bfa89fd9953acf6b210d6315bbbde3d0e11890332657f388e33747a9b2",
+          "declarationSha256": "d8c3f18ee574678c155cfe0b33ea645488f9f04d05d6b2b236f0f82633b00da9"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 59,
+          "expression": "expect(routes)",
+          "sha256": "8004cd634baf575c01408dd8e2146cd99b8b1c565ad14bd5d75cc4b47520d67a"
+        },
+        {
+          "line": 60,
+          "expression": "expect.arrayContaining([\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\tpattern: \"/_emdash/api/admin/media-usage/progress\",\n\t\t\t\t\tentrypoint: expect.stringContaining(\"api/admin/media-usage/progress\"),\n\t\t\t\t}),\n\t\t\t])",
+          "sha256": "32b8d0a3ddb107d7c4109b540898fc2f99246081ba380e62110ca571ae2bf218"
+        },
+        {
+          "line": 61,
+          "expression": "expect.objectContaining({\n\t\t\t\t\tpattern: \"/_emdash/api/admin/media-usage/progress\",\n\t\t\t\t\tentrypoint: expect.stringContaining(\"api/admin/media-usage/progress\"),\n\t\t\t\t})",
+          "sha256": "84702408d2cb9a4bcd4995a7cc60bfe914cec493aea8e603abfadb302481e523"
+        },
+        {
+          "line": 63,
+          "expression": "expect.stringContaining(\"api/admin/media-usage/progress\")",
+          "sha256": "ab4190545551fe5c4c9652108a602dda870c832c214e70ef74b1d85c33a48ab2"
+        },
+        {
+          "line": 92,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 93,
+          "expression": "expect(response.headers.get(\"Cache-Control\"))",
+          "sha256": "1fc2ed1d98cb5b792cdbdc16a004608cb2d0c538c784b7418c4fbc793757d0ec"
+        },
+        {
+          "line": 95,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 98,
+          "expression": "expect.objectContaining({ state: \"active\" })",
+          "sha256": "363f4f489804a7c9717980a63311a7f604ece2f1113eb1a3c6dc638dd9b35d88"
+        },
+        {
+          "line": 107,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 108,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 127,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 130,
+          "expression": "expect.objectContaining({ state: \"activating\", collectionCursor: \"page\" })",
+          "sha256": "b09c2b5f6411d64d690e64523631b5e1dbd87622f015a024b7ca5209fd5dba3d"
+        },
+        {
+          "line": 153,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 156,
+          "expression": "expect.objectContaining({ state: \"activating\" })",
+          "sha256": "fcf116cb5a168cbc85b92d6ac3ef51d4e79e9b89822058077cb0e9e4b91a0f77"
+        },
+        {
+          "line": 177,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 180,
+          "expression": "expect.objectContaining({ state: \"active\" })",
+          "sha256": "363f4f489804a7c9717980a63311a7f604ece2f1113eb1a3c6dc638dd9b35d88"
+        },
+        {
+          "line": 181,
+          "expression": "expect.objectContaining({ status: \"indexing\" })",
+          "sha256": "ea574a81e4491df217a2ac69d6aec6b1ec2feec9e15ffe474e209bd44467a735"
+        },
+        {
+          "line": 201,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 204,
+          "expression": "expect.objectContaining({ state: \"active\" })",
+          "sha256": "363f4f489804a7c9717980a63311a7f604ece2f1113eb1a3c6dc638dd9b35d88"
+        },
+        {
+          "line": 205,
+          "expression": "expect.objectContaining({ status: \"needs_attention\" })",
+          "sha256": "e7d3639f169be81c94b8b95aaa531bfdd91138e184f9a5bc8b4818a54a323b0c"
+        },
+        {
+          "line": 223,
+          "expression": "expect(\n\t\t\tawait ctx!.db\n\t\t\t\t.selectFrom(\"_emdash_media_usage_activation\")\n\t\t\t\t.select(\"state\")\n\t\t\t\t.where(\"task_key\", \"=\", \"incremental_capture\")\n\t\t\t\t.executeTakeFirstOrThrow(),\n\t\t)",
+          "sha256": "e9cc774c7aaeeaa72e0ba50bf1edf0d052f06f926daf469017d3152843cb0c37"
+        },
+        {
+          "line": 235,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 236,
+          "expression": "expect(response.headers.get(\"Cache-Control\"))",
+          "sha256": "1fc2ed1d98cb5b792cdbdc16a004608cb2d0c538c784b7418c4fbc793757d0ec"
+        },
+        {
+          "line": 238,
+          "expression": "expect(body)",
+          "sha256": "e7b89f2dbc1a24b0cc434a1b195775f5ca3a21b5f1a2d048fab67bdfbc518077"
+        },
+        {
+          "line": 246,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 247,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 290,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 300,
+          "expression": "expect(JSON.stringify(body))",
+          "sha256": "069a872762e1ea27c567a894db00639528be293c331b5010d0b48957f0da098c"
+        },
+        {
+          "line": 320,
+          "expression": "expect(response.status)",
+          "sha256": "bfc0f8079d70f68885ed3ef10ffa77db0f6001b52f7cd6007696b70d90c6b1e7"
+        },
+        {
+          "line": 322,
+          "expression": "expect(body.error.code)",
+          "sha256": "b2c9dfb2ed824430b6bbec68f6975e5746b3df89c89009f60aad543f220caf6f"
+        },
+        {
+          "line": 323,
+          "expression": "expect(response.headers.get(\"Cache-Control\"))",
+          "sha256": "1fc2ed1d98cb5b792cdbdc16a004608cb2d0c538c784b7418c4fbc793757d0ec"
+        }
+      ]
+    }
+  ],
+  "productTestsRun": 0,
+  "status": "Complete original runtime route families test-first; controlled existing Source Role/API/storage fixtures only. No new protected HTTP/session/PAT probes.",
+  "inventory": {
+    "wholeTestFiles": 3,
+    "declarations": 36,
+    "expectationExpressions": 115,
+    "expandedCallbacks": "Only actual whole runs establish expansion; data/body unchanged."
+  }
+}

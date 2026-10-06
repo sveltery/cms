@@ -1,0 +1,115 @@
+{
+  "head": "a06243d4833615ed412301e01d664dd47f316b1d",
+  "tree": "e9cd17e3e81fc86be607cf388a5fcba091efc7ef",
+  "run": 37103002879,
+  "normalValidation": {
+    "job": 111146066816,
+    "normalCommand": "sh scripts/bootstrap.sh",
+    "fullBootstrapPass": true,
+    "normalFrozenInstall": true,
+    "normalTypes": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "service": {
+      "tests": 1125,
+      "pass": 1125,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "sourcePorts": {
+      "files": 9,
+      "executions": 79
+    },
+    "mediaSource": {
+      "files": 34,
+      "executions": 349
+    },
+    "sourceHostTypes": true,
+    "defaultBuild": true,
+    "production": {
+      "tests": 351,
+      "pass": 351,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "nodePackageBuild": true,
+    "isolatedFrozenInstallAndRestart": {
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "cloudflareBuild": true,
+    "wranglerDryBundle": true,
+    "cloudflarePure": {
+      "files": 4,
+      "executions": 23
+    },
+    "actualOfficialWorker": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "mediaOriginalCallbackPass": 1,
+      "mediaOriginalCallbackSeconds": 2.281139492,
+      "extendedReplacementReferencesIncluded": true
+    },
+    "rawLogFile": "/tmp/media-normal-a062-job-111146066816.log",
+    "rawLogBytes": 396098,
+    "rawLogSha256": "f796b83a23d544f587ee31f5874c754560baea7a0f8eb87189b68211b9de0a15",
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37103002879/job/111146066816"
+  },
+  "securedMediaSlices": {
+    "default": {
+      "job": 111146066905,
+      "sourceFiles": 34,
+      "sourceExecutions": 349,
+      "wholeSourceBrowserCallbacks": 4,
+      "pass": 4,
+      "fail": 0,
+      "seconds": 21.9,
+      "rawLogFile": "/tmp/media-normal-a062-job-111146066905.log",
+      "rawLogBytes": 128034,
+      "rawLogSha256": "5c861f3b381baa606b2a587dec9d2e339a4b86219971dc0f80a91c368996f1ad",
+      "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37103002879/job/111146066905"
+    },
+    "node": {
+      "job": 111146066828,
+      "sourceFiles": 34,
+      "sourceExecutions": 349,
+      "wholeSourceBrowserCallbacks": 4,
+      "pass": 4,
+      "fail": 0,
+      "seconds": 19.8,
+      "rawLogFile": "/tmp/media-normal-a062-job-111146066828.log",
+      "rawLogBytes": 128019,
+      "rawLogSha256": "db5ff9326172fd02a2ae6247497e790b4117fee114a5d0047ac542afacf93a2d",
+      "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37103002879/job/111146066828"
+    }
+  },
+  "fullBrowser": {
+    "job": 111146066773,
+    "completedReportedFailures": 20,
+    "editorTaxonomySidebarHeading": 1,
+    "searchPaletteExpectations": 6,
+    "searchApiChecksOrFixtureAdmissionFailures": 13,
+    "searchEndpointsObservedStatus": 404,
+    "overallPass": false,
+    "outerDeadlineSeconds": 180,
+    "exitCode": 124,
+    "nodeFullBrowserReached": false,
+    "qualifiedCause": "Absent development Search root layout/palette/API composition and editor TaxonomySidebar integration; no unowned source expectations or production changes. This is not a full browser pass.",
+    "rawLogFile": "/tmp/media-normal-a062-job-111146066773.log",
+    "rawLogBytes": 215196,
+    "rawLogSha256": "8e92c8d8369ec8ed8dbc0f3070d2761dc60924ed885f1e7e69cb8026b0081f76",
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37103002879/job/111146066773"
+  },
+  "wholeME1ME2Complete": false,
+  "newCropHostAndUiIncluded": false,
+  "sourceAssertionRedCredit": 0
+}

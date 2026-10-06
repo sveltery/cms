@@ -1,0 +1,492 @@
+﻿2026-10-05T22:56:01.1800337Z Current runner version: '2.337.0'
+2026-10-05T22:56:01.1827220Z ##[group]Runner Image Provisioner
+2026-10-05T22:56:01.1828167Z Hosted Compute Agent
+2026-10-05T22:56:01.1828837Z Version: 20260901.588
+2026-10-05T22:56:01.1829793Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-05T22:56:01.1830561Z Build Date: 2026-09-01T19:56:44Z
+2026-10-05T22:56:01.1831288Z Worker ID: {92826580-3ae7-419e-8f84-46a4df3afcb8}
+2026-10-05T22:56:01.1832078Z Azure Region: eastus
+2026-10-05T22:56:01.1832653Z ##[endgroup]
+2026-10-05T22:56:01.1834291Z ##[group]Operating System
+2026-10-05T22:56:01.1834957Z Ubuntu
+2026-10-05T22:56:01.1835508Z 24.04.5
+2026-10-05T22:56:01.1836076Z LTS
+2026-10-05T22:56:01.1836626Z ##[endgroup]
+2026-10-05T22:56:01.1837249Z ##[group]Runner Image
+2026-10-05T22:56:01.1837907Z Image: ubuntu-24.04
+2026-10-05T22:56:01.1838478Z Version: 20260927.320.1
+2026-10-05T22:56:01.1840058Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-05T22:56:01.1841673Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-05T22:56:01.1842688Z ##[endgroup]
+2026-10-05T22:56:01.1843830Z ##[group]GITHUB_TOKEN Permissions
+2026-10-05T22:56:01.1845770Z Contents: read
+2026-10-05T22:56:01.1846361Z Metadata: read
+2026-10-05T22:56:01.1847020Z ##[endgroup]
+2026-10-05T22:56:01.1849636Z Secret source: Actions
+2026-10-05T22:56:01.1850927Z Cache mode: write
+2026-10-05T22:56:01.1851686Z Prepare workflow directory
+2026-10-05T22:56:01.2195473Z Prepare all required actions
+2026-10-05T22:56:01.2245117Z Getting action download info
+2026-10-05T22:56:01.4700637Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-05T22:56:01.5912328Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-10-05T22:56:01.8186655Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-05T22:56:02.0013725Z Complete job name: validate-services
+2026-10-05T22:56:02.0803200Z ##[group]Run actions/checkout@v4
+2026-10-05T22:56:02.0804092Z with:
+2026-10-05T22:56:02.0804541Z   repository: sveltery/cms
+2026-10-05T22:56:02.0808612Z   token: ***
+2026-10-05T22:56:02.0809275Z   ssh-strict: true
+2026-10-05T22:56:02.0809733Z   ssh-user: git
+2026-10-05T22:56:02.0810184Z   persist-credentials: true
+2026-10-05T22:56:02.0810671Z   clean: true
+2026-10-05T22:56:02.0811120Z   sparse-checkout-cone-mode: true
+2026-10-05T22:56:02.0811684Z   fetch-depth: 1
+2026-10-05T22:56:02.0812137Z   fetch-tags: false
+2026-10-05T22:56:02.0812593Z   show-progress: true
+2026-10-05T22:56:02.0813058Z   lfs: false
+2026-10-05T22:56:02.0813474Z   submodules: false
+2026-10-05T22:56:02.0813924Z   set-safe-directory: true
+2026-10-05T22:56:02.0814432Z   allow-unsafe-pr-checkout: false
+2026-10-05T22:56:02.0815225Z ##[endgroup]
+2026-10-05T22:56:02.1920155Z Syncing repository: sveltery/cms
+2026-10-05T22:56:02.1923565Z ##[group]Getting Git version info
+2026-10-05T22:56:02.1925618Z Working directory is '/home/runner/work/cms/cms'
+2026-10-05T22:56:02.1927808Z [command]/usr/bin/git version
+2026-10-05T22:56:02.2141324Z git version 2.55.0
+2026-10-05T22:56:02.2166087Z ##[endgroup]
+2026-10-05T22:56:02.2182703Z Temporarily overriding HOME='/home/runner/work/_temp/54d45845-4a0b-4795-90c7-84c6f7b91941' before making global git config changes
+2026-10-05T22:56:02.2185962Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T22:56:02.2189479Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T22:56:02.2257202Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-05T22:56:02.2263471Z ##[group]Initializing the repository
+2026-10-05T22:56:02.2269664Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-05T22:56:02.2423752Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-05T22:56:02.2425994Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-05T22:56:02.2428935Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-05T22:56:02.2430581Z hint: call:
+2026-10-05T22:56:02.2431093Z hint:
+2026-10-05T22:56:02.2431836Z hint: 	git config --global init.defaultBranch <name>
+2026-10-05T22:56:02.2432559Z hint:
+2026-10-05T22:56:02.2433339Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-05T22:56:02.2434810Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-05T22:56:02.2435968Z hint:
+2026-10-05T22:56:02.2436680Z hint: 	git branch -m <name>
+2026-10-05T22:56:02.2437279Z hint:
+2026-10-05T22:56:02.2438104Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-05T22:56:02.2439640Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-05T22:56:02.2444225Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-05T22:56:02.2531832Z ##[endgroup]
+2026-10-05T22:56:02.2533395Z ##[group]Disabling automatic garbage collection
+2026-10-05T22:56:02.2534811Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-05T22:56:02.2587897Z ##[endgroup]
+2026-10-05T22:56:02.2589058Z ##[group]Setting up auth
+2026-10-05T22:56:02.2590461Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T22:56:02.2627961Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T22:56:02.3047194Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T22:56:02.3084703Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T22:56:02.3316229Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T22:56:02.3354128Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T22:56:02.3588707Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-05T22:56:02.3630323Z ##[endgroup]
+2026-10-05T22:56:02.3631307Z ##[group]Fetching the repository
+2026-10-05T22:56:02.3640761Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +bf59cb6c427683340350d8446fc8538476a52ffa:refs/remotes/pull/120/merge
+2026-10-05T22:56:03.8519667Z From https://github.com/sveltery/cms
+2026-10-05T22:56:03.8521522Z  * [new ref]         bf59cb6c427683340350d8446fc8538476a52ffa -> pull/120/merge
+2026-10-05T22:56:03.8527852Z ##[endgroup]
+2026-10-05T22:56:03.8529457Z ##[group]Determining the checkout info
+2026-10-05T22:56:03.8531679Z ##[endgroup]
+2026-10-05T22:56:03.8537250Z [command]/usr/bin/git sparse-checkout disable
+2026-10-05T22:56:03.8605384Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-05T22:56:03.8667720Z ##[group]Checking out the ref
+2026-10-05T22:56:03.8671166Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/120/merge
+2026-10-05T22:56:04.2866200Z Note: switching to 'refs/remotes/pull/120/merge'.
+2026-10-05T22:56:04.2867359Z 
+2026-10-05T22:56:04.2868108Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-05T22:56:04.2870034Z changes and commit them, and you can discard any commits you make in this
+2026-10-05T22:56:04.2871681Z state without impacting any branches by switching back to a branch.
+2026-10-05T22:56:04.2872759Z 
+2026-10-05T22:56:04.2873436Z If you want to create a new branch to retain commits you create, you may
+2026-10-05T22:56:04.2874849Z do so (now or later) by using -c with the switch command. Example:
+2026-10-05T22:56:04.2875759Z 
+2026-10-05T22:56:04.2876268Z   git switch -c <new-branch-name>
+2026-10-05T22:56:04.2877242Z 
+2026-10-05T22:56:04.2877716Z Or undo this operation with:
+2026-10-05T22:56:04.2878314Z 
+2026-10-05T22:56:04.2878728Z   git switch -
+2026-10-05T22:56:04.2879636Z 
+2026-10-05T22:56:04.2880382Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-05T22:56:04.2881538Z 
+2026-10-05T22:56:04.2882778Z HEAD is now at bf59cb6 Merge c73698dcba0f938d26e6fa1d60457dcfa2609fac into 99c659f67a2117f9e523f1231f0f44d207713396
+2026-10-05T22:56:04.2888395Z ##[endgroup]
+2026-10-05T22:56:04.2935204Z [command]/usr/bin/git log -1 --format=%H
+2026-10-05T22:56:04.2964104Z bf59cb6c427683340350d8446fc8538476a52ffa
+2026-10-05T22:56:04.3403441Z ##[group]Run pnpm/action-setup@v4
+2026-10-05T22:56:04.3404798Z with:
+2026-10-05T22:56:04.3405784Z   version: 12.6.0
+2026-10-05T22:56:04.3406854Z   dest: ~/setup-pnpm
+2026-10-05T22:56:04.3407929Z   run_install: null
+2026-10-05T22:56:04.3409275Z   cache: false
+2026-10-05T22:56:04.3410420Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-05T22:56:04.3411888Z   package_json_file: package.json
+2026-10-05T22:56:04.3413145Z   standalone: false
+2026-10-05T22:56:04.3414150Z ##[endgroup]
+2026-10-05T22:56:04.4927542Z ##[group]Running self-installer...
+2026-10-05T22:56:04.9057105Z (node:2290) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T22:56:04.9060615Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T22:56:05.0654634Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-05T22:56:05.1990910Z Packages: +3
+2026-10-05T22:56:05.1991396Z +++
+2026-10-05T22:56:05.8060727Z Progress: resolved 15, reused 0, downloaded 3, added 3, done
+2026-10-05T22:56:05.8246488Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall$ node install.js
+2026-10-05T22:56:06.1809773Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall: Done
+2026-10-05T22:56:06.1815013Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall$ node install.js
+2026-10-05T22:56:06.2241019Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall: Done
+2026-10-05T22:56:07.4985289Z 
+2026-10-05T22:56:07.4985801Z dependencies:
+2026-10-05T22:56:07.4986281Z + pnpm 12.6.0 (12.9.1 is available)
+2026-10-05T22:56:07.4986604Z 
+2026-10-05T22:56:07.5015175Z Done in 2.8s
+2026-10-05T22:56:07.5381462Z ##[endgroup]
+2026-10-05T22:56:07.5382048Z Installation Completed!
+2026-10-05T22:56:07.5618431Z ##[group]Run actions/setup-node@v4
+2026-10-05T22:56:07.5618736Z with:
+2026-10-05T22:56:07.5618942Z   node-version: 24
+2026-10-05T22:56:07.5619410Z   cache: pnpm
+2026-10-05T22:56:07.5619619Z   always-auth: false
+2026-10-05T22:56:07.5619845Z   check-latest: false
+2026-10-05T22:56:07.5622413Z   token: ***
+2026-10-05T22:56:07.5622619Z env:
+2026-10-05T22:56:07.5622891Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T22:56:07.5623206Z ##[endgroup]
+2026-10-05T22:56:07.7089630Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-05T22:56:07.7094367Z (node:2322) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T22:56:07.7095872Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T22:56:07.7097532Z ##[group]Environment details
+2026-10-05T22:56:08.1611150Z node: v24.21.0
+2026-10-05T22:56:08.1611450Z npm: 11.19.0
+2026-10-05T22:56:08.1611669Z yarn: 1.22.22
+2026-10-05T22:56:08.1612950Z ##[endgroup]
+2026-10-05T22:56:08.1643997Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-05T22:56:08.1804466Z /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-05T22:56:08.2449953Z Cache hit for: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-05T22:56:08.2559002Z (node:2322) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T22:56:09.1338639Z Received 174062786 of 174062786 (100.0%), 197.4 MBs/sec
+2026-10-05T22:56:09.1340520Z Cache Size: ~166 MB (174062786 B)
+2026-10-05T22:56:09.1379288Z [command]/usr/bin/tar -xf /home/runner/work/_temp/4f8de1fe-95d2-413c-93d6-d090566b2c12/cache.tzst -P -C /home/runner/work/cms/cms --use-compress-program unzstd
+2026-10-05T22:56:11.1732195Z Cache restored successfully
+2026-10-05T22:56:11.1816050Z Cache restored from key: node-cache-Linux-x64-pnpm-cb01908ec0d0a45d9eb29e44f56e05364983ff2ce958acc694c939d2835b5d56
+2026-10-05T22:56:11.2033365Z ##[group]Run node --test tests/ci/normal-validation.test.mjs
+2026-10-05T22:56:11.2033891Z [36;1mnode --test tests/ci/normal-validation.test.mjs[0m
+2026-10-05T22:56:11.2302044Z shell: /usr/bin/bash -e {0}
+2026-10-05T22:56:11.2302379Z env:
+2026-10-05T22:56:11.2302706Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T22:56:11.2303098Z ##[endgroup]
+2026-10-05T22:56:12.2540342Z ✔ normal work uses separate sequential bounded jobs at the same reviewed checkout (3.399684ms)
+2026-10-05T22:56:12.2542624Z ✔ required validate runs after every outcome and forwards every mandatory result (0.379972ms)
+2026-10-05T22:56:12.2544453Z ✔ local bootstrap and the entire secured browser job remain byte-exact (1.089883ms)
+2026-10-05T22:56:12.2550443Z ✔ services executes its complete original command boundary and frozen prerequisite (13.454858ms)
+2026-10-05T22:56:12.2552669Z ✔ services stops at pnpm install --frozen-lockfile and preserves its failure status (10.749686ms)
+2026-10-05T22:56:12.2554665Z ✔ services stops at pnpm check and preserves its failure status (9.428976ms)
+2026-10-05T22:56:12.2556360Z ✔ services stops at pnpm test and preserves its failure status (11.089766ms)
+2026-10-05T22:56:12.2558231Z ✔ source executes its complete original command boundary and frozen prerequisite (13.711034ms)
+2026-10-05T22:56:12.2560478Z ✔ source stops at pnpm install --frozen-lockfile and preserves its failure status (8.2526ms)
+2026-10-05T22:56:12.2562400Z ✔ source stops at pnpm test:source-ports and preserves its failure status (9.533242ms)
+2026-10-05T22:56:12.2564842Z ✔ source stops at node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json and preserves its failure status (10.993009ms)
+2026-10-05T22:56:12.2566894Z ✔ source stops at pnpm test:ui-source and preserves its failure status (12.209432ms)
+2026-10-05T22:56:12.2568533Z ✔ source stops at pnpm test:date-time and preserves its failure status (13.653747ms)
+2026-10-05T22:56:12.2570851Z ✔ hosting executes its complete original command boundary and frozen prerequisite (16.558321ms)
+2026-10-05T22:56:12.2572730Z ✔ hosting stops at pnpm install --frozen-lockfile and preserves its failure status (7.865862ms)
+2026-10-05T22:56:12.2574263Z ✔ hosting stops at pnpm build and preserves its failure status (9.309112ms)
+2026-10-05T22:56:12.2575774Z ✔ hosting stops at pnpm test:production and preserves its failure status (11.25003ms)
+2026-10-05T22:56:12.2577289Z ✔ hosting stops at pnpm package:node and preserves its failure status (15.29352ms)
+2026-10-05T22:56:12.2586736Z ✔ hosting stops at pnpm test:node and preserves its failure status (13.177423ms)
+2026-10-05T22:56:12.2595711Z ✔ hosting stops at pnpm build:cloudflare and preserves its failure status (14.576325ms)
+2026-10-05T22:56:12.2597251Z ✔ hosting stops at pnpm test:cloudflare and preserves its failure status (15.920976ms)
+2026-10-05T22:56:12.2599640Z ✔ ordered phases execute all thirteen original commands exactly once plus two isolated frozen installs (47.856164ms)
+2026-10-05T22:56:12.2601295Z ✔ unknown or missing phase rejects before executing any prerequisite or workload (5.978337ms)
+2026-10-05T22:56:12.2602713Z ✔ required aggregate succeeds only after all three normal jobs succeed (46.733059ms)
+2026-10-05T22:56:12.2604553Z ✔ required aggregate fails closed for failure, cancellation, skipping, empty and unknown results in each job (477.797714ms)
+2026-10-05T22:56:12.2606090Z ✔ missing or extra mandatory aggregate results are rejected (114.256905ms)
+2026-10-05T22:56:12.2720944Z ℹ tests 26
+2026-10-05T22:56:12.2721421Z ℹ suites 0
+2026-10-05T22:56:12.2721952Z ℹ pass 26
+2026-10-05T22:56:12.2722377Z ℹ fail 0
+2026-10-05T22:56:12.2722810Z ℹ cancelled 0
+2026-10-05T22:56:12.2723282Z ℹ skipped 0
+2026-10-05T22:56:12.2723702Z ℹ todo 0
+2026-10-05T22:56:12.2724168Z ℹ duration_ms 997.997398
+2026-10-05T22:56:12.2813295Z ##[group]Run sh scripts/ci-validation-phase.sh services
+2026-10-05T22:56:12.2813746Z [36;1msh scripts/ci-validation-phase.sh services[0m
+2026-10-05T22:56:12.2878298Z shell: /usr/bin/bash -e {0}
+2026-10-05T22:56:12.2878550Z env:
+2026-10-05T22:56:12.2878803Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T22:56:12.2879422Z ##[endgroup]
+2026-10-05T22:56:12.3361512Z 
+2026-10-05T22:56:12.3362403Z [validate] start: frozen dependency install
+2026-10-05T22:56:12.3810718Z ? Verifying lockfile against supply-chain policies (534 entries)...
+2026-10-05T22:56:12.6114558Z Packages are hard linked from the content-addressable store to the virtual store.
+2026-10-05T22:56:12.6115639Z   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-05T22:56:12.6116714Z   Virtual store is at:             node_modules/.pnpm
+2026-10-05T22:56:14.6865580Z ✓ Lockfile passes supply-chain policies (534 entries in 2.3s)
+2026-10-05T22:56:14.6866771Z Lockfile is up to date, resolution step is skipped
+2026-10-05T22:56:14.6929122Z Packages: +403
+2026-10-05T22:56:14.6930346Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-05T22:56:15.1909862Z Progress: resolved 403, reused 403, downloaded 0, added 403, done
+2026-10-05T22:56:15.3343899Z . prepare$ svelte-kit sync
+2026-10-05T22:56:16.4746169Z . prepare: Done
+2026-10-05T22:56:16.4755526Z 
+2026-10-05T22:56:16.4756005Z dependencies:
+2026-10-05T22:56:16.4756838Z + @oslojs/crypto 1.0.1
+2026-10-05T22:56:16.4757540Z + @oslojs/encoding 1.1.0
+2026-10-05T22:56:16.4758156Z + @oslojs/webauthn 1.0.0
+2026-10-05T22:56:16.4758723Z + @wordpress/block-serialization-default-parser 5.38.0
+2026-10-05T22:56:16.4759729Z + blurhash 2.0.5
+2026-10-05T22:56:16.4760269Z + cn 0.2.2
+2026-10-05T22:56:16.4760771Z + date-fns 4.1.0
+2026-10-05T22:56:16.4761329Z + image-size 2.0.2
+2026-10-05T22:56:16.4761893Z + jpeg-js 0.4.4
+2026-10-05T22:56:16.4762502Z + jsonc-parser 3.3.1
+2026-10-05T22:56:16.4763075Z + kysely 0.29.2
+2026-10-05T22:56:16.4763593Z + mime 4.1.0
+2026-10-05T22:56:16.4764087Z + parse5 7.3.0
+2026-10-05T22:56:16.4764624Z + smol-toml 1.6.0
+2026-10-05T22:56:16.4765203Z + ulidx 2.4.1
+2026-10-05T22:56:16.4765707Z + upng-js 2.1.0
+2026-10-05T22:56:16.4766212Z + valibot 1.5.0
+2026-10-05T22:56:16.4766713Z + zod 4.5.4
+2026-10-05T22:56:16.4767172Z 
+2026-10-05T22:56:16.4767585Z devDependencies:
+2026-10-05T22:56:16.4768149Z + @babel/core 7.29.7
+2026-10-05T22:56:16.4768710Z + @cloudflare/kumo 2.6.0
+2026-10-05T22:56:16.4769744Z + @cloudflare/workers-types 4.20260507.1
+2026-10-05T22:56:16.4770507Z + @floating-ui/dom 1.8.0
+2026-10-05T22:56:16.4771284Z + @lingui/babel-plugin-lingui-macro 5.9.5
+2026-10-05T22:56:16.4772066Z + @lingui/conf 5.9.5
+2026-10-05T22:56:16.4772560Z + @lingui/core 5.9.5
+2026-10-05T22:56:16.4772942Z + @lingui/react 5.9.5
+2026-10-05T22:56:16.4773338Z + @playwright/test 1.63.0
+2026-10-05T22:56:16.4773964Z + @sveltejs/adapter-auto 7.0.1
+2026-10-05T22:56:16.4774714Z + @sveltejs/adapter-cloudflare 7.2.9
+2026-10-05T22:56:16.4775539Z + @sveltejs/adapter-node 5.5.7
+2026-10-05T22:56:16.4776225Z + @sveltejs/kit 2.70.3
+2026-10-05T22:56:16.4776984Z + @sveltejs/vite-plugin-svelte 7.3.1
+2026-10-05T22:56:16.4780061Z + @tanstack/react-query 5.90.21
+2026-10-05T22:56:16.4781530Z + @tanstack/react-router 1.163.2
+2026-10-05T22:56:16.4782841Z + @testing-library/react 16.3.2
+2026-10-05T22:56:16.4798278Z + @types/jsdom 30.0.0
+2026-10-05T22:56:16.4800616Z + @types/node 24.19.0
+2026-10-05T22:56:16.4801088Z + @types/react 19.3.0
+2026-10-05T22:56:16.4801529Z + @types/react-dom 19.3.0
+2026-10-05T22:56:16.4802054Z + @vitest/browser-playwright 4.1.10
+2026-10-05T22:56:16.4802937Z + devalue 5.9.4
+2026-10-05T22:56:16.4804011Z + jsdom 30.1.1
+2026-10-05T22:56:16.4804414Z + miniflare 4.20260507.1
+2026-10-05T22:56:16.4804819Z + pg 8.18.0
+2026-10-05T22:56:16.4805169Z + react 19.3.0
+2026-10-05T22:56:16.4806075Z + react-day-picker 9.14.0
+2026-10-05T22:56:16.4806587Z + react-dom 19.3.0
+2026-10-05T22:56:16.4806994Z + svelte 5.57.1
+2026-10-05T22:56:16.4808046Z + svelte-check 4.7.6
+2026-10-05T22:56:16.4808573Z + typescript 6.0.3
+2026-10-05T22:56:16.4809309Z + vite 8.3.2
+2026-10-05T22:56:16.4809747Z + vitest 4.1.10
+2026-10-05T22:56:16.4810253Z + vitest-browser-react 2.2.0
+2026-10-05T22:56:16.4811387Z + wrangler 4.99.0
+2026-10-05T22:56:16.4811639Z 
+2026-10-05T22:56:16.4811917Z Done in 4.1s using pnpm v12.6.0
+2026-10-05T22:56:16.5084949Z [validate] finished: frozen dependency install
+2026-10-05T22:56:16.5085296Z 
+2026-10-05T22:56:16.5085517Z [validate] start: type and Svelte checks
+2026-10-05T22:56:16.5248476Z $ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+2026-10-05T22:56:47.3783734Z Loading svelte-check in workspace: /home/runner/work/cms/cms
+2026-10-05T22:56:47.3785067Z Getting Svelte diagnostics...
+2026-10-05T22:56:47.3787234Z 
+2026-10-05T22:56:47.3862645Z /home/runner/work/cms/cms/[32msrc/routes/media/+page.server.ts[39m:4:29
+2026-10-05T22:56:47.3866922Z [31mError[39m: Cannot find module '$lib/server/media/schema' or its corresponding type declarations. 
+2026-10-05T22:56:47.3867957Z [36mimport type {PageServerLoad} from './$types';
+2026-10-05T22:56:47.3868947Z import {mediaDatabase} from [35m'$lib/server/media/schema'[36m;
+2026-10-05T22:56:47.3870399Z import {handleMediaList} from '$lib/server/media/source/api/handlers/media';[39m
+2026-10-05T22:56:47.3870995Z 
+2026-10-05T22:56:47.3871676Z /home/runner/work/cms/cms/[32msrc/routes/media/+page.server.ts[39m:5:31
+2026-10-05T22:56:47.3873283Z [31mError[39m: Cannot find module '$lib/server/media/source/api/handlers/media' or its corresponding type declarations. 
+2026-10-05T22:56:47.3874755Z [36mimport {mediaDatabase} from '$lib/server/media/schema';
+2026-10-05T22:56:47.3876055Z import {handleMediaList} from [35m'$lib/server/media/source/api/handlers/media'[36m;
+2026-10-05T22:56:47.3877247Z export const load:PageServerLoad=async({locals})=>{[39m
+2026-10-05T22:56:47.3877685Z 
+2026-10-05T22:56:47.3878340Z /home/runner/work/cms/cms/[32msrc/routes/media/+page.server.ts[39m:11:38
+2026-10-05T22:56:47.3879710Z [31mError[39m: Parameter 'item' implicitly has an 'any' type. 
+2026-10-05T22:56:47.3880740Z [36m if(!result.success)error(503,'Media library is unavailable');
+2026-10-05T22:56:47.3882450Z  return {items:result.data.items.map([35mitem[36m=>({...item,url:`/_emdash/api/media/file/${item.storageKey}`})),totalCount:result.data.totalCount??0,
+2026-10-05T22:56:47.3884089Z   actorId:context.principal.id,permissions:context.principal.permissions};[39m
+2026-10-05T22:56:47.3884716Z 
+2026-10-05T22:56:47.3885320Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:9:30
+2026-10-05T22:56:47.3907516Z [31mError[39m: Cannot find module '../src/lib/server/media/schema.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3909274Z [36mimport {CMS_MIGRATIONS,migrateCms} from '../src/lib/server/database/migrations.ts';
+2026-10-05T22:56:47.3910397Z import {mediaMigration} from [35m'../src/lib/server/media/schema.ts'[36m;
+2026-10-05T22:56:47.3911304Z import {normalizeMigrationSql} from '../src/lib/server/database/migration-provider.ts';[39m
+2026-10-05T22:56:47.3911699Z 
+2026-10-05T22:56:47.3912057Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:11:43
+2026-10-05T22:56:47.3912868Z [31mError[39m: Cannot find module './helpers/metadata-upgrade.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3913713Z [36mimport {normalizeMigrationSql} from '../src/lib/server/database/migration-provider.ts';
+2026-10-05T22:56:47.3914503Z import {installPrefix,seed,snapshot} from [35m'./helpers/metadata-upgrade.ts'[36m;[39m
+2026-10-05T22:56:47.3914860Z 
+2026-10-05T22:56:47.3915193Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:60:61
+2026-10-05T22:56:47.3916091Z [31mError[39m: Expected 1 arguments, but got 2. 
+2026-10-05T22:56:47.3916706Z [36m    const provider=CMS_MIGRATIONS.find(provider=>provider.version===8)!;
+2026-10-05T22:56:47.3917334Z     const prepared=await provider.prepare!(storage.database,[35m7[36m);
+2026-10-05T22:56:47.3918234Z     await storage.database.atomicBatch([...prepared.preconditions,...prepared.statements,[39m
+2026-10-05T22:56:47.3918628Z 
+2026-10-05T22:56:47.3918963Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:61:53
+2026-10-05T22:56:47.3920053Z [31mError[39m: Property 'preconditions' does not exist on type 'PreparedCmsMigration'. 
+2026-10-05T22:56:47.3920728Z [36m    const prepared=await provider.prepare!(storage.database,7);
+2026-10-05T22:56:47.3921419Z     await storage.database.atomicBatch([...prepared.[35mpreconditions[36m,...prepared.statements,
+2026-10-05T22:56:47.3922186Z      sql`INSERT INTO _cms_migrations(version) VALUES (8)`.compile(storage.database.db)]);[39m
+2026-10-05T22:56:47.3922554Z 
+2026-10-05T22:56:47.3922880Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:70:36
+2026-10-05T22:56:47.3923446Z [31mError[39m: Parameter 'value' implicitly has an 'any' type. 
+2026-10-05T22:56:47.3923934Z [36m    if(table.name==='_cms_migrations')continue;
+2026-10-05T22:56:47.3924468Z     const actual=after.tables.find([35mvalue[36m=>value.name===table.name);
+2026-10-05T22:56:47.3924964Z     assert.ok(actual,table.name);[39m
+2026-10-05T22:56:47.3925155Z 
+2026-10-05T22:56:47.3925475Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:72:93
+2026-10-05T22:56:47.3926038Z [31mError[39m: Parameter 'row' implicitly has an 'any' type. 
+2026-10-05T22:56:47.3926474Z [36m    assert.ok(actual,table.name);
+2026-10-05T22:56:47.3927379Z     assert.deepEqual(actual.rows,prefix===7&&table.name==='_cms_collections'?table.rows.map([35mrow[36m=>({...row,search_config:null})):table.rows,table.name);
+2026-10-05T22:56:47.3928154Z    }[39m
+2026-10-05T22:56:47.3928275Z 
+2026-10-05T22:56:47.3928591Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:74:39
+2026-10-05T22:56:47.3929409Z [31mError[39m: Parameter 'table' implicitly has an 'any' type. 
+2026-10-05T22:56:47.3929873Z [36m   }
+2026-10-05T22:56:47.3930353Z    assert.deepEqual(after.tables.find([35mtable[36m=>table.name==='media')?.rows,[]);
+2026-10-05T22:56:47.3931064Z    assert.deepEqual(after.tables.find(table=>table.name==='media_folders')?.rows,[]);[39m
+2026-10-05T22:56:47.3931423Z 
+2026-10-05T22:56:47.3931738Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:75:39
+2026-10-05T22:56:47.3932321Z [31mError[39m: Parameter 'table' implicitly has an 'any' type. 
+2026-10-05T22:56:47.3932966Z [36m   assert.deepEqual(after.tables.find(table=>table.name==='media')?.rows,[]);
+2026-10-05T22:56:47.3933670Z    assert.deepEqual(after.tables.find([35mtable[36m=>table.name==='media_folders')?.rows,[]);
+2026-10-05T22:56:47.3934701Z    assert.deepEqual(after.tables.find(table=>table.name==='_cms_migrations')?.rows.map(row=>row.version),CMS_MIGRATIONS.map(provider=>provider.version));[39m
+2026-10-05T22:56:47.3935282Z 
+2026-10-05T22:56:47.3935602Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:76:39
+2026-10-05T22:56:47.3936180Z [31mError[39m: Parameter 'table' implicitly has an 'any' type. 
+2026-10-05T22:56:47.3936839Z [36m   assert.deepEqual(after.tables.find(table=>table.name==='media_folders')?.rows,[]);
+2026-10-05T22:56:47.3937856Z    assert.deepEqual(after.tables.find([35mtable[36m=>table.name==='_cms_migrations')?.rows.map(row=>row.version),CMS_MIGRATIONS.map(provider=>provider.version));
+2026-10-05T22:56:47.3938613Z   } finally {await storage.close();}[39m
+2026-10-05T22:56:47.3938807Z 
+2026-10-05T22:56:47.3939362Z /home/runner/work/cms/cms/[32mtests/media-startup.test.ts[39m:76:88
+2026-10-05T22:56:47.3939943Z [31mError[39m: Parameter 'row' implicitly has an 'any' type. 
+2026-10-05T22:56:47.3940609Z [36m   assert.deepEqual(after.tables.find(table=>table.name==='media_folders')?.rows,[]);
+2026-10-05T22:56:47.3941802Z    assert.deepEqual(after.tables.find(table=>table.name==='_cms_migrations')?.rows.map([35mrow[36m=>row.version),CMS_MIGRATIONS.map(provider=>provider.version));
+2026-10-05T22:56:47.3942579Z   } finally {await storage.close();}[39m
+2026-10-05T22:56:47.3942826Z 
+2026-10-05T22:56:47.3943350Z /home/runner/work/cms/cms/[32mtests/helpers/media-authenticated-browser.ts[39m:5:33
+2026-10-05T22:56:47.3944167Z [31mError[39m: Cannot find module './full-setup-browser' or its corresponding type declarations. 
+2026-10-05T22:56:47.3944923Z [36mimport {addVirtualWebAuthnAuthenticator} from './virtual-authenticator';
+2026-10-05T22:56:47.3945567Z import {completeFullSetup} from [35m'./full-setup-browser'[36m;
+2026-10-05T22:56:47.3946606Z type MediaAdmin={page:Page;goToMedia:()=>Promise<unknown>;waitForLoading:()=>Promise<void>;expectPageTitle:(title:string)=>Promise<void>};[39m
+2026-10-05T22:56:47.3947148Z 
+2026-10-05T22:56:47.3947513Z /home/runner/work/cms/cms/[32mtests/helpers/media-cache-worker.ts[39m:3:35
+2026-10-05T22:56:47.3948374Z [31mError[39m: Cannot find module '../../src/lib/server/settings/tables.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3949210Z [36mimport type {Kysely} from 'kysely';
+2026-10-05T22:56:47.3950283Z import type {SettingsTables} from [35m'../../src/lib/server/settings/tables.ts'[36m;
+2026-10-05T22:56:47.3951000Z import {siteCache} from '../../src/lib/server/settings/cache.ts';[39m
+2026-10-05T22:56:47.3951287Z 
+2026-10-05T22:56:47.3951651Z /home/runner/work/cms/cms/[32mtests/helpers/media-cache-worker.ts[39m:4:25
+2026-10-05T22:56:47.3952487Z [31mError[39m: Cannot find module '../../src/lib/server/settings/cache.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3953284Z [36mimport type {SettingsTables} from '../../src/lib/server/settings/tables.ts';
+2026-10-05T22:56:47.3953940Z import {siteCache} from [35m'../../src/lib/server/settings/cache.ts'[36m;
+2026-10-05T22:56:47.3954720Z import {singleFlightCached} from '../../src/lib/server/settings/vendor/single-flight-cache.ts';[39m
+2026-10-05T22:56:47.3955126Z 
+2026-10-05T22:56:47.3955476Z /home/runner/work/cms/cms/[32mtests/helpers/media-cache-worker.ts[39m:5:34
+2026-10-05T22:56:47.3956445Z [31mError[39m: Cannot find module '../../src/lib/server/settings/vendor/single-flight-cache.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3957277Z [36mimport {siteCache} from '../../src/lib/server/settings/cache.ts';
+2026-10-05T22:56:47.3958047Z import {singleFlightCached} from [35m'../../src/lib/server/settings/vendor/single-flight-cache.ts'[36m;
+2026-10-05T22:56:47.3958910Z import {invalidateMediaCache,mediaCacheRevision} from '../../src/lib/server/media/cache.ts';[39m
+2026-10-05T22:56:47.3959722Z 
+2026-10-05T22:56:47.3960208Z /home/runner/work/cms/cms/[32mtests/helpers/media-cache-worker.ts[39m:6:55
+2026-10-05T22:56:47.3961593Z [31mError[39m: Cannot find module '../../src/lib/server/media/cache.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3962605Z [36mimport {singleFlightCached} from '../../src/lib/server/settings/vendor/single-flight-cache.ts';
+2026-10-05T22:56:47.3963491Z import {invalidateMediaCache,mediaCacheRevision} from [35m'../../src/lib/server/media/cache.ts'[36m;
+2026-10-05T22:56:47.3964093Z export default {async fetch(){[39m
+2026-10-05T22:56:47.3964274Z 
+2026-10-05T22:56:47.3964631Z /home/runner/work/cms/cms/[32mtests/helpers/media-image-worker.ts[39m:3:25
+2026-10-05T22:56:47.3965437Z [31mError[39m: Cannot find module '../../src/lib/server/media/r2.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3966196Z [36mimport type {R2Bucket,ImagesBinding} from '@cloudflare/workers-types';
+2026-10-05T22:56:47.3966816Z import {R2Storage} from [35m'../../src/lib/server/media/r2.ts'[36m;
+2026-10-05T22:56:47.3967545Z import {createWorkerImageEndpoint} from '../../src/lib/server/media/image/worker-endpoint.ts';[39m
+2026-10-05T22:56:47.3967937Z 
+2026-10-05T22:56:47.3968473Z /home/runner/work/cms/cms/[32mtests/helpers/media-image-worker.ts[39m:4:41
+2026-10-05T22:56:47.3969670Z [31mError[39m: Cannot find module '../../src/lib/server/media/image/worker-endpoint.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3970455Z [36mimport {R2Storage} from '../../src/lib/server/media/r2.ts';
+2026-10-05T22:56:47.3971327Z import {createWorkerImageEndpoint} from [35m'../../src/lib/server/media/image/worker-endpoint.ts'[36m;
+2026-10-05T22:56:47.3972144Z export default {fetch(request:Request,env:{BUCKET:R2Bucket;IMAGES?:ImagesBinding}){[39m
+2026-10-05T22:56:47.3972494Z 
+2026-10-05T22:56:47.3972863Z /home/runner/work/cms/cms/[32mtests/helpers/media-source-database.ts[39m:8:31
+2026-10-05T22:56:47.3973692Z [31mError[39m: Cannot find module '../../src/lib/server/media/schema.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3974458Z [36mimport { migrateCms } from '../../src/lib/server/database/migrations.ts';
+2026-10-05T22:56:47.3975108Z import { mediaDatabase } from [35m'../../src/lib/server/media/schema.ts'[36m;
+2026-10-05T22:56:47.3975801Z import type { Database } from '../../src/lib/server/media/source/database/types.ts';[39m
+2026-10-05T22:56:47.3976141Z 
+2026-10-05T22:56:47.3976497Z /home/runner/work/cms/cms/[32mtests/helpers/media-source-database.ts[39m:9:31
+2026-10-05T22:56:47.3977415Z [31mError[39m: Cannot find module '../../src/lib/server/media/source/database/types.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3978226Z [36mimport { mediaDatabase } from '../../src/lib/server/media/schema.ts';
+2026-10-05T22:56:47.3978955Z import type { Database } from [35m'../../src/lib/server/media/source/database/types.ts'[36m;[39m
+2026-10-05T22:56:47.3979588Z 
+2026-10-05T22:56:47.3979985Z /home/runner/work/cms/cms/[32mtests/helpers/media-source-registry.ts[39m:2:29
+2026-10-05T22:56:47.3980891Z [31mError[39m: Cannot find module '../../src/lib/server/media/source/database/types.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3981563Z [36mimport type {Kysely} from 'kysely';
+2026-10-05T22:56:47.3982164Z import type {Database} from [35m'../../src/lib/server/media/source/database/types.ts'[36m;
+2026-10-05T22:56:47.3982949Z import {SchemaRegistry as NativeRegistry} from '../../src/lib/server/database/registry.ts';[39m
+2026-10-05T22:56:47.3983330Z 
+2026-10-05T22:56:47.3983838Z /home/runner/work/cms/cms/[32mtests/media-picker-native/picker-detail-api.integration.ts[39m:10:38
+2026-10-05T22:56:47.3984477Z [31mError[39m: Expected 0-1 arguments, but got 2. 
+2026-10-05T22:56:47.3985407Z [36mfor(const target of ['Node','D1'] as const)it(`${target}: detail operations retain edited metadata and create a distinct image copy`,async()=>{
+2026-10-05T22:56:47.3986396Z  const h=await passkeyRuntime(target,[35m{media:'local'}[36m),browser=h.browser(),nativeFetch=globalThis.fetch;
+2026-10-05T22:56:47.3986928Z  try{[39m
+2026-10-05T22:56:47.3987050Z 
+2026-10-05T22:56:47.3987513Z /home/runner/work/cms/cms/[32mtests/media-picker-native/picker-real-api.integration.ts[39m:9:38
+2026-10-05T22:56:47.3988136Z [31mError[39m: Expected 0-1 arguments, but got 2. 
+2026-10-05T22:56:47.3988856Z [36mit('retains actual signed user, deduplicated file metadata, folder and persisted API results',async()=>{
+2026-10-05T22:56:47.3989860Z  const h=await passkeyRuntime('Node',[35m{media:true}[36m),browser=h.browser(),nativeFetch=globalThis.fetch;
+2026-10-05T22:56:47.3990371Z  try{[39m
+2026-10-05T22:56:47.3990480Z 
+2026-10-05T22:56:47.3990877Z /home/runner/work/cms/cms/[32mtests/media-storage-native/selection.test.ts[39m:4:35
+2026-10-05T22:56:47.3991733Z [31mError[39m: Cannot find module '../../src/lib/server/media/storage.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3992401Z [36mimport type {RequestEvent} from '@sveltejs/kit';
+2026-10-05T22:56:47.3993000Z import {requestMediaStorage} from [35m'../../src/lib/server/media/storage.ts'[36m;
+2026-10-05T22:56:47.3993694Z import {LocalStorage} from '../../src/lib/server/media/source/storage/local.ts';[39m
+2026-10-05T22:56:47.3994155Z 
+2026-10-05T22:56:47.3994558Z /home/runner/work/cms/cms/[32mtests/media-storage-native/selection.test.ts[39m:5:28
+2026-10-05T22:56:47.3995481Z [31mError[39m: Cannot find module '../../src/lib/server/media/source/storage/local.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.3996434Z [36mimport {requestMediaStorage} from '../../src/lib/server/media/storage.ts';
+2026-10-05T22:56:47.3997150Z import {LocalStorage} from [35m'../../src/lib/server/media/source/storage/local.ts'[36m;
+2026-10-05T22:56:47.3997828Z import {S3Storage} from '../../src/lib/server/media/source/storage/s3.ts';[39m
+2026-10-05T22:56:47.3998133Z 
+2026-10-05T22:56:47.3998523Z /home/runner/work/cms/cms/[32mtests/media-storage-native/selection.test.ts[39m:6:25
+2026-10-05T22:56:47.3999559Z [31mError[39m: Cannot find module '../../src/lib/server/media/source/storage/s3.ts' or its corresponding type declarations. 
+2026-10-05T22:56:47.4000388Z [36mimport {LocalStorage} from '../../src/lib/server/media/source/storage/local.ts';
+2026-10-05T22:56:47.4001073Z import {S3Storage} from [35m'../../src/lib/server/media/source/storage/s3.ts'[36m;
+2026-10-05T22:56:47.4001636Z import {env} from '../helpers/media-hosting-env.ts';[39m
+2026-10-05T22:56:47.4001883Z 
+2026-10-05T22:56:47.4002022Z ====================================
+2026-10-05T22:56:47.4002474Z [31msvelte-check found 28 errors and 0 warnings in 10 files
+2026-10-05T22:56:47.5526897Z [ELIFECYCLE] Command failed with exit code 1.
+2026-10-05T22:56:47.5542015Z [39m
+2026-10-05T22:56:47.5554419Z ##[error]Process completed with exit code 1.
+2026-10-05T22:56:47.5656745Z Post job cleanup.
+2026-10-05T22:56:47.7150385Z Pruning is unnecessary.
+2026-10-05T22:56:47.7331916Z Post job cleanup.
+2026-10-05T22:56:47.8239996Z [command]/usr/bin/git version
+2026-10-05T22:56:47.8288128Z git version 2.55.0
+2026-10-05T22:56:47.8334082Z Temporarily overriding HOME='/home/runner/work/_temp/e8d48c52-f6fe-459a-85ed-da703daa3bf1' before making global git config changes
+2026-10-05T22:56:47.8335797Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T22:56:47.8340689Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T22:56:47.8381808Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T22:56:47.8417715Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T22:56:47.8685680Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T22:56:47.8785541Z http.https://github.com/.extraheader
+2026-10-05T22:56:47.8799797Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-05T22:56:47.8847695Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T22:56:47.9120689Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T22:56:47.9162467Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T22:56:47.9562494Z Cleaning up orphan processes
+2026-10-05T22:56:48.0081540Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

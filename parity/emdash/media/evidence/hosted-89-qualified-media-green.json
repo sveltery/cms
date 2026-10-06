@@ -1,0 +1,116 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "head": "89a7ad7424c10ec6fae6c891e8bf6ee2243460ee",
+  "tree": "1a9c851cbb22ba8892f10cfe7dd46ea6650bd2c4",
+  "run": 37114761033,
+  "jobs": [
+    {
+      "id": 111179307752,
+      "name": "browser",
+      "conclusion": "failure"
+    },
+    {
+      "id": 111179307875,
+      "name": "setup-source-evidence (node)",
+      "conclusion": "success"
+    },
+    {
+      "id": 111179307898,
+      "name": "validate",
+      "conclusion": "success"
+    },
+    {
+      "id": 111179307900,
+      "name": "media-source-evidence (default)",
+      "conclusion": "success"
+    },
+    {
+      "id": 111179307919,
+      "name": "setup-source-evidence (default)",
+      "conclusion": "success"
+    },
+    {
+      "id": 111179307961,
+      "name": "media-source-evidence (node)",
+      "conclusion": "success"
+    }
+  ],
+  "normal": {
+    "services": 1152,
+    "source": 79,
+    "media": {
+      "files": 34,
+      "callbacks": 349
+    },
+    "nativeClient": 7,
+    "detailsSsr": 3,
+    "adminPureOverlapping": 17,
+    "production": 357,
+    "frozenIsolatedNodePackage": 13,
+    "cloudflarePure": 23,
+    "officialWorkers": 5,
+    "allBootstrapPhasesPassed": true
+  },
+  "securedMedia": {
+    "default": {
+      "job": 111179307900,
+      "ordinaryWholeLibrary": 4,
+      "originalCrop": 1,
+      "originalReplacement": 1,
+      "durationSeconds": 23.3,
+      "wholeCanvasAndCropper": 27,
+      "wholeAdminApi": {
+        "files": 7,
+        "callbacks": 45
+      }
+    },
+    "node": {
+      "job": 111179307961,
+      "ordinaryWholeLibrary": 4,
+      "originalCrop": 1,
+      "originalReplacement": 1,
+      "durationSeconds": 24.1,
+      "wholeCanvasAndCropper": 27,
+      "wholeAdminApi": {
+        "files": 7,
+        "callbacks": 45
+      }
+    }
+  },
+  "fullBrowser": {
+    "job": 111179307752,
+    "conclusion": "failure",
+    "exitCode": 124,
+    "nodePhase": "skipped",
+    "completedFixtureFailure": 1,
+    "fixtureFailure": "ordinary single-login dashboard URL before original replacement callback",
+    "replacementCallbackEntered": false,
+    "completedMissingFeatureExpectations": {
+      "editorTaxonomySidebar": 1,
+      "searchPalette": 5
+    },
+    "noSandboxOverride": true
+  },
+  "review": {
+    "configuredRequestComment": 5968095717,
+    "configuredResponseComment": 5968096734,
+    "configured": "account code-review usage limit, no completed review",
+    "localCli": "read-only filesystem during initialization, no completed review",
+    "fresh": "pending"
+  },
+  "limits": [
+    "Source callbacks unchanged",
+    "Zero new source causal reds",
+    "Pure17 overlaps admin45",
+    "Both targets repeat the same source callbacks",
+    "Middleware frozen273-line test has six declarations expanding to seven callbacks; none executed",
+    "Missing Search/editor integration and full detail/usage/source middleware/public image workflow remain incomplete",
+    "Final approved prerequisite replay and exact-head review/PM approval remain required"
+  ],
+  "localLogs": [
+    "/tmp/media-89-job-111179307752.log",
+    "/tmp/media-89-job-111179307898.log",
+    "/tmp/media-89-job-111179307900.log",
+    "/tmp/media-89-job-111179307961.log"
+  ]
+}

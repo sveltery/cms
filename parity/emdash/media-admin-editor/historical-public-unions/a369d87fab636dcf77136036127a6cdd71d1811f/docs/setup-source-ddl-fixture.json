@@ -1,0 +1,40 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "packages/core/src/schema/registry.ts",
+  "sourceSha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+  "target": "tests/helpers/taxonomy-pinned-content-ddl.ts",
+  "targetSha256": "4747367ed5ad60cc9a2a3a68bb660f7d2bd368e6979aee87a975758d96afe512",
+  "methods": [
+    {
+      "name": "createContentTable",
+      "sha256": "e03a624b30c547ce175b5daedf5abbea190cd45bf60197f2c0e87024c0e4b96e"
+    },
+    {
+      "name": "getTableName",
+      "sha256": "704349a68cf7366227400120e2932c41d84166cea409f4469afab7f8caa312d7"
+    },
+    {
+      "name": "getColumnName",
+      "sha256": "d2474da453bfa4b44530d51511cfb4f5fad1a32dbefc5211a8309fe9ec7ab3f2"
+    },
+    {
+      "name": "formatDefaultValue",
+      "sha256": "139c8eba7178f71e9fabcd5c467f6d504484c9416172e550f7a4df094c5674b3"
+    },
+    {
+      "name": "getEmptyDefault",
+      "sha256": "be4d918364a2ba1af2b973109c7295d68811f72b66b0880e434ef8ec0d91e80e"
+    }
+  ],
+  "constants": [
+    {
+      "name": "SINGLE_QUOTE_PATTERN",
+      "sha256": "af4b6e21bd0467868580faef9c13a59d305759162c926d9871eebbf246c4b569"
+    },
+    {
+      "name": "COLUMN_TYPE_TO_DATA_TYPE",
+      "sha256": "3f036a3ffb1c541b3344645067183370c319445e76755c05016170e07475f109"
+    }
+  ],
+  "classification": "Native optimizer qualification using complete unchanged source private DDL/helpers; zero copied upstream assertion credit; public registry/media/FTS/typegen callers omitted"
+}

@@ -158,3 +158,33 @@ jobs:
         run: timeout --kill-after=30s 180s pnpm test:calendar-admin-fidelity-browser
         env:
           DEBUG: pw:browser
+
+  media-admin-editor-source:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        source-group: [helpers, library, panel, picker, image, gallery, settings]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run every unchanged original callback in the whole Source group
+        run: pnpm test:media-admin-editor:browser --reporter=default --reporter=json --outputFile=media-source-results.json
+        env:
+          MEDIA_SOURCE_GROUP: ${{ matrix.source-group }}
+          DEBUG: pw:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: media-source-${{ matrix.source-group }}
+          path: media-source-results.json
+          retention-days: 14

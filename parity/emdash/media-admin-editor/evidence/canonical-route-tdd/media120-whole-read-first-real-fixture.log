@@ -1,0 +1,61 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-media-admin-editor
+
+ ❯ parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts (15 tests | 14 failed) 304ms
+     ✓ defaults and validates entry-group pagination 4ms
+     × registers a GET-only local-media usage route 42ms
+     × maps preferred metadata, conservative deletion, and narrow nested DTOs 21ms
+     × returns empty details plus coverage for an existing unreferenced media item 20ms
+     × returns NOT_FOUND before coverage or grouped usage reads 19ms
+     × maps malformed cursors to INVALID_CURSOR 19ms
+     × returns generic read errors without leaking database failures 24ms
+     × pages entry groups through the route within three queries per page 23ms
+     × returns stable validation errors for missing ID 21ms
+     × returns stable validation errors for empty cursor 18ms
+     × returns INVALID_CURSOR for an authorized malformed cursor 18ms
+     × denies a anonymous caller before input validation or database reads 18ms
+     × denies a subscriber session before input validation or database reads 18ms
+     × denies a media-read token before input validation or database reads 17ms
+     × returns NOT_CONFIGURED after authorization 19ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > registers a GET-only local-media usage route
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > maps preferred metadata, conservative deletion, and narrow nested DTOs
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > returns empty details plus coverage for an existing unreferenced media item
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > returns NOT_FOUND before coverage or grouped usage reads
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > maps malformed cursors to INVALID_CURSOR
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > returns generic read errors without leaking database failures
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > pages entry groups through the route within three queries per page
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > returns stable validation errors for missing ID
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > returns stable validation errors for empty cursor
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > returns INVALID_CURSOR for an authorized malformed cursor
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > denies a anonymous caller before input validation or database reads
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > denies a subscriber session before input validation or database reads
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > denies a media-read token before input validation or database reads
+ FAIL  parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts > media usage details handler and route > returns NOT_CONFIGURED after authorization
+Error: NOT NULL constraint failed: _cms_collections.supports
+ ❯ Object.run src/lib/server/database/node-sqlite-compat.ts:87:38
+     85|    all: (...parameters) => statement.all(...toBindings(normalizeParame…
+     86|    get: (...parameters) => statement.get(...toBindings(normalizeParame…
+     87|    run: (...parameters) => statement.run(...toBindings(normalizeParame…
+       |                                      ^
+     88|    iterate: (...parameters) => statement.iterate(...toBindings(normali…
+     89|   };
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:64:51
+ ❯ SqliteConnection.connection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:122:43
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ parity/emdash/media-admin-editor/runtime-source/packages/core/tests/unit/api/media-usage-read-route.test.ts:87:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  14 failed | 1 passed (15)
+   Start at  23:28:04
+   Duration  1.06s (transform 392ms, setup 0ms, import 638ms, tests 304ms, environment 0ms)
+
+JSON report written to /tmp/media120-whole-read-first-results.json

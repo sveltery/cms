@@ -1,0 +1,29 @@
+✖ official Worker streams, confirms and deduplicates R2 media with persisted D1 folders and metadata (728.372673ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1042.268384
+
+✖ failing tests:
+
+test at tests/cloudflare-hosting/media.test.ts:13:1
+✖ official Worker streams, confirms and deduplicates R2 media with persisted D1 folders and metadata (728.372673ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/cloudflare-hosting/media.test.ts:98:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
