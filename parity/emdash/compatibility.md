@@ -2816,3 +2816,11 @@ evidence remain unchanged. Both whole guards and twelve complete-checker control
 pass; no heavy local check/build/browser or new protected probe runs. Prior full
 gate results are historical, with no successor or causal credit. Current full
 normal/secured/Calendar gates, review and exact Root approval precede author merge.
+
+### Entry edit locking: proposed complete feature
+
+Source authority: EmDash 1.1.0 immutable pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete Source075 migration, EntryLockRepository, entry-lock handlers, controlled write routes, admin notice and hook. The [feature record](../../docs/entry-locks.md), [whole authority inventory](entry-locks/inventory.json) and [literal first-run packet](entry-locks/evidence/initial-test-first-receipts.json) distinguish full Source reference execution from Native supplements.
+
+The whole Source repository has 15 genuine Source SQLite passes; three other registered core families stop before callbacks on an auth package prerequisite. Nine Native storage requirements fail on the absent canonical table. Missing Kit configuration first stops remain preserved with zero causal credit. These do not establish Native repository, endpoint, editor, MCP, D1 or credential-bearing browser parity.
+
+The project manager conditionally authorizes [the finite storage design](entry-locks/storage-boundary-proposal.json): sole provider19 only after qualified public Cron18 union, unchanged historical providers, Source lock schema mapped to `_cms_entry_locks`, canonical identity FK and actual profile reads. Namespace, constructor and profile composition are specific proposed Native transports; they are not whole Source module identity. Shared schema execution is held until its public Cron prerequisite is qualified. No feature implementation or merge acceptance is claimed.
