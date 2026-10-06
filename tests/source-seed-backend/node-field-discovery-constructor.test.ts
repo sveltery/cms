@@ -20,7 +20,7 @@ function constructor(path: string): Constructor {
   return vm.runInNewContext(output) as Constructor;
 }
 function descriptors(instance: Instance) {
-  const actual = Object.getOwnPropertyDescriptors(instance);
+  const actual: PropertyDescriptorMap = Object.getOwnPropertyDescriptors(instance);
   if ('stack' in actual) {
     expect(typeof Reflect.get(instance, 'stack')).toBe('string');
     const { get, set, value: _stack, ...flags } = actual.stack;

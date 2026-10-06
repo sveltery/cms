@@ -1,0 +1,47 @@
+Loading svelte-check in workspace: /workspace/cms-full-seed-engine
+Getting Svelte diagnostics...
+
+/workspace/cms-full-seed-engine/tests/media-usage-maintenance-native/implicit-content-caller.test.ts:28:5
+Error: Object literal may only specify known properties, but 'skippedSourceCount' does not exist in type 'MediaUsageIndexStatusInput'. Did you mean to write 'failedSourceCount'? 
+    status:'complete',schemaVersion:CONTENT_SOURCE_SCHEMA_VERSION,indexedSourceCount:0,failedSourceCount:0,
+    skippedSourceCount:0,startedAt:null,completedAt:null,lastErrorCode:null});
+  await owner.db.updateTable('_cms_media_usage_index_status' as never).set({collection_id:collectionId,
+
+/workspace/cms-full-seed-engine/tests/media-usage-maintenance-native/processing.test.ts:23:5
+Error: Object literal may only specify known properties, but 'skippedSourceCount' does not exist in type 'MediaUsageIndexStatusInput'. Did you mean to write 'failedSourceCount'? 
+    status:'complete',schemaVersion:CONTENT_SOURCE_SCHEMA_VERSION,indexedSourceCount:0,failedSourceCount:0,
+    skippedSourceCount:0,startedAt:null,completedAt:null,lastErrorCode:null});
+  await owner.db.updateTable('_cms_media_usage_index_status' as never).set({collection_id:collectionId,
+
+/workspace/cms-full-seed-engine/tests/media-usage-maintenance-native/progress-operators.test.ts:19:5
+Error: Object literal may only specify known properties, but 'skippedSourceCount' does not exist in type 'MediaUsageIndexStatusInput'. Did you mean to write 'failedSourceCount'? 
+    schemaVersion:CONTENT_SOURCE_SCHEMA_VERSION,indexedSourceCount:0,failedSourceCount:0,
+    skippedSourceCount:0,startedAt:null,completedAt:null,lastErrorCode:null});
+  await owner.db.updateTable('_cms_media_usage_index_status' as never).set({collection_id:collectionId,
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/node-field-discovery-constructor.test.ts:26:13
+Error: Property 'get' does not exist on type 'TypedPropertyDescriptor<string | undefined> | undefined'. 
+    expect(typeof Reflect.get(instance, 'stack')).toBe('string');
+    const { get, set, value: _stack, ...flags } = actual.stack;
+    return { ...actual, stack: { ...flags, ...('value' in actual.stack
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/node-field-discovery-constructor.test.ts:26:18
+Error: Property 'set' does not exist on type 'TypedPropertyDescriptor<string | undefined> | undefined'. 
+    expect(typeof Reflect.get(instance, 'stack')).toBe('string');
+    const { get, set, value: _stack, ...flags } = actual.stack;
+    return { ...actual, stack: { ...flags, ...('value' in actual.stack
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/node-field-discovery-constructor.test.ts:26:23
+Error: Property 'value' does not exist on type 'TypedPropertyDescriptor<string | undefined> | undefined'. 
+    expect(typeof Reflect.get(instance, 'stack')).toBe('string');
+    const { get, set, value: _stack, ...flags } = actual.stack;
+    return { ...actual, stack: { ...flags, ...('value' in actual.stack
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/node-field-discovery-constructor.test.ts:27:59
+Error: 'actual.stack' is possibly 'undefined'. 
+    const { get, set, value: _stack, ...flags } = actual.stack;
+    return { ...actual, stack: { ...flags, ...('value' in actual.stack
+      ? { value: '<actual stack string>' } : { get: typeof get, set: typeof set }) } };
+
+====================================
+svelte-check found 7 errors and 0 warnings in 4 files
