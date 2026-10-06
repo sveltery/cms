@@ -358,11 +358,13 @@ export interface ContentItem {
 }
 
 export class EmDashValidationError extends Error {
+	details?: unknown;
 	constructor(
 		message: string,
-		public details?: unknown,
+		details?: unknown,
 	) {
 		super(message);
+		this.details = details;
 		this.name = "EmDashValidationError";
 	}
 }

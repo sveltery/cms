@@ -13,13 +13,13 @@ import type { Handle } from '@sveltejs/kit';
 test('server bridge derives the supported content and publication permissions from a current role', () => {
   assert.equal(servicePrincipal(null), null);
   const author = servicePrincipal({ id: 'author', role: Role.AUTHOR });
-  assert.deepEqual(author, { id: 'author', permissions: ['content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:delete_own', 'content:publish_own', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read'] });
+  assert.deepEqual(author, { id: 'author', permissions: ['content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:delete_own', 'content:publish_own', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read', 'media:read', 'media:upload', 'media:edit_own', 'media:delete_own'] });
   assert.ok(Object.isFrozen(author)); assert.ok(Object.isFrozen(author!.permissions));
-  assert.deepEqual(servicePrincipal({ id: 'contributor', role: Role.CONTRIBUTOR })!.permissions, ['content:read', 'content:read_drafts', 'content:create', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read']);
+  assert.deepEqual(servicePrincipal({ id: 'contributor', role: Role.CONTRIBUTOR })!.permissions, ['content:read', 'content:read_drafts', 'content:create', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read', 'media:read', 'media:upload']);
   assert.equal(servicePrincipal({ id: 'bad', role: 999 as any }), null);
   assert.equal(servicePrincipal({ id: '', role: Role.ADMIN }), null);
   assert.equal(servicePrincipal({ id: 'x'.repeat(129), role: Role.ADMIN }), null);
-  assert.equal(servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions.length, 27);
+  assert.equal(servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions.length, 33);
   // Supplemental bridge assertions, grounded in pinned RBAC thresholds.
   // EmDash913cb1 packages/auth/src/rbac.ts:42 taxonomies:read SUBSCRIBER.
   assert.equal(Permissions['taxonomies:read'], Role.SUBSCRIBER);
@@ -49,7 +49,7 @@ test('request-scoped cookie resolution observes role changes, revocation and exp
     const first = await run(token);
     assert.equal(first.principal.id, 'author'); assert.equal(first.mutationsEnabled, false);
     await db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).execute();
-    assert.deepEqual((await run(token)).principal.permissions, ['content:read', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read']);
+    assert.deepEqual((await run(token)).principal.permissions, ['content:read', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read', 'media:read']);
     assert.ok(first.principal.permissions.includes('content:create'));
     await db.updateTable('_cms_auth_users').set({ disabled: 1 }).execute();
     assert.equal((await run(token)).principal, null);
