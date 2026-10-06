@@ -25,7 +25,7 @@ beforeEach(async()=>{
   const db=owner.db as unknown as Kysely<Database>;
   await new MediaUsageRepository(db).upsertIndexStatus({adapterId:'content-media',scopeType:'collection',scopeKey:'fast_posts',
     status:'complete',schemaVersion:CONTENT_SOURCE_SCHEMA_VERSION,indexedSourceCount:0,failedSourceCount:0,
-    skippedSourceCount:0,startedAt:null,completedAt:null,lastErrorCode:null});
+    skippedSourceCount:0,startedAt:null,completedAt:null,lastErrorCode:null} as Parameters<MediaUsageRepository['upsertIndexStatus']>[0] & {skippedSourceCount:number});
   await owner.db.updateTable('_cms_media_usage_index_status' as never).set({collection_id:collectionId,
     capture_state:'installing',reconciliation_required:0} as never).execute();
   await installMediaUsageCaptureTriggers(db,{collectionId,collectionSlug:'fast_posts'});

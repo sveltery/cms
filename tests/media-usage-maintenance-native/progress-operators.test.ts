@@ -16,7 +16,7 @@ beforeEach(async()=>{
   await new MediaUsageRepository(owner.db as unknown as Kysely<Database>).upsertIndexStatus({
     adapterId:'content-media',scopeType:'collection',scopeKey:'post',status:'complete',
     schemaVersion:CONTENT_SOURCE_SCHEMA_VERSION,indexedSourceCount:0,failedSourceCount:0,
-    skippedSourceCount:0,startedAt:null,completedAt:null,lastErrorCode:null});
+    skippedSourceCount:0,startedAt:null,completedAt:null,lastErrorCode:null} as Parameters<MediaUsageRepository['upsertIndexStatus']>[0] & {skippedSourceCount:number});
   await owner.db.updateTable('_cms_media_usage_index_status' as never).set({collection_id:collectionId,
     capture_state:'active',reconciliation_required:0} as never).execute();
   await owner.db.updateTable('_cms_media_usage_activation' as never).set({state:'active'} as never).execute();
