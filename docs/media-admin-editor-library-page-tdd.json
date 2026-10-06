@@ -1,0 +1,89 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "reference": "packages/admin/src/router.tsx whole MediaPage query algorithm: initialpage1/perPage35, folderID from URL, unfiled null for Main. Source actual runtime/callbacks not executed here.",
+  "nativeTest": "tests/media-admin-editor/library-page-current.test.ts",
+  "testFirst": "3ab48c4c",
+  "genuineTestFirst": "56d37416",
+  "provenance": "Separate Current Native SSR caller using actual load, canonical persisted SQLite/media/folder handler and existing controlled Source Role. No live HTTP/session/credential fixture.",
+  "sourceCallbackCredit": 0,
+  "originalSourceAltered": false,
+  "firstStops": [
+    {
+      "head": "3ab48c4c",
+      "runName": "first",
+      "credit": 0,
+      "reason": "Both callbacks stop during Native fixture access to nonexistent folder.data.folder before intended assertion."
+    },
+    {
+      "head": "a5c2de9b",
+      "runName": "genuine-red",
+      "credit": 0,
+      "reason": "Run filename genuine-red is historical and misleading: corrected fixture still incorrectly accessed folder.data.id, producing undefined folder identity. Both observed failures retained but earn zero meaningful Native causal credit."
+    }
+  ],
+  "genuineRed": {
+    "head": "56d37416",
+    "registered": 22,
+    "passed": 17,
+    "failed": 5,
+    "newNative": {
+      "registered": 2,
+      "passed": 0,
+      "failed": 2
+    },
+    "reason": "Verified canonical folder.data.item.id real persisted named-folder fixture; actual SSR returned37 assets instead35 and mixedMain/Named insteadthe selectedfolder. Three separate cursor reds retained."
+  },
+  "firstFix": {
+    "registered": 22,
+    "passed": 19,
+    "failed": 3,
+    "newNative": {
+      "registered": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "reason": "Actual SSR delegates canonical query35/folderIDnullorURL; returnssamefolderidentity torealclientmodel and actualbase-relativefileURL. No duplicate writer/count/data shim. Three known canonicalcursorredsremain withsole113owner."
+  },
+  "evidence": [
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-first.log",
+      "bytes": 9956,
+      "sha256": "d2f45e18df5102d81c8c358f42f1765028c045a616fa559dd3aeccc4c6a33240"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-first.json",
+      "bytes": 10866,
+      "sha256": "d93373deb989e9c1a9123f2451ebdb708d528e904e9f4a3e7ac7b6a8c5a3435f"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-genuine-red.log",
+      "bytes": 9839,
+      "sha256": "287c053efd4211cc5ada74962d92836dcfb0063789302ffcb52130e150a09da0"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-genuine-red.json",
+      "bytes": 11425,
+      "sha256": "17017bfb8aa174494f1eb93da79c9f6ec3fe4e06d04e4ba2f5fa7b859e066cbc"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-canonical-fixture-red.log",
+      "bytes": 9849,
+      "sha256": "8e1b5c84ae4d3ef42295e6573f320e806f01c2b29ee50bb2ba4c6bf245c769d2"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-canonical-fixture-red.json",
+      "bytes": 11438,
+      "sha256": "a421d49a492c6df4c041f447c8c073036c2a8cfb228114e96dc485565c20dafd"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-first-fix.log",
+      "bytes": 7849,
+      "sha256": "4db4de1e55befe6828025050854e149388714dbe0d03adc001ad4f977daa82d6"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/library-runtime-tdd/media120-library-page-first-fix.json",
+      "bytes": 10057,
+      "sha256": "4cc3a399d34ed988fd0dd00f322375d803fb81727ad3046135c11a51b7b130ae"
+    }
+  ]
+}
