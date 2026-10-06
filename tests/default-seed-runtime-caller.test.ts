@@ -6,9 +6,16 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import type { RequestEvent } from '@sveltejs/kit';
+import type { Kysely } from 'kysely';
+import type { CmsDatabase, CmsTables } from '../src/lib/server/database/contract.ts';
+import type { MediaUsageActivationTable } from '../src/lib/server/seed/upstream/database/types.ts';
 import { createServer } from 'vite';
 import { sourceSeedPlugin } from '../scripts/source-seed-vite.ts';
 import { waitForDeferredTasks } from '../src/lib/server/redirects/deferred-tasks.ts';
+
+type NativeRuntimeFixtureDatabase = Omit<CmsDatabase, 'db'> & {
+  db: Kysely<CmsTables & { _cms_media_usage_activation: MediaUsageActivationTable }>;
+};
 
 async function freshRuntime() {
   const directory = await mkdtemp(join(tmpdir(), 'cms-default-seed-caller-'));
@@ -20,7 +27,7 @@ async function freshRuntime() {
   const runtime = createCmsRuntime(() => ({ kind: 'sqlite', path: join(directory, 'data.db'), publicOrigin: 'http://cms.test' }));
   const event = { request: new Request('http://cms.test/'), url: new URL('http://cms.test/'), locals: {}, cookies: { get() {} } } as unknown as RequestEvent;
   await runtime.handle({ event, resolve: async () => new Response('ok') });
-  return { database: event.locals.cms!.database, async close() { await waitForDeferredTasks(); await runtime.close(); await server.close(); await rm(directory, { recursive: true, force: true }); } };
+  return { database: event.locals.cms!.database as unknown as NativeRuntimeFixtureDatabase, async close() { await waitForDeferredTasks(); await runtime.close(); await server.close(); await rm(directory, { recursive: true, force: true }); } };
 }
 
 test('actual configured runtime initializes the default posts/pages schema before its caller resolves', async () => {

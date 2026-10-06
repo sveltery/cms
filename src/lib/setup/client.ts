@@ -11,7 +11,8 @@ export interface SetupSiteResult {
 }
 export interface SetupWizardStatus {
   needsSetup: boolean; unavailable?: boolean;
-  step?: 'start' | 'site' | 'admin' | 'complete';
+  /** Actual account producer returns a string; Source wizard starts at Site. */
+  step?: string;
   authMode?: string;
   seedInfo?: { name: string; description: string; collections: number; hasContent: boolean;
     title?: string; tagline?: string } | null;
