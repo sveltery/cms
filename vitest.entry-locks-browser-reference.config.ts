@@ -1,9 +1,11 @@
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { transformAsync } from '@babel/core';
+import { makeConfig } from '@lingui/conf';
 import { dirname, resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 const root=import.meta.dirname,frozen=resolve(root,'parity/emdash/entry-locks/source/packages/admin');
+const linguiConfig=makeConfig({locales:['en'],sourceLocale:'en',catalogs:[]});
 export default defineConfig({plugins:[{
  name:'whole-entry-lock-reference-browser-macros',enforce:'pre',
  resolveId(id,importer){
@@ -15,7 +17,7 @@ export default defineConfig({plugins:[{
   const file=id.split('?')[0];
   if(!file.startsWith(frozen)||!/^.*\.tsx?$/.test(file))return;
   const result=await transformAsync(code,{filename:file,configFile:false,babelrc:false,
-   parserOpts:{plugins:['typescript','jsx']},plugins:[['@lingui/babel-plugin-lingui-macro',{stripMessageField:false}]],sourceMaps:true});
+   parserOpts:{plugins:['typescript','jsx']},plugins:[['@lingui/babel-plugin-lingui-macro',{stripMessageField:false,linguiConfig}]],sourceMaps:true});
   return result?.code?{code:result.code,map:result.map}:null;
  }
 }],resolve:{dedupe:['react','react-dom'],conditions:['browser']},oxc:{jsx:{runtime:'automatic'}},

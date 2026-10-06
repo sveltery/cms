@@ -23,4 +23,20 @@ for(const span of ledger.finiteSpans.slice().reverse()){
 }
 assert.equal(native,source,'complete repository reversal');
 assert.equal(hash(Buffer.from(source)),ledger.sourceSha256);
+const runtime=JSON.parse(readFileSync(new URL('parity/emdash/entry-locks/runtime-transport.json',root),'utf8'));
+assert.equal(runtime.pin,inventory.pin);
+for(const row of runtime.wholeReversal){
+ const original=readFileSync(new URL(row.source,root),'utf8');
+ assert.equal(hash(Buffer.from(original)),row.sourceSha256);
+ let target=readFileSync(new URL(row.native,root),'utf8');
+ assert.ok(target.startsWith(row.header));target=target.slice(row.header.length);
+ for(const [from,to] of Object.entries(row.namespace))target=target.replaceAll(to,from);
+ for(const span of row.finiteSpans.slice().reverse()){
+  const parts=target.split(span.native);assert.equal(parts.length,1+(span.occurrences??1),span.name);
+  target=parts.join(span.original);
+ }
+ const expected=row.slice?original.slice(row.slice.start,row.slice.end):original;
+ assert.equal(target,expected,row.native+' full reversal');
+ if(row.slice)assert.equal(hash(Buffer.from(expected)),row.slice.sha256);
+}
 console.log(JSON.stringify({pin:inventory.pin,wholeSourceFiles:inventory.source.length,wholeSourceBytes:inventory.source.reduce((n,row)=>n+row.bytes,0),families:inventory.families.length,repositoryFiniteSpans:ledger.finiteSpans.length,wholeRepositoryReversed:true,productTestsRun:0}));

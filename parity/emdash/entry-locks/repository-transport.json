@@ -16,7 +16,7 @@
     {
       "name": "same mutable database reference constructor",
       "original": "\tconstructor(private db: Kysely<Database>) {}",
-      "native": "\tprivate db: Kysely<EntryLockTables>;\n\tconstructor(database: CmsDatabase) {\n\t\tthis.db = database.db as Kysely<EntryLockTables>;\n\t}"
+      "native": "\tprivate db: Kysely<EntryLockTables>;\n\tconstructor(database: CmsDatabase) {\n\t\tthis.db = database.db as unknown as Kysely<EntryLockTables>;\n\t}"
     },
     {
       "name": "actual identity and profile holder joins",
@@ -35,5 +35,5 @@
     }
   ],
   "sourceSha256": "3e4185405aacb5df4fd18c71f7dbfb3c090306850dbf86d045c268234326e83b",
-  "claim": "No whole Source module identity; reverse transport spans and namespaces reconstruct the complete Source bytes. Actual Native installation/execution remains held on provider19 until qualified Cron18 union."
+  "claim": "No whole Source module identity; reverse transport spans and namespaces reconstruct the complete Source bytes. Actual Native installation/execution remains held on provider19 until qualified Cron18 union. The interim unknown cast is a type-only same-reference bridge while provider19/CmsTables remain held; it does not create an executor, table or runtime readiness."
 }

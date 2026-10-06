@@ -67,7 +67,7 @@ function toEntryLock(row: LockRow & { user_name: string | null }): EntryLock {
 export class EntryLockRepository {
 	private db: Kysely<EntryLockTables>;
 	constructor(database: CmsDatabase) {
-		this.db = database.db as Kysely<EntryLockTables>;
+		this.db = database.db as unknown as Kysely<EntryLockTables>;
 	}
 
 	/**
