@@ -1,6 +1,6 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
-  "state": "Native Node baseline green; Native D1 unexecuted pending shared window; new front implementation held",
+  "state": "Native Node6 green; actual Native D1 six baseline2pass/4fail; implementation remains held",
   "unchangedProductionHead": "6815c7fec54ed0d900885c30a224004f7ef7f1b2",
   "actualEquivalentPublicHead": "0c03000f387005caa130db785553713de448ffb5",
   "originalNativeHistoryPreserved": true,
@@ -9,9 +9,9 @@
   "newNativeNodeCases": 6,
   "newNativeNodePassed": 6,
   "nativeD1Cases": 6,
-  "nativeD1CasesExecuted": 0,
+  "nativeD1CasesExecuted": 6,
   "sourceBodyIdentityCredit": 0,
-  "nativeD1CausalCredit": 0,
+  "nativeD1CausalCredit": "Three Native processor progress-value reds and one actual caller refusal; zero Source Original D1 callback identity credit",
   "nodeCommand": "node node_modules/vitest/vitest.mjs run --config vitest.media-usage-maintenance-front-node.config.ts",
   "runnerPrerequisiteStop": {
     "path": "/tmp/media-usage-maintenance-native-front-node-first.log",
@@ -19,12 +19,12 @@
     "sha256": "446b649698070428979a01935f3815dbaacfc496da8d43cd65c0296bae7dd6d7"
   },
   "actualNodeResult": {
-    "path": "/tmp/media-usage-maintenance-native-front-node-first-actual-runner.log",
+    "path": "/workspace/cms-full-media-usage-maintenance/docs/media-usage-maintenance-evidence/native-front-node-first.log",
     "bytes": 228,
     "sha256": "197cdd42e3264b42f94bbc8b05e12a17db03a65cd760767ba0a9f1ac36ff713b"
   },
   "actualNodeStoredState": {
-    "path": "/tmp/media-usage-maintenance-native-front-node-state.json",
+    "path": "/workspace/cms-full-media-usage-maintenance/parity/emdash/media-usage-maintenance-source/native-front-node-first-state.json",
     "bytes": 16449,
     "sha256": "8c48b597d84d12fc3ae92140118510348dc518a91331f97deaeadfd0dc30de6c"
   },
@@ -77,5 +77,27 @@
   },
   "heavyProcessActive": false,
   "realProtectedProbes": false,
-  "newPermissionsOrCredentials": false
+  "newPermissionsOrCredentials": false,
+  "nativeD1Passed": 2,
+  "nativeD1Failed": 4,
+  "nativeD1ReachedProgressValueReds": 3,
+  "nativeD1ReachedDirectCallbackRefusals": 1,
+  "nativeD1ImportActivationSchemaStops": 0,
+  "actualD1Result": {
+    "path": "/workspace/cms-full-media-usage-maintenance/docs/media-usage-maintenance-evidence/native-front-d1-first.log",
+    "bytes": 10432,
+    "sha256": "dacce8af56ef6b280251c31fd6ca8687d440341d2deb430a31af30ec5460dd7f"
+  },
+  "actualD1StoredState": {
+    "path": "/workspace/cms-full-media-usage-maintenance/parity/emdash/media-usage-maintenance-source/native-front-d1-first-state.json",
+    "bytes": 19258,
+    "sha256": "857f7d01647817fd5eb2eb106c8b193610cc38d04cb7da57ba345f8055b4daa8"
+  },
+  "unchangedFinalizePassed": 2,
+  "classification": "Canonical real activation/schema/capture/FTS producer setup reached all six. Fence/registry/table callbacks refused before mutation; actual processor stored retry states and physical rows/DDL intact. Unchanged finalizer truthfully finalized absent prerequisites and refused actual existing table.",
+  "diagnosticLeaseProvenance": "All lease tokens in raw receipt packets are synthetic cleanup-work leases stored ONLY inside this ephemeral fixture SQLite/actual Miniflare D1 database; Node close and actual runtime.dispose completed. No external resource authority or auth/session/PAT/HTTP credential was created/used. These bodies remain exact.",
+  "terminalCgroup": {
+    "memory.current": "14776766464",
+    "memory.events": "low 0\nhigh 0\nmax 291742\noom 16\noom_kill 4\noom_group_kill 0"
+  }
 }

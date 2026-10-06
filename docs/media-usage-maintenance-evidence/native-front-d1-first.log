@@ -1,0 +1,142 @@
+
+ RUN  v4.1.10 /workspace/cms-full-media-usage-maintenance
+
+stderr | tests/media-usage-maintenance-native/deletion-front-d1.test.ts > fences an actual empty captured collection and releases a registry checkpoint
+[media-usage:collection-deletion] Processing failed: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-media-usage-maintenance/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at deleteActivatedMediaUsageCollection (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion.ts:503:19)
+    at processClaimedDeletion (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:120:3)
+    at runClaimedDeletion (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:95:21)
+    at processDueMediaUsageCollectionDeletions (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:66:12)
+    at /workspace/cms-full-media-usage-maintenance/tests/media-usage-maintenance-native/deletion-front-d1.test.ts:97:10
+
+stderr | tests/media-usage-maintenance-native/deletion-front-d1.test.ts > removes only the actual registry identity and checkpoints its table phase
+[media-usage:collection-deletion] Processing failed: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-media-usage-maintenance/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at deleteActivatedMediaUsageCollection (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion.ts:538:6)
+    at processClaimedDeletion (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:120:3)
+    at runClaimedDeletion (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:95:21)
+    at processDueMediaUsageCollectionDeletions (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:66:12)
+    at /workspace/cms-full-media-usage-maintenance/tests/media-usage-maintenance-native/deletion-front-d1.test.ts:106:10
+
+stderr | tests/media-usage-maintenance-native/deletion-front-d1.test.ts > drops real canonical FTS objects and content table and leaves no sentinel
+[media-usage:collection-deletion] Processing failed: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-media-usage-maintenance/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at deleteActivatedMediaUsageCollection (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion.ts:555:18)
+    at processClaimedDeletion (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:120:3)
+    at runClaimedDeletion (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:95:21)
+    at processDueMediaUsageCollectionDeletions (/workspace/cms-full-media-usage-maintenance/src/lib/server/media-usage/upstream/media/usage/collection-deletion-processor.ts:66:12)
+    at /workspace/cms-full-media-usage-maintenance/tests/media-usage-maintenance-native/deletion-front-d1.test.ts:115:10
+
+ ❯ tests/media-usage-maintenance-native/deletion-front-d1.test.ts (6 tests | 4 failed) 2301ms
+   × preserves actual live content and cancels its nonforce fence tombstone 232ms
+   × fences an actual empty captured collection and releases a registry checkpoint 267ms
+   × removes only the actual registry identity and checkpoints its table phase 186ms
+   × drops real canonical FTS objects and content table and leaves no sentinel 186ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/media-usage-maintenance-native/deletion-front-d1.test.ts > preserves actual live content and cancels its nonforce fence tombstone
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-complete-media-admin-editor/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ deleteActivatedMediaUsageCollection src/lib/server/media-usage/upstream/media/usage/collection-deletion.ts:503:19
+ ❯ tests/media-usage-maintenance-native/deletion-front-d1.test.ts:85:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/media-usage-maintenance-native/deletion-front-d1.test.ts > fences an actual empty captured collection and releases a registry checkpoint
+AssertionError: expected { candidateCount: 1, …(2) } to match object { Object (outcome, claimedCount) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "claimedCount": 1,
+-   "outcome": "progress",
++   "outcome": "retry",
+  }
+
+ ❯ tests/media-usage-maintenance-native/deletion-front-d1.test.ts:97:70
+     95| it('fences an actual empty captured collection and releases a registry…
+     96|   await phaseFixture('fence');
+     97|   expect(await processNativeDueMediaUsageCollectionDeletions(owner)).t…
+       |                                                                      ^
+     98|   await expectPending('registry');
+     99|   expect(await owner.db.selectFrom('_cms_media_usage_index_status' as …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/media-usage-maintenance-native/deletion-front-d1.test.ts > removes only the actual registry identity and checkpoints its table phase
+AssertionError: expected { candidateCount: 1, …(2) } to match object { Object (outcome, claimedCount) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "claimedCount": 1,
+-   "outcome": "progress",
++   "outcome": "retry",
+  }
+
+ ❯ tests/media-usage-maintenance-native/deletion-front-d1.test.ts:106:70
+    104| it('removes only the actual registry identity and checkpoints its tabl…
+    105|   await phaseFixture('registry');
+    106|   expect(await processNativeDueMediaUsageCollectionDeletions(owner)).t…
+       |                                                                      ^
+    107|   expect(await owner.db.selectFrom('_cms_collections').select('id').wh…
+    108|   expect((await sql`SELECT name FROM sqlite_master WHERE type='table' …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/media-usage-maintenance-native/deletion-front-d1.test.ts > drops real canonical FTS objects and content table and leaves no sentinel
+AssertionError: expected { candidateCount: 1, …(2) } to match object { Object (outcome, claimedCount) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "claimedCount": 1,
+-   "outcome": "progress",
++   "outcome": "retry",
+  }
+
+ ❯ tests/media-usage-maintenance-native/deletion-front-d1.test.ts:115:70
+    113| it('drops real canonical FTS objects and content table and leaves no s…
+    114|   await phaseFixture('table');
+    115|   expect(await processNativeDueMediaUsageCollectionDeletions(owner)).t…
+       |                                                                      ^
+    116|   await expectPending('work');
+    117|   expect((await sql`SELECT name FROM sqlite_master WHERE name=${`ec_${…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 2 passed (6)
+   Start at  03:05:50
+   Duration  4.68s (transform 1.39s, setup 0ms, import 2.24s, tests 2.30s, environment 0ms)
+

@@ -1,0 +1,651 @@
+{
+  "actualWorkerdBinding": true,
+  "actualCanonicalSchema": true,
+  "actualCaptureAndFtsProducers": true,
+  "phaseFixtureCredit": "controlled actual stored prerequisites, zero Source body parity",
+  "sourceBodyIdentityCredit": 0,
+  "realProtectedProbes": false,
+  "receipts": [
+    {
+      "test": "preserves actual live content and cancels its nonforce fence tombstone",
+      "collectionId": "01M47JSG1Q28YRQDZAJ7WQ8V75",
+      "collectionSlug": "native_front_1",
+      "registry": [
+        {
+          "id": "01M47JSG1Q28YRQDZAJ7WQ8V75",
+          "slug": "native_front_1",
+          "label": "Native front phase",
+          "label_singular": null,
+          "description": null,
+          "supports": "[\"drafts\",\"revisions\"]",
+          "source": "manual",
+          "version": 1,
+          "created_at": "2026-10-06T03:05:53.478Z",
+          "updated_at": "2026-10-06T03:05:53.478Z",
+          "icon": null,
+          "admin_config": null,
+          "has_seo": 0,
+          "title_field": null,
+          "date_field": null,
+          "url_pattern": null,
+          "routable": 1,
+          "hidden": 0,
+          "sort_order": null,
+          "nav_group": null,
+          "comments_enabled": 0,
+          "comments_moderation": "first_time",
+          "comments_closed_after_days": 90,
+          "comments_auto_approve_users": 1,
+          "edit_locking": 1,
+          "search_config": null
+        }
+      ],
+      "deletion": [
+        {
+          "collection_id": "01M47JSG1Q28YRQDZAJ7WQ8V75",
+          "collection_slug": "native_front_1",
+          "force_delete": 0,
+          "state": "leased",
+          "phase": "fence",
+          "work_cursor": null,
+          "source_key": null,
+          "occurrence_cursor": null,
+          "attempt_count": 0,
+          "next_attempt_at": "2026-10-06T03:05:53.596Z",
+          "lease_token": "01M47JSG61CE4FFX5VM5V8HGH6",
+          "lease_expires_at": "2026-10-06T03:10:53.603Z",
+          "last_error_code": null,
+          "created_at": "2026-10-06T03:05:53.596Z",
+          "updated_at": "2026-10-06T03:05:53.603Z"
+        }
+      ],
+      "status": [
+        {
+          "adapter_id": "content-media",
+          "scope_type": "collection",
+          "scope_key": "native_front_1",
+          "status": "never",
+          "schema_version": 1,
+          "started_at": null,
+          "completed_at": null,
+          "cursor": null,
+          "indexed_source_count": 0,
+          "failed_source_count": 0,
+          "last_error_code": null,
+          "updated_at": "2026-10-06T03:05:53.559Z",
+          "collection_id": "01M47JSG1Q28YRQDZAJ7WQ8V75",
+          "change_epoch": 1,
+          "reconciliation_required": 1,
+          "last_incremental_success_at": null,
+          "capture_state": "active"
+        }
+      ],
+      "work": [
+        {
+          "collection_id": "01M47JSG1Q28YRQDZAJ7WQ8V75",
+          "collection_slug": "native_front_1",
+          "content_id": "native-front-entry",
+          "change_epoch": 1,
+          "work_version": 1,
+          "state": "pending",
+          "attempt_count": 0,
+          "next_attempt_at": "2026-10-06T03:05:53.559Z",
+          "lease_token": null,
+          "lease_expires_at": null,
+          "last_attempted_at": null,
+          "last_error_code": null,
+          "created_at": "2026-10-06T03:05:53.559Z",
+          "updated_at": "2026-10-06T03:05:53.559Z"
+        }
+      ],
+      "objects": [
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_1"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_1_config"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_1_content"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_1_data"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_1_docsize"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_1_idx"
+        },
+        {
+          "type": "table",
+          "name": "ec_native_front_1"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_1_delete"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_1_insert"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_1_update"
+        }
+      ],
+      "sentinels": {
+        "rows": [],
+        "insertId": "1"
+      }
+    },
+    {
+      "test": "fences an actual empty captured collection and releases a registry checkpoint",
+      "collectionId": "01M47JSG94DXK6Y377V00V1N2A",
+      "collectionSlug": "native_front_2",
+      "registry": [
+        {
+          "id": "01M47JSG94DXK6Y377V00V1N2A",
+          "slug": "native_front_2",
+          "label": "Native front phase",
+          "label_singular": null,
+          "description": null,
+          "supports": "[\"drafts\",\"revisions\"]",
+          "source": "manual",
+          "version": 1,
+          "created_at": "2026-10-06T03:05:53.716Z",
+          "updated_at": "2026-10-06T03:05:53.716Z",
+          "icon": null,
+          "admin_config": null,
+          "has_seo": 0,
+          "title_field": null,
+          "date_field": null,
+          "url_pattern": null,
+          "routable": 1,
+          "hidden": 0,
+          "sort_order": null,
+          "nav_group": null,
+          "comments_enabled": 0,
+          "comments_moderation": "first_time",
+          "comments_closed_after_days": 90,
+          "comments_auto_approve_users": 1,
+          "edit_locking": 1,
+          "search_config": null
+        }
+      ],
+      "deletion": [
+        {
+          "collection_id": "01M47JSG94DXK6Y377V00V1N2A",
+          "collection_slug": "native_front_2",
+          "force_delete": 1,
+          "state": "retry",
+          "phase": "fence",
+          "work_cursor": null,
+          "source_key": null,
+          "occurrence_cursor": null,
+          "attempt_count": 1,
+          "next_attempt_at": "2026-10-06T03:06:23.887Z",
+          "lease_token": null,
+          "lease_expires_at": null,
+          "last_error_code": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+          "created_at": "2026-10-06T03:05:53.830Z",
+          "updated_at": "2026-10-06T03:05:53.887Z"
+        }
+      ],
+      "status": [
+        {
+          "adapter_id": "content-media",
+          "scope_type": "collection",
+          "scope_key": "native_front_2",
+          "status": "never",
+          "schema_version": 1,
+          "started_at": null,
+          "completed_at": null,
+          "cursor": null,
+          "indexed_source_count": 0,
+          "failed_source_count": 0,
+          "last_error_code": null,
+          "updated_at": "2026-10-06T03:05:53.735Z",
+          "collection_id": "01M47JSG94DXK6Y377V00V1N2A",
+          "change_epoch": 0,
+          "reconciliation_required": 1,
+          "last_incremental_success_at": null,
+          "capture_state": "active"
+        }
+      ],
+      "work": [],
+      "objects": [
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_2"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_2_config"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_2_content"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_2_data"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_2_docsize"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_2_idx"
+        },
+        {
+          "type": "table",
+          "name": "ec_native_front_2"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_2_delete"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_2_insert"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_2_update"
+        }
+      ],
+      "sentinels": {
+        "rows": [],
+        "insertId": "1"
+      }
+    },
+    {
+      "test": "removes only the actual registry identity and checkpoints its table phase",
+      "collectionId": "01M47JSGH0CWPW7XB116GGXZYV",
+      "collectionSlug": "native_front_3",
+      "registry": [
+        {
+          "id": "01M47JSGH0CWPW7XB116GGXZYV",
+          "slug": "native_front_3",
+          "label": "Native front phase",
+          "label_singular": null,
+          "description": null,
+          "supports": "[\"drafts\",\"revisions\"]",
+          "source": "manual",
+          "version": 1,
+          "created_at": "2026-10-06T03:05:53.963Z",
+          "updated_at": "2026-10-06T03:05:53.963Z",
+          "icon": null,
+          "admin_config": null,
+          "has_seo": 0,
+          "title_field": null,
+          "date_field": null,
+          "url_pattern": null,
+          "routable": 1,
+          "hidden": 0,
+          "sort_order": null,
+          "nav_group": null,
+          "comments_enabled": 0,
+          "comments_moderation": "first_time",
+          "comments_closed_after_days": 90,
+          "comments_auto_approve_users": 1,
+          "edit_locking": 1,
+          "search_config": null
+        }
+      ],
+      "deletion": [
+        {
+          "collection_id": "01M47JSGH0CWPW7XB116GGXZYV",
+          "collection_slug": "native_front_3",
+          "force_delete": 1,
+          "state": "retry",
+          "phase": "registry",
+          "work_cursor": null,
+          "source_key": null,
+          "occurrence_cursor": null,
+          "attempt_count": 1,
+          "next_attempt_at": "2026-10-06T03:06:24.064Z",
+          "lease_token": null,
+          "lease_expires_at": null,
+          "last_error_code": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+          "created_at": "2026-10-06T03:05:54.037Z",
+          "updated_at": "2026-10-06T03:05:54.064Z"
+        }
+      ],
+      "status": [
+        {
+          "adapter_id": "content-media",
+          "scope_type": "collection",
+          "scope_key": "native_front_3",
+          "status": "never",
+          "schema_version": 1,
+          "started_at": null,
+          "completed_at": null,
+          "cursor": null,
+          "indexed_source_count": 0,
+          "failed_source_count": 0,
+          "last_error_code": null,
+          "updated_at": "2026-10-06T03:05:53.992Z",
+          "collection_id": "01M47JSGH0CWPW7XB116GGXZYV",
+          "change_epoch": 0,
+          "reconciliation_required": 1,
+          "last_incremental_success_at": null,
+          "capture_state": "active"
+        }
+      ],
+      "work": [],
+      "objects": [
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_3"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_3_config"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_3_content"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_3_data"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_3_docsize"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_3_idx"
+        },
+        {
+          "type": "table",
+          "name": "ec_native_front_3"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_3_delete"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_3_insert"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_3_update"
+        }
+      ],
+      "sentinels": {
+        "rows": [],
+        "insertId": "1"
+      }
+    },
+    {
+      "test": "drops real canonical FTS objects and content table and leaves no sentinel",
+      "collectionId": "01M47JSGQ59JPCNT5858VAW7AC",
+      "collectionSlug": "native_front_4",
+      "registry": [
+        {
+          "id": "01M47JSGQ59JPCNT5858VAW7AC",
+          "slug": "native_front_4",
+          "label": "Native front phase",
+          "label_singular": null,
+          "description": null,
+          "supports": "[\"drafts\",\"revisions\"]",
+          "source": "manual",
+          "version": 1,
+          "created_at": "2026-10-06T03:05:54.160Z",
+          "updated_at": "2026-10-06T03:05:54.160Z",
+          "icon": null,
+          "admin_config": null,
+          "has_seo": 0,
+          "title_field": null,
+          "date_field": null,
+          "url_pattern": null,
+          "routable": 1,
+          "hidden": 0,
+          "sort_order": null,
+          "nav_group": null,
+          "comments_enabled": 0,
+          "comments_moderation": "first_time",
+          "comments_closed_after_days": 90,
+          "comments_auto_approve_users": 1,
+          "edit_locking": 1,
+          "search_config": null
+        }
+      ],
+      "deletion": [
+        {
+          "collection_id": "01M47JSGQ59JPCNT5858VAW7AC",
+          "collection_slug": "native_front_4",
+          "force_delete": 1,
+          "state": "retry",
+          "phase": "table",
+          "work_cursor": null,
+          "source_key": null,
+          "occurrence_cursor": null,
+          "attempt_count": 1,
+          "next_attempt_at": "2026-10-06T03:06:24.258Z",
+          "lease_token": null,
+          "lease_expires_at": null,
+          "last_error_code": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+          "created_at": "2026-10-06T03:05:54.233Z",
+          "updated_at": "2026-10-06T03:05:54.258Z"
+        }
+      ],
+      "status": [
+        {
+          "adapter_id": "content-media",
+          "scope_type": "collection",
+          "scope_key": "native_front_4",
+          "status": "never",
+          "schema_version": 1,
+          "started_at": null,
+          "completed_at": null,
+          "cursor": null,
+          "indexed_source_count": 0,
+          "failed_source_count": 0,
+          "last_error_code": null,
+          "updated_at": "2026-10-06T03:05:54.191Z",
+          "collection_id": "01M47JSGQ59JPCNT5858VAW7AC",
+          "change_epoch": 0,
+          "reconciliation_required": 1,
+          "last_incremental_success_at": null,
+          "capture_state": "active"
+        }
+      ],
+      "work": [],
+      "objects": [
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_4"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_4_config"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_4_content"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_4_data"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_4_docsize"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_4_idx"
+        },
+        {
+          "type": "table",
+          "name": "ec_native_front_4"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_4_delete"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_4_insert"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_4_update"
+        }
+      ],
+      "sentinels": {
+        "rows": [],
+        "insertId": "1"
+      }
+    },
+    {
+      "test": "finalizes the real tombstone when actual table, registry and cleanup prerequisites are absent",
+      "collectionId": "01M47JSGWJK88SE70Q5BJ942NF",
+      "collectionSlug": "native_front_5",
+      "registry": [],
+      "deletion": [],
+      "status": [],
+      "work": [],
+      "objects": [],
+      "sentinels": {
+        "rows": [],
+        "insertId": "1"
+      }
+    },
+    {
+      "test": "records a truthful finalization retry while its actual content table still exists",
+      "collectionId": "01M47JSH2ZYBY9MTK7GWS6ESY1",
+      "collectionSlug": "native_front_6",
+      "registry": [
+        {
+          "id": "01M47JSH2ZYBY9MTK7GWS6ESY1",
+          "slug": "native_front_6",
+          "label": "Native front phase",
+          "label_singular": null,
+          "description": null,
+          "supports": "[\"drafts\",\"revisions\"]",
+          "source": "manual",
+          "version": 1,
+          "created_at": "2026-10-06T03:05:54.543Z",
+          "updated_at": "2026-10-06T03:05:54.543Z",
+          "icon": null,
+          "admin_config": null,
+          "has_seo": 0,
+          "title_field": null,
+          "date_field": null,
+          "url_pattern": null,
+          "routable": 1,
+          "hidden": 0,
+          "sort_order": null,
+          "nav_group": null,
+          "comments_enabled": 0,
+          "comments_moderation": "first_time",
+          "comments_closed_after_days": 90,
+          "comments_auto_approve_users": 1,
+          "edit_locking": 1,
+          "search_config": null
+        }
+      ],
+      "deletion": [
+        {
+          "collection_id": "01M47JSH2ZYBY9MTK7GWS6ESY1",
+          "collection_slug": "native_front_6",
+          "force_delete": 1,
+          "state": "retry",
+          "phase": "finalize",
+          "work_cursor": null,
+          "source_key": null,
+          "occurrence_cursor": null,
+          "attempt_count": 1,
+          "next_attempt_at": "2026-10-06T03:06:24.668Z",
+          "lease_token": null,
+          "lease_expires_at": null,
+          "last_error_code": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
+          "created_at": "2026-10-06T03:05:54.639Z",
+          "updated_at": "2026-10-06T03:05:54.668Z"
+        }
+      ],
+      "status": [
+        {
+          "adapter_id": "content-media",
+          "scope_type": "collection",
+          "scope_key": "native_front_6",
+          "status": "never",
+          "schema_version": 1,
+          "started_at": null,
+          "completed_at": null,
+          "cursor": null,
+          "indexed_source_count": 0,
+          "failed_source_count": 0,
+          "last_error_code": null,
+          "updated_at": "2026-10-06T03:05:54.586Z",
+          "collection_id": "01M47JSH2ZYBY9MTK7GWS6ESY1",
+          "change_epoch": 0,
+          "reconciliation_required": 1,
+          "last_incremental_success_at": null,
+          "capture_state": "active"
+        }
+      ],
+      "work": [],
+      "objects": [
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_6"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_6_config"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_6_content"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_6_data"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_6_docsize"
+        },
+        {
+          "type": "table",
+          "name": "_cms_fts_native_front_6_idx"
+        },
+        {
+          "type": "table",
+          "name": "ec_native_front_6"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_6_delete"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_6_insert"
+        },
+        {
+          "type": "trigger",
+          "name": "_cms_fts_native_front_6_update"
+        }
+      ],
+      "sentinels": {
+        "rows": [],
+        "insertId": "1"
+      }
+    }
+  ]
+}
