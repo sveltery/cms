@@ -1,0 +1,170 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-media-admin-editor
+
+stderr | tests/media-admin-editor/usage-read-canonical-current.test.ts > media usage details handler and route > maps malformed cursors to INVALID_CURSOR
+[media-usage] detail read failed: InvalidCursorError: Invalid pagination cursor: not-a-cursor
+    at decodeCursor (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/types.ts:288:9)
+    at MediaUsageRepository.findCurrentEntryUsagePageByMediaId (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:1486:35)
+    at handleMediaUsageDetails (/workspace/cms-complete-media-admin-editor/src/lib/server/general-media/upstream/api/handlers/media-usage-read.ts:87:33)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-complete-media-admin-editor/tests/media-admin-editor/usage-read-canonical-current.test.ts:294:18
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+stderr | tests/media-admin-editor/usage-read-canonical-current.test.ts > media usage details handler and route > returns INVALID_CURSOR for an authorized malformed cursor
+[media-usage] detail read failed: InvalidCursorError: Invalid pagination cursor: not-a-cursor
+    at decodeCursor (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/types.ts:288:9)
+    at MediaUsageRepository.findCurrentEntryUsagePageByMediaId (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:1486:35)
+    at handleMediaUsageDetails (/workspace/cms-complete-media-admin-editor/src/lib/server/general-media/upstream/api/handlers/media-usage-read.ts:87:33)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at GET (/workspace/cms-complete-media-admin-editor/src/lib/server/media-admin/api/media/_id_/usage.ts:30:22)
+    at /workspace/cms-complete-media-admin-editor/tests/media-admin-editor/usage-read-canonical-current.test.ts:372:20
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+ ❯ tests/media-admin-editor/usage-read-canonical-current.test.ts (15 tests | 2 failed) 431ms
+     ✓ defaults and validates entry-group pagination 6ms
+     ✓ registers a GET-only local-media usage route 56ms
+     ✓ maps preferred metadata, conservative deletion, and narrow nested DTOs 40ms
+     ✓ returns empty details plus coverage for an existing unreferenced media item 28ms
+     ✓ returns NOT_FOUND before coverage or grouped usage reads 26ms
+     × maps malformed cursors to INVALID_CURSOR 38ms
+     ✓ returns generic read errors without leaking database failures 26ms
+     ✓ pages entry groups through the route within three queries per page 46ms
+     ✓ returns stable validation errors for missing ID 23ms
+     ✓ returns stable validation errors for empty cursor 27ms
+     × returns INVALID_CURSOR for an authorized malformed cursor 24ms
+     ✓ denies a anonymous caller before input validation or database reads 21ms
+     ✓ denies a subscriber session before input validation or database reads 21ms
+     ✓ denies a media-read token before input validation or database reads 21ms
+     ✓ returns NOT_CONFIGURED after authorization 28ms
+ ❯ tests/media-admin-editor/editor-media-cache-current.test.ts (2 tests | 2 failed) 2120ms
+   × resolves current local image bytes from the actual API and shared query cache without writing document attributes 1092ms
+   × keeps gallery preview reads disabled and observes the real shared image cache with pinned stored-URL semantics 1027ms
+stderr | tests/media-admin-editor/usage-read-current.test.ts > reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary
+[media-usage] detail read failed: InvalidCursorError: Invalid pagination cursor: not-a-cursor
+    at decodeCursor (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/types.ts:288:9)
+    at MediaUsageRepository.findCurrentEntryUsagePageByMediaId (/workspace/cms-complete-media-admin-editor/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:1486:35)
+    at handleMediaUsageDetails (/workspace/cms-complete-media-admin-editor/src/lib/server/general-media/upstream/api/handlers/media-usage-read.ts:87:33)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-complete-media-admin-editor/tests/media-admin-editor/usage-read-current.test.ts:15:16
+    at file:///workspace/cms-complete-media-admin-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+ ❯ tests/media-admin-editor/usage-read-current.test.ts (1 test | 1 failed) 64ms
+   × reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary 63ms
+ ✓ tests/media-admin-editor/library-runtime-current.test.ts (2 tests) 257ms
+ ✓ tests/media-admin-editor/source-client-current.test.ts (2 tests) 149ms
+ ✓ tests/media-admin-editor/library-page-current.test.ts (2 tests) 74ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/media-admin-editor/editor-media-cache-current.test.ts > resolves current local image bytes from the actual API and shared query cache without writing document attributes
+AssertionError: expected '/old-stored-image.png' to be '/_emdash/api/media/file/current.png?_…' // Object.is equality
+
+Expected: "/_emdash/api/media/file/current.png?_emdash_media=sha1%3Acropped"
+Received: "/old-stored-image.png"
+
+ ❯ tests/media-admin-editor/editor-media-cache-current.test.ts:25:57
+     23|     const {observeImageMediaPreview}=await mediaPreviewModule();const …
+     24|     current.start();
+     25|     await vi.waitFor(()=>expect(current.snapshot().src).toBe('/_emdash…
+       |                                                         ^
+     26|     expect(queryClient.getQueryData(['media',item.id])).toMatchObject(…
+     27|     expect(reader.mock.calls[0]?.[1]?.signal).toBeInstanceOf(AbortSign…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/media-admin-editor/editor-media-cache-current.test.ts > keeps gallery preview reads disabled and observes the real shared image cache with pinned stored-URL semantics
+AssertionError: expected '/stored-gallery.png' to be '/stored-gallery.png?_emdash_media=sha…' // Object.is equality
+
+Expected: "/stored-gallery.png?_emdash_media=sha1%3Acurrent"
+Received: "/stored-gallery.png"
+
+ ❯ tests/media-admin-editor/editor-media-cache-current.test.ts:41:57
+     39|     current.start();expect(current.snapshot().src).toBe('/stored-galle…
+     40|     await queryClient.fetchQuery({queryKey:['media',item.id],queryFn:(…
+     41|     await vi.waitFor(()=>expect(current.snapshot().src).toBe('/stored-…
+       |                                                         ^
+     42|     expect(reader).toHaveBeenCalledTimes(1);expect(image.asset.url).to…
+     43|   } finally {preview?.dispose();queryClient.clear();vi.restoreAllMocks…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/media-admin-editor/usage-read-canonical-current.test.ts > media usage details handler and route > maps malformed cursors to INVALID_CURSOR
+AssertionError: expected { success: false, error: { …(2) } } to deeply equal ObjectContaining{…}
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "error": ObjectContaining {
+-     "code": "INVALID_CURSOR",
++ {
++   "error": {
++     "code": "MEDIA_USAGE_READ_ERROR",
++     "message": "Failed to read media usage",
+    },
+    "success": false,
+  }
+
+ ❯ tests/media-admin-editor/usage-read-canonical-current.test.ts:296:18
+    294|   const result = await handleMediaUsageDetails(db, usedMedia.id, { cur…
+    295|
+    296|   expect(result).toEqual(
+       |                  ^
+    297|    expect.objectContaining({
+    298|     success: false,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/media-admin-editor/usage-read-canonical-current.test.ts > media usage details handler and route > returns INVALID_CURSOR for an authorized malformed cursor
+AssertionError: expected 500 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 500
+
+ ❯ tests/media-admin-editor/usage-read-canonical-current.test.ts:378:27
+    376|   });
+    377|
+    378|   expect(response.status).toBe(400);
+       |                           ^
+    379|   expect((await response.json()) as ErrorBody).toEqual(
+    380|    expect.objectContaining({ error: expect.objectContaining({ code: "I…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/media-admin-editor/usage-read-current.test.ts > reports the pinned invalid-cursor outcome across the actual canonical usage repository boundary
+AssertionError: expected { success: false, error: { …(2) } } to deeply equal ObjectContaining{…}
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "error": ObjectContaining {
+-     "code": "INVALID_CURSOR",
++ {
++   "error": {
++     "code": "MEDIA_USAGE_READ_ERROR",
++     "message": "Failed to read media usage",
+    },
+    "success": false,
+  }
+
+ ❯ tests/media-admin-editor/usage-read-current.test.ts:16:18
+     14|   const media=await new MediaRepository(database).create({filename:'us…
+     15|   const result=await handleMediaUsageDetails(generalMediaDatabase(data…
+     16|   expect(result).toEqual(expect.objectContaining({success:false,error:…
+       |                  ^
+     17|  } finally {await database.close();}
+     18| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  3 failed | 3 passed (6)
+      Tests  5 failed | 19 passed (24)
+   Start at  00:33:22
+   Duration  6.19s (transform 790ms, setup 0ms, import 2.38s, tests 3.10s, environment 0ms)
+
+JSON report written to /tmp/media120-editor-cache-first-fix.json
