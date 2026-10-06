@@ -2,7 +2,7 @@ import {expect,it} from 'vitest';
 import {sql,type Kysely,type KyselyPlugin} from 'kysely';
 import {schemaAdminStorage} from '../helpers/schema-admin-storage.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
-import {seedSourceDatabase,seedNativeBylines} from '../../src/lib/server/seed/namespace.ts';
+import {seedSourceDatabase,seedNativeBylines,seedAtomicBatch} from '../../src/lib/server/seed/namespace.ts';
 import {MediaRepository,MediaUsageRepository,TaxonomyRepository,RelationRepository} from '../../src/lib/server/seed/d1-providers.ts';
 
 async function fixture(){
@@ -52,5 +52,15 @@ it('observes actual canonical taxonomy and relation writes and their real receip
   expect(results).toEqual(queries.map(query=>query.id));
   expect((await sql`SELECT id FROM _cms_taxonomies WHERE id=${term.id}`.execute(f.storage.database.db)).rows).toEqual([{id:term.id}]);
   expect((await sql`SELECT id FROM _cms_relations WHERE id=${relation.id}`.execute(f.storage.database.db)).rows).toEqual([{id:relation.id}]);
+ }finally{await f.storage.close();}
+},30000);
+it('observes the real fixed typed plan receipt exactly once after the actual batch',async()=>{
+ const f=await fixture();try{
+  const queries:unknown[]=[],results:unknown[]=[];
+  const db=f.guarded.withPlugin({transformQuery({node,queryId}){queries.push(queryId);return node;},async transformResult({result,queryId}){results.push(queryId);return result;}});
+  const receipt=await seedAtomicBatch(f.storage.database,db,plan=>[plan.insertInto('options').values({name:'observed-typed-plan',value:'true'}).returning('name')]);
+  expect(receipt[0].rows).toEqual([{name:'observed-typed-plan'}]);
+  expect(queries).toHaveLength(1);expect(results).toEqual(queries);
+  expect((await sql`SELECT name,value FROM _cms_options WHERE name='observed-typed-plan'`.execute(f.storage.database.db)).rows).toEqual([{name:'observed-typed-plan',value:'true'}]);
  }finally{await f.storage.close();}
 },30000);

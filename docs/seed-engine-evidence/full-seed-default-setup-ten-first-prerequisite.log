@@ -1,0 +1,78 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/default-setup-native.test.ts (10 tests | 10 failed) 1167ms
+     × activates capture before default schema and retains real subsequent content work 35ms
+     × leaves an existing configured site inactive 30ms
+     × does not mark an invalid default seed complete 19ms
+     × resumes an interrupted default with the actual capture identity 19ms
+     × continues the same112 setup entries with actual500-query budget and form overrides 19ms
+     × activates capture before default schema and retains real subsequent content work 691ms
+     × leaves an existing configured site inactive 131ms
+     × does not mark an invalid default seed complete 74ms
+     × resumes an interrupted default with the actual capture identity 74ms
+     × continues the same112 setup entries with actual500-query budget and form overrides 74ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > activates capture before default schema and retains real subsequent content work
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > activates capture before default schema and retains real subsequent content work
+TypeError: initialize is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:31:24
+     29|    fixtureSeed.value=sourceSeed();
+     30|    const initialize=Reflect.get(engine,'initializeDefaultSeed');
+     31|    const outcome=await initialize(f.db,f.parameters);
+       |                        ^
+     32|    expect(outcome).toMatchObject({attempted:true,complete:true});
+     33|    expect(await f.options.get('emdash:seed_complete')).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > leaves an existing configured site inactive
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > leaves an existing configured site inactive
+TypeError: Reflect.get(...) is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:46:67
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > does not mark an invalid default seed complete
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > does not mark an invalid default seed complete
+TypeError: Reflect.get(...) is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:55:67
+     53|   const f=await fixture(target);try{
+     54|    fixtureSeed.value={version:'unsupported'};
+     55|    const outcome=await Reflect.get(engine,'initializeDefaultSeed')(f.d…
+       |                                                                   ^
+     56|    expect(outcome).toMatchObject({attempted:true,complete:false,valida…
+     57|    expect(await f.options.get('emdash:seed_complete')).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > resumes an interrupted default with the actual capture identity
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > resumes an interrupted default with the actual capture identity
+TypeError: Reflect.get(...) is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:64:53
+     62|   const f=await fixture(target);try{
+     63|    const seed=sourceSeed();fixtureSeed.value=seed;
+     64|    await Reflect.get(engine,'initializeDefaultSeed')(f.db,f.parameters…
+       |                                                     ^
+     65|    const pages=await new SchemaRegistry(f.db).getCollection('pages');i…
+     66|    await sql`DELETE FROM _cms_fields WHERE collection_id=${pages.id}`.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > continues the same112 setup entries with actual500-query budget and form overrides
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > continues the same112 setup entries with actual500-query budget and form overrides
+TypeError: Reflect.get(...) is not a function
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:85:73
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed (10)
+   Start at  00:07:24
+   Duration  3.19s (transform 1.25s, setup 0ms, import 1.91s, tests 1.17s, environment 0ms)
+

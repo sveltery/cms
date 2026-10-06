@@ -16,3 +16,8 @@ function applicationHandle(db: Kysely<Database>): Kysely<Database> {
 }
 export const applySeed: typeof apply = (db, ...arguments_) => {const handle=applicationHandle(db);return (handle.getExecutor().adapter instanceof RawBindingD1Adapter?nativeD1Apply:apply)(handle,...arguments_);};
 export const applySeedWithinBudget: typeof applyWithinBudget = (db, ...arguments_) => {const handle=applicationHandle(db);return (handle.getExecutor().adapter instanceof RawBindingD1Adapter?nativeD1Budget:applyWithinBudget)(handle,...arguments_);};
+export type {DefaultSeedParameters,DefaultSeedOutcome,SetupSeedParameters,SetupSeedOutcome} from './startup.ts';
+export {SetupSeedApplyError} from './startup-errors.ts';
+/** Real domain entrypoints load only when their runtime/HTTP caller invokes them. */
+export async function initializeDefaultSeed(db:Kysely<Database>,parameters:import('./startup.ts').DefaultSeedParameters){const actual=await import('./startup.ts');return actual.initializeDefaultSeedDomain(applicationHandle(db),parameters);}
+export async function applySetupSeedWithinBudget(db:Kysely<Database>,parameters:import('./startup.ts').SetupSeedParameters){const actual=await import('./startup.ts');return actual.applySetupSeedWithinBudgetDomain(applicationHandle(db),parameters);}

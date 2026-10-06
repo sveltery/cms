@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/default-setup-native.test.ts (12 tests | 2 failed) 4035ms
+     × does not report completion or seed after an actual options read failure 26ms
+     × does not report completion or seed after an actual options read failure 70ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > Node: real default/setup Seed domain > does not report completion or seed after an actual options read failure
+ FAIL  tests/source-seed-backend/default-setup-native.test.ts > D1: real default/setup Seed domain > does not report completion or seed after an actual options read failure
+AssertionError: expected { attempted: false, complete: true } to match object { attempted: false, complete: false }
+
+- Expected
++ Received
+
+  {
+    "attempted": false,
+-   "complete": false,
++   "complete": true,
+  }
+
+ ❯ tests/source-seed-backend/default-setup-native.test.ts:70:20
+     68|    },async transformResult({result}){return result;}});
+     69|    const outcome=await Reflect.get(engine,'initializeDefaultSeed')(db,…
+     70|    expect(outcome).toMatchObject({attempted:false,complete:false});
+       |                    ^
+     71|    expect(await f.options.get('emdash:seed_complete')).toBeNull();
+     72|    expect(await new SchemaRegistry(f.db).listCollections()).toEqual([]…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 10 passed (12)
+   Start at  00:10:03
+   Duration  5.89s (transform 1.15s, setup 0ms, import 1.73s, tests 4.04s, environment 0ms)
+

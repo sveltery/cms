@@ -1,0 +1,23 @@
+Loading svelte-check in workspace: /workspace/cms-full-seed-engine
+Getting Svelte diagnostics...
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/default-setup-native.test.ts:39:109
+Error: Argument of type '"welcome"' is not assignable to parameter of type 'OperandValueExpressionOrList<Database, never, never>'. 
+   await engine.applySeed(f.db,sourceSeed(),{includeContent:true,onConflict:'skip'});
+   const content=await f.db.selectFrom('ec_posts' as never).select('id' as never).where('slug' as never,'=','welcome').executeTakeFirstOrThrow();
+   expect((await sql`SELECT collection_id,content_id,state FROM _cms_media_usage_work`.execute(f.storage.database.db)).rows).toEqual([{collection_id:collection!.id,content_id:Reflect.get(content,'id'),state:'pending'}]);
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/default-setup-native.test.ts:101:84
+Error: 'outcome.seeded' is possibly 'null'. 
+    const outcome=await Reflect.get(engine,'applySetupSeedWithinBudget')(f.db.withPlugin(observer),{title:'My Site',tagline:'Form tagline',includeContent:true});
+    expect(outcome.validation.valid).toBe(true);counts.push(queries);progress.push(outcome.seeded.progress);complete=outcome.seeded.complete;
+    let total=0;for(const slug of slugs){const rows=await sql.raw(`SELECT COUNT(*) AS count FROM ec_${slug}`).execute(f.storage.database.db);total+=Number(Reflect.get(rows.rows[0] as object,'count'));}entries.push(total);
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/default-setup-native.test.ts:101:118
+Error: 'outcome.seeded' is possibly 'null'. 
+    const outcome=await Reflect.get(engine,'applySetupSeedWithinBudget')(f.db.withPlugin(observer),{title:'My Site',tagline:'Form tagline',includeContent:true});
+    expect(outcome.validation.valid).toBe(true);counts.push(queries);progress.push(outcome.seeded.progress);complete=outcome.seeded.complete;
+    let total=0;for(const slug of slugs){const rows=await sql.raw(`SELECT COUNT(*) AS count FROM ec_${slug}`).execute(f.storage.database.db);total+=Number(Reflect.get(rows.rows[0] as object,'count'));}entries.push(total);
+
+====================================
+svelte-check found 3 errors and 0 warnings in 1 file
