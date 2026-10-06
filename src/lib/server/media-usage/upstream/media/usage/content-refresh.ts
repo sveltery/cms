@@ -7,3 +7,11 @@ type Refresh=typeof import('../../../../seed/namespace.ts')['seedNativeRefreshCo
 export function refreshContentMediaUsageForWorkBatch(db:Kysely<Database>,...args:Parameters<Refresh> extends [unknown,...infer A]?A:never) {
   return new NativeMediaUsageContentDependencies(db).refreshWork(...args);
 }
+type AfterWrite=typeof import('../../../../seed/namespace.ts')['seedNativeRefreshContentMediaUsageAfterWrite'];
+export function refreshContentMediaUsageAfterWrite(db:Kysely<Database>,...args:Parameters<AfterWrite> extends [unknown,...infer A]?A:never) {
+  return new NativeMediaUsageContentDependencies(db).refreshAfterWrite(...args);
+}
+type Delete=typeof import('../../../../seed/namespace.ts')['seedNativeDeleteContentMediaUsage'];
+export function deleteContentMediaUsage(db:Kysely<Database>,...args:Parameters<Delete> extends [unknown,...infer A]?A:never) {
+  return new NativeMediaUsageContentDependencies(db).deleteContent(...args);
+}

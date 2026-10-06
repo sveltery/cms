@@ -3,7 +3,8 @@
 import type { Kysely } from 'kysely';
 import { blockDatabaseHost } from '../blocks/upstream/host.ts';
 import type { Database } from '../blocks/upstream/database/types.ts';
-import { registeredSeedDatabaseOwner,seedSourceDatabase,seedNativeRefreshContentMediaUsageForWorkBatch } from '../seed/namespace.ts';
+import { registeredSeedDatabaseOwner,seedSourceDatabase,seedNativeRefreshContentMediaUsageForWorkBatch,
+  seedNativeRefreshContentMediaUsageAfterWrite,seedNativeDeleteContentMediaUsage } from '../seed/namespace.ts';
 import { loadContentMediaUsageFields } from '../seed/upstream/media/usage/content-fields.ts';
 import { loadContentMediaUsageSnapshots } from '../seed/upstream/media/usage/content-snapshots.ts';
 
@@ -25,5 +26,11 @@ export class NativeMediaUsageContentDependencies {
   }
   refreshWork(...args:Arguments<typeof seedNativeRefreshContentMediaUsageForWorkBatch>) {
     return seedNativeRefreshContentMediaUsageForWorkBatch(this.#view,...args);
+  }
+  refreshAfterWrite(...args:Arguments<typeof seedNativeRefreshContentMediaUsageAfterWrite>) {
+    return seedNativeRefreshContentMediaUsageAfterWrite(this.#view,...args);
+  }
+  deleteContent(...args:Arguments<typeof seedNativeDeleteContentMediaUsage>) {
+    return seedNativeDeleteContentMediaUsage(this.#view,...args);
   }
 }

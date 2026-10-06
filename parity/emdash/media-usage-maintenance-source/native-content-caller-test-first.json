@@ -1,0 +1,126 @@
+{
+  "sourceCausalCredit": 0,
+  "nativeCallerValueReds": 1,
+  "callbackControlPassed": 1,
+  "realProtectedProbes": false,
+  "sourceWholeAuthority": "packages/core/tests/integration/runtime/media-usage-scheduled-driver.test.ts",
+  "sourceConsequenceLines": [
+    368,
+    386
+  ],
+  "callbackSourceWholeAuthority": "packages/core/src/emdash-runtime.ts",
+  "callbackSourceLines": [
+    5118,
+    5155
+  ],
+  "callbacks": {
+    "refresh": "refreshNativeContentUsageAfterSuccessfulWrite(owner:CmsDatabase,collection:string,contentIds:readonly string[]):Promise<void>",
+    "permanentDelete": "deleteNativeContentUsageAfterSuccessfulPermanentDelete(owner:CmsDatabase,collection:string,contentId:string):Promise<void>"
+  },
+  "integrationRequirement": "Await the finite callback after successful content lifecycle commit and before returning its successful receipt. Use the actual successful receipt ID(s), collection slug, same physical owner. Preserve Source nonfatal processing/fallback/log semantics. Shared writer owner implements this; no shared writer edited in this lane.",
+  "actualState": {
+    "sourceCausalCredit": 0,
+    "nativeCallerValueReds": 1,
+    "realProtectedProbes": false,
+    "stateReceipts": [
+      {
+        "test": "awaits genuine durable usage processing before returning a successful content create",
+        "actualNativeSchema": true,
+        "work": [
+          {
+            "collection_id": "01M47CP8SY1XW25B83DJ0T1TP9",
+            "collection_slug": "fast_posts",
+            "content_id": "01M47CP8TFY063W9T39JKVVSSG",
+            "change_epoch": 1,
+            "work_version": 1,
+            "state": "pending",
+            "attempt_count": 0,
+            "next_attempt_at": "2026-10-06T01:19:16.304Z",
+            "lease_token": null,
+            "lease_expires_at": null,
+            "last_attempted_at": null,
+            "last_error_code": null,
+            "created_at": "2026-10-06T01:19:16.304Z",
+            "updated_at": "2026-10-06T01:19:16.304Z"
+          }
+        ],
+        "sources": [],
+        "entries": [
+          {
+            "id": "01M47CP8TFY063W9T39JKVVSSG",
+            "slug": "entry-1",
+            "status": "published",
+            "author_id": null,
+            "primary_byline_id": null,
+            "created_at": "2026-10-06T01:19:16.303Z",
+            "updated_at": "2026-10-06T01:19:16.303Z",
+            "published_at": null,
+            "scheduled_at": null,
+            "deleted_at": null,
+            "version": 1,
+            "live_revision_id": null,
+            "draft_revision_id": null,
+            "locale": "en",
+            "translation_group": "01M47CP8TFY063W9T39JKVVSSG",
+            "title": "Entry 1"
+          }
+        ]
+      },
+      {
+        "test": "executes the genuine finite postcommit callback on the actual successful Native receipt",
+        "actualNativeSchema": true,
+        "work": [],
+        "sources": [
+          {
+            "source_key": "content:01M47CP8VF1SBF6G3778WF4ZB7:01M47CP8VQXC1ASVZFRZ17K14B:columns",
+            "source_type": "content",
+            "collection_slug": "fast_posts",
+            "content_id": "01M47CP8VQXC1ASVZFRZ17K14B",
+            "source_variant": "columns",
+            "locale": "en",
+            "translation_group": "01M47CP8VQXC1ASVZFRZ17K14B",
+            "content_slug": "entry-1",
+            "content_title": "Entry 1",
+            "content_status": "published",
+            "content_scheduled_at": null,
+            "content_deleted_at": null,
+            "revision_id": null,
+            "current_generation": "01M47CP8WGQ7VR1W45F5SYBZJG",
+            "schema_version": 2,
+            "indexed_at": "2026-10-06T01:19:16.368Z",
+            "created_at": "2026-10-06 01:19:16",
+            "updated_at": "2026-10-06T01:19:16.368Z",
+            "source_updated_at": "2026-10-06T01:19:16.343Z",
+            "source_version": 1,
+            "source_fingerprint": "media-usage-projection:v1:sha256:7e7d3240b7142505d5e5bd95d5ec95010d60f0720f3a1388273a0afa7d0fd14f",
+            "source_completeness": "complete",
+            "last_attempted_at": "2026-10-06T01:19:16.368Z",
+            "last_error_code": null,
+            "collection_id": "01M47CP8VF1SBF6G3778WF4ZB7",
+            "identity_version": 1
+          }
+        ],
+        "entries": [
+          {
+            "id": "01M47CP8VQXC1ASVZFRZ17K14B",
+            "slug": "entry-1",
+            "status": "published",
+            "author_id": null,
+            "primary_byline_id": null,
+            "created_at": "2026-10-06T01:19:16.343Z",
+            "updated_at": "2026-10-06T01:19:16.343Z",
+            "published_at": null,
+            "scheduled_at": null,
+            "deleted_at": null,
+            "version": 1,
+            "live_revision_id": null,
+            "draft_revision_id": null,
+            "locale": "en",
+            "translation_group": "01M47CP8VQXC1ASVZFRZ17K14B",
+            "title": "Entry 1"
+          }
+        ]
+      }
+    ]
+  }
+}

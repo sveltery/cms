@@ -121,6 +121,21 @@
         "imports narrowed to complete owned functions; sole Media read functions remain with Media113",
         "MIT/provenance header"
       ]
+    },
+    {
+      "sourcePath": "packages/core/src/emdash-runtime.ts",
+      "nativePath": "src/lib/server/media-usage/upstream/write-usage.ts",
+      "sourceSha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+      "nativeSha256": "18a4bafc6a2ff1475763dc2dff545c49b3b43f3f2ffd7db4ca05327dbb1bf14d",
+      "completeOwnedFunctions": [
+        "refreshContentUsageAfterSuccessfulWrite",
+        "deleteContentUsageAfterSuccessfulPermanentDelete"
+      ],
+      "substitutions": [
+        "Source private class methods exported as finite functions on existing trusted db parameter",
+        "this.db receiver -> db; complete function bodies/sets/order/fallback/error behavior retained",
+        "MIT/provenance header"
+      ]
     }
   ],
   "sourceCausalCredit": 0

@@ -73,5 +73,27 @@ records.append({'sourcePath': origin, 'nativePath': str(target.relative_to(root)
     'completeOwnedFunctions': ['handleMediaUsageProgress', 'handleMediaUsageProgressAdvance', 'continuationDelayMs',
         'handleMediaUsageRepair', 'toMediaUsageRepairResponse', 'toMediaUsageRepairCollectionSummary'],
     'substitutions': ['imports narrowed to complete owned functions; sole Media read functions remain with Media113', 'MIT/provenance header']})
+origin = 'packages/core/src/emdash-runtime.ts'
+original = subprocess.check_output(['git', '-C', str(source), 'show', pin + ':' + origin])
+whole = original.decode()
+start = whole.index('\tprivate async refreshContentUsageAfterSuccessfulWrite(')
+end = whole.index('\n\t// =========================================================================', start)
+selection = whole[start:end].replace('\tprivate async ', 'export async function ').replace('this.db', 'db')
+for name in ['refreshContentUsageAfterSuccessfulWrite', 'deleteContentUsageAfterSuccessfulPermanentDelete']:
+    selection = selection.replace(name + '(\n', name + '(\n\tdb: Kysely<Database>,\n')
+target = root / 'src/lib/server/media-usage/upstream/write-usage.ts'
+target.write_text('// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.\n'
+    '// Complete pinned Source runtime successful-write and permanent-delete usage methods.\n'
+    '// Only the class receiver becomes the existing trusted database parameter.\n'
+    'import type { Kysely } from "kysely";\n'
+    'import type { Database } from "./database/types.ts";\n'
+    'import { processMediaUsageWorkAfterWrite } from "./media/usage/work-processor.ts";\n'
+    'import { refreshContentMediaUsageAfterWrite,deleteContentMediaUsage } from "./media/usage/content-refresh.ts";\n\n'
+    + selection + '\n')
+records.append({'sourcePath': origin, 'nativePath': str(target.relative_to(root)),
+    'sourceSha256': hashlib.sha256(original).hexdigest(), 'nativeSha256': hashlib.sha256(target.read_bytes()).hexdigest(),
+    'completeOwnedFunctions': ['refreshContentUsageAfterSuccessfulWrite', 'deleteContentUsageAfterSuccessfulPermanentDelete'],
+    'substitutions': ['Source private class methods exported as finite functions on existing trusted db parameter',
+        'this.db receiver -> db; complete function bodies/sets/order/fallback/error behavior retained', 'MIT/provenance header']})
 (root / 'parity/emdash/media-usage-maintenance-source/native-body-manifest.json').write_text(json.dumps({
     'pin': pin, 'records': records, 'sourceCausalCredit': 0}, indent=2) + '\n')

@@ -1,0 +1,1182 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "referenceOnly": true,
+  "nativeParityCredit": 0,
+  "sourceClockStorageIdentityCredit": 0,
+  "wholeFamilies": 4,
+  "callbacks": {
+    "passed": 10,
+    "failed": 1
+  },
+  "resultClassification": "Reached progress409 caused by previous-family products collection surviving in shared DB; not an upstream bug finding. Initial configuration inherited Vitest5s instead of pinned Workerd30000ms.",
+  "originalConfig": {
+    "path": "packages/core/vitest.workerd.config.ts",
+    "sha256": "6525998f10c41095b0ae9f8b0ae5f8f820ecef414435031655c3b80cedb5c5aa",
+    "testTimeout": 30000,
+    "hookTimeout": 30000
+  },
+  "actualProgressFailure": {
+    "sourcePath": "packages/core/tests/workerd/media-usage-activation-d1.test.ts",
+    "line": 65,
+    "path": "progress-indexing",
+    "expectedStatus": 200,
+    "actualStatus": 409,
+    "activationRemainingSlug": "products"
+  },
+  "completeActualReceipts": {
+    "path": "/tmp/media-usage-maintenance-literal-source-workerd-receipts.json",
+    "bytes": 6010888,
+    "sha256": "ef5caaebbfa41336d8841c33b159b443fa3612eeac6e8b3a0e6bf486f16fb463",
+    "statements": 1293
+  },
+  "orderedObservedSubset": [
+    {
+      "sequence": 649,
+      "mode": "raw",
+      "operation": "batch",
+      "queries": [
+        {
+          "sql": "\n\t\t\tUPDATE _emdash_media_usage_index_status\n\t\t\tSET capture_state = 'deleting',\n\t\t\t\tupdated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\tAND scope_type = 'collection'\n\t\t\t\tAND scope_key = ?\n\t\t\t\tAND collection_id = ?\n\t\t\t\tAND capture_state = 'active'\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_collections\n\t\t\t\t\tWHERE id = ? AND slug = ?\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND NOT EXISTS (SELECT 1 FROM \"ec_products\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\tRETURNING collection_id\n\t\t",
+          "parameters": [
+            "products",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "products",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "products",
+            "01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        },
+        {
+          "sql": "\n\t\t\tSELECT CASE\n\t\t\t\tWHEN EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_index_status\n\t\t\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\t\t\tAND scope_type = 'collection'\n\t\t\t\t\t\tAND scope_key = ?\n\t\t\t\t\t\tAND collection_id = ?\n\t\t\t\t\t\tAND capture_state = 'active'\n\t\t\t\t)\n\t\t\t\tAND EXISTS (SELECT 1 FROM \"ec_products\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\t\tTHEN 'has_content'\n\t\t\t\tELSE 'stale'\n\t\t\tEND AS outcome\n\t\t",
+          "parameters": [
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "products",
+            "01M47CKQ9Y0HM04STTPYFTMC1P",
+            "products",
+            "01M47CKPTCMBG32YVCGQZK32H7"
+          ]
+        }
+      ],
+      "result": [
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 1,
+            "changes": 1,
+            "last_row_id": 1,
+            "changed_db": true,
+            "size_after": 1413120,
+            "rows_read": 4,
+            "rows_written": 2
+          },
+          "results": [
+            {
+              "collection_id": "01M47CKPTCMBG32YVCGQZK32H7"
+            }
+          ]
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 1,
+            "changed_db": false,
+            "size_after": 1413120,
+            "rows_read": 2,
+            "rows_written": 0
+          },
+          "results": [
+            {
+              "outcome": "stale"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 650,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "update \"_emdash_media_usage_collection_deletions\" set \"phase\" = ?, \"attempt_count\" = ?, \"last_error_code\" = ?, \"updated_at\" = strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t?\n\t) where \"collection_id\" = ? and \"state\" = ? and \"phase\" = ? and \"lease_token\" = ? and \"lease_expires_at\" > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')",
+          "parameters": [
+            "registry",
+            0,
+            null,
+            "+0 seconds",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "leased",
+            "fence",
+            "01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 1,
+          "changes": 1,
+          "last_row_id": 1,
+          "changed_db": true,
+          "size_after": 1413120,
+          "rows_read": 1,
+          "rows_written": 4
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 651,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "delete from \"_emdash_collections\" where \"id\" = ? and \"slug\" = ? and exists (select \"deletion\".\"collection_id\" from \"_emdash_media_usage_collection_deletions\" as \"deletion\" where \"deletion\".\"collection_id\" = ? and \"deletion\".\"collection_slug\" = ? and \"deletion\".\"state\" = ? and \"deletion\".\"phase\" = ? and \"deletion\".\"lease_token\" = ? and \"deletion\".\"lease_expires_at\" > strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "parameters": [
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "products",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "products",
+            "leased",
+            "registry",
+            "01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 1,
+          "last_row_id": 1,
+          "changed_db": true,
+          "size_after": 1413120,
+          "rows_read": 2,
+          "rows_written": 1
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 652,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "update \"_emdash_media_usage_collection_deletions\" set \"phase\" = ?, \"updated_at\" = strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t?\n\t) where \"collection_id\" = ? and \"collection_slug\" = ? and \"state\" = ? and \"phase\" = ? and \"lease_token\" = ? and \"lease_expires_at\" > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')",
+          "parameters": [
+            "table",
+            "+0 seconds",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "products",
+            "leased",
+            "registry",
+            "01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 1,
+          "last_row_id": 1,
+          "changed_db": true,
+          "size_after": 1413120,
+          "rows_read": 1,
+          "rows_written": 4
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 653,
+      "mode": "raw",
+      "operation": "batch",
+      "queries": [
+        {
+          "sql": "\n\t\t\t\t\tINSERT INTO _emdash_media_usage_collection_deletions (\n\t\t\t\t\t\tcollection_id, collection_slug, force_delete, state, phase,\n\t\t\t\t\t\tnext_attempt_at, lease_token, lease_expires_at\n\t\t\t\t\t)\n\t\t\t\t\tVALUES (\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\tSELECT ?\n\t\t\t\t\t\t\tFROM _emdash_media_usage_collection_deletions\n\t\t\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\t\t\tAND phase = 'table'\n\t\t\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t\t\t),\n\t\t\t\t\t\t?, 0, 'leased', 'table',\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now'), ?,\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now', '+1 minute')\n\t\t\t\t\t)\n\t\t\t\t",
+          "parameters": [
+            "__emdash_guard:01M47CKPTCMBG32YVCGQZK32H7:01M47CKQ9Y0HM04STTPYFTMC1P",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "products",
+            "01M47CKQ9Y0HM04STTPYFTMC1P",
+            "__emdash_guard_slug:01M47CKPTCMBG32YVCGQZK32H7:01M47CKQ9Y0HM04STTPYFTMC1P",
+            "01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        },
+        {
+          "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_products_insert\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_products_update\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_products_delete\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TABLE IF EXISTS \"_emdash_fts_products\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TABLE IF EXISTS \"ec_products\"",
+          "parameters": []
+        },
+        {
+          "sql": "DELETE FROM _emdash_media_usage_collection_deletions WHERE collection_id = ? AND collection_slug = ?",
+          "parameters": [
+            "__emdash_guard:01M47CKPTCMBG32YVCGQZK32H7:01M47CKQ9Y0HM04STTPYFTMC1P",
+            "__emdash_guard_slug:01M47CKPTCMBG32YVCGQZK32H7:01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        }
+      ],
+      "result": [
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 1,
+            "last_row_id": 2,
+            "changed_db": true,
+            "size_after": 1413120,
+            "rows_read": 1,
+            "rows_written": 6
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1413120,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1413120,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1413120,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1413120,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 1,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": true,
+            "size_after": 1318912,
+            "rows_read": 1369,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 1,
+            "last_row_id": 2,
+            "changed_db": true,
+            "size_after": 1318912,
+            "rows_read": 1,
+            "rows_written": 1
+          },
+          "results": []
+        }
+      ]
+    },
+    {
+      "sequence": 654,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "update \"_emdash_media_usage_collection_deletions\" set \"phase\" = ?, \"attempt_count\" = ?, \"last_error_code\" = ?, \"updated_at\" = strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t?\n\t) where \"collection_id\" = ? and \"state\" = ? and \"phase\" = ? and \"lease_token\" = ? and \"lease_expires_at\" > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')",
+          "parameters": [
+            "work",
+            0,
+            null,
+            "+0 seconds",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "leased",
+            "table",
+            "01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 1,
+          "changes": 1,
+          "last_row_id": 2,
+          "changed_db": true,
+          "size_after": 1318912,
+          "rows_read": 1,
+          "rows_written": 4
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 655,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "update \"_emdash_media_usage_collection_deletions\" set \"state\" = ?, \"next_attempt_at\" = strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t?\n\t), \"lease_token\" = ?, \"lease_expires_at\" = ?, \"attempt_count\" = ?, \"last_error_code\" = ?, \"updated_at\" = strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t?\n\t) where \"collection_id\" = ? and \"state\" = ? and \"lease_token\" = ? and \"lease_expires_at\" > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')",
+          "parameters": [
+            "pending",
+            "+0 seconds",
+            null,
+            null,
+            0,
+            null,
+            "+0 seconds",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "leased",
+            "01M47CKQ9Y0HM04STTPYFTMC1P"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 1,
+          "last_row_id": 2,
+          "changed_db": true,
+          "size_after": 1318912,
+          "rows_read": 1,
+          "rows_written": 4
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 656,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select * from \"_emdash_media_usage_collection_deletions\" where \"collection_slug\" = ?",
+          "parameters": [
+            "products"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 2,
+          "changed_db": false,
+          "size_after": 1318912,
+          "rows_read": 1,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "collection_id": "01M47CKPTCMBG32YVCGQZK32H7",
+            "collection_slug": "products",
+            "force_delete": 0,
+            "state": "pending",
+            "phase": "work",
+            "work_cursor": null,
+            "source_key": null,
+            "occurrence_cursor": null,
+            "attempt_count": 0,
+            "next_attempt_at": "2026-10-06T01:17:52.968Z",
+            "lease_token": null,
+            "lease_expires_at": null,
+            "last_error_code": null,
+            "created_at": "2026-10-06T01:17:52.820Z",
+            "updated_at": "2026-10-06T01:17:52.968Z"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 657,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "update \"_emdash_media_usage_collection_deletions\" set \"state\" = ?, \"lease_token\" = ?, \"lease_expires_at\" = strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t?\n\t), \"updated_at\" = strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t?\n\t) where \"collection_id\" = ? and \"phase\" = ? and ((\"state\" in (?, ?) and \"next_attempt_at\" <= strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) or (\"state\" = ? and \"lease_expires_at\" <= strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))) returning *",
+          "parameters": [
+            "leased",
+            "01M47CKQEJ2CAGNWVAA0AA8ZKF",
+            "+300 seconds",
+            "+0 seconds",
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            "work",
+            "pending",
+            "retry",
+            "leased"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 1,
+          "last_row_id": 2,
+          "changed_db": true,
+          "size_after": 1318912,
+          "rows_read": 2,
+          "rows_written": 4
+        },
+        "results": [
+          {
+            "collection_id": "01M47CKPTCMBG32YVCGQZK32H7",
+            "collection_slug": "products",
+            "force_delete": 0,
+            "state": "leased",
+            "phase": "work",
+            "work_cursor": null,
+            "source_key": null,
+            "occurrence_cursor": null,
+            "attempt_count": 0,
+            "next_attempt_at": "2026-10-06T01:17:52.968Z",
+            "lease_token": "01M47CKQEJ2CAGNWVAA0AA8ZKF",
+            "lease_expires_at": "2026-10-06T01:22:52.985Z",
+            "last_error_code": null,
+            "created_at": "2026-10-06T01:17:52.820Z",
+            "updated_at": "2026-10-06T01:17:52.985Z"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 658,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select \"content_id\" from \"_emdash_media_usage_work\" where \"collection_id\" = ? order by \"content_id\" asc limit ?",
+          "parameters": [
+            "01M47CKPTCMBG32YVCGQZK32H7",
+            51
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 2,
+          "changed_db": false,
+          "size_after": 1318912,
+          "rows_read": 0,
+          "rows_written": 0
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 798,
+      "mode": "session",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select \"id\", \"slug\" from \"_emdash_collections\" where \"slug\" > ? order by \"slug\" asc limit ?",
+          "parameters": [
+            "activation_alpha",
+            2
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 2,
+          "changed_db": false,
+          "size_after": 1589248,
+          "rows_read": 2,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01M47CKRKEVC556WG197JH1PRC",
+            "slug": "activation_beta"
+          },
+          {
+            "id": "01M47CKQPFGFJ00Y8KK9H0SZEN",
+            "slug": "products"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 814,
+      "mode": "session",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "update \"_emdash_media_usage_activation\" set \"collection_cursor\" = ?, \"lease_token\" = ?, \"lease_expires_at\" = ?, \"updated_at\" = strftime('%Y-%m-%dT%H:%M:%fZ', 'now', ?) where \"task_key\" = ? and \"state\" = ? and \"runtime_generation\" = ? and \"lease_token\" = ? and \"lease_expires_at\" is not null and \"lease_expires_at\" > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')",
+          "parameters": [
+            "activation_beta",
+            null,
+            null,
+            "+0 seconds",
+            "incremental_capture",
+            "activating",
+            1,
+            "01M47CKS07QZWN1TRCTTZ7272K"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 1,
+          "last_row_id": 3,
+          "changed_db": true,
+          "size_after": 1601536,
+          "rows_read": 1,
+          "rows_written": 1
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 815,
+      "mode": "session",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select \"state\", \"runtime_generation\", \"collection_cursor\", \"drain_confirmed_at\", \"lease_expires_at\", \"attempt_count\", \"last_attempted_at\", \"last_error_code\", \"activated_at\", \"updated_at\" from \"_emdash_media_usage_activation\" where \"task_key\" = ?",
+          "parameters": [
+            "incremental_capture"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 3,
+          "changed_db": false,
+          "size_after": 1601536,
+          "rows_read": 1,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "state": "activating",
+            "runtime_generation": 1,
+            "collection_cursor": "activation_beta",
+            "drain_confirmed_at": "2026-10-06T01:17:54.575Z",
+            "lease_expires_at": null,
+            "attempt_count": 2,
+            "last_attempted_at": "2026-10-06T01:17:54.575Z",
+            "last_error_code": null,
+            "activated_at": null,
+            "updated_at": "2026-10-06T01:17:54.752Z"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 816,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select \"state\", \"runtime_generation\", \"collection_cursor\", \"drain_confirmed_at\", \"lease_expires_at\", \"attempt_count\", \"last_attempted_at\", \"last_error_code\", \"activated_at\", \"updated_at\" from \"_emdash_media_usage_activation\" where \"task_key\" = ?",
+          "parameters": [
+            "incremental_capture"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 3,
+          "changed_db": false,
+          "size_after": 1601536,
+          "rows_read": 1,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "state": "activating",
+            "runtime_generation": 1,
+            "collection_cursor": "activation_beta",
+            "drain_confirmed_at": "2026-10-06T01:17:54.575Z",
+            "lease_expires_at": null,
+            "attempt_count": 2,
+            "last_attempted_at": "2026-10-06T01:17:54.575Z",
+            "last_error_code": null,
+            "activated_at": null,
+            "updated_at": "2026-10-06T01:17:54.752Z"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 817,
+      "mode": "session",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "\n\t\t\tWITH collection_progress AS (\n\t\t\t\tSELECT\n\t\t\t\t\tCASE WHEN status.status = 'complete'\n\t\t\t\t\t\tAND status.schema_version = ?\n\t\t\t\t\t\tAND status.reconciliation_required = 0\n\t\t\t\t\t\tAND status.capture_state = 'active'\n\t\t\t\t\t\tAND NOT EXISTS (\n\t\t\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_work AS work\n\t\t\t\t\t\t\tWHERE work.collection_id = collection.id\n\t\t\t\t\t\t\t\tAND work.collection_slug = collection.slug\n\t\t\t\t\t\t)\n\t\t\t\t\tTHEN 1 ELSE 0 END AS is_ready,\n\t\t\t\t\tCASE WHEN status.collection_id IS NULL\n\t\t\t\t\t\tOR COALESCE(status.capture_state, '') <> 'active'\n\t\t\t\t\t\tOR status.status NOT IN ('complete', 'never', 'running', 'partial', 'failed', 'stale')\n\t\t\t\t\t\tOR status.status = 'failed'\n\t\t\t\t\t\tOR (\n\t\t\t\t\t\t\tstatus.reconciliation_required = 0\n\t\t\t\t\t\t\tAND (\n\t\t\t\t\t\t\t\tstatus.status <> 'complete'\n\t\t\t\t\t\t\t\tOR COALESCE(status.schema_version, -1) <> ?\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\tAND NOT EXISTS (\n\t\t\t\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_work AS work\n\t\t\t\t\t\t\t\tWHERE work.collection_id = collection.id\n\t\t\t\t\t\t\t\t\tAND work.collection_slug = collection.slug\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t\tOR EXISTS (\n\t\t\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_work AS work\n\t\t\t\t\t\t\tWHERE work.collection_id = collection.id\n\t\t\t\t\t\t\t\tAND work.collection_slug = collection.slug\n\t\t\t\t\t\t\t\tAND work.state = 'failed'\n\t\t\t\t\t\t)\n\t\t\t\t\t\tOR EXISTS (\n\t\t\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_reconciliations AS reconciliation\n\t\t\t\t\t\t\tWHERE reconciliation.collection_id = collection.id\n\t\t\t\t\t\t\t\tAND reconciliation.collection_slug = collection.slug\n\t\t\t\t\t\t\t\tAND reconciliation.state = 'failed'\n\t\t\t\t\t\t\t\tAND status.reconciliation_required = 1\n\t\t\t\t\t\t\t\tAND (\n\t\t\t\t\t\t\t\t\treconciliation.target_epoch IS NULL\n\t\t\t\t\t\t\t\t\tOR reconciliation.target_epoch >= status.change_epoch\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\tTHEN 1 ELSE 0 END AS needs_attention\n\t\t\t\tFROM _emdash_collections AS collection\n\t\t\t\tLEFT JOIN _emdash_media_usage_index_status AS status\n\t\t\t\t\tON status.adapter_id = 'content-media'\n\t\t\t\t\tAND status.scope_type = 'collection'\n\t\t\t\t\tAND status.collection_id = collection.id\n\t\t\t\t\tAND status.scope_key = collection.slug\n\t\t\t\tWHERE NOT EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions AS deletion\n\t\t\t\t\tWHERE deletion.collection_id = collection.id\n\t\t\t\t\t\tAND deletion.collection_slug = collection.slug\n\t\t\t\t)\n\t\t\t)\n\t\t\tSELECT\n\t\t\t\t(\n\t\t\t\t\tSELECT activation.runtime_generation\n\t\t\t\t\tFROM _emdash_media_usage_activation AS activation\n\t\t\t\t\tWHERE activation.task_key = 'incremental_capture'\n\t\t\t\t) AS activation_generation,\n\t\t\t\tEXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_activation AS activation\n\t\t\t\t\tWHERE activation.task_key = 'incremental_capture'\n\t\t\t\t\t\tAND activation.state = 'active'\n\t\t\t\t) AS activation_active,\n\t\t\t\tCOUNT(*) AS total_collections,\n\t\t\t\tCOALESCE(SUM(is_ready), 0) AS ready_collections,\n\t\t\t\tEXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions AS deletion\n\t\t\t\t\tWHERE deletion.state IN ('pending', 'retry', 'leased')\n\t\t\t\t) AS cleanup_pending,\n\t\t\t\tCASE WHEN COALESCE(MAX(needs_attention), 0) = 1 OR EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions AS deletion\n\t\t\t\t\tWHERE deletion.state = 'failed'\n\t\t\t\t) THEN 1 ELSE 0 END AS needs_attention\n\t\t\tFROM collection_progress\n\t\t",
+          "parameters": [
+            2,
+            2
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 1,
+          "changes": 0,
+          "last_row_id": 3,
+          "changed_db": false,
+          "size_after": 1601536,
+          "rows_read": 16,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "activation_generation": 1,
+            "activation_active": 0,
+            "total_collections": 3,
+            "ready_collections": 0,
+            "cleanup_pending": 0,
+            "needs_attention": 0
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 828,
+      "mode": "raw",
+      "operation": "batch",
+      "queries": [
+        {
+          "sql": "\n\t\t\t\t\tINSERT INTO _emdash_media_usage_collection_deletions (\n\t\t\t\t\t\tcollection_id, collection_slug, force_delete, state, phase,\n\t\t\t\t\t\tnext_attempt_at, lease_token, lease_expires_at\n\t\t\t\t\t)\n\t\t\t\t\tVALUES (\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\tSELECT ?\n\t\t\t\t\t\t\tFROM _emdash_media_usage_collection_deletions\n\t\t\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\t\t\tAND phase = 'table'\n\t\t\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t\t\t),\n\t\t\t\t\t\t?, 0, 'leased', 'table',\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now'), ?,\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now', '+1 minute')\n\t\t\t\t\t)\n\t\t\t\t",
+          "parameters": [
+            "__emdash_guard:collection-d1:current-owner",
+            "collection-d1",
+            "d1_guarded",
+            "current-owner",
+            "__emdash_guard_slug:collection-d1:current-owner",
+            "current-owner"
+          ]
+        },
+        {
+          "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_d1_guarded_insert\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_d1_guarded_update\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_d1_guarded_delete\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TABLE IF EXISTS \"_emdash_fts_d1_guarded\"",
+          "parameters": []
+        },
+        {
+          "sql": "DROP TABLE IF EXISTS \"ec_d1_guarded\"",
+          "parameters": []
+        },
+        {
+          "sql": "DELETE FROM _emdash_media_usage_collection_deletions WHERE collection_id = ? AND collection_slug = ?",
+          "parameters": [
+            "__emdash_guard:collection-d1:current-owner",
+            "__emdash_guard_slug:collection-d1:current-owner"
+          ]
+        }
+      ],
+      "result": [
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 1,
+            "changes": 1,
+            "last_row_id": 2,
+            "changed_db": true,
+            "size_after": 1609728,
+            "rows_read": 1,
+            "rows_written": 6
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1609728,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1609728,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1609728,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": false,
+            "size_after": 1609728,
+            "rows_read": 0,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 2,
+            "changed_db": true,
+            "size_after": 1601536,
+            "rows_read": 387,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 1,
+            "last_row_id": 2,
+            "changed_db": true,
+            "size_after": 1601536,
+            "rows_read": 1,
+            "rows_written": 1
+          },
+          "results": []
+        }
+      ]
+    },
+    {
+      "sequence": 829,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "\n\t\tSELECT name FROM sqlite_master WHERE type = 'table' AND name = 'ec_d1_guarded'\n\t",
+          "parameters": []
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 2,
+          "changed_db": false,
+          "size_after": 1601536,
+          "rows_read": 383,
+          "rows_written": 0
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 830,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select \"collection_id\" from \"_emdash_media_usage_collection_deletions\"",
+          "parameters": []
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 2,
+          "changed_db": false,
+          "size_after": 1601536,
+          "rows_read": 1,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "collection_id": "collection-d1"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 836,
+      "mode": "raw",
+      "operation": "batch",
+      "queries": [
+        {
+          "sql": "\n\t\t\tUPDATE _emdash_media_usage_index_status\n\t\t\tSET capture_state = 'deleting',\n\t\t\t\tupdated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\tAND scope_type = 'collection'\n\t\t\t\tAND scope_key = ?\n\t\t\t\tAND collection_id = ?\n\t\t\t\tAND capture_state = 'active'\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_collections\n\t\t\t\t\tWHERE id = ? AND slug = ?\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND NOT EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\tRETURNING collection_id\n\t\t",
+          "parameters": [
+            "d1_fence",
+            "collection-d1-fence",
+            "collection-d1-fence",
+            "d1_fence",
+            "collection-d1-fence",
+            "d1_fence",
+            "fence-owner"
+          ]
+        },
+        {
+          "sql": "\n\t\t\tSELECT CASE\n\t\t\t\tWHEN EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_index_status\n\t\t\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\t\t\tAND scope_type = 'collection'\n\t\t\t\t\t\tAND scope_key = ?\n\t\t\t\t\t\tAND collection_id = ?\n\t\t\t\t\t\tAND capture_state = 'active'\n\t\t\t\t)\n\t\t\t\tAND EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\t\tTHEN 'has_content'\n\t\t\t\tELSE 'stale'\n\t\t\tEND AS outcome\n\t\t",
+          "parameters": [
+            "collection-d1-fence",
+            "d1_fence",
+            "fence-owner",
+            "d1_fence",
+            "collection-d1-fence"
+          ]
+        }
+      ],
+      "result": [
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 1,
+            "changed_db": false,
+            "size_after": 1609728,
+            "rows_read": 5,
+            "rows_written": 0
+          },
+          "results": []
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 1,
+            "changed_db": false,
+            "size_after": 1609728,
+            "rows_read": 3,
+            "rows_written": 0
+          },
+          "results": [
+            {
+              "outcome": "has_content"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 837,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select \"capture_state\" from \"_emdash_media_usage_index_status\" where \"collection_id\" = ?",
+          "parameters": [
+            "collection-d1-fence"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 1,
+          "changed_db": false,
+          "size_after": 1609728,
+          "rows_read": 4,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "capture_state": "active"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 838,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "delete from \"_emdash_collections\" where \"id\" = ?",
+          "parameters": [
+            "collection-d1-fence"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 1,
+          "changes": 1,
+          "last_row_id": 1,
+          "changed_db": true,
+          "size_after": 1609728,
+          "rows_read": 1,
+          "rows_written": 1
+        },
+        "results": []
+      }
+    },
+    {
+      "sequence": 842,
+      "mode": "raw",
+      "operation": "batch",
+      "queries": [
+        {
+          "sql": "\n\t\t\tUPDATE _emdash_media_usage_index_status\n\t\t\tSET capture_state = 'deleting',\n\t\t\t\tupdated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\tAND scope_type = 'collection'\n\t\t\t\tAND scope_key = ?\n\t\t\t\tAND collection_id = ?\n\t\t\t\tAND capture_state = 'active'\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_collections\n\t\t\t\t\tWHERE id = ? AND slug = ?\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND NOT EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\tRETURNING collection_id\n\t\t",
+          "parameters": [
+            "d1_fence",
+            "collection-d1-fence",
+            "collection-d1-fence",
+            "d1_fence",
+            "collection-d1-fence",
+            "d1_fence",
+            "fence-owner"
+          ]
+        },
+        {
+          "sql": "\n\t\t\tSELECT CASE\n\t\t\t\tWHEN EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_index_status\n\t\t\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\t\t\tAND scope_type = 'collection'\n\t\t\t\t\t\tAND scope_key = ?\n\t\t\t\t\t\tAND collection_id = ?\n\t\t\t\t\t\tAND capture_state = 'active'\n\t\t\t\t)\n\t\t\t\tAND EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\t\tTHEN 'has_content'\n\t\t\t\tELSE 'stale'\n\t\t\tEND AS outcome\n\t\t",
+          "parameters": [
+            "collection-d1-fence",
+            "d1_fence",
+            "fence-owner",
+            "d1_fence",
+            "collection-d1-fence"
+          ]
+        }
+      ],
+      "result": [
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 1,
+            "changes": 1,
+            "last_row_id": 4,
+            "changed_db": true,
+            "size_after": 1609728,
+            "rows_read": 5,
+            "rows_written": 2
+          },
+          "results": [
+            {
+              "collection_id": "collection-d1-fence"
+            }
+          ]
+        },
+        {
+          "success": true,
+          "meta": {
+            "served_by": "miniflare.db",
+            "duration": 0,
+            "changes": 0,
+            "last_row_id": 4,
+            "changed_db": false,
+            "size_after": 1609728,
+            "rows_read": 2,
+            "rows_written": 0
+          },
+          "results": [
+            {
+              "outcome": "stale"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 843,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "select \"capture_state\" from \"_emdash_media_usage_index_status\" where \"collection_id\" = ?",
+          "parameters": [
+            "collection-d1-fence"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 4,
+          "changed_db": false,
+          "size_after": 1609728,
+          "rows_read": 4,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "capture_state": "deleting"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 844,
+      "mode": "raw",
+      "operation": "all",
+      "queries": [
+        {
+          "sql": "insert into \"_emdash_media_usage_collection_deletions\" (\"collection_id\", \"collection_slug\", \"force_delete\", \"state\", \"phase\", \"next_attempt_at\") values (?, ?, ?, ?, ?, ?)",
+          "parameters": [
+            "collection-d1-cleanup",
+            "d1_cleanup",
+            1,
+            "pending",
+            "work",
+            "2000-01-01T00:00:00.000Z"
+          ]
+        }
+      ],
+      "result": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 1,
+          "last_row_id": 3,
+          "changed_db": true,
+          "size_after": 1609728,
+          "rows_read": 0,
+          "rows_written": 6
+        },
+        "results": []
+      }
+    }
+  ],
+  "observationsAreUnmodified": true,
+  "frontExecutionHeld": true
+}
