@@ -36,7 +36,7 @@ for(const target of ['Node','D1']as const)describe(`${target}: real default/setu
    expect(activation).toEqual({state:'active',activated_at:expect.any(String)});
    const collection=await new SchemaRegistry(f.db).getCollection('posts');expect(collection).not.toBeNull();
    await engine.applySeed(f.db,sourceSeed(),{includeContent:true,onConflict:'skip'});
-   const content=await f.db.selectFrom('ec_posts' as never).select('id' as never).where('slug' as never,'=','welcome').executeTakeFirstOrThrow();
+   const content=await f.db.selectFrom('ec_posts' as never).select('id' as never).where('slug' as never,'=','welcome' as never).executeTakeFirstOrThrow();
    expect((await sql`SELECT collection_id,content_id,state FROM _cms_media_usage_work`.execute(f.storage.database.db)).rows).toEqual([{collection_id:collection!.id,content_id:Reflect.get(content,'id'),state:'pending'}]);
   }finally{await f.storage.close();}
  },30000);
@@ -98,7 +98,7 @@ for(const target of ['Node','D1']as const)describe(`${target}: real default/setu
    for(let call=0;call<20;call++){
     let queries=0;const observer:KyselyPlugin={transformQuery({node}){queries++;return node;},async transformResult({result}){return result;}};
     const outcome=await Reflect.get(engine,'applySetupSeedWithinBudget')(f.db.withPlugin(observer),{title:'My Site',tagline:'Form tagline',includeContent:true});
-    expect(outcome.validation.valid).toBe(true);counts.push(queries);progress.push(outcome.seeded.progress);complete=outcome.seeded.complete;
+    expect(outcome.validation.valid).toBe(true);counts.push(queries);progress.push(outcome.seeded!.progress);complete=outcome.seeded!.complete;
     let total=0;for(const slug of slugs){const rows=await sql.raw(`SELECT COUNT(*) AS count FROM ec_${slug}`).execute(f.storage.database.db);total+=Number(Reflect.get(rows.rows[0] as object,'count'));}entries.push(total);
     if(complete)break;
    }

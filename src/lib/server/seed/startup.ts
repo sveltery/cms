@@ -27,18 +27,21 @@ export interface DefaultSeedOutcome {
  error?:unknown;
 }
 export async function initializeDefaultSeedDomain(db:Kysely<Database>,parameters:DefaultSeedParameters):Promise<DefaultSeedOutcome>{
- let seedComplete=true,setupDone=true,collectionsReadable=false;
+ let seedComplete=true,setupDone=true,collectionsReadable=false,storedSeedComplete=false;
  const options=new OptionsRepository(db);
  try{
   const stored=await options.getMany([AUTO_SEED_COMPLETE_OPTION,'emdash:setup_complete']);
   seedComplete=stored.get(AUTO_SEED_COMPLETE_OPTION)===true;
+  storedSeedComplete=seedComplete;
   setupDone=stored.get('emdash:setup_complete')===true;
  }catch{/* Exact Source gate: unreadable options never initiate auto-seeding. */}
  if(parameters.ownsConfiguredDatabase!==false){
   try{await db.selectFrom('_emdash_collections').select('slug').execute();collectionsReadable=true;}
   catch{/* A half-built collection catalogue must never trigger auto-seeding. */}
  }
- if(!collectionsReadable||seedComplete||setupDone)return{attempted:false,complete:seedComplete};
+ // Source's conservative gate defaults inhibit writes after a failed read.
+ // This Native receipt reports completion only from an actual stored flag.
+ if(!collectionsReadable||seedComplete||setupDone)return{attempted:false,complete:storedSeedComplete};
  // Source activation failure is fatal and precedes its nonfatal seed attempt.
  const activation=await seedNativeActivateMediaUsageCapture(db);
  if(activation.outcome!=='active')throw new Error('Fresh-site media usage activation did not complete');

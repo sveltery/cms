@@ -633,7 +633,8 @@ function assertAtomicPlan(query: RootOperationNode): void {
   if (query.kind === 'CreateIndexNode' && /^ec_[a-z][a-z0-9_]{0,63}$/.test(tableName(query.table) ?? '')) return;
   throw new Error('Seed atomic plan requires a qualified typed domain mutation; raw capture DDL is incomplete');
 }
-/** Proposal only: Source observers run once during compilation; the existing host commits the complete list. */
+/** Real query observers run during compilation; the existing host commits the
+ * complete fixed list, then real receipt observers run once in their order. */
 export async function seedAtomicBatch(
   database: CmsDatabase,
   db: Kysely<any>,
@@ -642,11 +643,18 @@ export async function seedAtomicBatch(
   const context = views.get(db);
   if (!context || context.owner !== database) throw new Error('Seed atomic plans require the exact real owner');
   if (db.isTransaction) throw new Error('Nested native atomic batches are not qualified');
-  const planning = compilationOnly(context.atomicLogical.withPlugin(namespace));
+  const target=context.atomicLogical.withPlugin(namespace);
+  const planning = compilationOnly(target);
   const statements = build(planning).map(query => 'isRawBuilder' in query ? query.compile(planning) : query.compile());
   for (const statement of statements) {
     assertAtomicPlan(statement.query);
     if (statement.parameters.length > 100) throw new Error('Seed atomic statement exceeds the 100-binding D1 limit');
   }
-  return database.atomicBatch(statements);
+  const receipts=await database.atomicBatch(statements),results:QueryResult<unknown>[]=[];
+  for(let index=0;index<receipts.length;index++){
+    let result=receipts[index];
+    for(const plugin of target.getExecutor().plugins)result=await plugin.transformResult({result:result as QueryResult<import('kysely').UnknownRow>,queryId:statements[index].queryId});
+    results.push(result);
+  }
+  return results;
 }
