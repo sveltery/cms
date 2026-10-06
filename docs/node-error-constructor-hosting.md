@@ -47,3 +47,19 @@ expected-head regular merge remain required. No complete Node hosting,
 Cloudflare/D1 or full Byline/Media feature parity is established by this slice.
 The initial artifact attachment call was bounded and interrupted during the
 known app connector outage; repository publication is authorized and continues.
+
+
+### RAW-EOF01: literal evidence formatting
+
+Independent review of the stationary `2ec95354` head clears product semantics
+and identifies only retained runner blank lines at EOF as a P3 range diff-check
+failure. The complete failed range-check receipt is retained in
+[the evidence directory](node-error-constructor-evidence/2ec953-full-range-diffcheck-red.log).
+Root authorizes an append-only `.gitattributes` exception for precisely
+`docs/node-error-constructor-evidence/*.log`, disabling only blank-at-EOF
+whitespace diagnostics. All 14 prior raw logs retain their exact bytes; Source,
+product, tests and every earlier public commit remain unchanged. The full
+parent-to-successor diff check now passes. This infrastructure formatting repair
+adds no product or Source causal credit. Current successor hosted checks,
+independent delta review, exact-head approval and regular author merge remain
+pending; no feature completion or landing is recorded.
