@@ -18,6 +18,20 @@ for path in paths:
     original = subprocess.check_output(['git', '-C', str(source), 'show', pin + ':' + origin])
     text = original.decode().replace('_emdash_', '_cms_')
     text = re.sub(r'(?<=\.)js(?=["\'])', 'ts', text)
+    substitutions = ['_emdash_ physical identifiers -> _cms_', '.js module suffix -> .ts', 'MIT/provenance header']
+    if path == 'media/usage/collection-deletion-processor.ts':
+        text = text.replace('import { withTransaction } from "../../database/transaction.ts";',
+            'import { withTransaction } from "../../database/transaction.ts";\n'
+            'import { blockDatabaseHost } from "../../../../blocks/upstream/host.ts";\n'
+            'import { NativeMediaUsageCollectionDeletionPhases } from "../../../collection-deletion-phases.ts";')
+        for method, native in [('processWorkBatch', 'processWork'), ('processSourceBatch', 'processSources'), ('processStatus', 'processStatus')]:
+            pattern = r'(async function ' + method + r'\([\s\S]*?\): Promise<boolean> \{\n)'
+            def branch(match, native=native):
+                return match.group(1) + '\tconst owner = blockDatabaseHost(db);\n\tif (owner && !owner.atomicQueryLoops) return new NativeMediaUsageCollectionDeletionPhases(owner).' + native + '(claim);\n'
+            text, count = re.subn(pattern, branch, text, count=1)
+            if count != 1:
+                raise RuntimeError('Missing complete Source phase ' + method)
+        substitutions.append('finite Native C-07 work/sources/status D1 branch; complete original Node callback bodies retained below')
     header = ('// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.\n'
         '// Complete pinned Source ' + pin + ':' + origin + '.\n'
         '// Canonical physical namespace and module imports are explicit Native substitutions.\n')
@@ -27,6 +41,6 @@ for path in paths:
     records.append({'sourcePath': origin, 'nativePath': str(target.relative_to(root)),
         'sourceSha256': hashlib.sha256(original).hexdigest(),
         'nativeSha256': hashlib.sha256(target.read_bytes()).hexdigest(),
-        'substitutions': ['_emdash_ physical identifiers -> _cms_', '.js module suffix -> .ts', 'MIT/provenance header']})
+        'substitutions': substitutions})
 (root / 'parity/emdash/media-usage-maintenance-source/native-body-manifest.json').write_text(json.dumps({
     'pin': pin, 'records': records, 'sourceCausalCredit': 0}, indent=2) + '\n')

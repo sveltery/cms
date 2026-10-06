@@ -1,7 +1,7 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Native C-07 fixed-plan adaptation of whole pinned Source deletion phases.
 // Compilation only: this module has no query or batch executor.
-import { sql,type CompiledQuery,type Kysely,type Updateable } from 'kysely';
+import { expressionBuilder,sql,type CompiledQuery,type Kysely,type Updateable } from 'kysely';
 import { seedDomainPlanCompiler } from '../seed/namespace.ts';
 import type { Database,MediaUsageCollectionDeletionTable } from './upstream/database/types.ts';
 import { collectionDeletionCurrentTimestamp,type MediaUsageCollectionDeletionRecord } from './upstream/media/usage/collection-deletion.ts';
@@ -75,7 +75,7 @@ function appendCheckpoint(plan:ReturnType<typeof fixedPlan>,db:Planner,claim:Cla
     'Immediately previous checkpoint affected exactly one physical row; CHECK failure rolls back the whole batch');
   plan.append(cleanupGuard(db,key),'guard-cleanup','Remove only this checkpoint guard token within the same batch');
 }
-function workPage(db:Planner,claim:Claim) {
+function workPage(db:Pick<Planner,'selectFrom'>,claim:Claim) {
   return db.selectFrom('_cms_media_usage_work').select('content_id').where('collection_id','=',claim.collectionId)
     .$if(claim.workCursor!==null,q=>q.where('content_id','>',claim.workCursor!))
     .orderBy('content_id','asc').limit(51);
@@ -86,7 +86,7 @@ export function compileDeletionWorkRead(view:Kysely<Database>,claim:Claim) {
 export function compileDeletionWorkPhase(view:Kysely<Database>,claim:Claim,rows:readonly {content_id:string}[]) {
   if(rows.length>51)throw new Error('Deletion work page exceeds Source limit 51');
   const db=compiler(view),plan=fixedPlan('work'),batch=rows.slice(0,50),key=token(claim,0);
-  plan.append(guard(db,key,sql<boolean>`COALESCE((SELECT json_group_array(content_id) FROM (${workPage(db,claim)}) AS page),'[]') = ${JSON.stringify(rows.map(r=>r.content_id))}`),
+  plan.append(guard(db,key,sql<boolean>`COALESCE((SELECT json_group_array(content_id) FROM (${workPage(expressionBuilder<Database>(),claim)}) AS page),'[]') = ${JSON.stringify(rows.map(r=>r.content_id))}`),
     'read-fence','Actual sorted Source work page still equals the separately read page before deletion');
   if(batch.length)plan.append(db.deleteFrom('_cms_media_usage_work').where('collection_id','=',claim.collectionId)
     .where('content_id','in',batch.map(r=>r.content_id)).where(liveLease(db,claim)).compile(),
@@ -95,17 +95,17 @@ export function compileDeletionWorkPhase(view:Kysely<Database>,claim:Claim,rows:
   plan.append(cleanupGuard(db,key),'guard-cleanup','Remove the work read fence within the same batch');
   return plan.finish();
 }
-function firstSource(db:Planner,claim:Claim) {
+function firstSource(db:Pick<Planner,'selectFrom'>,claim:Claim) {
   return db.selectFrom('_cms_media_usage_sources').select('source_key').where('source_type','=','content')
     .where('collection_id','=',claim.collectionId).orderBy('source_key','asc').limit(1);
 }
-function occurrencePage(db:Planner,claim:Claim,sourceKey:string) {
+function occurrencePage(db:Pick<Planner,'selectFrom'>,claim:Claim,sourceKey:string) {
   return db.selectFrom('_cms_media_usage').select('id').where('source_key','=',sourceKey)
     .$if(claim.occurrenceCursor!==null,q=>q.where('id','>',claim.occurrenceCursor!)).orderBy('id','asc').limit(51);
 }
 export function compileDeletionSourceReads(view:Kysely<Database>,claim:Claim,sourceKey?:string) {
   const db=compiler(view);
-  return {firstSource:!claim.sourceKey?firstSource(db,claim).compile():undefined,
+  return {firstSource:!claim.sourceKey&&sourceKey===undefined?firstSource(db,claim).compile():undefined,
     occurrences:sourceKey?occurrencePage(db,claim,sourceKey).compile():undefined};
 }
 export function compileDeletionSourcePhase(view:Kysely<Database>,claim:Claim,
@@ -115,7 +115,7 @@ export function compileDeletionSourcePhase(view:Kysely<Database>,claim:Claim,
   const keys:string[]=[];
   if(!claim.sourceKey){
     const key=token(claim,0);keys.push(key);
-    plan.append(guard(db,key,sql<boolean>`(SELECT source_key FROM (${firstSource(db,claim)}) AS source) IS ${sourceKey}`),
+    plan.append(guard(db,key,sql<boolean>`(SELECT source_key FROM (${firstSource(expressionBuilder<Database>(),claim)}) AS source) IS ${sourceKey}`),
       'read-fence','Actual first content source key or absence matches the separately read Source result');
     if(!sourceKey){
       appendCheckpoint(plan,db,claim,{phase:'status',source_key:null,occurrence_cursor:null},checkpointIndex);
@@ -125,7 +125,7 @@ export function compileDeletionSourcePhase(view:Kysely<Database>,claim:Claim,
   }
   if(!sourceKey)throw new Error('Source deletion phase requires its actual selected source key');
   const pageKey=token(claim,3);keys.push(pageKey);
-  plan.append(guard(db,pageKey,sql<boolean>`COALESCE((SELECT json_group_array(id) FROM (${occurrencePage(db,claim,sourceKey)}) AS page),'[]') = ${JSON.stringify(rows.map(r=>r.id))}`),
+  plan.append(guard(db,pageKey,sql<boolean>`COALESCE((SELECT json_group_array(id) FROM (${occurrencePage(expressionBuilder<Database>(),claim,sourceKey)}) AS page),'[]') = ${JSON.stringify(rows.map(r=>r.id))}`),
     'read-fence','Actual sorted Source occurrence page still equals its separately read page');
   const batch=rows.slice(0,50);
   if(batch.length)plan.append(db.deleteFrom('_cms_media_usage').where('source_key','=',sourceKey)

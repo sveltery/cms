@@ -38,7 +38,7 @@ it('compiles the complete finite deletion phase vectors for Root review without 
       {name:'sources-empty',plan:compileDeletionSourcePhase(view,{...claim,phase:'sources'},null,[])},
       {name:'sources-one',plan:compileDeletionSourcePhase(view,{...claim,phase:'sources'},'review-source',occurrences.slice(0,1))},
       {name:'sources-page',plan:compileDeletionSourcePhase(view,{...claim,phase:'sources'},'review-source',occurrences)},
-      {name:'sources-existing-cursor',plan:compileDeletionSourcePhase(view,{...claim,phase:'sources',sourceKey:'review-source',occurrenceCursor:'occurrence-00'},'review-source',occurrences)},
+      {name:'sources-existing-cursor',plan:compileDeletionSourcePhase(view,{...claim,phase:'sources',sourceKey:'review-source',occurrenceCursor:'occurrence-00'},'review-source',occurrences.slice(1))},
       {name:'status',plan:compileDeletionStatusPhase(view,{...claim,phase:'status'})},
       {name:'finalize',plan:compileDeletionFinalizePhase(view,{...claim,phase:'finalize'})},
     ];
@@ -47,9 +47,11 @@ it('compiles the complete finite deletion phase vectors for Root review without 
       expect(statement.parameters.length).toBeLessThanOrEqual(100);
       expect(plan.receipts.some(receipt=>receipt.queryId===statement.queryId.queryId)).toBe(true);
     }
-    writeFileSync('parity/emdash/media-usage-maintenance-source/deletion-compiled-plan-review.json',JSON.stringify({
+    writeFileSync('parity/emdash/media-usage-maintenance-source/deletion-compiled-plan-review-v2.json',JSON.stringify({
       pin:'913cb1bb9b7f08c3ff0d258b4420e53835b6a58e',state:'compiled-only; Root execution qualification pending',
       registeredOwner:true,compiler:'actual public Seed seedDomainPlanCompiler',plansExecuted:0,
+      pageVectors:'controlled compile-only fixtures; not observed database pages',
+      supersedes:'deletion-compiled-plan-review.json: existing-cursor snapshot incorrectly included its lower bound; original packet retained unchanged',
       originalCallbackIdentityCredit:0,nativeBehavioralCredit:0,
       observerQueryIds:queries,reads,variants,
     },(_key,value)=>typeof value==='bigint'?value.toString():value,2)+'\n');

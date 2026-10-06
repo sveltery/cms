@@ -5,6 +5,8 @@ import { sql, type Kysely, type RawBuilder, type Transaction, type Updateable } 
 
 import { isPostgres, tableExists } from "../../database/dialect-helpers.ts";
 import { withTransaction } from "../../database/transaction.ts";
+import { blockDatabaseHost } from "../../../../blocks/upstream/host.ts";
+import { NativeMediaUsageCollectionDeletionPhases } from "../../../collection-deletion-phases.ts";
 import type { Database, MediaUsageCollectionDeletionTable } from "../../database/types.ts";
 import {
 	collectionDeletionCurrentTimestamp,
@@ -140,6 +142,8 @@ async function processWorkBatch(
 	db: Kysely<Database>,
 	claim: MediaUsageCollectionDeletionRecord & { leaseToken: string },
 ): Promise<boolean> {
+	const owner = blockDatabaseHost(db);
+	if (owner && !owner.atomicQueryLoops) return new NativeMediaUsageCollectionDeletionPhases(owner).processWork(claim);
 	await withTransaction(db, async (trx) => {
 		const rows = await trx
 			.selectFrom("_cms_media_usage_work")
@@ -177,6 +181,8 @@ async function processSourceBatch(
 	db: Kysely<Database>,
 	claim: MediaUsageCollectionDeletionRecord & { leaseToken: string },
 ): Promise<boolean> {
+	const owner = blockDatabaseHost(db);
+	if (owner && !owner.atomicQueryLoops) return new NativeMediaUsageCollectionDeletionPhases(owner).processSources(claim);
 	await withTransaction(db, async (trx) => {
 		let sourceKey = claim.sourceKey;
 		if (!sourceKey) {
@@ -246,6 +252,8 @@ async function processStatus(
 	db: Kysely<Database>,
 	claim: MediaUsageCollectionDeletionRecord & { leaseToken: string },
 ): Promise<boolean> {
+	const owner = blockDatabaseHost(db);
+	if (owner && !owner.atomicQueryLoops) return new NativeMediaUsageCollectionDeletionPhases(owner).processStatus(claim);
 	await withTransaction(db, async (trx) => {
 		if (await exactCleanupRowsRemain(trx, claim, false)) {
 			throw new Error("Collection deletion cleanup is incomplete");

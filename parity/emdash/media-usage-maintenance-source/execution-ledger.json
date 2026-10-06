@@ -76,6 +76,78 @@
       "passedCallbacks": 0,
       "originalSkippedCallbacks": 0,
       "note": "same 3 assertions unchanged; supplemental actual persisted checkpoint/lease/work diagnostics"
+    },
+    {
+      "name": "front-adapter-whole-test-first",
+      "receipt": "/tmp/media-usage-maintenance-front-adapter-whole-baseline.log",
+      "bytes": 1252,
+      "sha256": "3071f1e805fee732a6e8a2cf889d88226978b9f8cd88fa215173873ee7c88fcc",
+      "exitCode": 1,
+      "families": 2,
+      "registeredCallbacks": 7,
+      "passedCallbacks": 7,
+      "originalSkippedCallbacks": 0,
+      "note": "Original Source DO mock family reference-only; original collection-recreate-D1 cloudflare:test import stop, zero Native credit"
+    },
+    {
+      "name": "native-d1-phase-first-implementation",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-phase-first-implementation.log",
+      "bytes": 228,
+      "sha256": "2ff7cd33019280df0e3a7b666ab298b94f9a7e665e3f5e7e7509bede2be99b17",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 3,
+      "passedCallbacks": 3,
+      "originalSkippedCallbacks": 0,
+      "note": "Original three actual Native progress reds now green; Source D1 callback identity credit remains zero"
+    },
+    {
+      "name": "native-d1-stored-rollback-observer-first",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-stored-rollback-observers-first.log",
+      "bytes": 1502,
+      "sha256": "334604a7f1380dd0e8aa1bd6dba1ef6354c17b0a015f69e4c35b9ccc2b13dc80",
+      "exitCode": 1,
+      "families": 1,
+      "registeredCallbacks": 6,
+      "passedCallbacks": 5,
+      "originalSkippedCallbacks": 0,
+      "note": "Two real checkpoint rollback controls green; one new reached Native observer-ID red from independently observed nested fence builder"
+    },
+    {
+      "name": "native-d1-stored-rollback-observer-exact",
+      "receipt": "/tmp/media-usage-maintenance-native-deletion-d1-stored-rollback-observers-exact.log",
+      "bytes": 228,
+      "sha256": "e57f5dab550053b958fc65c6318ae7836fa73c668b36deed7ac2a5170bf5f939",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 6,
+      "passedCallbacks": 6,
+      "originalSkippedCallbacks": 0,
+      "note": "Same observer assertion green after normal Kysely expression-builder nesting; no assertions/receipts/logs filtered"
+    },
+    {
+      "name": "native-node-after-fixed-phases",
+      "receipt": "/tmp/media-usage-maintenance-native-node-after-fixed-phases.log",
+      "bytes": 228,
+      "sha256": "0bf7238b4f2c4d7acd42b765a3f20f1949009a1070488445770a22f4480cb8df",
+      "exitCode": 0,
+      "families": 3,
+      "registeredCallbacks": 8,
+      "passedCallbacks": 8,
+      "originalSkippedCallbacks": 0,
+      "note": "Real canonical Node callback controls retained unchanged after finite D1 branch"
+    },
+    {
+      "name": "compile-review-v2",
+      "receipt": "/tmp/media-usage-maintenance-deletion-plan-compile-review-v2.log",
+      "bytes": 227,
+      "sha256": "364d48c5376a3834f8bc71fb49d2f6abac312d76f0c328c4368670fb1d7fc44d",
+      "exitCode": 0,
+      "families": 1,
+      "registeredCallbacks": 1,
+      "passedCallbacks": 1,
+      "originalSkippedCallbacks": 0,
+      "note": "Compile-only review harness, zero product behavioral credit; consistent existing-cursor fixture, original packet retained exact"
     }
   ],
   "d1PersistedState": [
@@ -115,5 +187,17 @@
       "lastErrorCode": "MEDIA_USAGE_COLLECTION_DELETION_FAILED",
       "remainingWorkRows": 0
     }
+  ],
+  "nativeObserverBaselineReds": 1,
+  "qualifiedNativeD1Phases": [
+    "work",
+    "sources",
+    "status"
+  ],
+  "remainingUnqualifiedNativePhases": [
+    "fence",
+    "registry",
+    "table",
+    "finalize"
   ]
 }

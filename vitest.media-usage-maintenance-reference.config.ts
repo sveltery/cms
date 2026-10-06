@@ -8,6 +8,7 @@ import { sqlite } from './parity/emdash/taxonomies/source/packages/core/src/db/a
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const tests = resolve(root, 'parity/emdash/media-usage-maintenance-source/upstream/packages/core');
+const upstream = resolve(root, 'parity/emdash/media-usage-maintenance-source/upstream');
 const source = resolve(root, 'parity/emdash/media-usage-maintenance-source/reference');
 const descriptor = sqlite({ url: ':memory:' });
 const virtualModules = new Map([
@@ -37,6 +38,11 @@ export default defineConfig({
         const logical = relative(tests, resolve(dirname(importer), id)).replaceAll('\\', '/');
         if (logical === 'tests/utils/test-db.js') return resolve(source, 'packages/core/tests/utils/test-db.ts');
         if (logical.startsWith('src/')) return resolve(source, 'packages/core', logical.replace(/\.js$/, '.ts'));
+      }
+      if (importer?.startsWith(upstream) && id.startsWith('.')) {
+        const logical = relative(upstream,resolve(dirname(importer),id)).replaceAll('\\','/');
+        const target = resolve(source,logical.replace(/\.js$/,'.ts'));
+        if (existsSync(target)) return target;
       }
       if (importer?.startsWith(source) && id.startsWith('.')) {
         const target = resolve(dirname(importer), id.replace(/\.js$/, '.ts'));

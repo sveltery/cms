@@ -4,6 +4,12 @@
   "nativeParityCredit": 0,
   "records": [
     {
+      "sourcePath": "packages/cloudflare/tests/db/do-sql-collection-deletion.test.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/cloudflare/tests/db/do-sql-collection-deletion.test.ts",
+      "bytes": 7369,
+      "sha256": "71693f2e545331281ca4a4826c81a468e3c106d82a03f2675b940d2d4bb14fb6"
+    },
+    {
       "sourcePath": "packages/core/tests/integration/database/media-usage-collection-deletion-foundation.test.ts",
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/tests/integration/database/media-usage-collection-deletion-foundation.test.ts",
       "bytes": 5453,
@@ -152,6 +158,12 @@
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/tests/unit/astro/media-usage-write-fence.test.ts",
       "bytes": 3119,
       "sha256": "36e21311f7e042c341e8966c5f4daa1eb7259dae6def745452996b06a3683b21"
+    },
+    {
+      "sourcePath": "packages/core/tests/workerd/collection-recreate-d1.test.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/tests/workerd/collection-recreate-d1.test.ts",
+      "bytes": 1745,
+      "sha256": "bc5584631868031facd3b7e5c42e1edf449806246754deb73180d43e5f04b104"
     },
     {
       "sourcePath": "packages/core/tests/workerd/media-usage-activation-d1.test.ts",
@@ -724,6 +736,12 @@
       "sha256": "93fede33fd1223b501f7745f4ecc64034fd570951993f0c9b95d8ef44b8a0498"
     },
     {
+      "sourcePath": "packages/cloudflare/src/db/do-sql-class.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/cloudflare/src/db/do-sql-class.ts",
+      "bytes": 12446,
+      "sha256": "d97283e5e479fe26e99f92af55e4d9f4a502c55c2f21a970d3660866cac862db"
+    },
+    {
       "sourcePath": "packages/core/src/database/dialect-helpers.ts",
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/src/database/dialect-helpers.ts",
       "bytes": 18242,
@@ -1052,6 +1070,12 @@
       "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/core/src/database/pg-migration-lock.ts",
       "bytes": 3115,
       "sha256": "db06bd5eca4feae571184c50951c0369f6ea8a2f63abf52cc526f097602ae646"
+    },
+    {
+      "sourcePath": "packages/cloudflare/src/db/do-sql-types.ts",
+      "copiedPath": "parity/emdash/media-usage-maintenance-source/reference/packages/cloudflare/src/db/do-sql-types.ts",
+      "bytes": 4545,
+      "sha256": "5faafe04f2b248f5d44a8e0a4d0d0bf90001565a1c27251678b30413a0aadc29"
     },
     {
       "sourcePath": "packages/core/src/db/adapters.ts",
@@ -3760,10 +3784,12 @@
     "astro:middleware <- packages/core/src/astro/middleware/auth.ts",
     "astro:middleware <- packages/core/src/astro/middleware/media-usage-write-fence.ts",
     "blurhash <- packages/core/src/media/placeholder.ts",
+    "cloudflare:test <- packages/core/tests/workerd/collection-recreate-d1.test.ts",
     "cloudflare:test <- packages/core/tests/workerd/media-usage-activation-d1.test.ts",
     "cloudflare:test <- packages/core/tests/workerd/media-usage-collection-deletion-d1.test.ts",
     "cloudflare:test <- packages/core/tests/workerd/media-usage-maintenance-engine-d1.test.ts",
     "cloudflare:workers <- packages/cloudflare/src/db/d1.ts",
+    "cloudflare:workers <- packages/cloudflare/src/db/do-sql-class.ts",
     "clsx <- packages/blocks/src/utils.ts",
     "croner <- packages/core/src/plugins/cron.ts",
     "echarts/charts <- packages/blocks/src/blocks/chart.tsx",
@@ -3772,6 +3798,7 @@
     "echarts/renderers <- packages/blocks/src/blocks/chart.tsx",
     "emdash <- packages/cloudflare/src/db/d1-dialect.ts",
     "emdash <- packages/cloudflare/src/db/d1.ts",
+    "emdash <- packages/cloudflare/src/db/do-sql-class.ts",
     "emdash/database/instrumentation <- packages/cloudflare/src/db/d1.ts",
     "emdash/internal/database/migration-lock <- packages/cloudflare/src/db/d1-dialect.ts",
     "image-size <- packages/core/src/media/placeholder.ts",
@@ -4063,6 +4090,7 @@
     "kysely <- packages/core/tests/utils/mcp-runtime.ts",
     "kysely <- packages/core/tests/utils/media-usage-admission-fixture.ts",
     "kysely <- packages/core/tests/utils/test-db.ts",
+    "kysely <- packages/core/tests/workerd/collection-recreate-d1.test.ts",
     "kysely <- packages/core/tests/workerd/media-usage-activation-d1.test.ts",
     "kysely <- packages/core/tests/workerd/media-usage-collection-deletion-d1.test.ts",
     "kysely <- packages/core/tests/workerd/media-usage-maintenance-engine-d1.test.ts",
@@ -4172,6 +4200,7 @@
     "virtual:emdash/object-cache <- packages/core/src/object-cache/index.ts",
     "virtual:emdash/seed <- packages/core/src/seed/load.ts",
     "virtual:emdash/wait-until <- packages/core/src/after.ts",
+    "vitest <- packages/cloudflare/tests/db/do-sql-collection-deletion.test.ts",
     "vitest <- packages/core/tests/integration/database/media-usage-collection-deletion-foundation.test.ts",
     "vitest <- packages/core/tests/integration/database/media-usage-collection-deletion-lifecycle.test.ts",
     "vitest <- packages/core/tests/integration/database/media-usage-collection-deletion-migration.test.ts",
@@ -4198,6 +4227,7 @@
     "vitest <- packages/core/tests/unit/astro/media-usage-repair-auth.test.ts",
     "vitest <- packages/core/tests/unit/astro/media-usage-write-fence.test.ts",
     "vitest <- packages/core/tests/utils/test-db.ts",
+    "vitest <- packages/core/tests/workerd/collection-recreate-d1.test.ts",
     "vitest <- packages/core/tests/workerd/media-usage-activation-d1.test.ts",
     "vitest <- packages/core/tests/workerd/media-usage-collection-deletion-d1.test.ts",
     "vitest <- packages/core/tests/workerd/media-usage-maintenance-engine-d1.test.ts",

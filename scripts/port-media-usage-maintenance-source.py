@@ -23,10 +23,13 @@ owned_names = {
     'media-usage-collection-deletion-route', 'media-usage-repair-route',
     'media-usage-repair-auth', 'media-usage-write-fence',
     'media-usage-activation-route', 'media-usage-read-route', 'media-usage-activation-d1',
+    'collection-recreate-d1', 'do-sql-collection-deletion',
 }
 records = []
 for path in paths:
-    is_test = path.startswith('packages/core/tests/') and 'media-usage' in path
+    is_test = (path.startswith('packages/core/tests/') and 'media-usage' in path) or path in {
+        'packages/core/tests/workerd/collection-recreate-d1.test.ts',
+        'packages/cloudflare/tests/db/do-sql-collection-deletion.test.ts'}
     is_authority = path.startswith('packages/core/src/') and (
         '/media/usage/' in path or 'media-usage' in path)
     is_helper = path in {'packages/core/tests/utils/test-db.ts',
@@ -34,7 +37,10 @@ for path in paths:
         'packages/core/src/emdash-runtime.ts', 'packages/core/src/scheduler-health.ts',
         'packages/core/src/schema/registry.ts', 'packages/core/src/database/transaction.ts',
         'packages/core/src/astro/integration/routes.ts', 'packages/core/src/database/types.ts',
-        'packages/core/src/plugins/scheduler/types.ts', 'LICENSE'}
+        'packages/core/src/plugins/scheduler/types.ts',
+        'packages/cloudflare/src/db/d1.ts', 'packages/cloudflare/src/db/do-sql.ts',
+        'packages/cloudflare/src/db/do-sql-class.ts', 'packages/cloudflare/src/db/do-sql-types.ts',
+        'LICENSE'}
     if not (is_test or is_authority or is_helper):
         continue
     data = subprocess.check_output(['git', '-C', str(source), 'show', pin + ':' + path])
