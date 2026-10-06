@@ -1,0 +1,111 @@
+{
+  "base": "135e7be689885fd23678569d0d373a1131f5302b",
+  "sharedFour": [
+    {
+      "path": "src/lib/server/database/migrations.ts",
+      "beforeBytes": 20024,
+      "beforeSHA256": "d1975e50e03efe460731f13ed13fdd6f8d51e15b16344d9747ae3c029fcaaf9f",
+      "afterBytes": 20471,
+      "afterSHA256": "9aa2e73c683e3e9edf0bd106df282b0a02ef8429837ba63ab52b435c344bfc06",
+      "afterGitBlob": "995aba901b290d6b6857c087070011616bbe624b",
+      "currentMainBaselineExact": true,
+      "unapplied": true
+    },
+    {
+      "path": "src/lib/server/database/content-recognition.ts",
+      "beforeBytes": 0,
+      "beforeSHA256": null,
+      "afterBytes": 14760,
+      "afterSHA256": "1fccd6db9e791617c02f38c7e379bc95ded5612bf218689d95fa990253190775",
+      "afterGitBlob": "089662f563ce38623fef21aa50b2f5b7fc12347d",
+      "currentMainBaselineExact": true,
+      "unapplied": true
+    },
+    {
+      "path": "vite.config.ts",
+      "beforeBytes": 1268,
+      "beforeSHA256": "0bbe46645bf27d1200d013d1eaa844b1db26140ac7e12bf4d3990490ed60a184",
+      "afterBytes": 1358,
+      "afterSHA256": "f7e0405480f295977d74b51c22bdb85a5aeed110ff61cc90261ab0332e79083d",
+      "afterGitBlob": "9bccdc0203bed95dc99ae85d596f2825d6feb89b",
+      "currentMainBaselineExact": true,
+      "unapplied": true
+    },
+    {
+      "path": "src/routes/api/setup/status/+server.ts",
+      "beforeBytes": 347,
+      "beforeSHA256": "5f8a17d6fe824deb08905859f3ead9fb3532eaa9086123881d2e5eb0bcf5bf28",
+      "afterBytes": 510,
+      "afterSHA256": "c0417bbeb5212f07f2bb5e6855e37d974016d90ae979670c0d10e33d5251f465",
+      "afterGitBlob": "7df0c287448dba866c9de571a73ed5213b098721",
+      "currentMainBaselineExact": true,
+      "unapplied": true
+    }
+  ],
+  "recognition17DeclarationsByteExact": true,
+  "contentSnapshotOnly32RefusalRemoved": true,
+  "guardIdentifierOnlyRename": true,
+  "frozen7WholeFilesAnd2DeclarationsExact": true,
+  "SourceWholeLoadDefaultGeneratorSeedInfoExact": true,
+  "RootFullCodeAndFourDiffRead": true,
+  "independentRuntimeFindings": 0,
+  "wordingP3Corrected": true,
+  "localEvidence": "two real persistent Node/D1 value reds then2green; unchanged whole24 Native green; real-file ViteSSR4green; checker0/0; no compiled/fullSource runtime/hosted credit",
+  "commentCorrectionFiles": [
+    {
+      "path": "src/lib/server/database/registry.ts",
+      "beforeBytes": 30782,
+      "beforeSHA256": "1f7873c57c0546fa39801ad3579c3385eaa46436abe99d83354cddcd266bf5f9",
+      "afterBytes": 30782,
+      "afterSHA256": "f2baa0b448590ffc5b51ec260a278b0968b3e3874240c796ab8d101c68f88594",
+      "change": {
+        "before": "Every metadata row has 19 bindings. Five rows use95",
+        "after": "Every metadata row has 17 bindings. Five rows use85"
+      }
+    },
+    {
+      "path": "docs/source-seed-backend.md",
+      "beforeBytes": 5933,
+      "beforeSHA256": "612edc50e9e9f868f305836e7c00d08396ecb12d8431728c487d6792a00c394a",
+      "afterBytes": 5933,
+      "afterSHA256": "d5bcc00d955efc24b14c689f8bf981947d54eea4d657f0261081b459313b357f",
+      "change": {
+        "before": "five-row/95-binding metadata chunks",
+        "after": "five-row/85-binding metadata chunks"
+      }
+    },
+    {
+      "path": "docs/source-seed-backend-compatibility-candidate.md",
+      "beforeBytes": 3974,
+      "beforeSHA256": "53f2bbf0ae92b7bc56423f71bc3265f8d6a31fdff2afae43dd0c684b4c3a95f6",
+      "afterBytes": 3974,
+      "afterSHA256": "7f64fc432e2ba16719bb45538a008c9ac0b8c279a3b24257951ee85046eb4573",
+      "change": {
+        "before": "Metadata chunks5×19=95 bindings.",
+        "after": "Metadata chunks5×17=85 bindings."
+      }
+    },
+    {
+      "path": "parity/emdash/compatibility.md",
+      "beforeBytes": 341634,
+      "beforeSHA256": "c499cdf79f6df9dc1f8112ff0fb42a03a5b26a079b2c9c567df370c25d7f4e49",
+      "afterBytes": 341634,
+      "afterSHA256": "bf69e6fbed989e5c2bcace15c6828f0578ca507b0d6a55e1c7d86a5aec7f2e1f",
+      "change": {
+        "before": "Five field rows×19 columns use95 bindings per metadata statement.",
+        "after": "Five field rows×17 columns use85 bindings per metadata statement."
+      }
+    },
+    {
+      "path": "docs/source-seed-bulk-binding-measurement.json",
+      "beforeBytes": 0,
+      "beforeSHA256": null,
+      "afterBytes": 457,
+      "afterSHA256": "9575c972fe67d86d346ac93d80c33f6e62479c1d72145c33bfc582f214c1f80f",
+      "change": "New factual observation, not source credit or rewritten Root receipt."
+    }
+  ],
+  "commentCorrection": "Every full before/after differs only specified19/95 ->17/85 text; executable/tests/originalRootReceipt remain unchanged; actual metadata17 columns,85x14+68 for74fields",
+  "developmentApproval": "Apply ONLY four exact shared startup/Vite/status candidates plus five exact comment/pairedmeasured-doc files in ordinary regular commits. Complete seed/provider/setup/compiled/currentMainunion/normal13+secured9 acceptance unfinished. Frozen1–8 providers remain exact; currentSource63 datetime and whole35 tests not claimed as complete apply.",
+  "rootCheckerCorrections": "Initial read-only checker used CMS_MIGRATIONS variable fragment rather than full top-level exportconst statement, then captured seedInfo property instead of declaration. Corrected full declaration checks pass exact852bytes/hash and nested source declarations. No product execution/causal credit."
+}

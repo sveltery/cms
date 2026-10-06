@@ -1,0 +1,20 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "packages/core/src/cleanup.ts",
+  "runtime": "src/lib/server/general-media/upstream/cleanup-media-uploads.ts",
+  "scope": "Exactly Source subsystems3/4 complete try blocks. No full runSystemCleanup or other subsystem producer/source callback credit.",
+  "blocks": [
+    {
+      "sourceFunction": "runSystemCleanup",
+      "runtimeFunction": "runMediaUploadCleanup",
+      "discriminator": "result.pendingUploads =",
+      "sha256": "3dd5ab17c2010f57b04a4094920ab15862a2545470d7445fadf694d16f097e20"
+    },
+    {
+      "sourceFunction": "runSystemCleanup",
+      "runtimeFunction": "runMediaUploadCleanup",
+      "discriminator": "result.uploadAttempts =",
+      "sha256": "f22b366e95da6baddb4b2e8ecb4a09c00670a93bc938d38aed113289300134ba"
+    }
+  ]
+}

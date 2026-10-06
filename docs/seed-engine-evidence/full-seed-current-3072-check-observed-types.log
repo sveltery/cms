@@ -1,0 +1,57 @@
+Loading svelte-check in workspace: /workspace/cms-full-seed-engine
+Getting Svelte diagnostics...
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/d1-media-usage.ts:43:14
+Error: Property 'captureState' does not exist on type 'MediaUsageIndexStatus'. 
+  const status=source.collectionSlug?await this.findIndexStatus({adapterId:'content-media',scopeType:'collection',scopeKey:source.collectionSlug}):null;
+  if(status?.captureState!=='active')return this.replacePreActivationSource(source,occurrences,expectedSource);
+  const changed=expectedSource===null
+
+/workspace/cms-full-seed-engine/src/lib/server/seed/d1-content.ts:10:39
+Error: Cannot find module './upstream/database/repositories/types.ts' or its corresponding type declarations. 
+import type {DatetimeContextCache} from './upstream/database/content-datetime.ts';
+import type {CreateContentInput} from './upstream/database/repositories/types.ts';
+export class ContentRepository extends SourceContent {
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/native-d1-budget.test.ts:148:46
+Error: Argument of type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database>' is not assignable to parameter of type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database>'.
+  The types of 'fn.agg(...).over' are incompatible between these types.
+    Type '(over?: import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engin...' is not assignable to type '(over?: import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src...'.
+      Types of parameters 'over' and 'over' are incompatible.
+        Types of parameters 'builder' and 'builder' are incompatible.
+          Type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream...' is not assignable to type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/...'.
+            Types of property 'partitionBy' are incompatible.
+              Type '{ (partitionBy: readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-...' is not assignable to type '{ (partitionBy: readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engin...'.
+                Types of parameters 'partitionBy' and 'partitionBy' are incompatible.
+                  Type 'readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server...' is not assignable to type 'readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/s...'.
+                    Type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/canonica...' is not assignable to type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/see...'.
+                      Type '"_emdash_collections.version"' is not assignable to type 'PartitionByExpression<Database, keyof Database>'. Did you mean '"_emdash_collections.icon"'? 
+		expect(bylineRows.count).toBe(200);
+		const child = await new TaxonomyRepository(db).findBySlug("category", "category-199");
+		const parent = await new TaxonomyRepository(db).findBySlug("category", "category-9");
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/native-d1-budget.test.ts:149:47
+Error: Argument of type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database>' is not assignable to parameter of type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database>'.
+  The types of 'fn.agg(...).over' are incompatible between these types.
+    Type '(over?: import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engin...' is not assignable to type '(over?: import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src...'.
+      Types of parameters 'over' and 'over' are incompatible.
+        Types of parameters 'builder' and 'builder' are incompatible.
+          Type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream...' is not assignable to type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/...'.
+            Types of property 'partitionBy' are incompatible.
+              Type '{ (partitionBy: readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-...' is not assignable to type '{ (partitionBy: readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engin...'.
+                Types of parameters 'partitionBy' and 'partitionBy' are incompatible.
+                  Type 'readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server...' is not assignable to type 'readonly import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/s...'.
+                    Type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/canonica...' is not assignable to type 'import("/workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/database/types").Database, keyof import("/workspace/cms-full-seed-engine/src/lib/server/see...'.
+                      Type '"_emdash_collections.version"' is not assignable to type 'PartitionByExpression<Database, keyof Database>'. Did you mean '"_emdash_collections.icon"'? 
+		const child = await new TaxonomyRepository(db).findBySlug("category", "category-199");
+		const parent = await new TaxonomyRepository(db).findBySlug("category", "category-9");
+		expect(child?.parentId).toBe(parent?.translationGroup);
+
+/workspace/cms-full-seed-engine/tests/source-seed-backend/usage-d1-native.test.ts:24:81
+Error: Type '"media"' is not assignable to type 'MediaUsageReferenceType'. 
+  const source:MediaUsageSourceInput={sourceKey:'content:usage_posts:usage-entry:columns',sourceType:'content',collectionId:collection.id,collectionSlug:collection.slug,contentId:'usage-entry',sourceVariant:'columns',sourceVersion:1,sourceUpdatedAt:stamp,sourceFingerprint:'media-usage-projection:v1:sha256:'+ 'a'.repeat(64),sourceCompleteness:'complete'};
+  const occurrence:MediaUsageOccurrenceInput={fieldSlug:'hero',fieldPath:'hero',referenceType:'media',mediaId:'actual-media',provider:'local',providerAssetId:'actual-media'};
+  return{storage,db,source,occurrence,repo:new MediaUsageRepository(db)};
+
+====================================
+svelte-check found 5 errors and 0 warnings in 4 files

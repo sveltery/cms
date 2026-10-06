@@ -1,0 +1,23 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "authorBefore": "8a065a282582680f57e71ab3f8943f5951e986bf",
+  "cases": 8,
+  "node": 4,
+  "rawD1": 4,
+  "failedAtAssertions": 8,
+  "preAssertionFailures": 0,
+  "sourceCaseCredit": 0,
+  "baseline": "Existing published canonicalSourceDatabase, through a transparent test-only reexport; actual native migrations and storage.",
+  "failures": [
+    "Actual option read completes, but Source table-name observers on both plugin-derived views see zero logical options reads instead of one.",
+    "Actual physical catalog contains collections and fields, but bound Source tableExists name returns false.",
+    "Typed options alias references are rewritten to the physical table name; exact compiled SQL assertion fails.",
+    "Raw options aliases/result-column names/comment bytes are rewritten; exact compiled SQL assertion fails."
+  ],
+  "evidence": {
+    "path": "/tmp/source-seed-namespace-native-baseline-red.log",
+    "bytes": 5000,
+    "sha256": "2fe7b1cd27abe18cbb67497bf88b68f70bcfe28fa0545a9521b1ce9246d6c994"
+  },
+  "decision": "Runtime namespace candidate not applied; shared canonicalSourceDatabase and its D1 write guard remain unchanged. Whole Source85/capture/plugin ownership/atomic integration remain incomplete."
+}

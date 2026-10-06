@@ -1,0 +1,12 @@
+Loading svelte-check in workspace: /workspace/cms-full-seed-engine
+Getting Svelte diagnostics...
+
+/workspace/cms-full-seed-engine/src/lib/server/database/registry.ts:446:24
+Error: Argument of type 'readonly CompiledQuery<unknown>[]' is not assignable to parameter of type 'CompiledQuery<unknown>[]'.
+  The type 'readonly CompiledQuery<unknown>[]' is 'readonly' and cannot be assigned to the mutable type 'CompiledQuery<unknown>[]'. 
+    if (!this.database.atomicQueryLoops) {
+      await this.batch(await buildSeedCapturedCreationPlan(this.database,input,statements,collectionOffset,tableOffset),'LIMIT_EXCEEDED');
+      return;
+
+====================================
+svelte-check found 1 error and 0 warnings in 1 file
