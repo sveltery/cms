@@ -6,5 +6,6 @@ export default defineConfig({plugins:[{name:'whole-media-admin-source-imports',e
  const path=resolve(dirname(importer),id).replace(/\.(tsx?|js)$/,'');
  if(path===resolve(source,'src/lib/api/media'))return resolve(root,'src/lib/media/source/api/media.ts');
  if(path===resolve(source,'src/lib/api/client'))return resolve(root,'src/lib/media/source/api/client.ts');
+ if(path===resolve(source,'src/lib/api/media-usage-activation'))return resolve(root,'src/lib/media/source/api/media-usage-activation.ts');
  if(path===resolve(source,'src/lib/media-utils'))return resolve(root,'src/lib/media/source/media-utils.ts');
-}}],test:{fileParallelism:false,include:['parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-{search,pagination,playback,file-url}.test.ts']}});
+}}],test:{fileParallelism:false,include:['parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-{search,pagination,playback,file-url,usage-activation-api}.test.ts']}});
