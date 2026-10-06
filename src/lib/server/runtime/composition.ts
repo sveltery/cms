@@ -120,6 +120,9 @@ export function createCmsRuntime(
     const storage = await storageFor(config);
     const database = await databaseFor(config);
     assertOpen();
+    const { initializeConfiguredDefaultSeed } = await import('./default-seed.ts');
+    await initializeConfiguredDefaultSeed(database, config);
+    assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     configurations.set(event, config);
     return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive, storage };

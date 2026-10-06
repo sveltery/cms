@@ -1,0 +1,27 @@
+[emdash] No user seed found at .emdash/seed.json, package.json#emdash.seed, or seed/seed.json. Falling back to the built-in default seed; the setup wizard will not offer demo content for this site.
+Auto-seeded default collections
+[object-cache] backend unavailable: Error: transport was disconnected, cannot call "fetchModule"
+    at reviveInvokeError (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:555:14)
+    at Object.invoke (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:629:11)
+    at async SSRCompatModuleRunner.getModuleInformation (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)
+    at async request (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)
+    at async eval (/workspace/cms-default-seed-setup-runtime/src/lib/server/menus/object-cache.ts:193:16) {
+  runnerError: Error: RunnerError
+      at reviveInvokeError (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:556:64)
+      at Object.invoke (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:629:11)
+      at async SSRCompatModuleRunner.getModuleInformation (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1226:7)
+      at async request (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1243:83)
+      at async eval (/workspace/cms-default-seed-setup-runtime/src/lib/server/menus/object-cache.ts:193:16)
+}
+✔ actual configured runtime initializes the default posts/pages schema before its caller resolves (2575.088471ms)
+[emdash] No user seed found at .emdash/seed.json, package.json#emdash.seed, or seed/seed.json. Falling back to the built-in default seed; the setup wizard will not offer demo content for this site.
+Auto-seeded default collections
+✔ actual configured runtime activates capture before publishing seeded schema as ready (2163.383901ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4979.823191
