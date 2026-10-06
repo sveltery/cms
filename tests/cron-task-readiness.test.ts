@@ -63,23 +63,23 @@ for (const mode of ['Node', 'D1'] as const) {
     const fixture = await schemaAdminStorage(mode); t.after(fixture.close);
     await migrateCms(fixture.database);
     for (const marker of ['future', 'gap'] as const) {
-      if (marker === 'future') await sql`INSERT INTO _cms_migrations(version) VALUES(19)`.execute(fixture.database.db);
-      else { await sql`DELETE FROM _cms_migrations WHERE version=19 OR version=17`.execute(fixture.database.db); }
+      if (marker === 'future') await sql`INSERT INTO _cms_migrations(version) VALUES(20)`.execute(fixture.database.db);
+      else { await sql`DELETE FROM _cms_migrations WHERE version=20 OR version=17`.execute(fixture.database.db); }
       const before = await databaseSnapshot(fixture.database);
       await assert.rejects(requireCronTaskStorage(fixture.database), { code: 'MIGRATION_REQUIRED' });
       assert.deepEqual(await databaseSnapshot(fixture.database), before);
     }
   });
-  test(mode + ': creation supports actual18 while future/gapped canonical admission remains refused', async t => {
+  test(mode + ': creation supports actual19 while future/gapped canonical admission remains refused', async t => {
     const fixture = await schemaAdminStorage(mode); t.after(fixture.close);
     await migrateCms(fixture.database);
     const registry = new SchemaRegistry(fixture.database);
     await assert.doesNotReject(registry.createCollection({ slug: 'cron_owner', label: 'Cron Owner' }));
-    await sql`INSERT INTO _cms_migrations(version) VALUES(19)`.execute(fixture.database.db);
+    await sql`INSERT INTO _cms_migrations(version) VALUES(20)`.execute(fixture.database.db);
     let before = await databaseSnapshot(fixture.database);
     await assert.rejects(registry.createCollection({ slug: 'future', label: 'Future' }), { code: 'MIGRATION_REQUIRED' });
     assert.deepEqual(await databaseSnapshot(fixture.database), before);
-    await sql`DELETE FROM _cms_migrations WHERE version=19 OR version=17`.execute(fixture.database.db);
+    await sql`DELETE FROM _cms_migrations WHERE version=20 OR version=17`.execute(fixture.database.db);
     before = await databaseSnapshot(fixture.database);
     await assert.rejects(registry.createCollection({ slug: 'gap', label: 'Gap' }), { code: 'MIGRATION_REQUIRED' });
     assert.deepEqual(await databaseSnapshot(fixture.database), before);

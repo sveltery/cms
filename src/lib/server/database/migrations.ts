@@ -11,6 +11,7 @@ import { blockStorageMigration } from '../blocks/storage-provider.ts';
 import { collectionStandardIndexesMigration } from './collection-index-migration.ts';
 import { seoStorageMigration } from '../seo/storage-provider.ts';
 import { cronTaskStorageMigration } from '../cron/storage-provider.ts';
+import { entryLockStorageMigration } from '../entry-locks/storage-provider.ts';
 import { collectionIndexPrerequisiteChanged } from './collection-indexes.ts';
 import { metadataFidelityMigration } from './metadata-fidelity-migrations.ts';
 import { mediaAttributionMigration, directedRelationsMigration, menusMigration,
@@ -55,7 +56,7 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
   lifecycleMigration, optionsMigration, taxonomyMigration, metadataFidelityMigration,
   mediaAttributionMigration, directedRelationsMigration, menusMigration,
   sectionsWidgetsStorageMigration, commentsMigration, redirectsMigration, blockStorageMigration, collectionStandardIndexesMigration,
-  seoStorageMigration, cronTaskStorageMigration
+  seoStorageMigration, cronTaskStorageMigration, entryLockStorageMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>

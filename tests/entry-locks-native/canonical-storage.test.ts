@@ -26,7 +26,7 @@ for (const mode of ['Node', 'D1'] as const) {
     const fixture = await schemaAdminStorage(mode); t.after(fixture.close);
     await migrateCms(fixture.database);
     await sql`INSERT INTO _cms_auth_users(id,role,disabled) VALUES('ada',40,0),('linus',40,0)`.execute(fixture.database.db);
-    await sql`INSERT INTO _cms_auth_profiles(user_id,email,name) VALUES('ada','ada@example.invalid','Ada')`.execute(fixture.database.db);
+    await sql`INSERT INTO _cms_auth_profiles(user_id,email,name,created_at,updated_at) VALUES('ada','ada@example.invalid','Ada',strftime('%Y-%m-%dT%H:%M:%fZ','now'),strftime('%Y-%m-%dT%H:%M:%fZ','now'))`.execute(fixture.database.db);
     const repo = new EntryLockRepository(fixture.database);
     const first = await repo.acquire({collection:'posts',entryId:'entry',userId:'ada',token:'first',leaseSeconds:420});
     assert.equal(first.outcome,'acquired'); assert.equal(first.lock.userName,'Ada');

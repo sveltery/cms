@@ -9,9 +9,10 @@
   import { EditorResponseError, editorError } from './errors';
   import { slugify } from '../sections-widgets/slugify';
   import WritableDraft from './WritableDraft.svelte';
-  let { collection, definition, entry, canWrite, canTrash = false, isNew = false }: {
+  let { collection, definition, entry, canWrite, canTrash = false, isNew = false, onWriteError }: {
     collection: string; definition: EditorCollection; entry: EditorRecord;
     canWrite: boolean; canTrash?: boolean; isNew?: boolean;
+    onWriteError?: (cause: unknown, writtenEntryId: string) => boolean;
   } = $props();
   const session = untrack(() => new EditorSession(entry, canWrite, definition.fields, isNew));
   let values = $state<Record<string, unknown>>(untrack(() => session.data));
@@ -92,8 +93,11 @@
     await saved(() => form.submit(), form, autosave);
   }
   async function saved(submit: () => Promise<boolean>, form: SaveForm, autosave: boolean) {
+    const writtenEntryId = session.entry.id;
     const success = await session.save(async (_payload: SavePayload): Promise<EditorReceipt> => {
-      const accepted = await submit();
+      let accepted: boolean;
+      try { accepted = await submit(); }
+      catch (cause) { onWriteError?.(cause, writtenEntryId); throw cause; }
       if (!accepted || !form.result) throw new EditorResponseError(400, 'NATIVE_FORM_VALIDATION',
         form.fields.allIssues()?.map(issue => issue.message).join(' ') || 'Please check the entered values.');
       return form.result;
@@ -136,11 +140,12 @@
   <p><a href={`${resolve('/content/[collection]/[id]/workflow', { collection, id: entry.id })}?locale=${encodeURIComponent(entry.locale)}`}>Publishing and history</a></p>
   <form {...trashForm.enhance(async ({ submit }) => {
     if (!canTrash || trashPending || pending) return;
+    const writtenEntryId = entry.id;
     trashPending = true; trashError = undefined;
     try {
       if (await submit()) { dirty = false; await goto(resolve('/trash/[collection]', { collection })); }
       else trashError = trashForm.fields.allIssues()?.map(issue => issue.message).join(' ') || 'Please check this entry.';
-    } catch (cause) { trashError = editorError(cause).message; }
+    } catch (cause) { onWriteError?.(cause, writtenEntryId); trashError = editorError(cause).message; }
     finally { trashPending = false; }
   })} action={localeAction(trashForm.action)} aria-label="Move draft to trash">
     <input type="hidden" name="collection" value={collection} /><input type="hidden" name="id" value={entry.id} />

@@ -48,13 +48,13 @@ const featureTables = {
 } as const;
 
 for (const runtime of ['Node', 'raw D1', 'scoped D1'] as const) {
-  test(`${runtime}: ordinary canonical startup installs actual contiguous providers through 18`, { timeout: 90_000 }, async () => {
+  test(`${runtime}: ordinary canonical startup installs actual contiguous providers through 19`, { timeout: 90_000 }, async () => {
     const fixture = await storage(runtime);
     try {
       await migrateCms(fixture.database);
       const markers = (await sql<{ version: number }>`SELECT version FROM _cms_migrations ORDER BY version`
         .execute(fixture.database.db)).rows.map(row => row.version);
-      assert.deepEqual(markers, Array.from({ length: 18 }, (_, index) => index + 1));
+      assert.deepEqual(markers, Array.from({ length: 19 }, (_, index) => index + 1));
       assert.equal((await fixture.database.db.selectFrom('_cms_auth_users').selectAll().execute()).length, 0);
       assert.equal((await fixture.database.db.selectFrom('_cms_auth_sessions').selectAll().execute()).length, 0);
     } finally { await fixture.close(); }

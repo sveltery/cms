@@ -1,6 +1,7 @@
 // Complete immutable authority checks; zero executed product callbacks.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { readEntryLockPriorNative } from './entry-locks-canonical-transport.mjs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 const ledger = JSON.parse(readFileSync('docs/cron-task-storage-ports.json', 'utf8'));
@@ -15,7 +16,7 @@ for (const item of ledger.authorities) {
 const adaptations = JSON.parse(readFileSync('docs/cron-task-storage-native-adaptations.json', 'utf8'));
 assert.equal(adaptations.changedLeaves.length, 10, 'Complete finite Native leaf census');
 for (const leaf of adaptations.changedLeaves) {
-  let body = readFileSync(leaf.path, 'utf8');
+  let body = readEntryLockPriorNative(leaf.path);
   for (const edit of leaf.edits.toReversed()) {
     assert.equal(body.split(edit.after).length - 1, edit.count, leaf.path);
     body = body.replaceAll(edit.after, edit.before);
@@ -33,7 +34,7 @@ assert.ok(wholeCronInterface(sourceTypes));
 assert.equal(wholeCronInterface(nativeTypes), wholeCronInterface(sourceTypes), 'Whole Cron row interface');
 if (ledger.testOnlyTypeTransport) {
   const transport = ledger.testOnlyTypeTransport;
-  const nativeTest = readFileSync(transport.path, 'utf8');
+  const nativeTest = readEntryLockPriorNative(transport.path);
   assert.equal(nativeTest.split(transport.after).length - 1, transport.count, transport.path);
   const original = Buffer.from(nativeTest.replaceAll(transport.after, transport.before));
   assert.equal(original.length, transport.beforeBytes, transport.path);

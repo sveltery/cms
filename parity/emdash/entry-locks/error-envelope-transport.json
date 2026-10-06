@@ -1,0 +1,11 @@
+{
+  "path": "src/app.d.ts",
+  "oldBytes": 1019,
+  "oldSha256": "8263ee008b6c2adea76628df1ceff17f551b2a7be6a22a59463ff34021a8f2f2",
+  "afterBytes": 1104,
+  "afterSha256": "68afa96520876d385b4bbbfc0de81c833ca6ca13f0d703993657a17b802bc7c5",
+  "before": "interface Error { code?: string; details?: { issues: ContentValidationIssue[] } }",
+  "after": "interface Error { code?: string; details?: { issues: ContentValidationIssue[] } | { userId: string; userName: string | null; acquiredAt: string; expiresAt: string } }",
+  "archive": "parity/emdash/entry-locks/native-editor-original/src/app.d.ts.txt",
+  "fullReversal": true
+}

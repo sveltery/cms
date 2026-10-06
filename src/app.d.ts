@@ -10,7 +10,7 @@ declare global {
       ctx?: { waitUntil(task: Promise<unknown>): void };
       context?: { waitUntil(task: Promise<unknown>): void };
     }
-    interface Error { code?: string; details?: { issues: ContentValidationIssue[] } }
+    interface Error { code?: string; details?: { issues: ContentValidationIssue[] } | { userId: string; userName: string | null; acquiredAt: string; expiresAt: string } }
     interface Locals {
       // Explicit adapter injection, populated only by trusted server session composition.
       cms?: { storage?: Storage; database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean; keepAlive?: (task: Promise<void>) => void };

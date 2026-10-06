@@ -1,3 +1,4 @@
+import {checkEntryLockCanonicalTransport} from './entry-locks-canonical-transport.mjs';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -40,3 +41,26 @@ for(const row of runtime.wholeReversal){
  if(row.slice)assert.equal(hash(Buffer.from(expected)),row.slice.sha256);
 }
 console.log(JSON.stringify({pin:inventory.pin,wholeSourceFiles:inventory.source.length,wholeSourceBytes:inventory.source.reduce((n,row)=>n+row.bytes,0),families:inventory.families.length,repositoryFiniteSpans:ledger.finiteSpans.length,wholeRepositoryReversed:true,productTestsRun:0}));
+
+console.log(JSON.stringify(checkEntryLockCanonicalTransport()));
+
+const editor=JSON.parse(readFileSync(new URL('parity/emdash/entry-locks/editor-transport.json',root),'utf8'));
+for(const leaf of editor.sharedDrafts){
+ let value=readFileSync(new URL(leaf.path,root),'utf8');
+ for(const span of leaf.finiteSpans.toReversed()){
+  assert.equal(value.split(span.native).length,2,leaf.path+' exact editor span');
+  value=value.replace(span.native,span.original);
+ }
+ const bytes=Buffer.from(value);
+ assert.equal(bytes.length,leaf.oldBytes,leaf.path+' complete old editor bytes');
+ assert.equal(hash(bytes),leaf.oldSha256,leaf.path+' complete old editor SHA');
+ assert.deepEqual(bytes,readFileSync(new URL(leaf.archive,root)),leaf.path+' whole old editor archive');
+}
+console.log(JSON.stringify({wholeEditorSharedReversals:editor.sharedDrafts.length,productCallbacks:0}));
+
+const envelope=JSON.parse(readFileSync(new URL('parity/emdash/entry-locks/error-envelope-transport.json',root),'utf8'));
+const errorBody=readFileSync(new URL(envelope.path,root),'utf8');
+assert.equal(errorBody.split(envelope.after).length,2,'sole App.Error type-only span');
+const errorPrior=Buffer.from(errorBody.replace(envelope.after,envelope.before));
+assert.equal(errorPrior.length,envelope.oldBytes);assert.equal(hash(errorPrior),envelope.oldSha256);
+assert.deepEqual(errorPrior,readFileSync(new URL(envelope.archive,root)),'whole old App.Error declaration');
