@@ -1,0 +1,57 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/canonical-lifecycle-owner.test.ts (3 tests | 2 failed) 90ms
+     × associates the genuine owner namespace while preserving its actual executor plugins 42ms
+     × associates only the genuine current transaction executor 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/canonical-lifecycle-owner.test.ts > sole canonical lifecycle owner association for plugin views > associates the genuine owner namespace while preserving its actual executor plugins
+AssertionError: expected undefined to be Kysely{} // Object.is equality
+
+- Expected:
+Kysely {}
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/canonical-lifecycle-owner.test.ts:19:39
+     17|     expect(registeredPluginDatabaseOwner(db)).toBe(database);
+     18|     expect(db.getExecutor().plugins).toEqual(expect.arrayContaining(da…
+     19|     expect(lifecycleDatabase(db)?.db).toBe(db);
+       |                                       ^
+     20|   });
+     21|   it('associates only the genuine current transaction executor', async…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/plugin-runtime/canonical-lifecycle-owner.test.ts > sole canonical lifecycle owner association for plugin views > associates only the genuine current transaction executor
+AssertionError: expected undefined to be Transaction{} // Object.is equality
+
+- Expected:
+Transaction {}
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/canonical-lifecycle-owner.test.ts:26:42
+     24|       expect(trx.isTransaction).toBe(true);
+     25|       expect(trx.getExecutor().plugins).toEqual(db.getExecutor().plugi…
+     26|       expect(lifecycleDatabase(trx)?.db).toBe(trx);
+       |                                          ^
+     27|     });
+     28|   });
+ ❯ src/lib/server/plugins/transaction.ts:10:90
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:680:38
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20
+ ❯ tests/plugin-runtime/canonical-lifecycle-owner.test.ts:23:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  01:59:02
+   Duration  641ms (transform 263ms, setup 0ms, import 425ms, tests 90ms, environment 0ms)
+
