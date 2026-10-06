@@ -1,0 +1,1 @@
+<span>Second widget</span>

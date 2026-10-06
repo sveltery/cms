@@ -2615,3 +2615,25 @@ not copied Source callbacks. Svelte provider/framework adaptation, current-event
 database ownership, implementation and complete final qualification are pending.
 Sandbox execution (PL2) and marketplace/registry installation (PL3) remain separate
 delivery scopes; neighboring preserved authorities establish no completion.
+
+
+### PL1 retained checkpoint correction and Svelte provider transport
+
+The [paired plugin record](../../docs/plugin-runtime-provider.md) retains the raw
+initial activation-row red and explicitly withdraws its expectation: pinned
+configured startup enables absent rows without persisting them. Corrected Native
+restart checks use actual inactive canonical state. No parity credit is assigned
+to the withdrawn expectation. The expanded whole census is 80 families / 658
+literal authority files; current Source host executions are 423 core callbacks
+with 15 prerequisite-stopped families and 20 admin helper callbacks. Mixed frozen
+repository fixtures, pure helper outcomes and Native integration evidence remain
+separate. All wider runtime/admin consumers remain incomplete.
+
+PL1-PROVIDER01 substitutes actual native Svelte component context and
+`svelte:boundary` containment/retry/resetKey for Source React providers and error
+boundary classes at pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+Whole Source selection/path tests are retained unchanged; three separate Native
+DOM callbacks test the real provider tree. No React component rendering, error
+info identity, Kumo/Lingui component identity, browser geometry or complete PL2
+sandbox execution is inferred. Proposed [PR #127](https://github.com/sveltery/cms/pull/127);
+specific framework acceptance and full final qualification remain pending.

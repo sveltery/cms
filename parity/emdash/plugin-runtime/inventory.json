@@ -2,12 +2,12 @@
   "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "sourceRepository": "https://github.com/emdash-cms/emdash",
   "license": "MIT, Copyright 2026 Cloudflare Inc.",
-  "selectedTestFiles": 78,
-  "selectedImplementationFiles": 45,
-  "immutableAuthorityFiles": 648,
-  "immutableAuthorityBytes": 6154062,
-  "testDeclarations": 1107,
-  "assertionExpressions": 4884,
+  "selectedTestFiles": 80,
+  "selectedImplementationFiles": 55,
+  "immutableAuthorityFiles": 658,
+  "immutableAuthorityBytes": 6311422,
+  "testDeclarations": 1116,
+  "assertionExpressions": 4926,
   "productTestsRun": 0,
   "authorities": [
     {
@@ -616,7 +616,7 @@
       "sha256": "62270b9b96b19319c68f934a2d95342c8466c2745a38a697f757b25f1669f86a",
       "gitBlob": "5e8f7a089716e8aa9143f2b8899b708f0673b444",
       "selectedTest": false,
-      "selectedImplementation": false
+      "selectedImplementation": true
     },
     {
       "path": "packages/admin/src/lib/content-list-columns.tsx",
@@ -624,7 +624,7 @@
       "sha256": "ef5f98d2fec519f3baae6fa867f3566af4b6c74267d410fb0cf5d0dd8c2b54ba",
       "gitBlob": "c542c425488d90f175e30cfc9be2454d48deafae",
       "selectedTest": false,
-      "selectedImplementation": false
+      "selectedImplementation": true
     },
     {
       "path": "packages/admin/src/lib/crop-image.ts",
@@ -755,6 +755,22 @@
       "selectedImplementation": false
     },
     {
+      "path": "packages/admin/tests/lib/content-editor-panels.test.tsx",
+      "bytes": 3684,
+      "sha256": "83492e211e3ff22ad0bbe66c04f8f23cee23179e069e398481b51c0c38aaea3d",
+      "gitBlob": "9ea35d7c505f643b780f9a7d4e2166cc760ad746",
+      "selectedTest": true,
+      "selectedImplementation": false
+    },
+    {
+      "path": "packages/admin/tests/lib/content-list-columns.test.tsx",
+      "bytes": 3824,
+      "sha256": "35c9eea99e1c5ecaafd5695314f13bbb9e69ded537d4dafe932f7cfb1bcb4220",
+      "gitBlob": "940bbfdd834757ecbb14e0533765964170d0f798",
+      "selectedTest": true,
+      "selectedImplementation": false
+    },
+    {
       "path": "packages/admin/tests/lib/plugin-context.test.ts",
       "bytes": 2104,
       "sha256": "e1e19039d0c91f5ce6faa41455391323c2c801bf18334070d2ee9f1a1a92049f",
@@ -777,6 +793,38 @@
       "gitBlob": "bd876f25e9510d5e49c31c701f8b3edb7ff20dec",
       "selectedTest": false,
       "selectedImplementation": false
+    },
+    {
+      "path": "packages/blocks/src/builders.ts",
+      "bytes": 13450,
+      "sha256": "dd1c109c9f7bf11f1689b6bc1bbe22e2cd9f2f9890f257d71eda64bcd3e4a845",
+      "gitBlob": "1e5781d726bdbe3c3d5182b4fb1c9dd33424c3cf",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/blocks/src/server.ts",
+      "bytes": 1564,
+      "sha256": "b8aa11af6af44fdc163aeb1c919bfba3eb65b24d2bdf48332baea929aedad501",
+      "gitBlob": "a7e399aafa7de4ddfe5653fc9f09965e745cd682",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/blocks/src/types.ts",
+      "bytes": 13806,
+      "sha256": "ac8b3fbc0128ee13f52705005737fc4c490451cb6922e185e7d862aaacbceadd",
+      "gitBlob": "fc55450737c5bb7fd19f3b258b3e6c03fb945bdd",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/blocks/src/validation.ts",
+      "bytes": 58160,
+      "sha256": "0ba6a56eedd442a70ed3b811cdba2e1cb573ba5c899902d8bd64556a09d73827",
+      "gitBlob": "57cd67a54a546f42ba608aca43f5cebf5368cce4",
+      "selectedTest": false,
+      "selectedImplementation": true
     },
     {
       "path": "packages/core/src/after.ts",
@@ -5131,6 +5179,38 @@
       "selectedImplementation": false
     },
     {
+      "path": "packages/plugin-types/src/declared-access.ts",
+      "bytes": 13783,
+      "sha256": "edfa0e6825e8e606a61a5195032c2cbc64d159179a01d99f924bb8b2159b71be",
+      "gitBlob": "83ff8611a7f3503c5614b967fa3db63584b6ad2a",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/plugin-types/src/index.ts",
+      "bytes": 24815,
+      "sha256": "e553a9605f89d719db5deaf3ed0393a3edba67862ff60e32bffedcd719048d84",
+      "gitBlob": "eb15a9724b8e8b7e4a75bd3eb735f7cece9796d9",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/plugin-types/src/manifest-schema.ts",
+      "bytes": 19566,
+      "sha256": "8ece7e5a6a0022c12c74b28f766d4d4c3d55402398b9c78f3789e4b24f950c9e",
+      "gitBlob": "3cd4fecf5bd751423009592b8b8f9681b5137c26",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
+      "path": "packages/plugin-types/src/routes.ts",
+      "bytes": 4708,
+      "sha256": "13f22512784520744ed7219c0af16277b7a8efe51286beecb64c701d21818855",
+      "gitBlob": "f9d2901e88bb857a54a798eed4502f549ed36cb4",
+      "selectedTest": false,
+      "selectedImplementation": true
+    },
+    {
       "path": "packages/plugins/ai-moderation/src/categories.ts",
       "bytes": 2957,
       "sha256": "95810d3f7f85bac7725dffcc325d4a059805aa1082ad1aa06eb513b4d73aa89a",
@@ -5770,6 +5850,237 @@
         {
           "line": 160,
           "expression": "expect(lastSavedCardsBlock(onChange))"
+        }
+      ],
+      "state": "inventory-only",
+      "heldFromExecution": false
+    },
+    {
+      "path": "packages/admin/tests/lib/content-editor-panels.test.tsx",
+      "declarations": [
+        {
+          "line": 19,
+          "title": "selects enabled panels by collection and role",
+          "callee": "it"
+        },
+        {
+          "line": 42,
+          "title": "ignores disabled and stale registry modules",
+          "callee": "it"
+        },
+        {
+          "line": 68,
+          "title": "orders panels deterministically and ignores duplicate ids per plugin",
+          "callee": "it"
+        },
+        {
+          "line": 89,
+          "title": "contains collection predicate failures",
+          "callee": "it"
+        },
+        {
+          "line": 110,
+          "title": "ignores malformed panel exports without throwing",
+          "callee": "it"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 30,
+          "expression": "expect(\n\t\t\tresolveContentEditorPanels(pluginAdmins, \"posts\", 40, {\n\t\t\t\tinsights: { enabled: true },\n\t\t\t}),\n\t\t).toEqual([\n\t\t\texpect.objectContaining({\n\t\t\t\tpluginId: \"insights\",\n\t\t\t\textension: expect.objectContaining({ id: \"summary\" }),\n\t\t\t}),\n\t\t])"
+        },
+        {
+          "line": 30,
+          "expression": "expect(\n\t\t\tresolveContentEditorPanels(pluginAdmins, \"posts\", 40, {\n\t\t\t\tinsights: { enabled: true },\n\t\t\t}),\n\t\t)"
+        },
+        {
+          "line": 35,
+          "expression": "expect.objectContaining({\n\t\t\t\tpluginId: \"insights\",\n\t\t\t\textension: expect.objectContaining({ id: \"summary\" }),\n\t\t\t})"
+        },
+        {
+          "line": 37,
+          "expression": "expect.objectContaining({ id: \"summary\" })"
+        },
+        {
+          "line": 55,
+          "expression": "expect(\n\t\t\tresolveContentEditorPanels(pluginAdmins, \"posts\", 50, {\n\t\t\t\tenabled: { enabled: true },\n\t\t\t\tdisabled: { enabled: false },\n\t\t\t}),\n\t\t).toEqual([\n\t\t\texpect.objectContaining({\n\t\t\t\tpluginId: \"enabled\",\n\t\t\t\textension: expect.objectContaining({ id: \"kept\" }),\n\t\t\t}),\n\t\t])"
+        },
+        {
+          "line": 55,
+          "expression": "expect(\n\t\t\tresolveContentEditorPanels(pluginAdmins, \"posts\", 50, {\n\t\t\t\tenabled: { enabled: true },\n\t\t\t\tdisabled: { enabled: false },\n\t\t\t}),\n\t\t)"
+        },
+        {
+          "line": 61,
+          "expression": "expect.objectContaining({\n\t\t\t\tpluginId: \"enabled\",\n\t\t\t\textension: expect.objectContaining({ id: \"kept\" }),\n\t\t\t})"
+        },
+        {
+          "line": 63,
+          "expression": "expect.objectContaining({ id: \"kept\" })"
+        },
+        {
+          "line": 82,
+          "expression": "expect(resolveContentEditorPanels(pluginAdmins, \"posts\", 50)).toMatchObject([\n\t\t\t{ pluginId: \"alpha\", extension: { id: \"first\" } },\n\t\t\t{ pluginId: \"zeta\", extension: { id: \"later\" } },\n\t\t])"
+        },
+        {
+          "line": 82,
+          "expression": "expect(resolveContentEditorPanels(pluginAdmins, \"posts\", 50))"
+        },
+        {
+          "line": 86,
+          "expression": "expect(warningSpy).toHaveBeenCalledOnce()"
+        },
+        {
+          "line": 86,
+          "expression": "expect(warningSpy)"
+        },
+        {
+          "line": 106,
+          "expression": "expect(resolveContentEditorPanels(pluginAdmins, \"posts\", 50)).toEqual([])"
+        },
+        {
+          "line": 106,
+          "expression": "expect(resolveContentEditorPanels(pluginAdmins, \"posts\", 50))"
+        },
+        {
+          "line": 107,
+          "expression": "expect(errorSpy).toHaveBeenCalledOnce()"
+        },
+        {
+          "line": 107,
+          "expression": "expect(errorSpy)"
+        },
+        {
+          "line": 123,
+          "expression": "expect(resolveContentEditorPanels(pluginAdmins, \"posts\", 50)).toEqual([])"
+        },
+        {
+          "line": 123,
+          "expression": "expect(resolveContentEditorPanels(pluginAdmins, \"posts\", 50))"
+        },
+        {
+          "line": 124,
+          "expression": "expect(warningSpy).toHaveBeenCalledTimes(4)"
+        },
+        {
+          "line": 124,
+          "expression": "expect(warningSpy)"
+        }
+      ],
+      "state": "inventory-only",
+      "heldFromExecution": false
+    },
+    {
+      "path": "packages/admin/tests/lib/content-list-columns.test.tsx",
+      "declarations": [
+        {
+          "line": 23,
+          "title": "preserves memo and forwardRef components",
+          "callee": "it"
+        },
+        {
+          "line": 58,
+          "title": "filters by manifest, collection, and role and orders deterministically",
+          "callee": "it"
+        },
+        {
+          "line": 86,
+          "title": "ignores malformed exports and duplicate ids within one plugin",
+          "callee": "it"
+        },
+        {
+          "line": 112,
+          "title": "contains collection predicate failures",
+          "callee": "it"
+        }
+      ],
+      "expectations": [
+        {
+          "line": 51,
+          "expression": "expect(result).toHaveLength(2)"
+        },
+        {
+          "line": 51,
+          "expression": "expect(result)"
+        },
+        {
+          "line": 52,
+          "expression": "expect(result[0]?.extension.cell).toBe(ForwardRefCell)"
+        },
+        {
+          "line": 52,
+          "expression": "expect(result[0]?.extension.cell)"
+        },
+        {
+          "line": 53,
+          "expression": "expect(result[0]?.extension.header).toBe(ForwardRefHeader)"
+        },
+        {
+          "line": 53,
+          "expression": "expect(result[0]?.extension.header)"
+        },
+        {
+          "line": 54,
+          "expression": "expect(result[1]?.extension.cell).toBe(MemoCell)"
+        },
+        {
+          "line": 54,
+          "expression": "expect(result[1]?.extension.cell)"
+        },
+        {
+          "line": 55,
+          "expression": "expect(result[1]?.extension.header).toBe(MemoHeader)"
+        },
+        {
+          "line": 55,
+          "expression": "expect(result[1]?.extension.header)"
+        },
+        {
+          "line": 79,
+          "expression": "expect(result.map(({ pluginId, extension }) => `${pluginId}:${extension.id}`)).toEqual([\n\t\t\t\"alpha:same\",\n\t\t\t\"zeta:same\",\n\t\t\t\"alpha:second\",\n\t\t])"
+        },
+        {
+          "line": 79,
+          "expression": "expect(result.map(({ pluginId, extension }) => `${pluginId}:${extension.id}`))"
+        },
+        {
+          "line": 106,
+          "expression": "expect(result).toHaveLength(1)"
+        },
+        {
+          "line": 106,
+          "expression": "expect(result)"
+        },
+        {
+          "line": 107,
+          "expression": "expect(result[0]?.extension.id).toBe(\"review-status\")"
+        },
+        {
+          "line": 107,
+          "expression": "expect(result[0]?.extension.id)"
+        },
+        {
+          "line": 108,
+          "expression": "expect(warn).toHaveBeenCalled()"
+        },
+        {
+          "line": 108,
+          "expression": "expect(warn)"
+        },
+        {
+          "line": 129,
+          "expression": "expect(result.map(({ extension }) => extension.id)).toEqual([\"healthy\"])"
+        },
+        {
+          "line": 129,
+          "expression": "expect(result.map(({ extension }) => extension.id))"
+        },
+        {
+          "line": 130,
+          "expression": "expect(error).toHaveBeenCalled()"
+        },
+        {
+          "line": 130,
+          "expression": "expect(error)"
         }
       ],
       "state": "inventory-only",

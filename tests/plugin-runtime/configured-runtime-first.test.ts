@@ -8,12 +8,25 @@ import { createCmsRuntime } from '../../src/lib/server/runtime/composition.ts';
 // Supplemental Native integration: real configured CMS startup and canonical
 // persisted storage, without sessions, protected HTTP or a substitute manager.
 describe('configured trusted plugin runtime', () => {
-  async function visit() {
+  async function visit(inactive = false) {
     const directory = await mkdtemp(path.join(tmpdir(), 'cms-plugin-runtime-'));
     const configuration = {
       kind: 'sqlite' as const, path: path.join(directory, 'cms.db'), publicOrigin: 'http://cms.test',
       plugins: [{ id: 'configured-plugin', version: '1.0.0', capabilities: [] }]
     };
+    if (inactive) {
+      const setup = createCmsRuntime(() => ({ ...configuration, plugins: [] }));
+      const initial = { request: new Request('http://cms.test/'), url: new URL('http://cms.test/'),
+        locals: {}, cookies: { get: () => undefined } } as unknown as RequestEvent;
+      try {
+        await setup.handle({ event: initial, resolve: async () => new Response('ok') });
+        await initial.locals.cms!.database.db.insertInto('_cms_plugin_state')
+          .values({ plugin_id: 'configured-plugin', version: '1.0.0', status: 'inactive',
+            activated_at: null, deactivated_at: null, data: null, marketplace_version: null,
+            display_name: null, description: null, registry_publisher_did: null, registry_slug: null,
+            mcp_tools_consent: null }).execute();
+      } finally { await setup.close(); }
+    }
     const runtime = createCmsRuntime(() => configuration);
     const event = { request: new Request('http://cms.test/'), url: new URL('http://cms.test/'),
       locals: {}, cookies: { get: () => undefined } } as unknown as RequestEvent;
@@ -33,12 +46,13 @@ describe('configured trusted plugin runtime', () => {
       expect(plugins?.manager.hasPlugin('configured-plugin')).toBe(true);
     } finally { await fixture.runtime.close(); await rm(fixture.directory, { recursive: true, force: true }); }
   });
-  it('persists configured activation in the existing canonical plugin state table', async () => {
-    const fixture = await visit();
+  it('excludes a configured plugin whose actual persisted state is inactive', async () => {
+    const fixture = await visit(true);
     try {
-      const row = await fixture.event.locals.cms!.database.db.selectFrom('_cms_plugin_state')
-        .select(['plugin_id', 'version', 'status']).where('plugin_id', '=', 'configured-plugin').executeTakeFirst();
-      expect(row).toEqual({ plugin_id: 'configured-plugin', version: '1.0.0', status: 'active' });
+      const plugins = (fixture.event.locals as unknown as {
+        cmsPlugins?: { manager: { isActive(id: string): boolean } }
+      }).cmsPlugins;
+      expect(plugins?.manager.isActive('configured-plugin')).toBe(false);
     } finally { await fixture.runtime.close(); await rm(fixture.directory, { recursive: true, force: true }); }
   });
 });

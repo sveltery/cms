@@ -8,10 +8,20 @@ export default defineConfig({
   plugins: [{ name: 'whole-pinned-plugin-source-native-host', enforce: 'pre',
     resolveId(id, importer) {
       if (id === '#node-sqlite') return path.join(root, 'src/lib/server/database/node-sqlite-compat.ts');
+      if (id === '@emdash-cms/plugin-types') return path.join(product, 'contracts/index.ts');
+      if (id === '@emdash-cms/auth') return path.join(root, 'src/lib/server/auth/permissions.ts');
+      if (id === '@emdash-cms/admin/slugify') return path.join(root, 'src/lib/server/database/lifecycle/upstream/admin-slugify.ts');
+      if (id === 'astro/zod') return this.resolve('zod', importer, { skipSelf: true });
       if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
       const target = path.resolve(path.dirname(importer), id);
       const relative = path.relative(frozen, target).replaceAll(path.sep, '/');
       if (relative.startsWith('src/plugins/')) return path.join(product, relative.slice('src/plugins/'.length).replace(/\.js$/, '.ts'));
+      const native: Record<string, string> = {
+        'src/database/validate.js': 'src/lib/server/database/lifecycle/upstream/database/validate.ts',
+        'src/config/secrets.js': 'src/lib/server/plugins/configuration-secrets.ts',
+        'src/auth/trusted-proxy.js': 'src/lib/server/comments/upstream/auth/trusted-proxy.ts'
+      };
+      if (native[relative]) return path.join(root, native[relative]);
     }
   }],
   test: { environment: 'node', fileParallelism: false, include: [

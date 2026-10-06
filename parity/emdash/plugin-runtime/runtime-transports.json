@@ -1,0 +1,488 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "modules": [
+    {
+      "source": "packages/core/src/plugins/define-plugin.ts",
+      "native": "src/lib/server/plugins/define-plugin.ts",
+      "sourceSha256": "3dc46465bf0ecfd79a8675b667be4e9074443049bcf4ee02604abca4d01c94d0",
+      "imports": [
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/types.ts",
+      "native": "src/lib/server/plugins/types.ts",
+      "sourceSha256": "89a8ec1e885481dafd1bca969ad4da8a085d240f1071adcb16b02a2d89958e3b",
+      "imports": [
+        {
+          "from": "@emdash-cms/auth",
+          "to": "../auth/permissions.ts"
+        },
+        {
+          "from": "@emdash-cms/blocks",
+          "to": "./contracts/block-types.ts"
+        },
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "astro/jsx-runtime",
+          "to": "./contracts/native-jsx.ts"
+        },
+        {
+          "from": "astro/zod",
+          "to": "zod"
+        },
+        {
+          "from": "../content-list-query.js",
+          "to": "../database/lifecycle/upstream/content-list-query.ts"
+        },
+        {
+          "from": "../schema/types.js",
+          "to": "../schema/types.ts"
+        },
+        {
+          "from": "../content-list-query.js",
+          "to": "../database/lifecycle/upstream/content-list-query.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/content-policy.ts",
+      "native": "src/lib/server/plugins/content-policy.ts",
+      "sourceSha256": "f167fc3d33007e123b98a97acdcf22d5ba9c2069853d194f1fed5fc1bb9f22c6",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/save-rejection.ts",
+      "native": "src/lib/server/plugins/save-rejection.ts",
+      "sourceSha256": "21d3224c6b3460c20bb4b398f5d5b782939dadf80846f22c6786a76ce8253a98",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/route-error.ts",
+      "native": "src/lib/server/plugins/route-error.ts",
+      "sourceSha256": "672fbb83f0d70067bfde7e5eb939d665fae0fd2eea8c1c567aafed31e42f7e07",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/route-wire.ts",
+      "native": "src/lib/server/plugins/route-wire.ts",
+      "sourceSha256": "d80d1e99420df89dd68293f06db1b55272dd58f1a713a8850e46030ce6b532cb",
+      "imports": [
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "../plugin-types.js",
+          "to": "./authoring-types.ts"
+        },
+        {
+          "from": "./http-wire.js",
+          "to": "./http-wire.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/http-wire.ts",
+      "native": "src/lib/server/plugins/http-wire.ts",
+      "sourceSha256": "89915d6eaef530d2e241b4a20a93d61a89fff78fba3112e771f211fbd466d930",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/conditional-storage.ts",
+      "native": "src/lib/server/plugins/conditional-storage.ts",
+      "sourceSha256": "74829ded184fb6762d5ed50d6dbee33a8e96dc23e3b2d42a0ab8825985d2835f",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/storage-query.ts",
+      "native": "src/lib/server/plugins/storage-query.ts",
+      "sourceSha256": "08646cf23b97234c91d6ae2f27359fe5d3d50f00e578ee0382be6e0e0232fb2b",
+      "imports": [
+        {
+          "from": "../database/dialect-helpers.js",
+          "to": "../database/lifecycle/upstream/database/dialect-helpers.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/storage-update.ts",
+      "native": "src/lib/server/plugins/storage-update.ts",
+      "sourceSha256": "f4a9a1f594e5da8e7c0f9a60f176e5d400aea5d2a34afc5ea63efffee2167f55",
+      "imports": [
+        {
+          "from": "../database/validate.js",
+          "to": "../database/lifecycle/upstream/database/validate.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/storage-indexes.ts",
+      "native": "src/lib/server/plugins/storage-indexes.ts",
+      "sourceSha256": "36ddab1d2240910db541a42dad5e3e0ee1fc1a316d4c4b8c64b2f217c655d4ed",
+      "imports": [
+        {
+          "from": "../database/dialect-helpers.js",
+          "to": "../database/lifecycle/upstream/database/dialect-helpers.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../database/validate.js",
+          "to": "../database/lifecycle/upstream/database/validate.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/manifest-schema.ts",
+      "native": "src/lib/server/plugins/manifest-schema.ts",
+      "sourceSha256": "d079644221fc995c5d550f345c528490a6527420add0ef1d9d12a5a844632f77",
+      "imports": [
+        {
+          "from": "@emdash-cms/auth",
+          "to": "../auth/permissions.ts"
+        },
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/editor-draft.ts",
+      "native": "src/lib/server/plugins/editor-draft.ts",
+      "sourceSha256": "dcbc2a85fef976ff632e97a5b10e8fd62aee5024c3522f1dae840abf54577b35",
+      "imports": [
+        {
+          "from": "@emdash-cms/blocks",
+          "to": "./contracts/block-types.ts"
+        },
+        {
+          "from": "../schema/types.js",
+          "to": "../schema/types.ts"
+        },
+        {
+          "from": "../schema/zod-generator.js",
+          "to": "../schema/zod-generator.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "@emdash-cms/blocks/server",
+          "to": "./contracts/block-server.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/email-console.ts",
+      "native": "src/lib/server/plugins/email-console.ts",
+      "sourceSha256": "172cb2c71bb41df980795d0c7d996c44d21af840f68921a41f25e20e05fda50c",
+      "imports": [
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/secret-redactor.ts",
+      "native": "src/lib/server/plugins/secret-redactor.ts",
+      "sourceSha256": "a07fdead0fb7c60dde5ff89d7b0d6c23d612a359a7d05e9face677a4e4de37c7",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/settings.ts",
+      "native": "src/lib/server/plugins/settings.ts",
+      "sourceSha256": "dc4044491e842e5acdc16095e758a49eeddd5a01dbca2ab4f3a89f9c83e7af1e",
+      "imports": [
+        {
+          "from": "../config/secrets.js",
+          "to": "./configuration-secrets.ts"
+        },
+        {
+          "from": "../database/repositories/options.js",
+          "to": "../options/repository.ts"
+        },
+        {
+          "from": "../utils/base64.js",
+          "to": "../database/lifecycle/upstream/utils/base64.ts"
+        },
+        {
+          "from": "./conditional-storage.js",
+          "to": "./conditional-storage.ts"
+        },
+        {
+          "from": "./secret-redactor.js",
+          "to": "./secret-redactor.ts"
+        },
+        {
+          "from": "./secret-redactor.js",
+          "to": "./secret-redactor.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugins/request-meta.ts",
+      "native": "src/lib/server/plugins/request-meta.ts",
+      "sourceSha256": "9d02dbd73b4ee975becacfd5431c48d4343eaa373c0249ba65b6c211337bd0f5",
+      "imports": [
+        {
+          "from": "../astro/integration/runtime.js",
+          "to": "./configuration-types.ts"
+        },
+        {
+          "from": "../auth/trusted-proxy.js",
+          "to": "../comments/upstream/auth/trusted-proxy.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/plugin-types/src/index.ts",
+      "native": "src/lib/server/plugins/contracts/index.ts",
+      "sourceSha256": "e553a9605f89d719db5deaf3ed0393a3edba67862ff60e32bffedcd719048d84",
+      "body": "whole-source-runtime-relative-js-to-ts-import-transport"
+    },
+    {
+      "source": "packages/plugin-types/src/routes.ts",
+      "native": "src/lib/server/plugins/contracts/routes.ts",
+      "sourceSha256": "13f22512784520744ed7219c0af16277b7a8efe51286beecb64c701d21818855",
+      "body": "whole-source-runtime-relative-js-to-ts-import-transport"
+    },
+    {
+      "source": "packages/plugin-types/src/manifest-schema.ts",
+      "native": "src/lib/server/plugins/contracts/manifest-schema.ts",
+      "sourceSha256": "8ece7e5a6a0022c12c74b28f766d4d4c3d55402398b9c78f3789e4b24f950c9e",
+      "body": "whole-source-runtime-relative-js-to-ts-import-transport"
+    },
+    {
+      "source": "packages/plugin-types/src/declared-access.ts",
+      "native": "src/lib/server/plugins/contracts/declared-access.ts",
+      "sourceSha256": "edfa0e6825e8e606a61a5195032c2cbc64d159179a01d99f924bb8b2159b71be",
+      "body": "whole-source-runtime-relative-js-to-ts-import-transport"
+    },
+    {
+      "source": "packages/blocks/src/types.ts",
+      "native": "src/lib/server/plugins/contracts/block-types.ts",
+      "sourceSha256": "ac8b3fbc0128ee13f52705005737fc4c490451cb6922e185e7d862aaacbceadd",
+      "body": "whole-source-types-with-MIT-notice"
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "native": "src/lib/server/plugins/configuration-secrets.ts",
+      "sourceSha256": "677d225a83a13b9d9ee7b245277e2d352878f4ba9105fc5ede8c710661651da4",
+      "imports": [
+        {
+          "from": "../after.js",
+          "to": "../menus/after.ts"
+        },
+        {
+          "from": "../database/repositories/options.js",
+          "to": "../options/repository.ts"
+        },
+        {
+          "from": "../database/request-scoped.js",
+          "to": "./request-scoped.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../utils/base64.js",
+          "to": "../database/lifecycle/upstream/utils/base64.ts"
+        },
+        {
+          "from": "../utils/single-flight-cache.js",
+          "to": "../redirects/single-flight-cache.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/database/request-scoped.ts",
+      "native": "src/lib/server/plugins/request-scoped.ts",
+      "sourceSha256": "cbdbfd31def6dfd0bdf75cefb5d7fea4d52b3e4c5ae259b4d03dcfe6c37fb001",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/core/src/plugin-types.ts",
+      "native": "src/lib/server/plugins/authoring-types.ts",
+      "sourceSha256": "dba80d01788ee70a8e6569568544c19811d7c8ce5d188f5f9322ce28ed31c263",
+      "imports": [
+        {
+          "from": "@emdash-cms/auth",
+          "to": "../auth/permissions.ts"
+        },
+        {
+          "from": "@emdash-cms/blocks/server",
+          "to": "./contracts/block-server.ts"
+        },
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "./plugins/sandbox/hook-result.js",
+          "to": "./sandbox/hook-result.ts"
+        },
+        {
+          "from": "./plugins/types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "@emdash-cms/blocks/server",
+          "to": "./contracts/block-server.ts"
+        },
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "./plugins/types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "./plugins/types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "./plugins/types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/blocks/src/server.ts",
+      "native": "src/lib/server/plugins/contracts/block-server.ts",
+      "sourceSha256": "b8aa11af6af44fdc163aeb1c919bfba3eb65b24d2bdf48332baea929aedad501",
+      "imports": [
+        {
+          "from": "./builders.js",
+          "to": "./block-builders.ts"
+        },
+        {
+          "from": "./validation.js",
+          "to": "./block-validation.ts"
+        },
+        {
+          "from": "./validation.js",
+          "to": "./block-validation.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./block-types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/blocks/src/builders.ts",
+      "native": "src/lib/server/plugins/contracts/block-builders.ts",
+      "sourceSha256": "dd1c109c9f7bf11f1689b6bc1bbe22e2cd9f2f9890f257d71eda64bcd3e4a845",
+      "imports": [
+        {
+          "from": "./types.js",
+          "to": "./block-types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/blocks/src/validation.ts",
+      "native": "src/lib/server/plugins/contracts/block-validation.ts",
+      "sourceSha256": "0ba6a56eedd442a70ed3b811cdba2e1cb573ba5c899902d8bd64556a09d73827",
+      "imports": [
+        {
+          "from": "./types.js",
+          "to": "./block-types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution"
+    },
+    {
+      "source": "packages/admin/src/lib/content-editor-panels.tsx",
+      "native": "src/lib/plugins/content-editor-panels.ts",
+      "sourceSha256": "62270b9b96b19319c68f934a2d95342c8466c2745a38a697f757b25f1669f86a",
+      "body": "all-source-selection-functions-after-type-and-import-transport; framework-boundary-in-paired-svelte-component; no-whole-module-identity",
+      "sourceBoundary": "src/lib/plugins/ContentEditorPanelBoundary.svelte; native-render-error-containment/retry; no-React-class-or-info-object-identity",
+      "originalReactWrapperValidation": "preserved-pure-shape-validation; zero-native-React-rendering-credit"
+    },
+    {
+      "source": "packages/admin/src/lib/content-list-columns.tsx",
+      "native": "src/lib/plugins/content-list-columns.ts",
+      "sourceSha256": "ef5f98d2fec519f3baae6fa867f3566af4b6c74267d410fb0cf5d0dd8c2b54ba",
+      "body": "all-source-selection-functions-after-type-and-import-transport; framework-boundary-in-paired-svelte-component; no-whole-module-identity",
+      "sourceBoundary": "src/lib/plugins/ContentListColumnBoundary.svelte + ContentListColumnFailure.svelte; native-render-containment/fallback/resetKey; no-React-class-or-info-object-identity",
+      "originalReactWrapperValidation": "preserved-pure-shape-validation; zero-native-React-rendering-credit"
+    },
+    {
+      "source": "packages/admin/src/lib/plugin-context.tsx",
+      "native": "src/lib/plugins/page-path.ts",
+      "sourceSha256": "eb9bfc2edb21bee7c3ace729c627500a52d1dadd97cf2cb817b3eee613649669",
+      "body": "complete-two-page-path-functions; generic-native-component-type; no-whole-provider-module-identity"
+    },
+    {
+      "source": "packages/admin/src/lib/sandboxed-editor-extensions.ts",
+      "native": "src/lib/plugins/editor-extensions.ts",
+      "sourceSha256": "6d8ffa9ff6f2010dee409b9ec52b4de57c88e8a13172b0ef37e26c4fa1c1b8a3",
+      "body": "whole-source-helper-body-after-type-only-import-substitution; zero-sandbox-execution-credit"
+    }
+  ]
+}

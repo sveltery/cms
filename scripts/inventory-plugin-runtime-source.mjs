@@ -16,9 +16,10 @@ const testSeeds = files.filter(file => /packages\/core\/tests\/(unit\/plugins|in
   /packages\/core\/tests\/integration\/runtime\/plugin-.*\.test\.ts$/.test(file) ||
   /packages\/core\/tests\/unit\/api\/plugin-settings.*\.test\.ts$/.test(file) ||
   /packages\/core\/tests\/integration\/api\/plugins\.test\.ts$/.test(file) ||
-  /packages\/admin\/tests\/(lib\/(plugin-context|sandboxed-editor-extensions)|editor\/plugin-block-(conversion|modal))\.test\.tsx?$/.test(file));
+  /packages\/admin\/tests\/(lib\/(plugin-context|sandboxed-editor-extensions|content-editor-panels|content-list-columns)|editor\/plugin-block-(conversion|modal))\.test\.tsx?$/.test(file));
 const sourceSeeds = files.filter(file => /^packages\/core\/src\/plugins\/.+\.ts$/.test(file) ||
-  /^packages\/admin\/src\/lib\/(plugin-context|sandboxed-editor-extensions|plugin-links)\.tsx?$/.test(file));
+  /^packages\/admin\/src\/lib\/(plugin-context|sandboxed-editor-extensions|plugin-links|content-editor-panels|content-list-columns)\.tsx?$/.test(file) ||
+  /^packages\/plugin-types\/src\/.+\.ts$/.test(file) || /^packages\/blocks\/src\/(types|server|validation|builders)\.ts$/.test(file));
 const allFiles = new Set(files);
 const bytes = new Map();
 function original(file) {

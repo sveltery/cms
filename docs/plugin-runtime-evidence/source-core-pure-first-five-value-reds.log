@@ -1,0 +1,368 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/cron-schedule.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/define-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/editor-draft.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/email-pipeline.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/exclusive-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/kv-access-list.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/manager.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/node-cron-scheduler.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-hooks-execution.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-seo.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/pipeline-rebuild.test.ts (0 test)
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/plugin-storage.test.ts > PluginStorageRepository > query() > should reject malicious orderBy field names (SQL injection defense)
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/plugin-storage.test.ts (35 tests | 1 failed) 2514ms
+       × should reject malicious orderBy field names (SQL injection defense) 89ms
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/route-wire.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/routes.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/settings.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/state.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-indexes.test.ts (15 tests | 3 failed) 12ms
+       × should reject invalid field names 4ms
+       × should reject invalid collection names 1ms
+       × should reject invalid plugin IDs 0ms
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-query.test.ts (48 tests | 1 failed) 20ms
+       × should reject invalid field names to prevent SQL injection 6ms
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 20 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/cron-schedule.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/cron-schedule.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/cron.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/cron-schedule.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/cron-schedule.test.ts:3:1
+      1| import { afterEach, describe, expect, it, vi } from "vitest";
+      2|
+      3| import { isOneShot, nextCronTime } from "../../../src/plugins/cron.js";
+       | ^
+      4|
+      5| describe("cron schedule classification", () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/define-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/define-plugin.test.ts ]
+Error: Cannot find package '@emdash-cms/plugin-types' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/define-plugin.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/define-plugin.test.ts:12:1
+     10|  */
+     11|
+     12| import { PLUGIN_CAPABILITIES } from "@emdash-cms/plugin-types";
+       | ^
+     13| import { describe, it, expect, vi } from "vitest";
+     14| import { z } from "zod";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/editor-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/editor-draft.test.ts ]
+Error: Cannot find package '@emdash-cms/blocks/server' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/editor-draft.ts
+ ❯ src/lib/server/plugins/editor-draft.ts:9:1
+      7|  EditorDraftSnapshot,
+      8| } from "./contracts/block-types.ts";
+      9| import {
+       | ^
+     10|  isEditorDraftPatchEffect,
+     11|  validateEditorDraftPatchEffect,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/editor-draft.test.ts:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/email-pipeline.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/email-pipeline.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/context.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/email-pipeline.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/email-pipeline.test.ts:20:1
+     18| import { runMigrations } from "../../../src/database/migrations/runner…
+     19| import type { Database as DbSchema } from "../../../src/database/types…
+     20| import { PluginContextFactory } from "../../../src/plugins/context.js";
+       | ^
+     21| import {
+     22|  clearDevEmails,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/exclusive-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/exclusive-hooks.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/hooks.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/exclusive-hooks.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/exclusive-hooks.test.ts:20:1
+     18| import { runMigrations } from "../../../src/database/migrations/runner…
+     19| import type { Database as DbSchema } from "../../../src/database/types…
+     20| import { HookPipeline, resolveExclusiveHooks } from "../../../src/plug…
+       | ^
+     21| import { PluginManager } from "../../../src/plugins/manager.js";
+     22| import { normalizeManifestHook } from "../../../src/plugins/manifest-s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/hooks.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/hooks.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/hooks.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/hooks.test.ts:18:1
+     16|
+     17| import type { Database as DbSchema } from "../../../src/database/types…
+     18| import { HookPipeline, createHookPipeline } from "../../../src/plugins…
+       | ^
+     19| import type {
+     20|  ContentHookEvent,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/kv-access-list.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/kv-access-list.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/context.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/kv-access-list.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/kv-access-list.test.ts:4:1
+      2|
+      3| import type { OptionsRepository } from "../../../src/database/reposito…
+      4| import { createKVAccess } from "../../../src/plugins/context.js";
+       | ^
+      5|
+      6| function fakeOptionsRepo(rows: Record<string, unknown>) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/manager.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/manager.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/manager.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/manager.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/manager.test.ts:20:1
+     18| import type { ActorInfo as RootActorInfo } from "../../../src/index.js…
+     19| import type { ActorInfo as PluginActorInfo } from "../../../src/plugin…
+     20| import { PluginManager, createPluginManager } from "../../../src/plugi…
+       | ^
+     21| import type { ContentHookEvent, PluginDefinition } from "../../../src/…
+     22|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/node-cron-scheduler.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/node-cron-scheduler.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/cron.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/node-cron-scheduler.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/node-cron-scheduler.test.ts:5:1
+      3|
+      4| import type { Database } from "../../../src/database/types.js";
+      5| import { CronExecutor } from "../../../src/plugins/cron.js";
+       | ^
+      6| import { NodeCronScheduler } from "../../../src/plugins/scheduler/node…
+      7| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-hooks-execution.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-hooks-execution.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/hooks.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-hooks-execution.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-hooks-execution.test.ts:20:1
+     18| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+     19|
+     20| import { HookPipeline } from "../../../src/plugins/hooks.js";
+       | ^
+     21| import type {
+     22|  ResolvedPlugin,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-seo.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/page-seo.test.ts ]
+Error: Cannot find module './configuration-secrets.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/settings.ts
+ ❯ src/lib/server/plugins/settings.ts:3:1
+      1| // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+      2| // Whole pinned runtime body; import transports recorded in parity/emd…
+      3| import { resolvePluginEncryptionKeys, type ParsedEncryptionKey } from …
+       | ^
+      4| import type { OptionsRepository } from "../options/repository.ts";
+      5| import { decodeBase64url, encodeBase64url } from "../database/lifecycl…
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/settings/index.ts:20:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/pipeline-rebuild.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/pipeline-rebuild.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/hooks.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/pipeline-rebuild.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/pipeline-rebuild.test.ts:16:1
+     14| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+     15|
+     16| import { createHookPipeline, resolveExclusiveHooks } from "../../../sr…
+       | ^
+     17| import type { ResolvedPlugin, ResolvedHook, ContentHookEvent } from ".…
+     18|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts ]
+Error: Cannot find package '@emdash-cms/admin/slugify' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/utils/slugify.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/utils/slugify.ts:1:1
+      1| export { slugify } from "@emdash-cms/admin/slugify";
+       | ^
+      2|
+      3| /**
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/database/repositories/content.ts:12:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/route-wire.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/route-wire.test.ts ]
+Error: Cannot find package '@emdash-cms/plugin-types' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/route-wire.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/route-wire.test.ts:1:1
+      1| import {
+       | ^
+      2|  PLUGIN_ROUTE_MAX_BODY_BYTES,
+      3|  PLUGIN_ROUTE_MAX_MULTIPART_PART_BYTES,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/routes.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/routes.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/email.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/routes.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/routes.test.ts:15:1
+     13|
+     14| import type { PluginContextFactoryOptions } from "../../../src/plugins…
+     15| import { EmailPipeline } from "../../../src/plugins/email.js";
+       | ^
+     16| import { HookPipeline } from "../../../src/plugins/hooks.js";
+     17| import {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/settings.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/settings.test.ts ]
+Error: Cannot find module './configuration-secrets.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/settings.ts
+ ❯ src/lib/server/plugins/settings.ts:3:1
+      1| // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+      2| // Whole pinned runtime body; import transports recorded in parity/emd…
+      3| import { resolvePluginEncryptionKeys, type ParsedEncryptionKey } from …
+       | ^
+      4| import type { OptionsRepository } from "../options/repository.ts";
+      5| import { decodeBase64url, encodeBase64url } from "../database/lifecycl…
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/settings.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/state.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/state.test.ts ]
+Error: Cannot find module '/src/lib/server/plugins/state.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/state.test.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/state.test.ts:17:1
+     15| import { runMigrations } from "../../../src/database/migrations/runner…
+     16| import type { Database as DbSchema } from "../../../src/database/types…
+     17| import { PluginStateRepository } from "../../../src/plugins/state.js";
+       | ^
+     18|
+     19| describe("PluginStateRepository", () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/25]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/plugin-storage.test.ts > PluginStorageRepository > query() > should reject malicious orderBy field names (SQL injection defense)
+AssertionError: expected error to be instance of IdentifierError
+
+- Expected:
+[Function IdentifierError]
+
++ Received:
+IdentifierError {
+  "message": "plugin storage order field name must match /^[a-zA-Z][a-zA-Z0-9_]*$/ (got \"'); DROP TABLE _plugin_storage--\")",
+  "identifier": "'); DROP TABLE _plugin_storage--",
+  "name": "IdentifierError",
+}
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/plugin-storage.test.ts:325:5
+    323|      orderBy: { "'); DROP TABLE _plugin_storage--": "asc" },
+    324|     }),
+    325|    ).rejects.toThrow(IdentifierError);
+       |     ^
+    326|   });
+    327|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-indexes.test.ts > storage-indexes > generateCreateIndexSql > should reject invalid field names
+AssertionError: expected error to be instance of IdentifierError
+
+- Expected:
+[Function IdentifierError]
+
++ Received:
+IdentifierError {
+  "message": "index field name must match /^[a-zA-Z][a-zA-Z0-9_]*$/ (got \"status; DROP TABLE users--\")",
+  "identifier": "status; DROP TABLE users--",
+  "name": "IdentifierError",
+}
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-indexes.test.ts:49:6
+     47|    expect(() =>
+     48|     generateCreateIndexSql(db, "my-plugin", "items", ["status; DROP TA…
+     49|    ).toThrow(IdentifierError);
+       |      ^
+     50|   });
+     51|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-indexes.test.ts > storage-indexes > generateCreateIndexSql > should reject invalid collection names
+AssertionError: expected error to be instance of IdentifierError
+
+- Expected:
+[Function IdentifierError]
+
++ Received:
+IdentifierError {
+  "message": "collection name must match /^[a-zA-Z][a-zA-Z0-9_-]*$/ (got \"items'; DROP TABLE--\")",
+  "identifier": "items'; DROP TABLE--",
+  "name": "IdentifierError",
+}
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-indexes.test.ts:55:6
+     53|    expect(() =>
+     54|     generateCreateIndexSql(db, "my-plugin", "items'; DROP TABLE--", ["…
+     55|    ).toThrow(IdentifierError);
+       |      ^
+     56|   });
+     57|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-indexes.test.ts > storage-indexes > generateCreateIndexSql > should reject invalid plugin IDs
+AssertionError: expected error to be instance of IdentifierError
+
+- Expected:
+[Function IdentifierError]
+
++ Received:
+IdentifierError {
+  "message": "plugin ID must match /^[a-z][a-z0-9_-]*$/ (got \"'; DROP TABLE--\")",
+  "identifier": "'; DROP TABLE--",
+  "name": "IdentifierError",
+}
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-indexes.test.ts:59:85
+     57|
+     58|   it("should reject invalid plugin IDs", () => {
+     59|    expect(() => generateCreateIndexSql(db, "'; DROP TABLE--", "items",…
+       |                                                                                     ^
+     60|     IdentifierError,
+     61|    );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/25]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-query.test.ts > storage-query > jsonExtract > should reject invalid field names to prevent SQL injection
+AssertionError: expected error to be instance of IdentifierError
+
+- Expected:
+[Function IdentifierError]
+
++ Received:
+IdentifierError {
+  "message": "plugin storage field name must match /^[a-zA-Z][a-zA-Z0-9_]*$/ (got \"'); DROP TABLE users--\")",
+  "identifier": "'); DROP TABLE users--",
+  "name": "IdentifierError",
+}
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/storage-query.test.ts:191:60
+    189|
+    190|   it("should reject invalid field names to prevent SQL injection", () …
+    191|    expect(() => jsonExtract(db, "'); DROP TABLE users--")).toThrow(Ide…
+       |                                                            ^
+    192|    expect(() => jsonExtract(db, "field.with.dots")).toThrow(Identifier…
+    193|    expect(() => jsonExtract(db, "field-with-hyphens")).toThrow(Identif…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/25]⎯
+
+
+ Test Files  23 failed | 11 passed (34)
+      Tests  5 failed | 279 passed (284)
+   Start at  00:58:19
+   Duration  12.56s (transform 1.32s, setup 0ms, import 2.12s, tests 3.44s, environment 3ms)
+
