@@ -32273,6 +32273,51 @@
   ],
   "aliasImports": [
     {
+      "importer": "packages/core/src/api/schemas/media.ts",
+      "specifier": "#media/focal-point.js",
+      "target": "packages/core/src/media/focal-point.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/authorize.js",
+      "target": "packages/core/src/api/authorize.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/error.js",
+      "target": "packages/core/src/api/error.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/handlers/plugin-settings.js",
+      "target": "packages/core/src/api/handlers/plugin-settings.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/index.js",
+      "target": "packages/core/src/api/index.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/parse.js",
+      "target": "packages/core/src/api/parse.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/plugins/[pluginId]/[...path].ts",
+      "specifier": "#api/error.js",
+      "target": "packages/core/src/api/error.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/plugins/[pluginId]/[...path].ts",
+      "specifier": "#plugins/http-route-dispatch.js",
+      "target": "packages/core/src/plugins/http-route-dispatch.ts"
+    },
+    {
+      "importer": "packages/core/src/auth/scopes.ts",
+      "specifier": "#api/error.js",
+      "target": "packages/core/src/api/error.ts"
+    },
+    {
       "importer": "packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts",
       "specifier": "#node-sqlite",
       "target": "packages/core/src/db/node-sqlite-compat.ts"
@@ -32361,94 +32406,59 @@
       "importer": "packages/core/tests/unit/plugins/state.test.ts",
       "specifier": "#node-sqlite",
       "target": "packages/core/src/db/node-sqlite-compat.ts"
-    },
-    {
-      "importer": "packages/core/src/api/schemas/media.ts",
-      "specifier": "#media/focal-point.js",
-      "target": "packages/core/src/media/focal-point.ts"
-    },
-    {
-      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
-      "specifier": "#api/authorize.js",
-      "target": "packages/core/src/api/authorize.ts"
-    },
-    {
-      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
-      "specifier": "#api/error.js",
-      "target": "packages/core/src/api/error.ts"
-    },
-    {
-      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
-      "specifier": "#api/handlers/plugin-settings.js",
-      "target": "packages/core/src/api/handlers/plugin-settings.ts"
-    },
-    {
-      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
-      "specifier": "#api/index.js",
-      "target": "packages/core/src/api/index.ts"
-    },
-    {
-      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
-      "specifier": "#api/parse.js",
-      "target": "packages/core/src/api/parse.ts"
-    },
-    {
-      "importer": "packages/core/src/astro/routes/api/plugins/[pluginId]/[...path].ts",
-      "specifier": "#api/error.js",
-      "target": "packages/core/src/api/error.ts"
-    },
-    {
-      "importer": "packages/core/src/astro/routes/api/plugins/[pluginId]/[...path].ts",
-      "specifier": "#plugins/http-route-dispatch.js",
-      "target": "packages/core/src/plugins/http-route-dispatch.ts"
-    },
-    {
-      "importer": "packages/core/src/auth/scopes.ts",
-      "specifier": "#api/error.js",
-      "target": "packages/core/src/api/error.ts"
     }
   ],
   "unresolvedAliasImports": [],
   "workspaceImports": [
     {
-      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
-      "specifier": "@emdash-cms/auth",
-      "typeOnly": false,
-      "package": "@emdash-cms/auth",
-      "packageManifest": "packages/auth/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.mjs",
-      "target": "packages/auth/src/index.ts"
-    },
-    {
-      "importer": "packages/core/tests/unit/api/plugin-settings-route.test.ts",
-      "specifier": "@emdash-cms/auth",
-      "typeOnly": false,
-      "package": "@emdash-cms/auth",
-      "packageManifest": "packages/auth/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.mjs",
-      "target": "packages/auth/src/index.ts"
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/define-plugin.test.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": false,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
+      "importer": "packages/admin/src/components/editor/PluginBlockNode.tsx",
+      "specifier": "@emdash-cms/blocks",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
       "export": ".",
       "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
+      "target": "packages/blocks/src/index.ts"
     },
     {
-      "importer": "packages/core/tests/unit/plugins/route-wire.test.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": false,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@emdash-cms/blocks",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
       "export": ".",
       "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
+      "target": "packages/blocks/src/index.ts"
+    },
+    {
+      "importer": "packages/admin/src/lib/api/client.ts",
+      "specifier": "@emdash-cms/blocks",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/blocks/src/index.ts"
+    },
+    {
+      "importer": "packages/admin/src/lib/api/client.ts",
+      "specifier": "@emdash-cms/blocks",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/blocks/src/index.ts"
+    },
+    {
+      "importer": "packages/admin/src/lib/api/client.ts",
+      "specifier": "@emdash-cms/blocks",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/blocks/src/index.ts"
     },
     {
       "importer": "packages/admin/src/lib/plugin-links.ts",
@@ -32471,226 +32481,6 @@
       "target": "packages/blocks/src/index.ts"
     },
     {
-      "importer": "packages/core/src/plugins/define-plugin.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": false,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/editor-draft.ts",
-      "specifier": "@emdash-cms/blocks",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/blocks/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/editor-draft.ts",
-      "specifier": "@emdash-cms/blocks/server",
-      "typeOnly": false,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": "./server",
-      "declaredTarget": "./dist/server.js",
-      "target": "packages/blocks/src/server.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/http-route-dispatch.ts",
-      "specifier": "@emdash-cms/admin/locales",
-      "typeOnly": false,
-      "package": "@emdash-cms/admin",
-      "packageManifest": "packages/admin/package.json",
-      "export": "./locales",
-      "declaredTarget": "./dist/locales/index.js",
-      "target": "packages/admin/src/locales/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/http-route-dispatch.ts",
-      "specifier": "@emdash-cms/auth",
-      "typeOnly": false,
-      "package": "@emdash-cms/auth",
-      "packageManifest": "packages/auth/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.mjs",
-      "target": "packages/auth/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/http-route-dispatch.ts",
-      "specifier": "@emdash-cms/blocks/server",
-      "typeOnly": false,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": "./server",
-      "declaredTarget": "./dist/server.js",
-      "target": "packages/blocks/src/server.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/manifest-schema.ts",
-      "specifier": "@emdash-cms/auth",
-      "typeOnly": false,
-      "package": "@emdash-cms/auth",
-      "packageManifest": "packages/auth/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.mjs",
-      "target": "packages/auth/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/manifest-schema.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": false,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/route-wire.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": false,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/routes.ts",
-      "specifier": "@emdash-cms/blocks/server",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": "./server",
-      "declaredTarget": "./dist/server.js",
-      "target": "packages/blocks/src/server.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/routes.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": true,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/routes.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": false,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/sandbox/types.ts",
-      "specifier": "@emdash-cms/blocks/server",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": "./server",
-      "declaredTarget": "./dist/server.js",
-      "target": "packages/blocks/src/server.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/types.ts",
-      "specifier": "@emdash-cms/auth",
-      "typeOnly": true,
-      "package": "@emdash-cms/auth",
-      "packageManifest": "packages/auth/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.mjs",
-      "target": "packages/auth/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/types.ts",
-      "specifier": "@emdash-cms/blocks",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/blocks/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/types.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": false,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugins/types.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": true,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@emdash-cms/blocks",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/blocks/src/index.ts"
-    },
-    {
-      "importer": "packages/admin/src/components/editor/PluginBlockNode.tsx",
-      "specifier": "@emdash-cms/blocks",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/blocks/src/index.ts"
-    },
-    {
-      "importer": "packages/admin/src/lib/api/client.ts",
-      "specifier": "@emdash-cms/blocks",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/blocks/src/index.ts"
-    },
-    {
-      "importer": "packages/admin/src/lib/api/client.ts",
-      "specifier": "@emdash-cms/blocks",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/blocks/src/index.ts"
-    },
-    {
-      "importer": "packages/admin/src/lib/api/client.ts",
-      "specifier": "@emdash-cms/blocks",
-      "typeOnly": true,
-      "package": "@emdash-cms/blocks",
-      "packageManifest": "packages/blocks/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/blocks/src/index.ts"
-    },
-    {
       "importer": "packages/core/src/api/authorize.ts",
       "specifier": "@emdash-cms/auth",
       "typeOnly": true,
@@ -32729,6 +32519,36 @@
       "export": ".",
       "declaredTarget": "./dist/index.js",
       "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/api/handlers/registry.ts",
+      "specifier": "@emdash-cms/registry-client/discovery",
+      "typeOnly": false,
+      "package": "@emdash-cms/registry-client",
+      "packageManifest": "packages/registry-client/package.json",
+      "export": "./discovery",
+      "declaredTarget": "./dist/discovery/index.js",
+      "target": "packages/registry-client/src/discovery/index.ts"
+    },
+    {
+      "importer": "packages/core/src/api/handlers/registry.ts",
+      "specifier": "@emdash-cms/registry-client/discovery",
+      "typeOnly": false,
+      "package": "@emdash-cms/registry-client",
+      "packageManifest": "packages/registry-client/package.json",
+      "export": "./discovery",
+      "declaredTarget": "./dist/discovery/index.js",
+      "target": "packages/registry-client/src/discovery/index.ts"
+    },
+    {
+      "importer": "packages/core/src/api/handlers/registry.ts",
+      "specifier": "@emdash-cms/registry-client/discovery",
+      "typeOnly": false,
+      "package": "@emdash-cms/registry-client",
+      "packageManifest": "packages/registry-client/package.json",
+      "export": "./discovery",
+      "declaredTarget": "./dist/discovery/index.js",
+      "target": "packages/registry-client/src/discovery/index.ts"
     },
     {
       "importer": "packages/core/src/api/handlers/registry.ts",
@@ -32799,36 +32619,6 @@
       "export": "./artifact",
       "declaredTarget": "./dist/artifact.js",
       "target": "packages/registry-verification/src/artifact.ts"
-    },
-    {
-      "importer": "packages/core/src/api/handlers/registry.ts",
-      "specifier": "@emdash-cms/registry-client/discovery",
-      "typeOnly": false,
-      "package": "@emdash-cms/registry-client",
-      "packageManifest": "packages/registry-client/package.json",
-      "export": "./discovery",
-      "declaredTarget": "./dist/discovery/index.js",
-      "target": "packages/registry-client/src/discovery/index.ts"
-    },
-    {
-      "importer": "packages/core/src/api/handlers/registry.ts",
-      "specifier": "@emdash-cms/registry-client/discovery",
-      "typeOnly": false,
-      "package": "@emdash-cms/registry-client",
-      "packageManifest": "packages/registry-client/package.json",
-      "export": "./discovery",
-      "declaredTarget": "./dist/discovery/index.js",
-      "target": "packages/registry-client/src/discovery/index.ts"
-    },
-    {
-      "importer": "packages/core/src/api/handlers/registry.ts",
-      "specifier": "@emdash-cms/registry-client/discovery",
-      "typeOnly": false,
-      "package": "@emdash-cms/registry-client",
-      "packageManifest": "packages/registry-client/package.json",
-      "export": "./discovery",
-      "declaredTarget": "./dist/discovery/index.js",
-      "target": "packages/registry-client/src/discovery/index.ts"
     },
     {
       "importer": "packages/core/src/astro/integration/runtime.ts",
@@ -33072,16 +32862,6 @@
     },
     {
       "importer": "packages/core/src/plugin-types.ts",
-      "specifier": "@emdash-cms/plugin-types",
-      "typeOnly": true,
-      "package": "@emdash-cms/plugin-types",
-      "packageManifest": "packages/plugin-types/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/core/src/plugin-types.ts",
       "specifier": "@emdash-cms/blocks/server",
       "typeOnly": true,
       "package": "@emdash-cms/blocks",
@@ -33092,6 +32872,186 @@
     },
     {
       "importer": "packages/core/src/plugin-types.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": true,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugin-types.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": true,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/define-plugin.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": false,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/editor-draft.ts",
+      "specifier": "@emdash-cms/blocks",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/blocks/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/editor-draft.ts",
+      "specifier": "@emdash-cms/blocks/server",
+      "typeOnly": false,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": "./server",
+      "declaredTarget": "./dist/server.js",
+      "target": "packages/blocks/src/server.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/http-route-dispatch.ts",
+      "specifier": "@emdash-cms/admin/locales",
+      "typeOnly": false,
+      "package": "@emdash-cms/admin",
+      "packageManifest": "packages/admin/package.json",
+      "export": "./locales",
+      "declaredTarget": "./dist/locales/index.js",
+      "target": "packages/admin/src/locales/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/http-route-dispatch.ts",
+      "specifier": "@emdash-cms/auth",
+      "typeOnly": false,
+      "package": "@emdash-cms/auth",
+      "packageManifest": "packages/auth/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.mjs",
+      "target": "packages/auth/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/http-route-dispatch.ts",
+      "specifier": "@emdash-cms/blocks/server",
+      "typeOnly": false,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": "./server",
+      "declaredTarget": "./dist/server.js",
+      "target": "packages/blocks/src/server.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/manifest-schema.ts",
+      "specifier": "@emdash-cms/auth",
+      "typeOnly": false,
+      "package": "@emdash-cms/auth",
+      "packageManifest": "packages/auth/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.mjs",
+      "target": "packages/auth/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/manifest-schema.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": false,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/route-wire.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": false,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/routes.ts",
+      "specifier": "@emdash-cms/blocks/server",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": "./server",
+      "declaredTarget": "./dist/server.js",
+      "target": "packages/blocks/src/server.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/routes.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": true,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/routes.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": false,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/sandbox/types.ts",
+      "specifier": "@emdash-cms/blocks/server",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": "./server",
+      "declaredTarget": "./dist/server.js",
+      "target": "packages/blocks/src/server.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/types.ts",
+      "specifier": "@emdash-cms/auth",
+      "typeOnly": true,
+      "package": "@emdash-cms/auth",
+      "packageManifest": "packages/auth/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.mjs",
+      "target": "packages/auth/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/types.ts",
+      "specifier": "@emdash-cms/blocks",
+      "typeOnly": true,
+      "package": "@emdash-cms/blocks",
+      "packageManifest": "packages/blocks/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/blocks/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/types.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": false,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/src/plugins/types.ts",
       "specifier": "@emdash-cms/plugin-types",
       "typeOnly": true,
       "package": "@emdash-cms/plugin-types",
@@ -33201,6 +33161,46 @@
       "target": "packages/admin/src/slugify.ts"
     },
     {
+      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
+      "specifier": "@emdash-cms/auth",
+      "typeOnly": false,
+      "package": "@emdash-cms/auth",
+      "packageManifest": "packages/auth/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.mjs",
+      "target": "packages/auth/src/index.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/api/plugin-settings-route.test.ts",
+      "specifier": "@emdash-cms/auth",
+      "typeOnly": false,
+      "package": "@emdash-cms/auth",
+      "packageManifest": "packages/auth/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.mjs",
+      "target": "packages/auth/src/index.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/define-plugin.test.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": false,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/route-wire.test.ts",
+      "specifier": "@emdash-cms/plugin-types",
+      "typeOnly": false,
+      "package": "@emdash-cms/plugin-types",
+      "packageManifest": "packages/plugin-types/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/plugin-types/src/index.ts"
+    },
+    {
       "importer": "packages/plugins/ai-moderation/src/decision.ts",
       "specifier": "emdash",
       "typeOnly": true,
@@ -33261,24 +33261,24 @@
       "target": "packages/core/src/plugin-types.ts"
     },
     {
-      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
-      "specifier": "emdash",
+      "importer": "packages/registry-client/src/direct-pds/index.ts",
+      "specifier": "@emdash-cms/registry-lexicons",
       "typeOnly": false,
-      "package": "emdash",
-      "packageManifest": "packages/core/package.json",
+      "package": "@emdash-cms/registry-lexicons",
+      "packageManifest": "packages/registry-lexicons/package.json",
       "export": ".",
-      "declaredTarget": "./dist/index.mjs",
-      "target": "packages/core/src/index.ts"
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/registry-lexicons/src/index.ts"
     },
     {
-      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
-      "specifier": "emdash",
-      "typeOnly": true,
-      "package": "emdash",
-      "packageManifest": "packages/core/package.json",
+      "importer": "packages/registry-client/src/discovery/index.ts",
+      "specifier": "@emdash-cms/registry-lexicons",
+      "typeOnly": false,
+      "package": "@emdash-cms/registry-lexicons",
+      "packageManifest": "packages/registry-lexicons/package.json",
       "export": ".",
-      "declaredTarget": "./dist/index.mjs",
-      "target": "packages/core/src/index.ts"
+      "declaredTarget": "./dist/index.js",
+      "target": "packages/registry-lexicons/src/index.ts"
     },
     {
       "importer": "packages/registry-client/src/listing-policy.ts",
@@ -33311,16 +33311,6 @@
       "target": "packages/registry-lexicons/src/index.ts"
     },
     {
-      "importer": "packages/registry-client/src/discovery/index.ts",
-      "specifier": "@emdash-cms/registry-lexicons",
-      "typeOnly": false,
-      "package": "@emdash-cms/registry-lexicons",
-      "packageManifest": "packages/registry-lexicons/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/registry-lexicons/src/index.ts"
-    },
-    {
       "importer": "packages/registry-verification/src/bundle.ts",
       "specifier": "@emdash-cms/plugin-types",
       "typeOnly": true,
@@ -33339,16 +33329,6 @@
       "export": ".",
       "declaredTarget": "./dist/index.js",
       "target": "packages/plugin-types/src/index.ts"
-    },
-    {
-      "importer": "packages/registry-client/src/direct-pds/index.ts",
-      "specifier": "@emdash-cms/registry-lexicons",
-      "typeOnly": false,
-      "package": "@emdash-cms/registry-lexicons",
-      "packageManifest": "packages/registry-lexicons/package.json",
-      "export": ".",
-      "declaredTarget": "./dist/index.js",
-      "target": "packages/registry-lexicons/src/index.ts"
     },
     {
       "importer": "packages/registry-verification/src/provenance.ts",
@@ -33389,927 +33369,47 @@
       "export": ".",
       "declaredTarget": "./dist/index.js",
       "target": "packages/registry-lexicons/src/index.ts"
+    },
+    {
+      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
+      "specifier": "emdash",
+      "typeOnly": false,
+      "package": "emdash",
+      "packageManifest": "packages/core/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.mjs",
+      "target": "packages/core/src/index.ts"
+    },
+    {
+      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
+      "specifier": "emdash",
+      "typeOnly": true,
+      "package": "emdash",
+      "packageManifest": "packages/core/package.json",
+      "export": ".",
+      "declaredTarget": "./dist/index.mjs",
+      "target": "packages/core/src/index.ts"
     }
   ],
   "externalImports": [
     {
-      "importer": "packages/admin/tests/editor/plugin-block-conversion.test.ts",
-      "specifier": "vitest",
+      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
+      "specifier": "@phosphor-icons/react",
       "typeOnly": false
     },
     {
-      "importer": "packages/admin/tests/editor/plugin-block-modal.test.tsx",
+      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
       "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/tests/editor/plugin-block-modal.test.tsx",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/tests/lib/content-editor-panels.test.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/tests/lib/content-editor-panels.test.tsx",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/tests/lib/content-list-columns.test.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/tests/lib/content-list-columns.test.tsx",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/tests/lib/plugin-context.test.ts",
-      "specifier": "react",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/tests/lib/plugin-context.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/tests/lib/sandboxed-editor-extensions.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/api/plugins.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/api/plugins.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
-      "specifier": "jsonc-parser",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/byline-access.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/capabilities.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/capabilities.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/capabilities.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/conditional-storage.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/conditional-storage.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/content-attribution.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/content-update-drafts.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/cron-correctness.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/cron-correctness.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/event-scoped-db.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/event-scoped-db.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
-      "specifier": "ulidx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
-      "specifier": "ulidx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/media-capabilities.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/media-capabilities.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-dialect.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-dialect.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-indexes.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-indexes.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-indexes.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-no-oversell.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-no-oversell.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-postgres-numeric-regression.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-postgres-numeric-regression.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-updateif.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage-updateif.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/storage.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts",
-      "specifier": "jsonc-parser",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-action-settlement.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-action-settlement.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-media-enrich.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-media-enrich.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-media-route.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-media-route.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-raw-routes.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-raw-routes.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-route-site-info.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/api/plugin-settings-handlers.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/api/plugin-settings-handlers.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/api/plugin-settings-route.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/api/plugin-settings-route.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/adapt-sandbox-entry.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/capability-normalization.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/content-policy.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/cron-schedule.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/define-plugin.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/define-plugin.test.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/editor-draft.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/email-pipeline.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/email-pipeline.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/exclusive-hooks.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/exclusive-hooks.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/exclusive-hooks.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/field-widgets.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/hooks.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/hooks.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/http-credential-stripping.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/http-wire-runtime-source.test.ts",
-      "specifier": "vite",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/http-wire-runtime-source.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/install-finalization.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/kv-access-list.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/manager.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/manager.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/manifest-schema.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/marketplace-client.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/marketplace-state.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/marketplace-state.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/node-cron-scheduler.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/node-cron-scheduler.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/page-context.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/page-contribution-sandbox.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/page-fragments.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/page-hooks-execution.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/page-hooks-execution.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/page-metadata.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/page-seo.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/pipeline-rebuild.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/pipeline-rebuild.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/plugin-storage-pagination.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/plugin-storage-pagination.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/plugin-storage.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/plugin-storage.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/redirect-types.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/request-meta.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/restore-hooks.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/restore-hooks.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/route-input.test-d.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/route-wire.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/routes.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/routes.test.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/sandbox-hook-result.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/sandbox-runner-options.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/schedule-hooks.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/schedule-hooks.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/settings.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/settings.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/standard-format.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/standard-format.test.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/state.test.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/state.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/storage-indexes.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/storage-query.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/unpublish-hooks.test.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/tests/unit/plugins/unpublish-hooks.test.ts",
-      "specifier": "vitest",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/content-editor-panels.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/content-editor-panels.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/content-editor-panels.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/content-list-columns.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/content-list-columns.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/plugin-context.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/plugin-context.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/LocaleDirectionProvider.tsx",
-      "specifier": "@cloudflare/kumo/primitives",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/LocaleDirectionProvider.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/day-picker.ts",
-      "specifier": "react-day-picker/locale",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/day-picker.ts",
-      "specifier": "react-day-picker/locale",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/locales/emails.ts",
-      "specifier": "@lingui/core",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/emails.ts",
-      "specifier": "@lingui/core/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/loadMessages.ts",
-      "specifier": "@lingui/core",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/locales/server.ts",
-      "specifier": "@lingui/core",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/locales/server.ts",
-      "specifier": "@lingui/core/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/useLocale.ts",
-      "specifier": "@lingui/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/locales/useLocale.ts",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/adapt-sandbox-entry.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/byline-access.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/content-access.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/context.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/context.ts",
-      "specifier": "mime/lite",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/context.ts",
-      "specifier": "ulidx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/cron.ts",
-      "specifier": "croner",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/cron.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/cron.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/cron.ts",
-      "specifier": "ulidx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/host.ts",
-      "specifier": "ulidx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/lifecycle.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/manager.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/manager.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/manifest-schema.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/marketplace.ts",
-      "specifier": "modern-tar",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/media.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/routes.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/sandbox/types.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/state.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/storage-indexes.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/storage-indexes.ts",
-      "specifier": "kysely",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/src/plugins/storage-query.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/types.ts",
-      "specifier": "astro/jsx-runtime",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/core/src/plugins/types.ts",
-      "specifier": "astro/zod",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/plugin-types/src/manifest-schema.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/plugin-types/src/routes.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/core/vitest.config.ts",
-      "specifier": "vitest/config",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/adapters/kysely.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/auth/src/adapters/kysely.ts",
-      "specifier": "ulidx",
       "typeOnly": false
     },
     {
@@ -34378,391 +33478,6 @@
       "typeOnly": false
     },
     {
-      "importer": "packages/admin/src/components/FieldHelpLabel.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/FieldHelpLabel.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/FieldHelpLabel.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/FocalPointEditor.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/FocalPointEditor.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "@lingui/core/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "@tanstack/react-query",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "@tanstack/react-router",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
-      "specifier": "react-dom",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaImageCropper.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaImageCropper.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaImageCropper.tsx",
-      "specifier": "react-image-crop",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "@cloudflare/kumo/primitives/scroll-area",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "@lingui/core/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "@tanstack/react-query",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
-      "specifier": "react-dom",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "@lingui/core",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "@lingui/core/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "@tanstack/react-query",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "@tanstack/react-router",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/NonListFieldValue.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/NonListFieldValue.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@cloudflare/kumo/primitives/popover",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@dnd-kit/core",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@dnd-kit/core",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@dnd-kit/sortable",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@dnd-kit/utilities",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@lingui/core",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@lingui/core/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@lingui/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tanstack/react-query",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/core",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/extension-character-count",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/extension-focus",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/extension-placeholder",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/extension-subscript",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/extension-superscript",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/extension-text-align",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/extension-typography",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/pm/history",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/pm/model",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/pm/state",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/pm/tables",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/react/menus",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/starter-kit",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "@tiptap/suggestion",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
-      "specifier": "@lingui/react/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
-      "specifier": "@tanstack/react-query",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/TableToolbar.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/TableToolbar.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/TableToolbar.tsx",
-      "specifier": "react",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/admin-navigation-icons.ts",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
       "importer": "packages/admin/src/components/editor/BlockMenu.tsx",
       "specifier": "@cloudflare/kumo",
       "typeOnly": false
@@ -34800,6 +33515,16 @@
     {
       "importer": "packages/admin/src/components/editor/BlockMenu.tsx",
       "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/editor/codeBlockLanguages.ts",
+      "specifier": "@lingui/core",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/editor/codeBlockLanguages.ts",
+      "specifier": "@lingui/core/macro",
       "typeOnly": false
     },
     {
@@ -35368,6 +34093,36 @@
       "typeOnly": true
     },
     {
+      "importer": "packages/admin/src/components/editor/ordered-list.ts",
+      "specifier": "@tiptap/core",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/editor/ordered-list.ts",
+      "specifier": "@tiptap/extension-list",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/editor/ordered-list.ts",
+      "specifier": "@tiptap/pm/model",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/editor/ordered-list.ts",
+      "specifier": "@tiptap/pm/state",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/editor/ordered-list.ts",
+      "specifier": "@tiptap/pm/transform",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/editor/ordered-list.ts",
+      "specifier": "@tiptap/pm/view",
+      "typeOnly": true
+    },
+    {
       "importer": "packages/admin/src/components/editor/PluginBlockNode.tsx",
       "specifier": "@cloudflare/kumo",
       "typeOnly": false
@@ -35608,44 +34363,29 @@
       "typeOnly": false
     },
     {
-      "importer": "packages/admin/src/components/editor/codeBlockLanguages.ts",
-      "specifier": "@lingui/core",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/admin/src/components/editor/codeBlockLanguages.ts",
-      "specifier": "@lingui/core/macro",
+      "importer": "packages/admin/src/components/FieldHelpLabel.tsx",
+      "specifier": "@cloudflare/kumo",
       "typeOnly": false
     },
     {
-      "importer": "packages/admin/src/components/editor/ordered-list.ts",
-      "specifier": "@tiptap/core",
+      "importer": "packages/admin/src/components/FieldHelpLabel.tsx",
+      "specifier": "@phosphor-icons/react",
       "typeOnly": false
     },
     {
-      "importer": "packages/admin/src/components/editor/ordered-list.ts",
-      "specifier": "@tiptap/extension-list",
+      "importer": "packages/admin/src/components/FieldHelpLabel.tsx",
+      "specifier": "react",
       "typeOnly": false
     },
     {
-      "importer": "packages/admin/src/components/editor/ordered-list.ts",
-      "specifier": "@tiptap/pm/model",
+      "importer": "packages/admin/src/components/FocalPointEditor.tsx",
+      "specifier": "@lingui/react/macro",
       "typeOnly": false
     },
     {
-      "importer": "packages/admin/src/components/editor/ordered-list.ts",
-      "specifier": "@tiptap/pm/state",
+      "importer": "packages/admin/src/components/FocalPointEditor.tsx",
+      "specifier": "react",
       "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/editor/ordered-list.ts",
-      "specifier": "@tiptap/pm/transform",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/components/editor/ordered-list.ts",
-      "specifier": "@tiptap/pm/view",
-      "typeOnly": true
     },
     {
       "importer": "packages/admin/src/components/media/MediaBrowserItems.tsx",
@@ -35686,6 +34426,346 @@
       "importer": "packages/admin/src/components/media/useMediaUploadQueue.ts",
       "specifier": "react",
       "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "@tanstack/react-query",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "@tanstack/react-router",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaDetailPanel.tsx",
+      "specifier": "react-dom",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaImageCropper.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaImageCropper.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaImageCropper.tsx",
+      "specifier": "react-image-crop",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "@cloudflare/kumo/primitives/scroll-area",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "@tanstack/react-query",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaPickerModal.tsx",
+      "specifier": "react-dom",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "@lingui/core",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "@tanstack/react-query",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "@tanstack/react-router",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/MediaUsedIn.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/NonListFieldValue.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/NonListFieldValue.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@cloudflare/kumo/primitives/popover",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@dnd-kit/core",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@dnd-kit/core",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@dnd-kit/sortable",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@dnd-kit/utilities",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@lingui/core",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@lingui/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tanstack/react-query",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/core",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/extension-character-count",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/extension-focus",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/extension-placeholder",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/extension-subscript",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/extension-superscript",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/extension-text-align",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/extension-typography",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/pm/history",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/pm/model",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/pm/state",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/pm/tables",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/react/menus",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/starter-kit",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "@tiptap/suggestion",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/PortableTextEditor.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
+      "specifier": "@tanstack/react-query",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/SectionPickerModal.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/TableToolbar.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/TableToolbar.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/TableToolbar.tsx",
+      "specifier": "react",
+      "typeOnly": true
     },
     {
       "importer": "packages/admin/src/components/useContainedMediaSize.ts",
@@ -35814,15 +34894,15 @@
     },
     {
       "importer": "packages/admin/src/lib/api/marketplace.ts",
-      "specifier": "@lingui/core/macro",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/admin/src/lib/api/marketplace.ts",
       "specifier": "@lingui/core",
       "typeOnly": true
     },
     {
+      "importer": "packages/admin/src/lib/api/marketplace.ts",
+      "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
       "importer": "packages/admin/src/lib/api/media.ts",
       "specifier": "@lingui/core",
       "typeOnly": false
@@ -35940,10 +35020,45 @@
     {
       "importer": "packages/admin/src/lib/api/widgets.ts",
       "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/content-editor-panels.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/content-editor-panels.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/content-editor-panels.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/content-list-columns.tsx",
+      "specifier": "@lingui/react/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/content-list-columns.tsx",
+      "specifier": "react",
       "typeOnly": false
     },
     {
       "importer": "packages/admin/src/lib/hooks.ts",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/plugin-context.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/plugin-context.tsx",
       "specifier": "react",
       "typeOnly": false
     },
@@ -35955,6 +35070,111 @@
     {
       "importer": "packages/admin/src/lib/utils.ts",
       "specifier": "tailwind-merge",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/day-picker.ts",
+      "specifier": "react-day-picker/locale",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/day-picker.ts",
+      "specifier": "react-day-picker/locale",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/locales/emails.ts",
+      "specifier": "@lingui/core",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/emails.ts",
+      "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/loadMessages.ts",
+      "specifier": "@lingui/core",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/locales/LocaleDirectionProvider.tsx",
+      "specifier": "@cloudflare/kumo/primitives",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/LocaleDirectionProvider.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/server.ts",
+      "specifier": "@lingui/core",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/locales/server.ts",
+      "specifier": "@lingui/core/macro",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/useLocale.ts",
+      "specifier": "@lingui/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/locales/useLocale.ts",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/editor/plugin-block-conversion.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/editor/plugin-block-modal.test.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/editor/plugin-block-modal.test.tsx",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/lib/content-editor-panels.test.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/lib/content-editor-panels.test.tsx",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/lib/content-list-columns.test.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/lib/content-list-columns.test.tsx",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/lib/plugin-context.test.ts",
+      "specifier": "react",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/tests/lib/plugin-context.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/tests/lib/sandboxed-editor-extensions.test.ts",
+      "specifier": "vitest",
       "typeOnly": false
     },
     {
@@ -35980,6 +35200,371 @@
     {
       "importer": "packages/admin/tests/utils/render.tsx",
       "specifier": "vitest-browser-react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/adapters/kysely.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/auth/src/adapters/kysely.ts",
+      "specifier": "ulidx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/config.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/oauth/consumer.ts",
+      "specifier": "@oslojs/crypto/sha2",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/oauth/consumer.ts",
+      "specifier": "@oslojs/encoding",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/oauth/consumer.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/oauth/providers/github.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/oauth/providers/google.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/oauth/providers/microsoft.ts",
+      "specifier": "jose",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/oauth/providers/microsoft.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/authenticate.ts",
+      "specifier": "@oslojs/crypto/ecdsa",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/authenticate.ts",
+      "specifier": "@oslojs/crypto/rsa",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/authenticate.ts",
+      "specifier": "@oslojs/crypto/sha2",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/authenticate.ts",
+      "specifier": "@oslojs/encoding",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/authenticate.ts",
+      "specifier": "@oslojs/webauthn",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/challenge-context.ts",
+      "specifier": "@oslojs/crypto/sha2",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/challenge-context.ts",
+      "specifier": "@oslojs/encoding",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/register.ts",
+      "specifier": "@oslojs/crypto/ecdsa",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/register.ts",
+      "specifier": "@oslojs/crypto/rsa",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/register.ts",
+      "specifier": "@oslojs/encoding",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/passkey/register.ts",
+      "specifier": "@oslojs/webauthn",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/tokens.ts",
+      "specifier": "@oslojs/crypto/hmac",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/tokens.ts",
+      "specifier": "@oslojs/crypto/sha2",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/tokens.ts",
+      "specifier": "@oslojs/crypto/subtle",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/auth/src/tokens.ts",
+      "specifier": "@oslojs/encoding",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/accordion.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/accordion.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/banner.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/banner.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/banner.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/chart.tsx",
+      "specifier": "@cloudflare/kumo/components/chart",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/chart.tsx",
+      "specifier": "echarts/charts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/chart.tsx",
+      "specifier": "echarts/components",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/chart.tsx",
+      "specifier": "echarts/core",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/chart.tsx",
+      "specifier": "echarts/renderers",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/chart.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/code.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/empty.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/empty.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/form.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/form.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/meter.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/stats.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/tab.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/tab.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/table.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/table.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/blocks/table.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/button.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/button.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/checkbox.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/checkbox.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/combobox.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/combobox.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/date-input.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/link.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/menu.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/menu.tsx",
+      "specifier": "@phosphor-icons/react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/number-input.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/number-input.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/radio.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/radio.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/secret-input.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/secret-input.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/select.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/select.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/text-input.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/text-input.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/toggle.tsx",
+      "specifier": "@cloudflare/kumo",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/elements/toggle.tsx",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/utils.ts",
+      "specifier": "clsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/utils.ts",
+      "specifier": "react",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/blocks/src/utils.ts",
+      "specifier": "tailwind-merge",
       "typeOnly": false
     },
     {
@@ -37708,6 +37293,131 @@
       "typeOnly": true
     },
     {
+      "importer": "packages/core/src/plugins/adapt-sandbox-entry.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/byline-access.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/content-access.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/context.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/context.ts",
+      "specifier": "mime/lite",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/context.ts",
+      "specifier": "ulidx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/cron.ts",
+      "specifier": "croner",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/cron.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/cron.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/cron.ts",
+      "specifier": "ulidx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/host.ts",
+      "specifier": "ulidx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/lifecycle.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/manager.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/manager.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/manifest-schema.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/marketplace.ts",
+      "specifier": "modern-tar",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/media.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/routes.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/sandbox/types.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/state.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/storage-indexes.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/storage-indexes.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/plugins/storage-query.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/types.ts",
+      "specifier": "astro/jsx-runtime",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/plugins/types.ts",
+      "specifier": "astro/zod",
+      "typeOnly": true
+    },
+    {
       "importer": "packages/core/src/query.ts",
       "specifier": "astro:content",
       "typeOnly": false
@@ -37993,6 +37703,636 @@
       "typeOnly": false
     },
     {
+      "importer": "packages/core/tests/integration/api/plugins.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/api/plugins.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
+      "specifier": "jsonc-parser",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/audit-log-plugin.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/byline-access.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/capabilities.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/capabilities.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/capabilities.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/conditional-storage.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/conditional-storage.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/content-attribution.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/content-update-drafts.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/cron-correctness.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/cron-correctness.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/event-scoped-db.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/event-scoped-db.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
+      "specifier": "ulidx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
+      "specifier": "ulidx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/field-widgets.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/media-capabilities.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/media-capabilities.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-dialect.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-dialect.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-indexes.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-indexes.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-indexes.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-no-oversell.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-no-oversell.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-postgres-numeric-regression.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-postgres-numeric-regression.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-updateif.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage-updateif.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/storage.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts",
+      "specifier": "jsonc-parser",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-action-settlement.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-action-settlement.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-media-enrich.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-media-enrich.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-media-route.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-media-route.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-raw-routes.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-raw-routes.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-route-site-info.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/api/plugin-settings-handlers.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/api/plugin-settings-handlers.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/api/plugin-settings-route.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/api/plugin-settings-route.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/adapt-sandbox-entry.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/capability-normalization.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/content-policy.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/cron-schedule.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/define-plugin.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/define-plugin.test.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/editor-draft.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/email-pipeline.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/email-pipeline.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/exclusive-hooks.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/exclusive-hooks.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/exclusive-hooks.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/field-widgets.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/hooks.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/hooks.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/http-credential-stripping.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/http-wire-runtime-source.test.ts",
+      "specifier": "vite",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/http-wire-runtime-source.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/install-finalization.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/kv-access-list.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/manager.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/manager.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/manifest-schema.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/marketplace-client.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/marketplace-state.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/marketplace-state.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/node-cron-scheduler.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/node-cron-scheduler.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-context.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-contribution-sandbox.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-fragments.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-hooks-execution.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-hooks-execution.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-metadata.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-seo.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/pipeline-rebuild.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/pipeline-rebuild.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/plugin-storage-pagination.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/plugin-storage-pagination.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/plugin-storage.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/plugin-storage.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/redirect-types.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/request-meta.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/restore-hooks.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/restore-hooks.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/route-input.test-d.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/route-wire.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/routes.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/routes.test.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/sandbox-hook-result.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/sandbox-runner-options.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/schedule-hooks.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/schedule-hooks.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/settings.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/settings.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/standard-format.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/standard-format.test.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/state.test.ts",
+      "specifier": "kysely",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/state.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/storage-indexes.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/storage-query.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/unpublish-hooks.test.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/unpublish-hooks.test.ts",
+      "specifier": "vitest",
+      "typeOnly": false
+    },
+    {
       "importer": "packages/core/tests/utils/plugin-content-attribution.ts",
       "specifier": "kysely",
       "typeOnly": false
@@ -38033,58 +38373,8 @@
       "typeOnly": false
     },
     {
-      "importer": "packages/plugins/ai-moderation/src/guard.ts",
-      "specifier": "cloudflare:workers",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
-      "specifier": "kysely",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
-      "specifier": "ulidx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
-      "specifier": "ulidx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-client/src/env/index.ts",
-      "specifier": "semver/functions/compare.js",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-client/src/env/index.ts",
-      "specifier": "semver/functions/satisfies.js",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-client/src/env/index.ts",
-      "specifier": "semver/functions/valid.js",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-client/src/env/index.ts",
-      "specifier": "semver/ranges/valid.js",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-client/src/listing-policy.ts",
-      "specifier": "@atcute/client",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-client/src/discovery/index.ts",
-      "specifier": "@atcute/client",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-client/src/discovery/index.ts",
-      "specifier": "@atcute/lexicons/validations",
+      "importer": "packages/core/vitest.config.ts",
+      "specifier": "vitest/config",
       "typeOnly": false
     },
     {
@@ -38093,8 +38383,23 @@
       "typeOnly": false
     },
     {
-      "importer": "packages/registry-verification/src/bundle.ts",
-      "specifier": "modern-tar",
+      "importer": "packages/gutenberg-to-portable-text/src/inline.ts",
+      "specifier": "parse5",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/plugin-types/src/manifest-schema.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/plugin-types/src/routes.ts",
+      "specifier": "zod",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/plugins/ai-moderation/src/guard.ts",
+      "specifier": "cloudflare:workers",
       "typeOnly": false
     },
     {
@@ -38138,78 +38443,38 @@
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/config.ts",
-      "specifier": "zod",
+      "importer": "packages/registry-client/src/discovery/index.ts",
+      "specifier": "@atcute/client",
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/tokens.ts",
-      "specifier": "@oslojs/crypto/hmac",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/tokens.ts",
-      "specifier": "@oslojs/crypto/sha2",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/tokens.ts",
-      "specifier": "@oslojs/crypto/subtle",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/tokens.ts",
-      "specifier": "@oslojs/encoding",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/oauth/consumer.ts",
-      "specifier": "@oslojs/crypto/sha2",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/oauth/consumer.ts",
-      "specifier": "@oslojs/encoding",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/oauth/consumer.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/oauth/providers/microsoft.ts",
-      "specifier": "jose",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/oauth/providers/microsoft.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/utils.ts",
-      "specifier": "clsx",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/utils.ts",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/utils.ts",
-      "specifier": "tailwind-merge",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/defs.ts",
-      "specifier": "@atcute/lexicons",
-      "typeOnly": true
-    },
-    {
-      "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/defs.ts",
+      "importer": "packages/registry-client/src/discovery/index.ts",
       "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/registry-client/src/env/index.ts",
+      "specifier": "semver/functions/compare.js",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/registry-client/src/env/index.ts",
+      "specifier": "semver/functions/satisfies.js",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/registry-client/src/env/index.ts",
+      "specifier": "semver/functions/valid.js",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/registry-client/src/env/index.ts",
+      "specifier": "semver/ranges/valid.js",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/registry-client/src/listing-policy.ts",
+      "specifier": "@atcute/client",
       "typeOnly": false
     },
     {
@@ -38218,19 +38483,29 @@
       "typeOnly": false
     },
     {
+      "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/defs.ts",
+      "specifier": "@atcute/lexicons",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/defs.ts",
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
+    },
+    {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/getLatestRelease.ts",
       "specifier": "@atcute/lexicons",
       "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/getLatestRelease.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/getLatestRelease.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/getPackage.ts",
@@ -38239,13 +38514,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/getPackage.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/getPackage.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/listReleases.ts",
@@ -38254,13 +38529,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/listReleases.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/listReleases.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/resolvePackage.ts",
@@ -38269,13 +38544,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/resolvePackage.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/resolvePackage.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/searchPackages.ts",
@@ -38284,13 +38559,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/searchPackages.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/aggregator/searchPackages.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/defs.ts",
@@ -38309,13 +38584,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getAssessment.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getAssessment.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getCurrentAssessment.ts",
@@ -38324,13 +38599,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getCurrentAssessment.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getCurrentAssessment.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getPolicy.ts",
@@ -38339,13 +38614,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getPolicy.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/getPolicy.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/listAssessments.ts",
@@ -38354,13 +38629,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/listAssessments.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/labeler/listAssessments.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/package/profile.ts",
@@ -38369,13 +38644,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/package/profile.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/package/profile.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/package/profileExtension.ts",
@@ -38394,13 +38669,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/package/release.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/package/release.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/package/releaseExtension.ts",
@@ -38419,13 +38694,13 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/publisher/profile.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
+      "specifier": "@atcute/lexicons/ambient",
+      "typeOnly": true
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/publisher/profile.ts",
-      "specifier": "@atcute/lexicons/ambient",
-      "typeOnly": true
+      "specifier": "@atcute/lexicons/validations",
+      "typeOnly": false
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/publisher/verification.ts",
@@ -38434,72 +38709,37 @@
     },
     {
       "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/publisher/verification.ts",
-      "specifier": "@atcute/lexicons/validations",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/publisher/verification.ts",
       "specifier": "@atcute/lexicons/ambient",
       "typeOnly": true
     },
     {
-      "importer": "packages/auth/src/passkey/challenge-context.ts",
-      "specifier": "@oslojs/crypto/sha2",
+      "importer": "packages/registry-lexicons/src/generated/types/com/emdashcms/experimental/publisher/verification.ts",
+      "specifier": "@atcute/lexicons/validations",
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/passkey/challenge-context.ts",
-      "specifier": "@oslojs/encoding",
+      "importer": "packages/registry-moderation/src/label-crypto.ts",
+      "specifier": "@atcute/cbor",
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/passkey/register.ts",
-      "specifier": "@oslojs/crypto/ecdsa",
+      "importer": "packages/registry-moderation/src/label-crypto.ts",
+      "specifier": "@atcute/crypto",
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/passkey/register.ts",
-      "specifier": "@oslojs/crypto/rsa",
+      "importer": "packages/registry-moderation/src/label-crypto.ts",
+      "specifier": "@atcute/multibase",
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/passkey/register.ts",
-      "specifier": "@oslojs/encoding",
+      "importer": "packages/registry-moderation/src/validation.ts",
+      "specifier": "@atcute/cid",
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/passkey/register.ts",
-      "specifier": "@oslojs/webauthn",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/passkey/authenticate.ts",
-      "specifier": "@oslojs/crypto/ecdsa",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/passkey/authenticate.ts",
-      "specifier": "@oslojs/crypto/rsa",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/passkey/authenticate.ts",
-      "specifier": "@oslojs/crypto/sha2",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/passkey/authenticate.ts",
-      "specifier": "@oslojs/encoding",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/auth/src/passkey/authenticate.ts",
-      "specifier": "@oslojs/webauthn",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/gutenberg-to-portable-text/src/inline.ts",
-      "specifier": "parse5",
+      "importer": "packages/registry-verification/src/bundle.ts",
+      "specifier": "modern-tar",
       "typeOnly": false
     },
     {
@@ -38523,258 +38763,18 @@
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/oauth/providers/github.ts",
-      "specifier": "zod",
+      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
+      "specifier": "kysely",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
+      "specifier": "ulidx",
       "typeOnly": false
     },
     {
-      "importer": "packages/auth/src/oauth/providers/google.ts",
-      "specifier": "zod",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/accordion.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/accordion.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/banner.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/banner.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/banner.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/chart.tsx",
-      "specifier": "@cloudflare/kumo/components/chart",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/chart.tsx",
-      "specifier": "echarts/charts",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/chart.tsx",
-      "specifier": "echarts/components",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/chart.tsx",
-      "specifier": "echarts/core",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/chart.tsx",
-      "specifier": "echarts/renderers",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/chart.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/code.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/empty.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/empty.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/form.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/form.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/meter.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/stats.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/tab.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/tab.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/table.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/table.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/blocks/table.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/button.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/button.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/checkbox.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/checkbox.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/combobox.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/combobox.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/date-input.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/link.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/menu.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/menu.tsx",
-      "specifier": "@phosphor-icons/react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/number-input.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/number-input.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/radio.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/radio.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/secret-input.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/secret-input.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/select.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/select.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/text-input.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/text-input.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/toggle.tsx",
-      "specifier": "@cloudflare/kumo",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/blocks/src/elements/toggle.tsx",
-      "specifier": "react",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-moderation/src/label-crypto.ts",
-      "specifier": "@atcute/cbor",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-moderation/src/label-crypto.ts",
-      "specifier": "@atcute/crypto",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-moderation/src/label-crypto.ts",
-      "specifier": "@atcute/multibase",
-      "typeOnly": false
-    },
-    {
-      "importer": "packages/registry-moderation/src/validation.ts",
-      "specifier": "@atcute/cid",
+      "importer": "packages/workerd/src/sandbox/bridge-handler.ts",
+      "specifier": "ulidx",
       "typeOnly": false
     }
   ],

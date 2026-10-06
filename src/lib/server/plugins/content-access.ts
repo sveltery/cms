@@ -2,8 +2,8 @@
 // Whole pinned authority; dependency transports are recorded explicitly.
 import type { Kysely } from "kysely";
 
-import { ContentRepository } from "../database/lifecycle/upstream/database/repositories/content.ts";
-import { normalizeRevisionLimit, RevisionRepository } from "../database/lifecycle/upstream/database/repositories/revision.ts";
+import { ContentRepository } from "./native-content.ts";
+import { normalizeRevisionLimit, RevisionRepository } from "./native-revisions.ts";
 import { SeoRepository } from "../seo/repository.ts";
 import type { Database } from "./database-types.ts";
 import { resolveLocalizedContentRoutePath } from "../menus/i18n-resolve.ts";

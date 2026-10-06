@@ -803,7 +803,7 @@
         },
         {
           "from": "../database/repositories/content.js",
-          "to": "../database/lifecycle/upstream/database/repositories/content.ts"
+          "to": "./native-content.ts"
         },
         {
           "from": "../database/repositories/entry-locks.js",
@@ -936,11 +936,11 @@
       "imports": [
         {
           "from": "../database/repositories/content.js",
-          "to": "../database/lifecycle/upstream/database/repositories/content.ts"
+          "to": "./native-content.ts"
         },
         {
           "from": "../database/repositories/revision.js",
-          "to": "../database/lifecycle/upstream/database/repositories/revision.ts"
+          "to": "./native-revisions.ts"
         },
         {
           "from": "../database/repositories/seo.js",

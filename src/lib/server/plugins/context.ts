@@ -23,7 +23,7 @@ import { handleTermCreate } from "./native-taxonomy-handlers.ts";
 import { CONTENT_TYPE_RE } from "../general-media/upstream/api/schemas/media.ts";
 import { createRedirectBody, updateRedirectBody } from "../redirects/schemas.ts";
 import { CommentRepository, type Comment } from "./native-comments.ts";
-import { ContentRepository } from "../database/lifecycle/upstream/database/repositories/content.ts";
+import { ContentRepository } from "./native-content.ts";
 import { EntryLockRepository } from "../entry-locks/repository.ts";
 import { MediaRepository } from "./native-media.ts";
 import { OptionsRepository } from "../options/repository.ts";

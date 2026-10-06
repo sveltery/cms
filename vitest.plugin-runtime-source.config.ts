@@ -2,9 +2,11 @@ import { defineConfig } from 'vitest/config';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import originalConfig from './parity/emdash/plugin-runtime/source/packages/core/vitest.config.ts';
+import { createReferencePackageResolver } from './tests/helpers/plugin-runtime/reference-package-resolver.ts';
 const root = fileURLToPath(new URL('.', import.meta.url));
 const frozen = path.join(root, 'parity/emdash/plugin-runtime/source/packages/core');
 const product = path.join(root, 'src/lib/server/plugins');
+const referencePackage = createReferencePackageResolver(root);
 export default defineConfig({
   plugins: [...(originalConfig as { plugins: any[] }).plugins, { name: 'whole-pinned-plugin-source-native-host', enforce: 'pre',
     resolveId(id, importer) {
@@ -30,6 +32,8 @@ export default defineConfig({
       if (id === '@emdash-cms/admin/locales') return path.join(root, 'parity/emdash/plugin-runtime/source/packages/admin/src/locales/config.ts');
       if (id === '@emdash-cms/admin/slugify') return path.join(root, 'src/lib/server/database/lifecycle/upstream/admin-slugify.ts');
       if (id === 'astro/zod') return this.resolve('zod', importer, { skipSelf: true });
+      const referenceEntry = referencePackage(id, importer);
+      if (referenceEntry) return referenceEntry;
       // Exact Original controlled collaborators. These whole frozen repositories
       // never enter the product bundle; their use grants no canonical Native credit.
       if (importer?.startsWith(product) && id.startsWith('.')) {
@@ -38,6 +42,7 @@ export default defineConfig({
           'native-schema.ts': 'schema/registry.ts', 'native-users.ts': 'database/repositories/user.ts',
           'native-media.ts': 'database/repositories/media.ts', 'native-comments.ts': 'database/repositories/comment.ts',
           'native-taxonomies.ts': 'database/repositories/taxonomy.ts',
+          'native-content.ts': 'database/repositories/content.ts', 'native-revisions.ts': 'database/repositories/revision.ts',
           '../database/lifecycle/upstream/database/repositories/content.ts': 'database/repositories/content.ts',
           '../database/lifecycle/upstream/database/repositories/revision.ts': 'database/repositories/revision.ts',
           '../seo/repository.ts': 'database/repositories/seo.ts',

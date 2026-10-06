@@ -71,7 +71,7 @@ const closure = new Set([...testSeeds, ...sourceSeeds, corePackage, 'packages/co
   'packages/auth/package.json', 'packages/auth/src/adapters/kysely.ts']);
 // Keep all previously published immutable authorities. Import census additions
 // must never remove the existing whole-file Source evidence.
-const publishedInventory = JSON.parse(execFileSync('git', ['show', 'HEAD:parity/emdash/plugin-runtime/inventory.json'], { encoding: 'utf8' }));
+const publishedInventory = JSON.parse(execFileSync('git', ['show', 'HEAD:parity/emdash/plugin-runtime/inventory.json'], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }));
 for (const authority of publishedInventory.authorities) closure.add(authority.path);
 const unresolved = [];
 for (const file of closure) {
@@ -134,6 +134,9 @@ for (const file of [...closure].sort()) {
   const held = /http-credential-stripping|plugin-settings-route|integration\/api\/plugins/.test(file);
   tests.push({ path: file, declarations, expectations, state: 'inventory-only', heldFromExecution: held,
     heldReason: held ? 'No new real protected HTTP/session/credential consequence probes; controlled whole Source fixtures require exact scope qualification first.' : undefined });
+}
+for (const rows of [aliasImports, unresolvedAliasImports, workspaceImports, externalImports, unresolved]) {
+  rows.sort((a, b) => a.importer.localeCompare(b.importer) || a.specifier.localeCompare(b.specifier));
 }
 const inventory = { sourcePin: pin, sourceRepository: 'https://github.com/emdash-cms/emdash', license: 'MIT, Copyright 2026 Cloudflare Inc.',
   selectedTestFiles: testSeeds.length, selectedImplementationFiles: sourceSeeds.length,
