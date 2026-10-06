@@ -1,0 +1,577 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "qualifiedFixtureReceipt": "/tmp/root-maintenance123-node-receipt-and-v3-fixture-finite-qualification.json",
+  "qualifiedFixtureSha256": "9f80d78da34900e93161205962321aa5ac29acc76e771b321eae57f8d0a79a53",
+  "wholeFamilies": 4,
+  "registeredCallbacks": 11,
+  "passedCallbacks": 11,
+  "failedCallbacks": 0,
+  "runSeconds": 40.49,
+  "rawLog": {
+    "path": "/tmp/media-usage-maintenance-whole-literal-source-workerd-v3-first.log",
+    "bytes": 234,
+    "sha256": "8c82b2be9346bdb4b5de5a49827c0da1bb524874b216475de6fa6d6348024719"
+  },
+  "allActualRawFiles": [
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v3-collection-recreate-d1.test.ts-receipts.json",
+      "bytes": 612906,
+      "sha256": "445e15c4317b591ad9a4502870ff0b10d34f27cad38ec89703669a1328bb00df",
+      "actualFamily": "collection-recreate-d1.test.ts",
+      "actualReceiptCount": 719,
+      "actualBinding": true,
+      "actualSessions": true,
+      "sameCloudflareEnvObject": true,
+      "sqlOrResultRewrites": false
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v3-media-usage-activation-d1.test.ts-receipts.json",
+      "bytes": 703938,
+      "sha256": "27fe9ff2a843c9154e40a004b139c9fda7017c3294a40e2e29caebda678c751b",
+      "actualFamily": "media-usage-activation-d1.test.ts",
+      "actualReceiptCount": 786,
+      "actualBinding": true,
+      "actualSessions": true,
+      "sameCloudflareEnvObject": true,
+      "sqlOrResultRewrites": false
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v3-media-usage-collection-deletion-d1.test.ts-receipts.json",
+      "bytes": 597331,
+      "sha256": "c166eba3ec09fe13374d305275fc05d8076c1441c404cb70051a96d1320bd7ec",
+      "actualFamily": "media-usage-collection-deletion-d1.test.ts",
+      "actualReceiptCount": 704,
+      "actualBinding": true,
+      "actualSessions": true,
+      "sameCloudflareEnvObject": true,
+      "sqlOrResultRewrites": false
+    },
+    {
+      "path": "/tmp/media-usage-maintenance-literal-source-workerd-v3-media-usage-maintenance-engine-d1.test.ts-receipts.json",
+      "bytes": 5481478,
+      "sha256": "9c16de875e5b505933fc399f7901e65c173989ebdf21521a20d7438c1f543b11",
+      "actualFamily": "media-usage-maintenance-engine-d1.test.ts",
+      "actualReceiptCount": 937,
+      "actualBinding": true,
+      "actualSessions": true,
+      "sameCloudflareEnvObject": true,
+      "sqlOrResultRewrites": false
+    }
+  ],
+  "allWholeActualObservedBatches": [
+    {
+      "actualRawFile": "/tmp/media-usage-maintenance-literal-source-workerd-v3-collection-recreate-d1.test.ts-receipts.json",
+      "actualFamily": "collection-recreate-d1.test.ts",
+      "wholeObservedBatch": {
+        "sequence": 649,
+        "mode": "raw",
+        "operation": "batch",
+        "queries": [
+          {
+            "sql": "\n\t\t\tUPDATE _emdash_media_usage_index_status\n\t\t\tSET capture_state = 'deleting',\n\t\t\t\tupdated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\tAND scope_type = 'collection'\n\t\t\t\tAND scope_key = ?\n\t\t\t\tAND collection_id = ?\n\t\t\t\tAND capture_state = 'active'\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_collections\n\t\t\t\t\tWHERE id = ? AND slug = ?\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND NOT EXISTS (SELECT 1 FROM \"ec_products\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\tRETURNING collection_id\n\t\t",
+            "parameters": [
+              "products",
+              "01M47EPRNCSNPCB1TDG8YMYS7V",
+              "01M47EPRNCSNPCB1TDG8YMYS7V",
+              "products",
+              "01M47EPRNCSNPCB1TDG8YMYS7V",
+              "products",
+              "01M47EPS29NQGP7W9B1VW2FRXK"
+            ]
+          },
+          {
+            "sql": "\n\t\t\tSELECT CASE\n\t\t\t\tWHEN EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_index_status\n\t\t\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\t\t\tAND scope_type = 'collection'\n\t\t\t\t\t\tAND scope_key = ?\n\t\t\t\t\t\tAND collection_id = ?\n\t\t\t\t\t\tAND capture_state = 'active'\n\t\t\t\t)\n\t\t\t\tAND EXISTS (SELECT 1 FROM \"ec_products\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\t\tTHEN 'has_content'\n\t\t\t\tELSE 'stale'\n\t\t\tEND AS outcome\n\t\t",
+            "parameters": [
+              "01M47EPRNCSNPCB1TDG8YMYS7V",
+              "products",
+              "01M47EPS29NQGP7W9B1VW2FRXK",
+              "products",
+              "01M47EPRNCSNPCB1TDG8YMYS7V"
+            ]
+          }
+        ],
+        "result": [
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 1,
+              "changes": 1,
+              "last_row_id": 1,
+              "changed_db": true,
+              "size_after": 1413120,
+              "rows_read": 4,
+              "rows_written": 2
+            },
+            "results": [
+              {
+                "collection_id": "01M47EPRNCSNPCB1TDG8YMYS7V"
+              }
+            ]
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 1,
+              "changed_db": false,
+              "size_after": 1413120,
+              "rows_read": 2,
+              "rows_written": 0
+            },
+            "results": [
+              {
+                "outcome": "stale"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "actualRawFile": "/tmp/media-usage-maintenance-literal-source-workerd-v3-collection-recreate-d1.test.ts-receipts.json",
+      "actualFamily": "collection-recreate-d1.test.ts",
+      "wholeObservedBatch": {
+        "sequence": 653,
+        "mode": "raw",
+        "operation": "batch",
+        "queries": [
+          {
+            "sql": "\n\t\t\t\t\tINSERT INTO _emdash_media_usage_collection_deletions (\n\t\t\t\t\t\tcollection_id, collection_slug, force_delete, state, phase,\n\t\t\t\t\t\tnext_attempt_at, lease_token, lease_expires_at\n\t\t\t\t\t)\n\t\t\t\t\tVALUES (\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\tSELECT ?\n\t\t\t\t\t\t\tFROM _emdash_media_usage_collection_deletions\n\t\t\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\t\t\tAND phase = 'table'\n\t\t\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t\t\t),\n\t\t\t\t\t\t?, 0, 'leased', 'table',\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now'), ?,\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now', '+1 minute')\n\t\t\t\t\t)\n\t\t\t\t",
+            "parameters": [
+              "__emdash_guard:01M47EPRNCSNPCB1TDG8YMYS7V:01M47EPS29NQGP7W9B1VW2FRXK",
+              "01M47EPRNCSNPCB1TDG8YMYS7V",
+              "products",
+              "01M47EPS29NQGP7W9B1VW2FRXK",
+              "__emdash_guard_slug:01M47EPRNCSNPCB1TDG8YMYS7V:01M47EPS29NQGP7W9B1VW2FRXK",
+              "01M47EPS29NQGP7W9B1VW2FRXK"
+            ]
+          },
+          {
+            "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_products_insert\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_products_update\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_products_delete\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TABLE IF EXISTS \"_emdash_fts_products\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TABLE IF EXISTS \"ec_products\"",
+            "parameters": []
+          },
+          {
+            "sql": "DELETE FROM _emdash_media_usage_collection_deletions WHERE collection_id = ? AND collection_slug = ?",
+            "parameters": [
+              "__emdash_guard:01M47EPRNCSNPCB1TDG8YMYS7V:01M47EPS29NQGP7W9B1VW2FRXK",
+              "__emdash_guard_slug:01M47EPRNCSNPCB1TDG8YMYS7V:01M47EPS29NQGP7W9B1VW2FRXK"
+            ]
+          }
+        ],
+        "result": [
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 1,
+              "last_row_id": 2,
+              "changed_db": true,
+              "size_after": 1413120,
+              "rows_read": 1,
+              "rows_written": 6
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1413120,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1413120,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1413120,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 1,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1413120,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 2,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": true,
+              "size_after": 1318912,
+              "rows_read": 1369,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 1,
+              "last_row_id": 2,
+              "changed_db": true,
+              "size_after": 1318912,
+              "rows_read": 1,
+              "rows_written": 1
+            },
+            "results": []
+          }
+        ]
+      }
+    },
+    {
+      "actualRawFile": "/tmp/media-usage-maintenance-literal-source-workerd-v3-media-usage-collection-deletion-d1.test.ts-receipts.json",
+      "actualFamily": "media-usage-collection-deletion-d1.test.ts",
+      "wholeObservedBatch": {
+        "sequence": 598,
+        "mode": "raw",
+        "operation": "batch",
+        "queries": [
+          {
+            "sql": "\n\t\t\t\t\tINSERT INTO _emdash_media_usage_collection_deletions (\n\t\t\t\t\t\tcollection_id, collection_slug, force_delete, state, phase,\n\t\t\t\t\t\tnext_attempt_at, lease_token, lease_expires_at\n\t\t\t\t\t)\n\t\t\t\t\tVALUES (\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\tSELECT ?\n\t\t\t\t\t\t\tFROM _emdash_media_usage_collection_deletions\n\t\t\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\t\t\tAND phase = 'table'\n\t\t\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t\t\t),\n\t\t\t\t\t\t?, 0, 'leased', 'table',\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now'), ?,\n\t\t\t\t\t\tstrftime('%Y-%m-%dT%H:%M:%fZ', 'now', '+1 minute')\n\t\t\t\t\t)\n\t\t\t\t",
+            "parameters": [
+              "__emdash_guard:collection-d1:current-owner",
+              "collection-d1",
+              "d1_guarded",
+              "current-owner",
+              "__emdash_guard_slug:collection-d1:current-owner",
+              "current-owner"
+            ]
+          },
+          {
+            "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_d1_guarded_insert\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_d1_guarded_update\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TRIGGER IF EXISTS \"_emdash_fts_d1_guarded_delete\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TABLE IF EXISTS \"_emdash_fts_d1_guarded\"",
+            "parameters": []
+          },
+          {
+            "sql": "DROP TABLE IF EXISTS \"ec_d1_guarded\"",
+            "parameters": []
+          },
+          {
+            "sql": "DELETE FROM _emdash_media_usage_collection_deletions WHERE collection_id = ? AND collection_slug = ?",
+            "parameters": [
+              "__emdash_guard:collection-d1:current-owner",
+              "__emdash_guard_slug:collection-d1:current-owner"
+            ]
+          }
+        ],
+        "result": [
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 1,
+              "changes": 1,
+              "last_row_id": 2,
+              "changed_db": true,
+              "size_after": 1327104,
+              "rows_read": 1,
+              "rows_written": 6
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1327104,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1327104,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1327104,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": false,
+              "size_after": 1327104,
+              "rows_read": 0,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 2,
+              "changed_db": true,
+              "size_after": 1318912,
+              "rows_read": 321,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 1,
+              "last_row_id": 2,
+              "changed_db": true,
+              "size_after": 1318912,
+              "rows_read": 1,
+              "rows_written": 1
+            },
+            "results": []
+          }
+        ]
+      }
+    },
+    {
+      "actualRawFile": "/tmp/media-usage-maintenance-literal-source-workerd-v3-media-usage-collection-deletion-d1.test.ts-receipts.json",
+      "actualFamily": "media-usage-collection-deletion-d1.test.ts",
+      "wholeObservedBatch": {
+        "sequence": 606,
+        "mode": "raw",
+        "operation": "batch",
+        "queries": [
+          {
+            "sql": "\n\t\t\tUPDATE _emdash_media_usage_index_status\n\t\t\tSET capture_state = 'deleting',\n\t\t\t\tupdated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\tAND scope_type = 'collection'\n\t\t\t\tAND scope_key = ?\n\t\t\t\tAND collection_id = ?\n\t\t\t\tAND capture_state = 'active'\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_collections\n\t\t\t\t\tWHERE id = ? AND slug = ?\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND NOT EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\tRETURNING collection_id\n\t\t",
+            "parameters": [
+              "d1_fence",
+              "collection-d1-fence",
+              "collection-d1-fence",
+              "d1_fence",
+              "collection-d1-fence",
+              "d1_fence",
+              "fence-owner"
+            ]
+          },
+          {
+            "sql": "\n\t\t\tSELECT CASE\n\t\t\t\tWHEN EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_index_status\n\t\t\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\t\t\tAND scope_type = 'collection'\n\t\t\t\t\t\tAND scope_key = ?\n\t\t\t\t\t\tAND collection_id = ?\n\t\t\t\t\t\tAND capture_state = 'active'\n\t\t\t\t)\n\t\t\t\tAND EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\t\tTHEN 'has_content'\n\t\t\t\tELSE 'stale'\n\t\t\tEND AS outcome\n\t\t",
+            "parameters": [
+              "collection-d1-fence",
+              "d1_fence",
+              "fence-owner",
+              "d1_fence",
+              "collection-d1-fence"
+            ]
+          }
+        ],
+        "result": [
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 1,
+              "changes": 0,
+              "last_row_id": 1,
+              "changed_db": false,
+              "size_after": 1327104,
+              "rows_read": 5,
+              "rows_written": 0
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 1,
+              "changed_db": false,
+              "size_after": 1327104,
+              "rows_read": 3,
+              "rows_written": 0
+            },
+            "results": [
+              {
+                "outcome": "has_content"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "actualRawFile": "/tmp/media-usage-maintenance-literal-source-workerd-v3-media-usage-collection-deletion-d1.test.ts-receipts.json",
+      "actualFamily": "media-usage-collection-deletion-d1.test.ts",
+      "wholeObservedBatch": {
+        "sequence": 612,
+        "mode": "raw",
+        "operation": "batch",
+        "queries": [
+          {
+            "sql": "\n\t\t\tUPDATE _emdash_media_usage_index_status\n\t\t\tSET capture_state = 'deleting',\n\t\t\t\tupdated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\tAND scope_type = 'collection'\n\t\t\t\tAND scope_key = ?\n\t\t\t\tAND collection_id = ?\n\t\t\t\tAND capture_state = 'active'\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_collections\n\t\t\t\t\tWHERE id = ? AND slug = ?\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND NOT EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\tRETURNING collection_id\n\t\t",
+            "parameters": [
+              "d1_fence",
+              "collection-d1-fence",
+              "collection-d1-fence",
+              "d1_fence",
+              "collection-d1-fence",
+              "d1_fence",
+              "fence-owner"
+            ]
+          },
+          {
+            "sql": "\n\t\t\tSELECT CASE\n\t\t\t\tWHEN EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions\n\t\t\t\t\tWHERE collection_id = ?\n\t\t\t\t\t\tAND collection_slug = ?\n\t\t\t\t\t\tAND state = 'leased'\n\t\t\t\t\t\tAND phase = 'fence'\n\t\t\t\t\t\tAND lease_token = ?\n\t\t\t\t\t\tAND lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t\t)\n\t\t\t\tAND EXISTS (\n\t\t\t\t\tSELECT 1 FROM _emdash_media_usage_index_status\n\t\t\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\t\t\tAND scope_type = 'collection'\n\t\t\t\t\t\tAND scope_key = ?\n\t\t\t\t\t\tAND collection_id = ?\n\t\t\t\t\t\tAND capture_state = 'active'\n\t\t\t\t)\n\t\t\t\tAND EXISTS (SELECT 1 FROM \"ec_d1_fence\" WHERE deleted_at IS NULL LIMIT 1)\n\t\t\t\tTHEN 'has_content'\n\t\t\t\tELSE 'stale'\n\t\t\tEND AS outcome\n\t\t",
+            "parameters": [
+              "collection-d1-fence",
+              "d1_fence",
+              "fence-owner",
+              "d1_fence",
+              "collection-d1-fence"
+            ]
+          }
+        ],
+        "result": [
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 1,
+              "changes": 1,
+              "last_row_id": 1,
+              "changed_db": true,
+              "size_after": 1327104,
+              "rows_read": 5,
+              "rows_written": 2
+            },
+            "results": [
+              {
+                "collection_id": "collection-d1-fence"
+              }
+            ]
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 1,
+              "changed_db": false,
+              "size_after": 1327104,
+              "rows_read": 2,
+              "rows_written": 0
+            },
+            "results": [
+              {
+                "outcome": "stale"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "sourceOriginalsMocksClocksDatasetsUnchanged": true,
+  "referenceOnly": true,
+  "sourceBodyCausalCredit": 0,
+  "nativeParityCredit": 0,
+  "officialWorkerRunnerIdentity": false,
+  "meaning": "Bare dialect identity restored the unchanged Original mock factory; actual literal Source Cloudflare guards executed on real binding. Front4 Native remains held pending Root exact guard witness qualification.",
+  "previousRuns": "Initial10pass1contaminatedactivation fixture and V2 10pass1 mock/import boundary error remain literal historical receipts; neither is a Source bug."
+}
