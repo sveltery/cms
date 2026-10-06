@@ -1,0 +1,32 @@
+name: Default seed setup Source
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  default-seed-setup-source:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run complete immutable setup wizard Source family in sandboxed Chromium
+        run: timeout --kill-after=30s 180s pnpm exec vitest run --config vitest.default-seed-setup-wizard.browser.config.ts --reporter=json --outputFile=setup-source-results.json
+        env:
+          DEBUG: pw:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: default-seed-setup-source-results
+          path: |
+            setup-source-results.json
+            test-results/
+          retention-days: 7
