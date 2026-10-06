@@ -28,12 +28,9 @@ for (const repetition of [1, 2, 3]) test(`real passkey setup then login persists
   });
   try {
     await page.goto(`${h.origin}/setup`);
-    await page.getByLabel('Site Title', { exact: true }).fill('Virtual Auth Site');
-    await page.getByRole('button', { name: 'Continue →', exact: true }).click();
     await expect(page.getByLabel('Email')).toBeVisible({ timeout: 3_000 });
     await page.getByLabel('Email').fill('virtual-auth@example.com');
     await page.getByLabel('Name', { exact: true }).fill('Virtual Auth User');
-    await page.getByRole('button', { name: 'Continue →', exact: true }).click();
     await page.getByRole('button', { name: 'Create administrator and passkey' }).click();
     await expect(page).toHaveURL(`${h.origin}/login`, { timeout: 30_000 });
     const db = await h.database();

@@ -13,10 +13,7 @@ test('shared-source limitation: nonresident setup succeeds with discoverable-onl
   });
   try {
     await page.goto(`${h.origin}/setup`);
-    await page.getByLabel('Site Title', { exact: true }).fill('Nonresident Site');
-    await page.getByRole('button', { name: 'Continue →', exact: true }).click();
     await page.getByLabel('Email').fill('nonresident@example.com');
-    await page.getByRole('button', { name: 'Continue →', exact: true }).click();
     await page.getByRole('button', { name: 'Create administrator and passkey' }).click();
     await expect(page).toHaveURL(`${h.origin}/login`, { timeout: 30_000 });
     const { credentials } = await session.send('WebAuthn.getCredentials', { authenticatorId });
