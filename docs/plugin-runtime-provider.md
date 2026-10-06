@@ -77,3 +77,45 @@ reserved install window. No cron parser, scheduler or canonical provider has
 been substituted. Provider 18 belongs to the separate reviewed cron storage lane.
 Complete context/hook/manager/route/email/storage/runtime integration and actual
 admin callers remain pending; this checkpoint is not complete PL1 delivery.
+
+## Complete context authority and canonical binding checkpoint
+
+The census also resolves all 27 pinned Core package import aliases. It now
+retains 659 immutable authority files (6,323,816 bytes); 80 families, 55 selected
+implementations, 1,116 declarations and 4,926 AST expectations are unchanged.
+The Core package's own exact import map is retained, with zero unresolved
+relative or package-alias imports. This expands inventory, not product credit.
+
+Complete state, cron, Node scheduler, email, hooks, manager, route, byline access,
+context, content access, media access and SSRF authorities are transported.
+The latest 34-family Source host reaches 30 families / 689 passing callbacks;
+four full-runtime families still stop on complete SourceRuntime dependencies.
+No fake or selected-method EmDashRuntime substitutes for that authority.
+
+The Source context host explicitly injects whole frozen Original controlled
+schema/media/user/taxonomy/comment/entry-lock collaborators. These are confined
+to the test host and never production imports; this execution measures plugin
+contracts with Original collaborators, not canonical Native domain completion.
+The Source document repository is now the complete actual owned native module.
+Actual native context adapters consume the sole canonical owners. Main82 user
+owner is adopted by ordinary merge f960b7b5. Media113 and entry-lock completion
+remain pending qualified public handoffs. Unqualified native imports are not
+reported as complete or as deployable runtime integration.
+
+Cron owned SQL templates now emit the fixed logical table as Kysely identifier
+nodes, allowing the actual owner to map TableNodes to `_cms_cron_tasks` without
+rewriting RawNode or input SQL. Source fixtures preserve their logical table and
+all data/mocks/clocks; SQL identifier quoting is a framework transport with no
+whole-module byte identity. Plugin `putMany` has an explicit actual-owner batch
+transport using the existing canonical atomicBatch; no D1 callback fallback is
+introduced. Its dedicated Native atomicity qualification remains pending.
+Compound context/settings mutations still require full canonical atomic producer
+integration; an unresolved batch boundary throws rather than claiming support.
+
+The real isolated frozen install completed with pnpm12.6.0 exit0 in8.8 seconds.
+[Dependency receipt](../parity/emdash/plugin-runtime/dependency-receipt.json) and
+[full croner notice](../notices/croner-MIT.txt) retain selected10.0.1, exact SRI,
+license bytes and SHA. The dependency guard removes exactly three additive
+blocks and reconstructs the entire approved Main82 lock byte-for-byte; all
+unrelated approved Main82 package values remain exact. No runtime/browser or
+product parity follows from installation or dependency validation.

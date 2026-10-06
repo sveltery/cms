@@ -4,8 +4,8 @@
   "license": "MIT, Copyright 2026 Cloudflare Inc.",
   "selectedTestFiles": 80,
   "selectedImplementationFiles": 55,
-  "immutableAuthorityFiles": 658,
-  "immutableAuthorityBytes": 6311422,
+  "immutableAuthorityFiles": 659,
+  "immutableAuthorityBytes": 6323816,
   "testDeclarations": 1116,
   "assertionExpressions": 4926,
   "productTestsRun": 0,
@@ -825,6 +825,14 @@
       "gitBlob": "57cd67a54a546f42ba608aca43f5cebf5368cce4",
       "selectedTest": false,
       "selectedImplementation": true
+    },
+    {
+      "path": "packages/core/package.json",
+      "bytes": 12394,
+      "sha256": "a63a34bb0300bd53384e69de05a09e8449a22feda41eced0161c1dd9f3c1fe20",
+      "gitBlob": "f7dcf22acc74ffe90391237ccf552acafe76eb94",
+      "selectedTest": false,
+      "selectedImplementation": false
     },
     {
       "path": "packages/core/src/after.ts",
@@ -31279,5 +31287,143 @@
       "heldFromExecution": false
     }
   ],
+  "aliasImports": [
+    {
+      "importer": "packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/capabilities.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/event-scoped-db.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/media-capabilities.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-action-settlement.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-media-route.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-raw-routes.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/email-pipeline.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/exclusive-hooks.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/hooks.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/manager.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/marketplace-state.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/page-hooks-execution.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/pipeline-rebuild.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/tests/unit/plugins/state.test.ts",
+      "specifier": "#node-sqlite",
+      "target": "packages/core/src/db/node-sqlite-compat.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/plugins/[pluginId]/[...path].ts",
+      "specifier": "#api/error.js",
+      "target": "packages/core/src/api/error.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/plugins/[pluginId]/[...path].ts",
+      "specifier": "#plugins/http-route-dispatch.js",
+      "target": "packages/core/src/plugins/http-route-dispatch.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/authorize.js",
+      "target": "packages/core/src/api/authorize.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/error.js",
+      "target": "packages/core/src/api/error.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/handlers/plugin-settings.js",
+      "target": "packages/core/src/api/handlers/plugin-settings.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/index.js",
+      "target": "packages/core/src/api/index.ts"
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/admin/plugins/[id]/settings.ts",
+      "specifier": "#api/parse.js",
+      "target": "packages/core/src/api/parse.ts"
+    },
+    {
+      "importer": "packages/core/src/api/schemas/media.ts",
+      "specifier": "#media/focal-point.js",
+      "target": "packages/core/src/media/focal-point.ts"
+    },
+    {
+      "importer": "packages/core/src/auth/scopes.ts",
+      "specifier": "#api/error.js",
+      "target": "packages/core/src/api/error.ts"
+    }
+  ],
+  "unresolvedAliasImports": [],
   "unresolvedRelativeImports": []
 }

@@ -1,0 +1,68 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts ]
+Error: Cannot find package '@emdash-cms/admin/locales' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:10:1
+      8|  */
+      9|
+     10| import { getLocaleDir, resolveLocale } from "@emdash-cms/admin/locales…
+       | ^
+     11| import { Permissions } from "@emdash-cms/auth";
+     12| import type { Element } from "@emdash-cms/blocks";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts:8:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts ]
+Error: Cannot find package '@emdash-cms/admin/locales' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:10:1
+      8|  */
+      9|
+     10| import { getLocaleDir, resolveLocale } from "@emdash-cms/admin/locales…
+       | ^
+     11| import { Permissions } from "@emdash-cms/auth";
+     12| import type { Element } from "@emdash-cms/blocks";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts:8:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts ]
+Error: Cannot find package '@emdash-cms/admin/locales' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:10:1
+      8|  */
+      9|
+     10| import { getLocaleDir, resolveLocale } from "@emdash-cms/admin/locales…
+       | ^
+     11| import { Permissions } from "@emdash-cms/auth";
+     12| import type { Element } from "@emdash-cms/blocks";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts:8:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts ]
+Error: Cannot find package '@emdash-cms/admin/locales' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:10:1
+      8|  */
+      9|
+     10| import { getLocaleDir, resolveLocale } from "@emdash-cms/admin/locales…
+       | ^
+     11| import { Permissions } from "@emdash-cms/auth";
+     12| import type { Element } from "@emdash-cms/blocks";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  4 failed | 30 passed (34)
+      Tests  689 passed (689)
+   Start at  01:34:46
+   Duration  24.72s (transform 2.02s, setup 0ms, import 7.76s, tests 11.92s, environment 3ms)
+

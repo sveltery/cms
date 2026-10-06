@@ -31,12 +31,30 @@ function resolveRelative(importer, specifier) {
   const stem = target.replace(/\.(?:m?js)$/, '');
   return [target, `${stem}.ts`, `${stem}.tsx`, `${stem}.mts`, `${target}/index.ts`, `${target}/index.tsx`].find(file => allFiles.has(file));
 }
-const closure = new Set([...testSeeds, ...sourceSeeds]);
+const corePackage = 'packages/core/package.json';
+const imports = JSON.parse(original(corePackage).toString('utf8')).imports;
+const aliasImports = [];
+const unresolvedAliasImports = [];
+function resolveAlias(specifier) {
+  let target = imports[specifier];
+  if (!target) {
+    const key = Object.keys(imports).find(key => key.endsWith('*') && specifier.startsWith(key.slice(0, -1)));
+    if (key) target = imports[key].replace('*', specifier.slice(key.length - 1));
+  }
+  return typeof target === 'string' ? resolveRelative(corePackage, target) : undefined;
+}
+const closure = new Set([...testSeeds, ...sourceSeeds, corePackage]);
 const unresolved = [];
 for (const file of closure) {
   const body = original(file).toString('utf8');
   for (const match of body.matchAll(/(?:from\s*|import\s*(?:\(\s*)?)["']([^"']+)["']/g)) {
     const specifier = match[1];
+    if (specifier.startsWith('#')) {
+      const target = resolveAlias(specifier);
+      if (target) { closure.add(target); aliasImports.push({ importer: file, specifier, target }); }
+      else unresolvedAliasImports.push({ importer: file, specifier });
+      continue;
+    }
     if (!specifier.startsWith('.')) continue;
     const target = resolveRelative(file, specifier);
     if (target) closure.add(target);
@@ -76,10 +94,10 @@ const inventory = { sourcePin: pin, sourceRepository: 'https://github.com/emdash
   immutableAuthorityFiles: authorities.length, immutableAuthorityBytes: authorities.reduce((sum, row) => sum + row.bytes, 0),
   testDeclarations: tests.reduce((sum, row) => sum + row.declarations.length, 0),
   assertionExpressions: tests.reduce((sum, row) => sum + row.expectations.length, 0),
-  productTestsRun: 0, authorities, tests, unresolvedRelativeImports: unresolved };
+  productTestsRun: 0, authorities, tests, aliasImports, unresolvedAliasImports, unresolvedRelativeImports: unresolved };
 const ledger = path.join(root, 'parity/emdash/plugin-runtime/inventory.json');
 if (mode === 'write') { fs.mkdirSync(path.dirname(ledger), { recursive: true }); fs.writeFileSync(ledger, JSON.stringify(inventory, null, 2) + '\n'); }
 else if (fs.readFileSync(ledger, 'utf8') !== JSON.stringify(inventory, null, 2) + '\n') throw new Error('Inventory differs from immutable source');
 console.log(JSON.stringify({ selectedTestFiles: inventory.selectedTestFiles, selectedImplementationFiles: inventory.selectedImplementationFiles,
   immutableAuthorityFiles: inventory.immutableAuthorityFiles, immutableAuthorityBytes: inventory.immutableAuthorityBytes,
-  testDeclarations: inventory.testDeclarations, assertionExpressions: inventory.assertionExpressions, productTestsRun: 0, unresolvedRelativeImports: unresolved.length }));
+  testDeclarations: inventory.testDeclarations, assertionExpressions: inventory.assertionExpressions, productTestsRun: 0, unresolvedRelativeImports: unresolved.length, resolvedAliasImports: aliasImports.length, unresolvedAliasImports: unresolvedAliasImports.length }));

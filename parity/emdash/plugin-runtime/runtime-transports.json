@@ -483,6 +483,531 @@
       "native": "src/lib/plugins/editor-extensions.ts",
       "sourceSha256": "6d8ffa9ff6f2010dee409b9ec52b4de57c88e8a13172b0ef37e26c4fa1c1b8a3",
       "body": "whole-source-helper-body-after-type-only-import-substitution; zero-sandbox-execution-credit"
+    },
+    {
+      "source": "packages/core/src/plugins/state.ts",
+      "native": "src/lib/server/plugins/state.ts",
+      "sourceSha256": "0273cf47b2d8c69bdd98a01fd0915f01b929d970e2a9827c3bf8fbdef87be349",
+      "imports": [
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/cron.ts",
+      "native": "src/lib/server/plugins/cron.ts",
+      "sourceSha256": "e95270d9738871b514e08315784a4396ccf81fbc870261ebbbda080ef5c96e6c",
+      "imports": [
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-algorithms-with-listed-framework-SQL-identifier-substitution",
+      "additionalTransports": [
+        "finite-cron-table-identifier-node-in-owned-SQL-templates; SQL quoting substitution; no-RawNode-rewrite"
+      ]
+    },
+    {
+      "source": "packages/core/src/plugins/scheduler/node.ts",
+      "native": "src/lib/server/plugins/scheduler/node.ts",
+      "sourceSha256": "11e01939ea5e548a0e214120c441f2c261047c97ed7ff8dc01b714e4b4f5ef95",
+      "imports": [
+        {
+          "from": "../cron.js",
+          "to": "../cron.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/scheduler/types.ts",
+      "native": "src/lib/server/plugins/scheduler/types.ts",
+      "sourceSha256": "647bc28440fcac494188ad2ba51ca5b108e1ed1c9e3102dc9b66fc4013dd7b2b",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/email.ts",
+      "native": "src/lib/server/plugins/email.ts",
+      "sourceSha256": "11ff1e008ce9af3b3e4f54d48dd680f8d9e57225210a8eb1c044ba9927643bc3",
+      "imports": [
+        {
+          "from": "./hooks.js",
+          "to": "./hooks.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/hooks.ts",
+      "native": "src/lib/server/plugins/hooks.ts",
+      "sourceSha256": "6b72dd30c5d34ea38764caa8bb9f16b727abef0589118e04368f81291e714cec",
+      "imports": [
+        {
+          "from": "../database/repositories/types.js",
+          "to": "../database/lifecycle/upstream/database/repositories/types.ts"
+        },
+        {
+          "from": "./byline-access.js",
+          "to": "./byline-access.ts"
+        },
+        {
+          "from": "./content-policy.js",
+          "to": "./content-policy.ts"
+        },
+        {
+          "from": "./context.js",
+          "to": "./context.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/manager.ts",
+      "native": "src/lib/server/plugins/manager.ts",
+      "sourceSha256": "05ce6670ca74d4890e10944fa405ad6eabce651753ff1a8872f8a4d74712c86e",
+      "imports": [
+        {
+          "from": "../database/repositories/options.js",
+          "to": "../options/repository.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../storage/types.js",
+          "to": "./storage-types.ts"
+        },
+        {
+          "from": "./context.js",
+          "to": "./context.ts"
+        },
+        {
+          "from": "./cron.js",
+          "to": "./cron.ts"
+        },
+        {
+          "from": "./define-plugin.js",
+          "to": "./define-plugin.ts"
+        },
+        {
+          "from": "./email.js",
+          "to": "./email.ts"
+        },
+        {
+          "from": "./hooks.js",
+          "to": "./hooks.ts"
+        },
+        {
+          "from": "./routes.js",
+          "to": "./routes.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/routes.ts",
+      "native": "src/lib/server/plugins/routes.ts",
+      "sourceSha256": "609d2b607650b5a339cffc18066801d73b31834e0595819635cc8efb190bae73",
+      "imports": [
+        {
+          "from": "@emdash-cms/blocks/server",
+          "to": "./contracts/block-server.ts"
+        },
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "@emdash-cms/plugin-types",
+          "to": "./contracts/index.ts"
+        },
+        {
+          "from": "../transfer/fence.js",
+          "to": "./transfer-fence.ts"
+        },
+        {
+          "from": "./context.js",
+          "to": "./context.ts"
+        },
+        {
+          "from": "./request-meta.js",
+          "to": "./request-meta.ts"
+        },
+        {
+          "from": "./route-error.js",
+          "to": "./route-error.ts"
+        },
+        {
+          "from": "./route-wire.js",
+          "to": "./route-wire.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/byline-access.ts",
+      "native": "src/lib/server/plugins/byline-access.ts",
+      "sourceSha256": "c881b64dd2fbba9615cf55bf2849acb2dda1703addd56b8f57e7592a4db8dd62",
+      "imports": [
+        {
+          "from": "../bylines/credits.js",
+          "to": "../bylines/credits.ts"
+        },
+        {
+          "from": "../database/repositories/types.js",
+          "to": "../database/lifecycle/upstream/database/repositories/types.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../database/validate.js",
+          "to": "../database/lifecycle/upstream/database/validate.ts"
+        },
+        {
+          "from": "../utils/chunks.js",
+          "to": "../database/lifecycle/upstream/utils/chunks.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/database/repositories/plugin-storage.ts",
+      "native": "src/lib/server/plugins/storage-repository.ts",
+      "sourceSha256": "4dc23695f03e2cf54b500f47434b60a0ce1917a799b9317ba3beda78dfaf3294",
+      "imports": [
+        {
+          "from": "../../plugins/conditional-storage.js",
+          "to": "./conditional-storage.ts"
+        },
+        {
+          "from": "../../plugins/storage-query.js",
+          "to": "./storage-query.ts"
+        },
+        {
+          "from": "../../plugins/storage-update.js",
+          "to": "./storage-update.ts"
+        },
+        {
+          "from": "../../plugins/types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "../dialect-helpers.js",
+          "to": "../database/lifecycle/upstream/database/dialect-helpers.ts"
+        },
+        {
+          "from": "../transaction.js",
+          "to": "./transaction.ts"
+        },
+        {
+          "from": "../types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "../database/lifecycle/upstream/database/repositories/types.ts"
+        }
+      ],
+      "body": "complete-source-repository-with-listed-native-canonical-batch-and-SQL-identifier-transports",
+      "additionalTransports": [
+        "putMany actual registered owner compiles every insert before invoking its existing atomicBatch; Original unregistered controlled fixtures retain Source transaction path",
+        "cursor subquery table emitted as finite sql.table identifier node; no input SQL/RawNode rewriting"
+      ]
+    },
+    {
+      "source": "packages/core/src/storage/types.ts",
+      "native": "src/lib/server/plugins/storage-types.ts",
+      "sourceSha256": "65acd62c4dd6dfd863282ca50ac5aacee594f3a421ea7148823d555e9eef2970",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "additionalTransports": []
+    },
+    {
+      "source": "packages/core/src/plugins/context.ts",
+      "native": "src/lib/server/plugins/context.ts",
+      "sourceSha256": "09b8e2784d0aed1d21527ba74a0cd5a03d7c64d1a956ca35bf8b6f3eede77747",
+      "imports": [
+        {
+          "from": "../api/handlers/media-allowlist.js",
+          "to": "../general-media/upstream/api/handlers/media-allowlist.ts"
+        },
+        {
+          "from": "../api/handlers/media.js",
+          "to": "./native-media-handlers.ts"
+        },
+        {
+          "from": "../api/handlers/redirects.js",
+          "to": "../redirects/handlers.ts"
+        },
+        {
+          "from": "../api/handlers/taxonomies.js",
+          "to": "./native-taxonomy-handlers.ts"
+        },
+        {
+          "from": "../api/schemas/media.js",
+          "to": "../general-media/upstream/api/schemas/media.ts"
+        },
+        {
+          "from": "../api/schemas/redirects.js",
+          "to": "../redirects/schemas.ts"
+        },
+        {
+          "from": "../database/repositories/comment.js",
+          "to": "./native-comments.ts"
+        },
+        {
+          "from": "../database/repositories/content.js",
+          "to": "../database/lifecycle/upstream/database/repositories/content.ts"
+        },
+        {
+          "from": "../database/repositories/entry-locks.js",
+          "to": "../entry-locks/repository.ts"
+        },
+        {
+          "from": "../database/repositories/media.js",
+          "to": "./native-media.ts"
+        },
+        {
+          "from": "../database/repositories/options.js",
+          "to": "../options/repository.ts"
+        },
+        {
+          "from": "../database/repositories/plugin-storage.js",
+          "to": "./storage-repository.ts"
+        },
+        {
+          "from": "../database/repositories/redirect.js",
+          "to": "../redirects/repository.ts"
+        },
+        {
+          "from": "../database/repositories/seo.js",
+          "to": "../seo/repository.ts"
+        },
+        {
+          "from": "../database/repositories/taxonomy-def.js",
+          "to": "../taxonomies/definitions.ts"
+        },
+        {
+          "from": "../database/repositories/taxonomy.js",
+          "to": "./native-taxonomies.ts"
+        },
+        {
+          "from": "../database/repositories/user.js",
+          "to": "./native-users.ts"
+        },
+        {
+          "from": "../database/transaction.js",
+          "to": "./transaction.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../i18n/config.js",
+          "to": "../menus/i18n-config.ts"
+        },
+        {
+          "from": "../import/ssrf.js",
+          "to": "./ssrf.ts"
+        },
+        {
+          "from": "../media/enrich.js",
+          "to": "../general-media/upstream/media/enrich.ts"
+        },
+        {
+          "from": "../media/mime.js",
+          "to": "../general-media/upstream/media/mime.ts"
+        },
+        {
+          "from": "../media/usage/content-refresh.js",
+          "to": "./content-usage-refresh.ts"
+        },
+        {
+          "from": "../schema/registry.js",
+          "to": "./native-schema.ts"
+        },
+        {
+          "from": "../settings/index.js",
+          "to": "./site-settings-cache.ts"
+        },
+        {
+          "from": "../storage/types.js",
+          "to": "./storage-types.ts"
+        },
+        {
+          "from": "./byline-access.js",
+          "to": "./byline-access.ts"
+        },
+        {
+          "from": "./conditional-storage.js",
+          "to": "./conditional-storage.ts"
+        },
+        {
+          "from": "./content-access.js",
+          "to": "./content-access.ts"
+        },
+        {
+          "from": "./cron.js",
+          "to": "./cron.ts"
+        },
+        {
+          "from": "./email.js",
+          "to": "./email.ts"
+        },
+        {
+          "from": "./http-wire.js",
+          "to": "./http-wire.ts"
+        },
+        {
+          "from": "./media.js",
+          "to": "./media.ts"
+        },
+        {
+          "from": "./route-error.js",
+          "to": "./route-error.ts"
+        },
+        {
+          "from": "./settings.js",
+          "to": "./settings.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        },
+        {
+          "from": "./content-access.js",
+          "to": "./content-access.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "native-canonical-domain-bindings-not-yet-fully-qualified"
+    },
+    {
+      "source": "packages/core/src/plugins/content-access.ts",
+      "native": "src/lib/server/plugins/content-access.ts",
+      "sourceSha256": "9b76a1c971c85ed02100998f3bd9a78f113ec06afa21e613520e6a689bd92e90",
+      "imports": [
+        {
+          "from": "../database/repositories/content.js",
+          "to": "../database/lifecycle/upstream/database/repositories/content.ts"
+        },
+        {
+          "from": "../database/repositories/revision.js",
+          "to": "../database/lifecycle/upstream/database/repositories/revision.ts"
+        },
+        {
+          "from": "../database/repositories/seo.js",
+          "to": "../seo/repository.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../i18n/resolve.js",
+          "to": "../menus/i18n-resolve.ts"
+        },
+        {
+          "from": "../schema/registry.js",
+          "to": "./native-schema.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "native-canonical-domain-bindings-not-yet-fully-qualified"
+    },
+    {
+      "source": "packages/core/src/plugins/media.ts",
+      "native": "src/lib/server/plugins/media.ts",
+      "sourceSha256": "a36e06942ede5526d990316ee49edde1a9bb1b21787a645c62454951437508c6",
+      "imports": [
+        {
+          "from": "../database/repositories/media.js",
+          "to": "./native-media.ts"
+        },
+        {
+          "from": "../database/types.js",
+          "to": "./database-types.ts"
+        },
+        {
+          "from": "../media/focal-point.js",
+          "to": "../general-media/upstream/media/focal-point.ts"
+        },
+        {
+          "from": "../storage/types.js",
+          "to": "./storage-types.ts"
+        },
+        {
+          "from": "./types.js",
+          "to": "./types.ts"
+        }
+      ],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "native-canonical-domain-bindings-not-yet-fully-qualified"
+    },
+    {
+      "source": "packages/core/src/security/ssrf.ts",
+      "native": "src/lib/server/plugins/ssrf.ts",
+      "sourceSha256": "b8342abfd64b394c6ad0356593bd9eb41642dc4c5a990cd6b33b5b938e68a6f2",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "no-new-real-network-or-credential-consequence-probes"
+    },
+    {
+      "source": "packages/core/src/plugins/sandbox/hook-result.ts",
+      "native": "src/lib/server/plugins/sandbox/hook-result.ts",
+      "sourceSha256": "a997b4b9a6cd9d9179ca040ec9767226b6f4cfb3df895e40d894af123adb4209",
+      "imports": [],
+      "body": "whole-source-runtime-after-import-only-substitution",
+      "limits": "native-canonical-domain-bindings-not-yet-fully-qualified"
     }
   ]
 }

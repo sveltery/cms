@@ -2855,3 +2855,25 @@ DOM callbacks test the real provider tree. No React component rendering, error
 info identity, Kumo/Lingui component identity, browser geometry or complete PL2
 sandbox execution is inferred. Proposed [PR #127](https://github.com/sveltery/cms/pull/127);
 specific framework acceptance and full final qualification remain pending.
+
+
+### PL1 context, canonical batch and finite identifier transports
+
+The [paired record](../../docs/plugin-runtime-provider.md) records complete
+context/cron/state/email/hook/manager/route authorities at immutable Source
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The latest Source host reaches689
+callbacks with Original controlled collaborators; four SourceRuntime families
+still stop at prerequisites. Production canonical context integration remains
+incomplete, especially Media113/entry locks and compound write producers.
+
+PL1-SQL01 emits fixed cron and storage cursor table identifiers as Kysely table
+nodes, preserving existing Native namespaces without new RawNode/input SQL
+rewriting. SQL quoting differs from Source literal templates, and whole-module
+identity is not claimed. PL1-BATCH01 sends actual registered-owner plugin
+`putMany` statements to its existing atomicBatch; Original controlled fixtures
+retain their Source transaction path. Source D1 permits callback fallback;
+Native retains existing C-07 and rejects unresolved compound write paths.
+Dedicated Native atomicity qualification is pending. ProposedPR127, no specific
+framework/atomicity difference acceptance or full product qualification recorded.
+The sole existing user owner is adopted from approvedMain82 through regular
+mergef960b7b5; no additional content, media, identity or storage provider is added.
