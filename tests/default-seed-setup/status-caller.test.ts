@@ -1,12 +1,12 @@
 // Supplemental Native metadata composition controls. Actual empty account
 // authority is only read; no HTTP, credential, session or account action occurs.
 import { afterEach, expect, it, vi } from 'vitest';
-import { openSqlite } from '../src/lib/server/database/sqlite.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
-import { OptionsRepository } from '../src/lib/server/comments/upstream/database/repositories/options.ts';
-import { seedSourceDatabase } from '../src/lib/server/seed/namespace.ts';
-import { runtimeSetupStatus } from '../src/lib/server/setup/status.ts';
-import type { SeedFile } from '../src/lib/server/seed/types.ts';
+import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
+import { migrateCms } from '../../src/lib/server/database/migrations.ts';
+import { OptionsRepository } from '../../src/lib/server/comments/upstream/database/repositories/options.ts';
+import { seedSourceDatabase } from '../../src/lib/server/seed/namespace.ts';
+import { runtimeSetupStatus } from '../../src/lib/server/setup/status.ts';
+import type { SeedFile } from '../../src/lib/server/seed/types.ts';
 
 const fixture = vi.hoisted(() => ({ userSeed: null as SeedFile | null }));
 vi.mock('virtual:emdash/seed', () => ({ seed: null, get userSeed() { return fixture.userSeed; } }));

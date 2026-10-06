@@ -1,11 +1,11 @@
 // Supplemental Native caller controls for the complete pinned setup route's
 // outer load catch and inner apply catch. No Original callback/body credit.
 import { afterEach, expect, it, vi } from 'vitest';
-import { openSqlite } from '../src/lib/server/database/sqlite.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
-import { seedSourceDatabase } from '../src/lib/server/seed/namespace.ts';
-import { InvalidCursorError } from '../src/lib/server/comments/upstream/database/repositories/types.ts';
-import { applySetupSite } from '../src/lib/server/setup/site.ts';
+import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
+import { migrateCms } from '../../src/lib/server/database/migrations.ts';
+import { seedSourceDatabase } from '../../src/lib/server/seed/namespace.ts';
+import { InvalidCursorError } from '../../src/lib/server/comments/upstream/database/repositories/types.ts';
+import { applySetupSite } from '../../src/lib/server/setup/site.ts';
 
 const fixture = vi.hoisted(() => ({ loadError: undefined as unknown }));
 vi.mock('virtual:emdash/seed', () => ({
