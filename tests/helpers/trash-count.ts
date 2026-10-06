@@ -4,13 +4,14 @@ import { spawn } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { copyIsolatedRootPageSource } from './isolated-root-page-build.mjs';
 
 export async function trashCountOutput(base: '' | '/cms') {
   const checkout = fileURLToPath(new URL('../../', import.meta.url));
   const directory = await mkdtemp(join(tmpdir(), 'cms-trash-count-'));
   try {
     await Promise.all([
-      cp(join(checkout, 'src'), join(directory, 'src'), { recursive: true }),
+      copyIsolatedRootPageSource(checkout, directory),
       cp(join(checkout, 'package.json'), join(directory, 'package.json')),
       cp(join(checkout, 'tsconfig.json'), join(directory, 'tsconfig.json')),
       symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir')

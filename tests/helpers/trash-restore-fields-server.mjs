@@ -9,6 +9,7 @@ import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { cmsService } from '../../src/lib/server/database/service.ts';
 import { withRevision } from '../../src/lib/server/content/schema.ts';
+import { copyIsolatedRootPageSource } from './isolated-root-page-build.mjs';
 
 const checkout = fileURLToPath(new URL('../../', import.meta.url));
 /** @type {import('../../src/lib/server/database/service.ts').ServerPrincipal} */
@@ -62,7 +63,7 @@ export async function createTrashRestoreFieldsServer() {
       await seed.close();
     }
     await Promise.all([
-      cp(join(checkout, 'src'), join(directory, 'src'), { recursive: true }),
+      copyIsolatedRootPageSource(checkout, directory),
       cp(join(checkout, 'package.json'), join(directory, 'package.json')),
       cp(join(checkout, 'tsconfig.json'), join(directory, 'tsconfig.json')),
       symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir')
