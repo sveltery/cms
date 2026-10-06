@@ -137,3 +137,14 @@ The intermediate incorrect Kysely accessor is retained as implementation failure
 it adds no Source parity credit. All three final Native callbacks pass, including
 actual rollback, plugin key isolation and complete list writes. Wider compound
 context/settings and D1 integration remain pending.
+
+## Actual declared index qualification
+
+A fourth Native storage case first failed with `no such table: main._plugin_storage`.
+The owned index template now emits a Kysely table identifier for an actual
+registered owner; existing namespace mapping targets `_cms_plugin_storage`.
+Plain Original controlled fixtures preserve their literal Source SQL. All four
+Native canonical storage callbacks and all 15 unchanged whole Source index
+callbacks pass. The actual test checks index tracking and orphan removal.
+This finite owner/template adaptation adds no provider, input SQL rewriting,
+whole-module byte identity or wider runtime completion.

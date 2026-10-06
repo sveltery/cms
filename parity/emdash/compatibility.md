@@ -2888,3 +2888,10 @@ handles. Plain Original controlled fixtures retain their Source paths.
 The [paired record](../../docs/plugin-runtime-provider.md) preserves the initial
 and intermediate logs and all limits. This proves this document list boundary,
 not complete context/settings compound writes, D1 support or complete runtime.
+
+PL1-SQL01 additionally covers the plugin expression-index table template: actual
+registered owners use the existing TableNode namespace, while Original controlled
+Source templates remain unchanged. The real Native first-value red and final
+four-callback family are paired with 15 whole Source index callbacks in the
+[plugin record](../../docs/plugin-runtime-provider.md). No new canonical provider
+or arbitrary SQL rewriting is introduced; full runtime qualification is pending.

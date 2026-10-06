@@ -13,6 +13,7 @@ import { sql } from "kysely";
 
 import { jsonExtractExpr, isPostgres } from "../database/lifecycle/upstream/database/dialect-helpers.ts";
 import type { Database } from "./database-types.ts";
+import { assertRegisteredPluginNamespace, registeredPluginDatabaseOwner } from "./database.ts";
 import {
 	validateJsonFieldName,
 	validatePluginIdentifier,
@@ -51,6 +52,7 @@ export function generateCreateIndexSql(
 	fields: string[],
 	options?: { unique?: boolean },
 ): RawBuilder<unknown> {
+	assertRegisteredPluginNamespace(db);
 	validatePluginIdentifier(pluginId, "plugin ID");
 	validateStorageCollectionName(collection, "collection name");
 	for (const field of fields) {
@@ -79,7 +81,7 @@ export function generateCreateIndexSql(
 	// unless ANALYZE has run, and D1 never runs ANALYZE.
 	const createKeyword = options?.unique ? "CREATE UNIQUE INDEX" : "CREATE INDEX";
 	return sql`${sql.raw(createKeyword)} IF NOT EXISTS ${sql.ref(indexName)}
-		ON _plugin_storage(plugin_id, collection, ${sql.raw(expressions)})
+		ON ${registeredPluginDatabaseOwner(db) ? sql.table("_plugin_storage") : sql.raw("_plugin_storage")}(plugin_id, collection, ${sql.raw(expressions)})
 	`;
 }
 
