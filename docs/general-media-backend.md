@@ -377,3 +377,46 @@ parent-to-successor diff check now passes. This infrastructure formatting repair
 adds no product or Source causal credit. Current successor hosted checks,
 independent delta review, exact-head approval and regular author merge remain
 pending; no feature completion or landing is recorded.
+
+
+### MED-NODE125-MAIN82: approved prerequisite and current main integration
+
+Approved child [PR125](https://github.com/sveltery/cms/pull/125) was regularly
+merged into this feature branch as `2bae90ca`, with ordered parents `c78460e7`
+and approved `9d36a0c9`. Its complete hosted qualification and exact Root
+approval apply to that child head, separately from the parent Media113 review.
+The two existing error classes now use the approved equivalent explicit fields;
+all immutable Source authorities and original method/error behavior remain.
+The original parent Node callback is unchanged and now reaches its actual
+canonical folder/media write/read result assertions. Its first own-constructor
+red and subsequent shared-error prerequisite red remain retained. The guard
+truth is57 whole Media modules plus three finite constructor-only transports,
+with complete R2, seven usage-read functions and two upload cleanup blocks.
+
+Regular union `615a0741` then adopts actual published main `82e3dd7b`, with
+ordered parents `2bae90ca` and that main. The complete640,066-byte incoming
+compatibility register precedes the complete20,909-byte prior owned Media and
+Node125 tail. The complete17,461-byte incoming attributes file precedes the
+same138-byte previously approved raw-log exception. The complete incoming
+Source command chain precedes the same three Media commands; all other main
+scripts, dependency versions, frozen lock, existing providers and protected
+database/validation owners remain. No product, auth, role, SQL or Source body
+conflict required a repair, and no private peer writer graph was adopted.
+
+The full previous-parent-to-union whitespace check retains a failure caused by
+literal existing main User logs and pinned capabilities fixture whitespace.
+Those imported bytes and their main attributes remain exact. The check against
+actual main passes for the owned changes. This does not rewrite Source or raw
+logs, introduce an allowance, or earn product credit.
+
+On the integrated code head, whole Source36/321, original R2mock1 and whole
+Native11/34 pass sequentially with unchanged deadlines. The Native total is the
+parent24 plus the child's ten separately identified infrastructure/preservation
+controls. The real malformed-cursor callback still returns pinned
+`INVALID_CURSOR`; all prior Native bodies, expectation-maintenance provenance
+and raw histories remain. No local checker/build/bootstrap is repeated during
+other developers' reserved heavy-work windows. Current parent hosted phases,
+aggregate, secured10, Calendar and finite current review remain pending, followed
+by Root exact-head approval, author regular merge and post-main verification.
+This closes the previously demonstrated Node import prerequisite; the wider
+Media/auth/UI/usage-producer/hosting omissions remain incomplete.
