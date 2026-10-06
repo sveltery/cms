@@ -1,0 +1,110 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts (0 test)
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts > plugin byline access [sqlite] > resolves explicit and inferred credits at each entry's locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts (5 tests | 1 failed) 635ms
+     × resolves explicit and inferred credits at each entry's locale 122ms
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 12 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts ]
+Error: Cannot find package 'emdash' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/plugins/ai-moderation/src/index.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/plugins/ai-moderation/src/index.ts:11:1
+      9|
+     10| import type { ResolvedPlugin } from "emdash";
+     11| import { definePlugin } from "emdash";
+       | ^
+     12|
+     13| import { DEFAULT_CATEGORIES, buildTaxonomy } from "./categories.js";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts:13:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts ]
+Error: Cannot find package 'modern-tar' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/plugins/marketplace.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/plugins/marketplace.ts:9:1
+      7|  */
+      8|
+      9| import { createGzipDecoder, unpackTar } from "modern-tar";
+       | ^
+     10|
+     11| import { pluginManifestSchema, reconcileManifestAccess } from "./manif…
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/api/handlers/marketplace.ts:14:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts ]
+Error: Cannot find package 'emdash' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/workerd/src/sandbox/bridge-handler.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/workerd/src/sandbox/bridge-handler.ts:19:1
+     17| import { Buffer } from "node:buffer";
+     18|
+     19| import {
+       | ^
+     20|  ContentRepository,
+     21|  CronAccessImpl,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts > plugin byline access [sqlite] > resolves explicit and inferred credits at each entry's locale
+AssertionError: expected [] to deeply equal [ { name: 'Lead', …(2) }, …(1) ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "name": "Lead",
+-     "roleLabel": null,
+-     "source": "explicit",
+-   },
+-   {
+-     "name": "Editor",
+-     "roleLabel": "Editor",
+-     "source": "explicit",
+-   },
+- ]
++ []
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts:171:5
+    169|     source,
+    170|    })),
+    171|   ).toEqual([
+       |     ^
+    172|    { name: "Lead", roleLabel: null, source: "explicit" },
+    173|    { name: "Editor", roleLabel: "Editor", source: "explicit" },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+
+ Test Files  13 failed | 14 passed (27)
+      Tests  1 failed | 274 passed (275)
+   Start at  02:11:36
+   Duration  45.93s (transform 2.13s, setup 0ms, import 5.64s, tests 30.49s, environment 2ms)
+

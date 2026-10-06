@@ -1,0 +1,32 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts ]
+Error: Cannot find package '@emdash-cms/auth/adapters/kysely' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/cleanup.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/cleanup.ts:12:1
+     10|  */
+     11|
+     12| import { createKyselyAdapter, type AuthTables } from "@emdash-cms/auth…
+       | ^
+     13| import type { Kysely } from "kysely";
+     14|
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:203:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  02:18:52
+   Duration  4.03s (transform 1.58s, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

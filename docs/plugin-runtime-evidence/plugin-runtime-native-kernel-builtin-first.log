@@ -1,0 +1,74 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+stderr | tests/plugin-runtime/kernel/builtin-providers.test.ts > selects a genuine configured moderator over the default and restores fallback when disabled
+[hooks] Plugin "moderator" declares comment:moderate hook without users:read capability — skipping
+
+ ❯ tests/plugin-runtime/kernel/builtin-providers.test.ts (3 tests | 3 failed) 98ms
+   × uses the complete default comment moderator without persisting its fallback selection 42ms
+   × delivers through the complete console provider only in actual development mode 29ms
+   × selects a genuine configured moderator over the default and restores fallback when disabled 26ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/kernel/builtin-providers.test.ts > uses the complete default comment moderator without persisting its fallback selection
+AssertionError: expected undefined to be 'emdash-default-comment-moderator' // Object.is equality
+
+- Expected:
+"emdash-default-comment-moderator"
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/kernel/builtin-providers.test.ts:23:28
+     21|     priorApprovedCount: 1
+     22|   });
+     23|   expect(result?.pluginId).toBe(DEFAULT_COMMENT_MODERATOR_PLUGIN_ID);
+       |                            ^
+     24|   expect(result?.result).toEqual({ status: 'approved', reason: 'Return…
+     25|   expect(await database.db.selectFrom('_cms_options').selectAll().wher…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/plugin-runtime/kernel/builtin-providers.test.ts > delivers through the complete console provider only in actual development mode
+AssertionError: promise rejected "EmailNotConfiguredError: No email provide…" instead of resolving
+ ❯ tests/plugin-runtime/kernel/builtin-providers.test.ts:31:55
+     29|   const { runtime } = await create();
+     30|   const message = { to: 'controlled@example.test', subject: 'Controlle…
+     31|   await expect(runtime.email.send(message, 'fixture')).resolves.toBeUn…
+       |                                                       ^
+     32|   expect(runtime.hooks.getExclusiveSelection('email:deliver')).toBe(DE…
+     33|   expect(getDevEmails().map(({ message, source }) => ({ message, sourc…
+
+Caused by: EmailNotConfiguredError: No email provider is configured. Install and activate an email provider plugin, then select it in Settings > Email.
+ ❯ EmailPipeline.sendInner src/lib/server/plugins/email.ts:186:10
+ ❯ EmailPipeline.send src/lib/server/plugins/email.ts:122:4
+ ❯ tests/plugin-runtime/kernel/builtin-providers.test.ts:31:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/plugin-runtime/kernel/builtin-providers.test.ts > selects a genuine configured moderator over the default and restores fallback when disabled
+AssertionError: expected undefined to be 'moderator' // Object.is equality
+
+- Expected:
+"moderator"
+
++ Received:
+undefined
+
+ ❯ tests/plugin-runtime/kernel/builtin-providers.test.ts:39:67
+     37|   const moderate = vi.fn(async () => ({ status: 'pending', reason: 'Co…
+     38|   const { runtime } = await create([{ id: 'moderator', version: '1.0.0…
+     39|   expect(runtime.hooks.getExclusiveSelection('comment:moderate')).toBe…
+       |                                                                   ^
+     40|   await runtime.setPluginStatus('moderator', 'inactive');
+     41|   expect(runtime.hooks.getExclusiveSelection('comment:moderate')).toBe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  02:44:28
+   Duration  1.98s (transform 1.26s, setup 0ms, import 1.74s, tests 98ms, environment 0ms)
+

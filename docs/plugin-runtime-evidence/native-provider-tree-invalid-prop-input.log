@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+1:17:39 AM [vite-plugin-svelte] src/lib/plugins/ContentListColumnFailure.svelte:4:26 This reference only captures the initial value of `resetKey`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally
+ ❯ tests/plugin-provider/provider-tree.test.ts (3 tests | 1 failed) 53ms
+   × dispatches native widget/page components from the current isolated provider tree 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-provider/provider-tree.test.ts > dispatches native widget/page components from the current isolated provider tree
+TypeError: Cannot read properties of undefined (reading 'endsWith')
+
+	in <unknown>
+	in PluginAdminProvider.svelte
+	in ProviderTree.svelte
+	in undefined
+
+ ❯ togglePagePathTrailingSlash src/lib/plugins/page-path.ts:5:14
+      3| function togglePagePathTrailingSlash(path: string): string {
+      4|  if (path === "/") return path;
+      5|  return path.endsWith("/") ? path.slice(0, -1) : `${path}/`;
+       |              ^
+      6| }
+      7|
+ ❯ resolvePluginPagePath src/lib/plugins/page-path.ts:16:37
+ ❯ usePluginPage src/lib/plugins/provider.svelte.ts:34:10
+ ❯ src/lib/plugins/PluginPage.svelte:4:25
+ ❯ src/lib/plugins/PluginPage.svelte:42:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  01:17:38
+   Duration  1.45s (transform 576ms, setup 0ms, import 726ms, tests 53ms, environment 537ms)
+

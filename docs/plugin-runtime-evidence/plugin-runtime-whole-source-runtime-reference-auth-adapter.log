@@ -1,0 +1,32 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts ]
+Error: Cannot find package '@atcute/lexicons/syntax' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/registry/config.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/registry/config.ts:10:1
+      8|  */
+      9|
+     10| import { isDid } from "@atcute/lexicons/syntax";
+       | ^
+     11|
+     12| import type { RegistryConfig, RegistryConfigInput, RegistryConfigOptio…
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/api/handlers/update-check.ts:15:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  02:19:44
+   Duration  4.92s (transform 2.10s, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,61 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ tests/plugin-runtime/canonical-storage.test.ts (3 tests | 3 failed) 95ms
+     × uses one real canonical batch for the whole document list and isolates plugin keys 49ms
+     × keeps a nested document list inside the actual outer transaction and rolls it back 26ms
+     × does not grant a canonical writer to an unregistered derived namespace handle 19ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/canonical-storage.test.ts > actual canonical plugin document storage > uses one real canonical batch for the whole document list and isolates plugin keys
+TypeError: db.getExecutor(...).getPlugins is not a function
+ ❯ assertRegisteredPluginNamespace src/lib/server/plugins/database.ts:37:24
+     35| /** Namespace views may only write through their registered current ow…
+     36| export function assertRegisteredPluginNamespace(db: Kysely<any>): void…
+     37|   if (db.getExecutor().getPlugins().includes(namespace) && !owners.has…
+       |                        ^
+     38|     throw new Error('Plugin domain access requires the actual register…
+     39|   }
+ ❯ new PluginStorageRepository src/lib/server/plugins/storage-repository.ts:128:3
+ ❯ fixture tests/plugin-runtime/canonical-storage.test.ts:13:38
+ ❯ tests/plugin-runtime/canonical-storage.test.ts:17:42
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/plugin-runtime/canonical-storage.test.ts > actual canonical plugin document storage > keeps a nested document list inside the actual outer transaction and rolls it back
+TypeError: db.getExecutor(...).getPlugins is not a function
+ ❯ assertRegisteredPluginNamespace src/lib/server/plugins/database.ts:37:24
+     35| /** Namespace views may only write through their registered current ow…
+     36| export function assertRegisteredPluginNamespace(db: Kysely<any>): void…
+     37|   if (db.getExecutor().getPlugins().includes(namespace) && !owners.has…
+       |                        ^
+     38|     throw new Error('Plugin domain access requires the actual register…
+     39|   }
+ ❯ new PluginStorageRepository src/lib/server/plugins/storage-repository.ts:128:3
+ ❯ fixture tests/plugin-runtime/canonical-storage.test.ts:13:38
+ ❯ tests/plugin-runtime/canonical-storage.test.ts:27:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/plugin-runtime/canonical-storage.test.ts > actual canonical plugin document storage > does not grant a canonical writer to an unregistered derived namespace handle
+TypeError: db.getExecutor(...).getPlugins is not a function
+ ❯ assertRegisteredPluginNamespace src/lib/server/plugins/database.ts:37:24
+     35| /** Namespace views may only write through their registered current ow…
+     36| export function assertRegisteredPluginNamespace(db: Kysely<any>): void…
+     37|   if (db.getExecutor().getPlugins().includes(namespace) && !owners.has…
+       |                        ^
+     38|     throw new Error('Plugin domain access requires the actual register…
+     39|   }
+ ❯ new PluginStorageRepository src/lib/server/plugins/storage-repository.ts:128:3
+ ❯ fixture tests/plugin-runtime/canonical-storage.test.ts:13:38
+ ❯ tests/plugin-runtime/canonical-storage.test.ts:42:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  01:48:21
+   Duration  733ms (transform 341ms, setup 0ms, import 517ms, tests 95ms, environment 0ms)
+

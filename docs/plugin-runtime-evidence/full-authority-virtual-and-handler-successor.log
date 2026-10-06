@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts ]
+Error: Cannot find package 'modern-tar' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/plugins/marketplace.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/plugins/marketplace.ts:9:1
+      7|  */
+      8|
+      9| import { createGzipDecoder, unpackTar } from "modern-tar";
+       | ^
+     10|
+     11| import { pluginManifestSchema, reconcileManifestAccess } from "./manif…
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/api/handlers/marketplace.ts:14:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  16 passed (16)
+   Start at  01:57:16
+   Duration  4.15s (transform 1.83s, setup 0ms, import 1.28s, tests 1.10s, environment 0ms)
+

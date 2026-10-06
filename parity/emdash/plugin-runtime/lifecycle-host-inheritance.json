@@ -1,0 +1,9 @@
+{
+  "baseCommit": "82e3dd7b673f774ca8c3eceaafa28234641bd6b1",
+  "path": "src/lib/server/database/lifecycle/upstream/host.ts",
+  "everyPriorByteRetained": true,
+  "priorSha256": "f4298e5298301414c26ad883be621186f9ee0d3245bbb927324be4dd78c298d8",
+  "addedSpan": "/** Read the trusted host callbacks without replacing the registered owner metadata. */\nexport const lifecycleDependencies = (db: object): Readonly<LifecycleDependencies> | undefined => dependencies.get(db);\n/** The caller has already qualified the genuine owner-backed view/transaction. */\nexport function inheritLifecycleDatabase(database: CmsDatabase, sourceDb: object): void {\n  if (!databases.has(sourceDb)) throw new Error('Lifecycle inheritance requires the actual registered source owner');\n  const values = dependencies.get(sourceDb)!;\n  databases.set(database.db, database);\n  dependencies.set(database.db, values);\n}\n",
+  "addedSpanSha256": "2f77e4e48f46eb8da3bce74ad5f7b1a66cd808691183b73ae4c7f6655fb82fd1",
+  "sourceOrProductParityCredit": 0
+}

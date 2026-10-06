@@ -1,0 +1,184 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/capabilities.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/conditional-storage.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/media-capabilities.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-enrich.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-update-drafts.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/cron-correctness.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 20 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts ]
+Error: Cannot find package 'emdash' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/plugins/ai-moderation/src/index.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/plugins/ai-moderation/src/index.ts:11:1
+      9|
+     10| import type { ResolvedPlugin } from "emdash";
+     11| import { definePlugin } from "emdash";
+       | ^
+     12|
+     13| import { DEFAULT_CATEGORIES, buildTaxonomy } from "./categories.js";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts:13:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:94:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/byline-access.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/capabilities.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/capabilities.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/capabilities.test.ts:29:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/conditional-storage.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/conditional-storage.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/conditional-storage.test.ts:8:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts ]
+Error: Cannot find package 'emdash' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/workerd/src/sandbox/bridge-handler.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/workerd/src/sandbox/bridge-handler.ts:19:1
+     17| import { Buffer } from "node:buffer";
+     18|
+     19| import {
+       | ^
+     20|  ContentRepository,
+     21|  CronAccessImpl,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-update-drafts.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-update-drafts.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-update-drafts.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/cron-correctness.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/cron-correctness.test.ts ]
+ReferenceError: it is not defined
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/cron-correctness.test.ts:25:2
+     23|  });
+     24|
+     25|  it("stores one-shot due times as canonical UTC", async () => {
+       |  ^
+     26|   vi.stubEnv("TZ", "America/New_York");
+     27|   const access = new CronAccessImpl(ctx.db, "reminders", () => {});
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/utils/test-db.ts:582:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/media-capabilities.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/media-capabilities.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/media-capabilities.test.ts:14:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/20]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-enrich.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-enrich.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/taxonomies/definitions.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/context.ts
+ ❯ src/lib/server/plugins/context.ts:37:1
+     35| } from "../redirects/repository.ts";
+     36| import { SeoRepository } from "../seo/repository.ts";
+     37| import {
+       | ^
+     38|  findTaxonomyStructure,
+     39|  selectTaxonomyDefs,
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-enrich.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/20]⎯
+
+
+ Test Files  20 failed | 7 passed (27)
+      Tests  100 passed (100)
+   Start at  02:10:02
+   Duration  23.41s (transform 2.05s, setup 0ms, import 2.72s, tests 9.06s, environment 2ms)
+

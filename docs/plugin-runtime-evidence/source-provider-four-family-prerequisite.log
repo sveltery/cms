@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-list-columns.test.tsx (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-editor-panels.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-editor-panels.test.tsx [ parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-editor-panels.test.tsx ]
+Error: Cannot find module '/src/lib/plugins/content-editor-panels.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-editor-panels.test.tsx
+ ❯ parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-editor-panels.test.tsx:4:1
+      2| import { afterEach, describe, expect, it, vi } from "vitest";
+      3|
+      4| import {
+       | ^
+      5|  resolveContentEditorPanels,
+      6|  type ContentEditorPanelContext,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-list-columns.test.tsx [ parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-list-columns.test.tsx ]
+Error: Cannot find module '/src/lib/plugins/content-list-columns.ts' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-list-columns.test.tsx
+ ❯ parity/emdash/plugin-runtime/source/packages/admin/tests/lib/content-list-columns.test.tsx:4:1
+      2| import { describe, expect, it, vi } from "vitest";
+      3|
+      4| import {
+       | ^
+      5|  resolveContentListColumns,
+      6|  type ContentListColumnCellContext,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  11 passed (11)
+   Start at  01:15:18
+   Duration  695ms (transform 62ms, setup 0ms, import 52ms, tests 16ms, environment 0ms)
+

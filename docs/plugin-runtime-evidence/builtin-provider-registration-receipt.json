@@ -1,0 +1,20 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "packages/core/src/emdash-runtime.ts",
+  "wholeSourceSha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+  "builtinRegistrationSpan": "\t\t// Build the full list of pipeline-eligible plugins: all configured\n\t\t// plugins (regardless of current enabled status) plus built-in plugins.\n\t\t// rebuildHookPipeline() filters this to only enabled plugins.\n\t\tconst allPipelinePlugins: ResolvedPlugin[] = [...deps.plugins];\n\n\t\t// Collected bypassed plugins (sandbox: false escape hatch).\n\t\t// These need to be added to BOTH the pipeline (for hooks) AND the\n\t\t// configuredPlugins list (for route dispatch).\n\t\tconst bypassedPluginsList: ResolvedPlugin[] = [];\n\n\t\t// In dev mode, register a built-in console email provider.\n\t\t// It participates in exclusive hook resolution like any other plugin \u2014\n\t\t// auto-selected when it's the sole provider, overridden when a real one is configured.\n\t\t// Gated by import.meta.env.DEV to prevent silent email loss in production.\n\t\tif (import.meta.env.DEV) {\n\t\t\ttry {\n\t\t\t\tconst devConsolePlugin = definePlugin({\n\t\t\t\t\tid: DEV_CONSOLE_EMAIL_PLUGIN_ID,\n\t\t\t\t\tversion: \"0.0.0\",\n\t\t\t\t\tcapabilities: [\"hooks.email-transport:register\"],\n\t\t\t\t\thooks: {\n\t\t\t\t\t\t\"email:deliver\": {\n\t\t\t\t\t\t\texclusive: true,\n\t\t\t\t\t\t\thandler: devConsoleEmailDeliver,\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t});\n\t\t\t\tallPipelinePlugins.push(devConsolePlugin);\n\t\t\t\t// Built-in plugins are always enabled\n\t\t\t\tenabledPlugins.add(devConsolePlugin.id);\n\t\t\t} catch (error) {\n\t\t\t\tconsole.warn(\"[email] Failed to register dev console email provider:\", error);\n\t\t\t}\n\t\t}\n\n\t\t// Register built-in default comment moderator.\n\t\t// Always present as a fallback: exclusive hook resolution selects a\n\t\t// single plugin moderator (e.g. AI moderation) over it unless the site\n\t\t// has already stored a comment:moderate selection.\n\t\ttry {\n\t\t\tconst defaultModeratorPlugin = definePlugin({\n\t\t\t\tid: DEFAULT_COMMENT_MODERATOR_PLUGIN_ID,\n\t\t\t\tversion: \"0.0.0\",\n\t\t\t\tcapabilities: [\"users:read\"],\n\t\t\t\thooks: {\n\t\t\t\t\t\"comment:moderate\": {\n\t\t\t\t\t\texclusive: true,\n\t\t\t\t\t\thandler: defaultCommentModerate,\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t});\n\t\t\tallPipelinePlugins.push(defaultModeratorPlugin);\n\t\t\t// Built-in plugins are always enabled\n\t\t\tenabledPlugins.add(defaultModeratorPlugin.id);\n\t\t} catch (error) {\n\t\t\tconsole.warn(\"[comments] Failed to register default moderator:\", error);\n\t\t}\n\n",
+  "builtinRegistrationSpanSha256": "62994dc68022b8816f1c1e680d467b98ef0ea325dcbac589c39e788d53725b46",
+  "native": "src/lib/server/plugins/runtime.ts",
+  "finiteAdaptations": [
+    "Configured trusted plugins are supplied by the owning Svelte runtime composition rather than Astro virtual-module startup.",
+    "Optional import.meta.env?.DEV preserves the genuine development flag and excludes the console provider on unbundled Node without that flag.",
+    "Always-enabled builtin hooks are separate from the configured list, as in Source; default moderation participates as an exclusive fallback without persisting the fallback selection."
+  ],
+  "nativeSupplementaryResults": {
+    "families": 2,
+    "callbacks": 6,
+    "passed": 6
+  },
+  "withdrawnAssumption": "The earlier configured-kernel assertion that disabling its sole configured plugin removes every hook was invalid because Source builtins remain registered. Corrected assertions verify configured activate/deactivate hooks are removed. Raw first failure remains.",
+  "nativeFullRuntimeParityCredit": false
+}

@@ -1,0 +1,85 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+stderr | tests/plugin-runtime/kernel/cron.test.ts > executes an actual canonical context schedule through the same runtime hook pipeline
+[cron] Hook failed for reminders:once: Error: Plugin "reminders" has no cron hook registered
+    at HookPipeline.invokeCronHook (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/hooks.ts:1038:12)
+    at CronExecutor.invokeCronHook (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/runtime.ts:91:42)
+    at CronExecutor.tick (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/cron.ts:135:16)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-full-plugin-runtime-provider/tests/plugin-runtime/kernel/cron.test.ts:21:10
+    at file:///workspace/cms-full-plugin-runtime-provider/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+stderr | tests/plugin-runtime/kernel/cron.test.ts > resolves schedules and ticks against each actual event owner
+[cron] Hook failed for scoped:scoped-once: Error: Plugin "scoped" has no cron hook registered
+    at HookPipeline.invokeCronHook (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/hooks.ts:1038:12)
+    at CronExecutor.invokeCronHook (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/runtime.ts:91:42)
+    at CronExecutor.tick (/workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/cron.ts:135:16)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at /workspace/cms-full-plugin-runtime-provider/tests/plugin-runtime/kernel/cron.test.ts:35:12
+    at /workspace/cms-full-plugin-runtime-provider/tests/plugin-runtime/kernel/cron.test.ts:32:3
+    at file:///workspace/cms-full-plugin-runtime-provider/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+ ❯ tests/plugin-runtime/kernel/cron.test.ts (2 tests | 2 failed) 110ms
+   × executes an actual canonical context schedule through the same runtime hook pipeline 60ms
+   × resolves schedules and ticks against each actual event owner 49ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/plugin-runtime/kernel/cron.test.ts > executes an actual canonical context schedule through the same runtime hook pipeline
+AssertionError: expected [] to deeply equal [ { …(2) } ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "event": {
+-       "data": {
+-         "value": "controlled",
+-       },
+-       "name": "once",
+-       "scheduledAt": "2030-01-02T01:04:05.000Z",
+-     },
+-     "pluginId": "reminders",
+-   },
+- ]
++ []
+
+ ❯ tests/plugin-runtime/kernel/cron.test.ts:22:19
+     20|   ]);
+     21|   expect(await runtime.cronExecutor.tick()).toBe(1);
+     22|   expect(invoked).toEqual([{ event: { name: 'once', data: { value: 'co…
+       |                   ^
+     23|   expect(await runtime.createContext('reminders').cron!.list()).toEqua…
+     24| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/plugin-runtime/kernel/cron.test.ts > resolves schedules and ticks against each actual event owner
+AssertionError: expected [] to deeply equal [ 'event' ]
+
+- Expected
++ Received
+
+- [
+-   "event",
+- ]
++ []
+
+ ❯ tests/plugin-runtime/kernel/cron.test.ts:37:19
+     35|     expect(await runtime.cronExecutor.tick()).toBe(1);
+     36|   });
+     37|   expect(invoked).toEqual(['event']);
+       |                   ^
+     38|   expect(await fallback.db.selectFrom('_cms_cron_tasks').selectAll().e…
+     39|   expect(await runtime.cronExecutor.tick()).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  02:58:29
+   Duration  1.95s (transform 1.23s, setup 0ms, import 1.71s, tests 110ms, environment 0ms)
+

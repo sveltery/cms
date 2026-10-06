@@ -1,0 +1,348 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > records the previous state when content is updated
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stdout | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > records the previous state when content is updated
+[plugin:audit-log] + create content/post/01M47J3F7JHYDZWZ2YMKK9TQQK
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts (3 tests | 1 failed) 357ms
+     × records the previous state when content is updated 121ms
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is saved
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is saved
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is deleted
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is deleted
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is deleted
+[plugin:webhook-notifier] Failed to deliver content:delete after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when media is uploaded
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when media is uploaded
+[plugin:webhook-notifier] Failed to deliver media:upload after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no content webhooks when the site sends media uploads only
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no content webhooks when the site sends media uploads only
+[plugin:webhook-notifier] Failed to deliver media:upload after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no delete webhooks when the site sends media uploads only
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no delete webhooks when the site sends media uploads only
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the saved fields to content payloads only when Include Content Data is on
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the saved fields to content payloads only when Include Content Data is on
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the saved fields to content payloads only when Include Content Data is on
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > names the draft revision when content data is an unpublished edit
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > names the draft revision when content data is an unpublished edit
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > names the draft revision when content data is an unpublished edit
+[plugin:webhook-notifier] Failed to deliver content:update after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the file's name, type and size to media payloads only when Include Content Data is on
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the file's name, type and size to media payloads only when Include Content Data is on
+[plugin:webhook-notifier] Failed to deliver media:upload after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > records each delivery and counts it in the status stats
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > records each delivery and counts it in the status stats
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+stderr | parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > records each delivery and counts it in the status stats
+[plugin:webhook-notifier] Failed to deliver content:create after 3 attempts
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts (13 tests | 9 failed) 7920ms
+     × posts a webhook when content is saved 505ms
+     × posts a webhook when content is deleted 722ms
+     × posts a webhook when media is uploaded 1116ms
+     × sends no content webhooks when the site sends media uploads only 1098ms
+     × sends no delete webhooks when the site sends media uploads only 409ms
+     × adds the saved fields to content payloads only when Include Content Data is on 709ms
+     × names the draft revision when content data is an unpublished edit 471ms
+     × adds the file's name, type and size to media payloads only when Include Content Data is on 1099ms
+     × records each delivery and counts it in the status stats 712ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts > audit-log plugin > records the previous state when content is updated
+TypeError: Cannot read properties of undefined (reading 'EDITOR')
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts:148:43
+    146|   const updated = await runtime.handleContentUpdate("post", created.da…
+    147|    data: { title: "After" },
+    148|    actor: { id: "editor-user", role: Role.EDITOR },
+       |                                           ^
+    149|   });
+    150|   expect(updated.success).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is saved
+AssertionError: expected [] to deep equally contain { …(2) }
+
+- Expected:
+{
+  "payload": ObjectContaining {
+    "collection": "post",
+    "event": "content:create",
+    "resourceId": "01M47J3MFXYJ2T8Y3BGP8C6HKW",
+  },
+  "url": "https://hooks.example.com/emdash",
+}
+
++ Received:
+[]
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:151:16
+    149|   await waitForDeferredTasks();
+    150|
+    151|   expect(sent).toContainEqual({
+       |                ^
+    152|    url: WEBHOOK_URL,
+    153|    payload: expect.objectContaining({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when content is deleted
+AssertionError: expected [] to deep equally contain { …(2) }
+
+- Expected:
+{
+  "payload": ObjectContaining {
+    "collection": "post",
+    "event": "content:delete",
+    "resourceId": "01M47J3MXM3H2X17NPZGSAB1BZ",
+  },
+  "url": "https://hooks.example.com/emdash",
+}
+
++ Received:
+[]
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:174:16
+    172|   await waitForDeferredTasks();
+    173|
+    174|   expect(sent).toContainEqual({
+       |                ^
+    175|    url: WEBHOOK_URL,
+    176|    payload: expect.objectContaining({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > posts a webhook when media is uploaded
+AssertionError: expected [] to deep equally contain { …(2) }
+
+- Expected:
+{
+  "payload": ObjectContaining {
+    "event": "media:upload",
+    "resourceId": "01M47J3NMFDY79C603CE0VX0D9",
+  },
+  "url": "https://hooks.example.com/emdash",
+}
+
++ Received:
+[]
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:194:17
+    192|
+    193|   await vi.waitFor(() =>
+    194|    expect(sent).toContainEqual({
+       |                 ^
+    195|     url: WEBHOOK_URL,
+    196|     payload: expect.objectContaining({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no content webhooks when the site sends media uploads only
+AssertionError: expected [] to deep equally contain { …(2) }
+
+- Expected:
+{
+  "payload": ObjectContaining {
+    "event": "media:upload",
+    "resourceId": "01M47J3PPV244QFNW14YH434XR",
+  },
+  "url": "https://hooks.example.com/emdash",
+}
+
++ Received:
+[]
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:211:17
+    209|
+    210|   await vi.waitFor(() =>
+    211|    expect(sent).toContainEqual({
+       |                 ^
+    212|     url: WEBHOOK_URL,
+    213|     payload: expect.objectContaining({ event: "media:upload", resource…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > sends no delete webhooks when the site sends media uploads only
+AssertionError: expected [] to deeply equal [ ObjectContaining{…} ]
+
+- Expected
++ Received
+
+- [
+-   ObjectContaining {
+-     "event": "content:create",
+-   },
+- ]
++ []
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:227:50
+    225|   await waitForDeferredTasks();
+    226|
+    227|   expect(sent.map((webhook) => webhook.payload)).toEqual([
+       |                                                  ^
+    228|    expect.objectContaining({ event: "content:create" }),
+    229|   ]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the saved fields to content payloads only when Include Content Data is on
+AssertionError: expected [] to deeply equal [ { …(2) }, { …(2) } ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "payload": ObjectContaining {
+-       "resourceId": "01M47J3R8SJDMGZPK8VP7Y54VN",
+-     },
+-     "url": "https://hooks.example.com/emdash",
+-   },
+-   {
+-     "payload": ObjectContaining {
+-       "data": {
+-         "title": "With data",
+-       },
+-       "resourceId": "01M47J3RJDZE5DBAJF0EWHRKBA",
+-     },
+-     "url": "https://hooks.example.com/emdash",
+-   },
+- ]
++ []
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:252:16
+    250|   const withData = await createPost("With data");
+    251|
+    252|   expect(sent).toEqual([
+       |                ^
+    253|    {
+    254|     url: WEBHOOK_URL,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > names the draft revision when content data is an unpublished edit
+AssertionError: expected [] to deep equally contain { …(2) }
+
+- Expected:
+{
+  "payload": ObjectContaining {
+    "data": {
+      "title": "Unpublished edit",
+    },
+    "event": "content:update",
+    "metadata": {
+      "draftRevisionId": "01M47J3S13AE0Q325WWJ869HH3",
+      "slug": "live",
+      "status": "published",
+    },
+  },
+  "url": "https://hooks.example.com/emdash",
+}
+
++ Received:
+[]
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:296:16
+    294|
+    295|   expect(edited.data.item.draftRevisionId).toEqual(expect.any(String));
+    296|   expect(sent).toContainEqual({
+       |                ^
+    297|    url: WEBHOOK_URL,
+    298|    payload: expect.objectContaining({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > adds the file's name, type and size to media payloads only when Include Content Data is on
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:312:39
+    310|  it("adds the file's name, type and size to media payloads only when I…
+    311|   const withoutData = await uploadPhoto();
+    312|   await vi.waitFor(() => expect(sent).toHaveLength(1));
+       |                                       ^
+    313|   await ctx.kv.set("settings:includeData", true);
+    314|   const withData = await uploadPhoto();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts > webhook-notifier plugin > records each delivery and counts it in the status stats
+AssertionError: expected { success: true, data: { …(3) }, …(1) } to match object { success: true, …(1) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "data": {
+      "stats": {
+-       "failed": 1,
+-       "successful": 1,
++       "failed": 2,
++       "successful": 0,
+      },
+    },
+    "success": true,
+  }
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts:345:18
+    343|    new Request("http://localhost/_emdash/api/plugins/webhook-notifier/…
+    344|   );
+    345|   expect(status).toMatchObject({
+       |                  ^
+    346|    success: true,
+    347|    data: { stats: { successful: 1, failed: 1 } },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  2 failed | 25 passed (27)
+      Tests  10 failed | 329 passed (339)
+   Start at  02:53:45
+   Duration  64.12s (transform 3.57s, setup 0ms, import 18.59s, tests 42.37s, environment 2ms)
+

@@ -1,0 +1,25 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "observedWholeSourceRuntime4Stop": "semver/functions/compare.js,zero registered callbacks",
+  "sourceManifest": "packages/registry-client/package.json",
+  "sourceSpecifier": "catalog:",
+  "sourceSelected": {
+    "specifier": "catalog:",
+    "version": "7.7.4"
+  },
+  "packageKey": "semver@7.7.4",
+  "sourcePackage": {
+    "resolution": {
+      "integrity": "sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA=="
+    },
+    "engines": {
+      "node": ">=10"
+    },
+    "hasBin": true
+  },
+  "sourceSnapshot": {},
+  "scope": "Proposed isolated ignore-scripts Reference archive only; no Main/shared dependency edits",
+  "reason": "Earlier require.resolve saw host global semver path; actual Vite ESM cannot resolve it and it is not Source version/SRI qualified",
+  "additionalTransitiveDependencies": {},
+  "authorized": false
+}

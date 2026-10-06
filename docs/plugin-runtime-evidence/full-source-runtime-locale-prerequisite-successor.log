@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts ]
+Error: Cannot find package 'virtual:emdash/config' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/emdash-runtime.ts:22:1
+     20| import { isJsonPostRouteContract } from "@emdash-cms/plugin-types";
+     21| import { Kysely, type Dialect } from "kysely";
+     22| import virtualConfig from "virtual:emdash/config";
+       | ^
+     23| import { z } from "zod";
+     24|
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts:8:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  01:54:27
+   Duration  937ms (transform 536ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

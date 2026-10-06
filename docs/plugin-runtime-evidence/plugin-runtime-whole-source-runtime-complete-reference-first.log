@@ -1,0 +1,32 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/publication-policy-effective-draft.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/restore-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/schedule-hooks.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/unit/plugins/unpublish-hooks.test.ts ]
+Error: Cannot find package 'semver/functions/compare.js' imported from /workspace/cms-full-plugin-runtime-provider/parity/emdash/plugin-runtime/source/packages/registry-client/src/env/index.ts
+ ❯ parity/emdash/plugin-runtime/source/packages/registry-client/src/env/index.ts:18:1
+     16|  */
+     17|
+     18| import compare from "semver/functions/compare.js";
+       | ^
+     19| import satisfies from "semver/functions/satisfies.js";
+     20| import valid from "semver/functions/valid.js";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/api/handlers/registry.ts:14:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  02:31:21
+   Duration  5.13s (transform 2.33s, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

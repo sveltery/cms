@@ -1,0 +1,11 @@
+file:///workspace/cms-full-plugin-runtime-provider/scripts/check-plugin-runtime-transports.mjs:22
+    throw new Error(`Whole native module differs from exact Source import transport: ${row.native}`);
+          ^
+
+Error: Whole native module differs from exact Source import transport: src/lib/server/plugins/types.ts
+    at file:///workspace/cms-full-plugin-runtime-provider/scripts/check-plugin-runtime-transports.mjs:22:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

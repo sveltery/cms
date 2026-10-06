@@ -3150,3 +3150,141 @@ owned tests/raw history remain unchanged; this introduces no provider or
 dependency adjustment. Prior ae515 hosted all-six success remains historical.
 Current successor gates and finite union review precede exact Root approval,
 regular author merge and the downstream provider18 prerequisite handoff.
+
+### PL1 complete runtime/provider work in progress
+
+The [plugin runtime/provider record](../../docs/plugin-runtime-provider.md) and
+[whole pinned inventory](plugin-runtime/inventory.json) preserve EmDash 1.1.0
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`: 78 whole test families, 45 selected
+implementation authorities and 648 byte-exact closure files. Their 1,107
+declarations and 4,884 AST assertion expressions are inventory with zero product
+execution credit. The initial missing generated Kit configuration and missing
+plugin modules stop before Source callbacks, earning zero behavioral-red credit.
+After actual Kit sync, two supplemental Native tests execute actual configured
+startup and fail on real values: absent request plugin manager and absent
+canonical `_cms_plugin_state` activation row. These are Native integration reds,
+not copied Source callbacks. Svelte provider/framework adaptation, current-event
+database ownership, implementation and complete final qualification are pending.
+Sandbox execution (PL2) and marketplace/registry installation (PL3) remain separate
+delivery scopes; neighboring preserved authorities establish no completion.
+
+
+### PL1 retained checkpoint correction and Svelte provider transport
+
+The [paired plugin record](../../docs/plugin-runtime-provider.md) retains the raw
+initial activation-row red and explicitly withdraws its expectation: pinned
+configured startup enables absent rows without persisting them. Corrected Native
+restart checks use actual inactive canonical state. No parity credit is assigned
+to the withdrawn expectation. The expanded whole census is 80 families / 658
+literal authority files; current Source host executions are 423 core callbacks
+with 15 prerequisite-stopped families and 20 admin helper callbacks. Mixed frozen
+repository fixtures, pure helper outcomes and Native integration evidence remain
+separate. All wider runtime/admin consumers remain incomplete.
+
+PL1-PROVIDER01 substitutes actual native Svelte component context and
+`svelte:boundary` containment/retry/resetKey for Source React providers and error
+boundary classes at pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+Whole Source selection/path tests are retained unchanged; three separate Native
+DOM callbacks test the real provider tree. No React component rendering, error
+info identity, Kumo/Lingui component identity, browser geometry or complete PL2
+sandbox execution is inferred. Proposed [PR #127](https://github.com/sveltery/cms/pull/127);
+specific framework acceptance and full final qualification remain pending.
+
+
+### PL1 context, canonical batch and finite identifier transports
+
+The [paired record](../../docs/plugin-runtime-provider.md) records complete
+context/cron/state/email/hook/manager/route authorities at immutable Source
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The latest Source host reaches689
+callbacks with Original controlled collaborators; four SourceRuntime families
+still stop at prerequisites. Production canonical context integration remains
+incomplete, especially Media113/entry locks and compound write producers.
+
+PL1-SQL01 emits fixed cron and storage cursor table identifiers as Kysely table
+nodes, preserving existing Native namespaces without new RawNode/input SQL
+rewriting. SQL quoting differs from Source literal templates, and whole-module
+identity is not claimed. PL1-BATCH01 sends actual registered-owner plugin
+`putMany` statements to its existing atomicBatch; Original controlled fixtures
+retain their Source transaction path. Source D1 permits callback fallback;
+Native retains existing C-07 and rejects unresolved compound write paths.
+Dedicated Native atomicity qualification is pending. ProposedPR127, no specific
+framework/atomicity difference acceptance or full product qualification recorded.
+The sole existing user owner is adopted from approvedMain82 through regular
+mergef960b7b5; no additional content, media, identity or storage provider is added.
+
+### PL1 canonical document owner and transaction qualification
+
+PL1-BATCH01 now has three separate Native callbacks against actual canonical
+SQLite storage. The test-first run had two genuine value failures; the corrected
+transport uses owner atomicBatch outside a transaction, preserves the current
+transaction executor inside, and rejects unknown derived namespace repository
+handles. Plain Original controlled fixtures retain their Source paths.
+The [paired record](../../docs/plugin-runtime-provider.md) preserves the initial
+and intermediate logs and all limits. This proves this document list boundary,
+not complete context/settings compound writes, D1 support or complete runtime.
+
+PL1-SQL01 additionally covers the plugin expression-index table template: actual
+registered owners use the existing TableNode namespace, while Original controlled
+Source templates remain unchanged. The real Native first-value red and final
+four-callback family are paired with 15 whole Source index callbacks in the
+[plugin record](../../docs/plugin-runtime-provider.md). No new canonical provider
+or arbitrary SQL rewriting is introduced; full runtime qualification is pending.
+
+### PL1 configured kernel and Source authority prerequisites
+
+The [paired record](../../docs/plugin-runtime-provider.md) distinguishes Native
+configured state/options/current-owner execution from immutable Source complete
+EmDashRuntime execution. Three actual Native kernel callbacks pass with dormant
+outside-domain imports supplied by whole Original controlled collaborators; two
+invalid initial test assumptions are withdrawn with zero causal credit. Complete
+settings handlers add 16 whole Source callbacks. The exact original virtual setup
+and whole locale configuration remove those import prerequisites, leaving actual
+`modern-tar` missing before four runtime families register callbacks. No new
+dependency or substitute runtime is used. All shared startup, canonical content/
+media/entry-lock, typed HTTP and actual product callers remain unqualified.
+
+A finite sole-host lifecycle metadata inheritance proposal is under review after
+four actual value reds; its earlier metadata-erasing draft was not implemented.
+The missing after-reader observer is infrastructure only and grants zero causal
+credit. Source mocks, prior accepted host callbacks and protected database owners
+remain unchanged at this checkpoint.
+
+PL1-LIFECYCLE01 is the Root-reviewed additive sole-host metadata inheritance
+transport. Its machine record reverses the one added shared-host span to the
+whole accepted Main82 file exactly. Six Native controls retain trusted timezone
+and after callback identities through real owner views/current transactions;
+four document/index controls remain green. The missing initial reader receives
+zero causal credit. Existing owner metadata, Source original mocks and D1 C-07
+guards are preserved. Wider production lifecycle and full runtime qualification
+remain pending in the [paired record](../../docs/plugin-runtime-provider.md).
+
+The literal PL1 module guard qualifies 45 complete Source import transports
+after fixing one missed type-only dynamic import. Seven finite adaptations
+remain separately identified, with no whole-module identity claim. The unchanged
+35-family host reaches 705 callbacks and four real prerequisite stops. The
+[paired record](../../docs/plugin-runtime-provider.md) retains initial guard
+failure, exact fix and complete accepted-host reconstruction.
+
+
+Plugin127 Reference closure checkpoint: the unchanged whole 27 integration families now register 275 callbacks, all passing across 15 families, with 12 genuine import prerequisite stops. The earlier Byline value failure was a Source fixture using a Native physical-namespace collaborator; the host now binds the complete immutable Original credits collaborator. This grants no Native Byline qualification. Complete SourceRuntime4 still registers zero callbacks; after the genuine Core modern-tar0.7.5 Reference archive and complete immutable auth adapter, the next missing package is @atcute/lexicons/syntax. All failed launches/import stops are retained and grant zero causal red credit.
+
+The isolated Root-authorized modern-tar archive matches the exact Core Source SRI and all nine regular files; its complete MIT license is retained. Main package, lock and node_modules were untouched. Actual AST imports replace the overbroad comment/string regex for the expanded workspace-package census; the initial overbroad census log remains raw, and only 26 unpublished untracked extra copies were removed. All previously published immutable authority files remain. Current whole census is 782 authorities/6,873,447 bytes, 80 test families, 1,116 declarations, 4,926 assertion expressions, 98 real workspace export bindings and zero unresolved relative or package-import aliases. The separate complete runtime import graph and exact external acquisition proposal are Reference-only inventories, not executed dependency installations or Native PL2/PL3/runtime completion.
+
+
+Plugin127 canonical content delegation first baseline: the genuine current content access accepts an unknown derived plugin namespace handle (one actual value failure). Canonical stored content/revision reads and a genuine transaction read plus rollback are positive controls. An initial test used an invented nested revisions.get signature; that input failure is explicitly withdrawn with zero causal credit, raw retained, and corrected to the actual complete Source getRevision signature before implementation. No new protected request, principal/session, credential, race or migration provider probe is introduced.
+
+
+Plugin127 canonical Content/Revision facade fix delegates all methods to the sole accepted classes, binding their constructor to the actual registered owner db, including the exact current transaction descriptor. Complete context/content-access bodies remain Source-exact after the three finite import substitutions; Original controlled fixture classes remain whole Source collaborators in the Reference host. Native content3 + metadata6 + storage4 all pass, including genuine stored revision reads, transaction visibility/rollback and unknown-derived refusal. No alternate repository, executor, callback metadata reset or content writer was added.
+
+Qualified MainC4 is ordinarily adopted as 7c6968cd with ordered parents [888bfdd9, c4c885e0]. Both actual merge conflicts retain the complete accepted Main file prefix and exact own tail. The complete named sole Media producer vector and conflict proof are recorded; the real Native Media modules are now available for integration, with no plugin Media execution credit yet. Root-authorized isolated Reference package graph acquired 68 tarballs and verified every SRI, 2,520 regular files, complete manifests, 67 packaged license files and all eleven declared Node engine constraints. Twenty-two prepare hooks were inspected and never executed. SigstoreVerify's genuine Apache2 declaration without packaged LICENSE is recorded honestly and accepted only for Reference. Complete SourceRuntime4 remains at zero callbacks after a genuine missing semver7.7.4 Source importer; the additional exact isolated archive proposal is pending. Main package/lock/shared node_modules remain unchanged except the separately qualified croner addition.
+
+
+Plugin127 Native builtin-provider baseline: three genuine configured-kernel value failures remain after supplying the actual mandatory users:read capability: missing default moderation, missing development console delivery, and missing fallback after configured moderator disable. An initial omitted capability is withdrawn as invalid input; one later Source host path typo stopped callback registration and grants zero causal credit. Both raw histories remain. These controls use ordinary canonical state/options and controlled hook/message values, with dormant outside-domain Original collaborators; no real protected request/session/credential or external delivery probe.
+
+
+Plugin127 builtin-provider fix preserves the full Source registration span in a hashed receipt. The actual default moderator and development-only console transport remain enabled independently of configured plugins. Genuine configured moderators override the default through the unchanged exclusive resolver; disabling them restores the fallback without writing a fallback selection. Native kernel6 now pass. The previous expectation that every hook disappears when the sole configured plugin is disabled was invalid: the complete Source builtins remain. It is explicitly withdrawn with raw retained, and the corrected control verifies configured lifecycle hooks are removed. Optional development-flag access is a finite unbundled-Node framework adaptation; it does not enable console delivery without the actual development flag. Full shared-runtime/provider integration remains incomplete.
+
+
+Plugin127 complete Reference closure now reaches unchanged SourceRuntime4/11, all whole unit35/716, and all integration27/339 passing callbacks. Two complete Original JSONC manifests close fixture file prerequisites. The full Source auth public entry restores the Original Role export, and the Original DNS resolver fixture now reaches the identical whole transported SSRF module used by the ported context. Earlier missing files, package exports, duplicate singleton, class identity and import-path failures are retained with zero Native causal credit. Isolated exact semver7.7.4 and Core sax1.4.4 archives, all files and complete packaged licenses are recorded; sax actual declared spec is ^1.4.1. No Main dependencies were added. Source body/mocks/data/clocks remain immutable and this does not qualify Native full runtime, sandbox or marketplace execution.
+
+The complete Root-qualified Cron129 provider18 graph is ordinarily present through public1707817f; the full incoming named producer vector and conflict proof preserve every qualified byte. Actual canonical Native cron correctness ports the entire Original three-test family with explicit import/physical-table transports, then executes two real runtime/context scheduling controls including current event-owner isolation. All five pass. The supplemental initial invented cron:tick hook is explicitly withdrawn as invalid input with raw retained; the actual Source hook is cron and no implementation change was needed. Current Node execution grants no D1 or PostgreSQL adapter credit.

@@ -1,0 +1,50 @@
+{"packageKey": "@atcute/car@6.0.0", "files": 33, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/cbor@2.3.3", "files": 33, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/atproto@4.0.2", "files": 488, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/cid@2.4.1", "files": 18, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/client@5.0.0", "files": 24, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/crypto@2.4.1", "files": 53, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/identity-resolver@2.0.0", "files": 68, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/identity@2.0.0", "files": 38, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/lexicons@2.0.0", "files": 118, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/mst@1.0.1", "files": 78, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/multibase@1.2.0", "files": 98, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/repo@1.0.0", "files": 43, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/uint8array@1.1.1", "files": 18, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/util-fetch@2.0.0", "files": 33, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/util-text@1.3.1", "files": 25, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@atcute/varint@2.0.0", "files": 8, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@noble/secp256k1@3.1.0", "files": 6, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@portabletext/toolkit@5.0.1", "files": 7, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@portabletext/types@4.0.1", "files": 6, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@sigstore/core@4.0.1", "files": 47, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@remirror/core-constants@3.0.0", "files": 14, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@sigstore/bundle@5.0.0", "files": 17, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@sigstore/verify@4.1.0", "files": 48, "licenseFiles": 0, "packExit": 0, "exactSRI": true}
+{"packageKey": "@sigstore/protobuf-specs@0.5.1", "files": 37, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@standard-schema/spec@1.1.0", "files": 7, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@tiptap/pm@3.20.0", "files": 93, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "@tiptap/core@3.20.0", "files": 211, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+{"packageKey": "argparse@2.0.1", "files": 7, "licenseFiles": 1, "packExit": 0, "exactSRI": true}
+Traceback (most recent call last):
+  File "/tmp/plugin127-complete-reference-packages/acquire.py", line 38, in <module>
+    for result in executor.map(acquire,sorted(selected.items())):receipts.append(result)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/plugin127-complete-reference-packages/acquire.py", line 24, in acquire
+    assert all(m.isfile() and m.name.startswith('package/') and '..' not in pathlib.PurePosixPath(m.name).parts for m in members),(key,'unexpected nonregular or unsafe archive entry')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('@types/linkify-it@5.0.0', 'unexpected nonregular or unsafe archive entry')

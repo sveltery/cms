@@ -15,6 +15,15 @@ export function registerLifecycleDatabase(database: CmsDatabase, values: Lifecyc
   databases.set(database.db, database); dependencies.set(database.db, values);
 }
 export const lifecycleDatabase = (db: object) => databases.get(db);
+/** Read the trusted host callbacks without replacing the registered owner metadata. */
+export const lifecycleDependencies = (db: object): Readonly<LifecycleDependencies> | undefined => dependencies.get(db);
+/** The caller has already qualified the genuine owner-backed view/transaction. */
+export function inheritLifecycleDatabase(database: CmsDatabase, sourceDb: object): void {
+  if (!databases.has(sourceDb)) throw new Error('Lifecycle inheritance requires the actual registered source owner');
+  const values = dependencies.get(sourceDb)!;
+  databases.set(database.db, database);
+  dependencies.set(database.db, values);
+}
 export async function siteTimezone(db: Kysely<any>): Promise<{value: string} | undefined> {
   const configured = dependencies.get(db)?.timezone;
   const timezone = configured ? await configured() : undefined;

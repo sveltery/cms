@@ -1,0 +1,48 @@
+
+ RUN  v4.1.10 /workspace/cms-full-plugin-runtime-provider
+
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts (0 test)
+ ❯ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 12 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/ai-moderation-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/audit-log-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/content-attribution.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/event-scoped-db.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/plugins/webhook-notifier-plugin.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-action-settlement.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-cron-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-media-route.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-raw-routes.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-cache-control.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-site-info.test.ts ]
+ FAIL  parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts [ parity/emdash/plugin-runtime/source/packages/core/tests/integration/runtime/plugin-route-ui-context.test.ts ]
+Error: Cannot find module '/parity/emdash/plugin-runtime/source/packages/core/src/transfer/write-fence.ts' imported from /workspace/cms-full-plugin-runtime-provider/src/lib/server/plugins/routes.ts
+ ❯ src/lib/server/plugins/routes.ts:22:1
+     20| import { z } from "zod";
+     21|
+     22| import { SiteWriteBlockedError } from "./transfer-fence.ts";
+       | ^
+     23| import { PluginContextFactory, type PluginContextFactoryOptions } from…
+     24| import { extractRequestMeta } from "./request-meta.ts";
+ ❯ parity/emdash/plugin-runtime/source/packages/core/src/plugins/index.ts:90:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+
+ Test Files  12 failed | 15 passed (27)
+      Tests  275 passed (275)
+   Start at  02:47:24
+   Duration  50.79s (transform 3.32s, setup 0ms, import 5.35s, tests 29.87s, environment 2ms)
+
