@@ -3287,3 +3287,36 @@ establish complete Node import hosting or full Media parity.
 [Paired feature and complete retained evidence](../../docs/general-media-backend.md).
 
 The complete actual public Media113c78460e union is retained through ordinary merge00c60880 with all3970API/native blob vectors matching. The canonical lifecycle service remains byte-identical to the already adopted public Byline9a owner; both compatibility/attribute histories and full existing Source command prefix are preserved. Kit sync and the single current bounded3072 checker pass0errors/0warnings after five actual repairs. Source Node85 and supplemental captured creation8 remain green; whole OriginalD169 retains68pass/1unsupported callback. New owned Seed source/native scripts append to the existing Source sequence so the guarded algorithms, complete Node85/69, actual capture/usage/observer/budget and Original Workerd10 Node-host controls execute in normal CI. Unsupported/timeout whole D1 comparisons remain literal documented comparison receipts, without callback or clock changes. Bootstrap deadlines, flags and dependency pins are unchanged.
+
+### NODE-ERROR-CTOR01: two equivalent erasable error constructors
+
+The proposed child [PR125](https://github.com/sveltery/cms/pull/125) targets the
+actual public Media113 `c78460e749edc1ba77215cabbd268bbdef2a2625`. Immutable EmDash
+1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` repository `types.ts` and storage
+`types.ts` remain the authority. Only Native `EmDashValidationError` and
+`EmDashStorageError` parameter properties become explicit fields assigned after
+`super(message)` and before the unchanged name assignment. Public mutable
+code/cause, optional details, undefined/cause identity, enumerable own-property
+descriptors and subclass instanceof behavior remain. The Byline transport follows
+the already-public sole-owner `5b59e398` without adopting that wider feature lane.
+All other statements/methods and Source bytes/hashes remain unchanged.
+
+Test-first `3c520a9` reaches two real Native Node exit-zero assertion failures; two
+Source constructor runtime reference controls initially pass. Missing generated
+Kit config is a separate zero-callback prerequisite stop. Fix `e3011f9` passes the
+unchanged parent Native24 including actual canonical owner folder/media writes
+and reads, plus four new constructor controls. Refactor `f559ed8` shares one finite
+strict validator; six isolated exact/negative preservation controls pass, rejecting
+wrong assignments and original error-name bodies. Native34 and focused whole
+Source Media321/R2mock1/Byline216 pass. No Source causal repair, altered-class
+body identity, Source import-stop credit or full hosting/feature parity is claimed.
+The Media guard now reports 57 whole modules plus three constructor-only transports
+rather than claiming58 whole modules after the storage error change. Complete R2,
+seven usage-read functions and two cleanup blocks remain exact and guarded.
+
+This finite framework syntax substitution has Root development authorization.
+Current normal13/aggregate, secured10/Calendar checks, independent/configured
+review, Root exact-head approval and author expected-head regular merge remain
+pending; no final acceptance or landing is recorded. [Paired feature documentation
+and retained evidence](../../docs/node-error-constructor-hosting.md) preserves the
+historical MED-NODE-CTOR01 second red and distinguishes all partial outcomes.

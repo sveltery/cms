@@ -1,3 +1,4 @@
+import { verifyErrorConstructorTransport } from './node-error-constructor-transport.mjs';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import ts from 'typescript';
@@ -11,10 +12,11 @@ console.log('Verified ' + manifest.authorities.length + ' whole EmDash general-m
 const readJson = path => JSON.parse(readFileSync(new URL('../' + path, import.meta.url), 'utf8'));
 const parse = path => ts.createSourceFile(path,readFileSync(new URL('../'+path,import.meta.url),'utf8'),ts.ScriptTarget.Latest,true);
 const transformations=readJson('parity/emdash/general-media-source/runtime-transformations.json');
-// Only these two parameter properties have an approved, equivalent Node strip-mode transport.
+// Only these finite parameter properties have an equivalent Node strip-mode transport.
 const constructorTransports=new Map([
   ['packages/core/src/database/repositories/media.ts','MediaRepository'],
-  ['packages/core/src/database/repositories/media-folders.ts','MediaFolderRepository']
+  ['packages/core/src/database/repositories/media-folders.ts','MediaFolderRepository'],
+  ['packages/core/src/storage/types.ts','EmDashStorageError']
 ]);
 const originalConstructor='constructor(private db: Kysely<Database>) {}';
 const nativeField='private db: Kysely<Database>;';
@@ -38,7 +40,10 @@ for(const row of transformations.runtimeModules) {
       const end=original.moduleSpecifier.end-original.getStart(source);
       expected=expected.slice(0,start)+actual.moduleSpecifier.getText(native)+expected.slice(end);
     }
-    if(constructorClass&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
+    if(constructorClass==='EmDashStorageError'&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
+      expected=verifyErrorConstructorTransport(expected,actual.getText(native),constructorClass);
+      constructorTransportCount++;
+    } else if(constructorClass&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
       const sourceConstructor=original.members[0];
       if(!ts.isConstructorDeclaration(sourceConstructor)||sourceConstructor.getText(source)!==originalConstructor||
         !ts.isClassDeclaration(actual)||actual.name?.text!==constructorClass||
@@ -51,7 +56,7 @@ for(const row of transformations.runtimeModules) {
     if(expected!==actual.getText(native))throw new Error('Pinned whole algorithm changed: '+row.runtime+':'+index);
   }
 }
-if(constructorTransportCount!==2)throw new Error('Expected exactly two approved constructor transports');
+if(constructorTransportCount!==3)throw new Error('Expected exactly three finite constructor transports');
 function checkCompleteNodes(authorityPath,runtimePath,rows,select) {
   const source=parse(authorityPath),native=parse(runtimePath);
   for(const row of rows){
