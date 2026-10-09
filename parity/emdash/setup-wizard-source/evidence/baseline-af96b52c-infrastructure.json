@@ -1,0 +1,29 @@
+{
+  "head": "af96b52cef3e0c195c78a8614f3e0315c708b70d",
+  "checkoutMerge": "bfcf49022c7f3c116eeed78b86a361c72bb9e33a",
+  "checkoutBase": "135e7be689885fd23678569d0d373a1131f5302b",
+  "pr": 88,
+  "run": 37178808022,
+  "job": 111366962067,
+  "artifact": 11294795623,
+  "result": "infrastructure-failed; no imported test cases",
+  "sourceExecutionCredit": 0,
+  "sourceCausalCredit": 0,
+  "productRedCredit": 0,
+  "json": {
+    "path": "baseline-af96b52c-source-18.json",
+    "sha256": "8e3eb6eedd13f61239c7a6cb770bd1a5bba4bccb4e0c696e9512b1a48c456765",
+    "numTotalTests": 0,
+    "numFailedTests": 0
+  },
+  "physicalBrowserLaunch": "2026-10-04T05:04:52.4050798Z 2026-10-04T05:04:52.401Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-v2AiPS --remote-debugging-pipe --no-startup-window",
+  "noNoSandboxFlag": true,
+  "actualFailure": "2026-10-04T05:04:56.6676827Z \u001b[2m5:04:56 AM\u001b[22m \u001b[31m\u001b[1m[vite]\u001b[22m\u001b[39m \u001b[31m\u001b[2m(client)\u001b[22m\u001b[39m Pre-transform error: Failed to load url /src/lib/auth/passkey-browser (resolved id: /home/runner/work/cms/cms/src/lib/auth/passkey-browser) in /home/runner/work/cms/cms/src/lib/ui/PasskeySetup.svelte. Does the file exist?",
+  "rawLog": {
+    "localPath": "/tmp/setup-wizard-baseline-af96b52c-job111366962067.log",
+    "sha256": "e26f101a4114238b60f863d1c8eb1e37a3ac5af0b36c2c7f4ba4ee5d030c422c",
+    "bytes": 51775,
+    "publicJob": "https://github.com/sveltery/cms/actions/runs/37178808022/job/111366962067"
+  },
+  "repair": "Test-only Vite aliases resolve native $lib imports with normal extension lookup; inert remote alias stays ahead of general $lib alias. No original Source assertion, timeout, mock, fixture or product change."
+}
